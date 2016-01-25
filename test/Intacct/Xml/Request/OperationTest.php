@@ -59,7 +59,6 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
-        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $operation = new Operation($config, $content);
@@ -106,7 +105,6 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
-        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $operation = new Operation($config, $content);
@@ -148,7 +146,6 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
-        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $operation = new Operation($config, $content);

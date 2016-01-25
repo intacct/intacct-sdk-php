@@ -44,7 +44,6 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
-        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $sessionAuth = new SessionAuthentication($config);

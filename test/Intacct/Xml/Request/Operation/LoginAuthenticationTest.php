@@ -50,7 +50,6 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
-        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $loginAuth = new LoginAuthentication($config);
