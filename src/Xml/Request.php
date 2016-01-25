@@ -145,6 +145,7 @@ class Request
     {
         $xml = new XMLWriter();
         $xml->openMemory();
+        $xml->setIndent(false);
         $xml->startDocument(self::XML_VERSION, $this->encoding);
         $xml->startElement('request');
 
