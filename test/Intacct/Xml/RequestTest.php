@@ -36,23 +36,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="iso-8859-1"?>
-<request>
-    <control>
-        <senderid>intacct_dev</senderid>
-        <password>pass123!</password>
-        <controlid>requestControlId</controlid>
-        <uniqueid>false</uniqueid>
-        <dtdversion>3.0</dtdversion>
-        <policyid/>
-        <includewhitespace>false</includewhitespace>
-    </control>
-    <operation transaction="false">
-        <authentication>
-            <sessionid>testsession..</sessionid>
-        </authentication>
-        <content></content>
-    </operation>
-</request>
+<request><control><senderid>intacct_dev</senderid><password>pass123!</password><controlid>requestControlId</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><policyid/><includewhitespace>false</includewhitespace></control><operation transaction="false"><authentication><sessionid>testsession..</sessionid></authentication><content></content></operation></request>
 EOF;
         
         $config = [

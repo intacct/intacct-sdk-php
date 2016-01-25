@@ -45,6 +45,8 @@ EOF;
 
         $xml = new XMLWriter();
         $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
         $xml->startDocument();
 
         $this->object->getXml($xml);
