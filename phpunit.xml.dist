@@ -14,20 +14,10 @@ express or implied. See the License for the specific language governing
 permissions and limitations under the License.
 -->
 
-<!-- see http://www.phpunit.de/wiki/Documentation -->
-<!--phpunit bootstrap="/path/to/bootstrap.php"
-         colors="false"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         stopOnFailure="true">
-</phpunit-->
-
-<phpunit colors="false">
-    <filter>
-        <blacklist>
-            <!-- do not show the vendor directory in code coverage report -->
-            <directory>../src/vendor</directory>
-        </blacklist>
-    </filter>
+<phpunit colors="true" bootstrap="./test/bootstrap.php">
+    <testsuites>
+        <testsuite name="intacct">
+            <directory suffix="Test.php">test</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
