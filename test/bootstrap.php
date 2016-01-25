@@ -15,4 +15,4 @@
  * permissions and limitations under the License.
  */
 
-$loader = require dirname(__DIR__) . '\src\vendor\autoload.php';
+$loader = require dirname(__DIR__) . '\vendor\autoload.php';
