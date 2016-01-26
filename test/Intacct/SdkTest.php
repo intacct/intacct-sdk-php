@@ -4,6 +4,7 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Implicit\Record;
 
 class SdkTest extends \PHPUnit_Framework_TestCase
@@ -155,39 +156,186 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::executeContent
-     * @todo   Implement testExecuteContent().
-     */
-    public function testExecuteContent()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
      * @covers Intacct\Sdk::executeContentAsync
-     * @todo   Implement testExecuteContentAsync().
      */
     public function testExecuteContentAsync()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <acknowledgement>
+        <status>success</status>
+    </acknowledgement>
+    <control>
+        <status>success</status>
+        <senderid>intacct_dev</senderid>
+        <controlid>requestControlId</controlid>
+        <uniqueid>false</uniqueid>
+        <dtdversion>3.0</dtdversion>
+    </control>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+        
+        $params = [
+            'policy_id' => 'testpolicy',
+            'mock_handler' => $mock
+        ];
+        $defaults = $this->ia->getSessionConfig();
+        $config = array_merge($defaults, $params);
+        
+        $content = new Content();
+        $async = $this->ia->executeContentAsync($config, $content);
+        
+        $this->assertEquals('success', $async->getStatus());
+    }
+    
+    
+
+    /**
+     * @covers Intacct\Sdk::executeContentAsync
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
+     */
+    public function testExecuteContentAsyncNoPolicyId()
+    {
+        $config = $this->ia->getSessionConfig();
+        
+        $content = new Content();
+        $async = $this->ia->executeContentAsync($config, $content);
     }
 
     /**
      * @covers Intacct\Sdk::readByQuery
-     * @todo   Implement testReadByQuery().
      */
-    public function testReadByQuery()
+    public function testReadByQuerySuccess()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>intacct_dev</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>readByQuery</function>
+                  <controlid>readByQuery</controlid>
+                  <data listtype="glaccount" count="2" totalcount="2" numremaining="0" resultId="">
+                        <glaccount>
+                              <RECORDNO>47</RECORDNO>
+                              <ACCOUNTNO>1010</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1145</TITLE>
+                        </glaccount>
+                        <glaccount>
+                              <RECORDNO>55</RECORDNO>
+                              <ACCOUNTNO>1020</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1343</TITLE>
+                        </glaccount>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+        
+        $readByQuery = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'query' => "ACCOUNTNO = '1010' OR ACCOUNTNO = '1020'",
+            'mock_handler' => $mock,
+        ];
+        $data = $this->ia->readByQuery($readByQuery);
+        $this->assertEquals($data->getStatus(), 'success');
+        $this->assertEquals($data->getFunction(), 'readByQuery');
+        $this->assertEquals($data->getControlId(), 'readByQuery');
+    }
+
+    /**
+     * @covers Intacct\Sdk::readByQuery
+     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedExceptionMessage An error occurred trying to read query records
+     */
+    public function testReadByQueryFailure()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>intacct_dev</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>readByQuery</function>
+                  <controlid>readByQuery</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>DL02000001</errorno>
+                              <description>Error</description>
+                              <description2>There was an error processing the request.</description2>
+                              <correction></correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+        
+        $readByQuery = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'query' => "this is not a query",
+            'mock_handler' => $mock,
+        ];
+        $data = $this->ia->readByQuery($readByQuery);
     }
 
     /**
@@ -216,14 +364,98 @@ EOF;
 
     /**
      * @covers Intacct\Sdk::getQueryRecords
-     * @todo   Implement testGetQueryRecords().
+     * @covers Intacct\Sdk::readByQuery
+     * @covers Intacct\Sdk::readMore
      */
-    public function testGetQueryRecords()
+    public function testGetQueryRecordsSuccess()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $xml1 = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>intacct_dev</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>readByQuery</function>
+                  <controlid>readByQuery</controlid>
+                  <data listtype="glaccount" count="1" totalcount="2" numremaining="1" resultId="7765623330Vqb8pMCoA4IAAEnuglgAAAAL5">
+                        <glaccount>
+                              <RECORDNO>47</RECORDNO>
+                              <ACCOUNTNO>1010</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1145</TITLE>
+                        </glaccount>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $xml2 = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>intacct_dev</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>readMore</function>
+                  <controlid>readMore</controlid>
+                  <data listtype="glaccount" count="1" totalcount="2" numremaining="0" resultId="7765623330Vqb8pMCoA4IAAEnuglgAAAAL5">
+                        <glaccount>
+                              <RECORDNO>55</RECORDNO>
+                              <ACCOUNTNO>1020</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1343</TITLE>
+                        </glaccount>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse1 = new Response(200, $headers, $xml1);
+        $mockResponse2 = new Response(200, $headers, $xml2);
+        $mock = new MockHandler([
+            $mockResponse1,
+            $mockResponse2,
+        ]);
+        
+        $readByQuery = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'query' => "ACCOUNTNO = '1010' OR ACCOUNTNO = '1020'",
+            'page_size' => 1,
+            'mock_handler' => $mock,
+        ];
+        $data = $this->ia->getQueryRecords($readByQuery);
+        $this->assertCount(2, $data);
     }
 
     /**
