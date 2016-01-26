@@ -40,6 +40,7 @@ use Intacct\Xml\Response\Operation;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use ArrayIterator;
+use InvalidArgumentException;
 
 class Sdk
 {
@@ -135,7 +136,7 @@ class Sdk
      * 
      * @return array
      */
-    private function getSessionConfig()
+    public function getSessionConfig()
     {
         $sessionCreds = $this->getSessionCreds();
         $senderCreds = $sessionCreds->getSenderCredentials();
@@ -160,6 +161,7 @@ class Sdk
      */
     public function executeContent(array $params, Content $content)
     {
+        unset($params['policy_id']);
         $request = new Request($params, $content);
         
         try {
@@ -181,12 +183,18 @@ class Sdk
      */
     public function executeContentAsync(array $params, Content $content)
     {
-        if (!$params['policy_id']) {
+        $defaults = [
+            'policy_id' => null,
+        ];
+        $config = array_merge($defaults, $params);
+        
+        if (!isset($params['policy_id'])) {
             throw new InvalidArgumentException(
-                'Required "policy_id" key not supplied in params'
+                'Required "policy_id" key not supplied in params for asynchronous request'
             );
         }
-        $request = new Request($params, $content);
+        
+        $request = new Request($config, $content);
         $client = $request->execute();
         $response = new AsynchronousResponse($client->getBody());
         
