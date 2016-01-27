@@ -15,29 +15,29 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation\Content\Implicit;
+namespace Intacct\Xml\Request\Operation\Content;
 
 use Intacct\Xml\Request\Operation\Content\FunctionInterface;
 use ArrayIterator;
 use InvalidArgumentException;
 use XMLWriter;
 
-class Update extends ArrayIterator implements FunctionInterface
+class Create extends ArrayIterator implements FunctionInterface
 {
-    
+
     use \Intacct\Xml\Request\Operation\Content\XMLHelperTrait;
-    
+
     /**
      * @var int
      */
-    const MAX_UPDATE_COUNT = 100;
-    
+    const MAX_CREATE_COUNT = 100;
+
     /**
      *
      * @var string
      */
     private $controlId;
-    
+
     /**
      * 
      * @param array $params
@@ -45,15 +45,15 @@ class Update extends ArrayIterator implements FunctionInterface
     public function __construct(array $params = [])
     {
         $defaults = [
-            'control_id' => 'update',
+            'control_id' => 'create',
             'records' => [],
         ];
         $config = array_merge($defaults, $params);
         
         $this->controlId = $config['control_id'];
         
-        if (count($config['records']) > static::MAX_UPDATE_COUNT) {
-            throw new InvalidArgumentException('records count cannot exceed ' . static::MAX_UPDATE_COUNT);
+        if (count($config['records']) > static::MAX_CREATE_COUNT) {
+            throw new InvalidArgumentException('records count cannot exceed ' . static::MAX_CREATE_COUNT);
         } else if (count($config['records']) < 1) {
             throw new InvalidArgumentException('records count must be greater than zero');
         }
@@ -70,7 +70,7 @@ class Update extends ArrayIterator implements FunctionInterface
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId);
         
-        $xml->startElement('update');
+        $xml->startElement('create');
         
         foreach ($this as $record) {
             $xml->startElement($record->getObjectName());
@@ -78,7 +78,7 @@ class Update extends ArrayIterator implements FunctionInterface
             $xml->endElement();
         }
         
-        $xml->endElement(); //update
+        $xml->endElement(); //create
         
         $xml->endElement(); //function
     }

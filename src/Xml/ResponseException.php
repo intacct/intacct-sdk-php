@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Exception;
+use Intacct\Exception;
 
 class ResponseException extends Exception
 {

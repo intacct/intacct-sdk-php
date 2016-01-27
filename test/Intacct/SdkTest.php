@@ -5,7 +5,7 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Xml\Request\Operation\Content;
-use Intacct\Xml\Request\Operation\Content\Implicit\Record;
+use Intacct\Xml\Request\Operation\Content\Record;
 
 class SdkTest extends \PHPUnit_Framework_TestCase
 {

@@ -19,8 +19,8 @@ namespace Intacct\Xml;
 
 use Intacct\Xml\AbstractResponse;
 use Intacct\Xml\Response\Operation;
+use Intacct\Exception;
 use SimpleXMLIterator;
-use Exception;
 
 class SynchronousResponse extends AbstractResponse
 {

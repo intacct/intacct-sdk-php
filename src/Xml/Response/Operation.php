@@ -21,8 +21,8 @@ use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\Authentication;
 use Intacct\Xml\Response\OperationException;
 use Intacct\Xml\Response\ErrorMessage;
+use Intacct\Exception;
 use SimpleXMLIterator;
-use Exception;
 
 class Operation
 {

@@ -17,8 +17,8 @@
 
 namespace Intacct\Xml\Response;
 
+use Intacct\Exception;
 use SimpleXMLIterator;
-use Exception;
 
 class Control
 {
