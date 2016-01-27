@@ -14,10 +14,15 @@ express or implied. See the License for the specific language governing
 permissions and limitations under the License.
 -->
 
-<phpunit colors="true" bootstrap="./test/bootstrap.php">
+<phpunit bootstrap="./test/bootstrap.php">
     <testsuites>
         <testsuite name="intacct">
             <directory suffix="Test.php">test</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

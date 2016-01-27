@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation\Content\Implicit;
+namespace Intacct\Xml\Request\Operation\Content;
 
 use InvalidArgumentException;
 
