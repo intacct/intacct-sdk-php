@@ -26,8 +26,9 @@ class ReadView implements FunctionInterface
     
     /**
      * @var array
+     * @todo support json and csv?
      */
-    const RETURN_FORMATS = ['xml', 'json', 'csv'];
+    const RETURN_FORMATS = ['xml'];
     
     /**
      * @var string
