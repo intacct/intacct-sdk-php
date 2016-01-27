@@ -17,8 +17,8 @@
 
 namespace Intacct\Xml\Response\Operation;
 
+use Intacct\Exception;
 use SimpleXMLIterator;
-use Exception;
 
 class Authentication
 {

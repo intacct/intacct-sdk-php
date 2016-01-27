@@ -20,8 +20,8 @@ namespace Intacct\Xml;
 use Intacct\Xml\Response\Control;
 use Intacct\Xml\ResponseException;
 use Intacct\Xml\Response\ErrorMessage;
+use Intacct\Exception;
 use SimpleXMLIterator;
-use Exception;
 
 abstract class AbstractResponse
 {

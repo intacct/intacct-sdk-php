@@ -18,9 +18,9 @@
 namespace Intacct\Xml\Response\Operation;
 
 use Intacct\Xml\Response\ErrorMessage;
+use Intacct\Exception;
 use ArrayIterator;
 use SimpleXMLIterator;
-use Exception;
 
 class Result
 {
