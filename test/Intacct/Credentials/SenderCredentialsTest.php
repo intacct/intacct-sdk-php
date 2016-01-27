@@ -32,13 +32,13 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
     public function testCredsFromArray()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'endpoint_url' => 'https://unittest.intacct.com/ia/xmlgw.phtml',
         ];
         $creds = new SenderCredentials($config);
         
-        $this->assertEquals('intacct_dev', $creds->getSenderId());
+        $this->assertEquals('testsenderid', $creds->getSenderId());
         $this->assertEquals('pass123!', $creds->getPassword());
         $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $creds->getEndpoint());
     }
@@ -86,7 +86,7 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
     public function testCredsNoSenderPassword()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             //'sender_password' => null,
         ];
         $creds = new SenderCredentials($config);

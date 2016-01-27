@@ -63,7 +63,14 @@ class SenderCredentials
     private $endpoint;
 
     /**
-     * 
+     * The constructor accepts the following options:
+     *
+     * - profile_name: (string)
+     * - sender_id: (string)
+     * - sender_password: (string)
+     * - endpoint_url: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
      * @param array $params
      */
     public function __construct(array $params = [])

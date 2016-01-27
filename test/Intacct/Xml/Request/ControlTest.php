@@ -32,14 +32,14 @@ class ControlTest extends \PHPUnit_Framework_TestCase
     public function testGetXmlDefaults()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
         ];
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
-    <senderid>intacct_dev</senderid>
+    <senderid>testsenderid</senderid>
     <password>pass123!</password>
     <controlid>requestControlId</controlid>
     <uniqueid>false</uniqueid>
@@ -84,7 +84,7 @@ EOF;
     public function testGetXmlInvalidSenderPassword()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => null,
         ];
         
@@ -104,7 +104,7 @@ EOF;
     public function testGetXmlDefaultsOverride30()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'control_id' => 'testcontrol',
             'unique_id' => true,
@@ -116,7 +116,7 @@ EOF;
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
-    <senderid>intacct_dev</senderid>
+    <senderid>testsenderid</senderid>
     <password>pass123!</password>
     <controlid>testcontrol</controlid>
     <uniqueid>true</uniqueid>
@@ -153,7 +153,7 @@ EOF;
     public function testGetXmlDefaultsOverride21()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'control_id' => 'testcontrol',
             'unique_id' => true,
@@ -166,7 +166,7 @@ EOF;
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
-    <senderid>intacct_dev</senderid>
+    <senderid>testsenderid</senderid>
     <password>pass123!</password>
     <controlid>testcontrol</controlid>
     <uniqueid>true</uniqueid>
@@ -197,7 +197,7 @@ EOF;
     public function testGetXmlInvalidControlIdShort()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'control_id' => '',
         ];
@@ -213,7 +213,7 @@ EOF;
     public function testGetXmlInvalidControlIdLong()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'control_id' => str_repeat('1234567890', 30), //strlen 300
         ];
@@ -229,7 +229,7 @@ EOF;
     public function testGetXmlInvalidUniqueId()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'unique_id' => 'true',
         ];
@@ -245,7 +245,7 @@ EOF;
     public function testGetXmlInvalidDtdVersion()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'dtd_version' => '1.2',
         ];
@@ -261,7 +261,7 @@ EOF;
     public function testGetXmlInvalidIncludeWhitespace()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'include_whitespace' => 'true',
         ];
@@ -277,7 +277,7 @@ EOF;
     public function testGetXmlInvalidDebug()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'debug' => 'true',
         ];

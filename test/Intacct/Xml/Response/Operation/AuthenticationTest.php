@@ -23,7 +23,7 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -107,7 +107,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -152,7 +152,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -198,7 +198,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -229,7 +229,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -260,7 +260,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>

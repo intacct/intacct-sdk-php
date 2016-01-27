@@ -24,6 +24,7 @@ use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\Request;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
+use Intacct\Xml\Request\Operation\Content\InstallApp;
 use Intacct\Xml\Request\Operation\Content\Read;
 use Intacct\Xml\Request\Operation\Content\ReadByName;
 use Intacct\Xml\Request\Operation\Content\ReadByQuery;
@@ -78,9 +79,19 @@ class Sdk
      */
     private $lastExecution = [];
 
-
     /**
-     * 
+     * The constructor accepts the following options:
+     *
+     * - company_id: (string)
+     * - endpoint_url: (string)
+     * - profile_name: (string)
+     * - sender_id: (string)
+     * - sender_password: (string)
+     * - session_id: (string, required)
+     * - user_id: (string)
+     * - user_password: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
      * @param array $params
      */
     public function __construct(array $params = [])
@@ -128,15 +139,6 @@ class Sdk
      * 
      * @return array
      */
-    public function getLastExecution()
-    {
-        return $this->lastExecution;
-    }
-    
-    /**
-     * 
-     * @return array
-     */
     public function getSessionConfig()
     {
         $sessionCreds = $this->getSessionCreds();
@@ -155,7 +157,26 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - company_id: (string)
+     * - debug: (bool, default=bool(false))
+     * - dtd_version: (string, default=string(3) "3.0")
+     * - encoding: (string, default=string(5) "UTF-8")
+     * - endpoint_url: (string)
+     * - include_whitespace: (bool, default=bool(false))
+     * - max_retries: (int, default=int(5))
+     * - no_retry_server_error_codes: (array, default=array([524]))
+     * - sender_id: (string, required)
+     * - sender_password: (string, required)
+     * - session_id: (string)
+     * - transaction: (bool, default=bool(false))
+     * - unique_id: (bool, default=bool(false))
+     * - user_id: (string)
+     * - user_password: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
      * @param array $params
      * @param Content $content
      * @return Operation
@@ -177,7 +198,27 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - company_id: (string)
+     * - debug: (bool, default=bool(false))
+     * - dtd_version: (string, default=string(3) "3.0")
+     * - encoding: (string, default=string(5) "UTF-8")
+     * - endpoint_url: (string)
+     * - include_whitespace: (bool, default=bool(false))
+     * - max_retries: (int, default=int(5))
+     * - no_retry_server_error_codes: (array, default=array([524]))
+     * - policy_id: (string, required)
+     * - sender_id: (string, required)
+     * - sender_password: (string, required)
+     * - session_id: (string)
+     * - transaction: (bool, default=bool(false))
+     * - unique_id: (bool, default=bool(false))
+     * - user_id: (string)
+     * - user_password: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
      * @param array $params
      * @param Content $content
      * @return Acknowledgement
@@ -201,9 +242,32 @@ class Sdk
         
         return $response->getAcknowledgement();
     }
+
+    /**
+     * Returns an array of the last execution's requests and responses.
+     *
+     * The array returned by this method can be used to generate appropriate
+     * logging based on various exceptions and events.  This contains sensitive
+     * data and should only be logged with due care.
+     *
+     * @return array
+     */
+    public function getLastExecution()
+    {
+        return $this->lastExecution;
+    }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - doc_par_id: (string)
+     * - fields: (array)
+     * - object: (string, required)
+     * - page_size: (int, default=int(1000)
+     * - query: (string)
+     * - return_format: (string, default=string(3) "xml")
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -227,7 +291,13 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - page_size: (int, default=int(1000)
+     * - return_format: (string, default=string(3) "xml")
+     * - view: (string, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -276,7 +346,17 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - doc_par_id: (string)
+     * - fields: (array)
+     * - max_total_count: (int, default=int(100000))
+     * - object: (string, required)
+     * - page_size: (int, default=int(1000)
+     * - query: (string)
+     * - return_format: (string, default=string(3) "xml")
+     *
      * @param array $params
      * @return ArrayIterator
      * @throws ResultException
@@ -286,8 +366,7 @@ class Sdk
         $defaults = [
             'max_total_count' => static::MAX_QUERY_TOTAL_COUNT,
         ];
-        $session = $this->getSessionConfig();
-        $config = array_merge($defaults, $session, $params);
+        $config = array_merge($defaults, $params);
         
         $result = $this->readByQuery($config);
         
@@ -311,7 +390,7 @@ class Sdk
         $numRemaining = (int) strval($result->getData()->attributes()->numremaining);
         if ($numRemaining > 0) {
             $pages = ceil($numRemaining / $config['page_size']);
-            $resultId = $result->getData()->attributes()->resultId;
+            $resultId = (string) $result->getData()->attributes()->resultId;
             $config['result_id'] = $resultId;
             for ($page = 1; $page <= $pages; $page++) {
                 $readMore = $this->readMore($config);
@@ -337,8 +416,7 @@ class Sdk
         $defaults = [
             'max_total_count' => static::MAX_QUERY_TOTAL_COUNT,
         ];
-        $session = $this->getSessionConfig();
-        $config = array_merge($defaults, $session, $params);
+        $config = array_merge($defaults, $params);
         
         $result = $this->readView($config);
         
@@ -389,8 +467,7 @@ class Sdk
         $defaults = [
             'max_total_count' => static::MAX_QUERY_TOTAL_COUNT,
         ];
-        $session = $this->getSessionConfig();
-        $config = array_merge($defaults, $session, $params);
+        $config = array_merge($defaults, $params);
         
         $result = $this->readReport($config);
         
@@ -432,17 +509,24 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - result_id: (string, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
      */
     public function readMore(array $params)
     {
+        $session = $this->getSessionConfig();
+        $config = array_merge($session, $params);
+
         $content = new Content([
             new ReadMore($params),
         ]);
-        $operation = $this->executeContent($params, $content);
+        $operation = $this->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -455,7 +539,15 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - doc_par_id: (string)
+     * - fields: (array)
+     * - keys: (array)
+     * - object: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -466,7 +558,7 @@ class Sdk
         $config = array_merge($session, $params);
         
         $content = new Content([
-            new Read($config),
+            new Read($params),
         ]);
         $operation = $this->executeContent($config, $content);
         
@@ -481,7 +573,14 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - fields: (array)
+     * - names: (array)
+     * - object: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -492,7 +591,7 @@ class Sdk
         $config = array_merge($session, $params);
         
         $content = new Content([
-            new ReadByName($config),
+            new ReadByName($params),
         ]);
         $operation = $this->executeContent($config, $content);
         
@@ -507,7 +606,15 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - fields: (array)
+     * - keys: (array)
+     * - object: (string, required)
+     * - relation: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -518,7 +625,7 @@ class Sdk
         $config = array_merge($session, $params);
         
         $content = new Content([
-            new ReadRelated($config),
+            new ReadRelated($params),
         ]);
         $operation = $this->executeContent($config, $content);
         
@@ -533,7 +640,11 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - user_id: (string, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -544,7 +655,7 @@ class Sdk
         $config = array_merge($session, $params);
         
         $content = new Content([
-            new GetUserPermissions($config),
+            new GetUserPermissions($params),
         ]);
         $operation = $this->executeContent($config, $content);
         
@@ -559,7 +670,11 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - records: (array, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -585,7 +700,11 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - records: (array, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -611,7 +730,12 @@ class Sdk
     }
     
     /**
-     * 
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - keys: (array, required)
+     * - object: (string, required)
+     *
      * @param array $params
      * @return Result
      * @throws ResultException
@@ -633,6 +757,36 @@ class Sdk
             );
         }
         
+        return $result;
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - xml_filename: (string)
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
+     */
+    public function installApp(array $params)
+    {
+        $session = $this->getSessionConfig();
+        $config = array_merge($session, $params);
+
+        $content = new Content([
+            new InstallApp($params)
+        ]);
+        $operation = $this->executeContent($config, $content);
+
+        $result = $operation->getResult();
+        if ($result->getStatus() !== 'success') {
+            throw new ResultException(
+                'An error occurred trying to install platform app', $result->getErrors()
+            );
+        }
+
         return $result;
     }
 

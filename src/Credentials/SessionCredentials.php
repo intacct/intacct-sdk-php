@@ -50,7 +50,12 @@ class SessionCredentials
     protected $mockHandler;
 
     /**
-     * 
+     * The constructor accepts the following options:
+     *
+     * - session_id: (string, required)
+     * - endpoint_url: (string)
+     * - mock_handler: (GuzzleHttp\Handler\MockHandler) Used only for unit tests
+     *
      * @param array $params
      * @param SenderCredentials $senderCreds
      */
