@@ -80,11 +80,17 @@ class LoginCredentials
     protected $mockHandler;
 
     /**
-     * 
-     * @param string $companyId
-     * @param string $userId
-     * @param string $password
+     * The constructor accepts the following options:
+     *
+     * - profile_name: (string)
+     * - company_id: (string)
+     * - user_id: (string)
+     * - user_password: (string)
+     * - mock_handler: (GuzzleHttp\Handler\MockHandler) Used only for unit tests
+     *
+     * @param array $params
      * @param SenderCredentials $senderCreds
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params, SenderCredentials $senderCreds)
     {
@@ -96,13 +102,13 @@ class LoginCredentials
             'mock_handler' => null,
         ];
         $config = array_merge($defaults, $params);
-        
+
         if (!$config['company_id'] && !$config['user_id'] && !$config['user_password'] && $config['profile_name']) {
             $profileProvider = new ProfileCredentialProvider();
             $profileCreds = $profileProvider->getLoginCredentials($config);
             $config = array_merge($config, $profileCreds);
         }
-        
+
         if (!$config['company_id']) {
             throw new InvalidArgumentException(
                 'Required "company_id" key not supplied in params or env variable "' . static::COMPANY_ID_ENV_NAME . '"'
@@ -118,7 +124,7 @@ class LoginCredentials
                 'Required "user_password" key not supplied in params or env variable "' . static::USER_PASSWORD_ENV_NAME . '"'
             );
         }
-        
+
         $this->companyId = $config['company_id'];
         $this->userId = $config['user_id'];
         $this->password = $config['user_password'];
@@ -127,7 +133,7 @@ class LoginCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getCompanyId()

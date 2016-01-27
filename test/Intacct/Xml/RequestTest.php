@@ -36,11 +36,11 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="iso-8859-1"?>
-<request><control><senderid>intacct_dev</senderid><password>pass123!</password><controlid>requestControlId</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><policyid/><includewhitespace>false</includewhitespace></control><operation transaction="false"><authentication><sessionid>testsession..</sessionid></authentication><content></content></operation></request>
+<request><control><senderid>testsenderid</senderid><password>pass123!</password><controlid>requestControlId</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><policyid/><includewhitespace>false</includewhitespace></control><operation transaction="false"><authentication><sessionid>testsession..</sessionid></authentication><content></content></operation></request>
 EOF;
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
         ];
@@ -61,7 +61,7 @@ EOF;
     public function testGetVerifySSL()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'verify_ssl' => false,
@@ -81,7 +81,7 @@ EOF;
     public function testSetMaxRetries()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'max_retries' => 10,
@@ -118,7 +118,7 @@ EOF;
     public function testSetMaxRetriesInvalidType()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'max_retries' => '10',
@@ -137,7 +137,7 @@ EOF;
     public function testSetMaxRetriesInvalidInt()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'max_retries' => -1,
@@ -155,7 +155,7 @@ EOF;
     public function testSetNoRetryServerErrorCodes()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'no_retry_server_error_codes' => [
@@ -182,7 +182,7 @@ EOF;
     public function testSetNoRetryServerErrorCodesInvalidInt()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'no_retry_server_error_codes' => [
@@ -204,7 +204,7 @@ EOF;
     public function testSetNoRetryServerErrorCodesInvalidRange()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'no_retry_server_error_codes' => [
@@ -230,7 +230,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -254,7 +254,7 @@ EOF;
         ]);
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
@@ -281,7 +281,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -306,7 +306,7 @@ EOF;
         ]);
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
@@ -337,7 +337,7 @@ EOF;
         ]);
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
@@ -361,7 +361,7 @@ EOF;
         ]);
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'mock_handler' => $mock,

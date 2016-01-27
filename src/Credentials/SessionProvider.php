@@ -47,7 +47,12 @@ class SessionProvider
     {
         return $this->lastExecution;
     }
-    
+
+    /**
+     * @param SenderCredentials $senderCreds
+     * @param Endpoint $endpoint
+     * @return array
+     */
     private function getConfig(SenderCredentials $senderCreds, Endpoint $endpoint)
     {
         $config = [
@@ -64,7 +69,11 @@ class SessionProvider
         
         return $config;
     }
-    
+
+    /**
+     * @param array $config
+     * @return array
+     */
     private function getAPISession(array $config)
     {
         $content = new Content();
@@ -96,6 +105,10 @@ class SessionProvider
         return $session;
     }
 
+    /**
+     * @param LoginCredentials $loginCreds
+     * @return SessionCredentials
+     */
     public function fromLoginCredentials(LoginCredentials $loginCreds)
     {
         $senderCreds = $loginCreds->getSenderCredentials();
@@ -111,6 +124,10 @@ class SessionProvider
         return new SessionCredentials($session, $senderCreds);
     }
 
+    /**
+     * @param SessionCredentials $sessionCreds
+     * @return SessionCredentials
+     */
     public function fromSessionCredentials(SessionCredentials $sessionCreds)
     {
         $senderCreds = $sessionCreds->getSenderCredentials();

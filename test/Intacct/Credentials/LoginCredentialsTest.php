@@ -21,7 +21,7 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
         ];
         $this->senderCreds = new SenderCredentials($config);
