@@ -28,7 +28,7 @@ class SdkTest extends \PHPUnit_Framework_TestCase
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -63,7 +63,7 @@ EOF;
         ]);
         
         $this->ia = new Sdk([
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'company_id' => 'testcompany',
             'user_id' => 'testuser',
@@ -108,7 +108,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -143,7 +143,7 @@ EOF;
         ]);
         
         $ia = new Sdk([
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'originalSeSsIonID..',
             'mock_handler' => $mock,
@@ -168,7 +168,7 @@ EOF;
     </acknowledgement>
     <control>
         <status>success</status>
-        <senderid>intacct_dev</senderid>
+        <senderid>testsenderid</senderid>
         <controlid>requestControlId</controlid>
         <uniqueid>false</uniqueid>
         <dtdversion>3.0</dtdversion>
@@ -221,7 +221,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -289,7 +289,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -374,7 +374,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -406,7 +406,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -505,7 +505,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -577,7 +577,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -631,7 +631,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -703,7 +703,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -782,7 +782,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -859,7 +859,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -942,7 +942,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -1019,7 +1019,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -1095,7 +1095,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -1151,7 +1151,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>

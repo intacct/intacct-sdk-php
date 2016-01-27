@@ -56,10 +56,14 @@ class InstallApp implements FunctionInterface
     private function setXmlFilename($xmlFilename)
     {
         if (!$xmlFilename) {
-            throw new InvalidArgumentException('Required xml_filename is missing');
+            throw new InvalidArgumentException(
+                'Required xml_filename is missing'
+            );
         }
         if (!is_readable($xmlFilename)) {
-            throw new InvalidArgumentException('xml_filename is not readable');
+            throw new InvalidArgumentException(
+                'xml_filename is not readable'
+            );
         }
         
         $this->xmlFilename = $xmlFilename;
@@ -68,7 +72,8 @@ class InstallApp implements FunctionInterface
     /**
      * 
      * @param XMLWriter $xml
-     * @todo Validate the app.xml is actually a platform app
+     * @throws InvalidArgumentException
+     * @todo Validate the app.xml is actually a platform app?
      */
     public function getXml(XMLWriter &$xml)
     {
@@ -79,7 +84,9 @@ class InstallApp implements FunctionInterface
         $xml->startElement('appxml');
         
         if (!is_readable($this->xmlFilename)) {
-            throw new Exception('xml_filename is not readable for installApp');
+            throw new InvalidArgumentException(
+                'xml_filename is not readable for installApp'
+            );
         }
         $xml->writeCdata(file_get_contents($this->xmlFilename));
         

@@ -28,7 +28,7 @@ class SessionProviderTest extends \PHPUnit_Framework_TestCase
         $this->object = new SessionProvider();
         
         $config = [
-            'sender_id' => 'intacct_dev',
+            'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'verify_ssl' => false,
         ];
@@ -57,7 +57,7 @@ class SessionProviderTest extends \PHPUnit_Framework_TestCase
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -119,7 +119,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>sessionProvider</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>

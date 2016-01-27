@@ -41,7 +41,7 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
 <response>
       <control>
             <status>failure</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>

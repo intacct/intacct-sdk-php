@@ -21,7 +21,7 @@ class ControlTest extends \PHPUnit_Framework_TestCase
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -59,7 +59,7 @@ EOF;
      */
     public function testGetSenderId()
     {
-        $this->assertEquals('intacct_dev', $this->object->getSenderId());
+        $this->assertEquals('testsenderid', $this->object->getSenderId());
     }
 
     /**
@@ -118,7 +118,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <!--<senderid>intacct_dev</senderid>-->
+            <!--<senderid>testsenderid</senderid>-->
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -144,7 +144,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <!--<controlid>ControlIdHere</controlid>-->
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
@@ -170,7 +170,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <!--<uniqueid>false</uniqueid>-->
             <dtdversion>3.0</dtdversion>
@@ -196,7 +196,7 @@ EOF;
 <response>
       <control>
             <status>success</status>
-            <senderid>intacct_dev</senderid>
+            <senderid>testsenderid</senderid>
             <controlid>ControlIdHere</controlid>
             <uniqueid>false</uniqueid>
             <!--<dtdversion>3.0</dtdversion>-->
