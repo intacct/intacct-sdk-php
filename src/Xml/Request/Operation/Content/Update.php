@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml\Request\Operation\Content;
 
-use Intacct\Xml\Request\Operation\Content\FunctionInterface;
 use ArrayIterator;
 use InvalidArgumentException;
 use XMLWriter;
@@ -25,7 +24,7 @@ use XMLWriter;
 class Update extends ArrayIterator implements FunctionInterface
 {
     
-    use \Intacct\Xml\Request\Operation\Content\XMLHelperTrait;
+    use XMLHelperTrait;
     
     /**
      * @var int
@@ -53,9 +52,22 @@ class Update extends ArrayIterator implements FunctionInterface
         $this->controlId = $config['control_id'];
         
         if (count($config['records']) > static::MAX_UPDATE_COUNT) {
-            throw new InvalidArgumentException('records count cannot exceed ' . static::MAX_UPDATE_COUNT);
+            throw new InvalidArgumentException(
+                'records count cannot exceed ' . static::MAX_UPDATE_COUNT
+            );
         } else if (count($config['records']) < 1) {
-            throw new InvalidArgumentException('records count must be greater than zero');
+            throw new InvalidArgumentException(
+                'records count must be greater than zero'
+            );
+        }
+
+        foreach ($config['records'] as $record) {
+            $objectName = $record->getObjectName();
+            if (in_array('update', StandardObjects::getMethodsNotAllowed($objectName))) {
+                throw new InvalidArgumentException(
+                    'using update on object "' . $objectName . '" is not allowed'
+                );
+            }
         }
         
         parent::__construct($config['records']);

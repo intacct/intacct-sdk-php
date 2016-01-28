@@ -60,17 +60,42 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertThat($loginCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
     }
+
+    private function clearEnv()
+    {
+        $dir = sys_get_temp_dir() . '/.intacct';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        return $dir;
+    }
     
     /**
-     * 
-     * @todo   Implement testCredsFromProfile().
+     * @covers Intacct\Credentials\LoginCredentials::__construct
+     * @covers Intacct\Credentials\LoginCredentials::getCompanyId
+     * @covers Intacct\Credentials\LoginCredentials::getUserId
+     * @covers Intacct\Credentials\LoginCredentials::getPassword
      */
     public function testCredsFromProfile()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $dir = $this->clearEnv();
+        $ini = <<<EOF
+[unittest]
+company_id = inicompanyid
+user_id = iniuserid
+user_password = iniuserpass
+EOF;
+        file_put_contents($dir . '/credentials.ini', $ini);
+        putenv('HOME=' . dirname($dir));
+
+        $config = [
+            'profile_name' => 'unittest',
+        ];
+        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+
+        $this->assertEquals('inicompanyid', $loginCreds->getCompanyId());
+        $this->assertEquals('iniuserid', $loginCreds->getUserId());
+        $this->assertEquals('iniuserpass', $loginCreds->getPassword());
     }
     
     /**

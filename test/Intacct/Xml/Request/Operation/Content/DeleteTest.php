@@ -105,4 +105,20 @@ EOF;
         ]);
     }
 
+    /**
+     * @covers Intacct\Xml\Request\Operation\Content\Delete::__construct
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage using delete on object "TIMESHEETENTRY" is not allowed
+     */
+    public function testNotAllowedObject()
+    {
+        $delete = new Delete([
+            'object' => 'TIMESHEETENTRY',
+            'keys' => [
+                '5',
+                '6',
+            ],
+        ]);
+    }
+
 }
