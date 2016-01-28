@@ -1,5 +1,5 @@
 {
-    "name": "Intacct/intacct-sdk-php",
+    "name": "intacct/intacct-sdk-php",
     "description": "Intacct SDK for PHP",
     "type": "library",
     "license": "Apache-2.0",

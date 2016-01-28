@@ -857,14 +857,110 @@ EOF;
 
     /**
      * @covers Intacct\Sdk::getUserPermissions
-     * @todo   Implement testGetUserPermissions().
+     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Sdk::getSessionConfig
      */
-    public function testGetUserPermissions()
+    public function testGetUserPermissionsSuccess()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getUserPermissions</function>
+                  <controlid>getUserPermissions</controlid>
+                  <data><permissions><appSubscription><applicationName>Time </applicationName><policies><policy><policyName>My Expenses</policyName><rights>List|View|Add|Edit|Delete</rights></policy><policy><policyName>Expense Adjustments</policyName><rights>List|View|Add|Edit|Delete|Reverse|Reclass</rights></policy><policy><policyName>Approve Expenses</policyName><rights>List</rights></policy></policies></appSubscription></permissions>                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'user_id' => 'testuser',
+            'mock_handler' => $mock,
+        ];
+        $permissions = $this->ia->getUserPermissions($config);
+        $this->assertEquals($permissions->getStatus(), 'success');
+        $this->assertEquals($permissions->getFunction(), 'getUserPermissions');
+        $this->assertEquals($permissions->getControlId(), 'getUserPermissions');
+    }
+
+    /**
+     * @covers Intacct\Sdk::getUserPermissions
+     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Sdk::getSessionConfig
+     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedExceptionMessage An error occurred trying to get user permissions
+     */
+    public function testGetUserPermissionsFailure()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>getUserPermissions</function>
+                  <controlid>getUserPermissions</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>BL03000025</errorno>
+                              <description></description>
+                              <description2>Login ID unittest does not exist.</description2>
+                              <correction>Provide a valid USER.LOGINID value.</correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'user_id' => 'unittest',
+            'mock_handler' => $mock,
+        ];
+        $permissions = $this->ia->getUserPermissions($config);
     }
 
     /**
