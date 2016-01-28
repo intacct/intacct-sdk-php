@@ -101,4 +101,26 @@ EOF;
         ]);
     }
 
+    /**
+     * @covers Intacct\Xml\Request\Operation\Content\Update::__construct
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage using update on object "TIMESHEETENTRY" is not allowed
+     */
+    public function testNotAllowedObject()
+    {
+        $records = [
+            new Record([
+                'object' => 'TIMESHEETENTRY',
+                'fields' => [
+                    'RECORDNO' => '1',
+                    'NOTES' => 'Unit Test',
+                ],
+            ])
+        ];
+
+        $update = new Update([
+            'records' => $records,
+        ]);
+    }
+
 }

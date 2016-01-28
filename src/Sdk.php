@@ -17,13 +17,17 @@
 
 namespace Intacct;
 
+use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
-use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SessionProvider;
+use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\Request;
 use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\Content\Create;
+use Intacct\Xml\Request\Operation\Content\Delete;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
+use Intacct\Xml\Request\Operation\Content\Inspect;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
 use Intacct\Xml\Request\Operation\Content\Read;
 use Intacct\Xml\Request\Operation\Content\ReadByName;
@@ -32,15 +36,12 @@ use Intacct\Xml\Request\Operation\Content\ReadMore;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
 use Intacct\Xml\Request\Operation\Content\ReadView;
-use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Update;
-use Intacct\Xml\Request\Operation\Content\Delete;
-use Intacct\Xml\SynchronousResponse;
-use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\Response\Acknowledgement;
 use Intacct\Xml\Response\Operation;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
+use Intacct\Xml\SynchronousResponse;
 use ArrayIterator;
 use InvalidArgumentException;
 
@@ -84,6 +85,7 @@ class Sdk
      *
      * - company_id: (string)
      * - endpoint_url: (string)
+     * - profile_file: (string)
      * - profile_name: (string)
      * - sender_id: (string)
      * - sender_password: (string)
@@ -130,7 +132,7 @@ class Sdk
      * 
      * @return SessionCredentials
      */
-    public function getSessionCreds()
+    private function getSessionCreds()
     {
         return $this->sessionCreds;
     }
@@ -757,6 +759,37 @@ class Sdk
             );
         }
         
+        return $result;
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - object: (string)
+     * - show_detail: (bool, default=bool(false))
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
+     */
+    public function inspect(array $params)
+    {
+        $session = $this->getSessionConfig();
+        $config = array_merge($session, $params);
+
+        $content = new Content([
+            new Inspect([$params])
+        ]);
+        $operation = $this->executeContent($config, $content);
+
+        $result = $operation->getResult();
+        if ($result->getStatus() !== 'success') {
+            throw new ResultException(
+                'An error occurred trying to inspect an object', $result->getErrors()
+            );
+        }
+
         return $result;
     }
 

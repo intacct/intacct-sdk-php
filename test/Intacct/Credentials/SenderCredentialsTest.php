@@ -92,4 +92,70 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
         $creds = new SenderCredentials($config);
     }
 
+    private function clearEnv()
+    {
+        $dir = sys_get_temp_dir() . '/.intacct';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        return $dir;
+    }
+
+    /**
+     * @covers Intacct\Credentials\SenderCredentials::__construct
+     * @covers Intacct\Credentials\SenderCredentials::getSenderId
+     * @covers Intacct\Credentials\SenderCredentials::getPassword
+     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
+     */
+    public function testCredsFromProfile()
+    {
+        $dir = $this->clearEnv();
+        $ini = <<<EOF
+[unittest]
+sender_id = inisenderid
+sender_password = inisenderpass
+endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml
+EOF;
+        file_put_contents($dir . '/credentials.ini', $ini);
+        putenv('HOME=' . dirname($dir));
+
+        $config = [
+            'profile_name' => 'unittest',
+        ];
+        $senderCreds = new SenderCredentials($config);
+
+        $this->assertEquals('inisenderid', $senderCreds->getSenderId());
+        $this->assertEquals('inisenderpass', $senderCreds->getPassword());
+        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
+    }
+
+    /**
+     * @covers Intacct\Credentials\SenderCredentials::__construct
+     * @covers Intacct\Credentials\SenderCredentials::getSenderId
+     * @covers Intacct\Credentials\SenderCredentials::getPassword
+     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
+     */
+    public function testCredsFromProfileOverrideEndpoint()
+    {
+        $dir = $this->clearEnv();
+        $ini = <<<EOF
+[unittest]
+sender_id = inisenderid
+sender_password = inisenderpass
+endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml
+EOF;
+        file_put_contents($dir . '/credentials.ini', $ini);
+        putenv('HOME=' . dirname($dir));
+
+        $config = [
+            'profile_name' => 'unittest',
+            'endpoint_url' => 'https://somethingelse.intacct.com/ia/xmlgw.phtml'
+        ];
+        $senderCreds = new SenderCredentials($config);
+
+        $this->assertEquals('inisenderid', $senderCreds->getSenderId());
+        $this->assertEquals('inisenderpass', $senderCreds->getPassword());
+        $this->assertEquals('https://somethingelse.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
+    }
+
 }

@@ -101,4 +101,26 @@ EOF;
         ]);
     }
 
+    /**
+     * @covers Intacct\Xml\Request\Operation\Content\Create::__construct
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage using create on object "TIMESHEETENTRY" is not allowed
+     */
+    public function testNotAllowedObject()
+    {
+        $records = [
+            new Record([
+                'object' => 'TIMESHEETENTRY',
+                'fields' => [
+                    'RECORDNO' => '1',
+                    'NOTES' => 'Unit Test',
+                ],
+            ])
+        ];
+
+        $create = new Create([
+            'records' => $records,
+        ]);
+    }
+
 }

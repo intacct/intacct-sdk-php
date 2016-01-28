@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request\Operation\Content\Explicit;
 
 use Intacct\Xml\Request\Operation\Content\FunctionInterface;
+use Intacct\Xml\Request\Operation\Content\XMLHelperTrait;
 use DateTime;
 use InvalidArgumentException;
 use XMLWriter;
@@ -28,7 +29,7 @@ use XMLWriter;
 class CreateApBill implements FunctionInterface
 {
     
-    use \Intacct\Xml\Request\Operation\Content\XMLHelperTrait;
+    use XMLHelperTrait;
 
     /**
      *

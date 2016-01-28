@@ -23,7 +23,7 @@ use InvalidArgumentException;
 class Record extends ArrayIterator
 {
     
-    use \Intacct\Xml\Request\Operation\Content\XMLHelperTrait;
+    use XMLHelperTrait;
 
     /**
      *

@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml\Request\Operation\Content;
 
-use Intacct\Xml\Request\Operation\Content\FunctionInterface;
 use InvalidArgumentException;
 use XMLWriter;
 
@@ -64,6 +63,12 @@ class Delete implements FunctionInterface
         if (!$config['object']) {
             throw new InvalidArgumentException(
                 'Required "object" key not supplied in params'
+            );
+        }
+
+        if (in_array('delete', StandardObjects::getMethodsNotAllowed($config['object']))) {
+            throw new InvalidArgumentException(
+                'using delete on object "' . $config['object'] . '" is not allowed'
             );
         }
 

@@ -90,9 +90,9 @@ EOF;
     {
         $ia = $this->ia; //grab the setUp object
         
-        $creds = $ia->getSessionCreds();
-        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds->getSessionId(), 'testSeSsionID..');
+        $creds = $ia->getSessionConfig();
+        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds['session_id'], 'testSeSsionID..');
         $this->assertEquals(count($ia->getLastExecution()), 1);
     }
     
@@ -149,9 +149,9 @@ EOF;
             'mock_handler' => $mock,
         ]);
         
-        $creds = $ia->getSessionCreds();
-        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds->getSessionId(), 'helloworld..');
+        $creds = $ia->getSessionConfig();
+        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds['session_id'], 'helloworld..');
         $this->assertEquals(count($ia->getLastExecution()), 1);
     }
 
@@ -195,8 +195,6 @@ EOF;
         
         $this->assertEquals('success', $async->getStatus());
     }
-    
-    
 
     /**
      * @covers Intacct\Sdk::executeContentAsync
@@ -484,14 +482,113 @@ EOF;
 
     /**
      * @covers Intacct\Sdk::readMore
-     * @todo   Implement testReadMore().
      */
-    public function testReadMore()
+    public function testReadMoreSuccess()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>readMore</function>
+                  <controlid>readMore</controlid>
+                  <data listtype="glaccount" count="1" totalcount="2" numremaining="0" resultId="7765623330Vqb8pMCoA4IAAEnuglgAAAAL5">
+                        <glaccount>
+                              <RECORDNO>55</RECORDNO>
+                              <ACCOUNTNO>1020</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1343</TITLE>
+                        </glaccount>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'result_id' => '7765623330Vqb8pMCoA4IAAEnuglgAAAAL5',
+            'mock_handler' => $mock,
+        ];
+        $data = $this->ia->readMore($config);
+        $this->assertEquals('success', $data->getStatus());
+        $this->assertEquals('readMore', $data->getFunction());
+        $this->assertEquals('readMore', $data->getControlId());
+    }
+
+    /**
+     * @covers Intacct\Sdk::read
+     * @covers Intacct\Sdk::executeContent
+     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedExceptionMessage An error occurred trying to read more records
+     */
+    public function testReadMoreFailure()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>readMore</function>
+                  <controlid>readMore</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>readMore failed</errorno>
+                              <description></description>
+                              <description2>Attempt to readMore with an invalid or expired resultId: bad</description2>
+                              <correction></correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $readMore = [
+            'result_id' => 'bad',
+            'mock_handler' => $mock,
+        ];
+        $data = $this->ia->readMore($readMore);
     }
 
     /**
@@ -1196,6 +1293,30 @@ EOF;
             'mock_handler' => $mock,
         ];
         $data = $this->ia->delete($delete);
+    }
+
+    /**
+     * @covers Intacct\Sdk::inspect
+     * @todo   Implement testInspect().
+     */
+    public function testInspect()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers Intacct\Sdk::installApp
+     * @todo   Implement testInstallApp().
+     */
+    public function testInstallApp()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
 }
