@@ -7,12 +7,12 @@ use GuzzleHttp\Handler\MockHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Record;
 
-class SdkTest extends \PHPUnit_Framework_TestCase
+class Intacct_ClientTest extends \PHPUnit_Framework_TestCase
 {
     
     /**
      *
-     * @var Sdk
+     * @var Intacct_Client
      */
     private $ia;
 
@@ -22,7 +22,7 @@ class SdkTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        //the SDK constructor will always get a session id, so mock it
+        //the Intacct_Client constructor will always get a session id, so mock it
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -62,7 +62,7 @@ EOF;
             $mockResponse,
         ]);
         
-        $this->ia = new Sdk([
+        $this->ia = new Intacct_Client([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'company_id' => 'testcompany',
@@ -82,9 +82,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::__construct
-     * @covers Intacct\Sdk::getSessionCreds
-     * @covers Intacct\Sdk::getLastExecution
+     * @covers Intacct\Intacct_Client::__construct
+     * @covers Intacct\Intacct_Client::getSessionCreds
+     * @covers Intacct\Intacct_Client::getLastExecution
      */
     public function testConstructWithSessionId()
     {
@@ -97,9 +97,9 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Sdk::__construct
-     * @covers Intacct\Sdk::getSessionCreds
-     * @covers Intacct\Sdk::getLastExecution
+     * @covers Intacct\Intacct_Client::__construct
+     * @covers Intacct\Intacct_Client::getSessionCreds
+     * @covers Intacct\Intacct_Client::getLastExecution
      */
     public function testConstructWithLogin()
     {
@@ -142,7 +142,7 @@ EOF;
             $mockResponse,
         ]);
         
-        $ia = new Sdk([
+        $ia = new Intacct_Client([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'originalSeSsIonID..',
@@ -156,7 +156,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::executeContentAsync
+     * @covers Intacct\Intacct_Client::executeContentAsync
      */
     public function testExecuteContentAsync()
     {
@@ -197,7 +197,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::executeContentAsync
+     * @covers Intacct\Intacct_Client::executeContentAsync
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
      */
@@ -210,7 +210,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readByQuery
+     * @covers Intacct\Intacct_Client::readByQuery
      */
     public function testReadByQuerySuccess()
     {
@@ -276,7 +276,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readByQuery
+     * @covers Intacct\Intacct_Client::readByQuery
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read query records
      */
@@ -337,7 +337,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readView
+     * @covers Intacct\Intacct_Client::readView
      * @todo   Implement testReadView().
      */
     public function testReadView()
@@ -349,7 +349,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readReport
+     * @covers Intacct\Intacct_Client::readReport
      * @todo   Implement testReadReport().
      */
     public function testReadReport()
@@ -361,9 +361,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getQueryRecords
-     * @covers Intacct\Sdk::readByQuery
-     * @covers Intacct\Sdk::readMore
+     * @covers Intacct\Intacct_Client::getQueryRecords
+     * @covers Intacct\Intacct_Client::readByQuery
+     * @covers Intacct\Intacct_Client::readMore
      */
     public function testGetQueryRecordsSuccess()
     {
@@ -457,7 +457,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getViewRecords
+     * @covers Intacct\Intacct_Client::getViewRecords
      * @todo   Implement testGetViewRecords().
      */
     public function testGetViewRecords()
@@ -469,7 +469,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getReportRecords
+     * @covers Intacct\Intacct_Client::getReportRecords
      * @todo   Implement testGetReportRecords().
      */
     public function testGetReportRecords()
@@ -481,7 +481,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readMore
+     * @covers Intacct\Intacct_Client::readMore
      */
     public function testReadMoreSuccess()
     {
@@ -536,8 +536,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Intacct_Client::read
+     * @covers Intacct\Intacct_Client::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read more records
      */
@@ -592,8 +592,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Intacct_Client::read
+     * @covers Intacct\Intacct_Client::executeContent
      */
     public function testReadSuccess()
     {
@@ -662,8 +662,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Intacct_Client::read
+     * @covers Intacct\Intacct_Client::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records
      */
@@ -718,8 +718,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readByName
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Intacct_Client::readByName
+     * @covers Intacct\Intacct_Client::executeContent
      */
     public function testReadByNameSuccess()
     {
@@ -788,8 +788,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readByName
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\Intacct_Client::readByName
+     * @covers Intacct\Intacct_Client::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records by name
      */
@@ -844,7 +844,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readRelated
+     * @covers Intacct\Intacct_Client::readRelated
      * @todo   Implement testReadRelated().
      */
     public function testReadRelated()
@@ -856,9 +856,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getUserPermissions
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::getUserPermissions
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      */
     public function testGetUserPermissionsSuccess()
     {
@@ -907,9 +907,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getUserPermissions
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::getUserPermissions
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get user permissions
      */
@@ -964,9 +964,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::create
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::create
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      */
     public function testCreateSuccess()
     {
@@ -1039,9 +1039,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::create
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::create
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to create records
      */
@@ -1124,9 +1124,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::update
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::update
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      */
     public function testUpdateSuccess()
     {
@@ -1199,9 +1199,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::update
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::update
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to update records
      */
@@ -1277,9 +1277,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::delete
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::delete
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      */
     public function testDeleteSuccess()
     {
@@ -1331,9 +1331,9 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Sdk::delete
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\Intacct_Client::delete
+     * @covers Intacct\Intacct_Client::executeContent
+     * @covers Intacct\Intacct_Client::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to delete records
      */
@@ -1392,7 +1392,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::inspect
+     * @covers Intacct\Intacct_Client::inspect
      * @todo   Implement testInspect().
      */
     public function testInspect()
@@ -1404,7 +1404,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::installApp
+     * @covers Intacct\Intacct_Client::installApp
      * @todo   Implement testInstallApp().
      */
     public function testInstallApp()
