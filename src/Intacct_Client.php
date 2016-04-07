@@ -143,6 +143,12 @@ class Sdk
      */
     public function getSessionConfig()
     {
+        $a = new Request(
+            [
+                'endpoint_url' => 'foo.com'
+            ]
+        );
+
         $sessionCreds = $this->getSessionCreds();
         $senderCreds = $sessionCreds->getSenderCredentials();
         $endpoint = $sessionCreds->getEndpoint();
