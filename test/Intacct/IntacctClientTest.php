@@ -7,14 +7,14 @@ use GuzzleHttp\Handler\MockHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Record;
 
-class SdkTest extends \PHPUnit_Framework_TestCase
+class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
     
     /**
      *
-     * @var Sdk
+     * @var IntacctClient
      */
-    private $ia;
+    private $client;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -22,7 +22,7 @@ class SdkTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        //the SDK constructor will always get a session id, so mock it
+        //the IntacctClient constructor will always get a session id, so mock it
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -62,7 +62,7 @@ EOF;
             $mockResponse,
         ]);
         
-        $this->ia = new Sdk([
+        $this->client = new IntacctClient([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'company_id' => 'testcompany',
@@ -82,24 +82,24 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::__construct
-     * @covers Intacct\Sdk::getSessionCreds
-     * @covers Intacct\Sdk::getLastExecution
+     * @covers Intacct\IntacctClient::__construct
+     * @covers Intacct\IntacctClient::getSessionCreds
+     * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithSessionId()
     {
-        $ia = $this->ia; //grab the setUp object
+        $client = $this->client; //grab the setUp object
         
-        $creds = $ia->getSessionConfig();
+        $creds = $client->getSessionConfig();
         $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
         $this->assertEquals($creds['session_id'], 'testSeSsionID..');
-        $this->assertEquals(count($ia->getLastExecution()), 1);
+        $this->assertEquals(count($client->getLastExecution()), 1);
     }
     
     /**
-     * @covers Intacct\Sdk::__construct
-     * @covers Intacct\Sdk::getSessionCreds
-     * @covers Intacct\Sdk::getLastExecution
+     * @covers Intacct\IntacctClient::__construct
+     * @covers Intacct\IntacctClient::getSessionCreds
+     * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithLogin()
     {
@@ -142,21 +142,21 @@ EOF;
             $mockResponse,
         ]);
         
-        $ia = new Sdk([
+        $client = new IntacctClient([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'originalSeSsIonID..',
             'mock_handler' => $mock,
         ]);
         
-        $creds = $ia->getSessionConfig();
+        $creds = $client->getSessionConfig();
         $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
         $this->assertEquals($creds['session_id'], 'helloworld..');
-        $this->assertEquals(count($ia->getLastExecution()), 1);
+        $this->assertEquals(count($client->getLastExecution()), 1);
     }
 
     /**
-     * @covers Intacct\Sdk::executeContentAsync
+     * @covers Intacct\IntacctClient::executeContentAsync
      */
     public function testExecuteContentAsync()
     {
@@ -187,30 +187,30 @@ EOF;
             'policy_id' => 'testpolicy',
             'mock_handler' => $mock
         ];
-        $defaults = $this->ia->getSessionConfig();
+        $defaults = $this->client->getSessionConfig();
         $config = array_merge($defaults, $params);
         
         $content = new Content();
-        $async = $this->ia->executeContentAsync($config, $content);
+        $async = $this->client->executeContentAsync($config, $content);
         
         $this->assertEquals('success', $async->getStatus());
     }
 
     /**
-     * @covers Intacct\Sdk::executeContentAsync
+     * @covers Intacct\IntacctClient::executeContentAsync
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
      */
     public function testExecuteContentAsyncNoPolicyId()
     {
-        $config = $this->ia->getSessionConfig();
+        $config = $this->client->getSessionConfig();
         
         $content = new Content();
-        $async = $this->ia->executeContentAsync($config, $content);
+        $async = $this->client->executeContentAsync($config, $content);
     }
 
     /**
-     * @covers Intacct\Sdk::readByQuery
+     * @covers Intacct\IntacctClient::readByQuery
      */
     public function testReadByQuerySuccess()
     {
@@ -269,14 +269,14 @@ EOF;
             'query' => "ACCOUNTNO = '1010' OR ACCOUNTNO = '1020'",
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readByQuery($readByQuery);
+        $data = $this->client->readByQuery($readByQuery);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'readByQuery');
         $this->assertEquals($data->getControlId(), 'readByQuery');
     }
 
     /**
-     * @covers Intacct\Sdk::readByQuery
+     * @covers Intacct\IntacctClient::readByQuery
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read query records
      */
@@ -333,11 +333,11 @@ EOF;
             'query' => "this is not a query",
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readByQuery($readByQuery);
+        $data = $this->client->readByQuery($readByQuery);
     }
 
     /**
-     * @covers Intacct\Sdk::readView
+     * @covers Intacct\IntacctClient::readView
      * @todo   Implement testReadView().
      */
     public function testReadView()
@@ -349,7 +349,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readReport
+     * @covers Intacct\IntacctClient::readReport
      * @todo   Implement testReadReport().
      */
     public function testReadReport()
@@ -361,9 +361,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getQueryRecords
-     * @covers Intacct\Sdk::readByQuery
-     * @covers Intacct\Sdk::readMore
+     * @covers Intacct\IntacctClient::getQueryRecords
+     * @covers Intacct\IntacctClient::readByQuery
+     * @covers Intacct\IntacctClient::readMore
      */
     public function testGetQueryRecordsSuccess()
     {
@@ -452,12 +452,12 @@ EOF;
             'page_size' => 1,
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->getQueryRecords($readByQuery);
+        $data = $this->client->getQueryRecords($readByQuery);
         $this->assertCount(2, $data);
     }
 
     /**
-     * @covers Intacct\Sdk::getViewRecords
+     * @covers Intacct\IntacctClient::getViewRecords
      * @todo   Implement testGetViewRecords().
      */
     public function testGetViewRecords()
@@ -469,7 +469,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getReportRecords
+     * @covers Intacct\IntacctClient::getReportRecords
      * @todo   Implement testGetReportRecords().
      */
     public function testGetReportRecords()
@@ -481,7 +481,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::readMore
+     * @covers Intacct\IntacctClient::readMore
      */
     public function testReadMoreSuccess()
     {
@@ -529,15 +529,15 @@ EOF;
             'result_id' => '7765623330Vqb8pMCoA4IAAEnuglgAAAAL5',
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readMore($config);
+        $data = $this->client->readMore($config);
         $this->assertEquals('success', $data->getStatus());
         $this->assertEquals('readMore', $data->getFunction());
         $this->assertEquals('readMore', $data->getControlId());
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\IntacctClient::read
+     * @covers Intacct\IntacctClient::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read more records
      */
@@ -588,12 +588,12 @@ EOF;
             'result_id' => 'bad',
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readMore($readMore);
+        $data = $this->client->readMore($readMore);
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\IntacctClient::read
+     * @covers Intacct\IntacctClient::executeContent
      */
     public function testReadSuccess()
     {
@@ -655,15 +655,15 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->read($read);
+        $data = $this->client->read($read);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'read');
         $this->assertEquals($data->getControlId(), 'read');
     }
 
     /**
-     * @covers Intacct\Sdk::read
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\IntacctClient::read
+     * @covers Intacct\IntacctClient::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records
      */
@@ -714,12 +714,12 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->read($read);
+        $data = $this->client->read($read);
     }
 
     /**
-     * @covers Intacct\Sdk::readByName
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\IntacctClient::readByName
+     * @covers Intacct\IntacctClient::executeContent
      */
     public function testReadByNameSuccess()
     {
@@ -781,15 +781,15 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readByName($readByName);
+        $data = $this->client->readByName($readByName);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'readByName');
         $this->assertEquals($data->getControlId(), 'readByName');
     }
 
     /**
-     * @covers Intacct\Sdk::readByName
-     * @covers Intacct\Sdk::executeContent
+     * @covers Intacct\IntacctClient::readByName
+     * @covers Intacct\IntacctClient::executeContent
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records by name
      */
@@ -840,11 +840,11 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->readByName($readByName);
+        $data = $this->client->readByName($readByName);
     }
 
     /**
-     * @covers Intacct\Sdk::readRelated
+     * @covers Intacct\IntacctClient::readRelated
      * @todo   Implement testReadRelated().
      */
     public function testReadRelated()
@@ -856,9 +856,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::getUserPermissions
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::getUserPermissions
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      */
     public function testGetUserPermissionsSuccess()
     {
@@ -900,16 +900,16 @@ EOF;
             'user_id' => 'testuser',
             'mock_handler' => $mock,
         ];
-        $permissions = $this->ia->getUserPermissions($config);
+        $permissions = $this->client->getUserPermissions($config);
         $this->assertEquals($permissions->getStatus(), 'success');
         $this->assertEquals($permissions->getFunction(), 'getUserPermissions');
         $this->assertEquals($permissions->getControlId(), 'getUserPermissions');
     }
 
     /**
-     * @covers Intacct\Sdk::getUserPermissions
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::getUserPermissions
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get user permissions
      */
@@ -960,13 +960,13 @@ EOF;
             'user_id' => 'unittest',
             'mock_handler' => $mock,
         ];
-        $permissions = $this->ia->getUserPermissions($config);
+        $permissions = $this->client->getUserPermissions($config);
     }
 
     /**
-     * @covers Intacct\Sdk::create
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::create
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      */
     public function testCreateSuccess()
     {
@@ -1032,16 +1032,16 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->create($create);
+        $data = $this->client->create($create);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'create');
         $this->assertEquals($data->getControlId(), 'create');
     }
 
     /**
-     * @covers Intacct\Sdk::create
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::create
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to create records
      */
@@ -1120,13 +1120,13 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->create($create);
+        $data = $this->client->create($create);
     }
 
     /**
-     * @covers Intacct\Sdk::update
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::update
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      */
     public function testUpdateSuccess()
     {
@@ -1192,16 +1192,16 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->update($update);
+        $data = $this->client->update($update);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'update');
         $this->assertEquals($data->getControlId(), 'update');
     }
 
     /**
-     * @covers Intacct\Sdk::update
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::update
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to update records
      */
@@ -1273,13 +1273,13 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->update($update);
+        $data = $this->client->update($update);
     }
 
     /**
-     * @covers Intacct\Sdk::delete
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::delete
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      */
     public function testDeleteSuccess()
     {
@@ -1324,16 +1324,16 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->delete($delete);
+        $data = $this->client->delete($delete);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'delete');
         $this->assertEquals($data->getControlId(), 'delete');
     }
     
     /**
-     * @covers Intacct\Sdk::delete
-     * @covers Intacct\Sdk::executeContent
-     * @covers Intacct\Sdk::getSessionConfig
+     * @covers Intacct\IntacctClient::delete
+     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to delete records
      */
@@ -1388,11 +1388,11 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->ia->delete($delete);
+        $data = $this->client->delete($delete);
     }
 
     /**
-     * @covers Intacct\Sdk::inspect
+     * @covers Intacct\IntacctClient::inspect
      * @todo   Implement testInspect().
      */
     public function testInspect()
@@ -1404,7 +1404,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Sdk::installApp
+     * @covers Intacct\IntacctClient::installApp
      * @todo   Implement testInstallApp().
      */
     public function testInstallApp()
