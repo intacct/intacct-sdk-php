@@ -31,7 +31,7 @@ Specify the Intacct SDK for PHP as a dependency in your project's composer.json 
 ```json
 {
     "require": {
-        "intacct/intacct-sdk-php": "0.*"
+        "intacct/intacct-sdk-php": "v0.*"
     }
 }
 ```
@@ -44,17 +44,17 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Examples
 
-### Create an SDK client
+### Create an IntacctClient
 
 ```php
 <?php
 
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-use Intacct\Sdk;
+use Intacct\IntacctClient;
 
 try {
-    $ia = Sdk();
+    $client = IntacctClient();
 } catch (\Exception $ex) {
     echo $ex->getMessage();
 }

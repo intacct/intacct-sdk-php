@@ -88,7 +88,7 @@ class SessionProvider
             $this->lastExecution = $request->getHistory();
         }
         
-        $response = new SynchronousResponse($client->getBody());
+        $response = new SynchronousResponse($client->getBody()->getContents());
         
         $operation = $response->getOperation();
         $results = $operation->getResults();

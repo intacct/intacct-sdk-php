@@ -265,7 +265,7 @@ EOF;
         $request = new Request($config, $content);
         $response = $request->execute();
         
-        $this->assertXmlStringEqualsXmlString($xml, $response->getBody());
+        $this->assertXmlStringEqualsXmlString($xml, $response->getBody()->getContents());
         $history = $request->getHistory();
         $this->assertEquals(count($history), 1);
     }

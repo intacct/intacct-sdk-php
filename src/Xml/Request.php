@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Sdk;
+use Intacct\IntacctClient;
 use Intacct\Xml\Request\Control;
 use Intacct\Xml\Request\Operation;
 use Intacct\Xml\Request\Operation\Content;
@@ -164,7 +164,7 @@ class Request
      */
     protected function getUserAgent()
     {
-        $userAgent = 'intacct-api-php-client/' . Sdk::VERSION;
+        $userAgent = 'intacct-api-php-client/' . IntacctClient::VERSION;
 
         return $userAgent;
     }
