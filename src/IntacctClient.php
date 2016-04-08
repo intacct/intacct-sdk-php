@@ -45,7 +45,7 @@ use Intacct\Xml\SynchronousResponse;
 use ArrayIterator;
 use InvalidArgumentException;
 
-class Sdk
+class IntacctClient
 {
     
     /**
@@ -194,7 +194,7 @@ class Sdk
             $this->lastExecution = $request->getHistory();
         }
         
-        $response = new SynchronousResponse($client->getBody());
+        $response = new SynchronousResponse($client->getBody()->getContents());
         
         return $response->getOperation();
     }
@@ -240,7 +240,7 @@ class Sdk
         
         $request = new Request($config, $content);
         $client = $request->execute();
-        $response = new AsynchronousResponse($client->getBody());
+        $response = new AsynchronousResponse($client->getBody()->getContents());
         
         return $response->getAcknowledgement();
     }
