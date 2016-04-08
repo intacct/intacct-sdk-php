@@ -45,7 +45,7 @@ use Intacct\Xml\SynchronousResponse;
 use ArrayIterator;
 use InvalidArgumentException;
 
-class Intacct_Client
+class Sdk
 {
     
     /**
