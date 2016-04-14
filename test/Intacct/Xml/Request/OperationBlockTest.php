@@ -1,12 +1,27 @@
 <?php
 
+/*
+ * Copyright 2016 Intacct Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 namespace Intacct\Xml\Request;
 
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
 use XMLWriter;
 
-class OperationTest extends \PHPUnit_Framework_TestCase
+class OperationBlockTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -28,10 +43,10 @@ class OperationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Xml\Request\Operation::__construct
-     * @covers Intacct\Xml\Request\Operation::setContent
-     * @covers Intacct\Xml\Request\Operation::getXml
-     * @covers Intacct\Xml\Request\Operation::getTransaction
+     * @covers Intacct\Xml\Request\OperationBlock::__construct
+     * @covers Intacct\Xml\Request\OperationBlock::setContent
+     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
     public function testGetXmlSession()
     {
@@ -63,17 +78,17 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new Operation($config, $content);
+        $operation = new OperationBlock($config, $content);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation::__construct
-     * @covers Intacct\Xml\Request\Operation::setContent
-     * @covers Intacct\Xml\Request\Operation::getXml
-     * @covers Intacct\Xml\Request\Operation::getTransaction
+     * @covers Intacct\Xml\Request\OperationBlock::__construct
+     * @covers Intacct\Xml\Request\OperationBlock::setContent
+     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
     public function testGetXmlLogin()
     {
@@ -111,17 +126,17 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new Operation($config, $content);
+        $operation = new OperationBlock($config, $content);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation::__construct
-     * @covers Intacct\Xml\Request\Operation::setTransaction
-     * @covers Intacct\Xml\Request\Operation::getXml
-     * @covers Intacct\Xml\Request\Operation::getTransaction
+     * @covers Intacct\Xml\Request\OperationBlock::__construct
+     * @covers Intacct\Xml\Request\OperationBlock::setTransaction
+     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
     public function testGetXmlTransaction()
     {
@@ -154,15 +169,15 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new Operation($config, $content);
+        $operation = new OperationBlock($config, $content);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation::__construct
-     * @covers Intacct\Xml\Request\Operation::setTransaction
+     * @covers Intacct\Xml\Request\OperationBlock::__construct
+     * @covers Intacct\Xml\Request\OperationBlock::setTransaction
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage transaction not valid boolean type
      */
@@ -176,11 +191,11 @@ EOF;
         $content = new Content();
         $func = new GetAPISession();
         $content->append($func);
-        $operation = new Operation($config, $content);
+        $operationBlock = new OperationBlock($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation::__construct
+     * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "company_id", "user_id", and "user_password" keys, or "session_id" key, not supplied in params
      */
@@ -196,7 +211,7 @@ EOF;
         $content = new Content();
         $func = new GetAPISession();
         $content->append($func);
-        $operation = new Operation($config, $content);
+        $operationBlock = new OperationBlock($config, $content);
     }
 
 }
