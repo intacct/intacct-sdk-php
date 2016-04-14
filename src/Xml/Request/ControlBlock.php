@@ -20,7 +20,7 @@ namespace Intacct\Xml\Request;
 use XMLWriter;
 use InvalidArgumentException;
 
-class Control
+class ControlBlock
 {
     
     /**
