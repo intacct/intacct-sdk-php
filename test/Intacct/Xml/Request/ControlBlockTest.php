@@ -4,7 +4,7 @@ namespace Intacct\Xml\Request;
 
 use XMLWriter;
 
-class ControlTest extends \PHPUnit_Framework_TestCase
+class ControlBlockTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -26,8 +26,8 @@ class ControlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
-     * @covers Intacct\Xml\Request\Control::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::getXml
      */
     public function testGetXmlDefaults()
     {
@@ -55,14 +55,14 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $control = new Control($config);
-        $control->getXml($xml);
+        $controlBlock = new ControlBlock($config);
+        $controlBlock->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_id" key not supplied in params
      */
@@ -73,11 +73,11 @@ EOF;
             'sender_password' => 'pass123!',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_password" key not supplied in params
      */
@@ -88,18 +88,18 @@ EOF;
             'sender_password' => null,
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
 
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
-     * @covers Intacct\Xml\Request\Control::setControlId
-     * @covers Intacct\Xml\Request\Control::setUniqueId
-     * @covers Intacct\Xml\Request\Control::getUniqueId
-     * @covers Intacct\Xml\Request\Control::setDtdVersion
-     * @covers Intacct\Xml\Request\Control::setIncludeWhitespace
-     * @covers Intacct\Xml\Request\Control::getIncludeWhitespace
-     * @covers Intacct\Xml\Request\Control::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::setControlId
+     * @covers Intacct\Xml\Request\ControlBlock::setUniqueId
+     * @covers Intacct\Xml\Request\ControlBlock::getUniqueId
+     * @covers Intacct\Xml\Request\ControlBlock::setDtdVersion
+     * @covers Intacct\Xml\Request\ControlBlock::setIncludeWhitespace
+     * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
+     * @covers Intacct\Xml\Request\ControlBlock::getXml
      */
     public function testGetXmlDefaultsOverride30()
     {
@@ -132,23 +132,23 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $control = new Control($config);
-        $control->getXml($xml);
+        $controlBlock = new ControlBlock($config);
+        $controlBlock->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
-     * @covers Intacct\Xml\Request\Control::setControlId
-     * @covers Intacct\Xml\Request\Control::setUniqueId
-     * @covers Intacct\Xml\Request\Control::getUniqueId
-     * @covers Intacct\Xml\Request\Control::setDtdVersion
-     * @covers Intacct\Xml\Request\Control::setIncludeWhitespace
-     * @covers Intacct\Xml\Request\Control::getIncludeWhitespace
-     * @covers Intacct\Xml\Request\Control::setDebug
-     * @covers Intacct\Xml\Request\Control::getDebug
-     * @covers Intacct\Xml\Request\Control::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::setControlId
+     * @covers Intacct\Xml\Request\ControlBlock::setUniqueId
+     * @covers Intacct\Xml\Request\ControlBlock::getUniqueId
+     * @covers Intacct\Xml\Request\ControlBlock::setDtdVersion
+     * @covers Intacct\Xml\Request\ControlBlock::setIncludeWhitespace
+     * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
+     * @covers Intacct\Xml\Request\ControlBlock::setDebug
+     * @covers Intacct\Xml\Request\ControlBlock::getDebug
+     * @covers Intacct\Xml\Request\ControlBlock::getXml
      */
     public function testGetXmlDefaultsOverride21()
     {
@@ -183,14 +183,14 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $control = new Control($config);
-        $control->getXml($xml);
+        $controlBlock = new ControlBlock($config);
+        $controlBlock->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
      */
@@ -202,11 +202,11 @@ EOF;
             'control_id' => '',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
      */
@@ -218,11 +218,11 @@ EOF;
             'control_id' => str_repeat('1234567890', 30), //strlen 300
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage uniqueid not valid boolean type
      */
@@ -234,11 +234,11 @@ EOF;
             'unique_id' => 'true',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage dtdversion is not a valid version
      */
@@ -250,11 +250,11 @@ EOF;
             'dtd_version' => '1.2',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage include_whitespace not valid boolean type
      */
@@ -266,11 +266,11 @@ EOF;
             'include_whitespace' => 'true',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
     
     /**
-     * @covers Intacct\Xml\Request\Control::__construct
+     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage debug not valid boolean type
      */
@@ -282,7 +282,7 @@ EOF;
             'debug' => 'true',
         ];
         
-        $control = new Control($config);
+        $controlBlock = new ControlBlock($config);
     }
 
 }
