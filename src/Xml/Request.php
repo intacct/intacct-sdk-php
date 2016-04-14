@@ -18,7 +18,7 @@
 namespace Intacct\Xml;
 
 use Intacct\IntacctClient;
-use Intacct\Xml\Request\Control;
+use Intacct\Xml\Request\ControlBlock;
 use Intacct\Xml\Request\Operation;
 use Intacct\Xml\Request\Operation\Content;
 use GuzzleHttp\Client;
@@ -94,9 +94,9 @@ class Request
 
     /**
      *
-     * @var Control
+     * @var ControlBlock
      */
-    protected $control;
+    protected $controlBlock;
 
     /**
      *
@@ -133,7 +133,7 @@ class Request
         $this->setMaxRetries($config['max_retries']);
         $this->setNoRetryServerErrorCodes($config['no_retry_server_error_codes']);
         
-        $this->control = new Control($config);
+        $this->controlBlock = new ControlBlock($config);
         $this->operation = new Operation($config, $content);
     }
 
@@ -149,7 +149,7 @@ class Request
         $xml->startDocument(self::XML_VERSION, $this->encoding);
         $xml->startElement('request');
 
-        $this->control->getXml($xml); //create control block
+        $this->controlBlock->getXml($xml); //create control block
 
         $this->operation->getXml($xml); //create operation block
 
