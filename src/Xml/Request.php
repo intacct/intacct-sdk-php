@@ -19,7 +19,7 @@ namespace Intacct\Xml;
 
 use Intacct\IntacctClient;
 use Intacct\Xml\Request\ControlBlock;
-use Intacct\Xml\Request\Operation;
+use Intacct\Xml\Request\OperationBlock;
 use Intacct\Xml\Request\Operation\Content;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -100,9 +100,9 @@ class Request
 
     /**
      *
-     * @var Operation
+     * @var OperationBlock
      */
-    protected $operation;
+    protected $operationBlock;
 
     /**
      * 
@@ -134,7 +134,7 @@ class Request
         $this->setNoRetryServerErrorCodes($config['no_retry_server_error_codes']);
         
         $this->controlBlock = new ControlBlock($config);
-        $this->operation = new Operation($config, $content);
+        $this->operationBlock = new OperationBlock($config, $content);
     }
 
     /**
@@ -151,7 +151,7 @@ class Request
 
         $this->controlBlock->getXml($xml); //create control block
 
-        $this->operation->getXml($xml); //create operation block
+        $this->operationBlock->getXml($xml); //create operation block
 
         $xml->endElement(); //request
 
