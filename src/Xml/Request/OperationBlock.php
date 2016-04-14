@@ -24,7 +24,7 @@ use Intacct\Xml\Request\Operation\Content;
 use XMLWriter;
 use InvalidArgumentException;
 
-class Operation
+class OperationBlock
 {
 
     /**
