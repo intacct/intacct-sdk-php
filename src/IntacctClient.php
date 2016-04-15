@@ -22,7 +22,7 @@ use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\AsynchronousResponse;
-use Intacct\Xml\Request;
+use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Delete;
@@ -186,12 +186,12 @@ class IntacctClient
     public function executeContent(array $params, Content $content)
     {
         unset($params['policy_id']);
-        $request = new Request($params, $content);
+        $requestHandler = new RequestHandler($params, $content);
         
         try {
-            $client = $request->execute();
+            $client = $requestHandler->execute();
         } finally {
-            $this->lastExecution = $request->getHistory();
+            $this->lastExecution = $requestHandler->getHistory();
         }
         
         $response = new SynchronousResponse($client->getBody()->getContents());
@@ -238,8 +238,8 @@ class IntacctClient
             );
         }
         
-        $request = new Request($config, $content);
-        $client = $request->execute();
+        $requestHandler = new RequestHandler($config, $content);
+        $client = $requestHandler->execute();
         $response = new AsynchronousResponse($client->getBody()->getContents());
         
         return $response->getAcknowledgement();
