@@ -18,37 +18,20 @@
 namespace Intacct\Xml;
 
 use Intacct\IntacctClient;
-use Intacct\Xml\Request\ControlBlock;
-use Intacct\Xml\Request\OperationBlock;
-use Intacct\Xml\Request\Operation\Content;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\ResponseInterface;
-use XMLWriter;
 use InvalidArgumentException;
 
 class RequestHandler
 {
-
-    /**
-     * 
-     * @var string
-     */
-    const XML_VERSION = '1.0';
-    
     /**
      * 
      * @var string
      */
     const REQUEST_CONTENT_TYPE = 'x-intacct-xml-request';
-
-    /**
-     *
-     * @var string
-     */
-    protected $encoding;
 
     /**
      *
@@ -61,13 +44,7 @@ class RequestHandler
      * @var bool
      */
     protected $verifySSL;
-    
-    /**
-     * 
-     * @var bool
-     */
-    protected $userAgentDetail;
-    
+
     /**
      * 
      * @var MockHandler
@@ -93,26 +70,14 @@ class RequestHandler
     protected $noRetryServerErrorCodes;
 
     /**
-     *
-     * @var ControlBlock
-     */
-    protected $controlBlock;
-
-    /**
-     *
-     * @var OperationBlock
-     */
-    protected $operationBlock;
-
-    /**
      * 
      * @param array $params
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params, Content $content)
+    public function __construct(array $params)
     {
         $defaults = [
-            'encoding' => 'UTF-8',
+           // 'encoding' => 'UTF-8',
             'endpoint_url' => null,
             'verify_ssl' => true,
             'mock_handler' => null,
@@ -123,39 +88,11 @@ class RequestHandler
         ];
         $config = array_merge($defaults, $params);
 
-        if (!in_array($config['encoding'], mb_list_encodings())) {
-            throw new InvalidArgumentException('Requested encoding is not supported');
-        }
-        $this->encoding = $config['encoding'];
         $this->endpointURL = $config['endpoint_url'];
         $this->verifySSL = $config['verify_ssl'];
         $this->mockHandler = $config['mock_handler'];
         $this->setMaxRetries($config['max_retries']);
         $this->setNoRetryServerErrorCodes($config['no_retry_server_error_codes']);
-        
-        $this->controlBlock = new ControlBlock($config);
-        $this->operationBlock = new OperationBlock($config, $content);
-    }
-
-    /**
-     * 
-     * @return XMLWriter
-     */
-    public function getXml()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(false);
-        $xml->startDocument(self::XML_VERSION, $this->encoding);
-        $xml->startElement('request');
-
-        $this->controlBlock->getXml($xml); //create control block
-
-        $this->operationBlock->getXml($xml); //create operation block
-
-        $xml->endElement(); //request
-
-        return $xml;
     }
     
     /**
@@ -230,10 +167,11 @@ class RequestHandler
     }
 
     /**
-     * 
+     *
+     * @param string $xml
      * @return ResponseInterface
      */
-    public function execute()
+    public function execute($xml)
     {
         //this is used for retry logic
         $calls = [];
@@ -274,8 +212,6 @@ class RequestHandler
         $client = new Client([
             'handler' => $handler,
         ]);
-        
-        $xml = $this->getXml();
 
         $options = [
             'body' => $xml->flush(),
@@ -290,5 +226,4 @@ class RequestHandler
 
         return $response;
     }
-
 }

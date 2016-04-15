@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request\Operation\Content;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class CreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -82,7 +83,7 @@ EOF;
             ]);
         }
 
-        $create = new Create([
+        new Create([
             'records' => $records,
         ]);
     }
@@ -96,7 +97,7 @@ EOF;
     {
         $records = [];
 
-        $create = new Create([
+        new Create([
             'records' => $records,
         ]);
     }
@@ -118,7 +119,7 @@ EOF;
             ])
         ];
 
-        $create = new Create([
+        new Create([
             'records' => $records,
         ]);
     }

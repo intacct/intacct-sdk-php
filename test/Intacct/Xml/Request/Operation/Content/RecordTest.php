@@ -17,6 +17,8 @@
 
 namespace Intacct\Xml\Request\Operation\Content;
 
+use InvalidArgumentException;
+
 class RecordTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -44,7 +46,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailureNoObject()
     {
-        $record = new Record([
+        new Record([
             'fields' => [
                 'CLASSID' => 'UT01',
                 'NAME' => 'Unit Test 01',
@@ -59,7 +61,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailureNoFields()
     {
-        $record = new Record([
+        new Record([
             'object' => 'CLASS',
         ]);
     }
@@ -71,7 +73,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailureInvalidObjectName()
     {
-        $record = new Record([
+        new Record([
             'object' => '123INVALID',
             'fields' => [
                 'CLASSID' => 'UT01',
@@ -87,7 +89,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructFailureInvalidFieldName()
     {
-        $record = new Record([
+        new Record([
             'object' => 'CLASS',
             'fields' => [
                 'CLASSID' => 'UT01',

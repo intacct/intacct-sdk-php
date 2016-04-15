@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Record;
+use InvalidArgumentException;
 
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -206,7 +207,7 @@ EOF;
         $config = $this->client->getSessionConfig();
         
         $content = new Content();
-        $async = $this->client->executeContentAsync($config, $content);
+        $this->client->executeContentAsync($config, $content);
     }
 
     /**
@@ -277,7 +278,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::readByQuery
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read query records
      */
     public function testReadByQueryFailure()
@@ -333,7 +334,7 @@ EOF;
             'query' => "this is not a query",
             'mock_handler' => $mock,
         ];
-        $data = $this->client->readByQuery($readByQuery);
+        $this->client->readByQuery($readByQuery);
     }
 
     /**
@@ -538,7 +539,7 @@ EOF;
     /**
      * @covers Intacct\IntacctClient::read
      * @covers Intacct\IntacctClient::executeContent
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read more records
      */
     public function testReadMoreFailure()
@@ -588,7 +589,7 @@ EOF;
             'result_id' => 'bad',
             'mock_handler' => $mock,
         ];
-        $data = $this->client->readMore($readMore);
+        $this->client->readMore($readMore);
     }
 
     /**
@@ -664,7 +665,7 @@ EOF;
     /**
      * @covers Intacct\IntacctClient::read
      * @covers Intacct\IntacctClient::executeContent
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records
      */
     public function testReadFailure()
@@ -714,7 +715,7 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->client->read($read);
+        $this->client->read($read);
     }
 
     /**
@@ -790,7 +791,7 @@ EOF;
     /**
      * @covers Intacct\IntacctClient::readByName
      * @covers Intacct\IntacctClient::executeContent
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records by name
      */
     public function testReadByNameFailure()
@@ -840,7 +841,7 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->client->readByName($readByName);
+        $this->client->readByName($readByName);
     }
 
     /**
@@ -910,7 +911,7 @@ EOF;
      * @covers Intacct\IntacctClient::getUserPermissions
      * @covers Intacct\IntacctClient::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get user permissions
      */
     public function testGetUserPermissionsFailure()
@@ -960,7 +961,7 @@ EOF;
             'user_id' => 'unittest',
             'mock_handler' => $mock,
         ];
-        $permissions = $this->client->getUserPermissions($config);
+        $this->client->getUserPermissions($config);
     }
 
     /**
@@ -1042,7 +1043,7 @@ EOF;
      * @covers Intacct\IntacctClient::create
      * @covers Intacct\IntacctClient::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to create records
      */
     public function testCreateFailure()
@@ -1120,7 +1121,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->create($create);
+        $this->client->create($create);
     }
 
     /**
@@ -1202,7 +1203,7 @@ EOF;
      * @covers Intacct\IntacctClient::update
      * @covers Intacct\IntacctClient::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to update records
      */
     public function testUpdateFailure()
@@ -1273,7 +1274,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->update($update);
+        $this->client->update($update);
     }
 
     /**
@@ -1334,7 +1335,7 @@ EOF;
      * @covers Intacct\IntacctClient::delete
      * @covers Intacct\IntacctClient::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to delete records
      */
     public function testDeleteFailure()
@@ -1388,7 +1389,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->delete($delete);
+        $this->client->delete($delete);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Intacct;
 
+use InvalidArgumentException;
+
 class EndpointTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -101,7 +103,7 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
             'endpoint_url' => [ 'an array' ],
         ];
         
-        $endpoint = new Endpoint($config);
+        new Endpoint($config);
     }
     
     /**
@@ -116,7 +118,7 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
             'endpoint_url' => 'invalidurl',
         ];
         
-        $endpoint = new Endpoint($config);
+        new Endpoint($config);
     }
     
     /**
@@ -131,7 +133,7 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
             'endpoint_url' => 'endpoint_url is not a valid intacct.com domain name.',
         ];
         
-        $endpoint = new Endpoint($config);
+        new Endpoint($config);
     }
     
     /**
@@ -146,7 +148,7 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
             'verify_ssl' => 0,
         ];
         
-        $endpoint = new Endpoint($config);
+        new Endpoint($config);
     }
 
 }
