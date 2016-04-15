@@ -26,35 +26,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     {
         
     }
-    
-    /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::getXml
-     * @covers Intacct\Xml\RequestHandler::getVerifySSL
-     */
-    public function testGetXml()
-    {
-        $expected = <<<EOF
-<?xml version="1.0" encoding="iso-8859-1"?>
-<request><control><senderid>testsenderid</senderid><password>pass123!</password><controlid>requestControlId</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><policyid/><includewhitespace>false</includewhitespace></control><operation transaction="false"><authentication><sessionid>testsession..</sessionid></authentication><content></content></operation></request>
-EOF;
-        
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
-        ];
-        
-        $content = new Content();
-        
-        $requestHandler = new RequestHandler($config, $content);
-        
-        $xml = $requestHandler->getXml();
-        
-        $this->assertEquals($requestHandler->getVerifySSL(), true);
-        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-    
+
     /**
      * @covers Intacct\Xml\RequestHandler::getVerifySSL
      */
@@ -69,7 +41,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
         
         $this->assertEquals($requestHandler->getVerifySSL(), false);
     }
@@ -89,7 +62,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
         
         $this->assertEquals($requestHandler->getMaxRetries(), 10);
     }
@@ -107,7 +81,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -126,7 +101,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -145,7 +121,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -166,7 +143,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
         $expected = [
             502,
             524,
@@ -193,7 +171,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -214,7 +193,8 @@ EOF;
 
         $content = new Content();
 
-        $requestHandler = new RequestHandler($config, $content);
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -261,9 +241,10 @@ EOF;
         ];
         
         $content = new Content();
-        
-        $requestHandler = new RequestHandler($config, $content);
-        $response = $requestHandler->execute();
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->execute($requestBlock->getXml());
         
         $this->assertXmlStringEqualsXmlString($xml, $response->getBody()->getContents());
         $history = $requestHandler->getHistory();
@@ -313,9 +294,10 @@ EOF;
         ];
         
         $content = new Content();
-        
-        $requestHandler = new RequestHandler($config, $content);
-        $response = $requestHandler->execute();
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->execute($requestBlock->getXml());
         
         $this->assertEquals(200, $response->getStatusCode());
     }
@@ -344,9 +326,10 @@ EOF;
         ];
         
         $content = new Content();
-        
-        $requestHandler = new RequestHandler($config, $content);
-        $response = $requestHandler->execute();
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->execute($requestBlock->getXml());
     }
     
     /**
@@ -368,9 +351,10 @@ EOF;
         ];
         
         $content = new Content();
-        
-        $requestHandler = new RequestHandler($config, $content);
-        $response = $requestHandler->execute();
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->execute($requestBlock->getXml());
     }
 
 }
