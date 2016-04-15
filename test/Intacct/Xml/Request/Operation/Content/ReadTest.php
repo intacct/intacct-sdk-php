@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request\Operation\Content;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class ReadTest extends \PHPUnit_Framework_TestCase
 {
@@ -64,7 +65,7 @@ EOF;
      */
     public function testNoObject()
     {
-        $read = new Read([
+        new Read([
             'keys' => [
                 '5'
             ],
@@ -78,7 +79,7 @@ EOF;
      */
     public function testReturnFormatJson()
     {
-        $read = new Read([
+        new Read([
             'object' => 'CLASS',
             'keys' => [
                 '5'
@@ -94,7 +95,7 @@ EOF;
      */
     public function testReturnFormatCsv()
     {
-        $read = new Read([
+        new Read([
             'object' => 'CLASS',
             'keys' => [
                 '5'
@@ -115,7 +116,7 @@ EOF;
             $keys[] = $i;
         }
 
-        $read = new Read([
+        new Read([
             'object' => 'CLASS',
             'keys' => $keys,
         ]);

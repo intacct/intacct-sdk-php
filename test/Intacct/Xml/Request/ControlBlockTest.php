@@ -3,6 +3,7 @@
 namespace Intacct\Xml\Request;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class ControlBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -73,7 +74,7 @@ EOF;
             'sender_password' => 'pass123!',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -88,7 +89,7 @@ EOF;
             'sender_password' => null,
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
 
     /**
@@ -202,7 +203,7 @@ EOF;
             'control_id' => '',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -218,7 +219,7 @@ EOF;
             'control_id' => str_repeat('1234567890', 30), //strlen 300
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -234,7 +235,7 @@ EOF;
             'unique_id' => 'true',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -250,7 +251,7 @@ EOF;
             'dtd_version' => '1.2',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -266,7 +267,7 @@ EOF;
             'include_whitespace' => 'true',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
     
     /**
@@ -282,7 +283,7 @@ EOF;
             'debug' => 'true',
         ];
         
-        $controlBlock = new ControlBlock($config);
+        new ControlBlock($config);
     }
 
 }

@@ -17,6 +17,8 @@
 
 namespace Intacct\Credentials;
 
+use InvalidArgumentException;
+
 class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -141,7 +143,7 @@ EOF;
         $config = [
             'profile_name' => '',
         ];
-        $profileCreds = $this->provider->getLoginCredentials($config);
+        $this->provider->getLoginCredentials($config);
     }
 
     /**
@@ -155,7 +157,7 @@ EOF;
         $config = [
             'profile_file' => 'notarealfile.ini'
         ];
-        $profileCreds = $this->provider->getLoginCredentials($config);
+        $this->provider->getLoginCredentials($config);
     }
 
     /**
@@ -175,7 +177,7 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $profileCreds = $this->provider->getLoginCredentials();
+        $this->provider->getLoginCredentials();
     }
 
 }

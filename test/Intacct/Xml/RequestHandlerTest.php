@@ -5,6 +5,7 @@ namespace Intacct\Xml;
 use Intacct\Xml\Request\Operation\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use InvalidArgumentException;
 
 class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -82,7 +83,8 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $content = new Content();
 
         $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config, $requestBlock);
+        new RequestHandler($config, $requestBlock);
+
     }
     
     /**
@@ -102,7 +104,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $content = new Content();
 
         $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config, $requestBlock);
+        new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -122,7 +124,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $content = new Content();
 
         $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config, $requestBlock);
+        new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -172,7 +174,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $content = new Content();
 
         $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config, $requestBlock);
+        new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -194,7 +196,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $content = new Content();
 
         $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config, $requestBlock);
+        new RequestHandler($config, $requestBlock);
     }
     
     /**
@@ -305,7 +307,7 @@ EOF;
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
      * @covers Intacct\Xml\RequestHandler::execute
-     * @expectedException GuzzleHttp\Exception\ServerException
+     * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultRetryFailure()
     {
@@ -329,13 +331,13 @@ EOF;
 
         $requestBlock = new RequestBlock($config, $content);
         $requestHandler = new RequestHandler($config);
-        $response = $requestHandler->execute($requestBlock->getXml());
+        $requestHandler->execute($requestBlock->getXml());
     }
     
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
      * @covers Intacct\Xml\RequestHandler::execute
-     * @expectedException GuzzleHttp\Exception\ServerException
+     * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultNo524Retry()
     {
@@ -354,7 +356,7 @@ EOF;
 
         $requestBlock = new RequestBlock($config, $content);
         $requestHandler = new RequestHandler($config);
-        $response = $requestHandler->execute($requestBlock->getXml());
+        $requestHandler->execute($requestBlock->getXml());
     }
 
 }

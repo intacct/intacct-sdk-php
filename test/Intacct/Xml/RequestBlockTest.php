@@ -30,7 +30,6 @@ EOF;
 
         $xml = $requestHandler->getXml();
 
-      //  $this->assertEquals($requestHandler->getVerifySSL(), true);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }
