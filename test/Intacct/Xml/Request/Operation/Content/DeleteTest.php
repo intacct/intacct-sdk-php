@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request\Operation\Content;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class DeleteTest extends \PHPUnit_Framework_TestCase
 {
@@ -65,7 +66,7 @@ EOF;
      */
     public function testNoObject()
     {
-        $delete = new Delete([
+        new Delete([
             'keys' => [
                 '5'
             ],
@@ -84,7 +85,7 @@ EOF;
             $keys[] = $i;
         }
 
-        $delete = new Delete([
+        new Delete([
             'object' => 'CLASS',
             'keys' => $keys,
         ]);
@@ -99,7 +100,7 @@ EOF;
     {
         $keys = [];
 
-        $delete = new Delete([
+        new Delete([
             'object' => 'CLASS',
             'keys' => $keys,
         ]);
@@ -112,7 +113,7 @@ EOF;
      */
     public function testNotAllowedObject()
     {
-        $delete = new Delete([
+        new Delete([
             'object' => 'TIMESHEETENTRY',
             'keys' => [
                 '5',

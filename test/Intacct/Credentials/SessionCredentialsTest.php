@@ -4,6 +4,7 @@ namespace Intacct\Credentials;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use InvalidArgumentException;
 
 class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
 {
@@ -82,7 +83,7 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
         $config = [
             'session_id' => null,
         ];
-        $sessionCreds = new SessionCredentials($config, $this->senderCreds);
+        new SessionCredentials($config, $this->senderCreds);
     }
     
     /**

@@ -3,6 +3,7 @@
 namespace Intacct\Xml\Request\Operation;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
 {
@@ -65,7 +66,7 @@ EOF;
             'session_id' => null,
         ];
         
-        $sessionAuth = new SessionAuthentication($config);
+        new SessionAuthentication($config);
     }
 
 }

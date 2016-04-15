@@ -20,6 +20,7 @@ namespace Intacct\Xml\Request;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
 use XMLWriter;
+use InvalidArgumentException;
 
 class OperationBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -191,7 +192,7 @@ EOF;
         $content = new Content();
         $func = new GetAPISession();
         $content->append($func);
-        $operationBlock = new OperationBlock($config, $content);
+        new OperationBlock($config, $content);
     }
     
     /**
@@ -211,7 +212,7 @@ EOF;
         $content = new Content();
         $func = new GetAPISession();
         $content->append($func);
-        $operationBlock = new OperationBlock($config, $content);
+        new OperationBlock($config, $content);
     }
 
 }

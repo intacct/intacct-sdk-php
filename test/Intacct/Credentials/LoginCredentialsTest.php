@@ -4,6 +4,7 @@ namespace Intacct\Credentials;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use InvalidArgumentException;
 
 class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
 {
@@ -110,7 +111,7 @@ EOF;
             'user_id' => 'testuser',
             'user_password' => 'testpass',
         ];
-        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+        new LoginCredentials($config, $this->senderCreds);
     }
     
     /**
@@ -125,7 +126,7 @@ EOF;
             'user_id' => null,
             'user_password' => 'testpass',
         ];
-        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+        new LoginCredentials($config, $this->senderCreds);
     }
     
     /**
@@ -140,7 +141,7 @@ EOF;
             'user_id' => 'testuser',
             'user_password' => null,
         ];
-        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+        new LoginCredentials($config, $this->senderCreds);
     }
     
     /**

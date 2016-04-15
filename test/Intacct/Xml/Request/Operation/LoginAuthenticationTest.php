@@ -3,6 +3,7 @@
 namespace Intacct\Xml\Request\Operation;
 
 use XMLWriter;
+use InvalidArgumentException;
 
 class LoginAuthenticationTest extends \PHPUnit_Framework_TestCase
 {
@@ -73,7 +74,7 @@ EOF;
             'user_password' => 'testpass',
         ];
         
-        $loginAuth = new LoginAuthentication($config);
+        new LoginAuthentication($config);
     }
     
     /**
@@ -89,7 +90,7 @@ EOF;
             'user_password' => 'testpass',
         ];
         
-        $loginAuth = new LoginAuthentication($config);
+        new LoginAuthentication($config);
     }
     
     /**
@@ -105,7 +106,7 @@ EOF;
             'user_password' => null,
         ];
         
-        $loginAuth = new LoginAuthentication($config);
+        new LoginAuthentication($config);
     }
 
 }

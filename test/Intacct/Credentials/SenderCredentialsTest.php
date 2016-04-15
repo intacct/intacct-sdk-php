@@ -2,6 +2,8 @@
 
 namespace Intacct\Credentials;
 
+use Exception;
+
 class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -75,7 +77,7 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
             //'sender_id' => null,
             'sender_password' => 'pass123!',
         ];
-        $creds = new SenderCredentials($config);
+        new SenderCredentials($config);
     }
     
     /**
@@ -89,7 +91,7 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
             'sender_id' => 'testsenderid',
             //'sender_password' => null,
         ];
-        $creds = new SenderCredentials($config);
+        new SenderCredentials($config);
     }
 
     private function clearEnv()
