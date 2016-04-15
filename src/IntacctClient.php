@@ -23,6 +23,7 @@ use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\RequestHandler;
+use Intacct\Xml\RequestBlock;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Delete;
@@ -186,10 +187,12 @@ class IntacctClient
     public function executeContent(array $params, Content $content)
     {
         unset($params['policy_id']);
-        $requestHandler = new RequestHandler($params, $content);
+
+        $requestBlock = new RequestBlock($params, $content);
+        $requestHandler = new RequestHandler($params);
         
         try {
-            $client = $requestHandler->execute();
+            $client = $requestHandler->execute($requestBlock->getXml());
         } finally {
             $this->lastExecution = $requestHandler->getHistory();
         }
@@ -237,9 +240,10 @@ class IntacctClient
                 'Required "policy_id" key not supplied in params for asynchronous request'
             );
         }
-        
-        $requestHandler = new RequestHandler($config, $content);
-        $client = $requestHandler->execute();
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
+        $client = $requestHandler->execute($requestBlock->getXml());
         $response = new AsynchronousResponse($client->getBody()->getContents());
         
         return $response->getAcknowledgement();

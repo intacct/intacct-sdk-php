@@ -17,11 +17,10 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Credentials\LoginCredentials;
-use Intacct\Credentials\SessionCredentials;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
 use Intacct\Xml\RequestHandler;
+use Intacct\Xml\RequestBlock;
 use Intacct\Xml\SynchronousResponse;
 use Intacct\Endpoint;
 
@@ -79,11 +78,12 @@ class SessionProvider
         $content = new Content();
         $getApiSession = new GetAPISession();
         $content->append($getApiSession);
-        
-        $requestHandler = new RequestHandler($config, $content);
+
+        $requestBlock = new RequestBlock($config, $content);
+        $requestHandler = new RequestHandler($config);
         
         try {
-            $client = $requestHandler->execute();
+            $client = $requestHandler->execute($requestBlock->getXml());
         } finally {
             $this->lastExecution = $requestHandler->getHistory();
         }
