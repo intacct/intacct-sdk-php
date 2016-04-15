@@ -6,7 +6,7 @@ use Intacct\Xml\Request\Operation\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -28,9 +28,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
-     * @covers Intacct\Xml\Request::getXml
-     * @covers Intacct\Xml\Request::getVerifySSL
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::getXml
+     * @covers Intacct\Xml\RequestHandler::getVerifySSL
      */
     public function testGetXml()
     {
@@ -47,16 +47,16 @@ EOF;
         
         $content = new Content();
         
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
         
-        $xml = $request->getXml();
+        $xml = $requestHandler->getXml();
         
-        $this->assertEquals($request->getVerifySSL(), true);
+        $this->assertEquals($requestHandler->getVerifySSL(), true);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @covers Intacct\Xml\Request::getVerifySSL
+     * @covers Intacct\Xml\RequestHandler::getVerifySSL
      */
     public function testGetVerifySSL()
     {
@@ -69,14 +69,14 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
         
-        $this->assertEquals($request->getVerifySSL(), false);
+        $this->assertEquals($requestHandler->getVerifySSL(), false);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setMaxRetries
-     * @covers Intacct\Xml\Request::getMaxRetries
+     * @covers Intacct\Xml\RequestHandler::setMaxRetries
+     * @covers Intacct\Xml\RequestHandler::getMaxRetries
      */
     public function testSetMaxRetries()
     {
@@ -89,13 +89,13 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
         
-        $this->assertEquals($request->getMaxRetries(), 10);
+        $this->assertEquals($requestHandler->getMaxRetries(), 10);
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
+     * @covers Intacct\Xml\RequestHandler::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Requested encoding is not supported
      */
@@ -107,11 +107,11 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setMaxRetries
+     * @covers Intacct\Xml\RequestHandler::setMaxRetries
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage max retries not valid int type
      */
@@ -126,11 +126,11 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setMaxRetries
+     * @covers Intacct\Xml\RequestHandler::setMaxRetries
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage max retries must be zero or greater
      */
@@ -145,12 +145,12 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setNoRetryServerErrorCodes
-     * @covers Intacct\Xml\Request::getNoRetryServerErrorCodes
+     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
+     * @covers Intacct\Xml\RequestHandler::getNoRetryServerErrorCodes
      */
     public function testSetNoRetryServerErrorCodes()
     {
@@ -166,16 +166,16 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
         $expected = [
             502,
             524,
         ];
-        $this->assertEquals($request->getNoRetryServerErrorCodes(), $expected);
+        $this->assertEquals($requestHandler->getNoRetryServerErrorCodes(), $expected);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setNoRetryServerErrorCodes
+     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage no retry server error code is not valid int type
      */
@@ -193,11 +193,11 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request::setNoRetryServerErrorCodes
+     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage no retry server error code must be between 500-599
      */
@@ -214,14 +214,14 @@ EOF;
 
         $content = new Content();
 
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
-     * @covers Intacct\Xml\Request::execute
-     * @covers Intacct\Xml\Request::getHistory
-     * @covers Intacct\Xml\Request::getUserAgent
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::execute
+     * @covers Intacct\Xml\RequestHandler::getHistory
+     * @covers Intacct\Xml\RequestHandler::getUserAgent
      */
     public function testMockExecute()
     {
@@ -262,17 +262,17 @@ EOF;
         
         $content = new Content();
         
-        $request = new Request($config, $content);
-        $response = $request->execute();
+        $requestHandler = new RequestHandler($config, $content);
+        $response = $requestHandler->execute();
         
         $this->assertXmlStringEqualsXmlString($xml, $response->getBody()->getContents());
-        $history = $request->getHistory();
+        $history = $requestHandler->getHistory();
         $this->assertEquals(count($history), 1);
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
-     * @covers Intacct\Xml\Request::execute
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::execute
      */
     public function testMockRetry()
     {
@@ -314,15 +314,15 @@ EOF;
         
         $content = new Content();
         
-        $request = new Request($config, $content);
-        $response = $request->execute();
+        $requestHandler = new RequestHandler($config, $content);
+        $response = $requestHandler->execute();
         
         $this->assertEquals(200, $response->getStatusCode());
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
-     * @covers Intacct\Xml\Request::execute
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultRetryFailure()
@@ -345,13 +345,13 @@ EOF;
         
         $content = new Content();
         
-        $request = new Request($config, $content);
-        $response = $request->execute();
+        $requestHandler = new RequestHandler($config, $content);
+        $response = $requestHandler->execute();
     }
     
     /**
-     * @covers Intacct\Xml\Request::__construct
-     * @covers Intacct\Xml\Request::execute
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultNo524Retry()
@@ -369,8 +369,8 @@ EOF;
         
         $content = new Content();
         
-        $request = new Request($config, $content);
-        $response = $request->execute();
+        $requestHandler = new RequestHandler($config, $content);
+        $response = $requestHandler->execute();
     }
 
 }

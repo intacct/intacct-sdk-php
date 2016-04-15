@@ -29,7 +29,7 @@ use Psr\Http\Message\ResponseInterface;
 use XMLWriter;
 use InvalidArgumentException;
 
-class Request
+class RequestHandler
 {
 
     /**

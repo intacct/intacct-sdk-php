@@ -21,7 +21,7 @@ use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
-use Intacct\Xml\Request;
+use Intacct\Xml\RequestHandler;
 use Intacct\Xml\SynchronousResponse;
 use Intacct\Endpoint;
 
@@ -80,12 +80,12 @@ class SessionProvider
         $getApiSession = new GetAPISession();
         $content->append($getApiSession);
         
-        $request = new Request($config, $content);
+        $requestHandler = new RequestHandler($config, $content);
         
         try {
-            $client = $request->execute();
+            $client = $requestHandler->execute();
         } finally {
-            $this->lastExecution = $request->getHistory();
+            $this->lastExecution = $requestHandler->getHistory();
         }
         
         $response = new SynchronousResponse($client->getBody()->getContents());
@@ -99,7 +99,7 @@ class SessionProvider
         $session = [
             'session_id' => strval($api->sessionid),
             'endpoint_url' => strval($api->endpoint),
-            'verify_ssl' => $request->getVerifySSL(),
+            'verify_ssl' => $requestHandler->getVerifySSL(),
         ];
         
         return $session;
