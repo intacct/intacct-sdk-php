@@ -1,14 +1,29 @@
 <?php
 
-namespace Intacct;
 
+/*
+ * Copyright 2016 Intacct Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+namespace Intacct\GeneralLedger;
+
+use Intacct\IntacctClient;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Xml\Request\Operation\Content;
 
-class IntacctClientTest extends \PHPUnit_Framework_TestCase
+class AccountTest extends \PHPUnit_Framework_TestCase
 {
-    
     /**
      *
      * @var IntacctClient
@@ -60,7 +75,7 @@ EOF;
         $mock = new MockHandler([
             $mockResponse,
         ]);
-        
+
         $this->client = new IntacctClient([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
@@ -77,38 +92,23 @@ EOF;
      */
     protected function tearDown()
     {
-        
+
     }
 
     /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getLastExecution
+     * @covers Intacct\GeneralLedger\Account::getAllByQuery
+     * @covers Intacct\GeneralLedger\Accoutn::readFirstPageByQuery
+     * @covers Intacct\GeneralLedger\Account::readMore
      */
-    public function testConstructWithSessionId()
+    public function testGetAllByQuerySuccess()
     {
-        $client = $this->client; //grab the setUp object
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'testSeSsionID..');
-        $this->assertEquals(count($client->getLastExecution()), 1);
-    }
-    
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getLastExecution
-     */
-    public function testConstructWithLogin()
-    {
-        $xml = <<<EOF
+        $xml1 = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
       <control>
             <status>success</status>
             <senderid>testsenderid</senderid>
-            <controlid>sessionProvider</controlid>
+            <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
       </control>
@@ -117,97 +117,24 @@ EOF;
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
-                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
             </authentication>
             <result>
                   <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>getSession</controlid>
-                  <data>
-                        <api>
-                              <sessionid>helloworld..</sessionid>
-                              <endpoint>https://p1.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
+                  <function>readByQuery</function>
+                  <controlid>readByQuery</controlid>
+                  <data listtype="glaccount" count="1" totalcount="2" numremaining="1" resultId="7765623330Vqb8pMCoA4IAAEnuglgAAAAL5">
+                        <glaccount>
+                              <RECORDNO>47</RECORDNO>
+                              <ACCOUNTNO>1010</ACCOUNTNO>
+                              <TITLE>Cash in Bank, Checking, BA1145</TITLE>
+                        </glaccount>
                   </data>
             </result>
       </operation>
 </response>
 EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $client = new IntacctClient([
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'originalSeSsIonID..',
-            'mock_handler' => $mock,
-        ]);
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'helloworld..');
-        $this->assertEquals(count($client->getLastExecution()), 1);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::readView
-     * @todo   Implement testReadView().
-     */
-    public function testReadView()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::readReport
-     * @todo   Implement testReadReport().
-     */
-    public function testReadReport()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::getViewRecords
-     * @todo   Implement testGetViewRecords().
-     */
-    public function testGetViewRecords()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::getReportRecords
-     * @todo   Implement testGetReportRecords().
-     */
-    public function testGetReportRecords()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::readMore
-     */
-    public function testReadMoreSuccess()
-    {
-        $xml = <<<EOF
+        $xml2 = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
       <control>
@@ -242,27 +169,106 @@ EOF;
         $headers = [
             'Content-Type' => 'text/xml; encoding="UTF-8"',
         ];
+        $mockResponse1 = new Response(200, $headers, $xml1);
+        $mockResponse2 = new Response(200, $headers, $xml2);
+        $mock = new MockHandler([
+            $mockResponse1,
+            $mockResponse2,
+        ]);
+
+        $readByQuery = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'query' => "ACCOUNTNO = '1010' OR ACCOUNTNO = '1020'",
+            'page_size' => 1,
+            'mock_handler' => $mock,
+        ];
+        $data = $this->client->generalLedger->account->readAllByQuery($readByQuery);
+        $this->assertCount(2, $data);
+    }
+
+
+    /**
+     * @covers Intacct\GeneralLedger\Account::readById
+     * @covers Intacct\Xml\RequestHandler::executeContent
+     */
+    public function testReadByIdSuccess()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>read</function>
+                  <controlid>read</controlid>
+                  <data listtype="GLACCOUNT" count="2">
+                        <GLACCOUNT>
+                              <RECORDNO>9</RECORDNO>
+                              <ACCOUNTNO>1010</ACCOUNTNO>
+                              <TITLE>SVB Operating</TITLE>
+                        </GLACCOUNT>
+                        <GLACCOUNT>
+                              <RECORDNO>10</RECORDNO>
+                              <ACCOUNTNO>1020</ACCOUNTNO>
+                              <TITLE>SVB Money Market</TITLE>
+                        </GLACCOUNT>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
         $mockResponse = new Response(200, $headers, $xml);
         $mock = new MockHandler([
             $mockResponse,
         ]);
 
-        $config = [
-            'result_id' => '7765623330Vqb8pMCoA4IAAEnuglgAAAAL5',
+        $read = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'keys' => [
+                '9',
+                '10',
+            ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->readMore($config);
-        $this->assertEquals('success', $data->getStatus());
-        $this->assertEquals('readMore', $data->getFunction());
-        $this->assertEquals('readMore', $data->getControlId());
+        $data = $this->client->generalLedger->account->readById($read);
+        $this->assertEquals($data->getStatus(), 'success');
+        $this->assertEquals($data->getFunction(), 'read');
+        $this->assertEquals($data->getControlId(), 'read');
     }
 
     /**
+     * @covers Intacct\GeneralLedger\Account::readById
      * @covers Intacct\Xml\RequestHandler::executeContent
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to read more records
+     * @expectedExceptionMessage An error occurred trying to read records
      */
-    public function testReadMoreFailure()
+    public function testReadFailure()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -283,13 +289,13 @@ EOF;
             </authentication>
             <result>
                   <status>failure</status>
-                  <function>readMore</function>
-                  <controlid>readMore</controlid>
+                  <function>read</function>
+                  <controlid>read</controlid>
                   <errormessage>
                         <error>
-                              <errorno>readMore failed</errorno>
+                              <errorno>XXX</errorno>
                               <description></description>
-                              <description2>Attempt to readMore with an invalid or expired resultId: bad</description2>
+                              <description2>Object definition GLACCOUNT2 not found</description2>
                               <correction></correction>
                         </error>
                   </errormessage>
@@ -305,31 +311,18 @@ EOF;
             $mockResponse,
         ]);
 
-        $readMore = [
-            'result_id' => 'bad',
+        $read = [
+            'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $this->client->readMore($readMore);
+        $this->client->generalLedger->account->readById($read);
     }
 
     /**
-     * @covers Intacct\IntacctClient::readRelated
-     * @todo   Implement testReadRelated().
-     */
-    public function testReadRelated()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::getUserPermissions
+     * @covers Intacct\GeneralLedger\Account::readByName
      * @covers Intacct\Xml\RequestHandler::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
      */
-    public function testGetUserPermissionsSuccess()
+    public function testReadByNameSuccess()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -350,9 +343,20 @@ EOF;
             </authentication>
             <result>
                   <status>success</status>
-                  <function>getUserPermissions</function>
-                  <controlid>getUserPermissions</controlid>
-                  <data><permissions><appSubscription><applicationName>Time </applicationName><policies><policy><policyName>My Expenses</policyName><rights>List|View|Add|Edit|Delete</rights></policy><policy><policyName>Expense Adjustments</policyName><rights>List|View|Add|Edit|Delete|Reverse|Reclass</rights></policy><policy><policyName>Approve Expenses</policyName><rights>List</rights></policy></policies></appSubscription></permissions>                  </data>
+                  <function>readByName</function>
+                  <controlid>readByName</controlid>
+                  <data listtype="GLACCOUNT" count="2">
+                        <GLACCOUNT>
+                              <RECORDNO>9</RECORDNO>
+                              <ACCOUNTNO>1010</ACCOUNTNO>
+                              <TITLE>SVB Operating</TITLE>
+                        </GLACCOUNT>
+                        <GLACCOUNT>
+                              <RECORDNO>10</RECORDNO>
+                              <ACCOUNTNO>1020</ACCOUNTNO>
+                              <TITLE>SVB Money Market</TITLE>
+                        </GLACCOUNT>
+                  </data>
             </result>
       </operation>
 </response>
@@ -365,24 +369,32 @@ EOF;
             $mockResponse,
         ]);
 
-        $config = [
-            'user_id' => 'testuser',
+        $readByName = [
+            'object' => 'GLACCOUNT',
+            'fields' => [
+                'RECORDNO',
+                'ACCOUNTNO',
+                'TITLE',
+            ],
+            'names' => [
+                '1010',
+                '1020',
+            ],
             'mock_handler' => $mock,
         ];
-        $permissions = $this->client->getUserPermissions($config);
-        $this->assertEquals($permissions->getStatus(), 'success');
-        $this->assertEquals($permissions->getFunction(), 'getUserPermissions');
-        $this->assertEquals($permissions->getControlId(), 'getUserPermissions');
+        $data = $this->client->generalLedger->account->readByName($readByName);
+        $this->assertEquals($data->getStatus(), 'success');
+        $this->assertEquals($data->getFunction(), 'readByName');
+        $this->assertEquals($data->getControlId(), 'readByName');
     }
 
     /**
-     * @covers Intacct\IntacctClient::getUserPermissions
+     * @covers Intacct\GeneralLedger\Account::readByName
      * @covers Intacct\Xml\RequestHandler::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to get user permissions
+     * @expectedExceptionMessage An error occurred trying to read records by name
      */
-    public function testGetUserPermissionsFailure()
+    public function testReadByNameFailure()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -403,14 +415,14 @@ EOF;
             </authentication>
             <result>
                   <status>failure</status>
-                  <function>getUserPermissions</function>
-                  <controlid>getUserPermissions</controlid>
+                  <function>readByName</function>
+                  <controlid>testControlId</controlid>
                   <errormessage>
                         <error>
-                              <errorno>BL03000025</errorno>
+                              <errorno>XXX</errorno>
                               <description></description>
-                              <description2>Login ID unittest does not exist.</description2>
-                              <correction>Provide a valid USER.LOGINID value.</correction>
+                              <description2>Object definition GLACCOUNT2 not found</description2>
+                              <correction></correction>
                         </error>
                   </errormessage>
             </result>
@@ -425,23 +437,10 @@ EOF;
             $mockResponse,
         ]);
 
-        $config = [
-            'user_id' => 'unittest',
+        $readByName = [
+            'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $this->client->getUserPermissions($config);
+        $this->client->generalLedger->account->readByName($readByName);
     }
-
-    /**
-     * @covers Intacct\IntacctClient::installApp
-     * @todo   Implement testInstallApp().
-     */
-    public function testInstallApp()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
 }
