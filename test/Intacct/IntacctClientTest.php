@@ -5,8 +5,6 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Xml\Request\Operation\Content;
-use Intacct\Xml\Request\Operation\Content\Record;
-use InvalidArgumentException;
 
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -154,60 +152,6 @@ EOF;
         $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
         $this->assertEquals($creds['session_id'], 'helloworld..');
         $this->assertEquals(count($client->getLastExecution()), 1);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::executeContentAsync
-     */
-    public function testExecuteContentAsync()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <acknowledgement>
-        <status>success</status>
-    </acknowledgement>
-    <control>
-        <status>success</status>
-        <senderid>testsenderid</senderid>
-        <controlid>requestControlId</controlid>
-        <uniqueid>false</uniqueid>
-        <dtdversion>3.0</dtdversion>
-    </control>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $params = [
-            'policy_id' => 'testpolicy',
-            'mock_handler' => $mock
-        ];
-        $defaults = $this->client->getSessionConfig();
-        $config = array_merge($defaults, $params);
-        
-        $content = new Content();
-        $async = $this->client->executeContentAsync($config, $content);
-        
-        $this->assertEquals('success', $async->getStatus());
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::executeContentAsync
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
-     */
-    public function testExecuteContentAsyncNoPolicyId()
-    {
-        $config = $this->client->getSessionConfig();
-        
-        $content = new Content();
-        $this->client->executeContentAsync($config, $content);
     }
 
     /**
@@ -538,7 +482,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::read
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read more records
      */
@@ -594,7 +538,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::read
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      */
     public function testReadSuccess()
     {
@@ -664,7 +608,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::read
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records
      */
@@ -720,7 +664,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::readByName
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      */
     public function testReadByNameSuccess()
     {
@@ -790,7 +734,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::readByName
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to read records by name
      */
@@ -858,7 +802,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::getUserPermissions
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
      */
     public function testGetUserPermissionsSuccess()
@@ -909,7 +853,7 @@ EOF;
 
     /**
      * @covers Intacct\IntacctClient::getUserPermissions
-     * @covers Intacct\IntacctClient::executeContent
+     * @covers Intacct\Xml\RequestHandler::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get user permissions
@@ -962,446 +906,6 @@ EOF;
             'mock_handler' => $mock,
         ];
         $this->client->getUserPermissions($config);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::create
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     */
-    public function testCreateSuccess()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>create</function>
-                  <controlid>create</controlid>
-                  <data listtype="objects" count="2">
-                        <class>
-                              <RECORDNO>5</RECORDNO>
-                              <CLASSID>UT01</CLASSID>
-                        </class>
-                        <class>
-                              <RECORDNO>6</RECORDNO>
-                              <CLASSID>UT02</CLASSID>
-                        </class>
-                  </data>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $create = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT02',
-                        'NAME' => 'Unit Test 02',
-                    ],
-                ]),
-            ],
-            'mock_handler' => $mock,
-        ];
-        $data = $this->client->create($create);
-        $this->assertEquals($data->getStatus(), 'success');
-        $this->assertEquals($data->getFunction(), 'create');
-        $this->assertEquals($data->getControlId(), 'create');
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::create
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to create records
-     */
-    public function testCreateFailure()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>failure</status>
-                  <function>create</function>
-                  <controlid>create</controlid>
-                  <data listtype="objects" count="0"/>
-                  <errormessage>
-                        <error>
-                              <errorno>BL34000061</errorno>
-                              <description></description>
-                              <description2>Another Class with the given value(s) UT01  already exists</description2>
-                              <correction>Use a unique value instead.</correction>
-                        </error>
-                        <error>
-                              <errorno>BL01001973</errorno>
-                              <description></description>
-                              <description2>Could not create class record!</description2>
-                              <correction></correction>
-                        </error>
-                        <error>
-                              <errorno>BL01001973</errorno>
-                              <description></description>
-                              <description2>Could not create Class record!</description2>
-                              <correction></correction>
-                        </error>
-                  </errormessage>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $create = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT02',
-                        'NAME' => 'Unit Test 02',
-                    ],
-                ]),
-            ],
-            'mock_handler' => $mock,
-        ];
-        $this->client->create($create);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::update
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     */
-    public function testUpdateSuccess()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>update</function>
-                  <controlid>update</controlid>
-                  <data listtype="objects" count="2">
-                        <class>
-                              <RECORDNO>5</RECORDNO>
-                              <CLASSID>UT01</CLASSID>
-                        </class>
-                        <class>
-                              <RECORDNO>6</RECORDNO>
-                              <CLASSID>UT02</CLASSID>
-                        </class>
-                  </data>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $update = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT02',
-                        'NAME' => 'Unit Test 02',
-                    ],
-                ]),
-            ],
-            'mock_handler' => $mock,
-        ];
-        $data = $this->client->update($update);
-        $this->assertEquals($data->getStatus(), 'success');
-        $this->assertEquals($data->getFunction(), 'update');
-        $this->assertEquals($data->getControlId(), 'update');
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::update
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to update records
-     */
-    public function testUpdateFailure()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>failure</status>
-                  <function>update</function>
-                  <controlid>create</controlid>
-                  <data listtype="objects" count="1">
-                        <class>
-                              <RECORDNO>5</RECORDNO>
-                              <CLASSID>UT01</CLASSID>
-                        </class>
-                  </data>
-                  <errormessage>
-                        <error>
-                              <errorno>Cannot update non-existing CLASS with CLASSID=UT99.</errorno>
-                              <description></description>
-                              <description2></description2>
-                              <correction></correction>
-                        </error>
-                  </errormessage>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $update = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT99',
-                        'NAME' => 'Unit Test 99',
-                    ],
-                ]),
-            ],
-            'mock_handler' => $mock,
-        ];
-        $this->client->update($update);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::delete
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     */
-    public function testDeleteSuccess()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>delete</function>
-                  <controlid>delete</controlid>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $delete = [
-            'object' => 'CLASS',
-            'keys' => [
-                '5',
-                '6',
-            ],
-            'mock_handler' => $mock,
-        ];
-        $data = $this->client->delete($delete);
-        $this->assertEquals($data->getStatus(), 'success');
-        $this->assertEquals($data->getFunction(), 'delete');
-        $this->assertEquals($data->getControlId(), 'delete');
-    }
-    
-    /**
-     * @covers Intacct\IntacctClient::delete
-     * @covers Intacct\IntacctClient::executeContent
-     * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to delete records
-     */
-    public function testDeleteFailure()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>requestControlId</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>testuser</userid>
-                  <companyid>testcompany</companyid>
-                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>failure</status>
-                  <function>delete</function>
-                  <controlid>delete</controlid>
-                  <errormessage>
-                        <error>
-                              <errorno>BL01001973</errorno>
-                              <description></description>
-                              <description2>Cannot find class with key &#039;UT01&#039; to delete.</description2>
-                              <correction></correction>
-                        </error>
-                  </errormessage>
-            </result>
-      </operation>
-</response>
-EOF;
-        $headers = [
-            'Content-Type' => 'text/xml; encoding="UTF-8"',
-        ];
-        $mockResponse = new Response(200, $headers, $xml);
-        $mock = new MockHandler([
-            $mockResponse,
-        ]);
-        
-        $delete = [
-            'object' => 'CLASS',
-            'keys' => [
-                'UT01',
-                'UT02',
-            ],
-            'mock_handler' => $mock,
-        ];
-        $this->client->delete($delete);
-    }
-
-    /**
-     * @covers Intacct\IntacctClient::inspect
-     * @todo   Implement testInspect().
-     */
-    public function testInspect()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
     }
 
     /**

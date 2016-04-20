@@ -21,14 +21,9 @@ use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
-use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\RequestBlock;
 use Intacct\Xml\Request\Operation\Content;
-use Intacct\Xml\Request\Operation\Content\Create;
-use Intacct\Xml\Request\Operation\Content\Delete;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
-use Intacct\Xml\Request\Operation\Content\Inspect;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
 use Intacct\Xml\Request\Operation\Content\Read;
 use Intacct\Xml\Request\Operation\Content\ReadByName;
@@ -37,33 +32,19 @@ use Intacct\Xml\Request\Operation\Content\ReadMore;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
 use Intacct\Xml\Request\Operation\Content\ReadView;
-use Intacct\Xml\Request\Operation\Content\Update;
-use Intacct\Xml\Response\Acknowledgement;
 use Intacct\Xml\Response\Operation;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\Xml\SynchronousResponse;
+use Intacct\Dimension\Dimensions;
 use ArrayIterator;
-use InvalidArgumentException;
 
 class IntacctClient
 {
-    
-    /**
-     * @var string
-     */
-    const VERSION = '1.0';
-    
     /**
      * @var int
      */
     const MAX_QUERY_TOTAL_COUNT = 100000;
-    
-    /**
-     * @var int
-     */
-    const MAX_UPSERT_COUNT = 1000;
-    
+
     /**
      * @var string
      */
@@ -127,6 +108,8 @@ class IntacctClient
         } finally {
             $this->lastExecution = $provider->getLastExecution();
         }
+
+        $this->dimensions = new Dimensions($config, $this);
     }
     
     /**
@@ -157,96 +140,6 @@ class IntacctClient
         ];
         
         return $config;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - company_id: (string)
-     * - debug: (bool, default=bool(false))
-     * - dtd_version: (string, default=string(3) "3.0")
-     * - encoding: (string, default=string(5) "UTF-8")
-     * - endpoint_url: (string)
-     * - include_whitespace: (bool, default=bool(false))
-     * - max_retries: (int, default=int(5))
-     * - no_retry_server_error_codes: (array, default=array([524]))
-     * - sender_id: (string, required)
-     * - sender_password: (string, required)
-     * - session_id: (string)
-     * - transaction: (bool, default=bool(false))
-     * - unique_id: (bool, default=bool(false))
-     * - user_id: (string)
-     * - user_password: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
-     * @param array $params
-     * @param Content $content
-     * @return Operation
-     */
-    public function executeContent(array $params, Content $content)
-    {
-        unset($params['policy_id']);
-
-        $requestBlock = new RequestBlock($params, $content);
-        $requestHandler = new RequestHandler($params);
-        
-        try {
-            $client = $requestHandler->execute($requestBlock->getXml());
-        } finally {
-            $this->lastExecution = $requestHandler->getHistory();
-        }
-        
-        $response = new SynchronousResponse($client->getBody()->getContents());
-        
-        return $response->getOperation();
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - company_id: (string)
-     * - debug: (bool, default=bool(false))
-     * - dtd_version: (string, default=string(3) "3.0")
-     * - encoding: (string, default=string(5) "UTF-8")
-     * - endpoint_url: (string)
-     * - include_whitespace: (bool, default=bool(false))
-     * - max_retries: (int, default=int(5))
-     * - no_retry_server_error_codes: (array, default=array([524]))
-     * - policy_id: (string, required)
-     * - sender_id: (string, required)
-     * - sender_password: (string, required)
-     * - session_id: (string)
-     * - transaction: (bool, default=bool(false))
-     * - unique_id: (bool, default=bool(false))
-     * - user_id: (string)
-     * - user_password: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
-     * @param array $params
-     * @param Content $content
-     * @return Acknowledgement
-     */
-    public function executeContentAsync(array $params, Content $content)
-    {
-        $defaults = [
-            'policy_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
-        
-        if (!isset($params['policy_id'])) {
-            throw new InvalidArgumentException(
-                'Required "policy_id" key not supplied in params for asynchronous request'
-            );
-        }
-
-        $requestBlock = new RequestBlock($config, $content);
-        $requestHandler = new RequestHandler($config);
-        $client = $requestHandler->execute($requestBlock->getXml());
-        $response = new AsynchronousResponse($client->getBody()->getContents());
-        
-        return $response->getAcknowledgement();
     }
 
     /**
@@ -286,7 +179,10 @@ class IntacctClient
         $content = new Content([
             new ReadByQuery($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($config);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -316,7 +212,10 @@ class IntacctClient
         $content = new Content([
             new ReadView($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($config);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -341,7 +240,10 @@ class IntacctClient
         $content = new Content([
             new ReadReport($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($config);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -532,7 +434,10 @@ class IntacctClient
         $content = new Content([
             new ReadMore($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -566,8 +471,11 @@ class IntacctClient
         $content = new Content([
             new Read($params),
         ]);
-        $operation = $this->executeContent($config, $content);
-        
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
+
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
@@ -599,7 +507,10 @@ class IntacctClient
         $content = new Content([
             new ReadByName($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -633,7 +544,10 @@ class IntacctClient
         $content = new Content([
             new ReadRelated($params),
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
         
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -663,8 +577,11 @@ class IntacctClient
         $content = new Content([
             new GetUserPermissions($params),
         ]);
-        $operation = $this->executeContent($config, $content);
-        
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
+
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
@@ -672,128 +589,6 @@ class IntacctClient
             );
         }
         
-        return $result;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - records: (array, required)
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function create(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new Create($params),
-        ]);
-        $operation = $this->executeContent($config, $content);
-        
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to create records', $result->getErrors()
-            );
-        }
-        
-        return $result;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - records: (array, required)
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function update(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new Update($params),
-        ]);
-        $operation = $this->executeContent($config, $content);
-        
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to update records', $result->getErrors()
-            );
-        }
-        
-        return $result;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - keys: (array, required)
-     * - object: (string, required)
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function delete(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new Delete($params),
-        ]);
-        $operation = $this->executeContent($config, $content);
-        
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to delete records', $result->getErrors()
-            );
-        }
-        
-        return $result;
-    }
-
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - object: (string)
-     * - show_detail: (bool, default=bool(false))
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function inspect(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-
-        $content = new Content([
-            new Inspect([$params])
-        ]);
-        $operation = $this->executeContent($config, $content);
-
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to inspect an object', $result->getErrors()
-            );
-        }
-
         return $result;
     }
 
@@ -815,7 +610,10 @@ class IntacctClient
         $content = new Content([
             new InstallApp($params)
         ]);
-        $operation = $this->executeContent($config, $content);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $content);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
