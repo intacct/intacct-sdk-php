@@ -21,13 +21,11 @@ use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
+use Intacct\GeneralLedger\GeneralLedger;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
-use Intacct\Xml\Request\Operation\Content\Read;
-use Intacct\Xml\Request\Operation\Content\ReadByName;
-use Intacct\Xml\Request\Operation\Content\ReadByQuery;
 use Intacct\Xml\Request\Operation\Content\ReadMore;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
@@ -109,7 +107,8 @@ class IntacctClient
             $this->lastExecution = $provider->getLastExecution();
         }
 
-        $this->dimensions = new Dimensions($config, $this);
+        $this->dimensions = new Dimensions($this);
+        $this->generalLedger = new GeneralLedger($this);
     }
     
     /**
@@ -154,42 +153,6 @@ class IntacctClient
     public function getLastExecution()
     {
         return $this->lastExecution;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - doc_par_id: (string)
-     * - fields: (array)
-     * - object: (string, required)
-     * - page_size: (int, default=int(1000)
-     * - query: (string)
-     * - return_format: (string, default=string(3) "xml")
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function readByQuery(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new ReadByQuery($params),
-        ]);
-
-        $requestHandler = new RequestHandler($config);
-
-        $operation = $requestHandler->executeContent($config, $content);
-        
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException('An error occurred trying to read query records', $result->getErrors());
-        }
-        
-        return $result;
     }
     
     /**
@@ -252,67 +215,7 @@ class IntacctClient
         
         return $result;
     }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - doc_par_id: (string)
-     * - fields: (array)
-     * - max_total_count: (int, default=int(100000))
-     * - object: (string, required)
-     * - page_size: (int, default=int(1000)
-     * - query: (string)
-     * - return_format: (string, default=string(3) "xml")
-     *
-     * @param array $params
-     * @return ArrayIterator
-     * @throws ResultException
-     */
-    public function getQueryRecords(array $params)
-    {
-        $defaults = [
-            'max_total_count' => static::MAX_QUERY_TOTAL_COUNT,
-        ];
-        $config = array_merge($defaults, $params);
-        
-        $result = $this->readByQuery($config);
-        
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to get query records', $result->getErrors()
-            );
-        }
-        
-        $records = new ArrayIterator();
-        foreach ($result->getDataArray() as $record) {
-            $records->append($record);
-        }
-        
-        $totalCount = (int) strval($result->getData()->attributes()->totalcount);
-        if ($totalCount > $config['max_total_count']) {
-            throw new ResultException(
-                'Query result totalcount exceeds max_total_count parameter of ' . $config['max_total_count']
-            );
-        }
-        $numRemaining = (int) strval($result->getData()->attributes()->numremaining);
-        if ($numRemaining > 0) {
-            $pages = ceil($numRemaining / $config['page_size']);
-            $resultId = (string) $result->getData()->attributes()->resultId;
-            $config['result_id'] = $resultId;
-            for ($page = 1; $page <= $pages; $page++) {
-                $readMore = $this->readMore($config);
-                
-                //append the readMore records to the original array
-                foreach ($readMore->getDataArray() as $record) {
-                    $records->append($record);
-                }
-            }
-        }
-        
-        return $records;
-    }
-    
+
     /**
      * 
      * @param array $params
@@ -448,80 +351,7 @@ class IntacctClient
         
         return $result;
     }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - doc_par_id: (string)
-     * - fields: (array)
-     * - keys: (array)
-     * - object: (string, required)
-     * - return_format: (string, default=string(3) "xml")
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function read(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new Read($params),
-        ]);
 
-        $requestHandler = new RequestHandler($params);
-
-        $operation = $requestHandler->executeContent($config, $content);
-
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to read records', $result->getErrors()
-            );
-        }
-        
-        return $result;
-    }
-    
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - fields: (array)
-     * - names: (array)
-     * - object: (string, required)
-     * - return_format: (string, default=string(3) "xml")
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function readByName(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-        
-        $content = new Content([
-            new ReadByName($params),
-        ]);
-
-        $requestHandler = new RequestHandler($params);
-
-        $operation = $requestHandler->executeContent($config, $content);
-        
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to read records by name', $result->getErrors()
-            );
-        }
-        
-        return $result;
-    }
-    
     /**
      * Accepts the following options:
      *

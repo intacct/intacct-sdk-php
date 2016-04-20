@@ -15,20 +15,24 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Dimension;
+namespace Intacct\GeneralLedger;
 
 use Intacct\IntacctClient;
 use Intacct\IntacctObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
-class IaClass
+class Account
 {
 
     use IntacctObjectTrait;
 
     private $client;
 
+    /**
+     * Account constructor.
+     * @param IntacctClient $client
+     */
     public function __construct(IntacctClient &$client)
     {
         $this->client = $client;
@@ -100,5 +104,42 @@ class IaClass
     public function readAllByQuery(array $params)
     {
         return $this->readAllObjectsByQuery($params, $this->client);
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - doc_par_id: (string)
+     * - fields: (array)
+     * - keys: (array)
+     * - object: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
+     */
+    public function readById(array $params)
+    {
+        return $this->readObjectById($params, $this->client);
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - fields: (array)
+     * - names: (array)
+     * - object: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
+     */
+    public function readByName(array $params)
+    {
+        return $this->readObjectByName($params, $this->client);
     }
 }

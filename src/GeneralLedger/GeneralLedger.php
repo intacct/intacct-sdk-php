@@ -15,22 +15,21 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Dimension;
+namespace Intacct\GeneralLedger;
 
 use Intacct\IntacctClient;
 
-class Dimensions
+class GeneralLedger
 {
     private $client;
 
     /**
-     * Dimensions constructor.
+     * GeneralLedger constructor.
      * @param IntacctClient $client
      */
     public function __construct(IntacctClient &$client)
     {
         $this->client = $client;
-        $this->iaClass = new IaClass($this->client);
+        $this->account = new Account($this->client);
     }
-
 }
