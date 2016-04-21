@@ -17,7 +17,8 @@
 
 namespace Intacct\Xml;
 
-use Intacct\IntacctClient;
+use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Response\Operation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -27,6 +28,11 @@ use InvalidArgumentException;
 
 class RequestHandler
 {
+    /**
+     * @var string
+     */
+    const VERSION = '1.0';
+
     /**
      * 
      * @var string
@@ -70,6 +76,12 @@ class RequestHandler
     protected $noRetryServerErrorCodes;
 
     /**
+     *
+     * @var array
+     */
+    private $lastExecution = [];
+
+    /**
      * 
      * @param array $params
      * @throws InvalidArgumentException
@@ -101,7 +113,7 @@ class RequestHandler
      */
     protected function getUserAgent()
     {
-        $userAgent = 'intacct-api-php-client/' . IntacctClient::VERSION;
+        $userAgent = 'intacct-api-php-client/' . RequestHandler::VERSION;
 
         return $userAgent;
     }
@@ -167,8 +179,98 @@ class RequestHandler
     }
 
     /**
+     * Accepts the following options:
      *
-     * @param string $xml
+     * - control_id: (string)
+     * - company_id: (string)
+     * - debug: (bool, default=bool(false))
+     * - dtd_version: (string, default=string(3) "3.0")
+     * - encoding: (string, default=string(5) "UTF-8")
+     * - endpoint_url: (string)
+     * - include_whitespace: (bool, default=bool(false))
+     * - max_retries: (int, default=int(5))
+     * - no_retry_server_error_codes: (array, default=array([524]))
+     * - sender_id: (string, required)
+     * - sender_password: (string, required)
+     * - session_id: (string)
+     * - transaction: (bool, default=bool(false))
+     * - unique_id: (bool, default=bool(false))
+     * - user_id: (string)
+     * - user_password: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
+     * @param array $params
+     * @param Content $content
+     * @return Operation
+     */
+    public function executeContent(array $params, Content $content)
+    {
+        unset($params['policy_id']);
+
+        $requestBlock = new RequestBlock($params, $content);
+
+        try {
+            $client = $this->execute($requestBlock->getXml());
+        } finally {
+            $this->lastExecution = $this->getHistory();
+        }
+
+        $response = new SynchronousResponse($client->getBody()->getContents());
+
+        return $response->getOperation();
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - company_id: (string)
+     * - debug: (bool, default=bool(false))
+     * - dtd_version: (string, default=string(3) "3.0")
+     * - encoding: (string, default=string(5) "UTF-8")
+     * - endpoint_url: (string)
+     * - include_whitespace: (bool, default=bool(false))
+     * - max_retries: (int, default=int(5))
+     * - no_retry_server_error_codes: (array, default=array([524]))
+     * - policy_id: (string, required)
+     * - sender_id: (string, required)
+     * - sender_password: (string, required)
+     * - session_id: (string)
+     * - transaction: (bool, default=bool(false))
+     * - unique_id: (bool, default=bool(false))
+     * - user_id: (string)
+     * - user_password: (string)
+     * - verify_ssl: (bool, default=bool(true))
+     *
+     * @param array $params
+     * @param Content $content
+     * @return AsynchronousResponse
+     * @throws InvalidArgumentException
+     */
+    public function executeContentAsync(array $params, Content $content)
+    {
+        $defaults = [
+            'policy_id' => null,
+        ];
+        $config = array_merge($defaults, $params);
+
+        if (!isset($params['policy_id'])) {
+            throw new InvalidArgumentException(
+                'Required "policy_id" key not supplied in params for asynchronous request'
+            );
+        }
+
+        $requestBlock = new RequestBlock($config, $content);
+       // $requestHandler = new RequestHandler($config);
+        $client = $this->execute($requestBlock->getXml());
+        $response = new AsynchronousResponse($client->getBody()->getContents());
+
+        return $response;
+    }
+
+    /**
+     *
+     * @param \XMLWriter $xml
      * @return ResponseInterface
      */
     public function execute($xml)

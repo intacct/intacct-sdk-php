@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml\Request\Operation\Content;
 
-use Intacct\Xml\Request\Operation\Content\FunctionInterface;
 use InvalidArgumentException;
 use XMLWriter;
 
