@@ -38,6 +38,12 @@ trait IntacctObjectTrait
      */
     private static $MAX_QUERY_TOTAL_COUNT = 100000;
 
+    private function mergeParams(array $params, IntacctClient &$client)
+    {
+        $session = $client->getSessionConfig();
+        return array_merge($session, $params);
+    }
+
     /**
      * Accepts the following options:
      *
@@ -51,8 +57,7 @@ trait IntacctObjectTrait
      */
     protected function createObject(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new Create($params),
@@ -85,8 +90,7 @@ trait IntacctObjectTrait
      */
     protected function updateObject(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new Update($params),
@@ -120,8 +124,7 @@ trait IntacctObjectTrait
      */
     protected function deleteObject(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new Delete($params),
@@ -155,8 +158,7 @@ trait IntacctObjectTrait
      */
     protected function inspectObject(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new Inspect([$params])
@@ -195,8 +197,7 @@ trait IntacctObjectTrait
      */
     protected function readFirstPageByQuery(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new ReadByQuery($params),
@@ -289,8 +290,7 @@ trait IntacctObjectTrait
      */
     protected function readMore(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new ReadMore($params),
@@ -327,8 +327,7 @@ trait IntacctObjectTrait
      */
     protected function readObjectById(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new Read($params),
@@ -364,8 +363,7 @@ trait IntacctObjectTrait
      */
     protected function readObjectByName(array $params, IntacctClient &$client)
     {
-        $session = $client->getSessionConfig();
-        $config = array_merge($session, $params);
+        $config = $this->mergeParams($params, $client);
 
         $content = new Content([
             new ReadByName($params),

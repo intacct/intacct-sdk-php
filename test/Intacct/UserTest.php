@@ -19,11 +19,9 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Xml\Request\Operation\Content;
 
-class IntacctClientTest extends \PHPUnit_Framework_TestCase
+class UserTest extends  \PHPUnit_Framework_TestCase
 {
-    
     /**
      *
      * @var IntacctClient
@@ -75,7 +73,7 @@ EOF;
         $mock = new MockHandler([
             $mockResponse,
         ]);
-        
+
         $this->client = new IntacctClient([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
@@ -92,30 +90,15 @@ EOF;
      */
     protected function tearDown()
     {
-        
+
     }
 
     /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getLastExecution
+     * @covers Intacct\User::getUserPermissions
+     * @covers Intacct\Xml\RequestHandler::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
      */
-    public function testConstructWithSessionId()
-    {
-        $client = $this->client; //grab the setUp object
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'testSeSsionID..');
-        $this->assertEquals(count($client->getLastExecution()), 1);
-    }
-    
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getLastExecution
-     */
-    public function testConstructWithLogin()
+    public function testGetUserPermissionsSuccess()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -123,7 +106,7 @@ EOF;
       <control>
             <status>success</status>
             <senderid>testsenderid</senderid>
-            <controlid>sessionProvider</controlid>
+            <controlid>requestControlId</controlid>
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
       </control>
@@ -132,18 +115,13 @@ EOF;
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
-                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
             </authentication>
             <result>
                   <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>getSession</controlid>
-                  <data>
-                        <api>
-                              <sessionid>helloworld..</sessionid>
-                              <endpoint>https://p1.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
-                  </data>
+                  <function>getUserPermissions</function>
+                  <controlid>getUserPermissions</controlid>
+                  <data><permissions><appSubscription><applicationName>Time </applicationName><policies><policy><policyName>My Expenses</policyName><rights>List|View|Add|Edit|Delete</rights></policy><policy><policyName>Expense Adjustments</policyName><rights>List|View|Add|Edit|Delete|Reverse|Reclass</rights></policy><policy><policyName>Approve Expenses</policyName><rights>List</rights></policy></policies></appSubscription></permissions>                  </data>
             </result>
       </operation>
 </response>
@@ -155,30 +133,72 @@ EOF;
         $mock = new MockHandler([
             $mockResponse,
         ]);
-        
-        $client = new IntacctClient([
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'originalSeSsIonID..',
+
+        $config = [
+            'user_id' => 'testuser',
             'mock_handler' => $mock,
-        ]);
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'helloworld..');
-        $this->assertEquals(count($client->getLastExecution()), 1);
+        ];
+        $permissions = $this->client->user->getUserPermissions($config);
+        $this->assertEquals($permissions->getStatus(), 'success');
+        $this->assertEquals($permissions->getFunction(), 'getUserPermissions');
+        $this->assertEquals($permissions->getControlId(), 'getUserPermissions');
     }
 
     /**
-     * @covers Intacct\IntacctClient::installApp
-     * @todo   Implement testInstallApp().
+     * @covers Intacct\User::getUserPermissions
+     * @covers Intacct\Xml\RequestHandler::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
+     * @expectedExceptionMessage An error occurred trying to get user permissions
      */
-    public function testInstallApp()
+    public function testGetUserPermissionsFailure()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>getUserPermissions</function>
+                  <controlid>getUserPermissions</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>BL03000025</errorno>
+                              <description></description>
+                              <description2>Login ID unittest does not exist.</description2>
+                              <correction>Provide a valid USER.LOGINID value.</correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'user_id' => 'unittest',
+            'mock_handler' => $mock,
+        ];
+        $this->client->user->getUserPermissions($config);
     }
 
 }
