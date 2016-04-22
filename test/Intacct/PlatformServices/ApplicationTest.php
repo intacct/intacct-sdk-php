@@ -15,22 +15,21 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Dimension;
+namespace Intacct\PlatformServices;
 
-use Intacct\IntacctClient;
-
-class Dimensions
+class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
-    private $client;
 
     /**
-     * Dimensions constructor.
-     * @param IntacctClient $client
+     * @covers Intacct\PlatformServices\Application::install
+     * @todo   Implement testInstall().
      */
-    public function __construct(IntacctClient &$client)
+    public function testInstall()
     {
-        $this->client = $client;
-        $this->iaClass = new IaClass($this->client);
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
 }

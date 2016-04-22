@@ -15,21 +15,44 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\GeneralLedger;
+namespace Intacct\Applications;
 
 use Intacct\IntacctClient;
+use Intacct\PlatformServices\Application;
 
-class GeneralLedger
+class PlatformServices
 {
+    
+    /**
+     *
+     * @var IntacctClient
+     */
     private $client;
+    
+    /**
+     *
+     * @var Application
+     */
+    private $application;
 
     /**
-     * GeneralLedger constructor.
+     * 
      * @param IntacctClient $client
      */
     public function __construct(IntacctClient &$client)
     {
         $this->client = $client;
-        $this->account = new Account($this->client);
+        
+        $this->application = new Application($this->client);
     }
+    
+    /**
+     * 
+     * @return Application
+     */
+    public function Application()
+    {
+        return $this->application;
+    }
+    
 }

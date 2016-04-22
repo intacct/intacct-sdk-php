@@ -25,6 +25,7 @@ use InvalidArgumentException;
 
 class RequestBlock
 {
+    
     /**
      *
      * @var string
@@ -70,7 +71,6 @@ class RequestBlock
         $this->operationBlock = new OperationBlock($config, $content);
     }
 
-
     /**
      *
      * @return XMLWriter
@@ -91,4 +91,5 @@ class RequestBlock
 
         return $xml;
     }
+    
 }
