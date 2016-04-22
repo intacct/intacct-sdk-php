@@ -22,11 +22,12 @@ use GuzzleHttp\Handler\MockHandler;
 
 class UserTest extends  \PHPUnit_Framework_TestCase
 {
+    
     /**
      *
-     * @var IntacctClient
+     * @var User
      */
-    private $client;
+    private $user;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -74,7 +75,7 @@ EOF;
             $mockResponse,
         ]);
 
-        $this->client = new IntacctClient([
+        $client = new IntacctClient([
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'company_id' => 'testcompany',
@@ -82,6 +83,7 @@ EOF;
             'user_password' => 'testpass',
             'mock_handler' => $mock,
         ]);
+        $this->user = $client->Company()->User();
     }
 
     /**
@@ -138,7 +140,7 @@ EOF;
             'user_id' => 'testuser',
             'mock_handler' => $mock,
         ];
-        $permissions = $this->client->user->getUserPermissions($config);
+        $permissions = $this->user->getUserPermissions($config);
         $this->assertEquals($permissions->getStatus(), 'success');
         $this->assertEquals($permissions->getFunction(), 'getUserPermissions');
         $this->assertEquals($permissions->getControlId(), 'getUserPermissions');
@@ -198,7 +200,7 @@ EOF;
             'user_id' => 'unittest',
             'mock_handler' => $mock,
         ];
-        $this->client->user->getUserPermissions($config);
+        $this->user->getUserPermissions($config);
     }
 
 }

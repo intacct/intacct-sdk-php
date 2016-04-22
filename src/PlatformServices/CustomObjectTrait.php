@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct;
+namespace Intacct\PlatformServices;
 
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Request\Operation\Content;
@@ -28,7 +28,8 @@ use ArrayIterator;
 
 trait CustomObjectTrait
 {
-    use IntacctObjectTrait;
+    
+    use \Intacct\IaObjectTrait;
 
     /**
      * @var int

@@ -169,16 +169,4 @@ EOF;
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
 
-    /**
-     * @covers Intacct\IntacctClient::installApp
-     * @todo   Implement testInstallApp().
-     */
-    public function testInstallApp()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
 }

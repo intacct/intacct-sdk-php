@@ -17,22 +17,23 @@
 
 namespace Intacct;
 
+use Intacct\Applications\Company;
+use Intacct\Applications\GeneralLedger;
+use Intacct\Applications\PlatformServices;
+use Intacct\Applications\Reporting;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
-use Intacct\GeneralLedger\GeneralLedger;
-use Intacct\Reporting\Reports;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Request\Operation\Content;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
-use Intacct\Xml\Response\Operation;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\Dimension\Dimensions;
 
 class IntacctClient
 {
+
     /**
      * @var string
      */
@@ -43,12 +44,36 @@ class IntacctClient
      * @var SessionCredentials 
      */
     private $sessionCreds;
-    
+
     /**
      *
      * @var array
      */
     private $lastExecution = [];
+    
+    /**
+     *
+     * @var Company
+     */
+    private $company;
+    
+    /**
+     *
+     * @var GeneralLedger
+     */
+    private $generalLedger;
+    
+    /**
+     *
+     * @var PlatformServices
+     */
+    private $platformServices;
+
+    /**
+     *
+     * @var Reporting
+     */
+    private $reporting;
 
     /**
      * The constructor accepts the following options:
@@ -78,9 +103,9 @@ class IntacctClient
             $defaults['profile_name'] = $envProfile;
         }
         $config = array_merge($defaults, $params);
-        
+
         $provider = new SessionProvider();
-        
+
         $senderCreds = new SenderCredentials($config);
 
         try {
@@ -97,12 +122,48 @@ class IntacctClient
             $this->lastExecution = $provider->getLastExecution();
         }
 
-        $this->dimensions = new Dimensions($this);
+        $this->company = new Company($this);
         $this->generalLedger = new GeneralLedger($this);
-        $this->reports = new Reports($this);
-        $this->user = new User($this);
+        $this->platformServices = new PlatformServices($this);
+        $this->reporting = new Reporting($this);
     }
     
+    /**
+     * 
+     * @return Company
+     */
+    public function Company()
+    {
+        return $this->company;
+    }
+    
+    /**
+     * 
+     * @return GeneralLedger
+     */
+    public function GeneralLedger()
+    {
+        return $this->generalLedger;
+    }
+    
+    /**
+     * 
+     * @return PlatformServices
+     */
+    public function PlatformServices()
+    {
+        return $this->platformServices;
+    }
+
+    /**
+     * 
+     * @return Reporting
+     */
+    public function Reporting()
+    {
+        return $this->reporting;
+    }
+
     /**
      * 
      * @return SessionCredentials
@@ -111,7 +172,7 @@ class IntacctClient
     {
         return $this->sessionCreds;
     }
-    
+
     /**
      * 
      * @return array
@@ -121,7 +182,7 @@ class IntacctClient
         $sessionCreds = $this->getSessionCreds();
         $senderCreds = $sessionCreds->getSenderCredentials();
         $endpoint = $sessionCreds->getEndpoint();
-        
+
         $config = [
             'sender_id' => $senderCreds->getSenderId(),
             'sender_password' => $senderCreds->getPassword(),
@@ -129,7 +190,7 @@ class IntacctClient
             'verify_ssl' => $endpoint->getVerifySSL(),
             'session_id' => $sessionCreds->getSessionId(),
         ];
-        
+
         return $config;
     }
 
@@ -145,39 +206,6 @@ class IntacctClient
     public function getLastExecution()
     {
         return $this->lastExecution;
-    }
-
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - xml_filename: (string)
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function installApp(array $params)
-    {
-        $session = $this->getSessionConfig();
-        $config = array_merge($session, $params);
-
-        $content = new Content([
-            new InstallApp($params)
-        ]);
-
-        $requestHandler = new RequestHandler($params);
-
-        $operation = $requestHandler->executeContent($config, $content);
-
-        $result = $operation->getResult();
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to install platform app', $result->getErrors()
-            );
-        }
-
-        return $result;
     }
 
 }

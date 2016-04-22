@@ -28,6 +28,7 @@ use InvalidArgumentException;
 
 class RequestHandler
 {
+    
     /**
      * @var string
      */
@@ -136,6 +137,11 @@ class RequestHandler
         return $this->history;
     }
     
+    /**
+     * 
+     * @param int $maxRetries
+     * @throws InvalidArgumentException
+     */
     private function setMaxRetries($maxRetries)
     {
         if (!is_int($maxRetries)) {
@@ -151,11 +157,20 @@ class RequestHandler
         $this->maxRetries = $maxRetries;
     }
     
+    /**
+     * 
+     * @return int
+     */
     public function getMaxRetries()
     {
         return $this->maxRetries;
     }
     
+    /**
+     * 
+     * @param array $errorCodes
+     * @throws InvalidArgumentException
+     */
     private function setNoRetryServerErrorCodes(array $errorCodes)
     {
         foreach($errorCodes as $errorCode) {
@@ -173,6 +188,10 @@ class RequestHandler
         $this->noRetryServerErrorCodes = $errorCodes;
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getNoRetryServerErrorCodes()
     {
         return $this->noRetryServerErrorCodes;
@@ -328,4 +347,5 @@ class RequestHandler
 
         return $response;
     }
+    
 }
