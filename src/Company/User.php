@@ -15,16 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct;
+namespace Intacct\Company;
 
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
 use Intacct\Xml\RequestHandler;
+use Intacct\IntacctClient;
 
 class User
 {
+    
+    /**
+     *
+     * @var IntacctClient
+     */
     private $client;
 
     /**

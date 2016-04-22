@@ -17,26 +17,14 @@
 
 namespace Intacct\Reporting;
 
-class ReportsTest extends \PHPUnit_Framework_TestCase
+class CustomReportTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Reporting\Reports::readReport
-     * @todo   Implement testReadReport().
+     * @covers Intacct\Reporting\CustomReport::run
+     * @todo   Implement testRun().
      */
-    public function testReadReport()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Intacct\Reporting\Reports::geAllReports
-     * @todo   Implement testGetAllReports().
-     */
-    public function testGetAllReports()
+    public function testRun()
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(

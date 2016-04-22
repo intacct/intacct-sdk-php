@@ -18,19 +18,23 @@
 namespace Intacct\GeneralLedger;
 
 use Intacct\IntacctClient;
-use Intacct\IntacctObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
 class Account
 {
 
-    use IntacctObjectTrait;
+    use \Intacct\IaObjectTrait;
 
+    /**
+     *
+     * @var IntacctClient
+     */
     private $client;
 
     /**
-     * Account constructor.
+     * Account constructor
+     * 
      * @param IntacctClient $client
      */
     public function __construct(IntacctClient &$client)
@@ -42,18 +46,20 @@ class Account
      * Accepts the following options:
      *
      * - control_id: (string)
-     * - records: (array, required)
+     * - add other field keys here
      *
      * @param array $params
      * @return Result
      * @throws ResultException
+     * @todo change this to a single record create
      */
     public function create(array $params)
     {
-        // Validation here...
-        return $this->createObject($params, $this->client);
+        // TODO Validation here...
+        // TODO change this to <create_bill>... <create> is not supported
+        return $this->createRecords($params, $this->client);
     }
-
+    
     /**
      * Accepts the following options:
      *
@@ -66,7 +72,7 @@ class Account
      */
     public function update(array $params)
     {
-        return $this->updateObject($params, $this->client);
+        return $this->updateRecords($params, $this->client);
     }
 
     /**
@@ -82,7 +88,7 @@ class Account
      */
     public function delete(array $params)
     {
-        return $this->deleteObject($params, $this->client);
+        return $this->deleteRecords($params, $this->client);
     }
 
     /**
@@ -122,7 +128,7 @@ class Account
      */
     public function readById(array $params)
     {
-        return $this->readObjectById($params, $this->client);
+        return $this->readRecordById($params, $this->client);
     }
 
     /**
@@ -140,6 +146,7 @@ class Account
      */
     public function readByName(array $params)
     {
-        return $this->readObjectByName($params, $this->client);
+        return $this->readRecordByName($params, $this->client);
     }
+    
 }

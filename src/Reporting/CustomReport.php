@@ -17,7 +17,6 @@
 
 namespace Intacct\Reporting;
 
-use Intacct\IntacctObjectTrait;
 use Intacct\IntacctClient;
 use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
@@ -26,10 +25,15 @@ use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use ArrayIterator;
 
-class Reports
+class CustomReport
 {
-    use IntacctObjectTrait;
+    
+    use \Intacct\IaObjectTrait;
 
+    /**
+     *
+     * @var IntacctClient
+     */
     private $client;
 
     /**
@@ -78,7 +82,7 @@ class Reports
      * @throws ResultException
      * @todo this function is not finished yet to support report runtimes
      */
-    public function getAllReports(array $params, IntacctClient &$client)
+    public function run(array $params, IntacctClient &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
@@ -123,4 +127,5 @@ class Reports
 
         return $records;
     }
+    
 }

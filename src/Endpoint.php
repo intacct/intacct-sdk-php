@@ -114,6 +114,11 @@ class Endpoint
         $this->endpoint = $endpoint;
     }
     
+    /**
+     * 
+     * @param bool $verifySSL
+     * @throws InvalidArgumentException
+     */
     private function setVerifySSL($verifySSL)
     {
         if (!is_bool($verifySSL)) {
@@ -124,6 +129,10 @@ class Endpoint
         $this->verifySSL = $verifySSL;
     }
     
+    /**
+     * 
+     * @return bool
+     */
     public function getVerifySSL()
     {
         return $this->verifySSL;
