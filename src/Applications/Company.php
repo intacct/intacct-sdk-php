@@ -17,16 +17,16 @@
 
 namespace Intacct\Applications;
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
 use Intacct\Company\ClassObj;
 use Intacct\Company\User;
 
-class Company
+class Company implements CompanyInterface
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
     
@@ -44,22 +44,21 @@ class Company
     
     /**
      * 
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
-        
-        $this->classObj = new ClassObj($this->client);
-        $this->user = new User($this->client);
+
     }
     
     /**
      * 
      * @return ClassObj
      */
-    public function ClassObj()
+    public function getClassObj()
     {
+        $this->classObj = new ClassObj($this->client);
         return $this->classObj;
     }
     
@@ -67,8 +66,9 @@ class Company
      * 
      * @return User
      */
-    public function User()
+    public function getUser()
     {
+        $this->user = new User($this->client);
         return $this->user;
     }
     

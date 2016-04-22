@@ -17,15 +17,15 @@
 
 namespace Intacct\Applications;
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
 use Intacct\PlatformServices\Application;
 
-class PlatformServices
+class PlatformServices implements PlatformServicesInterface
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
     
@@ -37,9 +37,9 @@ class PlatformServices
 
     /**
      * 
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
         
@@ -50,7 +50,7 @@ class PlatformServices
      * 
      * @return Application
      */
-    public function Application()
+    public function getApplication()
     {
         return $this->application;
     }

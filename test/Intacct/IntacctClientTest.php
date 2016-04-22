@@ -25,7 +25,7 @@ class IntacctClientTest extends \PHPUnit_Framework_TestCase
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 

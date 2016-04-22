@@ -17,15 +17,15 @@
 
 namespace Intacct\Applications;
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
 use Intacct\GeneralLedger\Account;
 
-class GeneralLedger
+class GeneralLedger implements GeneralLedgerInterface
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
     
@@ -37,9 +37,9 @@ class GeneralLedger
 
     /**
      * GeneralLedger constructor.
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
         
@@ -50,7 +50,7 @@ class GeneralLedger
      * 
      * @return Account
      */
-    public function Account()
+    public function getAccount()
     {
         return $this->account;
     }
