@@ -19,6 +19,7 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Company\User;
 
 class UserTest extends  \PHPUnit_Framework_TestCase
 {
@@ -83,7 +84,7 @@ EOF;
             'user_password' => 'testpass',
             'mock_handler' => $mock,
         ]);
-        $this->user = $client->Company()->User();
+        $this->user = $client->getCompany()->getUser();
     }
 
     /**

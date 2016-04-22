@@ -51,7 +51,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
 
 try {
     $client = IntacctClient();

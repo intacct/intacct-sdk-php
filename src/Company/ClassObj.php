@@ -17,26 +17,27 @@
 
 namespace Intacct\Company;
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
+use Intacct\IaObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
 class ClassObj
 {
 
-    use \Intacct\IaObjectTrait;
+    use IaObjectTrait;
 
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 
     /**
      * 
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
     }

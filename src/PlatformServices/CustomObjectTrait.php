@@ -17,6 +17,7 @@
 
 namespace Intacct\PlatformServices;
 
+use Intacct\IntacctClientInterface;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Response\Operation\Result;
@@ -24,12 +25,13 @@ use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadView;
 use ArrayIterator;
+use Intacct\IaObjectTrait;
 
 
 trait CustomObjectTrait
 {
     
-    use \Intacct\IaObjectTrait;
+    use IaObjectTrait;
 
     /**
      * @var int
@@ -45,11 +47,11 @@ trait CustomObjectTrait
      * - view: (string, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readView(array $params, IntacctClient &$client)
+    protected function readView(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
@@ -74,11 +76,11 @@ trait CustomObjectTrait
     /**
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return ArrayIterator
      * @throws ResultException
      */
-    public function getViewRecords(array $params, IntacctClient &$client)
+    public function getViewRecords(array $params, IntacctClientInterface &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
@@ -133,11 +135,11 @@ trait CustomObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    public function readRelatedObjects(array $params, IntacctClient &$client)
+    public function readRelatedObjects(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
