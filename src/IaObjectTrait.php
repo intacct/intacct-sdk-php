@@ -18,7 +18,7 @@
 namespace Intacct;
 
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Update;
 use Intacct\Xml\Request\Operation\Content\Delete;
@@ -31,16 +31,24 @@ use Intacct\Xml\Request\Operation\Content\Read;
 use Intacct\Xml\Request\Operation\Content\ReadByName;
 use ArrayIterator;
 
-trait IntacctObjectTrait
+trait IaObjectTrait
 {
+    
     /**
      * @var int
      */
     private static $MAX_QUERY_TOTAL_COUNT = 100000;
 
+    /**
+     * 
+     * @param array $params
+     * @param IntacctClient $client
+     * @return type
+     */
     private function mergeParams(array $params, IntacctClient &$client)
     {
         $session = $client->getSessionConfig();
+        
         return array_merge($session, $params);
     }
 
@@ -55,17 +63,17 @@ trait IntacctObjectTrait
      * @return Result
      * @throws ResultException
      */
-    protected function createObject(array $params, IntacctClient &$client)
+    protected function createRecords(array $params, IntacctClient &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Create($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -88,11 +96,11 @@ trait IntacctObjectTrait
      * @return Result
      * @throws ResultException
      */
-    protected function updateObject(array $params, IntacctClient &$client)
+    protected function updateRecords(array $params, IntacctClient &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new Update($params),
         ]);
 
@@ -122,17 +130,17 @@ trait IntacctObjectTrait
      * @return Result
      * @throws ResultException
      */
-    protected function deleteObject(array $params, IntacctClient &$client)
+    protected function deleteRecords(array $params, IntacctClient &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Delete($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -160,13 +168,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Inspect([$params])
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -177,7 +185,6 @@ trait IntacctObjectTrait
 
         return $result;
     }
-
 
     /**
      * Accepts the following options:
@@ -199,7 +206,7 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new ReadByQuery($params),
         ]);
 
@@ -214,7 +221,6 @@ trait IntacctObjectTrait
 
         return $result;
     }
-
 
     /**
      * Accepts the following options:
@@ -292,13 +298,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadMore($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -325,17 +331,17 @@ trait IntacctObjectTrait
      * @return Result
      * @throws ResultException
      */
-    protected function readObjectById(array $params, IntacctClient &$client)
+    protected function readRecordById(array $params, IntacctClient &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Read($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -361,12 +367,45 @@ trait IntacctObjectTrait
      * @return Result
      * @throws ResultException
      */
-    protected function readObjectByName(array $params, IntacctClient &$client)
+    protected function readRecordByName(array $params, IntacctClient &$client)
+    {
+        $config = $this->mergeParams($params, $client);
+
+        $contentBlock = new ContentBlock([
+            new ReadByName($params),
+        ]);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $contentBlock);
+
+        $result = $operation->getResult();
+        if ($result->getStatus() !== 'success') {
+            throw new ResultException(
+                'An error occurred trying to read records by name', $result->getErrors()
+            );
+        }
+
+        return $result;
+    }
+    
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - xml_filename: (string)
+     *
+     * @param array $params
+     * @param IntacctClient $client
+     * @return Result
+     * @throws ResultException
+     */
+    protected function installApp(array $params, IntacctClient &$client)
     {
         $config = $this->mergeParams($params, $client);
 
         $content = new Content([
-            new ReadByName($params),
+            new InstallApp($params)
         ]);
 
         $requestHandler = new RequestHandler($params);
@@ -376,7 +415,7 @@ trait IntacctObjectTrait
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
-                'An error occurred trying to read records by name', $result->getErrors()
+            'An error occurred trying to install platform app', $result->getErrors()
             );
         }
 

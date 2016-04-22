@@ -15,11 +15,11 @@
  * permissions and limitations under the License.
  */
 
-class CustomObjectsTest extends \PHPUnit_Framework_TestCase
+class CustomObjectTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Custom\CustomObjects::create
+     * @covers Intacct\PlatformServices\CustomObject::create
      * @todo   Implement testCreate().
      */
     public function testCreate()
@@ -31,7 +31,7 @@ class CustomObjectsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Custom\CustomObjects::update
+     * @covers Intacct\PlatformServices\CustomObject::update
      * @todo   Implement testUpdate().
      */
     public function testUpdate()
@@ -43,7 +43,7 @@ class CustomObjectsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Custom\CustomObjects::delete
+     * @covers Intacct\PlatformServices\CustomObject::delete
      * @todo   Implement testDelete().
      */
     public function testDelete()
@@ -55,7 +55,7 @@ class CustomObjectsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Custom\CustomObjects::readAll
+     * @covers Intacct\PlatformServices\CustomObject::readAll
      * @todo   Implement testReadAll().
      */
     public function testReadAll()
@@ -67,7 +67,7 @@ class CustomObjectsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Custom\CustomObjects::readRelated
+     * @covers Intacct\PlatformServices\CustomObject::readRelated
      * @todo   Implement testReadRelated().
      */
     public function testReadRelated()

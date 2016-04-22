@@ -15,60 +15,61 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Reporting;
+namespace Intacct\PlatformServices;
 
-use Intacct\IntacctObjectTrait;
-use Intacct\IntacctClient;
-use Intacct\Xml\Request\Operation\Content;
-use Intacct\Xml\Request\Operation\Content\ReadReport;
 use Intacct\Xml\RequestHandler;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
+use Intacct\Xml\Request\Operation\Content\ReadRelated;
+use Intacct\Xml\Request\Operation\Content\ReadView;
 use ArrayIterator;
 
-class Reports
+
+trait CustomObjectTrait
 {
-    use IntacctObjectTrait;
-
-    private $client;
+    
+    use \Intacct\IaObjectTrait;
 
     /**
-     * Dimensions constructor.
-     * @param IntacctClient $client
+     * @var int
      */
-    public function __construct(IntacctClient &$client)
-    {
-        $this->client = $client;
-    }
+    private static $MAX_QUERY_TOTAL_COUNT = 100000;
 
     /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - page_size: (int, default=int(1000)
+     * - return_format: (string, default=string(3) "xml")
+     * - view: (string, required)
      *
      * @param array $params
      * @param IntacctClient $client
      * @return Result
      * @throws ResultException
-     * @todo Finish this function, it's missing stuff and messy
      */
-    private function readReport(array $params, IntacctClient &$client)
+    protected function readView(array $params, IntacctClient &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
-            new ReadReport($params),
+        $contentBlock = new ContentBlock([
+            new ReadView($params),
         ]);
 
         $requestHandler = new RequestHandler($config);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
-            throw new ResultException('An error occurred trying to read report records', $result->getErrors());
+            throw new ResultException('An error occurred trying to read view records', $result->getErrors());
         }
 
         return $result;
     }
+
 
     /**
      *
@@ -76,25 +77,23 @@ class Reports
      * @param IntacctClient $client
      * @return ArrayIterator
      * @throws ResultException
-     * @todo this function is not finished yet to support report runtimes
      */
-    public function getAllReports(array $params, IntacctClient &$client)
+    public function getViewRecords(array $params, IntacctClient &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
         ];
         $config = array_merge($defaults, $params);
 
-        $result = $this->readReport($config, $client);
+        $result = $this->readView($config, $client);
 
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
-                'An error occurred trying to get report records', $result->getErrors()
+                'An error occurred trying to get view records', $result->getErrors()
             );
         }
 
         $records = new ArrayIterator();
-        //TODO check if readReport nested or not
         foreach ($result->getDataArray(true) as $record) {
             $records->append($record);
         }
@@ -114,7 +113,6 @@ class Reports
                 $readMore = $this->readMore($config, $client);
 
                 //append the readMore records to the original array
-                //TODO check if readReport nested or not
                 foreach ($readMore->getDataArray(true) as $record) {
                     $records->append($record);
                 }
@@ -122,5 +120,43 @@ class Reports
         }
 
         return $records;
+    }
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - fields: (array)
+     * - keys: (array)
+     * - object: (string, required)
+     * - relation: (string, required)
+     * - return_format: (string, default=string(3) "xml")
+     *
+     * @param array $params
+     * @param IntacctClient $client
+     * @return Result
+     * @throws ResultException
+     */
+    public function readRelatedObjects(array $params, IntacctClient &$client)
+    {
+        $session = $client->getSessionConfig();
+        $config = array_merge($session, $params);
+
+        $contentBlock = new ContentBlock([
+            new ReadRelated($params),
+        ]);
+
+        $requestHandler = new RequestHandler($params);
+
+        $operation = $requestHandler->executeContent($config, $contentBlock);
+
+        $result = $operation->getResult();
+        if ($result->getStatus() !== 'success') {
+            throw new ResultException(
+                'An error occurred trying to read related records', $result->getErrors()
+            );
+        }
+
+        return $result;
     }
 }

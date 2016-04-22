@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml\Request;
 
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
 use XMLWriter;
 use InvalidArgumentException;
@@ -55,9 +55,9 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
             'session_id' => 'fakesession..',
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
+        $contentBlock->append($func);
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -79,7 +79,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $content);
+        $operation = new OperationBlock($config, $contentBlock);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -99,9 +99,9 @@ EOF;
             'user_password' => 'testpass',
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
+        $contentBlock->append($func);
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -127,7 +127,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $content);
+        $operation = new OperationBlock($config, $contentBlock);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -146,9 +146,9 @@ EOF;
             'transaction' => true,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
+        $contentBlock->append($func);
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -170,7 +170,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $content);
+        $operation = new OperationBlock($config, $contentBlock);
         $operation->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -189,10 +189,10 @@ EOF;
             'transaction' => 'true',
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
-        new OperationBlock($config, $content);
+        $contentBlock->append($func);
+        new OperationBlock($config, $contentBlock);
     }
     
     /**
@@ -209,10 +209,10 @@ EOF;
             'user_password' => null,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
-        new OperationBlock($config, $content);
+        $contentBlock->append($func);
+        new OperationBlock($config, $contentBlock);
     }
 
 }

@@ -15,20 +15,27 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Dimension;
+namespace Intacct\PlatformServices;
 
 use Intacct\IntacctClient;
-use Intacct\IntacctObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
-class IaClass
+class CustomObject
 {
+    
+    use CustomObjectTrait;
 
-    use IntacctObjectTrait;
-
+    /**
+     *
+     * @var IntacctClient
+     */
     private $client;
 
+    /**
+     * CustomObjects constructor.
+     * @param IntacctClient $client
+     */
     public function __construct(IntacctClient &$client)
     {
         $this->client = $client;
@@ -47,7 +54,7 @@ class IaClass
     public function create(array $params)
     {
         // Validation here...
-        return $this->createObject($params, $this->client);
+        return $this->createRecords($params, $this->client);
     }
 
     /**
@@ -62,7 +69,7 @@ class IaClass
      */
     public function update(array $params)
     {
-        return $this->updateObject($params, $this->client);
+        return $this->updateRecords($params, $this->client);
     }
 
     /**
@@ -78,7 +85,7 @@ class IaClass
      */
     public function delete(array $params)
     {
-        return $this->deleteObject($params, $this->client);
+        return $this->deleteRecords($params, $this->client);
     }
 
     /**
@@ -97,8 +104,19 @@ class IaClass
      * @return \ArrayIterator
      * @throws ResultException
      */
-    public function readAllByQuery(array $params)
+    public function readAll(array $params)
     {
-        return $this->readAllObjectsByQuery($params, $this->client);
+        //TODO: To be tested...
+        return $this->getViewRecords($params, $this->client);
     }
+
+    /**
+     * @param array $params
+     * @return Result
+     */
+    public function readRelated(array $params)
+    {
+        return $this->readRelatedObjects($params, $this->client);
+    }
+    
 }

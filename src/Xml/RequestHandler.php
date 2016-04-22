@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Response\Operation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -28,6 +28,7 @@ use InvalidArgumentException;
 
 class RequestHandler
 {
+    
     /**
      * @var string
      */
@@ -136,6 +137,11 @@ class RequestHandler
         return $this->history;
     }
     
+    /**
+     * 
+     * @param int $maxRetries
+     * @throws InvalidArgumentException
+     */
     private function setMaxRetries($maxRetries)
     {
         if (!is_int($maxRetries)) {
@@ -151,11 +157,20 @@ class RequestHandler
         $this->maxRetries = $maxRetries;
     }
     
+    /**
+     * 
+     * @return int
+     */
     public function getMaxRetries()
     {
         return $this->maxRetries;
     }
     
+    /**
+     * 
+     * @param array $errorCodes
+     * @throws InvalidArgumentException
+     */
     private function setNoRetryServerErrorCodes(array $errorCodes)
     {
         foreach($errorCodes as $errorCode) {
@@ -173,6 +188,10 @@ class RequestHandler
         $this->noRetryServerErrorCodes = $errorCodes;
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getNoRetryServerErrorCodes()
     {
         return $this->noRetryServerErrorCodes;
@@ -200,14 +219,14 @@ class RequestHandler
      * - verify_ssl: (bool, default=bool(true))
      *
      * @param array $params
-     * @param Content $content
+     * @param ContentBlock $contentBlock
      * @return Operation
      */
-    public function executeContent(array $params, Content $content)
+    public function executeContent(array $params, ContentBlock $contentBlock)
     {
         unset($params['policy_id']);
 
-        $requestBlock = new RequestBlock($params, $content);
+        $requestBlock = new RequestBlock($params, $contentBlock);
 
         try {
             $client = $this->execute($requestBlock->getXml());
@@ -243,11 +262,11 @@ class RequestHandler
      * - verify_ssl: (bool, default=bool(true))
      *
      * @param array $params
-     * @param Content $content
+     * @param ContentBlock $contentBlock
      * @return AsynchronousResponse
      * @throws InvalidArgumentException
      */
-    public function executeContentAsync(array $params, Content $content)
+    public function executeContentAsync(array $params, ContentBlock $contentBlock)
     {
         $defaults = [
             'policy_id' => null,
@@ -260,7 +279,7 @@ class RequestHandler
             );
         }
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
        // $requestHandler = new RequestHandler($config);
         $client = $this->execute($requestBlock->getXml());
         $response = new AsynchronousResponse($client->getBody()->getContents());
@@ -328,4 +347,5 @@ class RequestHandler
 
         return $response;
     }
+    
 }

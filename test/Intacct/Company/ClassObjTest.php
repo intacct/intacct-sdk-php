@@ -15,14 +15,14 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Dimension;
+namespace Intacct\Company;
 
-use Intacct\IntacctClient;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\IntacctClient;
 use Intacct\Xml\Request\Operation\Content\Record;
 
-class IaClassTest extends \PHPUnit_Framework_TestCase
+class ClassObjTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -165,7 +165,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->dimensions->iaClass->create($create);
+        $data = $this->client->Company()->ClassObj()->create($create);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'create');
         $this->assertEquals($data->getControlId(), 'create');
@@ -253,7 +253,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $this->client->dimensions->iaClass->create($create);
+        $this->client->Company()->ClassObj()->create($create);
     }
 
     /**
@@ -325,7 +325,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->dimensions->iaClass->update($update);
+        $data = $this->client->Company()->ClassObj()->update($update);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'update');
         $this->assertEquals($data->getControlId(), 'update');
@@ -406,9 +406,8 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $this->client->dimensions->iaClass->update($update);
+        $this->client->Company()->ClassObj()->update($update);
     }
-
 
     /**
      * @covers Intacct\Dimension\IaClass::delete
@@ -458,7 +457,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->dimensions->iaClass->delete($delete);
+        $data = $this->client->Company()->ClassObj()->delete($delete);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'delete');
         $this->assertEquals($data->getControlId(), 'delete');
@@ -522,7 +521,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $this->client->dimensions->iaClass->delete($delete);
+        $this->client->Company()->ClassObj()->delete($delete);
     }
 
     /**

@@ -20,7 +20,7 @@ namespace Intacct\Xml\Request;
 use Intacct\Xml\Request\Operation\AbstractAuthentication;
 use Intacct\Xml\Request\Operation\SessionAuthentication;
 use Intacct\Xml\Request\Operation\LoginAuthentication;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use XMLWriter;
 use InvalidArgumentException;
 
@@ -41,16 +41,16 @@ class OperationBlock
 
     /**
      *
-     * @var Content
+     * @var ContentBlock
      */
-    private $content;
+    private $contentBlock;
 
     /**
      * 
      * @param array $params
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params, Content $content)
+    public function __construct(array $params, ContentBlock $contentBlock)
     {
         $defaults = [
             'transaction' => false,
@@ -75,7 +75,7 @@ class OperationBlock
             );
         }
         
-        $this->setContent($content);
+        $this->setContent($contentBlock);
     }
 
     /**
@@ -105,11 +105,11 @@ class OperationBlock
     
     /**
      * 
-     * @param Content $content
+     * @param ContentBlock $contentBlock
      */
-    private function setContent(Content $content)
+    private function setContent(ContentBlock $contentBlock)
     {
-        $this->content = $content;
+        $this->contentBlock = $contentBlock;
     }
 
     /**
@@ -124,7 +124,7 @@ class OperationBlock
         $this->authentication->getXml($xml);
 
         $xml->startElement('content');
-        foreach ($this->content as $func) {
+        foreach ($this->contentBlock as $func) {
             $func->getXml($xml);
         }
         $xml->endElement(); //content

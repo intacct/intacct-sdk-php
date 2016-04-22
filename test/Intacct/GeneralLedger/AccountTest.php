@@ -24,6 +24,7 @@ use GuzzleHttp\Handler\MockHandler;
 
 class AccountTest extends \PHPUnit_Framework_TestCase
 {
+    
     /**
      *
      * @var IntacctClient
@@ -187,7 +188,7 @@ EOF;
             'page_size' => 1,
             'mock_handler' => $mock,
         ];
-        $data = $this->client->generalLedger->account->readAllByQuery($readByQuery);
+        $data = $this->client->GeneralLedger()->Account()->readAllByQuery($readByQuery);
         $this->assertCount(2, $data);
     }
 
@@ -256,7 +257,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->generalLedger->account->readById($read);
+        $data = $this->client->GeneralLedger()->Account()->readById($read);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'read');
         $this->assertEquals($data->getControlId(), 'read');
@@ -315,7 +316,7 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $this->client->generalLedger->account->readById($read);
+        $data = $this->client->GeneralLedger()->Account()->readById($read);
     }
 
     /**
@@ -382,7 +383,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->generalLedger->account->readByName($readByName);
+        $data = $this->client->GeneralLedger()->Account()->readByName($readByName);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'readByName');
         $this->assertEquals($data->getControlId(), 'readByName');
@@ -441,6 +442,6 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $this->client->generalLedger->account->readByName($readByName);
+        $data = $this->client->GeneralLedger()->Account()->readByName($readByName);
     }
 }
