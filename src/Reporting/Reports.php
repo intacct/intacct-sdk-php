@@ -19,7 +19,7 @@ namespace Intacct\Reporting;
 
 use Intacct\IntacctObjectTrait;
 use Intacct\IntacctClient;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Response\Operation\Result;
@@ -54,13 +54,13 @@ class Reports
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadReport($params),
         ]);
 
         $requestHandler = new RequestHandler($config);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

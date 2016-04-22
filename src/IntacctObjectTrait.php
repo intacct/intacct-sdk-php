@@ -18,7 +18,7 @@
 namespace Intacct;
 
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Update;
 use Intacct\Xml\Request\Operation\Content\Delete;
@@ -59,13 +59,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Create($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -92,7 +92,7 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new Update($params),
         ]);
 
@@ -126,13 +126,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Delete($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -160,13 +160,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Inspect([$params])
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -199,7 +199,7 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new ReadByQuery($params),
         ]);
 
@@ -292,13 +292,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadMore($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -329,13 +329,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Read($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -365,13 +365,13 @@ trait IntacctObjectTrait
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadByName($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
