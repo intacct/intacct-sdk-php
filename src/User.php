@@ -19,7 +19,7 @@ namespace Intacct;
 
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
 use Intacct\Xml\RequestHandler;
 
@@ -51,13 +51,13 @@ class User
         $session = $this->client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new GetUserPermissions($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

@@ -30,9 +30,9 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     public function testContent()
     {
-        $content = new Content();
+        $contentBlock = new ContentBlock();
         $func = new GetAPISession();
-        $content->append($func);
+        $contentBlock->append($func);
     }
 
 }

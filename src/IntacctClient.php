@@ -24,7 +24,7 @@ use Intacct\Credentials\SessionProvider;
 use Intacct\GeneralLedger\GeneralLedger;
 use Intacct\Reporting\Reports;
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
 use Intacct\Xml\Response\Operation;
 use Intacct\Xml\Response\Operation\Result;
@@ -162,13 +162,13 @@ class IntacctClient
         $session = $this->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new InstallApp($params)
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

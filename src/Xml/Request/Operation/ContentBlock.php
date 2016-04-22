@@ -19,7 +19,7 @@ namespace Intacct\Xml\Request\Operation;
 
 use ArrayIterator;
 
-class Content extends ArrayIterator
+class ContentBlock extends ArrayIterator
 {
     
     /**

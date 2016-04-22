@@ -18,7 +18,7 @@
 namespace Intacct;
 
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
@@ -53,13 +53,13 @@ trait CustomObjectTrait
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadView($params),
         ]);
 
         $requestHandler = new RequestHandler($config);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -141,13 +141,13 @@ trait CustomObjectTrait
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadRelated($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
