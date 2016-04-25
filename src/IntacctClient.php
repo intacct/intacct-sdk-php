@@ -59,19 +59,19 @@ class IntacctClient implements IntacctClientInterface
     
     /**
      *
-     * @var GeneralLedger
+     * @var GeneralLedgerInterface
      */
     private $generalLedger;
     
     /**
      *
-     * @var PlatformServices
+     * @var PlatformServicesInterface
      */
     private $platformServices;
 
     /**
      *
-     * @var Reporting
+     * @var ReportingInterface
      */
     private $reporting;
 

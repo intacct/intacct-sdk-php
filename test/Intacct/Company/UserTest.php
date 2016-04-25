@@ -19,14 +19,14 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Company\User;
+use Intacct\Company\UserInterface;
 
 class UserTest extends  \PHPUnit_Framework_TestCase
 {
     
     /**
      *
-     * @var User
+     * @var UserInterface
      */
     private $user;
 

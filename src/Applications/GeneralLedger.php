@@ -19,6 +19,7 @@ namespace Intacct\Applications;
 
 use Intacct\IntacctClientInterface;
 use Intacct\GeneralLedger\Account;
+use Intacct\IaObjectTraitInterface;
 
 class GeneralLedger implements GeneralLedgerInterface
 {
@@ -31,7 +32,7 @@ class GeneralLedger implements GeneralLedgerInterface
     
     /**
      *
-     * @var Account
+     * @var IaObjectTraitInterface
      */
     private $account;
 
@@ -48,7 +49,7 @@ class GeneralLedger implements GeneralLedgerInterface
     
     /**
      * 
-     * @return Account
+     * @return IaObjectTraitInterface
      */
     public function getAccount()
     {

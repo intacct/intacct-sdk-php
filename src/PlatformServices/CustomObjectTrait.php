@@ -72,7 +72,6 @@ trait CustomObjectTrait
         return $result;
     }
 
-
     /**
      *
      * @param array $params

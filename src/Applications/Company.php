@@ -17,9 +17,11 @@
 
 namespace Intacct\Applications;
 
+use Intacct\Company\User;
+use Intacct\Company\UserInterface;
 use Intacct\IntacctClientInterface;
 use Intacct\Company\ClassObj;
-use Intacct\Company\User;
+use Intacct\IaObjectTraitInterface;
 
 class Company implements CompanyInterface
 {
@@ -32,13 +34,13 @@ class Company implements CompanyInterface
     
     /**
      *
-     * @var ClassObj
+     * @var IaObjectTraitInterface
      */
     private $classObj;
     
     /**
      *
-     * @var User
+     * @var UserInterface
      */
     private $user;
     
@@ -54,7 +56,7 @@ class Company implements CompanyInterface
     
     /**
      * 
-     * @return ClassObj
+     * @return IaObjectTraitInterface;
      */
     public function getClassObj()
     {
@@ -64,7 +66,7 @@ class Company implements CompanyInterface
     
     /**
      * 
-     * @return User
+     * @return UserInterface
      */
     public function getUser()
     {
