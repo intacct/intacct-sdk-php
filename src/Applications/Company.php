@@ -21,7 +21,7 @@ use Intacct\Company\User;
 use Intacct\Company\UserInterface;
 use Intacct\IntacctClientInterface;
 use Intacct\Company\ClassObj;
-use Intacct\IaObjectTraitInterface;
+use Intacct\StandardObjectInterface;
 
 class Company implements CompanyInterface
 {
@@ -34,7 +34,7 @@ class Company implements CompanyInterface
     
     /**
      *
-     * @var IaObjectTraitInterface
+     * @var StandardObjectInterface
      */
     private $classObj;
     
@@ -56,7 +56,7 @@ class Company implements CompanyInterface
     
     /**
      * 
-     * @return IaObjectTraitInterface;
+     * @return StandardObjectInterface;
      */
     public function getClassObj()
     {

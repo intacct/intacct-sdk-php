@@ -20,7 +20,7 @@ namespace Intacct;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
-interface IaObjectTraitInterface
+interface StandardObjectInterface
 {
 
     /**

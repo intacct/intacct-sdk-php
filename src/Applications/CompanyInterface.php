@@ -18,13 +18,13 @@
 namespace Intacct\Applications;
 
 use Intacct\Company\UserInterface;
-use Intacct\IaObjectTraitInterface;
+use Intacct\StandardObjectInterface;
 
 interface CompanyInterface
 {
 
     /**
-     * @return IaObjectTraitInterface
+     * @return StandardObjectInterface
      */
     public function getClassObj();
 

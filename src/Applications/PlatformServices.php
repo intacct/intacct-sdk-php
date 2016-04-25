@@ -19,6 +19,7 @@ namespace Intacct\Applications;
 
 use Intacct\IntacctClientInterface;
 use Intacct\PlatformServices\Application;
+use Intacct\PlatformServices\ApplicationInterface;
 
 class PlatformServices implements PlatformServicesInterface
 {
@@ -31,7 +32,7 @@ class PlatformServices implements PlatformServicesInterface
     
     /**
      *
-     * @var Application
+     * @var ApplicationInterface
      */
     private $application;
 
@@ -48,7 +49,7 @@ class PlatformServices implements PlatformServicesInterface
     
     /**
      * 
-     * @return Application
+     * @return ApplicationInterface
      */
     public function getApplication()
     {

@@ -21,9 +21,9 @@ use Intacct\IntacctClientInterface;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\IaObjectTrait;
-use Intacct\IaObjectTraitInterface;
+use Intacct\StandardObjectInterface;
 
-class Account implements IaObjectTraitInterface
+class Account implements StandardObjectInterface
 {
 
     use IaObjectTrait;
