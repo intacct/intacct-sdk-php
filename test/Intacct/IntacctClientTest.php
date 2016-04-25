@@ -19,14 +19,13 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Xml\Request\Operation\Content;
 
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 

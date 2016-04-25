@@ -18,7 +18,7 @@
 namespace Intacct;
 
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\Create;
 use Intacct\Xml\Request\Operation\Content\Update;
 use Intacct\Xml\Request\Operation\Content\Delete;
@@ -29,6 +29,7 @@ use Intacct\Xml\Request\Operation\Content\ReadByQuery;
 use Intacct\Xml\Request\Operation\Content\ReadMore;
 use Intacct\Xml\Request\Operation\Content\Read;
 use Intacct\Xml\Request\Operation\Content\ReadByName;
+use Intacct\Xml\Request\Operation\Content\InstallApp;
 use ArrayIterator;
 
 trait IaObjectTrait
@@ -42,10 +43,10 @@ trait IaObjectTrait
     /**
      * 
      * @param array $params
-     * @param IntacctClient $client
-     * @return type
+     * @param IntacctClientInterface $client
+     * @return array
      */
-    private function mergeParams(array $params, IntacctClient &$client)
+    private function mergeParams(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         
@@ -59,21 +60,21 @@ trait IaObjectTrait
      * - records: (array, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function createRecords(array $params, IntacctClient &$client)
+    protected function createRecords(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Create($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -92,15 +93,15 @@ trait IaObjectTrait
      * - records: (array, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function updateRecords(array $params, IntacctClient &$client)
+    protected function updateRecords(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new Update($params),
         ]);
 
@@ -126,21 +127,21 @@ trait IaObjectTrait
      * - object: (string, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function deleteRecords(array $params, IntacctClient &$client)
+    protected function deleteRecords(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Delete($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -160,21 +161,21 @@ trait IaObjectTrait
      * - show_detail: (bool, default=bool(false))
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function inspectObject(array $params, IntacctClient &$client)
+    protected function inspectObject(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Inspect([$params])
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -198,15 +199,15 @@ trait IaObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readFirstPageByQuery(array $params, IntacctClient &$client)
+    protected function readFirstPageByQuery(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $content = new ContentBlock([
             new ReadByQuery($params),
         ]);
 
@@ -235,11 +236,11 @@ trait IaObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return ArrayIterator
      * @throws ResultException
      */
-    protected function readAllObjectsByQuery(array $params, IntacctClient &$client)
+    protected function readAllObjectsByQuery(array $params, IntacctClientInterface &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
@@ -290,21 +291,21 @@ trait IaObjectTrait
      * - result_id: (string, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readMore(array $params, IntacctClient &$client)
+    protected function readMore(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadMore($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -327,21 +328,21 @@ trait IaObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readRecordById(array $params, IntacctClient &$client)
+    protected function readRecordById(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new Read($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -363,21 +364,21 @@ trait IaObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readRecordByName(array $params, IntacctClient &$client)
+    protected function readRecordByName(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadByName($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -396,21 +397,21 @@ trait IaObjectTrait
      * - xml_filename: (string)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function installApp(array $params, IntacctClient &$client)
+    protected function installApp(array $params, IntacctClientInterface &$client)
     {
         $config = $this->mergeParams($params, $client);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new InstallApp($params)
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

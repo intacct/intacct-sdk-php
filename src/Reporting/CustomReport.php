@@ -16,31 +16,31 @@
  */
 
 namespace Intacct\Reporting;
-
-use Intacct\IntacctClient;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\IntacctClientInterface;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\ReadReport;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use ArrayIterator;
+use Intacct\IaObjectTrait;
 
 class CustomReport
 {
     
-    use \Intacct\IaObjectTrait;
+    use IaObjectTrait;
 
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 
     /**
      * Dimensions constructor.
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
     }
@@ -48,23 +48,23 @@ class CustomReport
     /**
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      * @todo Finish this function, it's missing stuff and messy
      */
-    private function readReport(array $params, IntacctClient &$client)
+    private function readReport(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadReport($params),
         ]);
 
         $requestHandler = new RequestHandler($config);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -77,12 +77,12 @@ class CustomReport
     /**
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return ArrayIterator
      * @throws ResultException
      * @todo this function is not finished yet to support report runtimes
      */
-    public function run(array $params, IntacctClient &$client)
+    public function run(array $params, IntacctClientInterface &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,

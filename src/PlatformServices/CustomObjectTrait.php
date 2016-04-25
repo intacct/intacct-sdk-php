@@ -17,19 +17,21 @@
 
 namespace Intacct\PlatformServices;
 
+use Intacct\IntacctClientInterface;
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadView;
 use ArrayIterator;
+use Intacct\IaObjectTrait;
 
 
 trait CustomObjectTrait
 {
     
-    use \Intacct\IaObjectTrait;
+    use IaObjectTrait;
 
     /**
      * @var int
@@ -45,22 +47,22 @@ trait CustomObjectTrait
      * - view: (string, required)
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    protected function readView(array $params, IntacctClient &$client)
+    protected function readView(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadView($params),
         ]);
 
         $requestHandler = new RequestHandler($config);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {
@@ -70,15 +72,14 @@ trait CustomObjectTrait
         return $result;
     }
 
-
     /**
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return ArrayIterator
      * @throws ResultException
      */
-    public function getViewRecords(array $params, IntacctClient &$client)
+    public function getViewRecords(array $params, IntacctClientInterface &$client)
     {
         $defaults = [
             'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
@@ -133,22 +134,22 @@ trait CustomObjectTrait
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      * @return Result
      * @throws ResultException
      */
-    public function readRelatedObjects(array $params, IntacctClient &$client)
+    public function readRelatedObjects(array $params, IntacctClientInterface &$client)
     {
         $session = $client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new ReadRelated($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

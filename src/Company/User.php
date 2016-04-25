@@ -17,27 +17,27 @@
 
 namespace Intacct\Company;
 
+use Intacct\IntacctClientInterface;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
 use Intacct\Xml\RequestHandler;
-use Intacct\IntacctClient;
 
-class User
+class User implements UserInterface
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 
     /**
      * User constructor.
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
     }
@@ -57,13 +57,13 @@ class User
         $session = $this->client->getSessionConfig();
         $config = array_merge($session, $params);
 
-        $content = new Content([
+        $contentBlock = new ContentBlock([
             new GetUserPermissions($params),
         ]);
 
         $requestHandler = new RequestHandler($params);
 
-        $operation = $requestHandler->executeContent($config, $content);
+        $operation = $requestHandler->executeContent($config, $contentBlock);
 
         $result = $operation->getResult();
         if ($result->getStatus() !== 'success') {

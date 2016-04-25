@@ -17,23 +17,23 @@
 
 namespace Intacct\Applications;
 
-use Intacct\IntacctClient;
+use Intacct\IntacctClientInterface;
 use Intacct\Reporting\CustomReport;
 
-class Reporting
+class Reporting implements ReportingInterface
 {
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 
     /**
      * 
-     * @param IntacctClient $client
+     * @param IntacctClientInterface $client
      */
-    public function __construct(IntacctClient &$client)
+    public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
         $this->customReport = new CustomReport($this->client);

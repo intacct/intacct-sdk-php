@@ -17,43 +17,20 @@
 
 namespace Intacct\Applications;
 
-use Intacct\IntacctClientInterface;
-use Intacct\GeneralLedger\Account;
+use Intacct\Company\UserInterface;
 use Intacct\IaObjectTraitInterface;
 
-class GeneralLedger implements GeneralLedgerInterface
+interface CompanyInterface
 {
-    
-    /**
-     *
-     * @var IntacctClientInterface
-     */
-    private $client;
-    
-    /**
-     *
-     * @var IaObjectTraitInterface
-     */
-    private $account;
 
     /**
-     * GeneralLedger constructor.
-     * @param IntacctClientInterface $client
-     */
-    public function __construct(IntacctClientInterface &$client)
-    {
-        $this->client = $client;
-        
-        $this->account = new Account($this->client);
-    }
-    
-    /**
-     * 
      * @return IaObjectTraitInterface
      */
-    public function getAccount()
-    {
-        return $this->account;
-    }
+    public function getClassObj();
+
+    /**
+     * @return UserInterface
+     */
+    public function getUser();
     
 }
