@@ -17,9 +17,9 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Credentials\SenderCredentials;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
+use Intacct\Endpoint;
 
 class LoginCredentials
 {

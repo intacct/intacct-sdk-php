@@ -15,16 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Applications;
+namespace Intacct\Company;
 
-use Intacct\PlatformServices\ApplicationInterface;
+use Intacct\Xml\Response\Operation\Result;
+use Intacct\Xml\Response\Operation\ResultException;
 
-interface PlatformServicesInterface
+interface UserInterface
 {
-
     /**
+     * Accepts the following options:
      *
-     * @return ApplicationInterface
+     * - control_id: (string)
+     * - user_id: (string, required)
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
      */
-    public function getApplication();
+    public function getUserPermissions(array $params);
 }

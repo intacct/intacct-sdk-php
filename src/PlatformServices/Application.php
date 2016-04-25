@@ -21,7 +21,7 @@ use Intacct\IntacctClientInterface;
 use Intacct\IaObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 
-class Application
+class Application implements ApplicationInterface
 {
 
     use IaObjectTrait;

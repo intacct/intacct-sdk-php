@@ -15,33 +15,25 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Company;
+namespace Intacct;
 
-use Intacct\IntacctClientInterface;
-use Intacct\IaObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\StandardObjectInterface;
 
-class ClassObj implements StandardObjectInterface
+interface StandardObjectInterface
 {
 
-    use IaObjectTrait;
-
     /**
+     * Accepts the following options:
      *
-     * @var IntacctClientInterface
+     * - control_id: (string)
+     * - records: (array, required)
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
      */
-    private $client;
-
-    /**
-     * 
-     * @param IntacctClientInterface $client
-     */
-    public function __construct(IntacctClientInterface &$client)
-    {
-        $this->client = $client;
-    }
+    public function create(array $params);
 
     /**
      * Accepts the following options:
@@ -53,26 +45,7 @@ class ClassObj implements StandardObjectInterface
      * @return Result
      * @throws ResultException
      */
-    public function create(array $params)
-    {
-        // Validation here...
-        return $this->createRecords($params, $this->client);
-    }
-
-    /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - records: (array, required)
-     *
-     * @param array $params
-     * @return Result
-     * @throws ResultException
-     */
-    public function update(array $params)
-    {
-        return $this->updateRecords($params, $this->client);
-    }
+    public function update(array $params);
 
     /**
      * Accepts the following options:
@@ -85,10 +58,7 @@ class ClassObj implements StandardObjectInterface
      * @return Result
      * @throws ResultException
      */
-    public function delete(array $params)
-    {
-        return $this->deleteRecords($params, $this->client);
-    }
+    public function delete(array $params);
 
     /**
      * Accepts the following options:
@@ -106,9 +76,6 @@ class ClassObj implements StandardObjectInterface
      * @return \ArrayIterator
      * @throws ResultException
      */
-    public function readAllByQuery(array $params)
-    {
-        return $this->readAllObjectsByQuery($params, $this->client);
-    }
-    
+    public function readAllByQuery(array $params);
+
 }

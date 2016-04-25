@@ -19,6 +19,7 @@ namespace Intacct\Applications;
 
 use Intacct\IntacctClientInterface;
 use Intacct\GeneralLedger\Account;
+use Intacct\StandardObjectInterface;
 
 class GeneralLedger implements GeneralLedgerInterface
 {
@@ -31,7 +32,7 @@ class GeneralLedger implements GeneralLedgerInterface
     
     /**
      *
-     * @var Account
+     * @var StandardObjectInterface
      */
     private $account;
 
@@ -48,7 +49,7 @@ class GeneralLedger implements GeneralLedgerInterface
     
     /**
      * 
-     * @return Account
+     * @return StandardObjectInterface
      */
     public function getAccount()
     {

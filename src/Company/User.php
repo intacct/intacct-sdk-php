@@ -24,7 +24,7 @@ use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetUserPermissions;
 use Intacct\Xml\RequestHandler;
 
-class User
+class User implements UserInterface
 {
     
     /**

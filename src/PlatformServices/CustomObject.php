@@ -21,7 +21,7 @@ use Intacct\IntacctClientInterface;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 
-class CustomObject
+class CustomObject implements CustomObjectTraitInterface
 {
     
     use CustomObjectTrait;
