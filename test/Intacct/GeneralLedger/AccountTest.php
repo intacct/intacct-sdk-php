@@ -18,6 +18,7 @@
 
 namespace Intacct\GeneralLedger;
 
+use Intacct\IntacctClientInterface;
 use Intacct\IntacctClient;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
@@ -27,7 +28,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase
     
     /**
      *
-     * @var IntacctClient
+     * @var IntacctClientInterface
      */
     private $client;
 
@@ -188,7 +189,7 @@ EOF;
             'page_size' => 1,
             'mock_handler' => $mock,
         ];
-        $data = $this->client->GeneralLedger()->Account()->readAllByQuery($readByQuery);
+        $data = $this->client->getGeneralLedger()->getAccount()->readAllByQuery($readByQuery);
         $this->assertCount(2, $data);
     }
 
@@ -257,7 +258,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->GeneralLedger()->Account()->readById($read);
+        $data = $this->client->getGeneralLedger()->getAccount()->readById($read);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'read');
         $this->assertEquals($data->getControlId(), 'read');
@@ -316,7 +317,7 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->client->GeneralLedger()->Account()->readById($read);
+        $this->client->getGeneralLedger()->getAccount()->readById($read);
     }
 
     /**
@@ -383,7 +384,7 @@ EOF;
             ],
             'mock_handler' => $mock,
         ];
-        $data = $this->client->GeneralLedger()->Account()->readByName($readByName);
+        $data = $this->client->getGeneralLedger()->getAccount()->readByName($readByName);
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'readByName');
         $this->assertEquals($data->getControlId(), 'readByName');
@@ -442,6 +443,6 @@ EOF;
             'object' => 'GLACCOUNT2',
             'mock_handler' => $mock,
         ];
-        $data = $this->client->GeneralLedger()->Account()->readByName($readByName);
+        $this->client->getGeneralLedger()->getAccount()->readByName($readByName);
     }
 }

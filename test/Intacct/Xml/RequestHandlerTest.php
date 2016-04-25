@@ -2,7 +2,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
@@ -40,9 +40,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'verify_ssl' => false,
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
         
         $this->assertEquals($requestHandler->getVerifySSL(), false);
@@ -61,9 +61,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => 10,
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
         
         $this->assertEquals($requestHandler->getMaxRetries(), 10);
@@ -80,9 +80,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'encoding' => 'invalid',
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
 
     }
@@ -101,9 +101,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => '10',
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
     
@@ -121,9 +121,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => -1,
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
     
@@ -143,9 +143,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
         $expected = [
             502,
@@ -171,9 +171,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
     
@@ -193,9 +193,9 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
     
@@ -242,9 +242,9 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->execute($requestBlock->getXml());
         
@@ -295,9 +295,9 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->execute($requestBlock->getXml());
         
@@ -327,9 +327,9 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $requestHandler->execute($requestBlock->getXml());
     }
@@ -352,9 +352,9 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestBlock = new RequestBlock($config, $content);
+        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $requestHandler->execute($requestBlock->getXml());
     }

@@ -15,43 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\PlatformServices;
+namespace Intacct\Company;
 
-use Intacct\IntacctClientInterface;
-use Intacct\IaObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
+use Intacct\Xml\Response\Operation\ResultException;
 
-class Application implements ApplicationInterface
+interface UserInterface
 {
-
-    use IaObjectTrait;
-
     /**
+     * Accepts the following options:
      *
-     * @var IntacctClientInterface
-     */
-    private $client;
-
-    /**
-     * Account constructor
-     * 
-     * @param IntacctClientInterface $client
-     */
-    public function __construct(IntacctClientInterface &$client)
-    {
-        $this->client = $client;
-    }
-
-    /**
-     * Install a platform application
-     * 
+     * - control_id: (string)
+     * - user_id: (string, required)
+     *
      * @param array $params
      * @return Result
-     * @todo finish doc tips
+     * @throws ResultException
      */
-    public function install(array $params)
-    {
-        return $this->installApp($params, $this->client);
-    }
-    
+    public function getUserPermissions(array $params);
 }

@@ -2,7 +2,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\Request\Operation\Content;
+use Intacct\Xml\Request\Operation\ContentBlock;
 
 class RequestBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,9 +24,9 @@ EOF;
             'session_id' => 'testsession..',
         ];
 
-        $content = new Content();
+        $contentBlock = new ContentBlock();
 
-        $requestHandler = new RequestBlock($config, $content);
+        $requestHandler = new RequestBlock($config, $contentBlock);
 
         $xml = $requestHandler->getXml();
 

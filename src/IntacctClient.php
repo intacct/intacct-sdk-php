@@ -18,20 +18,20 @@
 namespace Intacct;
 
 use Intacct\Applications\Company;
+use Intacct\Applications\CompanyInterface;
 use Intacct\Applications\GeneralLedger;
+use Intacct\Applications\GeneralLedgerInterface;
 use Intacct\Applications\PlatformServices;
+use Intacct\Applications\PlatformServicesInterface;
 use Intacct\Applications\Reporting;
+use Intacct\Applications\ReportingInterface;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
-use Intacct\Xml\RequestHandler;
-use Intacct\Xml\Request\Operation\Content;
-use Intacct\Xml\Request\Operation\Content\InstallApp;
 use Intacct\Xml\Response\Operation\Result;
-use Intacct\Xml\Response\Operation\ResultException;
 
-class IntacctClient
+class IntacctClient implements IntacctClientInterface
 {
 
     /**
@@ -53,25 +53,25 @@ class IntacctClient
     
     /**
      *
-     * @var Company
+     * @var CompanyInterface
      */
     private $company;
     
     /**
      *
-     * @var GeneralLedger
+     * @var GeneralLedgerInterface
      */
     private $generalLedger;
     
     /**
      *
-     * @var PlatformServices
+     * @var PlatformServicesInterface
      */
     private $platformServices;
 
     /**
      *
-     * @var Reporting
+     * @var ReportingInterface
      */
     private $reporting;
 
@@ -122,45 +122,45 @@ class IntacctClient
             $this->lastExecution = $provider->getLastExecution();
         }
 
-        $this->company = new Company($this);
-        $this->generalLedger = new GeneralLedger($this);
-        $this->platformServices = new PlatformServices($this);
-        $this->reporting = new Reporting($this);
     }
     
     /**
      * 
-     * @return Company
+     * @return CompanyInterface
      */
-    public function Company()
+    public function getCompany()
     {
+        $this->company = new Company($this);
         return $this->company;
     }
     
     /**
      * 
-     * @return GeneralLedger
+     * @return GeneralLedgerInterface
      */
-    public function GeneralLedger()
+    public function getGeneralLedger()
     {
+        $this->generalLedger = new GeneralLedger($this);
         return $this->generalLedger;
     }
     
     /**
      * 
-     * @return PlatformServices
+     * @return PlatformServicesInterface
      */
-    public function PlatformServices()
+    public function getPlatformServices()
     {
+        $this->platformServices = new PlatformServices($this);
         return $this->platformServices;
     }
 
     /**
      * 
-     * @return Reporting
+     * @return ReportingInterface
      */
-    public function Reporting()
+    public function getReporting()
     {
+        $this->reporting = new Reporting($this);
         return $this->reporting;
     }
 
@@ -207,5 +207,4 @@ class IntacctClient
     {
         return $this->lastExecution;
     }
-
 }
