@@ -16,7 +16,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\GeneralLedger;
+namespace Intacct\Tests\GeneralLedger;
 
 use Intacct\IntacctClientInterface;
 use Intacct\IntacctClient;

@@ -15,10 +15,12 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation\Content;
+namespace Intacct\Tests\Xml\Request\Operation\Content;
 
 use XMLWriter;
 use InvalidArgumentException;
+use Intacct\Xml\Request\Operation\Content\Record;
+use Intacct\Xml\Request\Operation\Content\Update;
 
 class UpdateTest extends \PHPUnit_Framework_TestCase
 {
