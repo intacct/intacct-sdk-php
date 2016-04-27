@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Response;
 
 use Intacct\Xml\ResponseException;
+use Exception;
 
 class OperationException extends ResponseException
 {

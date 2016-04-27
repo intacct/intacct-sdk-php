@@ -15,11 +15,12 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct;
+namespace Intacct\Tests;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Company\UserInterface;
+use Intacct\IntacctClient;
 
 class UserTest extends  \PHPUnit_Framework_TestCase
 {

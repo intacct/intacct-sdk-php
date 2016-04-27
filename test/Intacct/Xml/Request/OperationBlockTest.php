@@ -15,12 +15,13 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request;
+namespace Intacct\Tests\Xml\Request;
 
 use Intacct\Xml\Request\Operation\ContentBlock;
 use Intacct\Xml\Request\Operation\Content\GetAPISession;
 use XMLWriter;
 use InvalidArgumentException;
+use Intacct\Xml\Request\OperationBlock;
 
 class OperationBlockTest extends \PHPUnit_Framework_TestCase
 {

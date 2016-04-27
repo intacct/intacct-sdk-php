@@ -15,10 +15,11 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation\Content;
+namespace Intacct\Tests\Xml\Request\Operation\Content;
 
 use XMLWriter;
 use InvalidArgumentException;
+use Intacct\Xml\Request\Operation\Content\Delete;
 
 class DeleteTest extends \PHPUnit_Framework_TestCase
 {

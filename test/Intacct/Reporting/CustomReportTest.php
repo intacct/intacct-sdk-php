@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Reporting;
+namespace Intacct\Tests\Reporting;
 
 class CustomReportTest extends \PHPUnit_Framework_TestCase
 {

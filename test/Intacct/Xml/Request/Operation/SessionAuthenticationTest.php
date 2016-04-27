@@ -1,9 +1,10 @@
 <?php
 
-namespace Intacct\Xml\Request\Operation;
+namespace Intacct\Tests\Xml\Request\Operation;
 
 use XMLWriter;
 use InvalidArgumentException;
+use Intacct\Xml\Request\Operation\SessionAuthentication;
 
 class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
 {

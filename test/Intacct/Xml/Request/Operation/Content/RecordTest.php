@@ -15,9 +15,10 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation\Content;
+namespace Intacct\Tests\Xml\Request\Operation\Content;
 
 use InvalidArgumentException;
+use Intacct\Xml\Request\Operation\Content\Record;
 
 class RecordTest extends \PHPUnit_Framework_TestCase
 {
