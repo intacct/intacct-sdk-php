@@ -20,13 +20,18 @@ namespace Intacct\GeneralLedger;
 use Intacct\IntacctClientInterface;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\IaObjectTrait;
+use Intacct\ObjectTrait;
 use Intacct\StandardObjectInterface;
 
+/**
+ * Class Account
+ * @package Intacct\GeneralLedger
+ * @implements StandardObjectInterface
+ */
 class Account implements StandardObjectInterface
 {
 
-    use IaObjectTrait;
+    use ObjectTrait;
 
     /**
      *
@@ -150,5 +155,18 @@ class Account implements StandardObjectInterface
     {
         return $this->readRecordByName($params, $this->client);
     }
-    
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - show_detail: (bool, default=bool(false))
+     *
+     * @param array $params
+     * @return Result
+     */
+    public function inspect(array $params)
+    {
+        return $this->inspectObject($params, $this->client);
+    }
 }

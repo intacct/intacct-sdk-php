@@ -78,4 +78,15 @@ interface StandardObjectInterface
      */
     public function readAllByQuery(array $params);
 
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - show_detail: (bool, default=bool(false))
+     *
+     * @param array $params
+     * @return Result
+     * @throws ResultException
+     */
+    public function inspect(array $params);
 }
