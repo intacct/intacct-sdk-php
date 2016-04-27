@@ -23,12 +23,12 @@ use Intacct\Xml\RequestHandler;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use ArrayIterator;
-use Intacct\IaObjectTrait;
+use Intacct\ObjectTrait;
 
 class CustomReport
 {
     
-    use IaObjectTrait;
+    use ObjectTrait;
 
     /**
      *

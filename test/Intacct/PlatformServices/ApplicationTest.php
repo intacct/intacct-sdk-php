@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\PlatformServices;
+namespace Intacct\Tests\PlatformServices;
 
 class ApplicationTest extends \PHPUnit_Framework_TestCase
 {

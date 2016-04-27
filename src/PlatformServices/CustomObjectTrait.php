@@ -25,13 +25,13 @@ use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\Request\Operation\Content\ReadRelated;
 use Intacct\Xml\Request\Operation\Content\ReadView;
 use ArrayIterator;
-use Intacct\IaObjectTrait;
+use Intacct\ObjectTrait;
 
 
 trait CustomObjectTrait
 {
     
-    use IaObjectTrait;
+    use ObjectTrait;
 
     /**
      * @var int

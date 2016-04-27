@@ -32,7 +32,7 @@ use Intacct\Xml\Request\Operation\Content\ReadByName;
 use Intacct\Xml\Request\Operation\Content\InstallApp;
 use ArrayIterator;
 
-trait IaObjectTrait
+trait ObjectTrait
 {
     
     /**
@@ -170,7 +170,7 @@ trait IaObjectTrait
         $config = $this->mergeParams($params, $client);
 
         $contentBlock = new ContentBlock([
-            new Inspect([$params])
+            new Inspect($params)
         ]);
 
         $requestHandler = new RequestHandler($params);

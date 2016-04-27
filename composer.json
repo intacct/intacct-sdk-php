@@ -23,5 +23,10 @@
         "psr-4": {
             "Intacct\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Intacct\\Tests\\": "test/Intacct/"
+        }
     }
 }

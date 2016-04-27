@@ -1,0 +1,2122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <control>
+    <status>success</status>
+    <senderid>intacct_dev</senderid>
+    <controlid>testRequestId</controlid>
+    <uniqueid>false</uniqueid>
+    <dtdversion>3.0</dtdversion>
+  </control>
+  <operation>
+    <authentication>
+      <status>success</status>
+      <userid>Admin</userid>
+      <companyid>SeedAtlas201602081349</companyid>
+      <sessiontimestamp>2016-04-20T09:11:43-07:00</sessiontimestamp>
+    </authentication>
+    <result>
+      <status>success</status>
+      <function>inspect</function>
+      <controlid>inspect</controlid>
+      <data listtype="All" count="1">
+        <Type Name="CUSTOMER">
+          <Attributes>
+            <SingularName>Customer</SingularName>
+            <PluralName>Customers</PluralName>
+            <Description></Description>
+          </Attributes>
+          <Fields>
+            <Field>
+              <Name>RECORDNO</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Record Number</DisplayLabel>
+              <Description>Record Number</Description>
+              <id>999502600000001</id>
+            </Field>
+            <Field>
+              <Name>CUSTOMERID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Customer ID</DisplayLabel>
+              <Description>Unique ID of Customer</Description>
+              <id>999502600000002</id>
+            </Field>
+            <Field>
+              <Name>NAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Customer Name</DisplayLabel>
+              <Description>Name of Customer</Description>
+              <id>999502600000003</id>
+            </Field>
+            <Field>
+              <Name>ENTITY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>21</maxLength>
+              <DisplayLabel>Entity</DisplayLabel>
+              <Description>Entity</Description>
+              <id>999502600000007</id>
+            </Field>
+            <Field>
+              <Name>PARENTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Parent Key</DisplayLabel>
+              <Description>PARENTKEY</Description>
+              <id>999502600000234</id>
+            </Field>
+            <Field>
+              <Name>PARENTID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Parent Customer</DisplayLabel>
+              <Description>Name of Parent Customer</Description>
+              <id>999502600000024</id>
+            </Field>
+            <Field>
+              <Name>PARENTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Parent Name</DisplayLabel>
+              <Description>PARENTNAME</Description>
+              <id>999502600000235</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.CONTACTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Customer Name</DisplayLabel>
+              <Description>Unique identifier for customer contact name</Description>
+              <id>999502600000135</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.COMPANYNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>100</maxLength>
+              <DisplayLabel>Company Name</DisplayLabel>
+              <Description>Full name of the company</Description>
+              <id>999502600000136</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.PREFIX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>15</maxLength>
+              <DisplayLabel>Prefix</DisplayLabel>
+              <Description>Mr./Ms./Mrs.</Description>
+              <id>999502600000137</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.FIRSTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>First Name</DisplayLabel>
+              <Description>First Name</Description>
+              <id>999502600000034</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.LASTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Last Name</DisplayLabel>
+              <Description>Last Name</Description>
+              <id>999502600000035</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.INITIAL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Middle Name</DisplayLabel>
+              <Description>Middle Name</Description>
+              <id>999502600000036</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.PRINTAS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Print As</DisplayLabel>
+              <Description>Print As</Description>
+              <id>999502600000037</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.TAXABLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Taxable</DisplayLabel>
+              <Description>Taxable </Description>
+              <id>999502600000138</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.TAXGROUP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Tax Group</DisplayLabel>
+              <Description>Tax Group</Description>
+              <id>999502600000139</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.PHONE1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Phone Number</DisplayLabel>
+              <Description>Phone Number</Description>
+              <id>999502600000004</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.PHONE2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Phone 2</DisplayLabel>
+              <Description>Secondary Phone Number</Description>
+              <id>999502600000140</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.CELLPHONE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Mobile Phone</DisplayLabel>
+              <Description>Cellular Phone Number</Description>
+              <id>999502600000141</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.PAGER</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Pager</DisplayLabel>
+              <Description>Pager</Description>
+              <id>999502600000142</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.FAX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Fax</DisplayLabel>
+              <Description>Fax</Description>
+              <id>999502600000143</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.EMAIL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Email Address</DisplayLabel>
+              <Description>Email Address</Description>
+              <id>999502600000005</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.EMAIL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Secondary Email Address</DisplayLabel>
+              <Description>Secondary Email Address</Description>
+              <id>999502600000144</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.URL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>URL</DisplayLabel>
+              <Description>URL</Description>
+              <id>999502600000006</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.URL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>URL 2</DisplayLabel>
+              <Description>Secondary URL</Description>
+              <id>999502600000145</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.VISIBLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Visible</DisplayLabel>
+              <Description>Visible</Description>
+              <id>999502600000146</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.ADDRESS1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Address Line 1</DisplayLabel>
+              <Description>Address Line 1</Description>
+              <id>999502600000147</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.ADDRESS2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Address Line 2</DisplayLabel>
+              <Description>Address Line 2</Description>
+              <id>999502600000148</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.CITY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>80</maxLength>
+              <DisplayLabel>City</DisplayLabel>
+              <Description>City</Description>
+              <id>999502600000149</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.STATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>State/province</DisplayLabel>
+              <Description>State/Province</Description>
+              <id>999502600000150</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.ZIP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Zip code</DisplayLabel>
+              <Description>Zip/Postal Code</Description>
+              <id>999502600000151</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.COUNTRY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>60</maxLength>
+              <DisplayLabel>Country</DisplayLabel>
+              <Description>Country</Description>
+              <id>999502600000152</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.MAILADDRESS.COUNTRYCODE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Country Code</DisplayLabel>
+              <Description>Country Code</Description>
+              <id>999502600000153</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACT.STATUS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Status</DisplayLabel>
+              <Description>Active/Inactive</Description>
+              <id>999502600000241</id>
+            </Field>
+            <Field>
+              <Name>TERMNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Term</DisplayLabel>
+              <Description>Term</Description>
+              <id>999502600000008</id>
+            </Field>
+            <Field>
+              <Name>TERMVALUE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Term Value</DisplayLabel>
+              <Description>Term Value</Description>
+              <id>999502600000242</id>
+            </Field>
+            <Field>
+              <Name>CUSTREPID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Customer Rep</DisplayLabel>
+              <Description>Customer Rep</Description>
+              <id>999502600000027</id>
+            </Field>
+            <Field>
+              <Name>CUSTREPNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Customer Rep Name</DisplayLabel>
+              <Description>CUSTREPNAME</Description>
+              <id>999502600000236</id>
+            </Field>
+            <Field>
+              <Name>RESALENO</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Resale Number</DisplayLabel>
+              <Description>Resale Number</Description>
+              <id>999502600000011</id>
+            </Field>
+            <Field>
+              <Name>TAXID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Tax ID</DisplayLabel>
+              <Description>Tax Identification Number</Description>
+              <id>999502600000012</id>
+            </Field>
+            <Field>
+              <Name>CREDITLIMIT</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDouble</dataName>
+              <externalDataName>number</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Credit Limit</DisplayLabel>
+              <Description>Credit Limit</Description>
+              <id>999502600000013</id>
+            </Field>
+            <Field>
+              <Name>TOTALDUE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDouble</dataName>
+              <externalDataName>number</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Total Due</DisplayLabel>
+              <Description>Total Due</Description>
+              <id>999502600000014</id>
+            </Field>
+            <Field>
+              <Name>COMMENTS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Comments</DisplayLabel>
+              <Description>Comments</Description>
+              <id>999502600000015</id>
+            </Field>
+            <Field>
+              <Name>ACCOUNTLABEL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Account Label</DisplayLabel>
+              <Description>AccountLabel Option</Description>
+              <id>999502600000009</id>
+            </Field>
+            <Field>
+              <Name>ARACCOUNT</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Default revenue account</DisplayLabel>
+              <Description>Account Option</Description>
+              <id>999502600000010</id>
+            </Field>
+            <Field>
+              <Name>ARACCOUNTTITLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>AR Account Title</DisplayLabel>
+              <Description>ARACCOUNTTITLE</Description>
+              <id>999502600000237</id>
+            </Field>
+            <Field>
+              <Name>LAST_INVOICEDATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Last Invoice Date</DisplayLabel>
+              <Description>Last Invoice Date</Description>
+              <id>999502600000021</id>
+            </Field>
+            <Field>
+              <Name>LAST_STATEMENTDATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Last Statement Date</DisplayLabel>
+              <Description>Last Statement Date</Description>
+              <id>999502600000022</id>
+            </Field>
+            <Field>
+              <Name>DELIVERY_OPTIONS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Delivery Options</DisplayLabel>
+              <Description>Delivery Options</Description>
+              <id>999502600000023</id>
+            </Field>
+            <Field>
+              <Name>TERRITORYID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Territory ID</DisplayLabel>
+              <Description>Territory ID</Description>
+              <id>999502600000020</id>
+            </Field>
+            <Field>
+              <Name>SHIPPINGMETHOD</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Shipping Method</DisplayLabel>
+              <Description>Shipping Method</Description>
+              <id>999502600000017</id>
+            </Field>
+            <Field>
+              <Name>CUSTTYPE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Customer Type ID</DisplayLabel>
+              <Description>Customer Type</Description>
+              <id>999502600000018</id>
+            </Field>
+            <Field>
+              <Name>GLGROUP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>80</maxLength>
+              <DisplayLabel>GL Group</DisplayLabel>
+              <Description>GL Group</Description>
+              <id>999502600000019</id>
+            </Field>
+            <Field>
+              <Name>PRICESCHEDULE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Price Schedule</DisplayLabel>
+              <Description>Price Schedule</Description>
+              <id>999502600000029</id>
+            </Field>
+            <Field>
+              <Name>DISCOUNT</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDouble</dataName>
+              <externalDataName>number</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>10</maxLength>
+              <DisplayLabel>Discount (%)</DisplayLabel>
+              <Description>Discount</Description>
+              <id>999502600000030</id>
+            </Field>
+            <Field>
+              <Name>PRICELIST</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Customer Price List</DisplayLabel>
+              <Description>Customer Price Schedule</Description>
+              <id>999502600000031</id>
+            </Field>
+            <Field>
+              <Name>VSOEPRICELIST</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Fair Value Price List</DisplayLabel>
+              <Description>Fair Value Price Schedule</Description>
+              <id>999502600000032</id>
+            </Field>
+            <Field>
+              <Name>CURRENCY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>12</maxLength>
+              <DisplayLabel>Default Currency</DisplayLabel>
+              <Description>Default Currency</Description>
+              <id>999502600000016</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.CONTACTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Primary Contact</DisplayLabel>
+              <Description>Primary Contact Name</Description>
+              <id>999502600000028</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.PREFIX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>15</maxLength>
+              <DisplayLabel>Contact - Prefix</DisplayLabel>
+              <Description>Mr./Ms./Mrs.</Description>
+              <id>999502600000061</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.FIRSTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Contact - First Name</DisplayLabel>
+              <Description>First Name</Description>
+              <id>999502600000062</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.INITIAL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Contact - MI</DisplayLabel>
+              <Description>Middle Name</Description>
+              <id>999502600000064</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.LASTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Contact - Last Name</DisplayLabel>
+              <Description>Last Name</Description>
+              <id>999502600000063</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.COMPANYNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>100</maxLength>
+              <DisplayLabel>Contact - Company Name</DisplayLabel>
+              <Description>Full name of the company</Description>
+              <id>999502600000060</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.PRINTAS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Contact - Print As</DisplayLabel>
+              <Description>Name as appears on official documents</Description>
+              <id>999502600000065</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.PHONE1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact - Phone 1</DisplayLabel>
+              <Description>Primary phone</Description>
+              <id>999502600000066</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.PHONE2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact - Phone 2</DisplayLabel>
+              <Description>Seconday phone</Description>
+              <id>999502600000134</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.CELLPHONE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact - Cell Phone</DisplayLabel>
+              <Description>Cellular Phone Number</Description>
+              <id>999502600000067</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.PAGER</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact - Pager</DisplayLabel>
+              <Description>Pager</Description>
+              <id>999502600000068</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.FAX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact - Fax</DisplayLabel>
+              <Description>Fax</Description>
+              <id>999502600000069</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.EMAIL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Contact - Email 1</DisplayLabel>
+              <Description>Primary Email Address</Description>
+              <id>999502600000070</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.EMAIL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Contact - Email 2</DisplayLabel>
+              <Description>Secondary Email Address</Description>
+              <id>999502600000071</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.URL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Contact - URL 1</DisplayLabel>
+              <Description>Primary URL</Description>
+              <id>999502600000072</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.URL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Contact - URL 2</DisplayLabel>
+              <Description>Secondary URL</Description>
+              <id>999502600000073</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.VISIBLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Primary - Contact Visible</DisplayLabel>
+              <Description>Visible</Description>
+              <id>999502600000075</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.ADDRESS1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Contact Address - Addr1</DisplayLabel>
+              <Description>Address Line 1</Description>
+              <id>999502600000077</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.ADDRESS2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Contact Address - Addr2</DisplayLabel>
+              <Description>Address Line 2</Description>
+              <id>999502600000078</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.CITY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>80</maxLength>
+              <DisplayLabel>Contact Address - City</DisplayLabel>
+              <Description>City</Description>
+              <id>999502600000079</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.STATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Contact Address - State/Province</DisplayLabel>
+              <Description>State/Province</Description>
+              <id>999502600000080</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.ZIP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Contact Address - Zip/Postal Code</DisplayLabel>
+              <Description>Zip/Postal Code</Description>
+              <id>999502600000081</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.COUNTRY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>60</maxLength>
+              <DisplayLabel>Contact Address - Country</DisplayLabel>
+              <Description>Country</Description>
+              <id>999502600000082</id>
+            </Field>
+            <Field>
+              <Name>CONTACTINFO.MAILADDRESS.COUNTRYCODE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Contact Address - Country Code</DisplayLabel>
+              <Description>Country Code</Description>
+              <id>999502600000083</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.CONTACTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Ship To Contact</DisplayLabel>
+              <Description>Contact Name for Shipping</Description>
+              <id>999502600000026</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.PREFIX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>15</maxLength>
+              <DisplayLabel>Ship To Contact - Prefix</DisplayLabel>
+              <Description>Mr./Ms./Mrs.</Description>
+              <id>999502600000085</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.FIRSTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Ship To Contact - First Name</DisplayLabel>
+              <Description>First Name</Description>
+              <id>999502600000086</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.INITIAL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Ship To Contact - MI</DisplayLabel>
+              <Description>Middle Name</Description>
+              <id>999502600000088</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.LASTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Ship To Contact - Last Name</DisplayLabel>
+              <Description>Last Name</Description>
+              <id>999502600000087</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.COMPANYNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>100</maxLength>
+              <DisplayLabel>Ship To Contact - Company Name</DisplayLabel>
+              <Description>Full name of the company</Description>
+              <id>999502600000084</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.PRINTAS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Ship To Contact - Print As</DisplayLabel>
+              <Description>Name as appears on official documents</Description>
+              <id>999502600000089</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.TAXABLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Shipping Contact Taxable</DisplayLabel>
+              <Description>Taxable </Description>
+              <id>999502600000156</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.TAXGROUP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Shipping Tax Group</DisplayLabel>
+              <Description>Shipping Tax Group</Description>
+              <id>999502600000157</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.PHONE1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact - Phone 1</DisplayLabel>
+              <Description>Primary phone</Description>
+              <id>999502600000090</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.PHONE2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact - Phone 2</DisplayLabel>
+              <Description>Seconday phone</Description>
+              <id>999502600000091</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.CELLPHONE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact - Cell Phone</DisplayLabel>
+              <Description>Cellular Phone Number</Description>
+              <id>999502600000092</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.PAGER</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact - Pager</DisplayLabel>
+              <Description>Pager</Description>
+              <id>999502600000093</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.FAX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact - Fax</DisplayLabel>
+              <Description>Fax</Description>
+              <id>999502600000094</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.EMAIL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Ship To Contact - Email 1</DisplayLabel>
+              <Description>Primary Email Address</Description>
+              <id>999502600000095</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.EMAIL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Ship To Contact - Email 2</DisplayLabel>
+              <Description>Secondary Email Address</Description>
+              <id>999502600000096</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.URL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Ship To Contact - URL 1</DisplayLabel>
+              <Description>Primary URL</Description>
+              <id>999502600000097</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.URL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Ship To Contact - URL 2</DisplayLabel>
+              <Description>Secondary URL</Description>
+              <id>999502600000098</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.VISIBLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Ship To Primary - Contact Visible</DisplayLabel>
+              <Description>Visible</Description>
+              <id>999502600000100</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.ADDRESS1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Ship To Contact Address - Addr1</DisplayLabel>
+              <Description>Address Line 1</Description>
+              <id>999502600000102</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.ADDRESS2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Ship To Contact Address - Addr2</DisplayLabel>
+              <Description>Address Line 2</Description>
+              <id>999502600000103</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.CITY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>80</maxLength>
+              <DisplayLabel>Ship To Contact Address - City</DisplayLabel>
+              <Description>City</Description>
+              <id>999502600000104</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.STATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Ship To Contact Address - State/Province</DisplayLabel>
+              <Description>State/Province</Description>
+              <id>999502600000105</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.ZIP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Ship To Contact Address - Zip/Postal Code</DisplayLabel>
+              <Description>Zip/Postal Code</Description>
+              <id>999502600000106</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.COUNTRY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>60</maxLength>
+              <DisplayLabel>Ship To Contact Address - Country</DisplayLabel>
+              <Description>Country</Description>
+              <id>999502600000107</id>
+            </Field>
+            <Field>
+              <Name>SHIPTO.MAILADDRESS.COUNTRYCODE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Ship To Contact Address - Country Code</DisplayLabel>
+              <Description>Country Code</Description>
+              <id>999502600000108</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.CONTACTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Bill To Contact</DisplayLabel>
+              <Description>Contact Name for Billing</Description>
+              <id>999502600000025</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.PREFIX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>15</maxLength>
+              <DisplayLabel>Bill To Contact - Prefix</DisplayLabel>
+              <Description>Mr./Ms./Mrs.</Description>
+              <id>999502600000110</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.FIRSTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Bill To Contact - First Name</DisplayLabel>
+              <Description>First Name</Description>
+              <id>999502600000111</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.INITIAL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Bill To Contact - MI</DisplayLabel>
+              <Description>Middle Name</Description>
+              <id>999502600000113</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.LASTNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Bill To Contact - Last Name</DisplayLabel>
+              <Description>Last Name</Description>
+              <id>999502600000112</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.COMPANYNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>100</maxLength>
+              <DisplayLabel>Bill To Contact - Company Name</DisplayLabel>
+              <Description>Full name of the company</Description>
+              <id>999502600000109</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.PRINTAS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>true</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Bill To Contact - Print As</DisplayLabel>
+              <Description>Name as appears on official documents</Description>
+              <id>999502600000114</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.TAXABLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Billing Contact Taxable</DisplayLabel>
+              <Description>Taxable </Description>
+              <id>999502600000154</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.TAXGROUP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Billing Tax Group</DisplayLabel>
+              <Description>Billing Tax Group</Description>
+              <id>999502600000155</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.PHONE1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact - Phone 1</DisplayLabel>
+              <Description>Primary phone</Description>
+              <id>999502600000115</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.PHONE2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact - Phone 2</DisplayLabel>
+              <Description>Seconday phone</Description>
+              <id>999502600000116</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.CELLPHONE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact - Cell Phone</DisplayLabel>
+              <Description>Cellular Phone Number</Description>
+              <id>999502600000117</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.PAGER</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact - Pager</DisplayLabel>
+              <Description>Pager</Description>
+              <id>999502600000118</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.FAX</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact - Fax</DisplayLabel>
+              <Description>Fax</Description>
+              <id>999502600000119</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.EMAIL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Bill To Contact - Email 1</DisplayLabel>
+              <Description>Primary Email Address</Description>
+              <id>999502600000120</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.EMAIL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>200</maxLength>
+              <DisplayLabel>Bill To Contact - Email 2</DisplayLabel>
+              <Description>Secondary Email Address</Description>
+              <id>999502600000121</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.URL1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Bill To Contact - URL 1</DisplayLabel>
+              <Description>Primary URL</Description>
+              <id>999502600000122</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.URL2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>256</maxLength>
+              <DisplayLabel>Bill To Contact - URL 2</DisplayLabel>
+              <Description>Secondary URL</Description>
+              <id>999502600000123</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.VISIBLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Bill To Contact - Visible</DisplayLabel>
+              <Description>Visible</Description>
+              <id>999502600000125</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.ADDRESS1</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Bill To Contact Address - Addr1</DisplayLabel>
+              <Description>Address Line 1</Description>
+              <id>999502600000127</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.ADDRESS2</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>255</maxLength>
+              <DisplayLabel>Bill To Contact Address - Addr2</DisplayLabel>
+              <Description>Address Line 2</Description>
+              <id>999502600000128</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.CITY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>80</maxLength>
+              <DisplayLabel>Bill To Contact Address - City</DisplayLabel>
+              <Description>City</Description>
+              <id>999502600000129</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.STATE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Bill To Contact Address - State/Province</DisplayLabel>
+              <Description>State/Province</Description>
+              <id>999502600000130</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.ZIP</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Bill To Contact Address - Zip/Postal Code</DisplayLabel>
+              <Description>Zip/Postal Code</Description>
+              <id>999502600000131</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.COUNTRY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>60</maxLength>
+              <DisplayLabel>Bill To Contact Address - Country</DisplayLabel>
+              <Description>Country</Description>
+              <id>999502600000132</id>
+            </Field>
+            <Field>
+              <Name>BILLTO.MAILADDRESS.COUNTRYCODE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Bill To Contact Address - Country Code</DisplayLabel>
+              <Description>Country Code</Description>
+              <id>999502600000133</id>
+            </Field>
+            <Field>
+              <Name>STATUS</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Status</DisplayLabel>
+              <Description>Active/Inactive</Description>
+              <id>999502600000900</id>
+            </Field>
+            <Field>
+              <Name>ONETIME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>One-time use</DisplayLabel>
+              <Description>One-time use</Description>
+              <id>999502600000039</id>
+            </Field>
+            <Field>
+              <Name>CUSTMESSAGEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Default Customer Message</DisplayLabel>
+              <Description>Default Customer Message</Description>
+              <id>999502600000040</id>
+            </Field>
+            <Field>
+              <Name>ONHOLD</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>On Hold</DisplayLabel>
+              <Description>On Hold</Description>
+              <id>999502600000049</id>
+            </Field>
+            <Field>
+              <Name>PRCLST_OVERRIDE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Price List Override</DisplayLabel>
+              <Description>Price List Override</Description>
+              <id>999502600000033</id>
+            </Field>
+            <Field>
+              <Name>OEPRCLSTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>OE Price List Key</DisplayLabel>
+              <Description>OEPRCLSTKEY</Description>
+              <id>999502600000238</id>
+            </Field>
+            <Field>
+              <Name>OEPRICESCHEDKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>OE Price Schedule Key</DisplayLabel>
+              <Description>OEPRICESCHEDKEY</Description>
+              <id>999502600000239</id>
+            </Field>
+            <Field>
+              <Name>ENABLEONLINECARDPAYMENT</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Enable Online Charge Card</DisplayLabel>
+              <Description>Enable Online Charge Card</Description>
+              <id>999502600000058</id>
+            </Field>
+            <Field>
+              <Name>ENABLEONLINEACHPAYMENT</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldBoolean</dataName>
+              <externalDataName>boolean</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Enable Online ACH Debit</DisplayLabel>
+              <Description>Enable Online ACH Debit</Description>
+              <id>999502600000059</id>
+            </Field>
+            <Field>
+              <Name>VSOEPRCLSTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Fair Value Price List Key</DisplayLabel>
+              <Description>VSOEPRCLSTKEY</Description>
+              <id>999502600000240</id>
+            </Field>
+            <Field>
+              <Name>WHENMODIFIED</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDateTime</dataName>
+              <externalDataName>datetime</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>22</maxLength>
+              <DisplayLabel>When Modified</DisplayLabel>
+              <Description>timestamp marking last time this customer was changed.</Description>
+              <id>999502600000243</id>
+            </Field>
+            <Field>
+              <Name>ARINVOICEPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>AR Invoice Printing Template</DisplayLabel>
+              <Description>Format template for printing AR Invoice document (XSL or DOC or DOX)</Description>
+              <id>999502600000244</id>
+            </Field>
+            <Field>
+              <Name>OEQUOTEPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - Quote Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry Quote documents (XSL or DOC or DOX)</Description>
+              <id>999502600000245</id>
+            </Field>
+            <Field>
+              <Name>OEORDERPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - Order Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry Order documents (XSL or DOC or DOX)</Description>
+              <id>999502600000246</id>
+            </Field>
+            <Field>
+              <Name>OELISTPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - List Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry List documents (XSL or DOC or DOX)</Description>
+              <id>999502600000247</id>
+            </Field>
+            <Field>
+              <Name>OEINVOICEPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - Invoice Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry Invoice documents (XSL or DOC or DOX)</Description>
+              <id>999502600000248</id>
+            </Field>
+            <Field>
+              <Name>OEADJPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - Adjustment Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry Adjustment documents (XSL or DOC or DOX)</Description>
+              <id>999502600000249</id>
+            </Field>
+            <Field>
+              <Name>OEOTHERPRINTTEMPLATEID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Order Entry - Other Printing Template</DisplayLabel>
+              <Description>Format template for printing Order Entry Other documents (XSL or DOC or DOX)</Description>
+              <id>999502600000250</id>
+            </Field>
+            <Field>
+              <Name>WHENCREATED</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDateTime</dataName>
+              <externalDataName>datetime</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>22</maxLength>
+              <DisplayLabel>When Created</DisplayLabel>
+              <Description>timestamp marking last time this was created.</Description>
+              <id>999502600000970</id>
+            </Field>
+            <Field>
+              <Name>CREATEDBY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Created By</DisplayLabel>
+              <Description>User who created this.</Description>
+              <id>999502600000971</id>
+            </Field>
+            <Field>
+              <Name>MODIFIEDBY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Modified By</DisplayLabel>
+              <Description>User who modified this.</Description>
+              <id>999502600000972</id>
+            </Field>
+            <Field>
+              <Name>OBJECTRESTRICTION</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel></DisplayLabel>
+              <Description></Description>
+              <id>999502600000252</id>
+            </Field>
+            <Field>
+              <Name>DISPLAYCONTACTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Display Contact Record Number</DisplayLabel>
+              <Description>Record Number</Description>
+              <id>999502600000255</id>
+            </Field>
+            <Field>
+              <Name>CONTACTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Primary Contact Record Number</DisplayLabel>
+              <Description>Record Number</Description>
+              <id>999502600000256</id>
+            </Field>
+            <Field>
+              <Name>SHIPTOKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Ship-to Contact Record Number</DisplayLabel>
+              <Description>Ship-to Contact Record Number</Description>
+              <id>999502600000257</id>
+            </Field>
+            <Field>
+              <Name>BILLTOKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Bill-to Contact Record Number</DisplayLabel>
+              <Description>Bill-to Contact Record Number</Description>
+              <id>999502600000258</id>
+            </Field>
+            <Field>
+              <Name>CUSTREPKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Customer Representative Employee Record Number</DisplayLabel>
+              <Description>Customer Representative Employee Record Number</Description>
+              <id>999502600000259</id>
+            </Field>
+            <Field>
+              <Name>SHIPVIAKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Ship-via Record Number</DisplayLabel>
+              <Description>Ship-via Record Number</Description>
+              <id>999502600000260</id>
+            </Field>
+            <Field>
+              <Name>TERRITORYKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Territory Record Number</DisplayLabel>
+              <Description>Territory Record Number</Description>
+              <id>999502600000261</id>
+            </Field>
+            <Field>
+              <Name>TERMSKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Term Record Number</DisplayLabel>
+              <Description>Term Record Number</Description>
+              <id>999502600000262</id>
+            </Field>
+            <Field>
+              <Name>ACCOUNTLABELKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Account Label Record Number</DisplayLabel>
+              <Description>Account Label Record Number</Description>
+              <id>999502600000263</id>
+            </Field>
+            <Field>
+              <Name>ACCOUNTKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>GL Account Record Number</DisplayLabel>
+              <Description>GL Account Record Number</Description>
+              <id>999502600000264</id>
+            </Field>
+            <Field>
+              <Name>CUSTTYPEKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>8</maxLength>
+              <DisplayLabel>Customer Type Record Number</DisplayLabel>
+              <Description>Customer Type Record Number</Description>
+              <id>999502600000265</id>
+            </Field>
+            <Field>
+              <Name>PRICESCHEDULEKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>30</maxLength>
+              <DisplayLabel>Price Schedule Record Number</DisplayLabel>
+              <Description>PRICESCHEDULEKEY</Description>
+              <id>999502600000266</id>
+            </Field>
+            <Field>
+              <Name>OFFSETGLACCOUNTNO</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>AR Account</DisplayLabel>
+              <Description>AR Account</Description>
+              <id>999502600000269</id>
+            </Field>
+            <Field>
+              <Name>OFFSETGLACCOUNTNOTITLE</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>false</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Default AR Account</DisplayLabel>
+              <Description>OFFSETGLACCOUNTNOTITLE</Description>
+              <id>999502600000270</id>
+            </Field>
+            <Field>
+              <Name>MEGAENTITYKEY</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldInt</dataName>
+              <externalDataName>integer</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Created at - Entity Key</DisplayLabel>
+              <Description>MEGAENTITYKEY</Description>
+              <id>999502600000973</id>
+            </Field>
+            <Field>
+              <Name>MEGAENTITYID</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>20</maxLength>
+              <DisplayLabel>Created at - Entity ID</DisplayLabel>
+              <Description>MEGAENTITYID</Description>
+              <id>999502600000974</id>
+            </Field>
+            <Field>
+              <Name>MEGAENTITYNAME</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldString</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>40</maxLength>
+              <DisplayLabel>Created at - Entity Name</DisplayLabel>
+              <Description>MEGAENTITYNAME</Description>
+              <id>999502600000975</id>
+            </Field>
+            <Field>
+              <Name>RECORD_URL</Name>
+              <GroupName></GroupName>
+              <dataName>Pt_FieldDummy</dataName>
+              <externalDataName>string</externalDataName>
+              <isRequired>false</isRequired>
+              <isReadOnly>true</isReadOnly>
+              <maxLength>0</maxLength>
+              <DisplayLabel>Record URL</DisplayLabel>
+              <Description> A portable, user-independent, deep-link URL for viewing this record</Description>
+              <id>999502600000979</id>
+            </Field>
+          </Fields>
+        </Type>
+      </data>
+    </result>
+  </operation>
+</response>
