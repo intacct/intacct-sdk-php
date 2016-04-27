@@ -18,13 +18,13 @@
 namespace Intacct\PlatformServices;
 
 use Intacct\IntacctClientInterface;
-use Intacct\IaObjectTrait;
+use Intacct\ObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 
 class Application implements ApplicationInterface
 {
 
-    use IaObjectTrait;
+    use ObjectTrait;
 
     /**
      *

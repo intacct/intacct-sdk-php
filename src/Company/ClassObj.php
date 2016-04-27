@@ -17,16 +17,21 @@
 
 namespace Intacct\Company;
 
+use Intacct\StandardObjectInterface;
 use Intacct\IntacctClientInterface;
-use Intacct\IaObjectTrait;
+use Intacct\ObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\StandardObjectInterface;
 
+/**
+ * Class ClassObj
+ * @package Intacct\Company
+ * @implements StandardObjectInterface
+ */
 class ClassObj implements StandardObjectInterface
 {
 
-    use IaObjectTrait;
+    use ObjectTrait;
 
     /**
      *
@@ -41,6 +46,11 @@ class ClassObj implements StandardObjectInterface
     public function __construct(IntacctClientInterface &$client)
     {
         $this->client = $client;
+    }
+
+    private function addObjectParam(array $params)
+    {
+        return array_merge($params, ["object" => "CLASS"]); // Add the object id CLASS for this standard object
     }
 
     /**
@@ -79,7 +89,6 @@ class ClassObj implements StandardObjectInterface
      *
      * - control_id: (string)
      * - keys: (array, required)
-     * - object: (string, required)
      *
      * @param array $params
      * @return Result
@@ -87,7 +96,9 @@ class ClassObj implements StandardObjectInterface
      */
     public function delete(array $params)
     {
-        return $this->deleteRecords($params, $this->client);
+        $allParams = $this->addObjectParam($params);
+
+        return $this->deleteRecords($allParams, $this->client);
     }
 
     /**
@@ -97,7 +108,6 @@ class ClassObj implements StandardObjectInterface
      * - doc_par_id: (string)
      * - fields: (array)
      * - max_total_count: (int, default=int(100000))
-     * - object: (string, required)
      * - page_size: (int, default=int(1000)
      * - query: (string)
      * - return_format: (string, default=string(3) "xml")
@@ -108,7 +118,24 @@ class ClassObj implements StandardObjectInterface
      */
     public function readAllByQuery(array $params)
     {
-        return $this->readAllObjectsByQuery($params, $this->client);
+        $allParams = $this->addObjectParam($params);
+
+        return $this->readAllObjectsByQuery($allParams, $this->client);
     }
-    
+
+    /**
+     * Accepts the following options:
+     *
+     * - control_id: (string)
+     * - show_detail: (bool, default=bool(false))
+     *
+     * @param array $params
+     * @return Result
+     */
+    public function inspect(array $params)
+    {
+        $allParams = $this->addObjectParam($params);
+
+        return $this->inspectObject($allParams, $this->client);
+    }
 }
