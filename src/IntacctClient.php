@@ -29,6 +29,7 @@ use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
+use Intacct\PlatformServices\CustomObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 
 class IntacctClient implements IntacctClientInterface
@@ -74,6 +75,8 @@ class IntacctClient implements IntacctClientInterface
      * @var ReportingInterface
      */
     private $reporting;
+
+    use CustomObjectTrait;
 
     /**
      * The constructor accepts the following options:
@@ -207,4 +210,15 @@ class IntacctClient implements IntacctClientInterface
     {
         return $this->lastExecution;
     }
+
+    /**
+     * @param array $params
+     * @return Result
+     */
+    public function create(array $params)
+    {
+        return $this->createRecords($params, $this);
+    }
+
+    // To Do: Implement the other CRUD operations here...
 }

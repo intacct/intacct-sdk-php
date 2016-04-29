@@ -232,6 +232,7 @@ class RequestHandler
             $client = $this->execute($requestBlock->getXml());
         } finally {
             $this->lastExecution = $this->getHistory();
+            $this->lastResult = $client;
         }
 
         $response = new SynchronousResponse($client->getBody()->getContents());

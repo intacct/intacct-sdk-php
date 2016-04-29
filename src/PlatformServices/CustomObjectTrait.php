@@ -34,11 +34,6 @@ trait CustomObjectTrait
     use ObjectTrait;
 
     /**
-     * @var int
-     */
-    private static $MAX_QUERY_TOTAL_COUNT = 100000;
-
-    /**
      * Accepts the following options:
      *
      * - control_id: (string)
