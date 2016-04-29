@@ -113,6 +113,7 @@ EOF;
     {
         $this->domDoc = $domDoc;
     }
+
     /**
      * @covers Intacct\Dimension\ClassObj::create
      * @covers Intacct\Xml\RequestHandler::executeContent
@@ -164,25 +165,44 @@ EOF;
         ]);
 
         $create = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT02',
-                        'NAME' => 'Unit Test 02',
-                    ],
-                ]),
+            'standard_fields' => [
+                'CLASSID' => 'UT01',
+                'NAME' => 'Unit Test 01',
+                'DESCRIPTION' => 'Some description',
+                'STATUS' => 'active',
+                'PARENTID' => 'MA'
             ],
+            'custom_fields' => [
+                'FOO' => 'BAR',
+            ],
+
             'mock_handler' => $mock,
         ];
+
         $data = $this->client->getCompany()->getClassObj()->create($create);
+
+        $request = $mock->getLastRequest();
+
+        $requestXML = $request->getBody()->getContents();
+
+        // Verify request XML through XPath
+        $dom = new DomDocument();
+        $dom->loadXML($requestXML);
+
+        $this->setDomDocumet($dom);
+
+        $this->assertXpathMatch('create',
+            'name(/request/operation/content/function/*)',
+            'function does not match');
+
+        $this->assertXpathMatch('CLASS',
+            'name(/request/operation/content/function/create/*)',
+            'object does not match');
+
+        $this->assertXpathMatch('UT01Unit Test 01Some descriptionactiveMABAR',
+            'string(/request/operation/content/function/create/*)',
+            'object does not match');
+
         $this->assertEquals($data->getStatus(), 'success');
         $this->assertEquals($data->getFunction(), 'create');
         $this->assertEquals($data->getControlId(), 'create');
@@ -190,12 +210,45 @@ EOF;
 
     /**
      * @covers Intacct\Company\ClassObj::create
+     * @expectedException \Intacct\Xml\ParameterListException
+     * @expectedExceptionMessage Missing standard_fields or custom_fields in parameters
+     */
+    public function testCreateWithoutParameters()
+    {
+        $create = [];
+
+        $this->client->getCompany()->getClassObj()->create($create);
+    }
+
+    /**
+     * @covers Intacct\Company\ClassObj::create
+     * @expectedException \Intacct\Xml\ParameterListException
+     * @expectedExceptionMessage Invalid standard_field given: PARENT
+     */
+    public function testCreateWithInvalidStandardFieldParameter()
+    {
+        $create = [
+            'standard_fields' => [
+                'CLASSID' => 'UT01',
+                'NAME' => 'Unit Test 01',
+                'DESCRIPTION' => 'Some description',
+                'STATUS' => 'active',
+                'PARENT' => 'MA'
+            ],
+            'custom_fields' => [
+                'FOO' => 'BAR',
+            ]
+        ];
+
+        $this->client->getCompany()->getClassObj()->create($create);
+    }
+
+    /**
+     * @covers Intacct\Company\ClassObj::create
      * @covers Intacct\Xml\RequestHandler::executeContent
      * @covers Intacct\IntacctClient::getSessionConfig
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to create records
      */
-    public function testCreateFailure()
+    public function testCreateWithCustomFieldParameters()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -215,30 +268,19 @@ EOF;
                   <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
             </authentication>
             <result>
-                  <status>failure</status>
+                  <status>success</status>
                   <function>create</function>
                   <controlid>create</controlid>
-                  <data listtype="objects" count="0"/>
-                  <errormessage>
-                        <error>
-                              <errorno>BL34000061</errorno>
-                              <description></description>
-                              <description2>Another Class with the given value(s) UT01  already exists</description2>
-                              <correction>Use a unique value instead.</correction>
-                        </error>
-                        <error>
-                              <errorno>BL01001973</errorno>
-                              <description></description>
-                              <description2>Could not create class record!</description2>
-                              <correction></correction>
-                        </error>
-                        <error>
-                              <errorno>BL01001973</errorno>
-                              <description></description>
-                              <description2>Could not create Class record!</description2>
-                              <correction></correction>
-                        </error>
-                  </errormessage>
+                  <data listtype="objects" count="2">
+                        <class>
+                              <RECORDNO>5</RECORDNO>
+                              <CLASSID>UT01</CLASSID>
+                        </class>
+                        <class>
+                              <RECORDNO>6</RECORDNO>
+                              <CLASSID>UT02</CLASSID>
+                        </class>
+                  </data>
             </result>
       </operation>
 </response>
@@ -252,26 +294,123 @@ EOF;
         ]);
 
         $create = [
-            'records' => [
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT01',
-                        'NAME' => 'Unit Test 01',
-                    ],
-                ]),
-                new Record([
-                    'object' => 'CLASS',
-                    'fields' => [
-                        'CLASSID' => 'UT02',
-                        'NAME' => 'Unit Test 02',
-                    ],
-                ]),
+            'custom_fields' => [
+                'FOO' => 'BAR',
             ],
-            'mock_handler' => $mock,
+            'mock_handler' => $mock
         ];
+
         $this->client->getCompany()->getClassObj()->create($create);
+
+        $request = $mock->getLastRequest();
+
+        $requestXML = $request->getBody()->getContents();
+
+        // Verify request XML through XPath
+        $dom = new DomDocument();
+        $dom->loadXML($requestXML);
+
+        $this->setDomDocumet($dom);
+
+        $this->assertXpathMatch('create',
+            'name(/request/operation/content/function/*)',
+            'function does not match');
+
+        $this->assertXpathMatch('CLASS',
+            'name(/request/operation/content/function/create/*)',
+            'object does not match');
+
+        $this->assertXpathMatch('BAR',
+            'string(/request/operation/content/function/create/*)',
+            'object does not match');
+
     }
+
+
+    /*
+     * @covers Intacct\Company\ClassObj::create
+     * @covers Intacct\Xml\RequestHandler::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
+     * @expectedException \Intacct\Xml\Response\Operation\ResultException
+     * @expectedExceptionMessage An error occurred trying to create records
+     */
+//    public function testCreateFailure()
+//    {
+//        $xml = <<<EOF
+//<?xml version="1.0" encoding="UTF-8"?
+//<response>
+//      <control>
+//            <status>success</status>
+//            <senderid>testsenderid</senderid>
+//            <controlid>requestControlId</controlid>
+//            <uniqueid>false</uniqueid>
+//            <dtdversion>3.0</dtdversion>
+//      </control>
+//      <operation>
+//            <authentication>
+//                  <status>success</status>
+//                  <userid>testuser</userid>
+//                  <companyid>testcompany</companyid>
+//                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+//            </authentication>
+//            <result>
+//                  <status>failure</status>
+//                  <function>create</function>
+//                  <controlid>create</controlid>
+//                  <data listtype="objects" count="0"/>
+//                  <errormessage>
+//                        <error>
+//                              <errorno>BL34000061</errorno>
+//                              <description></description>
+//                              <description2>Another Class with the given value(s) UT01  already exists</description2>
+//                              <correction>Use a unique value instead.</correction>
+//                        </error>
+//                        <error>
+//                              <errorno>BL01001973</errorno>
+//                              <description></description>
+//                              <description2>Could not create class record!</description2>
+//                              <correction></correction>
+//                        </error>
+//                        <error>
+//                              <errorno>BL01001973</errorno>
+//                              <description></description>
+//                              <description2>Could not create Class record!</description2>
+//                              <correction></correction>
+//                        </error>
+//                  </errormessage>
+//            </result>
+//      </operation>
+//</response>
+//EOF;
+//        $headers = [
+//            'Content-Type' => 'text/xml; encoding="UTF-8"',
+//        ];
+//        $mockResponse = new Response(200, $headers, $xml);
+//        $mock = new MockHandler([
+//            $mockResponse,
+//        ]);
+//
+//        $create = [
+//            'records' => [
+//                new Record([
+//                    'object' => 'CLASS',
+//                    'fields' => [
+//                        'CLASSID' => 'UT01',
+//                        'NAME' => 'Unit Test 01',
+//                    ],
+//                ]),
+//                new Record([
+//                    'object' => 'CLASS',
+//                    'fields' => [
+//                        'CLASSID' => 'UT02',
+//                        'NAME' => 'Unit Test 02',
+//                    ],
+//                ]),
+//            ],
+//            'mock_handler' => $mock,
+//        ];
+//        $this->client->getCompany()->getClassObj()->create($create);
+//    }
     /*
          * TODO To be updated
          * @covers Intacct\Company\ClassObj::delete
