@@ -22,6 +22,9 @@ use Intacct\IntacctClientInterface;
 use Intacct\ObjectTrait;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
+use Intacct\Xml\Request\Operation\Content\Record;
+use Intacct\Xml\ParameterListException;
+use Intacct\StandardFieldHelper;
 
 /**
  * Class ClassObj
@@ -39,6 +42,7 @@ class ClassObj implements StandardObjectInterface
      */
     private $client;
 
+
     /**
      * 
      * @param IntacctClientInterface $client
@@ -54,19 +58,81 @@ class ClassObj implements StandardObjectInterface
     }
 
     /**
-     * Accepts the following options:
+     * Accepts the following params:
      *
-     * - control_id: (string)
-     * - records: (array, required)
+     * 'control_id' => (string)
+     * 'standard_fields' => [
+     *  'CLASSID' => (string)
+     *  'NAME' => (string)
+     *  'DESCRIPTION' => (string)
+     *  'STATUS' => (string)
+     *  'PARENTID' => (string)
+     * 'custom_fields' => [
+     *  (string) => (string),]
      *
      * @param array $params
      * @return Result
      * @throws ResultException
+     * @throws ParameterListException
      */
     public function create(array $params)
     {
-        // Validation here...
-        return $this->createRecords($params, $this->client);
+
+        $createParams = $params;
+
+        // Validate standard_fields in the $params for create.
+        $helper = new StandardFieldHelper();
+
+        $standard_fields_for_create = ['CLASSID', 'NAME', 'DESCRIPTION', 'STATUS', 'PARENTID'];
+        $helper->verifyStandardFieldParameters($createParams, $standard_fields_for_create);
+
+        // Create records array
+        if (array_key_exists('standard_fields', $params))
+        {
+            $standard_fields = $createParams['standard_fields'];
+
+            unset($createParams['standard_fields']); // getting ready to replace standard_fields with fields
+
+            $recordParams = ['fields' => $standard_fields];
+
+            if (array_key_exists('custom_fields', $createParams))
+            {
+                $custom_fields = $createParams['custom_fields'];
+                unset($createParams['custom_fields']);
+
+                $recordParams['fields'] = array_merge($recordParams['fields'], $custom_fields);
+
+            }
+
+            $recordParams = array_merge($recordParams, ['object' => 'CLASS']);
+
+            $record = new Record($recordParams);
+            $recordArray = array('records' => [$record]);
+
+            $createParams = array_merge($createParams, $recordArray);
+
+
+        } elseif (array_key_exists('custom_fields', $createParams))
+        {
+            $custom_fields = $createParams['custom_fields'];
+
+            $recordParams = ['fields' => $custom_fields];
+
+            unset($createParams['custom_fields']);
+
+            array_merge($recordParams['fields'], $custom_fields);
+
+            $recordParams = array_merge($recordParams, ['object' => 'CLASS']);
+
+            $record = new Record($recordParams);
+            $recordArray = array('records' => [$record]);
+
+            $createParams = array_merge($createParams, $recordArray);
+        } else {
+            throw new ParameterListException('Missing standard_fields or custom_fields in parameters', $params);
+        }
+
+        return $this->createRecords($createParams, $this->client);
     }
 
     /**

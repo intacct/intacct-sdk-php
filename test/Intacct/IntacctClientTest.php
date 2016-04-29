@@ -21,8 +21,10 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\IntacctClientInterface;
 use Intacct\IntacctClient;
+use Intacct\Xml\Request\Operation\Content\Record;
+use DOMDocument;
 
-class IntacctClientTest extends \PHPUnit_Framework_TestCase
+class IntacctClientTest extends XMLTestCase
 {
     
     /**
@@ -30,6 +32,11 @@ class IntacctClientTest extends \PHPUnit_Framework_TestCase
      * @var IntacctClientInterface
      */
     private $client;
+
+    /**
+     * @var DOMDocument
+     */
+    private $domDoc;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -94,6 +101,16 @@ EOF;
     protected function tearDown()
     {
         
+    }
+
+    public function getDomDocument()
+    {
+        return $this->domDoc;
+    }
+
+    private function setDomDocumet($domDoc)
+    {
+        $this->domDoc = $domDoc;
     }
 
     /**
@@ -170,4 +187,106 @@ EOF;
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
 
+
+    /**
+     * @covers Intacct\Dimension\ClassObj::create
+     * @covers Intacct\Xml\RequestHandler::executeContent
+     * @covers Intacct\IntacctClient::getSessionConfig
+     */
+    public function testCreateSuccess()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestControlId</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2016-01-24T14:26:56-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>create</function>
+                  <controlid>create</controlid>
+                  <data listtype="objects" count="2">
+                        <class>
+                              <RECORDNO>5</RECORDNO>
+                              <CLASSID>UT01</CLASSID>
+                        </class>
+                        <class>
+                              <RECORDNO>6</RECORDNO>
+                              <CLASSID>UT02</CLASSID>
+                        </class>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $create = [
+            'records' => [
+                new Record([
+                    'object' => 'CLASS',
+                    'fields' => [
+                        'CLASSID' => 'UT01',
+                        'NAME' => 'Unit Test 01',
+                    ],
+                ]),
+                new Record([
+                    'object' => 'CLASS',
+                    'fields' => [
+                        'CLASSID' => 'UT02',
+                        'NAME' => 'Unit Test 02',
+                    ],
+                ]),
+            ],
+            'mock_handler' => $mock,
+        ];
+
+        $data = $this->client->create($create);
+
+        $request = $mock->getLastRequest();
+
+        $requestXML = $request->getBody()->getContents();
+
+
+        // Verify request XML through XPath
+        $dom = new DomDocument();
+        $dom->loadXML($requestXML);
+
+        $this->setDomDocumet($dom);
+
+        $this->assertXpathMatch('create',
+            'name(/request/operation/content/function/*)',
+            'function does not match');
+
+        $this->assertXpathMatch('CLASS',
+            'name(/request/operation/content/function/create/*)',
+            'object does not match');
+
+        $this->assertXpathMatch('UT01Unit Test 01',
+            'string(/request/operation/content/function/create/*)',
+            'object does not match');
+
+        $this->assertEquals($data->getStatus(), 'success');
+        $this->assertEquals($data->getFunction(), 'create');
+        $this->assertEquals($data->getControlId(), 'create');
+
+        // TO DO more testing??
+    }
 }
