@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\Request\Operation\ContentBlock;
+use Intacct\Content;
 use Intacct\Xml\Response\Operation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -198,31 +198,12 @@ class RequestHandler
     }
 
     /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - company_id: (string)
-     * - debug: (bool, default=bool(false))
-     * - dtd_version: (string, default=string(3) "3.0")
-     * - encoding: (string, default=string(5) "UTF-8")
-     * - endpoint_url: (string)
-     * - include_whitespace: (bool, default=bool(false))
-     * - max_retries: (int, default=int(5))
-     * - no_retry_server_error_codes: (array, default=array([524]))
-     * - sender_id: (string, required)
-     * - sender_password: (string, required)
-     * - session_id: (string)
-     * - transaction: (bool, default=bool(false))
-     * - unique_id: (bool, default=bool(false))
-     * - user_id: (string)
-     * - user_password: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
      * @param array $params
-     * @param ContentBlock $contentBlock
-     * @return Operation
+     * @param Content $contentBlock
+     *
+     * @return SynchronousResponse
      */
-    public function executeContent(array $params, ContentBlock $contentBlock)
+    public function executeSynchronous(array $params, Content $contentBlock)
     {
         unset($params['policy_id']);
 
@@ -232,42 +213,20 @@ class RequestHandler
             $client = $this->execute($requestBlock->getXml());
         } finally {
             $this->lastExecution = $this->getHistory();
-            $this->lastResult = $client;
         }
 
         $response = new SynchronousResponse($client->getBody()->getContents());
 
-        return $response->getOperation();
+        return $response;
     }
 
     /**
-     * Accepts the following options:
-     *
-     * - control_id: (string)
-     * - company_id: (string)
-     * - debug: (bool, default=bool(false))
-     * - dtd_version: (string, default=string(3) "3.0")
-     * - encoding: (string, default=string(5) "UTF-8")
-     * - endpoint_url: (string)
-     * - include_whitespace: (bool, default=bool(false))
-     * - max_retries: (int, default=int(5))
-     * - no_retry_server_error_codes: (array, default=array([524]))
-     * - policy_id: (string, required)
-     * - sender_id: (string, required)
-     * - sender_password: (string, required)
-     * - session_id: (string)
-     * - transaction: (bool, default=bool(false))
-     * - unique_id: (bool, default=bool(false))
-     * - user_id: (string)
-     * - user_password: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
      * @param array $params
-     * @param ContentBlock $contentBlock
+     * @param Content $contentBlock
+     *
      * @return AsynchronousResponse
-     * @throws InvalidArgumentException
      */
-    public function executeContentAsync(array $params, ContentBlock $contentBlock)
+    public function executeAsynchronous(array $params, Content $contentBlock)
     {
         $defaults = [
             'policy_id' => null,

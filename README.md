@@ -44,18 +44,18 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Examples
 
-### Create an IntacctClient
+### Create an Intacct Client
 
 ```php
 <?php
 
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-use Intacct\IntacctClientInterface;
+use Intacct\IntacctClient;
 
 try {
     $client = IntacctClient();
-} catch (\Exception $ex) {
+} catch (Exception $ex) {
     echo $ex->getMessage();
 }
 ```

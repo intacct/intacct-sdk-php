@@ -18,7 +18,7 @@
 namespace Intacct\Xml\Request\Operation;
 
 use InvalidArgumentException;
-use XMLWriter;
+use Intacct\Xml\XMLWriter;
 
 class SessionAuthentication extends AbstractAuthentication
 {
@@ -56,7 +56,7 @@ class SessionAuthentication extends AbstractAuthentication
     public function getXml(&$xml)
     {
         $xml->startElement('authentication');
-        $xml->writeElement('sessionid', $this->sessionId);
+        $xml->writeElement('sessionid', $this->sessionId, true);
         $xml->endElement(); //authentication
     }
 
