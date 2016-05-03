@@ -15,9 +15,7 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Response;
-
-use Intacct\Xml\Response\ErrorMessage;
+namespace Intacct\Xml\Response;
 
 class ErrorMessageTest extends \PHPUnit_Framework_TestCase
 {

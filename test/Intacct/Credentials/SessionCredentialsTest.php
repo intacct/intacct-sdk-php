@@ -15,13 +15,12 @@
  *
  */
 
-namespace Intacct\Tests\Credentials;
+namespace Intacct\Credentials;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
 use Intacct\Credentials\SenderCredentials;
-use Intacct\Credentials\SessionCredentials;
 
 class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
 {

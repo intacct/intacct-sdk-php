@@ -15,9 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Tests\Xml\Request\Operation\Content;
-
-use Intacct\Xml\Request\Operation\Content\StandardObjects;
+namespace Intacct\Xml\Request\Operation\Content;
 
 class StandardObjectsTest extends \PHPUnit_Framework_TestCase
 {

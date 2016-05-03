@@ -18,7 +18,7 @@
 namespace Intacct\Xml\Request\Operation;
 
 use InvalidArgumentException;
-use XMLWriter;
+use Intacct\Xml\XMLWriter;
 
 class LoginAuthentication extends AbstractAuthentication
 {
@@ -83,9 +83,9 @@ class LoginAuthentication extends AbstractAuthentication
     {
         $xml->startElement('authentication');
         $xml->startElement('login');
-        $xml->writeElement('userid', $this->userId);
-        $xml->writeElement('companyid', $this->companyId);
-        $xml->writeElement('password', $this->password);
+        $xml->writeElement('userid', $this->userId, true);
+        $xml->writeElement('companyid', $this->companyId, true);
+        $xml->writeElement('password', $this->password, true);
         $xml->endElement(); //login
         $xml->endElement(); //authentication
     }

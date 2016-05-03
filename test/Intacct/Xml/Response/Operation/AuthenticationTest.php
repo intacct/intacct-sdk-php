@@ -15,10 +15,9 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Response\Operation;
+namespace Intacct\Xml\Response\Operation;
 
 use Intacct\Xml\SynchronousResponse;
-use Intacct\Xml\Response\Operation\Authentication;
 use Exception;
 
 class AuthenticationTest extends \PHPUnit_Framework_TestCase

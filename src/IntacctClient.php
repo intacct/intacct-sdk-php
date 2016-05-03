@@ -17,20 +17,16 @@
 
 namespace Intacct;
 
-use Intacct\Applications\Company;
-use Intacct\Applications\CompanyInterface;
-use Intacct\Applications\GeneralLedger;
-use Intacct\Applications\GeneralLedgerInterface;
-use Intacct\Applications\PlatformServices;
-use Intacct\Applications\PlatformServicesInterface;
-use Intacct\Applications\Reporting;
-use Intacct\Applications\ReportingInterface;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
-use Intacct\PlatformServices\CustomObjectTrait;
+use Intacct\Xml\AsynchronousResponse;
+use Intacct\Xml\RequestHandler;
+use Intacct\Xml\SynchronousResponse;
+use Intacct\Content;
 use Intacct\Xml\Response\Operation\Result;
+use Ramsey\Uuid\Uuid;
 
 class IntacctClient implements IntacctClientInterface
 {
@@ -42,7 +38,7 @@ class IntacctClient implements IntacctClientInterface
 
     /**
      *
-     * @var SessionCredentials 
+     * @var SessionCredentials
      */
     private $sessionCreds;
 
@@ -51,32 +47,6 @@ class IntacctClient implements IntacctClientInterface
      * @var array
      */
     private $lastExecution = [];
-    
-    /**
-     *
-     * @var CompanyInterface
-     */
-    private $company;
-    
-    /**
-     *
-     * @var GeneralLedgerInterface
-     */
-    private $generalLedger;
-    
-    /**
-     *
-     * @var PlatformServicesInterface
-     */
-    private $platformServices;
-
-    /**
-     *
-     * @var ReportingInterface
-     */
-    private $reporting;
-
-    use CustomObjectTrait;
 
     /**
      * The constructor accepts the following options:
@@ -87,7 +57,7 @@ class IntacctClient implements IntacctClientInterface
      * - profile_name: (string)
      * - sender_id: (string)
      * - sender_password: (string)
-     * - session_id: (string, required)
+     * - session_id: (string)
      * - user_id: (string)
      * - user_password: (string)
      * - verify_ssl: (bool, default=bool(true))
@@ -126,49 +96,9 @@ class IntacctClient implements IntacctClientInterface
         }
 
     }
-    
-    /**
-     * 
-     * @return CompanyInterface
-     */
-    public function getCompany()
-    {
-        $this->company = new Company($this);
-        return $this->company;
-    }
-    
-    /**
-     * 
-     * @return GeneralLedgerInterface
-     */
-    public function getGeneralLedger()
-    {
-        $this->generalLedger = new GeneralLedger($this);
-        return $this->generalLedger;
-    }
-    
-    /**
-     * 
-     * @return PlatformServicesInterface
-     */
-    public function getPlatformServices()
-    {
-        $this->platformServices = new PlatformServices($this);
-        return $this->platformServices;
-    }
 
     /**
-     * 
-     * @return ReportingInterface
-     */
-    public function getReporting()
-    {
-        $this->reporting = new Reporting($this);
-        return $this->reporting;
-    }
-
-    /**
-     * 
+     *
      * @return SessionCredentials
      */
     private function getSessionCreds()
@@ -177,7 +107,7 @@ class IntacctClient implements IntacctClientInterface
     }
 
     /**
-     * 
+     *
      * @return array
      */
     public function getSessionConfig()
@@ -198,6 +128,16 @@ class IntacctClient implements IntacctClientInterface
     }
 
     /**
+     * Generate a version 4 (random) UUID
+     *
+     * @return string
+     */
+    public function getRandomControlId()
+    {
+        return Uuid::uuid4()->toString();
+    }
+
+    /**
      * Returns an array of the last execution's requests and responses.
      *
      * The array returned by this method can be used to generate appropriate
@@ -212,13 +152,80 @@ class IntacctClient implements IntacctClientInterface
     }
 
     /**
+     * @param Content $contentBlock
+     * @param bool $transaction
+     * @param string $requestControlId
+     * @param bool $uniqueFunctionControlIds
      * @param array $params
-     * @return Result
+     *
+     * @return SynchronousResponse
      */
-    public function create(array $params)
-    {
-        return $this->createRecords($params, $this);
+    public function execute(
+        Content $contentBlock,
+        $transaction = false,
+        $requestControlId = null,
+        $uniqueFunctionControlIds = false,
+        array $params = []
+    ) {
+        $config = array_merge(
+            $this->getSessionConfig(),
+            [
+                'transaction' => $transaction,
+                'control_id' => $requestControlId,
+                'unique_id' => $uniqueFunctionControlIds,
+            ],
+            $params
+        );
+        
+        $requestHandler = new RequestHandler($config);
+
+        try {
+            $response = $requestHandler->executeSynchronous($config, $contentBlock);
+        } finally {
+            $this->lastExecution = $requestHandler->getHistory();
+        }
+        
+        return $response;
     }
 
-    // To Do: Implement the other CRUD operations here...
+    /**
+     * @param Content $contentBlock
+     * @param string $asyncPolicyId
+     * @param bool $transaction
+     * @param string $requestControlId
+     * @param bool $uniqueFunctionControlIds
+     * @param array $params
+     *
+     * @return AsynchronousResponse
+     */
+    public function executeAsync(
+        Content $contentBlock,
+        $asyncPolicyId,
+        $transaction = false,
+        $requestControlId = null,
+        $uniqueFunctionControlIds = false,
+        array $params = []
+    ) {
+        $config = array_merge(
+            $this->getSessionConfig(),
+            [
+                'policy_id' => $asyncPolicyId,
+                'transaction' => $transaction,
+                'control_id' => $requestControlId,
+                'unique_id' => $uniqueFunctionControlIds,
+            ],
+            $params
+        );
+
+        $requestHandler = new RequestHandler($config);
+
+        try {
+            $response = $requestHandler->executeAsynchronous($config, $contentBlock);
+        } finally {
+            $this->lastExecution = $requestHandler->getHistory();
+        }
+
+        return $response;
+    }
+
 }

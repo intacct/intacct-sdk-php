@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Intacct Corporation.
  *
@@ -15,14 +16,10 @@
  *
  */
 
-namespace Intacct\Tests\Credentials;
+namespace Intacct\Credentials;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Credentials\SessionCredentials;
-use Intacct\Credentials\SessionProvider;
-use Intacct\Credentials\SenderCredentials;
-use Intacct\Credentials\LoginCredentials;
 
 class SessionProviderTest extends \PHPUnit_Framework_TestCase
 {
