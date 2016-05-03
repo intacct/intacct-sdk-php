@@ -17,47 +17,7 @@
 
 namespace Intacct;
 
-use Intacct\Applications\CompanyInterface;
-use Intacct\Applications\GeneralLedgerInterface;
-use Intacct\Applications\PlatformServicesInterface;
-use Intacct\Applications\ReportingInterface;
-use Intacct\Xml\Response\Operation\Result;
-
 interface IntacctClientInterface
 {
-    /**
-     * @return CompanyInterface;
-     */
-    public function getCompany();
 
-    /**
-     * @return GeneralLedgerInterface;
-     */
-    public function getGeneralLedger();
-
-    /**
-     * @return PlatformServicesInterface;
-     */
-    public function getPlatformServices();
-
-    /**
-     * @return ReportingInterface;
-     */
-    public function getReporting();
-
-    /**
-     * @return array
-     */
-    public function getSessionConfig();
-
-    /**
-     * @return array
-     */
-    public function getLastExecution();
-
-    /**
-     * @param array $params
-     * @return Result
-     */
-    public function create(array $params);
 }

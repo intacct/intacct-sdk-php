@@ -15,9 +15,8 @@
  *
  */
 
-namespace Intacct\Tests\Xml;
+namespace Intacct\Xml;
 
-use Intacct\Xml\AbstractResponse;
 use Exception;
 
 

@@ -15,10 +15,9 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Response;
+namespace Intacct\Xml\Response;
 
 use Intacct\Xml\AsynchronousResponse;
-use Intacct\Xml\Response\Acknowledgement;
 use Exception;
 
 class AcknowledgementTest extends \PHPUnit_Framework_TestCase

@@ -15,10 +15,9 @@
  *
  */
 
-namespace Intacct\Tests;
+namespace Intacct;
 
 use InvalidArgumentException;
-use Intacct\Endpoint;
 
 class EndpointTest extends \PHPUnit_Framework_TestCase
 {

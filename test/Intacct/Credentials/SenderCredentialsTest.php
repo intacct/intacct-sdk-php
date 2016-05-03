@@ -15,9 +15,8 @@
  *
  */
 
-namespace Intacct\Tests\Credentials;
+namespace Intacct\Credentials;
 
-use Intacct\Credentials\SenderCredentials;
 use Exception;
 
 class SenderCredentialsTest extends \PHPUnit_Framework_TestCase

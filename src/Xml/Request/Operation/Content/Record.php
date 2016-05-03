@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request\Operation\Content;
 
 use ArrayIterator;
+use Intacct\Xml\Request\XMLHelperTrait;
 use InvalidArgumentException;
 
 class Record extends ArrayIterator
@@ -32,6 +33,10 @@ class Record extends ArrayIterator
     protected $objectName;
 
     /**
+     * The constructor accepts the following options:
+     *
+     * - object: (string, required)
+     * - fields: (array)
      * 
      * @param array $params
      * @throws InvalidArgumentException
@@ -44,28 +49,16 @@ class Record extends ArrayIterator
         ];
         $config = array_merge($defaults, $params);
 
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
-        
-        if (count($config['fields']) < 1) {
+        /*if (count($config['fields']) < 1) {
             throw new InvalidArgumentException(
                 'fields count must be greater than zero'
             );
-        }
+        }*/
         
-        if ($this->isValidXmlName($config['object']) === false) {
-            throw new InvalidArgumentException(
-                'object name "' . $config['object'] . '" is not a valid name for an XML element'
-            );
-        }
-
+        $this->setObjectName($config['object']);
+        
         $this->checkFieldKeysAreValidXml($config['fields']);
         
-        $this->objectName = $config['object'];
-
         parent::__construct($config['fields']);
     }
     
@@ -76,6 +69,28 @@ class Record extends ArrayIterator
     public function getObjectName()
     {
         return $this->objectName;
+    }
+    
+    /**
+     * 
+     * @param string $name
+     * @throws InvalidArgumentException
+     */
+    public function setObjectName($name)
+    {
+        if (!$name) {
+            throw new InvalidArgumentException(
+                'object name was not provided or is invalid'
+            );
+        }
+
+        if ($this->isValidXmlName($name) === false) {
+            throw new InvalidArgumentException(
+                'object name "' . $name . '" is not a valid name for an XML element'
+            );
+        }
+        
+        $this->objectName = $name;
     }
 
 }

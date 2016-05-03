@@ -17,7 +17,8 @@
 
 namespace Intacct\Xml\Request;
 
-use XMLWriter;
+use Ramsey\Uuid\Uuid;
+use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 class ControlBlock
@@ -86,7 +87,7 @@ class ControlBlock
         $defaults = [
             'sender_id' => null,
             'sender_password' => null,
-            'control_id' => 'requestControlId',
+            'control_id' => null,
             'unique_id' => false,
             'dtd_version' => '3.0',
             'policy_id' => null,
@@ -123,6 +124,11 @@ class ControlBlock
      */
     private function setControlId($controlId)
     {
+        if (!$controlId) {
+            // generate a version 4 (random) UUID
+            $controlId = Uuid::uuid4()->toString();
+        }
+
         $length = strlen($controlId);
         if ($length < 1 || $length > 256) {
             throw new InvalidArgumentException(
@@ -224,11 +230,11 @@ class ControlBlock
     public function getXml(&$xml)
     {
         $xml->startElement('control');
-        $xml->writeElement('senderid', $this->senderId);
-        $xml->writeElement('password', $this->password);
-        $xml->writeElement('controlid', $this->controlId);
+        $xml->writeElement('senderid', $this->senderId, true);
+        $xml->writeElement('password', $this->password, true);
+        $xml->writeElement('controlid', $this->controlId, true);
         $xml->writeElement('uniqueid', $this->getUniqueId());
-        $xml->writeElement('dtdversion', $this->dtdVersion);
+        $xml->writeElement('dtdversion', $this->dtdVersion, true);
         $xml->writeElement('policyid', $this->policyId);
         $xml->writeElement('includewhitespace', $this->getIncludeWhitespace());
         if ($this->dtdVersion === '2.1') {
