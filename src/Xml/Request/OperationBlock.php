@@ -20,8 +20,8 @@ namespace Intacct\Xml\Request;
 use Intacct\Xml\Request\Operation\AbstractAuthentication;
 use Intacct\Xml\Request\Operation\SessionAuthentication;
 use Intacct\Xml\Request\Operation\LoginAuthentication;
-use Intacct\Xml\Request\Operation\ContentBlock;
-use XMLWriter;
+use Intacct\Content;
+use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 class OperationBlock
@@ -41,16 +41,18 @@ class OperationBlock
 
     /**
      *
-     * @var ContentBlock
+     * @var Content
      */
     private $contentBlock;
 
     /**
      * 
      * @param array $params
-     * @throws InvalidArgumentException
+     * @param Content $contentBlock
+     * 
+*@throws InvalidArgumentException
      */
-    public function __construct(array $params, ContentBlock $contentBlock)
+    public function __construct(array $params, Content $contentBlock)
     {
         $defaults = [
             'transaction' => false,
@@ -58,6 +60,7 @@ class OperationBlock
             'company_id' => null,
             'user_id' => null,
             'user_password' => null,
+            'module_preferences' => [],
         ];
         $config = array_merge($defaults, $params);
 
@@ -74,6 +77,8 @@ class OperationBlock
                 'Required "company_id", "user_id", and "user_password" keys, or "session_id" key, not supplied in params'
             );
         }
+        
+        $this->setModulePreferences($config['module_preferences']);
         
         $this->setContent($contentBlock);
     }
@@ -102,12 +107,24 @@ class OperationBlock
 
         return $transaction;
     }
+
+    /**
+     * @param array $modulePreferences
+     * 
+     * @todo finish the module preferences
+     */
+    private function setModulePreferences(array $modulePreferences)
+    {
+        if (count($modulePreferences) > 0) {
+            
+        }
+    }
     
     /**
      * 
-     * @param ContentBlock $contentBlock
+     * @param Content $contentBlock
      */
-    private function setContent(ContentBlock $contentBlock)
+    private function setContent(Content $contentBlock)
     {
         $this->contentBlock = $contentBlock;
     }

@@ -15,9 +15,8 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Response;
+namespace Intacct\Xml\Response;
 
-use Intacct\Xml\Response\Control;
 use Exception;
 
 class ControlTest extends \PHPUnit_Framework_TestCase

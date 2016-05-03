@@ -25,6 +25,8 @@ class StandardObjects
      * of developer's doing silly things that should never have been allowed
      * in the v3.0 API of the product.
      *
+     * @param $objectName
+     *
      * @return array
      */
     public static function getMethodsNotAllowed($objectName)

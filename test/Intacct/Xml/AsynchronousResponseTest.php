@@ -15,9 +15,8 @@
  *
  */
 
-namespace Intacct\Tests\Xml;
+namespace Intacct\Xml;
 
-use Intacct\Xml\AsynchronousResponse;
 use Exception;
 
 class AsynchronousResponseTest extends \PHPUnit_Framework_TestCase

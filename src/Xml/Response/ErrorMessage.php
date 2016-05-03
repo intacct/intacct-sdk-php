@@ -31,7 +31,6 @@ class ErrorMessage
     /**
      * 
      * @param SimpleXMLIterator $errorMessage
-     * @return array
      */
     public function __construct(SimpleXMLIterator $errorMessage = null)
     {
