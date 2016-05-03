@@ -41,11 +41,11 @@ class ReadByQueryTest extends \PHPUnit_Framework_TestCase
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
     <readByQuery>
-      <object>CLASS</object>
-      <query>RECORDNO &lt; 2</query>
-      <fields>*</fields>
-      <pagesize>1000</pagesize>
-      <returnFormat>xml</returnFormat>
+        <object>CLASS</object>
+        <query>RECORDNO &lt; 2</query>
+        <fields>*</fields>
+        <pagesize>1000</pagesize>
+        <returnFormat>xml</returnFormat>
     </readByQuery>
 </function>
 EOF;
@@ -162,11 +162,11 @@ EOF;
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
     <readByQuery>
-      <object>CLASS</object>
-      <query/>
-      <fields>RECORDNO</fields>
-      <pagesize>100</pagesize>
-      <returnFormat>xml</returnFormat>
+        <object>CLASS</object>
+        <query/>
+        <fields>RECORDNO</fields>
+        <pagesize>100</pagesize>
+        <returnFormat>xml</returnFormat>
     </readByQuery>
 </function>
 EOF;
