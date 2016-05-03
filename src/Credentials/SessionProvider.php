@@ -17,8 +17,8 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Xml\Request\Operation\ContentBlock;
-use Intacct\Xml\Request\Operation\Content\GetAPISession;
+use Intacct\Content;
+use Intacct\Functions\GetAPISession;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\RequestBlock;
 use Intacct\Xml\SynchronousResponse;
@@ -75,7 +75,7 @@ class SessionProvider
      */
     private function getAPISession(array $config)
     {
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
         $getApiSession = new GetAPISession();
         $contentBlock->append($getApiSession);
 
@@ -91,8 +91,7 @@ class SessionProvider
         $response = new SynchronousResponse($client->getBody()->getContents());
         
         $operation = $response->getOperation();
-        $results = $operation->getResults();
-        $result = $results[0];
+        $result = $operation->getResult(0);
         $data = $result->getData();
         $api = $data->api;
 

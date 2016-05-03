@@ -15,10 +15,9 @@
  *
  */
 
-namespace Intacct\Tests\Xml;
+namespace Intacct\Xml;
 
 use Intacct\Xml\SynchronousResponse;
-use Intacct\Xml\ResponseException;
 
 class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
 {

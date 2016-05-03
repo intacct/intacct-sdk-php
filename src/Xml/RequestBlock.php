@@ -17,10 +17,10 @@
 
 namespace Intacct\Xml;
 
-use XMLWriter;
+use Intacct\Xml\XMLWriter;
 use Intacct\Xml\Request\ControlBlock;
 use Intacct\Xml\Request\OperationBlock;
-use Intacct\Xml\Request\Operation\ContentBlock;
+use Intacct\Content;
 use InvalidArgumentException;
 
 class RequestBlock
@@ -53,10 +53,11 @@ class RequestBlock
     /**
      *
      * @param array $params
-     * @param ContentBlock $contentBlock
-     * @throws InvalidArgumentException
+     * @param Content $contentBlock
+     * 
+*@throws InvalidArgumentException
      */
-    public function __construct(array $params, ContentBlock $contentBlock)
+    public function __construct(array $params, Content $contentBlock)
     {
         $defaults = [
             'encoding' => 'UTF-8',

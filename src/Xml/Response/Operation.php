@@ -88,7 +88,10 @@ class Operation
     {
         return $this->results[$key];
     }
-    
+
+    /**
+     * @return array
+     */
     public function getResults()
     {
         return $this->results;

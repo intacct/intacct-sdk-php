@@ -15,9 +15,8 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Tests\Credentials;
+namespace Intacct\Credentials;
 
-use Intacct\Credentials\ProfileCredentialProvider;
 use InvalidArgumentException;
 
 class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase

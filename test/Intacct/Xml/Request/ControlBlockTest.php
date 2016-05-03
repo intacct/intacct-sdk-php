@@ -15,11 +15,10 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Request;
+namespace Intacct\Xml\Request;
 
-use XMLWriter;
+use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
-use Intacct\Xml\Request\ControlBlock;
 
 class ControlBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,6 +50,7 @@ class ControlBlockTest extends \PHPUnit_Framework_TestCase
         $config = [
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
+            'control_id' => 'unittest',
         ];
         
         $expected = <<<EOF
@@ -58,10 +58,9 @@ class ControlBlockTest extends \PHPUnit_Framework_TestCase
 <control>
     <senderid>testsenderid</senderid>
     <password>pass123!</password>
-    <controlid>requestControlId</controlid>
+    <controlid>unittest</controlid>
     <uniqueid>false</uniqueid>
     <dtdversion>3.0</dtdversion>
-    <policyid></policyid>
     <includewhitespace>false</includewhitespace>
 </control>
 EOF;
@@ -208,15 +207,14 @@ EOF;
     
     /**
      * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
+     * @covers Intacct\Xml\Request\ControlBlock::setControlId
      */
     public function testGetXmlInvalidControlIdShort()
     {
         $config = [
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
-            'control_id' => '',
+            'control_id' => '', //will set a random uuid
         ];
         
         new ControlBlock($config);

@@ -15,13 +15,12 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Tests\Xml\Request;
+namespace Intacct\Xml\Request;
 
-use Intacct\Xml\Request\Operation\ContentBlock;
-use Intacct\Xml\Request\Operation\Content\GetAPISession;
-use XMLWriter;
+use Intacct\Content;
+use Intacct\Functions\GetAPISession;
+use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
-use Intacct\Xml\Request\OperationBlock;
 
 class OperationBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,8 +55,10 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
             'session_id' => 'fakesession..',
         ];
         
-        $contentBlock = new ContentBlock();
-        $func = new GetAPISession();
+        $contentBlock = new Content();
+        $func = new GetAPISession([
+            'control_id' => 'unittest'
+        ]);
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -67,7 +68,7 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
         <sessionid>fakesession..</sessionid>
     </authentication>
     <content>
-        <function controlid="getSession">
+        <function controlid="unittest">
             <getAPISession/>
         </function>
     </content>
@@ -100,8 +101,10 @@ EOF;
             'user_password' => 'testpass',
         ];
         
-        $contentBlock = new ContentBlock();
-        $func = new GetAPISession();
+        $contentBlock = new Content();
+        $func = new GetAPISession([
+            'control_id' => 'unittest',
+        ]);
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -115,7 +118,7 @@ EOF;
         </login>
     </authentication>
     <content>
-        <function controlid="getSession">
+        <function controlid="unittest">
             <getAPISession/>
         </function>
     </content>
@@ -147,8 +150,10 @@ EOF;
             'transaction' => true,
         ];
         
-        $contentBlock = new ContentBlock();
-        $func = new GetAPISession();
+        $contentBlock = new Content();
+        $func = new GetAPISession([
+            'control_id' => 'unittest',
+        ]);
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -158,7 +163,7 @@ EOF;
         <sessionid>fakesession..</sessionid>
     </authentication>
     <content>
-        <function controlid="getSession">
+        <function controlid="unittest">
             <getAPISession/>
         </function>
     </content>
@@ -190,7 +195,7 @@ EOF;
             'transaction' => 'true',
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
         $func = new GetAPISession();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
@@ -210,7 +215,7 @@ EOF;
             'user_password' => null,
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
         $func = new GetAPISession();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);

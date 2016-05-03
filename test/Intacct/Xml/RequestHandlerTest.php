@@ -15,14 +15,13 @@
  *
  */
 
-namespace Intacct\Tests\Xml;
+namespace Intacct\Xml;
 
-use Intacct\Xml\Request\Operation\ContentBlock;
+use Intacct\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
 use Intacct\Xml\RequestBlock;
-use Intacct\Xml\RequestHandler;
 
 class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,7 +56,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'verify_ssl' => false,
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -78,7 +77,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => 10,
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -97,7 +96,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'encoding' => 'invalid',
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -118,7 +117,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => '10',
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -138,7 +137,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => -1,
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -160,7 +159,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -188,7 +187,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -210,7 +209,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -259,7 +258,7 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
@@ -312,7 +311,7 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
@@ -344,7 +343,7 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
@@ -369,7 +368,7 @@ EOF;
             'mock_handler' => $mock,
         ];
         
-        $contentBlock = new ContentBlock();
+        $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
