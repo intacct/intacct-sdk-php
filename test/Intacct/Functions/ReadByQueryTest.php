@@ -15,15 +15,13 @@
  *
  */
 
-namespace Intacct\Tests\Xml\Request\Operation\Content;
+namespace Intacct\Functions;
 
-
-use Intacct\Functions\ReadByQuery;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 class ReadByQueryTest extends \PHPUnit_Framework_TestCase
 {
-
 
     /**
      * @covers Intacct\Functions\ReadByQuery::__construct
