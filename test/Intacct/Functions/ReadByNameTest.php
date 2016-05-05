@@ -135,7 +135,7 @@ EOF;
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setControlId
      * @covers Intacct\Functions\ReadByName::setNames
-    //   * @expectedException InvalidArgumentException
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage names count cannot exceed 100
      */
     public function testMaxNumberOfNames()
