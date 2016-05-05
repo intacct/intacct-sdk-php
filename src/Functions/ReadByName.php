@@ -65,6 +65,12 @@ class ReadByName implements FunctionInterface
     private $returnFormat;
 
     /**
+     *
+     * @var string
+     */
+    private $docParId;
+
+    /**
      * 
      * @param array $params
      */
@@ -76,6 +82,7 @@ class ReadByName implements FunctionInterface
             'fields' => [],
             'names' => [],
             'return_format' => static::DEFAULT_RETURN_FORMAT,
+            'doc_par_id' => null,
         ];
         $config = array_merge($defaults, $params);
         
@@ -90,6 +97,7 @@ class ReadByName implements FunctionInterface
         $this->setFields($config['fields']);
         $this->setNames($config['names']);
         $this->setReturnFormat($config['return_format']);
+        $this->docParId = $config['doc_par_id'];
     }
     
     /**
@@ -132,25 +140,27 @@ class ReadByName implements FunctionInterface
     /**
      * 
      * @param array $names
+     * @throws InvalidArgumentException
      */
     private function setNames(array $names)
     {
+        if (count($names) > static::MAX_NAME_COUNT) {
+            throw new InvalidArgumentException('names count cannot exceed ' . static::MAX_NAME_COUNT);
+        }
+
         $this->names = $names;
     }
     
     /**
      * 
      * @return string
-     * @throws InvalidArgumentException
      */
     private function getNames()
     {
-        if (count($this->names) > static::MAX_NAME_COUNT) {
-            throw new InvalidArgumentException('names count cannot exceed ' . static::MAX_NAME_COUNT);
-        } else if (count($this->names) > 0) {
+        $names = '';
+
+        if (count($this->names) > 0) {
             $names = implode(',', $this->names);
-        } else {
-            $names = '';
         }
         
         return $names;
@@ -172,6 +182,7 @@ class ReadByName implements FunctionInterface
         $xml->writeElement('keys', $this->getNames(), true);
         $xml->writeElement('fields', $this->getFields());
         $xml->writeElement('returnFormat', $this->returnFormat);
+        $xml->writeElement('docparid', $this->docParId);
         
         $xml->endElement(); //readByName
         
