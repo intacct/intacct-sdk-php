@@ -93,13 +93,28 @@ class ReadByName implements FunctionInterface
         }
         
         $this->setControlId($config['control_id']);
-        $this->objectName = $config['object'];
+        $this->setObject($config['object']);
         $this->setFields($config['fields']);
         $this->setNames($config['names']);
         $this->setReturnFormat($config['return_format']);
-        $this->docParId = $config['doc_par_id'];
+        $this->setDocParId($config['doc_par_id']);
     }
-    
+
+    /**
+     * @param string $objectName
+     * @throws InvalidArgumentException
+     */
+    private function setObject($objectName)
+    {
+        if (is_string($objectName) === false)
+        {
+            throw new InvalidArgumentException('object must be a string');
+        }
+
+        $this->objectName = $objectName;
+    }
+
+
     /**
      * 
      * @param string $format
@@ -165,11 +180,23 @@ class ReadByName implements FunctionInterface
         
         return $names;
     }
-    
+
+    /**
+     * @param string $docParId
+     * @throws InvalidArgumentException
+     */
+    private function setDocParId($docParId)
+    {
+        if ($docParId !== "" && $docParId !== null && is_string($docParId) === false) {
+            throw new InvalidArgumentException('doc_par_id must be a string');
+        }
+
+        $this->docParId = $docParId;
+    }
+
     /**
      * 
      * @param XMLWriter $xml
-     * @todo add docparid
      */
     public function getXml(XMLWriter &$xml)
     {

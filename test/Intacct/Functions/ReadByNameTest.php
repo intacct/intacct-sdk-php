@@ -25,12 +25,14 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setReturnFormat
+     * @covers Intacct\Functions\ReadByName::setObject
      * @covers Intacct\Functions\ReadByName::setNames
      * @covers Intacct\Functions\ReadByName::setFields
      * @covers Intacct\Functions\ReadByName::setControlId
      * @covers Intacct\Functions\ReadByName::getControlId
      * @covers Intacct\Functions\ReadByName::getNames
      * @covers Intacct\Functions\ReadByName::getFields
+     * @covers Intacct\Functions\ReadByName::setDocParId
      * @covers Intacct\Functions\ReadByName::getXml
      */
     public function testGetXml()
@@ -69,12 +71,28 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setControlId
+     * @covers Intacct\Functions\ReadByName::setObject
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "object" key not supplied in params
      */
     public function testNoObject()
     {
         new ReadByName([
+            'control_id' => 'unittest'
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByName::__construct
+     * @covers Intacct\Functions\ReadByName::setControlId
+     * @covers Intacct\Functions\ReadByName::setObject
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage object must be a string
+     */
+    public function testInvalidObjectName()
+    {
+        new ReadByName([
+            'object' => 4,
             'control_id' => 'unittest'
         ]);
     }
@@ -146,6 +164,24 @@ EOF;
             'object' => 'CLASS',
             'control_id' => 'unittest',
             'names' => $names->toArray(),
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByName::__construct
+     * @covers Intacct\Functions\ReadByName::setControlId
+     * @covers Intacct\Functions\ReadByName::setNames
+     * @covers Intacct\Functions\ReadByName::setDocParId
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage doc_par_id must be a string
+     */
+    public function testInvalidDocParId()
+    {
+        new ReadByName([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'names' => ['NAME1','NAME2'],
+            'doc_par_id' => 2343,
         ]);
     }
 }

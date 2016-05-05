@@ -98,13 +98,42 @@ class ReadRelated implements FunctionInterface
         }
         
         $this->setControlId($config['control_id']);
-        $this->objectName = $config['object'];
-        $this->relationName = $config['relation'];
+        $this->setObject($config['object']);
+        $this->setRelation($config['relation']);
         $this->setFields($config['fields']);
         $this->setKeys($config['keys']);
         $this->setReturnFormat($config['return_format']);
     }
-    
+
+    /**
+     * @param string $objectName
+     * @throws InvalidArgumentException
+     */
+    private function setObject($objectName)
+    {
+        if (is_string($objectName) === false)
+        {
+            throw new InvalidArgumentException('object must be a string');
+        }
+
+        $this->objectName = $objectName;
+    }
+
+    /**
+     * @param string $relation
+     * @throws InvalidArgumentException
+     */
+    private function setRelation($relation)
+    {
+        if (is_string($relation) === false)
+        {
+            throw new InvalidArgumentException('relation must be a string');
+        }
+
+        $this->relationName = $relation;
+    }
+
+
     /**
      * 
      * @param string $format
@@ -145,22 +174,23 @@ class ReadRelated implements FunctionInterface
     /**
      * 
      * @param array $keys
+     * @throws InvalidArgumentException
      */
     private function setKeys(array $keys)
     {
+        if (count($keys) > static::MAX_KEY_COUNT) {
+            throw new InvalidArgumentException('keys count cannot exceed ' . static::MAX_KEY_COUNT);
+        }
         $this->keys = $keys;
     }
     
     /**
      * 
      * @return string
-     * @throws InvalidArgumentException
      */
     private function getKeys()
     {
-        if (count($this->keys) > static::MAX_KEY_COUNT) {
-            throw new InvalidArgumentException('keys count cannot exceed ' . static::MAX_KEY_COUNT);
-        } else if (count($this->keys) > 0) {
+        if (count($this->keys) > 0) {
             $fields = implode(',', $this->keys);
         } else {
             $fields = '';
