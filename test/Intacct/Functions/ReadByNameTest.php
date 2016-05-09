@@ -22,6 +22,50 @@ use InvalidArgumentException;
 
 class ReadByNameTest extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @covers Intacct\Functions\ReadByName::__construct
+     * @covers Intacct\Functions\ReadByName::setReturnFormat
+     * @covers Intacct\Functions\ReadByName::setObject
+     * @covers Intacct\Functions\ReadByName::setNames
+     * @covers Intacct\Functions\ReadByName::setFields
+     * @covers Intacct\Functions\ReadByName::setControlId
+     * @covers Intacct\Functions\ReadByName::getControlId
+     * @covers Intacct\Functions\ReadByName::getNames
+     * @covers Intacct\Functions\ReadByName::getFields
+     * @covers Intacct\Functions\ReadByName::setDocParId
+     * @covers Intacct\Functions\ReadByName::getXml
+     */
+    public function testDefaults()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readByName>
+        <object>GLENTRY</object>
+        <keys></keys>
+        <fields>*</fields>
+        <returnFormat>xml</returnFormat>
+    </readByName>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readByName = new ReadByName([
+            'object' => 'GLENTRY',
+            'control_id' => 'unittest',
+
+        ]);
+        $readByName->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setReturnFormat

@@ -33,6 +33,47 @@ class ReadByQueryTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\ReadByQuery::getControlId
      * @covers Intacct\Functions\ReadByQuery::getXml
      */
+    public function testDefaults()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readByQuery>
+        <object>CLASS</object>
+        <query>RECORDNO &lt; 2</query>
+        <fields>*</fields>
+        <pagesize>1000</pagesize>
+        <returnFormat>xml</returnFormat>
+    </readByQuery>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readByQuery = new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2'
+        ]);
+        $readByQuery->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::__construct
+     * @covers Intacct\Functions\ReadByQuery::setControlId
+     * @covers Intacct\Functions\ReadByQuery::setFields
+     * @covers Intacct\Functions\ReadByQuery::setPageSize
+     * @covers Intacct\Functions\ReadByQuery::setReturnFormat
+     * @covers Intacct\Functions\ReadByQuery::getFields
+     * @covers Intacct\Functions\ReadByQuery::getControlId
+     * @covers Intacct\Functions\ReadByQuery::getXml
+     */
     public function testGetXml()
     {
         $expected = <<<EOF
