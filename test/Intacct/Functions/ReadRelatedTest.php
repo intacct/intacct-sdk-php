@@ -25,7 +25,7 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setReturnFormat
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @covers Intacct\Functions\ReadRelated::setKeys
      * @covers Intacct\Functions\ReadRelated::getKeys
@@ -72,21 +72,22 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "object" key not supplied in params
      */
     public function testNoObject()
     {
         new ReadRelated([
-            'control_id' => 'unittest'
+            'control_id' => 'unittest',
+            'relation' => 'CUSTOM_OBJECT_ITEM',
         ]);
     }
 
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage object must be a string
@@ -103,7 +104,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "relation" key not supplied in params
      */
@@ -118,7 +119,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage relation must be a string
@@ -135,7 +136,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @covers Intacct\Functions\ReadRelated::setReturnFormat
      * @expectedException InvalidArgumentException
@@ -154,7 +155,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @covers Intacct\Functions\ReadRelated::setFields
      * @covers Intacct\Functions\ReadRelated::setKeys
@@ -178,7 +179,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObject
+     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @covers Intacct\Functions\ReadRelated::setFields
      * @covers Intacct\Functions\ReadRelated::getFields

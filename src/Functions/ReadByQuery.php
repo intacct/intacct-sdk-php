@@ -24,7 +24,9 @@ class ReadByQuery implements FunctionInterface
 {
     
     use ControlIdTrait;
-    
+
+    use ObjectTrait;
+
     /**
      * @var array
      */
@@ -49,13 +51,7 @@ class ReadByQuery implements FunctionInterface
      * @var int
      */
     const DEFAULT_PAGE_SIZE = 1000;
-    
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
-    
+
     /**
      *
      * @var array
@@ -103,14 +99,8 @@ class ReadByQuery implements FunctionInterface
         ];
         $config = array_merge($defaults, $params);
         
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
-        
         $this->setControlId($config['control_id']);
-        $this->objectName = $config['object'];
+        $this->setObjectName($config['object']);
         $this->setFields($config['fields']);
         $this->query = $config['query'];
         $this->setPageSize($config['page_size']);
@@ -194,7 +184,7 @@ class ReadByQuery implements FunctionInterface
         
         $xml->startElement('readByQuery');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('query', $this->query, true);
         $xml->writeElement('fields', $this->getFields());
         $xml->writeElement('pagesize', $this->pageSize);
