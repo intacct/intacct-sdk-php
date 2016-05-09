@@ -107,19 +107,6 @@ EOF;
 
     /**
      * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "object" key not supplied in params
-     */
-    public function testNoObject()
-    {
-        new ReadByQuery([
-            'control_id' => 'unittest'
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
      * @covers Intacct\Functions\ReadByQuery::setPageSize
      * @covers Intacct\Functions\ReadByQuery::setControlId
      * @expectedException InvalidArgumentException

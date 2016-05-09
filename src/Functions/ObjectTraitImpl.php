@@ -17,38 +17,30 @@
 
 namespace Intacct\Functions;
 
-
-use InvalidArgumentException;
-
-trait ObjectTrait
+/**
+ * Class ObjectTraitImpl
+ *
+ * A stub class for {@link ObjectTraitTest} that uses the trait {link ObjectTrait}
+ *
+ * @package Intacct\Functions
+ */
+class ObjectTraitImpl
 {
+    use ObjectTrait;
 
     /**
-     * @var string
+     * @param $name string
      */
-    private $objectName;
-
-    /**
-     * @param string $objectName
-     * @throws InvalidArgumentException
-     */
-    private function setObjectName($objectName = null)
+    public function setObject($name)
     {
-        if (!$objectName) {
-            throw new InvalidArgumentException('Required "object" key not supplied in params');
-        }
-        if (is_string($objectName) === false) {
-            throw new InvalidArgumentException('object must be a string');
-        }
-
-        $this->objectName = $objectName;
+        $this->setObjectName($name);
     }
 
     /**
      * @return string
      */
-    private function getObjectName()
+    public function getObject()
     {
-        return $this->objectName;
+        return $this->getObjectName();
     }
 }

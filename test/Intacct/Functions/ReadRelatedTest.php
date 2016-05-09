@@ -74,38 +74,6 @@ EOF;
      * @covers Intacct\Functions\ReadRelated::setControlId
      * @covers Intacct\Functions\ReadRelated::setObjectName
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "object" key not supplied in params
-     */
-    public function testNoObject()
-    {
-        new ReadRelated([
-            'control_id' => 'unittest',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
-     * @covers Intacct\Functions\ReadRelated::setRelation
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage object must be a string
-     */
-    public function testInvalidObject()
-    {
-        new ReadRelated([
-            'control_id' => 'unittest',
-            'object' => 9,
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
-     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "relation" key not supplied in params
      */
     public function testNoRelation()

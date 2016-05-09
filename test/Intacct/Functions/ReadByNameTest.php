@@ -26,7 +26,7 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\ReadByName::setObject
+     * @covers Intacct\Functions\ReadByName::setObjectName
      * @covers Intacct\Functions\ReadByName::setNames
      * @covers Intacct\Functions\ReadByName::setFields
      * @covers Intacct\Functions\ReadByName::setControlId
@@ -69,7 +69,7 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\ReadByName::setObject
+     * @covers Intacct\Functions\ReadByName::setObjectName
      * @covers Intacct\Functions\ReadByName::setNames
      * @covers Intacct\Functions\ReadByName::setFields
      * @covers Intacct\Functions\ReadByName::setControlId
@@ -110,35 +110,6 @@ EOF;
         $readByName->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setObject
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "object" key not supplied in params
-     */
-    public function testNoObject()
-    {
-        new ReadByName([
-            'control_id' => 'unittest'
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setObject
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage object must be a string
-     */
-    public function testInvalidObjectName()
-    {
-        new ReadByName([
-            'object' => 4,
-            'control_id' => 'unittest'
-        ]);
     }
 
     /**
