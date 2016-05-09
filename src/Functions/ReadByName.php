@@ -24,7 +24,9 @@ class ReadByName implements FunctionInterface
 {
     
     use ControlIdTrait;
-    
+
+    use ObjectTrait;
+
     /**
      * @var array
      */
@@ -39,13 +41,7 @@ class ReadByName implements FunctionInterface
      * @var int
      */
     const MAX_NAME_COUNT = 100;
-    
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
-    
+
     /**
      *
      * @var array
@@ -85,35 +81,14 @@ class ReadByName implements FunctionInterface
             'doc_par_id' => null,
         ];
         $config = array_merge($defaults, $params);
-        
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
-        
+
         $this->setControlId($config['control_id']);
-        $this->setObject($config['object']);
+        $this->setObjectName($config['object']);
         $this->setFields($config['fields']);
         $this->setNames($config['names']);
         $this->setReturnFormat($config['return_format']);
         $this->setDocParId($config['doc_par_id']);
     }
-
-    /**
-     * @param string $objectName
-     * @throws InvalidArgumentException
-     */
-    private function setObject($objectName)
-    {
-        if (is_string($objectName) === false)
-        {
-            throw new InvalidArgumentException('object must be a string');
-        }
-
-        $this->objectName = $objectName;
-    }
-
 
     /**
      * 
@@ -205,7 +180,7 @@ class ReadByName implements FunctionInterface
         
         $xml->startElement('readByName');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->getNames(), true);
         $xml->writeElement('fields', $this->getFields());
         $xml->writeElement('returnFormat', $this->returnFormat);
