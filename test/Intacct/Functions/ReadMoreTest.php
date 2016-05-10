@@ -27,7 +27,7 @@ class ReadMoreTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\ReadMore::setControlId
      * @covers Intacct\Functions\ReadMore::getXml
      */
-    public function testGetXml()
+    public function testParamOverrides()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,6 +52,8 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
+
+
 
     /**
      * @covers Intacct\Functions\ReadMore::__construct

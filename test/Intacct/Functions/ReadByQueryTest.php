@@ -26,14 +26,16 @@ class ReadByQueryTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Intacct\Functions\ReadByQuery::__construct
      * @covers Intacct\Functions\ReadByQuery::setControlId
+     * @covers Intacct\Functions\ReadByQuery::getControlId
      * @covers Intacct\Functions\ReadByQuery::setFields
+     * @covers Intacct\Functions\ReadByQuery::getFields
      * @covers Intacct\Functions\ReadByQuery::setPageSize
      * @covers Intacct\Functions\ReadByQuery::setReturnFormat
-     * @covers Intacct\Functions\ReadByQuery::getFields
-     * @covers Intacct\Functions\ReadByQuery::getControlId
+     * @covers Intacct\Functions\ReadByQuery::setQuery
+     * @covers Intacct\Functions\ReadByQuery::setDocParId
      * @covers Intacct\Functions\ReadByQuery::getXml
      */
-    public function testDefaults()
+    public function testDefaultParams()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,7 +59,7 @@ EOF;
         $readByQuery = new ReadByQuery([
             'object' => 'CLASS',
             'control_id' => 'unittest',
-            'query' => 'RECORDNO < 2'
+            'query' => 'RECORDNO < 2',
         ]);
         $readByQuery->getXml($xml);
 
@@ -67,122 +69,16 @@ EOF;
     /**
      * @covers Intacct\Functions\ReadByQuery::__construct
      * @covers Intacct\Functions\ReadByQuery::setControlId
+     * @covers Intacct\Functions\ReadByQuery::getControlId
      * @covers Intacct\Functions\ReadByQuery::setFields
+     * @covers Intacct\Functions\ReadByQuery::getFields
      * @covers Intacct\Functions\ReadByQuery::setPageSize
      * @covers Intacct\Functions\ReadByQuery::setReturnFormat
-     * @covers Intacct\Functions\ReadByQuery::getFields
-     * @covers Intacct\Functions\ReadByQuery::getControlId
+     * @covers Intacct\Functions\ReadByQuery::setQuery
+     * @covers Intacct\Functions\ReadByQuery::setDocParId
      * @covers Intacct\Functions\ReadByQuery::getXml
      */
-    public function testGetXml()
-    {
-        $expected = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<function controlid="unittest">
-    <readByQuery>
-        <object>CLASS</object>
-        <query>RECORDNO &lt; 2</query>
-        <fields>*</fields>
-        <pagesize>1000</pagesize>
-        <returnFormat>xml</returnFormat>
-    </readByQuery>
-</function>
-EOF;
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $readByQuery = new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 2'
-        ]);
-        $readByQuery->getXml($xml);
-
-        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size not valid int type
-     */
-    public function testStringForPageSize()
-    {
-        new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'page_size' => '5',
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be less than 1
-     */
-    public function testMinPageSize()
-    {
-        new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'page_size' => 0,
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be greater than 1000
-     */
-    public function testMaxPageSize()
-    {
-        new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'page_size' => 1001,
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @covers Intacct\Functions\ReadByQuery::setReturnFormat
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'page_size' => 100,
-            'return_format' => ''
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByQuery::__construct
-     * @covers Intacct\Functions\ReadByQuery::setControlId
-     * @covers Intacct\Functions\ReadByQuery::setFields
-     * @covers Intacct\Functions\ReadByQuery::setPageSize
-     * @covers Intacct\Functions\ReadByQuery::setReturnFormat
-     * @covers Intacct\Functions\ReadByQuery::getFields
-     * @covers Intacct\Functions\ReadByQuery::getControlId
-     * @covers Intacct\Functions\ReadByQuery::getXml
-     */
-    public function testGetFields()
+    public function testParamOverrides()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -193,6 +89,7 @@ EOF;
         <fields>RECORDNO</fields>
         <pagesize>100</pagesize>
         <returnFormat>xml</returnFormat>
+        <docparid>255252235</docparid>
     </readByQuery>
 </function>
 EOF;
@@ -206,13 +103,108 @@ EOF;
         $readByQuery = new ReadByQuery([
             'object' => 'CLASS',
             'control_id' => 'unittest',
+            'query' => '',
             'page_size' => 100,
             'return_format' => 'xml',
-            'fields' => ['RECORDNO']
+            'fields' => [
+                'RECORDNO',
+            ],
+            'doc_par_id' => '255252235',
         ]);
 
         $readByQuery->getXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setQuery
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage query must be a string
+     */
+    public function testQueryMissing()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setPageSize
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage page_size not valid int type
+     */
+    public function testStringForPageSize()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2',
+            'page_size' => '5',
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setPageSize
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage page_size cannot be less than 1
+     */
+    public function testMinPageSize()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2',
+            'page_size' => 0,
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setPageSize
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage page_size cannot be greater than 1000
+     */
+    public function testMaxPageSize()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2',
+            'page_size' => 1001,
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setReturnFormat
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage return_format is not a valid format
+     */
+    public function testInvalidReturnFormat()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2',
+            'page_size' => 100,
+            'return_format' => ''
+        ]);
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByQuery::setDocParId
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage doc_par_id must be a string
+     */
+    public function testInvalidDocParId()
+    {
+        new ReadByQuery([
+            'object' => 'CLASS',
+            'control_id' => 'unittest',
+            'query' => 'RECORDNO < 2',
+            'page_size' => 100,
+            'doc_par_id' => null
+        ]);
+    }
+
 }

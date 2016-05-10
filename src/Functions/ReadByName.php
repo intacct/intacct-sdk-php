@@ -78,7 +78,7 @@ class ReadByName implements FunctionInterface
             'fields' => [],
             'names' => [],
             'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
+            'doc_par_id' => '',
         ];
         $config = array_merge($defaults, $params);
 
@@ -162,7 +162,7 @@ class ReadByName implements FunctionInterface
      */
     private function setDocParId($docParId)
     {
-        if ($docParId !== "" && $docParId !== null && is_string($docParId) === false) {
+        if (is_string($docParId) === false) {
             throw new InvalidArgumentException('doc_par_id must be a string');
         }
 

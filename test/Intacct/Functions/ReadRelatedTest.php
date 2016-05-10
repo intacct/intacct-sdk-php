@@ -24,6 +24,52 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
+     * @covers Intacct\Functions\ReadRelated::setControlId
+     * @covers Intacct\Functions\ReadRelated::getControlId
+     * @covers Intacct\Functions\ReadRelated::setObjectName
+     * @covers Intacct\Functions\ReadRelated::getObjectName
+     * @covers Intacct\Functions\ReadRelated::setRelation
+     * @covers Intacct\Functions\ReadRelated::setFields
+     * @covers Intacct\Functions\ReadRelated::getFields
+     * @covers Intacct\Functions\ReadRelated::setKeys
+     * @covers Intacct\Functions\ReadRelated::getKeys
+     * @covers Intacct\Functions\ReadRelated::setReturnFormat
+     * @covers Intacct\Functions\ReadRelated::getXml
+     */
+    public function testDefaultParams()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readRelated>
+        <object>CUSTOM_OBJECT</object>
+        <relation>CUSTOM_OBJECT_ITEM</relation>
+        <keys/>
+        <fields>*</fields>
+        <returnFormat>xml</returnFormat>
+    </readRelated>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readRelated = new ReadRelated([
+            'object' => 'CUSTOM_OBJECT',
+            'relation' => 'CUSTOM_OBJECT_ITEM',
+            'control_id' => 'unittest',
+        ]);
+
+        $readRelated->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadRelated::__construct
      * @covers Intacct\Functions\ReadRelated::setReturnFormat
      * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
@@ -35,7 +81,7 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\ReadRelated::getControlId
      * @covers Intacct\Functions\ReadRelated::getXml
      */
-    public function testGetXml()
+    public function testParamOverrides()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,7 +89,7 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
     <readRelated>
         <object>CUSTOM_OBJECT</object>
         <relation>CUSTOM_OBJECT_ITEM</relation>
-        <keys/>
+        <keys>KEY1,KEY2</keys>
         <fields>FIELD1,FIELD2</fields>
         <returnFormat>xml</returnFormat>
     </readRelated>
@@ -60,7 +106,7 @@ EOF;
             'object' => 'CUSTOM_OBJECT',
             'control_id' => 'unittest',
             'relation' => 'CUSTOM_OBJECT_ITEM',
-            'keys' => [],
+            'keys' => ['KEY1','KEY2'],
             'fields' => ['FIELD1','FIELD2'],
             'return_format' => 'xml',
         ]);
@@ -71,8 +117,6 @@ EOF;
 
     /**
      * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "relation" key not supplied in params
      */
@@ -85,9 +129,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
      * @covers Intacct\Functions\ReadRelated::setRelation
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage relation must be a string
@@ -102,10 +143,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
-     * @covers Intacct\Functions\ReadRelated::setRelation
      * @covers Intacct\Functions\ReadRelated::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage return_format is not a valid format
@@ -121,11 +158,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
-     * @covers Intacct\Functions\ReadRelated::setRelation
-     * @covers Intacct\Functions\ReadRelated::setFields
      * @covers Intacct\Functions\ReadRelated::setKeys
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage keys count cannot exceed 100
@@ -143,47 +175,4 @@ EOF;
         ]);
     }
 
-
-    /**
-     * @covers Intacct\Functions\ReadRelated::__construct
-     * @covers Intacct\Functions\ReadRelated::setControlId
-     * @covers Intacct\Functions\ReadRelated::setObjectName
-     * @covers Intacct\Functions\ReadRelated::setRelation
-     * @covers Intacct\Functions\ReadRelated::setFields
-     * @covers Intacct\Functions\ReadRelated::getFields
-     * @covers Intacct\Functions\ReadRelated::setKeys
-     * @covers Intacct\Functions\ReadRelated::getKeys
-     */
-    public function testNoFieldsGiven()
-    {
-        $expected = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<function controlid="unittest">
-    <readRelated>
-        <object>CUSTOM_OBJECT</object>
-        <relation>CUSTOM_OBJECT_ITEM</relation>
-        <keys>KEY1,KEY2</keys>
-        <fields>*</fields>
-        <returnFormat>xml</returnFormat>
-    </readRelated>
-</function>
-EOF;
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $readRelated = new ReadRelated([
-            'object' => 'CUSTOM_OBJECT',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-            'control_id' => 'unittest',
-            'keys' => ['KEY1','KEY2'],
-        ]);
-
-        $readRelated->getXml($xml);
-
-        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
 }

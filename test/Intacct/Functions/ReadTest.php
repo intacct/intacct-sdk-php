@@ -32,10 +32,9 @@ class ReadTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\Read::setKeys
      * @covers Intacct\Functions\Read::getKeys
      * @covers Intacct\Functions\Read::setDocParId
-     * @covers Intacct\Functions\Read::getDocParId
      * @covers Intacct\Functions\Read::getXml
      */
-    public function testDefaults()
+    public function testDefaultParams()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -73,10 +72,9 @@ EOF;
      * @covers Intacct\Functions\Read::getKeys
      * @covers Intacct\Functions\Read::setKeys
      * @covers Intacct\Functions\Read::setDocParId
-     * @covers Intacct\Functions\Read::getDocParId
      * @covers Intacct\Functions\Read::getXml
      */
-    public function testGetXml()
+    public function testParamOverrides()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -118,7 +116,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
      * @covers Intacct\Functions\Read::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage object must be a string
@@ -147,9 +144,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
      * @covers Intacct\Functions\Read::setReturnFormat
-     * @covers Intacct\Functions\Read::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage return_format is not a valid format
      */
@@ -165,9 +160,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
      * @covers Intacct\Functions\Read::setReturnFormat
-     * @covers Intacct\Functions\Read::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage return_format is not a valid format
      */
@@ -183,9 +176,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
      * @covers Intacct\Functions\Read::setKeys
-     * @covers Intacct\Functions\Read::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage keys count cannot exceed 100
      */
@@ -203,8 +194,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
-     * @covers Intacct\Functions\Read::setObjectName
      * @covers Intacct\Functions\Read::setFields
      * @covers Intacct\Functions\Read::getFields
      */
@@ -242,8 +231,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
-     * @covers Intacct\Functions\Read::setObjectName
      * @covers Intacct\Functions\Read::setKeys
      * @covers Intacct\Functions\Read::getKeys
      */
@@ -281,8 +268,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Read::__construct
-     * @covers Intacct\Functions\Read::setObjectName
      * @covers Intacct\Functions\Read::setDocParId
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage doc_par_id must be a string

@@ -95,17 +95,17 @@ class ReadByQuery implements FunctionInterface
             'query' => null,
             'page_size' => static::DEFAULT_PAGE_SIZE,
             'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
+            'doc_par_id' => '',
         ];
         $config = array_merge($defaults, $params);
         
         $this->setControlId($config['control_id']);
         $this->setObjectName($config['object']);
         $this->setFields($config['fields']);
-        $this->query = $config['query'];
+        $this->setQuery($config['query']);
         $this->setPageSize($config['page_size']);
         $this->setReturnFormat($config['return_format']);
-        $this->docParId = $config['doc_par_id'];
+        $this->setDocParId($config['doc_par_id']);
     }
     
     /**
@@ -172,7 +172,26 @@ class ReadByQuery implements FunctionInterface
         
         return $fields;
     }
-    
+
+    /**
+     * @param string $query
+     */
+    private function setQuery($query)
+    {
+        if (is_string($query) === false) {
+            throw new InvalidArgumentException('query must be a string');
+        }
+        $this->query = $query;
+    }
+
+    private function setDocParId($docParId)
+    {
+        if (is_string($docParId) === false) {
+            throw new InvalidArgumentException('doc_par_id must be a string');
+        }
+        $this->docParId = $docParId;
+    }
+
     /**
      * 
      * @param XMLWriter $xml

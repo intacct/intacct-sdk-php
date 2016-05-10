@@ -170,17 +170,6 @@ class Read implements FunctionInterface
     }
 
     /**
-     * @return string
-     */
-    private function getDocParId()
-    {
-        if ($this->docParId === '') {
-            return null;
-        }
-
-        return $this->docParId;
-    }
-    /**
      * 
      * @param XMLWriter $xml
      */
@@ -195,7 +184,7 @@ class Read implements FunctionInterface
         $xml->writeElement('keys', $this->getKeys(), true);
         $xml->writeElement('fields', $this->getFields());
         $xml->writeElement('returnFormat', $this->returnFormat);
-        $xml->writeElement('docparid', $this->getDocParId());
+        $xml->writeElement('docparid', $this->docParId);
         
         $xml->endElement(); //read
         
