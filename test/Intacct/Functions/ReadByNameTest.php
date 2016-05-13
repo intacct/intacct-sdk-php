@@ -22,10 +22,11 @@ use InvalidArgumentException;
 
 class ReadByNameTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @covers Intacct\Functions\ReadByName::__construct
      * @covers Intacct\Functions\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\ReadByName::setObject
+     * @covers Intacct\Functions\ReadByName::setObjectName
      * @covers Intacct\Functions\ReadByName::setNames
      * @covers Intacct\Functions\ReadByName::setFields
      * @covers Intacct\Functions\ReadByName::setControlId
@@ -35,7 +36,49 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\ReadByName::setDocParId
      * @covers Intacct\Functions\ReadByName::getXml
      */
-    public function testGetXml()
+    public function testDefaultParams()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readByName>
+        <object>GLENTRY</object>
+        <keys></keys>
+        <fields>*</fields>
+        <returnFormat>xml</returnFormat>
+    </readByName>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readByName = new ReadByName([
+            'object' => 'GLENTRY',
+            'control_id' => 'unittest',
+        ]);
+        $readByName->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @covers Intacct\Functions\ReadByName::__construct
+     * @covers Intacct\Functions\ReadByName::setReturnFormat
+     * @covers Intacct\Functions\ReadByName::setObjectName
+     * @covers Intacct\Functions\ReadByName::setNames
+     * @covers Intacct\Functions\ReadByName::setFields
+     * @covers Intacct\Functions\ReadByName::setControlId
+     * @covers Intacct\Functions\ReadByName::getControlId
+     * @covers Intacct\Functions\ReadByName::getNames
+     * @covers Intacct\Functions\ReadByName::getFields
+     * @covers Intacct\Functions\ReadByName::setDocParId
+     * @covers Intacct\Functions\ReadByName::getXml
+     */
+    public function testParamOverrides()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -62,6 +105,7 @@ EOF;
             'names' => ['987'],
             'fields' => ['TRX_AMOUNT','RECORDNO','BATCHNO'],
             'doc_par_id' => '390FJ234MGF0-323F&23T.',
+            'return_format' => 'xml',
         ]);
         $readByName->getXml($xml);
 
@@ -69,37 +113,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setObject
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "object" key not supplied in params
-     */
-    public function testNoObject()
-    {
-        new ReadByName([
-            'control_id' => 'unittest'
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setObject
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage object must be a string
-     */
-    public function testInvalidObjectName()
-    {
-        new ReadByName([
-            'object' => 4,
-            'control_id' => 'unittest'
-        ]);
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
      * @covers Intacct\Functions\ReadByName::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage return_format is not a valid format
@@ -114,44 +127,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\ReadByName::getFields
-     */
-    public function testNoFieldsGiven()
-    {
-        $expected = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<function controlid="unittest">
-    <readByName>
-        <object>GLENTRY</object>
-        <keys/>
-        <fields>*</fields>
-        <returnFormat>xml</returnFormat>
-    </readByName>
-</function>
-EOF;
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $readByName = new ReadByName([
-            'object' => 'GLENTRY',
-            'control_id' => 'unittest',
-        ]);
-
-        $readByName->getXml($xml);
-
-        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
      * @covers Intacct\Functions\ReadByName::setNames
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage names count cannot exceed 100
@@ -168,9 +143,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\ReadByName::__construct
-     * @covers Intacct\Functions\ReadByName::setControlId
-     * @covers Intacct\Functions\ReadByName::setNames
      * @covers Intacct\Functions\ReadByName::setDocParId
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage doc_par_id must be a string

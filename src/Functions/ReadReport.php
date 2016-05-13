@@ -94,7 +94,17 @@ class ReadReport implements FunctionInterface
      * @var int
      */
     private $waitTime;
-    
+
+    /**
+     * @var string
+     */
+    private $listSeparator;
+
+    /**
+     * @var bool
+     */
+    private $returnDef;
+
     /**
      * 
      * @param array $params
@@ -109,6 +119,8 @@ class ReadReport implements FunctionInterface
             'page_size' => static::DEFAULT_PAGE_SIZE,
             'return_format' => static::DEFAULT_RETURN_FORMAT,
             'wait_time' => static::DEFAULT_WAIT_TIME,
+            'return_def' => false,
+            'list_separator' => '',
         ];
         $config = array_merge($defaults, $params);
         
@@ -119,13 +131,30 @@ class ReadReport implements FunctionInterface
         }
         
         $this->setControlId($config['control_id']);
-        $this->reportName = $config['report'];
+        $this->setReportName($config['report']);
+        $this->setReturnDef($config['return_def']);
         $this->setArguments($config['arguments']);
         $this->setPageSize($config['page_size']);
         $this->setReturnFormat($config['return_format']);
         $this->setWaitTime($config['wait_time']);
+        $this->setListSeparator($config['list_separator']);
     }
-    
+
+    /**
+     * @param $report
+     * @throws InvalidArgumentException
+     */
+    private function setReportName($report)
+    {
+        if (is_string($report) === false) {
+            throw new InvalidArgumentException(
+                'report must be a string'
+            );
+        }
+
+        $this->reportName = $report;
+    }
+
     /**
      * 
      * @param int $pageSize
@@ -203,7 +232,58 @@ class ReadReport implements FunctionInterface
     {
         $this->arguments = $arguments;
     }
-    
+
+    /**
+     * @param string $listSeparator
+     * @throws InvalidArgumentException
+     */
+    private function setListSeparator($listSeparator)
+    {
+        if (is_string($listSeparator) === false)
+        {
+            throw new InvalidArgumentException('list_separator must be a string');
+        }
+
+        $this->listSeparator = $listSeparator;
+
+    }
+
+    /**
+     * @return string
+     */
+    private function getListSeparator()
+    {
+        if ($this->listSeparator === '')
+        {
+            return null;
+        }
+
+        return $this->listSeparator;
+
+    }
+
+    /**
+     * @param $returnDef
+     * @throws InvalidArgumentException
+     */
+    private function setReturnDef($returnDef)
+    {
+        if (is_bool($returnDef) === false)
+        {
+            throw new InvalidArgumentException('return_def must be a bool');
+        }
+
+        $this->returnDef = $returnDef;
+    }
+
+    /**
+     * @return string
+     */
+    private function getReturnDef()
+    {
+        return $this->returnDef === true ? "true" : null;
+    }
+
     /**
      * 
      * @param XMLWriter $xml
@@ -214,18 +294,24 @@ class ReadReport implements FunctionInterface
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('readReport');
-        
-        $xml->writeElement('report', $this->reportName, true);
-        if (count($this->arguments) > 0) {
-            $xml->startElement('arguments');
-            foreach ($this->arguments as $element => $value) {
-                $xml->writeElement($element, $value);
+
+        if ($this->returnDef === true) {
+            $xml->writeAttribute('returnDef', $this->getReturnDef());
+            $xml->writeElement('report', $this->reportName, true);
+        } else {
+            $xml->writeElement('report', $this->reportName, true);
+            if (count($this->arguments) > 0) {
+                $xml->startElement('arguments');
+                foreach ($this->arguments as $element => $value) {
+                    $xml->writeElement($element, $value);
+                }
+                $xml->endElement(); //arguments
             }
-            $xml->endElement(); //arguments
+            $xml->writeElement('waitTime', $this->waitTime);
+            $xml->writeElement('pagesize', $this->pageSize);
+            $xml->writeElement('returnFormat', $this->returnFormat);
+            $xml->writeElement('listSeparator', $this->getListSeparator());
         }
-        $xml->writeElement('pagesize', $this->pageSize);
-        $xml->writeElement('returnFormat', $this->returnFormat);
-        
         $xml->endElement(); //readReport
         
         $xml->endElement(); //function

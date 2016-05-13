@@ -24,6 +24,8 @@ class Read implements FunctionInterface
 {
     
     use ControlIdTrait;
+
+    use ObjectTrait;
     
     /**
      * @var array
@@ -39,12 +41,6 @@ class Read implements FunctionInterface
      * @var int
      */
     const MAX_KEY_COUNT = 100;
-    
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
     
     /**
      *
@@ -82,24 +78,18 @@ class Read implements FunctionInterface
             'fields' => [],
             'keys' => [],
             'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
+            'doc_par_id' => '',
         ];
         $config = array_merge($defaults, $params);
         
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
-        
         $this->setControlId($config['control_id']);
-        $this->objectName = $config['object'];
+        $this->setObjectName($config['object']);
         $this->setFields($config['fields']);
         $this->setKeys($config['keys']);
         $this->setReturnFormat($config['return_format']);
-        $this->docParId = $config['doc_par_id'];
+        $this->setDocParId($config['doc_par_id']);
     }
-    
+
     /**
      * 
      * @param string $format
@@ -165,7 +155,20 @@ class Read implements FunctionInterface
         
         return $keys;
     }
-    
+
+    /**
+     * @param $docParId
+     * @throws InvalidArgumentException
+     */
+    private function setDocParId($docParId)
+    {
+        if (is_string($docParId) === false) {
+            throw new InvalidArgumentException('doc_par_id must be a string');
+        }
+
+        $this->docParId = $docParId;
+    }
+
     /**
      * 
      * @param XMLWriter $xml
@@ -177,7 +180,7 @@ class Read implements FunctionInterface
         
         $xml->startElement('read');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->getKeys(), true);
         $xml->writeElement('fields', $this->getFields());
         $xml->writeElement('returnFormat', $this->returnFormat);

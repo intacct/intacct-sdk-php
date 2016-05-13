@@ -24,6 +24,8 @@ class ReadRelated implements FunctionInterface
 {
     
     use ControlIdTrait;
+
+    use ObjectTrait;
     
     /**
      * @var array
@@ -39,12 +41,6 @@ class ReadRelated implements FunctionInterface
      * @var int
      */
     const MAX_KEY_COUNT = 100;
-    
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
     
     /**
      *
@@ -85,12 +81,7 @@ class ReadRelated implements FunctionInterface
             'return_format' => static::DEFAULT_RETURN_FORMAT,
         ];
         $config = array_merge($defaults, $params);
-        
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
+
         if (!$config['relation']) {
             throw new InvalidArgumentException(
                 'Required "relation" key not supplied in params'
@@ -98,25 +89,11 @@ class ReadRelated implements FunctionInterface
         }
         
         $this->setControlId($config['control_id']);
-        $this->setObject($config['object']);
+        $this->setObjectName($config['object']);
         $this->setRelation($config['relation']);
         $this->setFields($config['fields']);
         $this->setKeys($config['keys']);
         $this->setReturnFormat($config['return_format']);
-    }
-
-    /**
-     * @param string $objectName
-     * @throws InvalidArgumentException
-     */
-    private function setObject($objectName)
-    {
-        if (is_string($objectName) === false)
-        {
-            throw new InvalidArgumentException('object must be a string');
-        }
-
-        $this->objectName = $objectName;
     }
 
     /**
@@ -210,7 +187,7 @@ class ReadRelated implements FunctionInterface
         
         $xml->startElement('readRelated');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('relation', $this->relationName, true);
         $xml->writeElement('keys', $this->getKeys(), true);
         $xml->writeElement('fields', $this->getFields());
