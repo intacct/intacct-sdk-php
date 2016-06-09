@@ -90,7 +90,7 @@ class ReadView implements FunctionInterface
         }
         
         $this->setControlId($config['control_id']);
-        $this->viewName = $config['view'];
+        $this->setViewName($config['view']);
         $this->setPageSize($config['page_size']);
         $this->setReturnFormat($config['return_format']);
     }
@@ -122,7 +122,21 @@ class ReadView implements FunctionInterface
         
         $this->pageSize = $pageSize;
     }
-    
+
+    /**
+     *
+     * @param string $view
+     * @throws InvalidArgumentException
+     */
+    private function setViewName($view)
+    {
+        if (!is_string($view)) {
+            throw new InvalidArgumentException('view is not a valid string');
+        }
+
+        $this->viewName = $view;
+    }
+
     /**
      * 
      * @param string $format

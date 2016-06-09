@@ -78,4 +78,21 @@ trait XMLHelperTrait
         }
     }
 
+    /**
+     *
+     * @param array $array
+     * @param XMLWriter $xml
+     */
+    protected function recursiveGetXmlWithArray($array, XMLWriter &$xml)
+    {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $xml->startElement($key);
+                $this->recursiveGetXmlWithArray($value, $xml);
+                $xml->endElement();
+            } else {
+                $xml->writeElement($key, $value, true);
+            }
+        }
+    }
 }

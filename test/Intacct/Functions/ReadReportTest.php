@@ -298,4 +298,97 @@ EOF;
             'return_def' => null,
         ]);
     }
+
+    /**
+     * @covers Intacct\Functions\ReadReport::__construct
+     * @covers Intacct\Functions\ReadReport::setControlId
+     * @covers Intacct\Functions\ReadReport::setReportName
+     * @covers Intacct\Functions\ReadReport::setReturnDef
+     * @covers Intacct\Functions\ReadReport::getReturnDef
+     * @covers Intacct\Functions\ReadReport::getXml
+     */
+    public function testComplexArguments()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readReport>
+        <report>TestBill Date Runtime</report>
+        <arguments>
+            <APBILL.TEST_DATE>
+              <FROM_DATE>1/1/2014</FROM_DATE>
+              <TO_DATE>12/31/2016</TO_DATE>
+            </APBILL.TEST_DATE>
+        </arguments>
+        <waitTime>0</waitTime>
+        <pagesize>1000</pagesize>
+        <returnFormat>xml</returnFormat>
+    </readReport>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readReport = new ReadReport([
+            'report' => 'TestBill Date Runtime',
+            'control_id' => 'unittest',
+            'arguments' => [
+                'APBILL.TEST_DATE' => [
+                    'FROM_DATE' => '1/1/2014',
+                    'TO_DATE' => '12/31/2016'
+                ]
+            ],
+        ]);
+        $readReport->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+
+    /**
+     * @covers Intacct\Functions\ReadReport::__construct
+     * @covers Intacct\Functions\ReadReport::setControlId
+     * @covers Intacct\Functions\ReadReport::setReportName
+     * @covers Intacct\Functions\ReadReport::setReturnDef
+     * @covers Intacct\Functions\ReadReport::getReturnDef
+     * @covers Intacct\Functions\ReadReport::getXml
+     */
+    public function testSimpleArguments()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <readReport>
+        <report>TestBill Date Runtime</report>
+        <arguments>
+            <REPORTINGPERIOD>Current Year</REPORTINGPERIOD>
+        </arguments>
+        <waitTime>0</waitTime>
+        <pagesize>1000</pagesize>
+        <returnFormat>xml</returnFormat>
+    </readReport>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readReport = new ReadReport([
+            'report' => 'TestBill Date Runtime',
+            'control_id' => 'unittest',
+            'arguments' => [
+                'REPORTINGPERIOD' => 'Current Year'
+            ],
+        ]);
+        $readReport->getXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
 }

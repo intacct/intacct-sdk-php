@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions;
 
+use Intacct\Xml\Request\XMLHelperTrait;
 use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
@@ -24,6 +25,7 @@ class ReadReport implements FunctionInterface
 {
     
     use ControlIdTrait;
+    use XMLHelperTrait;
     
     /**
      * @var array
@@ -302,9 +304,7 @@ class ReadReport implements FunctionInterface
             $xml->writeElement('report', $this->reportName, true);
             if (count($this->arguments) > 0) {
                 $xml->startElement('arguments');
-                foreach ($this->arguments as $element => $value) {
-                    $xml->writeElement($element, $value);
-                }
+                $this->recursiveGetXmlWithArray($this->arguments, $xml);
                 $xml->endElement(); //arguments
             }
             $xml->writeElement('waitTime', $this->waitTime);
