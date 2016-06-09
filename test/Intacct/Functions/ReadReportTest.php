@@ -316,8 +316,8 @@ EOF;
         <report>TestBill Date Runtime</report>
         <arguments>
             <APBILL.TEST_DATE>
-              <FROM_DATE>1/1/2014</FROM_DATE>
-              <TO_DATE>12/31/2016</TO_DATE>
+                <FROM_DATE>1/1/2014</FROM_DATE>
+                <TO_DATE>12/31/2016</TO_DATE>
             </APBILL.TEST_DATE>
         </arguments>
         <waitTime>0</waitTime>
