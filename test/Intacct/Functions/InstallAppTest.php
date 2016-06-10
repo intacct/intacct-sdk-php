@@ -48,7 +48,7 @@ EOF;
 
         $installApp = new InstallApp([
             'control_id' => 'unittest',
-            'xml_filename' => getcwd() . '\test\Intacct\Functions\sample.xml',
+            'xml_filename' => realpath(getcwd() . '\test\Intacct\Functions\sample.xml'),
         ]);
         $installApp->getXml($xml);
 
@@ -91,35 +91,4 @@ EOF;
             'xml_filename' => getcwd() . '\test\Intacct\Functions\doesntexist.xml',
         ]);
     }
-
-
-    /**
-     * @covers Intacct\Functions\InstallApp::__construct
-     * @covers Intacct\Functions\InstallApp::setXmlFilename
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage xml_filename is not readable for installApp
-     */
-    public function testUnReadableFilename()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        // Create a new file
-        $myfile = fopen(getcwd() . "\\newfile.xml", "w") or die("Unable to open file!");
-        fclose($myfile);
-
-        $installApp = new InstallApp([
-            'xml_filename' => getcwd() . '\\newfile.xml',
-        ]);
-
-        // delete new file
-        unlink(getcwd() . "\\newfile.xml");
-
-        $installApp->getXml($xml);
-    }
-
-
 }
