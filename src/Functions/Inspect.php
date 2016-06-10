@@ -24,18 +24,13 @@ class Inspect implements FunctionInterface
 {
 
     use ControlIdTrait;
-    
+    use ObjectTrait;
+
     /**
      *
      * @var bool
      */
     private $showDetail;
-
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
 
     /**
      * 
@@ -77,30 +72,6 @@ class Inspect implements FunctionInterface
     private function getShowDetail()
     {
         return $this->showDetail === true ? '1' : '0';
-    }
-    
-    /**
-     * 
-     * @param string $objectName
-     */
-    private function setObjectName($objectName)
-    {
-        $this->objectName = $objectName;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    private function getObjectName()
-    {
-        if ($this->objectName) {
-            $objectName = $this->objectName;
-        } else {
-            $objectName = '*';
-        }
-        
-        return $objectName;
     }
     
     /**
