@@ -15,32 +15,37 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Fields;
+namespace Intacct\Functions\Traits;
 
+use Intacct\Fields\Date;
 
-trait VendorIdTrait
+trait GlPostingDateTrait
 {
 
     /**
      *
-     * @var string
+     * @var Date
      */
-    private $vendorId;
+    private $glPostingDate;
 
     /**
-     * @return string
+     * @return Date
      */
-    public function getVendorId()
+    public function getGlPostingDate()
     {
-        return $this->vendorId;
+        return $this->glPostingDate;
     }
 
     /**
-     * @param string $vendorId
+     * @param Date $glPostingDate
      */
-    public function setVendorId($vendorId)
+    public function setGlPostingDate($glPostingDate)
     {
-        $this->vendorId = $vendorId;
+        if ($glPostingDate instanceof Date) {
+            $this->glPostingDate = $glPostingDate;
+        } else {
+            $this->glPostingDate = new Date($glPostingDate);
+        }
     }
 
 }

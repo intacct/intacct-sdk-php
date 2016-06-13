@@ -15,36 +15,36 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Fields;
+namespace Intacct\Functions\Traits;
 
-use DateTime;
+use Intacct\Fields\Date;
 
-trait GlPostingDateTrait
+trait BillDateTrait
 {
 
     /**
      *
-     * @var DateTime
+     * @var Date
      */
-    private $glPostingDate;
+    private $billDate;
 
     /**
-     * @return DateTime
+     * @return Date
      */
-    public function getGlPostingDate()
+    public function getBillDate()
     {
-        return $this->glPostingDate;
+        return $this->billDate;
     }
 
     /**
-     * @param DateTime $glPostingDate
+     * @param string|Date $billDate
      */
-    public function setGlPostingDate($glPostingDate)
+    public function setBillDate($billDate)
     {
-        if ($glPostingDate) {
-            $this->glPostingDate = $this->getDate($glPostingDate);
+        if ($billDate instanceof Date) {
+            $this->billDate = $billDate;
         } else {
-            $this->glPostingDate = null;
+            $this->billDate = new Date($billDate);
         }
     }
 

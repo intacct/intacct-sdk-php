@@ -15,31 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions;
+namespace Intacct\Fields;
 
 use DateTime;
-use InvalidArgumentException;
+use DateTimeZone;
 
-trait DateTrait
+class Date extends DateTime
 {
 
     /**
-     * @param mixed $date
      *
-     * @return DateTime
-     * @throws InvalidArgumentException
+     * @param string $date
+     * @param DateTimeZone $timezone
      */
-    private function getDate($date)
+    public function __construct($date = 'now', DateTimeZone $timezone = null)
     {
-        if ($date instanceof DateTime) {
-            return $date;
-        } else if (is_string($date)) {
-            return new DateTime($date);
-        } else {
-            throw new InvalidArgumentException(
-                'Date value must be either a valid string or DateTime object'
-            );
-        }
+        parent::__construct($date, $timezone);
     }
 
 }

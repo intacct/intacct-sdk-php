@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Fields;
+namespace Intacct\Functions\Traits;
 
 trait ExchangeRateTypeTrait
 {
