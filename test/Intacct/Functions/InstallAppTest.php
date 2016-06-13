@@ -22,39 +22,6 @@ use InvalidArgumentException;
 
 class InstallAppTest extends \PHPUnit_Framework_TestCase
 {
-//    /**
-//     * @covers Intacct\Functions\InstallApp::__construct
-//     * @covers Intacct\Functions\InstallApp::setControlId
-//     * @covers Intacct\Functions\InstallApp::getControlId
-//     * @covers Intacct\Functions\InstallApp::setXmlFilename
-//     * @covers Intacct\Functions\InstallApp::getXml
-//     */
-//    public function testDefaultParams()
-//    {
-//        $expected = <<<EOF
-//<?xml version="1.0" encoding="UTF-8"?
-//<function controlid="unittest">
-//    <installApp>
-//        <appxml/>
-//    </installApp>
-//</function>
-//EOF;
-//
-//        $xml = new XMLWriter();
-//        $xml->openMemory();
-//        $xml->setIndent(true);
-//        $xml->setIndentString('    ');
-//        $xml->startDocument();
-//
-//        $installApp = new InstallApp([
-//            'control_id' => 'unittest',
-//            'xml_filename' => realpath(getcwd() . '\test\Intacct\Functions\sample.xml'),
-//        ]);
-//        $installApp->getXml($xml);
-//
-//        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-//    }
-
     /**
      * @covers Intacct\Functions\InstallApp::__construct
      * @covers Intacct\Functions\InstallApp::setXmlFilename
@@ -72,23 +39,4 @@ class InstallAppTest extends \PHPUnit_Framework_TestCase
         new InstallApp([
         ]);
     }
-//
-//    /**
-//     * @covers Intacct\Functions\InstallApp::__construct
-//     * @covers Intacct\Functions\InstallApp::setXmlFilename
-//     * @expectedException InvalidArgumentException
-//     * @expectedExceptionMessage xml_filename is not readable
-//     */
-//    public function testNonexistentFilename()
-//    {
-//        $xml = new XMLWriter();
-//        $xml->openMemory();
-//        $xml->setIndent(true);
-//        $xml->setIndentString('    ');
-//        $xml->startDocument();
-//
-//        new InstallApp([
-//            'xml_filename' => getcwd() . '\test\Intacct\Functions\doesntexist.xml',
-//        ]);
-//    }
 }
