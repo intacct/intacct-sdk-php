@@ -4,7 +4,7 @@
 namespace Intacct\Xml;
 
 use Intacct\Xml\XMLWriter;
-use DateTime;
+use Intacct\Fields\Date;
 
 class XMLWriterTest extends \PHPUnit_Framework_TestCase
 {
@@ -97,7 +97,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $date = new DateTime("2016-03-01");
+        $date = new Date("2016-03-01");
 
         $xml->startElement("date");
 
