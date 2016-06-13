@@ -26,6 +26,8 @@ class ControlBlock
     
     /**
      * @var array
+     *
+     * @todo deprecate 2.1 support?
      */
     const DTD_VERSIONS = ['2.1', '3.0'];
     

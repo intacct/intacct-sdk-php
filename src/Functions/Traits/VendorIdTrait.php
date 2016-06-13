@@ -15,37 +15,32 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Fields;
+namespace Intacct\Functions\Traits;
 
-use DateTime;
 
-trait DueDateTrait
+trait VendorIdTrait
 {
 
     /**
      *
-     * @var DateTime
+     * @var string
      */
-    private $dueDate;
+    private $vendorId;
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDueDate()
+    public function getVendorId()
     {
-        return $this->dueDate;
+        return $this->vendorId;
     }
 
     /**
-     * @param string|DateTime $dueDate
+     * @param string $vendorId
      */
-    public function setDueDate($dueDate)
+    public function setVendorId($vendorId)
     {
-        if ($dueDate) {
-            $this->dueDate = $this->getDate($dueDate);
-        } else {
-            $this->dueDate = null;
-        }
+        $this->vendorId = $vendorId;
     }
 
 }

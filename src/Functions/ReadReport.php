@@ -304,7 +304,7 @@ class ReadReport implements FunctionInterface
             $xml->writeElement('report', $this->reportName, true);
             if (count($this->arguments) > 0) {
                 $xml->startElement('arguments');
-                $this->recursiveGetXmlWithArray($this->arguments, $xml);
+                $this->recursiveGetXml($this->arguments, $xml);
                 $xml->endElement(); //arguments
             }
             $xml->writeElement('waitTime', $this->waitTime);

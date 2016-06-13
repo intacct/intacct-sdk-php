@@ -15,36 +15,36 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Fields;
+namespace Intacct\Functions\Traits;
 
-use DateTime;
+use Intacct\Fields\Date;
 
-trait BillDateTrait
+trait DueDateTrait
 {
 
     /**
      *
-     * @var DateTime
+     * @var Date
      */
-    private $billDate;
+    private $dueDate;
 
     /**
-     * @return DateTime
+     * @return Date
      */
-    public function getBillDate()
+    public function getDueDate()
     {
-        return $this->billDate;
+        return $this->dueDate;
     }
 
     /**
-     * @param string|DateTime $billDate
+     * @param string|Date $dueDate
      */
-    public function setBillDate($billDate)
+    public function setDueDate($dueDate)
     {
-        if ($billDate) {
-            $this->billDate = $this->getDate($billDate);
+        if ($dueDate instanceof Date) {
+            $this->dueDate = $dueDate;
         } else {
-            $this->billDate = null;
+            $this->dueDate = new Date($dueDate);
         }
     }
 

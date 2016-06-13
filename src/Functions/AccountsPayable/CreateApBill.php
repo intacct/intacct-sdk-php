@@ -17,22 +17,20 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
+use Intacct\Fields\Date;
 use Intacct\Functions\ControlIdTrait;
-use Intacct\Functions\DateTrait;
-use Intacct\Functions\Fields\BillDateTrait;
-use Intacct\Functions\Fields\DueDateTrait;
-use Intacct\Functions\Fields\ExchangeRateTypeTrait;
-use Intacct\Functions\Fields\GlPostingDateTrait;
-use Intacct\Functions\Fields\VendorIdTrait;
 use Intacct\Functions\FunctionInterface;
-use DateTime;
+use Intacct\Functions\Traits\BillDateTrait;
+use Intacct\Functions\Traits\DueDateTrait;
+use Intacct\Functions\Traits\ExchangeRateTypeTrait;
+use Intacct\Functions\Traits\GlPostingDateTrait;
+use Intacct\Functions\Traits\VendorIdTrait;
 use Intacct\Xml\XMLWriter;
 
 class CreateApBill implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use DateTrait;
     use ExchangeRateTypeTrait;
     use VendorIdTrait;
     use BillDateTrait;
@@ -107,7 +105,7 @@ class CreateApBill implements FunctionInterface
     
     /**
      *
-     * @var DateTime
+     * @var Date
      */
     private $exchangeRateDate;
     

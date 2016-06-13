@@ -17,14 +17,26 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Fields\Date;
 use DateTime;
 
 class XMLWriter extends \XMLWriter
 {
 
     /**
+     * @var string
+     */
+    const IA_DATE_FORMAT = 'm/d/Y';
+
+    /**
+     * @var string
+     * @todo review this is correct
+     */
+    const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
+
+    /**
      * @param string $name
-     * @param null $content
+     * @param mixed $content
      * @param bool $writeNull
      *
      * @return bool
@@ -39,9 +51,14 @@ class XMLWriter extends \XMLWriter
             || $writeNull === true
         ) {
             if (is_bool($content)) {
-                $content = ($content) ? 'true' : 'false';
+                $content = ($content === true) ? 'true' : 'false';
+            } elseif ($content instanceof Date) {
+                $content = $content->format(self::IA_DATE_FORMAT);
+            } elseif ($content instanceof DateTime) {
+                $content = $content->format(self::IA_DATETIME_FORMAT);
             }
-            //TODO add date, datetime, etc
+            
+            //TODO add all of the different field types we should support
 
             return parent::writeElement($name, $content);
 
@@ -51,12 +68,12 @@ class XMLWriter extends \XMLWriter
     }
 
     /**
-     * @param DateTime $date
+     * @param Date $date
      * @param bool $writeNull
      *
      * @return bool
      */
-    public function writeDateSplitElements(DateTime $date, $writeNull = true)
+    public function writeDateSplitElements(Date $date, $writeNull = true)
     {
         list($year, $month, $day) = explode('-', $date->format('Y-m-d'));
 
