@@ -49,7 +49,7 @@ class RunJobTest extends \PHPUnit_Framework_TestCase
         <cloudDelivery>My Cloud Bucket</cloudDelivery>
         <jobType>all</jobType>
         <fileConfiguration/>
-  </runDdsJob>
+    </runDdsJob>
 </function>
 EOF;
 
@@ -105,7 +105,7 @@ EOF;
             <splitSize>1000</splitSize>
             <compress>false</compress>
         </fileConfiguration>
-  </runDdsJob>
+    </runDdsJob>
 </function>
 EOF;
 
