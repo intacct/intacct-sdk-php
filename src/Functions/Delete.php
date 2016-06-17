@@ -25,17 +25,12 @@ class Delete implements FunctionInterface
 {
 
     use ControlIdTrait;
+    use ObjectTrait;
     
     /**
      * @var int
      */
     const MAX_KEY_COUNT = 100;
-
-    /**
-     *
-     * @var string
-     */
-    private $objectName;
 
     /**
      *
@@ -70,7 +65,7 @@ class Delete implements FunctionInterface
         }
 
         $this->setControlId($config['control_id']);
-        $this->objectName = $config['object'];
+        $this->setObjectName($config['object']);
         $this->setKeys($config['keys']);
     }
 
@@ -116,7 +111,7 @@ class Delete implements FunctionInterface
         
         $xml->startElement('delete');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->getKeys(), true);
         
         $xml->endElement(); //delete
