@@ -164,6 +164,18 @@ class RunJob implements FunctionInterface
     }
 
     /**
+     * returns string
+     */
+    private function getTimestamp()
+    {
+        if (is_null($this->timestamp)) {
+            return $this->timestamp;
+        }
+
+        return $this->timestamp->format('Y-m-d\TH:i:s');
+    }
+
+    /**
      * @param string $delimiter
      * @throws InvalidArgumentException
      */
@@ -266,7 +278,7 @@ class RunJob implements FunctionInterface
         $xml->writeElement('object', $this->getObjectName(), true); //required
         $xml->writeElement('cloudDelivery', $this->cloudDeliveryName, true); //required
         $xml->writeElement('jobType', $this->jobType, true); //required
-        $xml->writeElement('timeStamp', $this->timestamp); //optional
+        $xml->writeElement('timeStamp', $this->getTimestamp()); //optional
 
         $xml->startElement('fileConfiguration'); //optional
 

@@ -31,6 +31,7 @@ class RunJobTest extends \PHPUnit_Framework_TestCase
      * @covers Intacct\Functions\DDS\RunJob::setControlId
      * @covers Intacct\Functions\DDS\RunJob::setJobType
      * @covers Intacct\Functions\DDS\RunJob::setTimestamp
+     * @covers Intacct\Functions\DDS\RunJob::getTimestamp
      * @covers Intacct\Functions\DDS\RunJob::setDelimiter
      * @covers Intacct\Functions\DDS\RunJob::setEnclosure
      * @covers Intacct\Functions\DDS\RunJob::setIncludeHeaders
@@ -79,6 +80,7 @@ EOF;
      * @covers Intacct\Functions\DDS\RunJob::setControlId
      * @covers Intacct\Functions\DDS\RunJob::setJobType
      * @covers Intacct\Functions\DDS\RunJob::setTimestamp
+     * @covers Intacct\Functions\DDS\RunJob::getTimestamp
      * @covers Intacct\Functions\DDS\RunJob::setDelimiter
      * @covers Intacct\Functions\DDS\RunJob::setEnclosure
      * @covers Intacct\Functions\DDS\RunJob::setIncludeHeaders
@@ -96,7 +98,7 @@ EOF;
         <object>GLACCOUNT</object>
         <cloudDelivery>My Cloud Bucket</cloudDelivery>
         <jobType>change</jobType>
-        <timeStamp>09/24/2002 06:00:00</timeStamp>
+        <timeStamp>2002-09-24T06:00:00</timeStamp>
         <fileConfiguration>
             <delimiter>,</delimiter>
             <enclosure>"</enclosure>
