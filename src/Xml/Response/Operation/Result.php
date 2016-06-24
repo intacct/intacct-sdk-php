@@ -50,6 +50,31 @@ class Result
     private $data;
 
     /**
+     * @var string
+     */
+    private $listtype;
+
+    /**
+     * @var int
+     */
+    private $count;
+
+    /**
+     * @var int
+     */
+    private $totalcount;
+
+    /**
+     * @var int
+     */
+    private $numremaining;
+
+    /**
+     * @var string
+     */
+    private $resultId;
+
+    /**
      *
      * @var array
      */
@@ -85,6 +110,26 @@ class Result
         
         if (isset($result->data)) {
             $this->data = $result->data;
+
+            if (isset($result->data->attributes()->listtype)) {
+                $this->listtype = strval($result->data->attributes()->listtype);
+            }
+
+            if (isset($result->data->attributes()->count)) {
+                $this->count = intval($result->data->attributes()->count);
+            }
+
+            if (isset($result->data->attributes()->totalcount)) {
+                $this->totalcount = intval($result->data->attributes()->totalcount);
+            }
+
+            if (isset($result->data->attributes()->numremaining)) {
+                $this->numremaining = intval($result->data->attributes()->numremaining);
+            }
+
+            if (isset($result->data->attributes()->resultId)) {
+                $this->resultId = strval($result->data->attributes()->resultId);
+            }
         }
     }
 
@@ -132,7 +177,47 @@ class Result
     {
         return $this->data;
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getListType()
+    {
+        return $this->listtype;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalcount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumRemaining()
+    {
+        return $this->numremaining;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResultId()
+    {
+        return $this->resultId;
+    }
+
     /**
      * 
      * @param bool $nested

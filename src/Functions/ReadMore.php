@@ -42,7 +42,7 @@ class ReadMore implements FunctionInterface
             'result_id' => null,
         ];
         $config = array_merge($defaults, $params);
-        
+        // DO WE NEED TO ALSO CHECK FOR object, view, or reportId?
         if (!$config['result_id']) {
             throw new InvalidArgumentException(
                 'Required "result_id" key not supplied in params'
