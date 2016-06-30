@@ -79,16 +79,13 @@ class SessionProvider
         $getApiSession = new GetAPISession();
         $contentBlock->append($getApiSession);
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         
         try {
-            $client = $requestHandler->execute($requestBlock->getXml());
+            $response = $requestHandler->executeSynchronous($config, $contentBlock);
         } finally {
             $this->lastExecution = $requestHandler->getHistory();
         }
-        
-        $response = new SynchronousResponse($client->getBody()->getContents());
         
         $operation = $response->getOperation();
         $result = $operation->getResult(0);

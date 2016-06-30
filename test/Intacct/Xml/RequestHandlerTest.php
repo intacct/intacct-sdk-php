@@ -21,6 +21,7 @@ namespace Intacct\Xml;
 use Intacct\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Functions\GetAPISession;
 use InvalidArgumentException;
 use Intacct\Xml\RequestBlock;
 use Monolog\Handler\StreamHandler;
@@ -220,11 +221,12 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeSynchronous
      * @covers Intacct\Xml\RequestHandler::execute
      * @covers Intacct\Xml\RequestHandler::getHistory
      * @covers Intacct\Xml\RequestHandler::getUserAgent
      */
-    public function testMockExecute()
+    public function testMockExecuteSynchronous()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -243,6 +245,17 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
                   <companyid>testcompany</companyid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <data>
+                        <api>
+                              <sessionid>unittest..</sessionid>
+                              <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
       </operation>
 </response>
 EOF;
@@ -261,19 +274,102 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
-        $response = $requestHandler->execute($requestBlock->getXml());
+        $response = $requestHandler->executeSynchronous($config, $contentBlock);
 
-        $this->assertXmlStringEqualsXmlString($xml, $response->getBody()->getContents());
         $history = $requestHandler->getHistory();
-        $this->assertEquals(count($history), 1);
+        $xmlToTest = (string) $history[0]['response']->getBody();
+
+        $this->assertXmlStringEqualsXmlString($xml, $xmlToTest);
+        $this->assertInstanceOf(SynchronousResponse::class, $response);
+    }
+
+    /**
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeAsynchronous
+     * @covers Intacct\Xml\RequestHandler::execute
+     * @covers Intacct\Xml\RequestHandler::getHistory
+     * @covers Intacct\Xml\RequestHandler::getUserAgent
+     */
+    public function testMockExecuteAsynchronous()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <acknowledgement>
+            <status>success</status>
+      </acknowledgement>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'sender_id' => 'testsenderid',
+            'sender_password' => 'pass123!',
+            'session_id' => 'testsession..',
+            'policy_id' => 'policyid321',
+            'control_id' => 'requestUnitTest',
+            'mock_handler' => $mock,
+        ];
+
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
+
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->executeAsynchronous($config, $contentBlock);
+
+        $history = $requestHandler->getHistory();
+        $xmlToTest = (string) $history[0]['response']->getBody();
+
+        $this->assertXmlStringEqualsXmlString($xml, $xmlToTest);
+        $this->assertInstanceOf(AsynchronousResponse::class, $response);
+    }
+
+    /**
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeAsynchronous
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
+     */
+    public function testMockExecuteAsynchronousMissingPolicyId()
+    {
+        $config = [
+            'sender_id' => 'testsenderid',
+            'sender_password' => 'pass123!',
+            'session_id' => 'testsession..',
+            //'policy_id' => 'policyid321',
+            'control_id' => 'requestUnitTest',
+        ];
+
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
+
+        $requestHandler = new RequestHandler($config);
+        $response = $requestHandler->executeAsynchronous($config, $contentBlock);
     }
     
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeSynchronous
      * @covers Intacct\Xml\RequestHandler::execute
      */
     public function testMockRetry()
@@ -295,6 +391,17 @@ EOF;
                   <companyid>testcompany</companyid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <data>
+                        <api>
+                              <sessionid>unittest..</sessionid>
+                              <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
       </operation>
 </response>
 EOF;
@@ -313,18 +420,23 @@ EOF;
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
         ];
-        
-        $contentBlock = new Content();
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
+
         $requestHandler = new RequestHandler($config);
-        $response = $requestHandler->execute($requestBlock->getXml());
-        
-        $this->assertEquals(200, $response->getStatusCode());
+        $requestHandler->executeSynchronous($config, $contentBlock);
+
+        $history = $requestHandler->getHistory();
+        $this->assertEquals(2, count($history));
+        $this->assertEquals(502, $history[0]['response']->getStatusCode());
+        $this->assertEquals(200, $history[1]['response']->getStatusCode());
     }
     
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeSynchronous
      * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException \GuzzleHttp\Exception\ServerException
      */
@@ -345,16 +457,18 @@ EOF;
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
         ];
-        
-        $contentBlock = new Content();
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
+
         $requestHandler = new RequestHandler($config);
-        $requestHandler->execute($requestBlock->getXml());
+        $requestHandler->executeSynchronous($config, $contentBlock);
     }
     
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeSynchronous
      * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException \GuzzleHttp\Exception\ServerException
      */
@@ -370,16 +484,18 @@ EOF;
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
         ];
-        
-        $contentBlock = new Content();
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
+
         $requestHandler = new RequestHandler($config);
-        $requestHandler->execute($requestBlock->getXml());
+        $requestHandler->executeSynchronous($config, $contentBlock);
     }
 
     /**
      * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::executeSynchronous
      * @covers Intacct\Xml\RequestHandler::execute
      * @covers Intacct\Xml\RequestHandler::setLogger
      * @covers Intacct\Xml\RequestHandler::setLogMessageFormatter
@@ -387,11 +503,6 @@ EOF;
      */
     public function testMockExecuteWithDebugLogger()
     {
-        $handle = fopen('php://memory', 'a+');
-        $handler = new StreamHandler($handle, Logger::DEBUG);
-        $logger = new Logger('unittest');
-        $logger->pushHandler($handler);
-
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -409,6 +520,17 @@ EOF;
                   <companyid>testcompany</companyid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <data>
+                        <api>
+                              <sessionid>unittest..</sessionid>
+                              <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
       </operation>
 </response>
 EOF;
@@ -420,6 +542,11 @@ EOF;
             $mockResponse,
         ]);
 
+        $handle = fopen('php://memory', 'a+');
+        $handler = new StreamHandler($handle, Logger::DEBUG);
+        $logger = new Logger('unittest');
+        $logger->pushHandler($handler);
+
         $config = [
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
@@ -428,12 +555,12 @@ EOF;
             'logger' => $logger,
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = new Content([
+            new GetAPISession(),
+        ]);
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
-
-        $response = $requestHandler->execute($requestBlock->getXml());
+        $response = $requestHandler->executeSynchronous($config, $contentBlock);
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);

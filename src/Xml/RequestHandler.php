@@ -26,8 +26,9 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\MessageFormatter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use InvalidArgumentException;
 use Psr\Log\LogLevel;
+use InvalidArgumentException;
+use XMLWriter;
 
 class RequestHandler
 {
@@ -108,7 +109,7 @@ class RequestHandler
     public function __construct(array $params)
     {
         $defaults = [
-           // 'encoding' => 'UTF-8',
+            'encoding' => 'UTF-8',
             'endpoint_url' => null,
             'verify_ssl' => true,
             'mock_handler' => null,
@@ -265,7 +266,9 @@ class RequestHandler
             $this->lastExecution = $this->getHistory();
         }
 
-        $response = new SynchronousResponse($client->getBody()->getContents());
+        $body = $client->getBody();
+        $body->rewind();
+        $response = new SynchronousResponse($body->getContents());
 
         return $response;
     }
@@ -290,19 +293,21 @@ class RequestHandler
         }
 
         $requestBlock = new RequestBlock($config, $contentBlock);
-       // $requestHandler = new RequestHandler($config);
         $client = $this->execute($requestBlock->getXml());
-        $response = new AsynchronousResponse($client->getBody()->getContents());
+
+        $body = $client->getBody();
+        $body->rewind();
+        $response = new AsynchronousResponse($body->getContents());
 
         return $response;
     }
 
     /**
      *
-     * @param \XMLWriter $xml
+     * @param XMLWriter $xml
      * @return ResponseInterface
      */
-    public function execute($xml)
+    private function execute($xml)
     {
         //this is used for retry logic
         $calls = [];
