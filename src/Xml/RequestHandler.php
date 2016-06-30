@@ -23,8 +23,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\MessageFormatter;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 use InvalidArgumentException;
+use Psr\Log\LogLevel;
 
 class RequestHandler
 {
@@ -77,6 +80,21 @@ class RequestHandler
     protected $noRetryServerErrorCodes;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
+     * @var MessageFormatter
+     */
+    protected $logMessageFormat;
+
+    /**
+     * @var int
+     */
+    protected $logLevel;
+
+    /**
      *
      * @var array
      */
@@ -98,6 +116,9 @@ class RequestHandler
             'no_retry_server_error_codes' => [
                 524, //CDN cut connection, Intacct is still processing the request
             ],
+            'logger' => null,
+            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
+            'log_level' => LogLevel::DEBUG,
         ];
         $config = array_merge($defaults, $params);
 
@@ -106,6 +127,11 @@ class RequestHandler
         $this->mockHandler = $config['mock_handler'];
         $this->setMaxRetries($config['max_retries']);
         $this->setNoRetryServerErrorCodes($config['no_retry_server_error_codes']);
+        if ($config['logger']) {
+            $this->setLogger($config['logger']);
+        }
+        $this->setLogMessageFormatter($config['log_formatter']);
+        $this->setLogLevel($config['log_level']);
     }
     
     /**
@@ -186,6 +212,30 @@ class RequestHandler
             }
         }
         $this->noRetryServerErrorCodes = $errorCodes;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    private function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * @param MessageFormatter $formatter
+     */
+    private function setLogMessageFormatter(MessageFormatter $formatter)
+    {
+        $this->logMessageFormat = $formatter;
+    }
+
+    /**
+     * @param int $logLevel
+     */
+    private function setLogLevel($logLevel)
+    {
+        $this->logLevel = $logLevel;
     }
     
     /**
@@ -289,6 +339,11 @@ class RequestHandler
         
         //push the history middleware to the top of the stack
         $handler->push(Middleware::history($this->history));
+
+        if ($this->logger) {
+            //push the logger middleware to the top of the stack
+            $handler->push(Middleware::log($this->logger, $this->logMessageFormat, $this->logLevel));
+        }
         
         $client = new Client([
             'handler' => $handler,

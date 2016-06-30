@@ -53,6 +53,9 @@ class IntacctClient implements IntacctClientInterface
      *
      * - company_id: (string)
      * - endpoint_url: (string)
+     * - logger: (LoggerInterface)
+     * - log_formatter: (MessageFormatter)
+     * - log_level: (int, default=int(400))
      * - profile_file: (string)
      * - profile_name: (string)
      * - sender_id: (string)
@@ -167,6 +170,7 @@ class IntacctClient implements IntacctClientInterface
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
+        if (is_float())
         $config = array_merge(
             $this->getSessionConfig(),
             [

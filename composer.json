@@ -18,7 +18,12 @@
         "ramsey/uuid": "3.4.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.3.1"
+        "phpunit/phpunit": "5.3.1",
+        "psr/log": "~1.0",
+        "monolog/monolog": "1.19.0"
+    },
+    "suggest": {
+        "monolog/monolog": "Allows more advanced logging of the application flow"
     },
     "autoload": {
         "psr-4": {

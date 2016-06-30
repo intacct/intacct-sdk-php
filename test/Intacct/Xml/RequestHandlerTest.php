@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Intacct Corporation.
  *
@@ -22,6 +23,8 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
 use Intacct\Xml\RequestBlock;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -250,20 +253,20 @@ EOF;
         $mock = new MockHandler([
             $mockResponse,
         ]);
-        
+
         $config = [
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
             'mock_handler' => $mock,
         ];
-        
+
         $contentBlock = new Content();
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->execute($requestBlock->getXml());
-        
+
         $this->assertXmlStringEqualsXmlString($xml, $response->getBody()->getContents());
         $history = $requestHandler->getHistory();
         $this->assertEquals(count($history), 1);
@@ -373,6 +376,68 @@ EOF;
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config);
         $requestHandler->execute($requestBlock->getXml());
+    }
+
+    /**
+     * @covers Intacct\Xml\RequestHandler::__construct
+     * @covers Intacct\Xml\RequestHandler::execute
+     * @covers Intacct\Xml\RequestHandler::setLogger
+     * @covers Intacct\Xml\RequestHandler::setLogMessageFormatter
+     * @covers Intacct\Xml\RequestHandler::setLogLevel
+     */
+    public function testMockExecuteWithDebugLogger()
+    {
+        $handle = fopen('php://memory', 'a+');
+        $handler = new StreamHandler($handle, Logger::DEBUG);
+        $logger = new Logger('unittest');
+        $logger->pushHandler($handler);
+
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>sessionProvider</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'sender_id' => 'testsenderid',
+            'sender_password' => 'pass123!',
+            'session_id' => 'testsession..',
+            'mock_handler' => $mock,
+            'logger' => $logger,
+        ];
+
+        $contentBlock = new Content();
+
+        $requestBlock = new RequestBlock($config, $contentBlock);
+        $requestHandler = new RequestHandler($config);
+
+        $response = $requestHandler->execute($requestBlock->getXml());
+
+        // Test for some output in the StreamHandler
+        fseek($handle, 0);
+        $this->assertEquals('[', substr(stream_get_contents($handle), 0, 1));
     }
 
 }
