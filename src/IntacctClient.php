@@ -170,7 +170,6 @@ class IntacctClient implements IntacctClientInterface
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        if (is_float())
         $config = array_merge(
             $this->getSessionConfig(),
             [
