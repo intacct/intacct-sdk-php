@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions;
 
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
 use Intacct\Xml\Request\XMLHelperTrait;
 use InvalidArgumentException;
@@ -24,7 +25,7 @@ use InvalidArgumentException;
 class GetAuditTrail implements FunctionInterface
 {
     use ControlIdTrait;
-    use ObjectTrait;
+    use ObjectNameTrait;
     use XMLHelperTrait;
 
     /**

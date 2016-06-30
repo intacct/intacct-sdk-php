@@ -20,8 +20,7 @@ namespace Intacct\Functions\DDS;
 use DateTime;
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Functions\ObjectTrait;
-use Intacct\Xml\Request\XMLHelperTrait;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -29,8 +28,7 @@ class RunJob implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use ObjectTrait;
-    use XMLHelperTrait;
+    use ObjectNameTrait;
 
     /**
      * @var array

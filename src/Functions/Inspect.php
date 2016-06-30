@@ -18,13 +18,14 @@
 namespace Intacct\Functions;
 
 use InvalidArgumentException;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
 
 class Inspect implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use ObjectTrait;
+    use ObjectNameTrait;
 
     /**
      *

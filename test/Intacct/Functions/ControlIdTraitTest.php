@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Intacct Corporation.
  *
@@ -17,69 +18,48 @@
 
 namespace Intacct\Functions;
 
+use InvalidArgumentException;
 
 class ControlIdTraitTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * var ControlIdTraitImpl
-     */
-    private $traitControlId;
+    
+    protected $object;
 
     public function setUp()
     {
-        $this->traitControlId = new ControlIdTraitImpl();
+        $this->object = $this->getMockForTrait(ControlIdTrait::class);
     }
 
-    /**
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlId
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlId
-     */
     public function testValidControlId()
     {
-        $control_id = "unittest";
-        $this->traitControlId->setControlIdentifier($control_id);
+        $controlId = "unittest";
+        $this->object->setControlId($controlId);
 
-        $this->assertEquals($control_id, $this->traitControlId->getControlIdentifier());
+        $this->assertEquals($controlId, $this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlId
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlId
-     */
     public function testNoControlId()
     {
-        $this->traitControlId->setControlIdentifier();
+        $this->object->setControlId();
 
-        $this->assertNotNull($this->traitControlId->getControlIdentifier());
+        $this->assertNotNull($this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlId
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::getControlId
-     */
     public function testMinimalLengthControlId()
     {
-        $control_id = "";
-        $this->traitControlId->setControlIdentifier($control_id);
+        $controlId = "";
+        $this->object->setControlId($controlId);
 
-        $this->assertNotNull($this->traitControlId->getControlIdentifier());
+        $this->assertNotNull($this->object->getControlId());
     }
 
     /**
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlIdentifier
-     * @covers Intacct\Functions\ControlIdTraitImpl::setControlId
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage controlid must be between 1 and 256 characters in length
      */
     public function testMaximumLengthControlId()
     {
-        $control_id = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567";
-        $this->traitControlId->setControlIdentifier($control_id);
+        $controlId = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567";
+        $this->object->setControlId($controlId);
     }
 }

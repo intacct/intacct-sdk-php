@@ -15,26 +15,40 @@
  *
  */
 
-namespace Intacct\Functions;
+namespace Intacct\Functions\Traits;
 
 
-class ControlIdTraitImpl
+use InvalidArgumentException;
+
+trait ObjectNameTrait
 {
-    use ControlIdTrait;
+
+    /**
+     * @var string
+     */
+    private $objectName;
+
+    /**
+     * @param string $objectName
+     * @throws InvalidArgumentException
+     */
+    public function setObjectName($objectName = null)
+    {
+        if (!$objectName) {
+            throw new InvalidArgumentException('Required "object" key not supplied in params');
+        }
+        if (is_string($objectName) === false) {
+            throw new InvalidArgumentException('object must be a string');
+        }
+
+        $this->objectName = $objectName;
+    }
 
     /**
      * @return string
      */
-    public function getControlIdentifier() {
-        return $this->getControlId();
-    }
-
-    /**
-     *
-     * @param string $controlId Control ID
-     * @throws InvalidArgumentException
-     */
-    public function setControlIdentifier($controlId = null) {
-        $this->setControlId($controlId);
+    public function getObjectName()
+    {
+        return $this->objectName;
     }
 }

@@ -18,6 +18,7 @@
 namespace Intacct\Functions;
 
 use Intacct\Xml\Request\Operation\Content\StandardObjects;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
@@ -25,7 +26,7 @@ class Delete implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use ObjectTrait;
+    use ObjectNameTrait;
     
     /**
      * @var int

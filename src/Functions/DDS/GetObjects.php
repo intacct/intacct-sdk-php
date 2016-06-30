@@ -19,13 +19,12 @@ namespace Intacct\Functions\DDS;
 
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\Request\XMLHelperTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 class GetObjects implements FunctionInterface
 {
     use ControlIdTrait;
-    use XMLHelperTrait;
 
     /**
      *

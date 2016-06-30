@@ -18,6 +18,7 @@
 namespace Intacct\Functions;
 
 use InvalidArgumentException;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
 
 class Read implements FunctionInterface
@@ -25,7 +26,7 @@ class Read implements FunctionInterface
     
     use ControlIdTrait;
 
-    use ObjectTrait;
+    use ObjectNameTrait;
     
     /**
      * @var array

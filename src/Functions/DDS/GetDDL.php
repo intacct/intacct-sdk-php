@@ -19,15 +19,14 @@ namespace Intacct\Functions\DDS;
 
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Functions\ObjectTrait;
-use Intacct\Xml\Request\XMLHelperTrait;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 class GetDDL implements FunctionInterface
 {
     use ControlIdTrait;
-    use ObjectTrait;
-    use XMLHelperTrait;
+    use ObjectNameTrait;
 
     /**
      *

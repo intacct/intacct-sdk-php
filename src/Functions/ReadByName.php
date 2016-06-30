@@ -18,6 +18,7 @@
 namespace Intacct\Functions;
 
 use InvalidArgumentException;
+use Intacct\Functions\Traits\ObjectNameTrait;
 use Intacct\Xml\XMLWriter;
 
 class ReadByName implements FunctionInterface
@@ -25,7 +26,7 @@ class ReadByName implements FunctionInterface
     
     use ControlIdTrait;
 
-    use ObjectTrait;
+    use ObjectNameTrait;
 
     /**
      * @var array

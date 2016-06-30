@@ -17,60 +17,44 @@
 
 namespace Intacct\Functions;
 
+use Intacct\Functions\Traits\ObjectNameTrait;
 use InvalidArgumentException;
 
-class ObjectTraitTest extends \PHPUnit_Framework_TestCase
+class ObjectNameTraitTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var ObjectTraitImpl
-     */
-    private $traitObject;
+
+    protected $object;
 
     public function setUp()
     {
-        $this->traitObject = new ObjectTraitImpl;
+        $this->object = $this->getMockForTrait(ObjectNameTrait::class);
     }
 
-    /**
-     * @covers Intacct\Functions\ObjectTraitImpl::setObject
-     * @covers Intacct\Functions\ObjectTraitImpl::setObjectName
-     * @covers Intacct\Functions\ObjectTraitImpl::getObject
-     * @covers Intacct\Functions\ObjectTraitImpl::getObjectName
-     */
     public function testValidObjectName()
     {
         $name = "CLASS";
-        $this->traitObject->setObject($name);
+        $this->object->setObjectName($name);
 
-        $this->assertEquals($name, $this->traitObject->getObject());
-
+        $this->assertEquals($name, $this->object->getObjectName());
     }
 
     /**
-     * @covers Intacct\Functions\ObjectTraitImpl::setObject
-     * @covers Intacct\Functions\ObjectTraitImpl::setObjectName
-     * @covers Intacct\Functions\ObjectTraitImpl::getObject
-     * @covers Intacct\Functions\ObjectTraitImpl::getObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "object" key not supplied in params
      */
     public function testNullObjectName()
     {
         $name = null;
-        $this->traitObject->setObject($name);
+        $this->object->setObjectName($name);
     }
 
     /**
-     * @covers Intacct\Functions\ObjectTraitImpl::setObject
-     * @covers Intacct\Functions\ObjectTraitImpl::setObjectName
-     * @covers Intacct\Functions\ObjectTraitImpl::getObject
-     * @covers Intacct\Functions\ObjectTraitImpl::getObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage object must be a string
      */
     public function testInvalidObjectName()
     {
         $name = 32;
-        $this->traitObject->setObject($name);
+        $this->object->setObjectName($name);
     }
 }
