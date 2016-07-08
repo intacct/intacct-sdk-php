@@ -16,7 +16,7 @@
  *
  */
 
-namespace Intacct\Query;
+namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;

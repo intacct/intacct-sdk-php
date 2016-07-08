@@ -26,25 +26,21 @@ class Result
 {
 
     /**
-     *
      * @var string
      */
     private $status;
 
     /**
-     *
      * @var string
      */
     private $function;
 
     /**
-     *
      * @var string
      */
     private $controlId;
 
     /**
-     *
      * @var SimpleXMLIterator
      */
     private $data;
@@ -75,7 +71,6 @@ class Result
     private $resultId;
 
     /**
-     *
      * @var array
      */
     private $errors;
@@ -106,8 +101,6 @@ class Result
             $this->errors = $errors;
         }
         
-        //TODO add getter/setter for elements: listtype, key, data
-        
         if (isset($result->data)) {
             $this->data = $result->data;
 
@@ -134,7 +127,6 @@ class Result
     }
 
     /**
-     * 
      * @return string
      */
     public function getStatus()
@@ -143,7 +135,6 @@ class Result
     }
 
     /**
-     * 
      * @return string
      */
     public function getFunction()
@@ -152,7 +143,6 @@ class Result
     }
 
     /**
-     * 
      * @return string
      */
     public function getControlId()
@@ -161,7 +151,6 @@ class Result
     }
 
     /**
-     * 
      * @return array
      */
     public function getErrors()
@@ -170,7 +159,6 @@ class Result
     }
     
     /**
-     * 
      * @return SimpleXMLIterator
      */
     public function getData()
@@ -219,8 +207,8 @@ class Result
     }
 
     /**
-     * 
      * @param bool $nested
+     * 
      * @return ArrayIterator
      */
     public function getDataArray($nested = false)

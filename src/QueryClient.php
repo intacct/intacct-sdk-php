@@ -16,14 +16,15 @@
  *
  */
 
-namespace Intacct\Query;
+namespace Intacct;
 
 use Intacct\Content;
 use Intacct\Functions\ReadByQuery;
 use Intacct\Functions\ReadMore;
-use ArrayIterator;
+use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\ResultException;
 use Intacct\Xml\RequestHandler;
+use ArrayIterator;
 
 class QueryClient
 {
@@ -31,7 +32,7 @@ class QueryClient
     /**
      * @var int
      */
-    private static $MAX_QUERY_TOTAL_COUNT = 100000;
+    const MAX_QUERY_TOTAL_COUNT = 100000;
 
     /**
      * Accepts the following options:
@@ -49,14 +50,13 @@ class QueryClient
      * - return_format: (string, default=string(3) "xml")
      *
      * @param array $params
+     *
      * @return ArrayIterator
-     * @throws ResultException
      */
     public function readAllObjectsByQuery(array $params)
     {
-
         $defaults = [
-            'max_total_count' => self::$MAX_QUERY_TOTAL_COUNT,
+            'max_total_count' => self::MAX_QUERY_TOTAL_COUNT,
         ];
 
         $config = array_merge($defaults, $params);
@@ -68,7 +68,7 @@ class QueryClient
         $this->addRecords($records, $result);
 
         while ($result->getNumRemaining() > 0) {
-            // do readMore
+            // Do readMore now with the resultId
             $result = $this->performReadMore($result->getResultId(), $config);
 
             $this->addRecords($records, $result);
@@ -78,11 +78,11 @@ class QueryClient
     }
 
     /**
-     * @param $params
-     * @return \Intacct\Xml\Response\Operation\Result
-     * @throws ResultException
+     * @param array $params
+     *
+     * @return Result
      */
-    private function performReadByQuery($params)
+    private function performReadByQuery(array $params)
     {
         $readByQuery = new ReadByQuery($params);
 
@@ -111,16 +111,17 @@ class QueryClient
 
     /**
      * @param $resultId
-     * @param $params
-     * @return \Intacct\Xml\Response\Operation\Result
+     * @param array $params
+     *
+     * @return Result
      */
-    private function performReadMore($resultId, $params)
+    private function performReadMore($resultId, array $params)
     {
-
-        $param = ['result_id' => $resultId];
-        $readMore = new ReadMore($param);
-
-        $contentBlock = new Content([$readMore]);
+        $contentBlock = new Content([
+            new ReadMore([
+                'result_id' => $resultId,
+            ])
+        ]);
 
         $requestHandler = new RequestHandler($params);
         $response = $requestHandler->executeSynchronous($params, $contentBlock);
@@ -136,13 +137,14 @@ class QueryClient
     }
 
     /**
-     * @param $records
-     * @param $result
+     * @param ArrayIterator $records
+     * @param Result $result
      */
-    private function addRecords($records, $result)
+    private function addRecords(ArrayIterator $records, Result $result)
     {
         foreach ($result->getDataArray() as $record) {
             $records->append($record);
         }
     }
+
 }
