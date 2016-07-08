@@ -17,31 +17,38 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\Fields\Date;
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
 use Intacct\Functions\Traits\BillDateTrait;
+use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Functions\Traits\DueDateTrait;
-use Intacct\Functions\Traits\ExchangeRateTypeTrait;
+use Intacct\Functions\Traits\ExchangeRateInfoTrait;
 use Intacct\Functions\Traits\GlPostingDateTrait;
 use Intacct\Functions\Traits\VendorIdTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 class CreateApBill implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use ExchangeRateTypeTrait;
+    use ExchangeRateInfoTrait;
     use VendorIdTrait;
     use BillDateTrait;
     use GlPostingDateTrait;
     use DueDateTrait;
+    use CustomFieldsTrait;
     
     /**
      *
      * @var string
      */
     private $paymentTerm;
+
+    /**
+     * @var string
+     */
+    private $action;
     
     /**
      *
@@ -83,38 +90,14 @@ class CreateApBill implements FunctionInterface
      *
      * @var string
      */
-    private $payToContactKey;
+    private $payToContactName;
     
     /**
      *
      * @var string
      */
-    private $returnToContactKey;
-    
-    /**
-     *
-     * @var string
-     */
-    private $baseCurrency;
-    
-    /**
-     *
-     * @var string
-     */
-    private $transactionCurrency;
-    
-    /**
-     *
-     * @var Date
-     */
-    private $exchangeRateDate;
-    
-    /**
-     *
-     * @var float
-     */
-    private $exchangeRateValue;
-    
+    private $returnToContactName;
+
     /**
      *
      * @var bool
@@ -126,41 +109,138 @@ class CreateApBill implements FunctionInterface
      * @var string
      */
     private $attachmentsId;
-    
+
     /**
      *
      * @var array
      */
-    private $customFields;
-    
-    /**
-     *
-     * @var array
-     */
-    private $entries;
+    private $apBillEntries;
 
     /**
      * 
      * @param array $params my params
-     * @param string $functionControlId my function
      */
-    public function __construct(array $params = [], $functionControlId = null)
+    public function __construct(array $params = [])
     {
         $defaults = [
-            'VENDORID' => null,
-            'WHENCREATED' => null,
-            'WHENPOSTED' => null,
+            'control_id' => null,
+            'vendor_id' => null,
+            'when_created' => null,
+            'when_posted' => null,
+            'due_date' => null,
+            'payment_term' => null,
+            'action' => null,
+            'batch_key' => null,
+            'bill_number' => null,
+            'reference_number' => null,
+            'on_hold' => null,
+            'description' => null,
+            'external_id' => null,
+            'pay_to_contact_name' => null,
+            'return_to_contact_name' => null,
+            'base_currency' => null,
+            'transaction_currency' => null,
+            'exchange_rate_date' => null,
+            'exchange_rate_type' => null,
+            'exchange_rate' => null,
+            'do_not_post_to_gl' => null,
+            'attachments_id' => null,
+            'custom_fields' => [],
+            'ap_bill_entries' => [],
         ];
         $config = array_merge($defaults, $params);
 
-        $this->setControlId($functionControlId);
+        $this->setControlId($config['control_id']);
 
-        $this->setVendorId($config['VENDORID']);
-        $this->setBillDate($config['WHENCREATED']);
-        $this->setGlPostingDate($config['WHENPOSTED']);
-
-        $this->setDueDate($config['DUEDATE']);
+        $this->setVendorId($config['vendor_id']);
+        $this->setBillDate($config['when_created']);
+        $this->setGlPostingDate($config['when_posted']);
+        $this->setDueDate($config['due_date']);
+        $this->paymentTerm = $config['payment_term'];
+        $this->action = $config['action'];
+        $this->batchKey = $config['batch_key'];
+        $this->billNumber = $config['bill_number'];
+        $this->referenceNumber = $config['reference_number'];
+        $this->onHold = $config['on_hold'];
+        $this->description = $config['description'];
+        $this->externalId = $config['external_id'];
+        $this->payToContactName = $config['pay_to_contact_name'];
+        $this->returnToContactName = $config['return_to_contact_name'];
+        $this->setBaseCurrency($config['base_currency']);
+        $this->setTransactionCurrency($config['transaction_currency']);
+        $this->setExchangeRateDate($config['exchange_rate_date']);
+        $this->setExchangeRateType($config['exchange_rate_type']);
+        $this->setExchangeRateValue($config['exchange_rate']);
+        $this->doNotPostToGL = $config['do_not_post_to_gl'];
+        $this->attachmentsId = $config['attachments_id'];
+        $this->setCustomFields($config['custom_fields']);
+        $this->apBillEntries = $config['ap_bill_entries'];
         
+    }
+
+    /**
+     * @param XMLWriter $xml
+     */
+    private function getTermInfoXml(XMLWriter $xml)
+    {
+        if ($this->dueDate) {
+            $xml->startElement('datedue');
+            $xml->writeDateSplitElements($this->dueDate, true);
+            $xml->endElement(); // datedue
+
+            $xml->writeElement('termname', $this->paymentTerm);
+        } else {
+            $xml->writeElement('termname', $this->paymentTerm, true);
+        }
+    }
+
+    /**
+     * @param XMLWriter $xml
+     */
+    private function getPayToContactNameXml(XMLWriter $xml)
+    {
+        if (is_null($this->payToContactName) == false) {
+            $xml->startElement('payto');
+            $xml->writeElement('contactname', $this->payToContactName);
+            $xml->endElement(); //payto
+        }
+    }
+
+    /**
+     * @param XMLWriter $xml
+     */
+    private function getReturnToContactNameXml(XMLWriter $xml)
+    {
+        if (is_null($this->returnToContactName) == false) {
+            $xml->startElement('returnto');
+            $xml->writeElement('contactname', $this->returnToContactName);
+            $xml->endElement(); //returnto
+        }
+    }
+
+    /**
+     * @param XMLWriter $xml
+     * @throws InvalidArgumentException
+     */
+    private function getApBillEntriesXml(XMLWriter $xml)
+    {
+        $xml->startElement('billitems');
+
+        if (count($this->apBillEntries) > 0) {
+            foreach ($this->apBillEntries as $apBillEntry) {
+                if ($apBillEntry instanceof CreateApBillEntry) {
+                    $apBillEntry->getXml($xml);
+                } else if (is_array($apBillEntry)) {
+                    $apBillEntry = new CreateApBillEntry($apBillEntry);
+
+                    $apBillEntry->getXml($xml);
+                }
+            }
+        } else {
+            throw new InvalidArgumentException('"ap_bill_entries" param must have at least 1 entry');
+        }
+
+        $xml->endElement(); //billitems
     }
 
     /**
@@ -175,95 +255,39 @@ class CreateApBill implements FunctionInterface
         $xml->startElement('create_bill');
 
         $xml->writeElement('vendorid', $this->vendorId, true);
-        $xml->writeElement(
-            'datecreated',
-            $xml->writeDateSplitElements($this->billDate),
-            true
-        );
+
+        $xml->startElement('datecreated');
+        $xml->writeDateSplitElements($this->billDate);
+        $xml->endElement(); //datecreated
+
         if ($this->glPostingDate) {
-            $xml->writeElement(
-                'dateposted',
-                $xml->writeDateSplitElements($this->glPostingDate),
-                true
-            );
+            $xml->startElement('dateposted');
+            $xml->writeDateSplitElements($this->glPostingDate, true);
+            $xml->endElement(); //dateposted
         }
-        if ($this->dueDate) {
-            $xml->writeElement(
-                'datedue',
-                $xml->writeDateSplitElements($this->dueDate),
-                true
-            );
-        }
-        $xml->writeElement('termname', $this->paymentTerm, true);
+
+        $this->getTermInfoXml($xml);
+
+        $xml->writeElement('action', $this->action); // this was missing.  any reason?
         $xml->writeElement('batchkey', $this->batchKey);
         $xml->writeElement('billno', $this->billNumber);
         $xml->writeElement('ponumber', $this->referenceNumber);
         $xml->writeElement('onhold', $this->onHold);
         $xml->writeElement('description', $this->description);
         $xml->writeElement('externalid', $this->externalId);
-        $xml->writeElement(
-            'payto',
-            $xml->writeElement(
-                'contactname', $this->payToContactKey
-            )
-            //TODO: support contact creation
-        );
-        $xml->writeElement(
-            'returnto',
-            $xml->writeElement(
-                'contactname', $this->returnToContactKey
-            )
-            //TODO: support contact creation
-        );
-        $xml->writeElement('basecurr', $this->baseCurrency);
-        $xml->writeElement('currency', $this->transactionCurrency);
-        if ($this->exchangeRateDate) {
-            $xml->writeElement(
-                'exchratedate',
-                $xml->writeDateSplitElements($this->exchangeRateDate),
-                true
-            );
-        }
-        if ($this->exchangeRateType) {
-            $xml->writeElement('exchratetype', $this->getExchangeRateType());
-        } else if ($this->exchangeRateValue) {
-            $xml->writeElement('exchrate', $this->exchangeRateValue);
-        } else if ($this->baseCurrency || $this->transactionCurrency) {
-            $xml->writeElement('exchratetype', $this->exchangeRateType, true);
-        }
+
+        $this->getPayToContactNameXml($xml);
+
+        $this->getReturnToContactNameXml($xml);
+
+        $this->getExchangeRateInfoXml($xml);
+
         $xml->writeElement('nogl', $this->doNotPostToGL);
         $xml->writeElement('supdocid', $this->attachmentsId);
 
-        if (count($this->customFields) > 0) {
-            $xml->startElement('customfields');
-            foreach ($this->customFields as $customFieldName => $customFieldValue) {
-                $xml->startElement('customfield');
-                $xml->writeElement('customfieldname', $customFieldName, true);
-                $xml->writeElement('customfieldvalue', $customFieldValue, true);
-                $xml->endElement(); //customfield
-            }
-            $xml->endElement(); //customfields
-        }
+        $this->getCustomFieldsXml($xml);
         
-        $xml->startElement('billitems');
-        foreach ($this->entries as $entry) {
-            $xml->startElement('lineitem');
-            if ($entry->accountLabel) {
-                $xml->writeElement('accountlabel', $entry->accountLabel);
-            } else {
-                $xml->writeElement('glaccountno', $entry->glAccountNo);
-            }
-            $xml->writeElement('amount', $entry->transactionAmount);
-            $xml->writeElement('memo', $entry->memo);
-            $xml->writeElement('locationid', $entry->locationId);
-            $xml->writeElement('departmentid', $entry->departmentId);
-            $xml->writeElement('item1099', $entry->form1099);
-            
-            //TODO finish this
-            
-            $xml->endElement(); //lineitem
-        }
-        $xml->endElement(); //billitems
+        $this->getApBillEntriesXml($xml);
 
         $xml->endElement(); //create_bill
 

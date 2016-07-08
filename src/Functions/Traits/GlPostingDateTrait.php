@@ -41,7 +41,7 @@ trait GlPostingDateTrait
      */
     public function setGlPostingDate($glPostingDate)
     {
-        if ($glPostingDate instanceof Date) {
+        if ($glPostingDate instanceof Date || is_null($glPostingDate)) {
             $this->glPostingDate = $glPostingDate;
         } else {
             $this->glPostingDate = new Date($glPostingDate);

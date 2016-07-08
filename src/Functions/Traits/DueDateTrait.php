@@ -41,7 +41,7 @@ trait DueDateTrait
      */
     public function setDueDate($dueDate)
     {
-        if ($dueDate instanceof Date) {
+        if (is_null($dueDate) || ($dueDate instanceof Date)) {
             $this->dueDate = $dueDate;
         } else {
             $this->dueDate = new Date($dueDate);

@@ -20,7 +20,7 @@ namespace Intacct\Functions\AccountsPayable;
 use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
-class CreateApBillEntryTest  extends \PHPUnit_Framework_TestCase
+class CreateApBillEntryTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

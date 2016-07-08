@@ -24,12 +24,12 @@ trait CustomFieldsTrait
 {
     /**
      *
-     * @var string
+     * @var array
      */
     private $customFields;
 
     /**
-     * @return string
+     * @return array
      */
     public function getCustomFields()
     {
@@ -37,9 +37,9 @@ trait CustomFieldsTrait
     }
 
     /**
-     * @param string $customFields
+     * @param array $customFields
      */
-    public function setCustomFields($customFields)
+    public function setCustomFields(array $customFields)
     {
         $this->customFields = $customFields;
     }
