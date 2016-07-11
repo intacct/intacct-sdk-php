@@ -125,7 +125,7 @@ EOF;
             <month>06</month>
             <day>30</day>
         </exchratedate>
-        <exchratetype>1.4</exchratetype>
+        <exchratetype>Intacct Daily Rate</exchratetype>
         <nogl>true</nogl>
         <supdocid>6942</supdocid>
         <customfields>
@@ -173,7 +173,7 @@ EOF;
             'base_currency' => 'USD',
             'transaction_currency' => 'USD',
             'exchange_rate_date' => '2015-06-30',
-            'exchange_rate_type' => '1.4',
+            'exchange_rate_type' => 'Intacct Daily Rate',
             'do_not_post_to_gl' => true,
             'attachments_id' => '6942',
             'custom_fields' => [
