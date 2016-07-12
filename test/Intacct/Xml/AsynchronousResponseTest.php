@@ -93,5 +93,4 @@ EOF;
 EOF;
         new AsynchronousResponse($xml);
     }
-
 }

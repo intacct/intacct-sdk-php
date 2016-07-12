@@ -30,7 +30,7 @@ class SessionAuthentication extends AbstractAuthentication
     private $sessionId;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params)
@@ -50,7 +50,7 @@ class SessionAuthentication extends AbstractAuthentication
     }
     
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(&$xml)
@@ -59,5 +59,4 @@ class SessionAuthentication extends AbstractAuthentication
         $xml->writeElement('sessionid', $this->sessionId, true);
         $xml->endElement(); //authentication
     }
-
 }

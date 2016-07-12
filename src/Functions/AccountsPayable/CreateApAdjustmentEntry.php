@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Functions\Traits\DimensionsTrait;
-use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 class CreateApAdjustmentEntry
 {
+    
     use DimensionsTrait;
     use CustomFieldsTrait;
 
@@ -85,10 +86,9 @@ class CreateApAdjustmentEntry
     /**
      *
      * @param array $params my params
-     * @param string $functionControlId my function
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params = [], $functionControlId = null)
+    public function __construct(array $params = [])
     {
         $defaults = [
             'account_label' => null,
@@ -142,7 +142,7 @@ class CreateApAdjustmentEntry
     }
 
     /**
-     * @param $amount
+     * @param string|float $amount
      * @throws InvalidArgumentException
      */
     private function setTransactionAmount($amount)
@@ -155,7 +155,7 @@ class CreateApAdjustmentEntry
     }
 
     /**
-     * @param $form1099
+     * @param bool $form1099
      * @throws InvalidArgumentException
      */
     private function setForm1099($form1099)
@@ -168,7 +168,7 @@ class CreateApAdjustmentEntry
     }
 
     /**
-     * @param $totalPaid
+     * @param string|float $totalPaid
      * @throws InvalidArgumentException
      */
     private function setTotalPaid($totalPaid)
@@ -181,7 +181,7 @@ class CreateApAdjustmentEntry
     }
 
     /**
-     * @param $totalDue
+     * @param string|float $totalDue
      * @throws InvalidArgumentException
      */
     private function setTotalDue($totalDue)
@@ -194,7 +194,7 @@ class CreateApAdjustmentEntry
     }
 
     /**
-     * @param $billable
+     * @param bool $billable
      * @throws InvalidArgumentException
      */
     private function setBillable($billable)
@@ -224,7 +224,7 @@ class CreateApAdjustmentEntry
         $xml->writeElement('offsetglaccountno', $this->offsetGLAccountNumber);
         $xml->writeElement('amount', $this->transactionAmount, true);
         $xml->writeElement('allocationid', $this->allocationId);
-        $xml->writeElement('memo' , $this->memo);
+        $xml->writeElement('memo', $this->memo);
         $xml->writeElement('locationid', $this->getLocationId());
         $xml->writeElement('departmentid', $this->getDepartmentId());
         $xml->writeElement('item1099', $this->form1099);

@@ -47,5 +47,4 @@ trait BillDateTrait
             $this->billDate = new Date($billDate);
         }
     }
-
 }

@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -84,7 +84,7 @@ class ReadByQuery implements FunctionInterface
     private $docParId;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = [])
@@ -110,7 +110,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param int $pageSize
      * @throws InvalidArgumentException
      */
@@ -138,7 +138,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param string $format
      * @throws InvalidArgumentException
      */
@@ -151,7 +151,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $fields
      */
     private function setFields(array $fields)
@@ -160,7 +160,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getFields()
@@ -194,7 +194,7 @@ class ReadByQuery implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -215,5 +215,4 @@ class ReadByQuery implements FunctionInterface
         
         $xml->endElement(); //function
     }
-    
 }

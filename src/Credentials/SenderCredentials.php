@@ -85,9 +85,9 @@ class SenderCredentials
         $config = array_merge($defaults, $params);
         
         if (
-                !$config['sender_id'] &&
-                !$config['sender_password'] &&
-                $config['profile_name']
+            !$config['sender_id'] &&
+            !$config['sender_password'] &&
+            $config['profile_name']
         ) {
             $profileProvider = new ProfileCredentialProvider();
             $profileCreds = $profileProvider->getSenderCredentials($config);
@@ -115,7 +115,7 @@ class SenderCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSenderId()
@@ -124,7 +124,7 @@ class SenderCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getPassword()
@@ -133,12 +133,11 @@ class SenderCredentials
     }
     
     /**
-     * 
+     *
      * @return Endpoint
      */
     public function getEndpoint()
     {
         return $this->endpoint;
     }
-
 }

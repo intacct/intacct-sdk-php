@@ -42,7 +42,7 @@ class LoginAuthentication extends AbstractAuthentication
     private $password;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params)
@@ -76,7 +76,7 @@ class LoginAuthentication extends AbstractAuthentication
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(&$xml)
@@ -89,5 +89,4 @@ class LoginAuthentication extends AbstractAuthentication
         $xml->endElement(); //login
         $xml->endElement(); //authentication
     }
-
 }

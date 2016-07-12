@@ -123,5 +123,4 @@ EOF;
         
         new LoginAuthentication($config);
     }
-
 }

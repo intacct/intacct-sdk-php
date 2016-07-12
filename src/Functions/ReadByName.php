@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -68,7 +68,7 @@ class ReadByName implements FunctionInterface
     private $docParId;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = [])
@@ -92,7 +92,7 @@ class ReadByName implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param string $format
      * @throws InvalidArgumentException
      */
@@ -105,7 +105,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $fields
      */
     private function setFields(array $fields)
@@ -114,7 +114,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getFields()
@@ -129,7 +129,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $names
      * @throws InvalidArgumentException
      */
@@ -143,7 +143,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getNames()
@@ -171,7 +171,7 @@ class ReadByName implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -191,5 +191,4 @@ class ReadByName implements FunctionInterface
         
         $xml->endElement(); //function
     }
-    
 }

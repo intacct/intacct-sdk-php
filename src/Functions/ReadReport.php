@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -108,7 +108,7 @@ class ReadReport implements FunctionInterface
     private $returnDef;
 
     /**
-     * 
+     *
      * @param array $params
      * @todo finish the arguments collection
      */
@@ -158,7 +158,7 @@ class ReadReport implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param int $pageSize
      * @throws InvalidArgumentException
      */
@@ -186,7 +186,7 @@ class ReadReport implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param int $waitTime
      * @throws InvalidArgumentException
      */
@@ -214,7 +214,7 @@ class ReadReport implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param string $format
      * @throws InvalidArgumentException
      */
@@ -227,7 +227,7 @@ class ReadReport implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $arguments
      */
     private function setArguments(array $arguments)
@@ -241,8 +241,7 @@ class ReadReport implements FunctionInterface
      */
     private function setListSeparator($listSeparator)
     {
-        if (is_string($listSeparator) === false)
-        {
+        if (is_string($listSeparator) === false) {
             throw new InvalidArgumentException('list_separator must be a string');
         }
 
@@ -255,8 +254,7 @@ class ReadReport implements FunctionInterface
      */
     private function getListSeparator()
     {
-        if ($this->listSeparator === '')
-        {
+        if ($this->listSeparator === '') {
             return null;
         }
 
@@ -270,8 +268,7 @@ class ReadReport implements FunctionInterface
      */
     private function setReturnDef($returnDef)
     {
-        if (is_bool($returnDef) === false)
-        {
+        if (is_bool($returnDef) === false) {
             throw new InvalidArgumentException('return_def must be a bool');
         }
 
@@ -287,7 +284,7 @@ class ReadReport implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -316,5 +313,4 @@ class ReadReport implements FunctionInterface
         
         $xml->endElement(); //function
     }
-    
 }

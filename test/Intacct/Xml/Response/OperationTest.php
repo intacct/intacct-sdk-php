@@ -92,7 +92,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException \Intacct\Xml\Response\OperationException
      * @expectedExceptionMessage Response authentication status failure
      */
@@ -129,7 +129,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing from operation element
      */
@@ -152,7 +152,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing from operation element
      */
@@ -191,5 +191,4 @@ EOF;
         $results = $this->object->getResults();
         $this->assertInternalType('array', $results);
     }
-
 }

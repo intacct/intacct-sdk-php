@@ -74,7 +74,7 @@ class LoginCredentials
     private $senderCreds;
     
     /**
-     * 
+     *
      * @var MockHandler
      */
     protected $mockHandler;
@@ -142,7 +142,7 @@ class LoginCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getUserId()
@@ -151,7 +151,7 @@ class LoginCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getPassword()
@@ -160,7 +160,7 @@ class LoginCredentials
     }
 
     /**
-     * 
+     *
      * @return SenderCredentials
      */
     public function getSenderCredentials()
@@ -169,7 +169,7 @@ class LoginCredentials
     }
 
     /**
-     * 
+     *
      * @return Endpoint
      */
     public function getEndpoint()
@@ -178,12 +178,11 @@ class LoginCredentials
     }
     
     /**
-     * 
+     *
      * @return MockHandler
      */
     public function getMockHandler()
     {
         return $this->mockHandler;
     }
-
 }

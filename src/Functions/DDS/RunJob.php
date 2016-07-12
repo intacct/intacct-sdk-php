@@ -154,7 +154,7 @@ class RunJob implements FunctionInterface
     {
         if ($timestamp instanceof DateTime || is_null($timestamp)) {
             $this->timestamp = $timestamp;
-        } else if (is_string($timestamp) == false) {
+        } elseif (is_string($timestamp) == false) {
             throw new InvalidArgumentException('timestamp must be a string or DateTime');
         } else {
             $this->timestamp = new DateTime($timestamp);

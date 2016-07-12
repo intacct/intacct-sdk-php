@@ -85,5 +85,4 @@ EOF;
             $this->assertInternalType('array', $ex->getErrors());
         }
     }
-
 }

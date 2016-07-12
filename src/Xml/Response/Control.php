@@ -54,7 +54,7 @@ class Control
     private $dtdVersion;
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $control
      * @throws Exception
      */
@@ -84,7 +84,7 @@ class Control
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getStatus()
@@ -93,7 +93,7 @@ class Control
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSenderId()
@@ -102,7 +102,7 @@ class Control
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getControlId()
@@ -111,7 +111,7 @@ class Control
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getUniqueId()
@@ -120,12 +120,11 @@ class Control
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getDtdVersion()
     {
         return $this->dtdVersion;
     }
-
 }

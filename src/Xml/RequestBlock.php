@@ -54,8 +54,8 @@ class RequestBlock
      *
      * @param array $params
      * @param Content $contentBlock
-     * 
-*@throws InvalidArgumentException
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params, Content $contentBlock)
     {
@@ -92,5 +92,4 @@ class RequestBlock
 
         return $xml;
     }
-    
 }

@@ -68,5 +68,4 @@ EOF;
         
         new SessionAuthentication($config);
     }
-
 }

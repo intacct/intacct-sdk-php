@@ -23,17 +23,17 @@ use DOMXPath;
 
 abstract class XMLTestCase extends PHPUnit_Framework_TestCase
 {
+    
     protected abstract function getDomDocument();
 
-    protected function assertXpathMatch( $expected, $xpath,
-                                         $message = null )
+    protected function assertXpathMatch($expected, $xpath, $message = null)
     {
         $dom = $this->getDomDocument();
-        $xpathObj = new DOMXPath( $dom );
+        $xpathObj = new DOMXPath($dom);
 
         $context =  $dom->documentElement;
 
-        $res = $xpathObj->evaluate( $xpath, $context );
+        $res = $xpathObj->evaluate($xpath, $context);
 
         $this->assertEquals(
             $expected,

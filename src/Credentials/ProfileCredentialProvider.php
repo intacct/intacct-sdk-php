@@ -33,7 +33,7 @@ class ProfileCredentialProvider
     const DEFAULT_PROFILE_NAME = 'default';
 
     /**
-     * 
+     *
      */
     public function __construct()
     {
@@ -41,7 +41,7 @@ class ProfileCredentialProvider
     }
     
     /**
-     * 
+     *
      * @param array $params
      * @return array
      */
@@ -79,7 +79,7 @@ class ProfileCredentialProvider
     }
     
     /**
-     * 
+     *
      * @param array $params
      * @return array
      */
@@ -102,7 +102,7 @@ class ProfileCredentialProvider
     }
 
     /**
-     * 
+     *
      * @param array $params
      * @return array
      */
@@ -125,7 +125,7 @@ class ProfileCredentialProvider
     }
 
     /**
-     * 
+     *
      * @return string
      */
     private static function getHomeDirProfile()
@@ -146,5 +146,4 @@ class ProfileCredentialProvider
 
         return $profile;
     }
-
 }

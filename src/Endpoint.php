@@ -50,7 +50,7 @@ class Endpoint
     private $verifySSL;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = [])
@@ -66,7 +66,7 @@ class Endpoint
     }
     
     /**
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -75,7 +75,7 @@ class Endpoint
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getEndpoint()
@@ -84,7 +84,7 @@ class Endpoint
     }
 
     /**
-     * 
+     *
      * @param string $endpoint
      * @throws InvalidArgumentException
      */
@@ -115,7 +115,7 @@ class Endpoint
     }
     
     /**
-     * 
+     *
      * @param bool $verifySSL
      * @throws InvalidArgumentException
      */
@@ -130,12 +130,11 @@ class Endpoint
     }
     
     /**
-     * 
+     *
      * @return bool
      */
     public function getVerifySSL()
     {
         return $this->verifySSL;
     }
-
 }

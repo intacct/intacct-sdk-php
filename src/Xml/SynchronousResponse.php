@@ -32,7 +32,7 @@ class SynchronousResponse extends AbstractResponse
     private $operation;
 
     /**
-     * 
+     *
      * @param string $body
      * @throws Exception
      */
@@ -46,7 +46,7 @@ class SynchronousResponse extends AbstractResponse
     }
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $operation
      * @throws Exception
      */
@@ -56,12 +56,11 @@ class SynchronousResponse extends AbstractResponse
     }
 
     /**
-     * 
+     *
      * @return Operation
      */
     public function getOperation()
     {
         return $this->operation;
     }
-
 }

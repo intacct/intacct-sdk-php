@@ -294,5 +294,4 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-
 }

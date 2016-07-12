@@ -47,5 +47,4 @@ trait GlPostingDateTrait
             $this->glPostingDate = new Date($glPostingDate);
         }
     }
-
 }

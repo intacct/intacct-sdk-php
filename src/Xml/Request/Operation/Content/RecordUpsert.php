@@ -35,7 +35,7 @@ class RecordUpsert extends Record
     private $keyField;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params)
@@ -54,7 +54,7 @@ class RecordUpsert extends Record
     }
 
     /**
-     * 
+     *
      * @param array $whereFields
      * @throws InvalidArgumentException
      */
@@ -95,5 +95,4 @@ class RecordUpsert extends Record
     {
         return $this->keyField;
     }
-
 }

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Traits;
 
-
 trait EmployeeIdTrait
 {
     /**
@@ -41,5 +40,4 @@ trait EmployeeIdTrait
     {
         $this->employeeId = $employeeId;
     }
-
 }

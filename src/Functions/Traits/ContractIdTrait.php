@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Traits;
 
-
 trait ContractIdTrait
 {
     /**

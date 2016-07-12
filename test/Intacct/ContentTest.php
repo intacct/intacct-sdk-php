@@ -49,5 +49,4 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $func = new GetAPISession();
         $contentBlock->append($func);
     }
-
 }

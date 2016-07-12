@@ -289,5 +289,4 @@ EOF;
         $this->assertInternalType('string', $controlId);
         $this->assertContains('-', $controlId);
     }
-
 }

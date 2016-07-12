@@ -28,7 +28,7 @@ use Intacct\Content;
 use Intacct\Xml\Response\Operation\Result;
 use Ramsey\Uuid\Uuid;
 
-class IntacctClient implements IntacctClientInterface
+class IntacctClient
 {
 
     /**
@@ -230,5 +230,4 @@ class IntacctClient implements IntacctClientInterface
 
         return $response;
     }
-
 }

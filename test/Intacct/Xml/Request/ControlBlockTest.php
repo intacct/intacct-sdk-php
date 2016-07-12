@@ -299,5 +299,4 @@ EOF;
         
         new ControlBlock($config);
     }
-
 }

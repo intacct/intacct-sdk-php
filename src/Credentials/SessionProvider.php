@@ -39,7 +39,7 @@ class SessionProvider
     }
     
     /**
-     * 
+     *
      * @return array
      */
     public function getLastExecution()
@@ -136,5 +136,4 @@ class SessionProvider
 
         return new SessionCredentials($session, $senderCreds);
     }
-
 }

@@ -27,7 +27,7 @@ trait XMLHelperTrait
 {
 
     /**
-     * 
+     *
      * @param string $name
      * @return boolean
      */
@@ -42,7 +42,7 @@ trait XMLHelperTrait
     }
     
     /**
-     * 
+     *
      * @param array $array
      * @throws InvalidArgumentException
      */
@@ -61,7 +61,7 @@ trait XMLHelperTrait
     }
     
     /**
-     * 
+     *
      * @param array|ArrayIterator $array
      * @param XMLWriter $xml
      */
@@ -77,5 +77,4 @@ trait XMLHelperTrait
             }
         }
     }
-    
 }

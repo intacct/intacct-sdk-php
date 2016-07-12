@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Traits;
 
-
 trait ProjectIdTrait
 {
     /**
@@ -41,5 +40,4 @@ trait ProjectIdTrait
     {
         $this->projectId = $projectId;
     }
-
 }

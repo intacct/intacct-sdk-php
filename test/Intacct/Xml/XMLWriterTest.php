@@ -184,5 +184,4 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
 }

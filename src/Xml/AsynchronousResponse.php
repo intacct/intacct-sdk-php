@@ -32,7 +32,7 @@ class AsynchronousResponse extends AbstractResponse
     private $acknowledgement;
 
     /**
-     * 
+     *
      * @param string $body
      * @throws Exception
      */
@@ -46,7 +46,7 @@ class AsynchronousResponse extends AbstractResponse
     }
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $acknowledgement
      * @throws Exception
      */
@@ -56,12 +56,11 @@ class AsynchronousResponse extends AbstractResponse
     }
 
     /**
-     * 
+     *
      * @return Acknowledgement
      */
     public function getAcknowledgement()
     {
         return $this->acknowledgement;
     }
-
 }

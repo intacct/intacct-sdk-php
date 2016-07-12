@@ -47,5 +47,4 @@ trait DueDateTrait
             $this->dueDate = new Date($dueDate);
         }
     }
-
 }

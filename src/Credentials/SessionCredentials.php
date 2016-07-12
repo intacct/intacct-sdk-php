@@ -44,7 +44,7 @@ class SessionCredentials
     private $endpoint;
     
     /**
-     * 
+     *
      * @var MockHandler
      */
     protected $mockHandler;
@@ -70,7 +70,7 @@ class SessionCredentials
         
         if (!$config['session_id']) {
             throw new InvalidArgumentException(
-                    'Required "session_id" key not supplied in params'
+                'Required "session_id" key not supplied in params'
             );
         }
         
@@ -85,7 +85,7 @@ class SessionCredentials
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSessionId()
@@ -94,7 +94,7 @@ class SessionCredentials
     }
 
     /**
-     * 
+     *
      * @return Endpoint
      */
     public function getEndpoint()
@@ -103,7 +103,7 @@ class SessionCredentials
     }
 
     /**
-     * 
+     *
      * @return SenderCredentials
      */
     public function getSenderCredentials()
@@ -112,12 +112,11 @@ class SessionCredentials
     }
     
     /**
-     * 
+     *
      * @return MockHandler
      */
     public function getMockHandler()
     {
         return $this->mockHandler;
     }
-
 }

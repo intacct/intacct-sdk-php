@@ -25,10 +25,10 @@ class QueryClientTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Query\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\Query\QueryClient::performReadByQuery
-     * @covers Intacct\Query\QueryClient::performReadMore
-     * @covers Intacct\Query\QueryClient::addRecords
+     * @covers Intacct\QueryClient::readAllObjectsByQuery
+     * @covers Intacct\QueryClient::performReadByQuery
+     * @covers Intacct\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::addRecords
      */
     public function testPerformReadByQuery()
     {
@@ -122,9 +122,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Query\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\Query\QueryClient::performReadByQuery
-     * @covers Intacct\Query\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::readAllObjectsByQuery
+     * @covers Intacct\QueryClient::performReadByQuery
+     * @covers Intacct\QueryClient::performReadMore
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get query records
      */
@@ -188,9 +188,9 @@ EOF;
 
 
     /**
-     * @covers Intacct\Query\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\Query\QueryClient::performReadByQuery
-     * @covers Intacct\Query\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::readAllObjectsByQuery
+     * @covers Intacct\QueryClient::performReadByQuery
+     * @covers Intacct\QueryClient::performReadMore
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage Query result totalcount of 100001 exceeds max_total_count parameter of 100000
      */
@@ -250,9 +250,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Query\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\Query\QueryClient::performReadByQuery
-     * @covers Intacct\Query\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::readAllObjectsByQuery
+     * @covers Intacct\QueryClient::performReadByQuery
+     * @covers Intacct\QueryClient::performReadMore
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get query records
      */

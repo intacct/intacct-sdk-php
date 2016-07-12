@@ -17,11 +17,11 @@
 
 namespace Intacct\Functions\Traits;
 
-
 use Intacct\Xml\XMLWriter;
 
 trait CustomFieldsTrait
 {
+    
     /**
      *
      * @var array
@@ -44,7 +44,7 @@ trait CustomFieldsTrait
         $this->customFields = $customFields;
     }
 
-    public function getCustomFieldsXml(XMLWriter $xml)
+    public function getCustomFieldsXml(XMLWriter &$xml)
     {
         if (count($this->customFields) > 0) {
             $xml->startElement('customfields');

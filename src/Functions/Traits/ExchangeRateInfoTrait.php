@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Copyright 2016 Intacct Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
 
 namespace Intacct\Functions\Traits;
 
@@ -74,7 +88,7 @@ trait ExchangeRateInfoTrait
     {
         if ($exchangeRateDate instanceof Date) {
             $this->exchangeRateDate = $exchangeRateDate;
-        } else if (is_null($exchangeRateDate) == false) {
+        } elseif (is_null($exchangeRateDate) == false) {
             $this->exchangeRateDate = new Date($exchangeRateDate);
         }
     }
@@ -95,7 +109,7 @@ trait ExchangeRateInfoTrait
     /**
      * @param XMLWriter $xml
      */
-    public function getExchangeRateInfoXml(XMLWriter $xml)
+    public function getExchangeRateInfoXml(XMLWriter &$xml)
     {
         $xml->writeElement('basecurr', $this->baseCurrency);
         $xml->writeElement('currency', $this->transactionCurrency);
@@ -108,11 +122,10 @@ trait ExchangeRateInfoTrait
 
         if ($this->exchangeRateType) {
             $xml->writeElement('exchratetype', $this->exchangeRateType);
-        } else if ($this->exchangeRateValue) {
+        } elseif ($this->exchangeRateValue) {
             $xml->writeElement('exchrate', $this->exchangeRateValue);
-        } else if ($this->baseCurrency || $this->transactionCurrency) {
+        } elseif ($this->baseCurrency || $this->transactionCurrency) {
             $xml->writeElement('exchratetype', $this->exchangeRateType, true);
         }
     }
-
 }

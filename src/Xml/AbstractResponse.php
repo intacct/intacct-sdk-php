@@ -39,7 +39,7 @@ abstract class AbstractResponse
     private $control;
 
     /**
-     * 
+     *
      * @param string $body
      * @throws Exception
      */
@@ -69,7 +69,7 @@ abstract class AbstractResponse
     }
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $control
      * @throws Exception
      */
@@ -79,12 +79,11 @@ abstract class AbstractResponse
     }
 
     /**
-     * 
+     *
      * @return Control
      */
     public function getControl()
     {
         return $this->control;
     }
-
 }

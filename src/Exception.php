@@ -17,7 +17,6 @@
 
 namespace Intacct;
 
-
 class Exception extends \RuntimeException
 {
 

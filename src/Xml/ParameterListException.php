@@ -34,7 +34,7 @@ class ParameterListException extends Exception
      * @param int $code
      * @param Exception $previous
      */
-    public function __construct($message, array $errors = [], $code = 0, $previous = NULL)
+    public function __construct($message, array $errors = [], $code = 0, $previous = null)
     {
         $this->errors = $errors;
 
@@ -49,5 +49,4 @@ class ParameterListException extends Exception
     {
         return $this->errors;
     }
-
 }

@@ -48,7 +48,7 @@ class Authentication
     private $slideInUser;
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $authentication
      * @throws Exception
      */
@@ -73,7 +73,7 @@ class Authentication
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getStatus()
@@ -82,7 +82,7 @@ class Authentication
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getUserId()
@@ -91,7 +91,7 @@ class Authentication
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getCompanyId()
@@ -100,7 +100,7 @@ class Authentication
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function getSlideInUser()
@@ -109,7 +109,7 @@ class Authentication
     }
 
     /**
-     * 
+     *
      * @param string $userId
      */
     private function setSlideInUser($userId)
@@ -117,10 +117,9 @@ class Authentication
         $slideInUser = false;
         if (strpos($userId, 'CPAUser') !== false) {
             $slideInUser = true;
-        } else if (strpos($userId, 'ExtUser|') !== false) {
+        } elseif (strpos($userId, 'ExtUser|') !== false) {
             $slideInUser = true;
         }
         $this->slideInUser = $slideInUser;
     }
-
 }

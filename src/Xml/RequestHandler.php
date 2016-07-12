@@ -39,7 +39,7 @@ class RequestHandler
     const VERSION = '1.0';
 
     /**
-     * 
+     *
      * @var string
      */
     const REQUEST_CONTENT_TYPE = 'x-intacct-xml-request';
@@ -57,7 +57,7 @@ class RequestHandler
     protected $verifySSL;
 
     /**
-     * 
+     *
      * @var MockHandler
      */
     protected $mockHandler;
@@ -75,7 +75,7 @@ class RequestHandler
     protected $maxRetries;
     
     /**
-     * 
+     *
      * @var array
      */
     protected $noRetryServerErrorCodes;
@@ -102,7 +102,7 @@ class RequestHandler
     private $lastExecution = [];
 
     /**
-     * 
+     *
      * @param array $params
      * @throws InvalidArgumentException
      */
@@ -136,7 +136,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @return string
      */
     protected function getUserAgent()
@@ -147,7 +147,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @return bool
      */
     public function getVerifySSL()
@@ -156,7 +156,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @return array
      */
     public function getHistory()
@@ -165,7 +165,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @param int $maxRetries
      * @throws InvalidArgumentException
      */
@@ -185,7 +185,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @return int
      */
     public function getMaxRetries()
@@ -194,13 +194,13 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @param array $errorCodes
      * @throws InvalidArgumentException
      */
     private function setNoRetryServerErrorCodes(array $errorCodes)
     {
-        foreach($errorCodes as $errorCode) {
+        foreach ($errorCodes as $errorCode) {
             if (!is_int($errorCode)) {
                 throw new InvalidArgumentException(
                     'no retry server error code is not valid int type'
@@ -240,7 +240,7 @@ class RequestHandler
     }
     
     /**
-     * 
+     *
      * @return array
      */
     public function getNoRetryServerErrorCodes()
@@ -367,5 +367,4 @@ class RequestHandler
 
         return $response;
     }
-    
 }

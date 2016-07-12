@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -30,7 +30,7 @@ trait ControlIdTrait
     private $controlId;
     
     /**
-     * 
+     *
      * @return string
      */
     public function getControlId()
@@ -39,7 +39,7 @@ trait ControlIdTrait
     }
     
     /**
-     * 
+     *
      * @param string $controlId Control ID
      * @throws InvalidArgumentException
      */
@@ -58,5 +58,4 @@ trait ControlIdTrait
         }
         $this->controlId = $controlId;
     }
-    
 }

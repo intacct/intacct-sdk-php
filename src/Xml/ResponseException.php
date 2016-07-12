@@ -29,13 +29,13 @@ class ResponseException extends Exception
     protected $errors;
 
     /**
-     * 
+     *
      * @param string $message
      * @param array $errors
      * @param int $code
      * @param Exception $previous
      */
-    public function __construct($message, array $errors = [], $code = 0, $previous = NULL)
+    public function __construct($message, array $errors = [], $code = 0, $previous = null)
     {
         $this->errors = $errors;
 
@@ -43,12 +43,11 @@ class ResponseException extends Exception
     }
     
     /**
-     * 
+     *
      * @return array
      */
     public function getErrors()
     {
         return $this->errors;
     }
-
 }

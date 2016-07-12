@@ -32,5 +32,4 @@ class Content extends ArrayIterator
     {
         parent::__construct($functions);
     }
-
 }

@@ -17,9 +17,9 @@
 
 namespace Intacct\Functions\Traits;
 
-
 trait DimensionsTrait
 {
+    
     use ClassIdTrait;
     use ContractIdTrait;
     use CustomerIdTrait;

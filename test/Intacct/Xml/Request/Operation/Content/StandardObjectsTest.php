@@ -33,5 +33,4 @@ class StandardObjectsTest extends \PHPUnit_Framework_TestCase
         $badMethods = StandardObjects::getMethodsNotAllowed('TIMESHEETENTRY');
         $this->assertEquals($expected, $badMethods);
     }
-
 }

@@ -24,7 +24,7 @@ class RecordIterator extends ArrayIterator
 {
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $xml
      */
     public function __construct(SimpleXMLIterator $xml)
@@ -33,5 +33,4 @@ class RecordIterator extends ArrayIterator
         
         parent::__construct($records);
     }
-
 }

@@ -80,7 +80,7 @@ class ControlBlock
     private $debug;
 
     /**
-     * 
+     *
      * @param array $params
      * @throws InvalidArgumentException
      */
@@ -121,7 +121,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @param string $controlId
      */
     private function setControlId($controlId)
@@ -142,7 +142,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @param bool $uniqueId
      * @throws InvalidArgumentException
      */
@@ -156,7 +156,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getUniqueId()
@@ -166,7 +166,7 @@ class ControlBlock
 
 
     /**
-     * 
+     *
      * @param string $dtdVersion
      * @throws InvalidArgumentException
      */
@@ -180,7 +180,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @param bool $includeWhitespace
      * @throws InvalidArgumentException
      */
@@ -194,7 +194,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getIncludeWhitespace()
@@ -203,7 +203,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @param bool $debug
      * @throws InvalidArgumentException
      */
@@ -217,7 +217,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getDebug()
@@ -226,7 +226,7 @@ class ControlBlock
     }
     
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(&$xml)
@@ -244,5 +244,4 @@ class ControlBlock
         }
         $xml->endElement(); //control
     }
-
 }

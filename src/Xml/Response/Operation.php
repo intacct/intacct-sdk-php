@@ -80,7 +80,7 @@ class Operation
     }
     
     /**
-     * 
+     *
      * @param int $key
      * @return Result
      */
@@ -96,5 +96,4 @@ class Operation
     {
         return $this->results;
     }
-
 }

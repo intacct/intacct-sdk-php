@@ -29,7 +29,7 @@ class ErrorMessage
     private $errors;
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $errorMessage
      */
     public function __construct(SimpleXMLIterator $errorMessage = null)
@@ -51,7 +51,7 @@ class ErrorMessage
     }
     
     /**
-     * 
+     *
      * @return array
      */
     public function getErrors()
@@ -60,7 +60,7 @@ class ErrorMessage
     }
 
     /**
-     * 
+     *
      * @param string $value
      * @return string
      */
@@ -68,5 +68,4 @@ class ErrorMessage
     {
         return filter_var(strval($value), FILTER_SANITIZE_STRING);
     }
-
 }

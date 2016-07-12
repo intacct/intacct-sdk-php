@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -117,7 +117,7 @@ class CreateApBill implements FunctionInterface
     private $apBillEntries;
 
     /**
-     * 
+     *
      * @param array $params my params
      */
     public function __construct(array $params = [])
@@ -181,7 +181,7 @@ class CreateApBill implements FunctionInterface
     /**
      * @param XMLWriter $xml
      */
-    private function getTermInfoXml(XMLWriter $xml)
+    private function getTermInfoXml(XMLWriter &$xml)
     {
         if ($this->dueDate) {
             $xml->startElement('datedue');
@@ -197,7 +197,7 @@ class CreateApBill implements FunctionInterface
     /**
      * @param XMLWriter $xml
      */
-    private function getPayToContactNameXml(XMLWriter $xml)
+    private function getPayToContactNameXml(XMLWriter &$xml)
     {
         if (is_null($this->payToContactName) == false) {
             $xml->startElement('payto');
@@ -209,7 +209,7 @@ class CreateApBill implements FunctionInterface
     /**
      * @param XMLWriter $xml
      */
-    private function getReturnToContactNameXml(XMLWriter $xml)
+    private function getReturnToContactNameXml(XMLWriter &$xml)
     {
         if (is_null($this->returnToContactName) == false) {
             $xml->startElement('returnto');
@@ -222,7 +222,7 @@ class CreateApBill implements FunctionInterface
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
      */
-    private function getApBillEntriesXml(XMLWriter $xml)
+    private function getApBillEntriesXml(XMLWriter &$xml)
     {
         $xml->startElement('billitems');
 
@@ -230,7 +230,7 @@ class CreateApBill implements FunctionInterface
             foreach ($this->apBillEntries as $apBillEntry) {
                 if ($apBillEntry instanceof CreateApBillEntry) {
                     $apBillEntry->getXml($xml);
-                } else if (is_array($apBillEntry)) {
+                } elseif (is_array($apBillEntry)) {
                     $apBillEntry = new CreateApBillEntry($apBillEntry);
 
                     $apBillEntry->getXml($xml);
@@ -242,9 +242,9 @@ class CreateApBill implements FunctionInterface
 
         $xml->endElement(); //billitems
     }
-
+    
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -268,7 +268,7 @@ class CreateApBill implements FunctionInterface
 
         $this->getTermInfoXml($xml);
 
-        $xml->writeElement('action', $this->action); // this was missing.  any reason?
+        $xml->writeElement('action', $this->action);
         $xml->writeElement('batchkey', $this->batchKey);
         $xml->writeElement('billno', $this->billNumber);
         $xml->writeElement('ponumber', $this->referenceNumber);
@@ -293,5 +293,4 @@ class CreateApBill implements FunctionInterface
 
         $xml->endElement(); //function
     }
-
 }

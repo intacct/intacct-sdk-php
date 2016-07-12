@@ -32,5 +32,4 @@ class Date extends DateTime
     {
         parent::__construct($date, $timezone);
     }
-
 }

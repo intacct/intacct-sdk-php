@@ -220,5 +220,4 @@ EOF;
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
     }
-
 }

@@ -37,7 +37,7 @@ class Record extends ArrayIterator
      *
      * - object: (string, required)
      * - fields: (array)
-     * 
+     *
      * @param array $params
      * @throws InvalidArgumentException
      */
@@ -63,7 +63,7 @@ class Record extends ArrayIterator
     }
     
     /**
-     * 
+     *
      * @return string
      */
     public function getObjectName()
@@ -72,7 +72,7 @@ class Record extends ArrayIterator
     }
     
     /**
-     * 
+     *
      * @param string $name
      * @throws InvalidArgumentException
      */
@@ -92,5 +92,4 @@ class Record extends ArrayIterator
         
         $this->objectName = $name;
     }
-
 }

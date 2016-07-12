@@ -410,7 +410,7 @@ EOF;
         ];
         
         $mock = new MockHandler([
-            new Response(502), 
+            new Response(502),
             new Response(200, $headers, $xml),
         ]);
         
@@ -443,9 +443,9 @@ EOF;
     public function testMockDefaultRetryFailure()
     {
         $mock = new MockHandler([
-            new Response(500), 
-            new Response(501), 
-            new Response(502), 
+            new Response(500),
+            new Response(501),
+            new Response(502),
             new Response(504),
             new Response(505),
             new Response(506),
@@ -566,5 +566,4 @@ EOF;
         fseek($handle, 0);
         $this->assertEquals('[', substr(stream_get_contents($handle), 0, 1));
     }
-
 }

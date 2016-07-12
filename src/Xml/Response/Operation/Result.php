@@ -208,7 +208,7 @@ class Result
 
     /**
      * @param bool $nested
-     * 
+     *
      * @return ArrayIterator
      */
     public function getDataArray($nested = false)
@@ -227,5 +227,4 @@ class Result
 
         return $records;
     }
-
 }

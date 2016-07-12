@@ -165,5 +165,4 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         
         new Endpoint($config);
     }
-
 }

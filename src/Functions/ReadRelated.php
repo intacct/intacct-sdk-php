@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -68,7 +68,7 @@ class ReadRelated implements FunctionInterface
     private $returnFormat;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = [])
@@ -103,8 +103,7 @@ class ReadRelated implements FunctionInterface
      */
     private function setRelation($relation)
     {
-        if (is_string($relation) === false)
-        {
+        if (is_string($relation) === false) {
             throw new InvalidArgumentException('relation must be a string');
         }
 
@@ -113,7 +112,7 @@ class ReadRelated implements FunctionInterface
 
 
     /**
-     * 
+     *
      * @param string $format
      * @throws InvalidArgumentException
      */
@@ -126,7 +125,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $fields
      */
     private function setFields(array $fields)
@@ -135,7 +134,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getFields()
@@ -150,7 +149,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param array $keys
      * @throws InvalidArgumentException
      */
@@ -163,7 +162,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getKeys()
@@ -178,7 +177,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -198,5 +197,4 @@ class ReadRelated implements FunctionInterface
         
         $xml->endElement(); //function
     }
-    
 }

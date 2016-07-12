@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Traits;
 
-
 trait VendorIdTrait
 {
 
@@ -42,5 +41,4 @@ trait VendorIdTrait
     {
         $this->vendorId = $vendorId;
     }
-
 }

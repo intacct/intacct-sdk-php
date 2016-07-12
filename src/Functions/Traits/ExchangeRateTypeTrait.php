@@ -41,5 +41,4 @@ trait ExchangeRateTypeTrait
     {
         $this->exchangeRateType = $exchangeRateType;
     }
-
 }

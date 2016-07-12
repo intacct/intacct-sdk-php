@@ -371,5 +371,4 @@ class StandardObjects
 
         return $methods;
     }
-
 }

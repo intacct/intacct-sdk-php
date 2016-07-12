@@ -30,7 +30,7 @@ class Acknowledgement
     private $status;
 
     /**
-     * 
+     *
      * @param SimpleXMLIterator $acknowledgement
      * @throws Exception
      */
@@ -44,12 +44,11 @@ class Acknowledgement
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getStatus()
     {
         return $this->status;
     }
-
 }

@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -40,7 +40,7 @@ class Delete implements FunctionInterface
     private $keys;
 
     /**
-     * 
+     *
      * @param array $params
      * @throws InvalidArgumentException
      */
@@ -71,7 +71,7 @@ class Delete implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param array $keys
      * @throws InvalidArgumentException
      */
@@ -81,7 +81,7 @@ class Delete implements FunctionInterface
             throw new InvalidArgumentException(
                 'keys count cannot exceed ' . static::MAX_KEY_COUNT
             );
-        } else if (count($keys) === 0) {
+        } elseif (count($keys) === 0) {
             throw new InvalidArgumentException(
                 'keys count must be greater than zero'
             );
@@ -91,7 +91,7 @@ class Delete implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @return string
      */
     private function getKeys()
@@ -102,7 +102,7 @@ class Delete implements FunctionInterface
     }
     
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -119,5 +119,4 @@ class Delete implements FunctionInterface
         
         $xml->endElement(); //function
     }
-
 }

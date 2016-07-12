@@ -35,7 +35,7 @@ class OperationBlock
 
     /**
      *
-     * @var AbstractAuthentication 
+     * @var AbstractAuthentication
      */
     private $authentication;
 
@@ -46,11 +46,11 @@ class OperationBlock
     private $contentBlock;
 
     /**
-     * 
+     *
      * @param array $params
      * @param Content $contentBlock
-     * 
-*@throws InvalidArgumentException
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params, Content $contentBlock)
     {
@@ -68,8 +68,8 @@ class OperationBlock
 
         if ($config['session_id']) {
             $this->authentication = new SessionAuthentication($config);
-        } else if (
-                $config['company_id'] && $config['user_id'] && $config['user_password']
+        } elseif (
+            $config['company_id'] && $config['user_id'] && $config['user_password']
         ) {
             $this->authentication = new LoginAuthentication($config);
         } else {
@@ -84,7 +84,7 @@ class OperationBlock
     }
 
     /**
-     * 
+     *
      * @param bool $transaction
      * @throws InvalidArgumentException
      */
@@ -98,7 +98,7 @@ class OperationBlock
     }
 
     /**
-     * 
+     *
      * @return string
      */
     private function getTransaction()
@@ -110,18 +110,18 @@ class OperationBlock
 
     /**
      * @param array $modulePreferences
-     * 
+     *
      * @todo finish the module preferences
      */
     private function setModulePreferences(array $modulePreferences)
     {
         if (count($modulePreferences) > 0) {
-            
+            //TODO: finish this
         }
     }
     
     /**
-     * 
+     *
      * @param Content $contentBlock
      */
     private function setContent(Content $contentBlock)
@@ -130,7 +130,7 @@ class OperationBlock
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -148,5 +148,4 @@ class OperationBlock
 
         $xml->endElement(); //operation
     }
-
 }

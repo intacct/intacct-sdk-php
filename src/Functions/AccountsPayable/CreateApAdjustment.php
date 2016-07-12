@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -84,7 +84,7 @@ class CreateApAdjustment implements FunctionInterface
     private $apAdjustmentEntries;
 
     /**
-     * 
+     *
      * @param array $params my params
      */
     public function __construct(array $params = [])
@@ -137,7 +137,7 @@ class CreateApAdjustment implements FunctionInterface
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
      */
-    private function getApAdjustmentEntriesXml(XMLWriter $xml)
+    private function getApAdjustmentEntriesXml(XMLWriter &$xml)
     {
         $xml->startElement('apadjustmentitems');
 
@@ -145,7 +145,7 @@ class CreateApAdjustment implements FunctionInterface
             foreach ($this->apAdjustmentEntries as $apAdjustmentEntry) {
                 if ($apAdjustmentEntry instanceof CreateApAdjustmentEntry) {
                     $apAdjustmentEntry->getXml($xml);
-                } else if (is_array($apAdjustmentEntry)) {
+                } elseif (is_array($apAdjustmentEntry)) {
                     $apAdjustmentEntry = new CreateApAdjustmentEntry($apAdjustmentEntry);
 
                     $apAdjustmentEntry->getXml($xml);
@@ -159,7 +159,7 @@ class CreateApAdjustment implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -182,7 +182,7 @@ class CreateApAdjustment implements FunctionInterface
         }
 
         $xml->writeElement('batchkey', $this->batchKey);
-        $xml->writeElement('adjustmentno' , $this->adjustmentNumber);
+        $xml->writeElement('adjustmentno', $this->adjustmentNumber);
         $xml->writeElement('action', $this->action);
         $xml->writeElement('billno', $this->billNumber);
         $xml->writeElement('description', $this->description);
@@ -200,5 +200,4 @@ class CreateApAdjustment implements FunctionInterface
 
         $xml->endElement(); //function
     }
-
 }

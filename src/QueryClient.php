@@ -95,7 +95,8 @@ class QueryClient
 
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
-                'An error occurred trying to get query records', $result->getErrors()
+                'An error occurred trying to get query records',
+                $result->getErrors()
             );
         }
 
@@ -129,7 +130,8 @@ class QueryClient
 
         if ($result->getStatus() !== 'success') {
             throw new ResultException(
-                'An error occurred trying to get query records', $result->getErrors()
+                'An error occurred trying to get query records',
+                $result->getErrors()
             );
         }
 
@@ -146,5 +148,4 @@ class QueryClient
             $records->append($record);
         }
     }
-
 }
