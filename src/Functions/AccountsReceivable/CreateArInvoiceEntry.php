@@ -15,11 +15,11 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Functions\AbstractLineItem;
 
-class CreateApBillEntry extends AbstractLineItem
+class CreateArInvoiceEntry extends AbstractLineItem
 {
 
 }

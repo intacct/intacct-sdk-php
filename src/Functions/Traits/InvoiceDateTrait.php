@@ -15,11 +15,37 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\Traits;
 
-use Intacct\Functions\AbstractLineItem;
+use Intacct\Fields\Date;
 
-class CreateApBillEntry extends AbstractLineItem
+trait InvoiceDateTrait
 {
+
+    /**
+     *
+     * @var Date
+     */
+    private $invoiceDate;
+
+    /**
+     * @return Date
+     */
+    public function getInvoiceDate()
+    {
+        return $this->invoiceDate;
+    }
+
+    /**
+     * @param string|Date $invoiceDate
+     */
+    public function setInvoiceDate($invoiceDate)
+    {
+        if ($invoiceDate instanceof Date) {
+            $this->invoiceDate = $invoiceDate;
+        } else {
+            $this->invoiceDate = new Date($invoiceDate);
+        }
+    }
 
 }
