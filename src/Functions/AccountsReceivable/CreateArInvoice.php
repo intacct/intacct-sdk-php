@@ -268,7 +268,7 @@ class CreateArInvoice implements FunctionInterface
 
         $this->getTermInfoXml($xml);
 
-        $xml->writeElement('action', $this->action); // this was missing.  any reason?
+        $xml->writeElement('action', $this->action);
         $xml->writeElement('batchkey', $this->batchKey);
         $xml->writeElement('invoiceno', $this->invoiceNumber);
         $xml->writeElement('ponumber', $this->referenceNumber);
