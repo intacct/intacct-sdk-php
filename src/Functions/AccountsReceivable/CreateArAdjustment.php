@@ -9,33 +9,31 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the License for the specific language governing
+ * or in the "LICENSE" file accompanying this file. This file is distributed on 
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied. See the License for the specific language governing 
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Functions\Traits\BillDateTrait;
-use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Functions\Traits\InvoiceDateTrait;
 use Intacct\Functions\Traits\ExchangeRateInfoTrait;
 use Intacct\Functions\Traits\GlPostingDateTrait;
-use Intacct\Functions\Traits\VendorIdTrait;
+use Intacct\Functions\Traits\CustomerIdTrait;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class CreateApAdjustment implements FunctionInterface
+class CreateArAdjustment implements FunctionInterface
 {
 
     use ControlIdTrait;
     use ExchangeRateInfoTrait;
-    use VendorIdTrait;
-    use BillDateTrait;
+    use CustomerIdTrait;
+    use InvoiceDateTrait;
     use GlPostingDateTrait;
-    use CustomFieldsTrait;
 
     /**
      * @var string
@@ -47,18 +45,19 @@ class CreateApAdjustment implements FunctionInterface
      * @var string
      */
     private $batchKey;
-
-    /**
-     * @var string
-     */
-    private $adjustmentNumber;
-
+    
     /**
      *
      * @var string
      */
-    private $billNumber;
+    private $adjustmentNumber;
     
+    /**
+     *
+     * @var string
+     */
+    private $invoiceNumber;
+
     /**
      *
      * @var string
@@ -81,23 +80,23 @@ class CreateApAdjustment implements FunctionInterface
      *
      * @var array
      */
-    private $apAdjustmentEntries;
+    private $arAdjustmentEntries;
 
     /**
-     *
+     * 
      * @param array $params my params
      */
     public function __construct(array $params = [])
     {
         $defaults = [
             'control_id' => null,
-            'vendor_id' => null,
+            'customer_id' => null,
             'when_created' => null,
             'when_posted' => null,
             'batch_key' => null,
             'adjustment_number' => null,
             'action' => null,
-            'bill_number' => null,
+            'invoice_number' => null,
             'description' => null,
             'external_id' => null,
             'base_currency' => null,
@@ -106,20 +105,19 @@ class CreateApAdjustment implements FunctionInterface
             'exchange_rate_type' => null,
             'exchange_rate' => null,
             'do_not_post_to_gl' => null,
-            'custom_fields' => [],
-            'ap_adjustment_entries' => [],
+            'ar_adjustment_entries' => [],
         ];
         $config = array_merge($defaults, $params);
 
         $this->setControlId($config['control_id']);
 
-        $this->setVendorId($config['vendor_id']);
-        $this->setBillDate($config['when_created']);
+        $this->setCustomerId($config['customer_id']);
+        $this->setInvoiceDate($config['when_created']);
         $this->setGlPostingDate($config['when_posted']);
-        $this->action = $config['action'];
         $this->batchKey = $config['batch_key'];
         $this->adjustmentNumber = $config['adjustment_number'];
-        $this->billNumber = $config['bill_number'];
+        $this->action = $config['action'];
+        $this->invoiceNumber = $config['invoice_number'];
         $this->description = $config['description'];
         $this->externalId = $config['external_id'];
         $this->setBaseCurrency($config['base_currency']);
@@ -128,8 +126,7 @@ class CreateApAdjustment implements FunctionInterface
         $this->setExchangeRateType($config['exchange_rate_type']);
         $this->setExchangeRateValue($config['exchange_rate']);
         $this->doNotPostToGL = $config['do_not_post_to_gl'];
-        $this->setCustomFields($config['custom_fields']);
-        $this->apAdjustmentEntries = $config['ap_adjustment_entries'];
+        $this->arAdjustmentEntries = $config['ar_adjustment_entries'];
         
     }
 
@@ -137,29 +134,29 @@ class CreateApAdjustment implements FunctionInterface
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
      */
-    private function getApAdjustmentEntriesXml(XMLWriter &$xml)
+    private function getArAdjustmentEntriesXml(XMLWriter &$xml)
     {
-        $xml->startElement('apadjustmentitems');
+        $xml->startElement('aradjustmentitems');
 
-        if (count($this->apAdjustmentEntries) > 0) {
-            foreach ($this->apAdjustmentEntries as $apAdjustmentEntry) {
-                if ($apAdjustmentEntry instanceof CreateApAdjustmentEntry) {
-                    $apAdjustmentEntry->getXml($xml);
-                } else if (is_array($apAdjustmentEntry)) {
-                    $apAdjustmentEntry = new CreateApAdjustmentEntry($apAdjustmentEntry);
+        if (count($this->arAdjustmentEntries) > 0) {
+            foreach ($this->arAdjustmentEntries as $arAdjustmentEntry) {
+                if ($arAdjustmentEntry instanceof CreateArAdjustmentEntry) {
+                    $arAdjustmentEntry->getXml($xml);
+                } else if (is_array($arAdjustmentEntry)) {
+                    $arAdjustmentEntry = new CreateArAdjustmentEntry($arAdjustmentEntry);
 
-                    $apAdjustmentEntry->getXml($xml);
+                    $arAdjustmentEntry->getXml($xml);
                 }
             }
         } else {
-            throw new InvalidArgumentException('"ap_adjustment_entries" param must have at least 1 entry');
+            throw new InvalidArgumentException('"ar_adjustment_entries" param must have at least 1 entry');
         }
 
-        $xml->endElement(); //apadjustmentitems
+        $xml->endElement(); //aradjustmentitems
     }
 
     /**
-     *
+     * 
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -167,12 +164,12 @@ class CreateApAdjustment implements FunctionInterface
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId);
 
-        $xml->startElement('create_apadjustment');
+        $xml->startElement('create_aradjustment');
 
-        $xml->writeElement('vendorid', $this->vendorId, true);
+        $xml->writeElement('customerid', $this->customerId, true);
 
         $xml->startElement('datecreated');
-        $xml->writeDateSplitElements($this->billDate);
+        $xml->writeDateSplitElements($this->getInvoiceDate());
         $xml->endElement(); //datecreated
 
         if ($this->glPostingDate) {
@@ -184,20 +181,19 @@ class CreateApAdjustment implements FunctionInterface
         $xml->writeElement('batchkey', $this->batchKey);
         $xml->writeElement('adjustmentno', $this->adjustmentNumber);
         $xml->writeElement('action', $this->action);
-        $xml->writeElement('billno', $this->billNumber);
+        $xml->writeElement('invoiceno', $this->invoiceNumber);
         $xml->writeElement('description', $this->description);
         $xml->writeElement('externalid', $this->externalId);
 
         $this->getExchangeRateInfoXml($xml);
 
         $xml->writeElement('nogl', $this->doNotPostToGL);
-
-        $this->getCustomFieldsXml($xml);
         
-        $this->getApAdjustmentEntriesXml($xml);
+        $this->getArAdjustmentEntriesXml($xml);
 
-        $xml->endElement(); //create_apadjustment
+        $xml->endElement(); //create_aradjustment
 
         $xml->endElement(); //function
     }
+
 }
