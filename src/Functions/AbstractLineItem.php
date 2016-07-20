@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Copyright 2016 Intacct Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
 
 namespace Intacct\Functions;
 
@@ -8,7 +22,7 @@ use Intacct\Functions\Traits\DimensionsTrait;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
-class AbstractLineItem
+abstract class AbstractLineItem
 {
 
     use DimensionsTrait;
@@ -72,10 +86,9 @@ class AbstractLineItem
     /**
      *
      * @param array $params my params
-     * @param string $functionControlId my function
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params = [], $functionControlId = null)
+    public function __construct(array $params = [])
     {
         $defaults = [
             'account_label' => null,
@@ -201,7 +214,6 @@ class AbstractLineItem
     public function getXml(XMLWriter &$xml)
     {
         $xml->startElement('lineitem');
-
 
         if (!is_null($this->accountLabel)) {
             $xml->writeElement('accountlabel', $this->accountLabel, true);

@@ -19,12 +19,14 @@ namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
+use Intacct\Functions\Traits\BillToTrait;
 use Intacct\Functions\Traits\InvoiceDateTrait;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Functions\Traits\DueDateTrait;
 use Intacct\Functions\Traits\ExchangeRateInfoTrait;
 use Intacct\Functions\Traits\GlPostingDateTrait;
 use Intacct\Functions\Traits\CustomerIdTrait;
+use Intacct\Functions\Traits\ShipToTrait;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -38,6 +40,8 @@ class CreateArInvoice implements FunctionInterface
     use GlPostingDateTrait;
     use DueDateTrait;
     use CustomFieldsTrait;
+    use ShipToTrait;
+    use BillToTrait;
     
     /**
      *
@@ -85,18 +89,6 @@ class CreateArInvoice implements FunctionInterface
      * @var string
      */
     private $externalId;
-    
-    /**
-     *
-     * @var string
-     */
-    private $billToContactName;
-    
-    /**
-     *
-     * @var string
-     */
-    private $shipToContactName;
 
     /**
      *
@@ -164,8 +156,8 @@ class CreateArInvoice implements FunctionInterface
         $this->onHold = $config['on_hold'];
         $this->description = $config['description'];
         $this->externalId = $config['external_id'];
-        $this->billToContactName = $config['bill_to_contact_name'];
-        $this->shipToContactName = $config['ship_to_contact_name'];
+        $this->setBillToContactName($config['bill_to_contact_name']);
+        $this->setShipToContactName($config['ship_to_contact_name']);
         $this->setBaseCurrency($config['base_currency']);
         $this->setTransactionCurrency($config['transaction_currency']);
         $this->setExchangeRateDate($config['exchange_rate_date']);
@@ -191,30 +183,6 @@ class CreateArInvoice implements FunctionInterface
             $xml->writeElement('termname', $this->paymentTerm);
         } else {
             $xml->writeElement('termname', $this->paymentTerm, true);
-        }
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    private function getBillToContactNameXml(XMLWriter &$xml)
-    {
-        if (is_null($this->billToContactName) == false) {
-            $xml->startElement('billto');
-            $xml->writeElement('contactname', $this->billToContactName);
-            $xml->endElement(); //billto
-        }
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    private function getShipToContactNameXml(XMLWriter &$xml)
-    {
-        if (is_null($this->shipToContactName) == false) {
-            $xml->startElement('shipto');
-            $xml->writeElement('contactname', $this->shipToContactName);
-            $xml->endElement(); //shipto
         }
     }
 
