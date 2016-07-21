@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -109,7 +109,7 @@ class CreateArInvoice implements FunctionInterface
     private $arInvoiceEntries;
 
     /**
-     * 
+     *
      * @param array $params my params
      */
     public function __construct(array $params = [])
@@ -167,7 +167,6 @@ class CreateArInvoice implements FunctionInterface
         $this->attachmentsId = $config['attachments_id'];
         $this->setCustomFields($config['custom_fields']);
         $this->arInvoiceEntries = $config['ar_invoice_entries'];
-        
     }
 
     /**
@@ -198,7 +197,7 @@ class CreateArInvoice implements FunctionInterface
             foreach ($this->arInvoiceEntries as $arInvoiceEntry) {
                 if ($arInvoiceEntry instanceof CreateArInvoiceEntry) {
                     $arInvoiceEntry->getXml($xml);
-                } else if (is_array($arInvoiceEntry)) {
+                } elseif (is_array($arInvoiceEntry)) {
                     $arInvoiceEntry = new CreateArInvoiceEntry($arInvoiceEntry);
 
                     $arInvoiceEntry->getXml($xml);
@@ -212,7 +211,7 @@ class CreateArInvoice implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -261,5 +260,4 @@ class CreateArInvoice implements FunctionInterface
 
         $xml->endElement(); //function
     }
-
 }

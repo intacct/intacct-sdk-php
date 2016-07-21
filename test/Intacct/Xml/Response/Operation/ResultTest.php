@@ -73,7 +73,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
     
     /**
@@ -162,7 +161,6 @@ EOF;
         
         $this->assertEquals('failure', $result->getStatus());
         $this->assertInternalType('array', $result->getErrors());
-        
     }
     
     /**

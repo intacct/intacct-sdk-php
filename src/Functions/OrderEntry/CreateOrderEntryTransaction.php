@@ -1,22 +1,18 @@
 <?php
 
 /**
+ * Copyright 2016 Intacct Corporation.
  *
- * *
- *  * Copyright 2016 Intacct Corporation.
- *  *
- *  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- *  * use this file except in compliance with the License. You may obtain a copy
- *  * of the License at
- *  *
- *  * http://www.apache.org/licenses/LICENSE-2.0
- *  *
- *  * or in the "LICENSE" file accompanying this file. This file is distributed on
- *  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- *  * express or implied. See the License for the specific language governing
- *  * permissions and limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
  *
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 namespace Intacct\Functions\OrderEntry;
@@ -226,7 +222,7 @@ class CreateOrderEntryTransaction implements FunctionInterface
             foreach ($this->orderEntryTransactionEntries as $orderEntryTransactionEntry) {
                 if ($orderEntryTransactionEntry instanceof CreateOrderEntryTransactionEntry) {
                     $orderEntryTransactionEntry->getXml($xml);
-                } else if (is_array($orderEntryTransactionEntry)) {
+                } elseif (is_array($orderEntryTransactionEntry)) {
                     $orderEntryTransactionEntry = new CreateOrderEntryTransactionEntry($orderEntryTransactionEntry);
 
                     $orderEntryTransactionEntry->getXml($xml);
@@ -249,7 +245,7 @@ class CreateOrderEntryTransaction implements FunctionInterface
             foreach ($this->subtotalsEntries as $subtotalEntry) {
                 if ($subtotalEntry instanceof CreateSubtotalEntry) {
                     $subtotalEntry->getXml($xml);
-                } else if (is_array($subtotalEntry)) {
+                } elseif (is_array($subtotalEntry)) {
                     $subtotalEntry = new CreateSubtotalEntry($subtotalEntry);
 
                     $subtotalEntry->getXml($xml);

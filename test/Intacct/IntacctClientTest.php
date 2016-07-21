@@ -93,7 +93,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**

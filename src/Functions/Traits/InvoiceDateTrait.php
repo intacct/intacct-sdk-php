@@ -47,5 +47,4 @@ trait InvoiceDateTrait
             $this->invoiceDate = new Date($invoiceDate);
         }
     }
-
 }

@@ -77,7 +77,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**

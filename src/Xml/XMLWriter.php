@@ -43,10 +43,7 @@ class XMLWriter extends \XMLWriter
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {
-        if (
-            ($content !== null && $content !== '')
-            || $writeNull === true
-        ) {
+        if (($content !== null && $content !== '') || $writeNull === true) {
             if (is_bool($content)) {
                 $content = ($content === true) ? 'true' : 'false';
             } elseif ($content instanceof Date) {
@@ -58,7 +55,6 @@ class XMLWriter extends \XMLWriter
             //TODO add all of the different field types we should support
 
             return parent::writeElement($name, $content);
-
         } else {
             return true;
         }

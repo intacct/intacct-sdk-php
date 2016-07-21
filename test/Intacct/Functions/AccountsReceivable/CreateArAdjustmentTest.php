@@ -388,5 +388,4 @@ EOF;
 
         $arAdjustment->getXml($xml);
     }
-
 }

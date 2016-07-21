@@ -224,7 +224,7 @@ abstract class AbstractLineItem
         $xml->writeElement('offsetglaccountno', $this->offsetGLAccountNumber);
         $xml->writeElement('amount', $this->transactionAmount, true);
         $xml->writeElement('allocationid', $this->allocationId);
-        $xml->writeElement('memo' , $this->memo);
+        $xml->writeElement('memo', $this->memo);
         $xml->writeElement('locationid', $this->getLocationId());
         $xml->writeElement('departmentid', $this->getDepartmentId());
         $xml->writeElement('item1099', $this->form1099);

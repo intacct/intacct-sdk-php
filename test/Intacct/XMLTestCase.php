@@ -23,8 +23,8 @@ use DOMXPath;
 
 abstract class XMLTestCase extends PHPUnit_Framework_TestCase
 {
-    
-    protected abstract function getDomDocument();
+
+    abstract protected function getDomDocument();
 
     protected function assertXpathMatch($expected, $xpath, $message = null)
     {

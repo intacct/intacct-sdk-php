@@ -9,9 +9,9 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -83,7 +83,7 @@ class CreateArAdjustment implements FunctionInterface
     private $arAdjustmentEntries;
 
     /**
-     * 
+     *
      * @param array $params my params
      */
     public function __construct(array $params = [])
@@ -127,7 +127,6 @@ class CreateArAdjustment implements FunctionInterface
         $this->setExchangeRateValue($config['exchange_rate']);
         $this->doNotPostToGL = $config['do_not_post_to_gl'];
         $this->arAdjustmentEntries = $config['ar_adjustment_entries'];
-        
     }
 
     /**
@@ -142,7 +141,7 @@ class CreateArAdjustment implements FunctionInterface
             foreach ($this->arAdjustmentEntries as $arAdjustmentEntry) {
                 if ($arAdjustmentEntry instanceof CreateArAdjustmentEntry) {
                     $arAdjustmentEntry->getXml($xml);
-                } else if (is_array($arAdjustmentEntry)) {
+                } elseif (is_array($arAdjustmentEntry)) {
                     $arAdjustmentEntry = new CreateArAdjustmentEntry($arAdjustmentEntry);
 
                     $arAdjustmentEntry->getXml($xml);
@@ -156,7 +155,7 @@ class CreateArAdjustment implements FunctionInterface
     }
 
     /**
-     * 
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
@@ -195,5 +194,4 @@ class CreateArAdjustment implements FunctionInterface
 
         $xml->endElement(); //function
     }
-
 }

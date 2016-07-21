@@ -246,7 +246,6 @@ class ReadReport implements FunctionInterface
         }
 
         $this->listSeparator = $listSeparator;
-
     }
 
     /**
@@ -259,7 +258,6 @@ class ReadReport implements FunctionInterface
         }
 
         return $this->listSeparator;
-
     }
 
     /**

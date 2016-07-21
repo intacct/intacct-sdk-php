@@ -33,7 +33,6 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -42,7 +41,6 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**

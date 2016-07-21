@@ -68,13 +68,12 @@ class OperationBlock
 
         if ($config['session_id']) {
             $this->authentication = new SessionAuthentication($config);
-        } elseif (
-            $config['company_id'] && $config['user_id'] && $config['user_password']
-        ) {
+        } elseif ($config['company_id'] && $config['user_id'] && $config['user_password']) {
             $this->authentication = new LoginAuthentication($config);
         } else {
             throw new InvalidArgumentException(
-                'Required "company_id", "user_id", and "user_password" keys, or "session_id" key, not supplied in params'
+                'Required "company_id", "user_id", and "user_password" keys, '
+                . 'or "session_id" key, not supplied in params'
             );
         }
         

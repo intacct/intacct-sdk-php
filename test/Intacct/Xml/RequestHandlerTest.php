@@ -36,7 +36,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -45,7 +44,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -104,7 +102,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
-
     }
     
     /**

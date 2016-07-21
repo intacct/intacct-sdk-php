@@ -244,7 +244,6 @@ class RunJob implements FunctionInterface
         } else {
             $this->splitSize = $splitSize;
         }
-
     }
 
     /**

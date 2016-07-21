@@ -432,5 +432,4 @@ EOF;
 
         $apBill->getXml($xml);
     }
-
 }

@@ -50,7 +50,6 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
     
     /**
@@ -75,7 +74,10 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('testpass', $loginCreds->getPassword());
         $endpoint = $loginCreds->getEndpoint();
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
-        $this->assertThat($loginCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
+        $this->assertThat(
+            $loginCreds->getSenderCredentials(),
+            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+        );
     }
 
     private function clearEnv()
@@ -179,5 +181,4 @@ EOF;
         $loginCreds = new LoginCredentials($config, $this->senderCreds);
         $this->assertThat($loginCreds->getMockHandler(), $this->isInstanceOf('GuzzleHttp\Handler\MockHandler'));
     }
-
 }

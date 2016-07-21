@@ -130,7 +130,6 @@ class CreateApAdjustment implements FunctionInterface
         $this->doNotPostToGL = $config['do_not_post_to_gl'];
         $this->setCustomFields($config['custom_fields']);
         $this->apAdjustmentEntries = $config['ap_adjustment_entries'];
-        
     }
 
     /**
@@ -145,7 +144,7 @@ class CreateApAdjustment implements FunctionInterface
             foreach ($this->apAdjustmentEntries as $apAdjustmentEntry) {
                 if ($apAdjustmentEntry instanceof CreateApAdjustmentEntry) {
                     $apAdjustmentEntry->getXml($xml);
-                } else if (is_array($apAdjustmentEntry)) {
+                } elseif (is_array($apAdjustmentEntry)) {
                     $apAdjustmentEntry = new CreateApAdjustmentEntry($apAdjustmentEntry);
 
                     $apAdjustmentEntry->getXml($xml);

@@ -436,5 +436,4 @@ EOF;
 
         $arInvoice->getXml($xml);
     }
-
 }

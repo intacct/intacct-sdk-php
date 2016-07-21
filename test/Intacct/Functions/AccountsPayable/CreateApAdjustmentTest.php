@@ -187,5 +187,4 @@ EOF;
 
         $apBill->getXml($xml);
     }
-
 }

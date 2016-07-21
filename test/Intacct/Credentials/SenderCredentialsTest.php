@@ -28,7 +28,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -37,7 +36,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -174,5 +172,4 @@ EOF;
         $this->assertEquals('inisenderpass', $senderCreds->getPassword());
         $this->assertEquals('https://somethingelse.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
     }
-
 }

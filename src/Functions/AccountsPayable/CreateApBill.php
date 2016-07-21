@@ -175,7 +175,6 @@ class CreateApBill implements FunctionInterface
         $this->attachmentsId = $config['attachments_id'];
         $this->setCustomFields($config['custom_fields']);
         $this->apBillEntries = $config['ap_bill_entries'];
-        
     }
 
     /**

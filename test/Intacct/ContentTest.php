@@ -28,7 +28,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -37,7 +36,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**

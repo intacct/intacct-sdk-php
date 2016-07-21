@@ -97,7 +97,6 @@ class IntacctClient
         } finally {
             $this->lastExecution = $provider->getLastExecution();
         }
-
     }
 
     /**

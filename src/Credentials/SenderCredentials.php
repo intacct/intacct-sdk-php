@@ -76,7 +76,9 @@ class SenderCredentials
     public function __construct(array $params = [])
     {
         $defaults = [
-            'profile_name' => getenv(static::SENDER_PROFILE_ENV_NAME) ? getenv(static::SENDER_PROFILE_ENV_NAME) : static::DEFAULT_SENDER_PROFILE,
+            'profile_name' => getenv(static::SENDER_PROFILE_ENV_NAME)
+                ? getenv(static::SENDER_PROFILE_ENV_NAME)
+                : static::DEFAULT_SENDER_PROFILE,
             'sender_id' => getenv(static::SENDER_ID_ENV_NAME),
             'sender_password' => getenv(static::SENDER_PASSWORD_ENV_NAME),
             'endpoint_url' => null,
@@ -84,11 +86,7 @@ class SenderCredentials
         ];
         $config = array_merge($defaults, $params);
         
-        if (
-            !$config['sender_id'] &&
-            !$config['sender_password'] &&
-            $config['profile_name']
-        ) {
+        if (!$config['sender_id'] && !$config['sender_password'] && $config['profile_name']) {
             $profileProvider = new ProfileCredentialProvider();
             $profileCreds = $profileProvider->getSenderCredentials($config);
             if ($config['endpoint_url'] && isset($profileCreds['endpoint_url'])) {
@@ -100,12 +98,14 @@ class SenderCredentials
         
         if (!$config['sender_id']) {
             throw new InvalidArgumentException(
-                'Required "sender_id" key not supplied in params or env variable "' . static::SENDER_ID_ENV_NAME . '"'
+                'Required "sender_id" key not supplied in params or env variable "'
+                . static::SENDER_ID_ENV_NAME . '"'
             );
         }
         if (!$config['sender_password']) {
             throw new InvalidArgumentException(
-                'Required "sender_password" key not supplied in params or env variable "' . static::SENDER_PASSWORD_ENV_NAME . '"'
+                'Required "sender_password" key not supplied in params or env variable "'
+                . static::SENDER_PASSWORD_ENV_NAME . '"'
             );
         }
         

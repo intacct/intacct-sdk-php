@@ -42,7 +42,6 @@ class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
     }
 
     private function clearEnv()
@@ -179,5 +178,4 @@ EOF;
 
         $this->provider->getLoginCredentials();
     }
-
 }

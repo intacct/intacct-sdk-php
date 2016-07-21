@@ -95,7 +95,9 @@ class LoginCredentials
     public function __construct(array $params, SenderCredentials $senderCreds)
     {
         $defaults = [
-            'profile_name' => getenv(static::COMPANY_PROFILE_ENV_NAME) ? getenv(static::COMPANY_PROFILE_ENV_NAME) : static::DEFAULT_COMPANY_PROFILE,
+            'profile_name' => getenv(static::COMPANY_PROFILE_ENV_NAME)
+                ? getenv(static::COMPANY_PROFILE_ENV_NAME)
+                : static::DEFAULT_COMPANY_PROFILE,
             'company_id' => getenv(static::COMPANY_ID_ENV_NAME),
             'user_id' => getenv(static::USER_ID_ENV_NAME),
             'user_password' => getenv(static::USER_PASSWORD_ENV_NAME),
@@ -111,17 +113,20 @@ class LoginCredentials
 
         if (!$config['company_id']) {
             throw new InvalidArgumentException(
-                'Required "company_id" key not supplied in params or env variable "' . static::COMPANY_ID_ENV_NAME . '"'
+                'Required "company_id" key not supplied in params or env variable "'
+                . static::COMPANY_ID_ENV_NAME . '"'
             );
         }
         if (!$config['user_id']) {
             throw new InvalidArgumentException(
-                'Required "user_id" key not supplied in params or env variable "' . static::USER_ID_ENV_NAME . '"'
+                'Required "user_id" key not supplied in params or env variable "'
+                . static::USER_ID_ENV_NAME . '"'
             );
         }
         if (!$config['user_password']) {
             throw new InvalidArgumentException(
-                'Required "user_password" key not supplied in params or env variable "' . static::USER_PASSWORD_ENV_NAME . '"'
+                'Required "user_password" key not supplied in params or env variable "'
+                . static::USER_PASSWORD_ENV_NAME . '"'
             );
         }
 
