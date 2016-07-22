@@ -33,4 +33,18 @@ class StandardObjectsTest extends \PHPUnit_Framework_TestCase
         $badMethods = StandardObjects::getMethodsNotAllowed('TIMESHEETENTRY');
         $this->assertEquals($expected, $badMethods);
     }
+
+    /**
+     * @covers Intacct\Xml\Request\Operation\Content\StandardObjects::getMethodsNotAllowed
+     */
+    public function testLowercase()
+    {
+        $expected = [
+            'create',
+            'update',
+            'delete',
+        ];
+        $badMethods = StandardObjects::getMethodsNotAllowed('timesheetentry');
+        $this->assertEquals($expected, $badMethods);
+    }
 }

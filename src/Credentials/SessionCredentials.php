@@ -25,39 +25,36 @@ use InvalidArgumentException;
 class SessionCredentials
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $sessionId;
 
-    /**
-     *
-     * @var SenderCredentials
-     */
+    /** @var SenderCredentials */
     private $senderCreds;
 
-    /**
-     *
-     * @var Endpoint
-     */
+    /** @var Endpoint */
     private $endpoint;
+
+    /** @var string */
+    private $currentCompanyId;
+
+    /** @var string */
+    private $currentUserId;
+
+    /** @var bool */
+    private $currentUserIsExternal;
     
-    /**
-     *
-     * @var MockHandler
-     */
+    /** @var MockHandler */
     protected $mockHandler;
 
     /**
-     * The constructor accepts the following options:
+     * Initializes the class with the given parameters.
      *
-     * - session_id: (string, required)
-     * - endpoint_url: (string)
-     * - mock_handler: (GuzzleHttp\Handler\MockHandler) Used only for unit tests
-     *
-     * @param array $params
-     * @param SenderCredentials $senderCreds
+     * @param array $params {
+     *      @var string $endpoint_url Endpoint URL
+     *      @var MockHandler $mock_handler Mock handler for unit testing
+     *      @var string $session_id Intacct session ID
+     * }
+     * @param SenderCredentials $senderCreds Sender credentials
      */
     public function __construct(array $params, SenderCredentials $senderCreds)
     {
@@ -65,6 +62,9 @@ class SessionCredentials
             'session_id' => null,
             'endpoint_url' => null,
             'mock_handler' => null,
+            'current_company_id' => null,
+            'current_user_id' => null,
+            'current_user_is_external' => false,
         ];
         $config = array_merge($defaults, $params);
         
@@ -81,10 +81,14 @@ class SessionCredentials
             $this->endpoint = $senderCreds->getEndpoint();
         }
         $this->senderCreds = $senderCreds;
+        $this->currentCompanyId = $config['current_company_id'];
+        $this->currentUserId = $config['current_user_id'];
+        $this->currentUserIsExternal = $config['current_user_is_external'];
         $this->mockHandler = $config['mock_handler'];
     }
 
     /**
+     * Get Intacct session ID
      *
      * @return string
      */
@@ -94,6 +98,7 @@ class SessionCredentials
     }
 
     /**
+     * Get endpoint
      *
      * @return Endpoint
      */
@@ -103,6 +108,7 @@ class SessionCredentials
     }
 
     /**
+     * Get sender credentials
      *
      * @return SenderCredentials
      */
@@ -110,8 +116,39 @@ class SessionCredentials
     {
         return $this->senderCreds;
     }
+
+    /**
+     * Get session's current company ID
+     *
+     * @return string
+     */
+    public function getCurrentCompanyId()
+    {
+        return $this->currentCompanyId;
+    }
+
+    /**
+     * Get session's current user ID
+     *
+     * @return string
+     */
+    public function getCurrentUserId()
+    {
+        return $this->currentUserId;
+    }
+
+    /**
+     * Get session's current user is external or not
+     *
+     * @return bool
+     */
+    public function getCurrentUserIsExternal()
+    {
+        return $this->currentUserIsExternal;
+    }
     
     /**
+     * Get mock handler for unit testing
      *
      * @return MockHandler
      */

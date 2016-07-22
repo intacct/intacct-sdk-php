@@ -27,27 +27,26 @@ use InvalidArgumentException;
 class OperationBlock
 {
 
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $transaction;
 
-    /**
-     *
-     * @var AbstractAuthentication
-     */
+    /** @var AbstractAuthentication */
     private $authentication;
 
-    /**
-     *
-     * @var Content
-     */
+    /** @var Content */
     private $contentBlock;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $company_id Intacct company ID
+     *      @var array $module_preferences Module preferences to use for the operation
+     *      @var string $session_id Intacct session ID
+     *      @var bool $transaction Force the operation to be one transaction
+     *      @var string $user_id Intacct user ID
+     *      @var string $user_password Intacct user password
+     * }
      * @param Content $contentBlock
      *
      * @throws InvalidArgumentException
@@ -83,6 +82,7 @@ class OperationBlock
     }
 
     /**
+     * Set the operation to be one transaction or not
      *
      * @param bool $transaction
      * @throws InvalidArgumentException
@@ -97,6 +97,7 @@ class OperationBlock
     }
 
     /**
+     * Get if the operation is one transaction or not
      *
      * @return string
      */
@@ -108,6 +109,8 @@ class OperationBlock
     }
 
     /**
+     * Set module preferences for the operation
+     *
      * @param array $modulePreferences
      *
      * @todo finish the module preferences
@@ -120,6 +123,7 @@ class OperationBlock
     }
     
     /**
+     * Set content block of operation
      *
      * @param Content $contentBlock
      */
@@ -129,6 +133,7 @@ class OperationBlock
     }
 
     /**
+     * Write the operation block XML
      *
      * @param XMLWriter $xml
      */

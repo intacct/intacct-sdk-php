@@ -26,19 +26,16 @@ class Record extends ArrayIterator
     
     use XMLHelperTrait;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     protected $objectName;
 
     /**
-     * The constructor accepts the following options:
+     * Initializes the class with the given parameters.
      *
-     * - object: (string, required)
-     * - fields: (array)
-     *
-     * @param array $params
+     * @param array $params {
+     *      @var string $object Object name
+     *      @var array $fields Fields of record
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params)
@@ -63,6 +60,7 @@ class Record extends ArrayIterator
     }
     
     /**
+     * Get object name
      *
      * @return string
      */
@@ -72,6 +70,7 @@ class Record extends ArrayIterator
     }
     
     /**
+     * Set object name
      *
      * @param string $name
      * @throws InvalidArgumentException

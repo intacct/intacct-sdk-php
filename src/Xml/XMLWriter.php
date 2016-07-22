@@ -23,9 +23,7 @@ use DateTime;
 class XMLWriter extends \XMLWriter
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const IA_DATE_FORMAT = 'm/d/Y';
 
     /**
@@ -35,11 +33,14 @@ class XMLWriter extends \XMLWriter
     const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
 
     /**
+     * Write full element tag
+     *
      * @param string $name
      * @param mixed $content
      * @param bool $writeNull
      *
      * @return bool
+     * @todo Add all of the different field types we should support
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {
@@ -51,8 +52,6 @@ class XMLWriter extends \XMLWriter
             } elseif ($content instanceof DateTime) {
                 $content = $content->format(self::IA_DATETIME_FORMAT);
             }
-            
-            //TODO add all of the different field types we should support
 
             return parent::writeElement($name, $content);
         } else {
@@ -61,6 +60,8 @@ class XMLWriter extends \XMLWriter
     }
 
     /**
+     * Write full element date tags
+     *
      * @param Date $date
      * @param bool $writeNull
      *

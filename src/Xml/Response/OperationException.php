@@ -24,6 +24,7 @@ class OperationException extends ResponseException
 {
 
     /**
+     * Initializes the class
      *
      * @param string $message
      * @param array $errors

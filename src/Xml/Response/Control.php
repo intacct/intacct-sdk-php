@@ -23,37 +23,23 @@ use SimpleXMLIterator;
 class Control
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $status;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $senderId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $controlId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $uniqueId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $dtdVersion;
 
     /**
+     * Initializes the class
      *
      * @param SimpleXMLIterator $control
      * @throws Exception
@@ -84,6 +70,7 @@ class Control
     }
 
     /**
+     * Get control status
      *
      * @return string
      */
@@ -93,6 +80,7 @@ class Control
     }
 
     /**
+     * Get sender ID
      *
      * @return string
      */
@@ -102,6 +90,7 @@ class Control
     }
 
     /**
+     * Get control ID
      *
      * @return string
      */
@@ -111,6 +100,7 @@ class Control
     }
 
     /**
+     * Get unique ID
      *
      * @return string
      */
@@ -120,6 +110,7 @@ class Control
     }
 
     /**
+     * Get DTD version
      *
      * @return string
      */

@@ -24,54 +24,38 @@ use InvalidArgumentException;
 class SenderCredentials
 {
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const SENDER_PROFILE_ENV_NAME = 'INTACCT_SENDER_PROFILE';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const SENDER_ID_ENV_NAME = 'INTACCT_SENDER_ID';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const SENDER_PASSWORD_ENV_NAME = 'INTACCT_SENDER_PASSWORD';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_SENDER_PROFILE = 'default';
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $senderId;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $password;
     
-    /**
-     *
-     * @var Endpoint
-     */
+    /** @var Endpoint */
     private $endpoint;
 
     /**
-     * The constructor accepts the following options:
+     * Initializes the class with the given parameters.
      *
-     * - profile_name: (string)
-     * - sender_id: (string)
-     * - sender_password: (string)
-     * - endpoint_url: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
-     * @param array $params
+     * @param array $params {
+     *      @var string $endpoint_url Endpoint URL
+     *      @var string $profile_name Profile name to use
+     *      @var string $sender_id Intacct sender ID
+     *      @var string $sender_password Intacct sender password
+     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -115,6 +99,7 @@ class SenderCredentials
     }
 
     /**
+     * Get Intacct sender ID
      *
      * @return string
      */
@@ -124,6 +109,7 @@ class SenderCredentials
     }
 
     /**
+     * Get Intacct sender password
      *
      * @return string
      */
@@ -133,6 +119,7 @@ class SenderCredentials
     }
     
     /**
+     * Get endpoint
      *
      * @return Endpoint
      */

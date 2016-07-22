@@ -27,6 +27,7 @@ trait XMLHelperTrait
 {
 
     /**
+     * Get if name is valid for use as an XML element
      *
      * @param string $name
      * @return boolean
@@ -42,6 +43,7 @@ trait XMLHelperTrait
     }
     
     /**
+     * Check array keys if valid for use as XML elements
      *
      * @param array $array
      * @throws InvalidArgumentException
@@ -61,6 +63,7 @@ trait XMLHelperTrait
     }
     
     /**
+     * Recurse through array and write XML
      *
      * @param array|ArrayIterator $array
      * @param XMLWriter $xml

@@ -22,21 +22,16 @@ use InvalidArgumentException;
 class RecordUpsert extends Record
 {
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $whereFields = [];
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $keyField;
 
     /**
      *
      * @param array $params
+     * @todo Implement this class
      */
     public function __construct(array $params)
     {

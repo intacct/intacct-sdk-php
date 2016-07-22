@@ -22,36 +22,28 @@ use InvalidArgumentException;
 class Endpoint
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_ENDPOINT = 'https://api.intacct.com/ia/xml/xmlgw.phtml';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const ENDPOINT_URL_ENV_NAME = 'INTACCT_ENDPOINT_URL';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const DOMAIN_NAME = 'intacct.com';
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $endpoint;
     
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $verifySSL;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $endpoint_url Endpoint URL
+     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -65,16 +57,14 @@ class Endpoint
         $this->setVerifySSL($config['verify_ssl']);
     }
     
-    /**
-     *
-     * @return string
-     */
+    /** @return string */
     public function __toString()
     {
         return $this->endpoint;
     }
 
     /**
+     * Get the endpoint URL
      *
      * @return string
      */
@@ -84,8 +74,9 @@ class Endpoint
     }
 
     /**
+     * Set the endpoint URL
      *
-     * @param string $endpoint
+     * @param string $endpoint Endpoint URL
      * @throws InvalidArgumentException
      */
     private function setEndpoint($endpoint)
@@ -115,8 +106,9 @@ class Endpoint
     }
     
     /**
+     * Set verify SSL
      *
-     * @param bool $verifySSL
+     * @param bool $verifySSL Verify SSL
      * @throws InvalidArgumentException
      */
     private function setVerifySSL($verifySSL)
@@ -130,6 +122,7 @@ class Endpoint
     }
     
     /**
+     * Get verify SSL
      *
      * @return bool
      */

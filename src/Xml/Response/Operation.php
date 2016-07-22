@@ -27,18 +27,17 @@ use SimpleXMLIterator;
 class Operation
 {
 
-    /**
-     *
-     * @var Authentication
-     */
+    /** @var Authentication */
     private $authentication;
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $results = [];
 
+    /**
+     * Initializes the class
+     *
+     * @param SimpleXMLIterator $operation
+     */
     public function __construct(SimpleXMLIterator $operation)
     {
         if (!isset($operation->authentication)) {
@@ -64,16 +63,25 @@ class Operation
         }
     }
 
+    /**
+     * @param SimpleXMLIterator $authentication
+     */
     private function setAuthentication(SimpleXMLIterator $authentication)
     {
         $this->authentication = new Authentication($authentication);
     }
 
+    /**
+     * @return Authentication
+     */
     public function getAuthentication()
     {
         return $this->authentication;
     }
 
+    /**
+     * @param SimpleXMLIterator $result
+     */
     private function setResult(SimpleXMLIterator $result)
     {
         $this->results[] = new Result($result);

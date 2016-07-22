@@ -24,6 +24,7 @@ class ResultException extends OperationException
 {
 
     /**
+     * Initializes the class
      *
      * @param string $message
      * @param array $errors

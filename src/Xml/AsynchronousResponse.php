@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\AbstractResponse;
 use Intacct\Xml\Response\Acknowledgement;
 use Intacct\Exception;
 use SimpleXMLIterator;
@@ -25,13 +24,11 @@ use SimpleXMLIterator;
 class AsynchronousResponse extends AbstractResponse
 {
 
-    /**
-     *
-     * @var Acknowledgement
-     */
+    /** @var Acknowledgement */
     private $acknowledgement;
 
     /**
+     * Initializes the class with the given body XML response
      *
      * @param string $body
      * @throws Exception
@@ -46,6 +43,7 @@ class AsynchronousResponse extends AbstractResponse
     }
 
     /**
+     * Set response acknowledgement
      *
      * @param SimpleXMLIterator $acknowledgement
      * @throws Exception
@@ -56,6 +54,7 @@ class AsynchronousResponse extends AbstractResponse
     }
 
     /**
+     * Get response acknowledgement
      *
      * @return Acknowledgement
      */

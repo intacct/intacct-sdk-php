@@ -24,6 +24,7 @@ class Content extends ArrayIterator
 {
 
     /**
+     * Initializes the class with the given array of functions
      *
      * @param array $functions
      * @todo this should be its own collection type object, don't like magic methods

@@ -25,56 +25,41 @@ use SimpleXMLIterator;
 class Result
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $status;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $function;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $controlId;
 
-    /**
-     * @var SimpleXMLIterator
-     */
+    /** @var SimpleXMLIterator */
     private $data;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $listtype;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $count;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $totalcount;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $numremaining;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $resultId;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $errors;
 
+    /**
+     * Initializes the class
+     *
+     * @param SimpleXMLIterator $result
+     */
     public function __construct(SimpleXMLIterator $result)
     {
         if (!isset($result->status)) {
@@ -127,6 +112,8 @@ class Result
     }
 
     /**
+     * Get result status
+     *
      * @return string
      */
     public function getStatus()
@@ -135,6 +122,8 @@ class Result
     }
 
     /**
+     * Get function
+     *
      * @return string
      */
     public function getFunction()
@@ -143,6 +132,8 @@ class Result
     }
 
     /**
+     * Get control ID
+     *
      * @return string
      */
     public function getControlId()
@@ -151,6 +142,8 @@ class Result
     }
 
     /**
+     * Get errors array
+     *
      * @return array
      */
     public function getErrors()
@@ -159,6 +152,8 @@ class Result
     }
     
     /**
+     * Get result data
+     *
      * @return SimpleXMLIterator
      */
     public function getData()
@@ -167,6 +162,8 @@ class Result
     }
 
     /**
+     * Get result list type
+     *
      * @return string
      */
     public function getListType()
@@ -175,6 +172,8 @@ class Result
     }
 
     /**
+     * Get result count
+     *
      * @return int
      */
     public function getCount()
@@ -183,6 +182,8 @@ class Result
     }
 
     /**
+     * Get result total count
+     *
      * @return int
      */
     public function getTotalCount()
@@ -191,6 +192,8 @@ class Result
     }
 
     /**
+     * Get number remaining
+     *
      * @return int
      */
     public function getNumRemaining()
@@ -199,6 +202,8 @@ class Result
     }
 
     /**
+     * Get result ID for readMore function
+     *
      * @return string
      */
     public function getResultId()
@@ -207,6 +212,8 @@ class Result
     }
 
     /**
+     * Get data array
+     *
      * @param bool $nested
      *
      * @return ArrayIterator

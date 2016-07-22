@@ -22,13 +22,11 @@ use Intacct\Exception;
 class ResponseException extends Exception
 {
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     protected $errors;
 
     /**
+     * Initializes the class
      *
      * @param string $message
      * @param array $errors
@@ -43,6 +41,7 @@ class ResponseException extends Exception
     }
     
     /**
+     * Get response errors as an array
      *
      * @return array
      */

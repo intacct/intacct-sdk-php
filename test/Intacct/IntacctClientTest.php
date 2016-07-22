@@ -104,10 +104,13 @@ EOF;
     public function testConstructWithSessionId()
     {
         $client = $this->client; //grab the setUp object
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'testSeSsionID..');
+
+        $creds = $client->getSessionCreds();
+        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds->getSessionId(), 'testSeSsionID..');
+        $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
+        $this->assertEquals($creds->getCurrentUserId(), 'testuser');
+        $this->assertEquals($creds->getCurrentUserIsExternal(), false);
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
     
@@ -165,9 +168,12 @@ EOF;
             'mock_handler' => $mock,
         ]);
         
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'helloworld..');
+        $creds = $client->getSessionCreds();
+        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds->getSessionId(), 'helloworld..');
+        $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
+        $this->assertEquals($creds->getCurrentUserId(), 'testuser');
+        $this->assertEquals($creds->getCurrentUserIsExternal(), false);
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
 

@@ -23,15 +23,15 @@ use Intacct\Xml\XMLWriter;
 class SessionAuthentication extends AbstractAuthentication
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $sessionId;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $session_id Intacct session ID
+     * }
      */
     public function __construct(array $params)
     {
@@ -50,6 +50,7 @@ class SessionAuthentication extends AbstractAuthentication
     }
     
     /**
+     * Write the authentication block XML
      *
      * @param XMLWriter $xml
      */

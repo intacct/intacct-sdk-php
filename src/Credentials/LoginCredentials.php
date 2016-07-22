@@ -24,71 +24,46 @@ use Intacct\Endpoint;
 class LoginCredentials
 {
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const COMPANY_PROFILE_ENV_NAME = 'INTACCT_COMPANY_PROFILE';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const COMPANY_ID_ENV_NAME = 'INTACCT_COMPANY_ID';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const USER_ID_ENV_NAME = 'INTACCT_USER_ID';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const USER_PASSWORD_ENV_NAME = 'INTACCT_USER_PASSWORD';
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_COMPANY_PROFILE = 'default';
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $companyId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $userId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $password;
 
-    /**
-     *
-     * @var SenderCredentials
-     */
+    /** @var SenderCredentials */
     private $senderCreds;
     
-    /**
-     *
-     * @var MockHandler
-     */
+    /** @var MockHandler */
     protected $mockHandler;
 
     /**
-     * The constructor accepts the following options:
+     * Initializes the class with the given parameters.
      *
-     * - profile_name: (string)
-     * - company_id: (string)
-     * - user_id: (string)
-     * - user_password: (string)
-     * - mock_handler: (GuzzleHttp\Handler\MockHandler) Used only for unit tests
-     *
-     * @param array $params
+     * @param array $params {
+     *      @var string $company_id Intacct company ID
+     *      @var MockHandler $mock_handler Mock handler for unit testing
+     *      @var string $profile_name Profile name to use
+     *      @var string $user_id Intacct user ID
+     *      @var string $user_password Intacct user password
+     * }
      * @param SenderCredentials $senderCreds
      * @throws InvalidArgumentException
      */
@@ -138,6 +113,7 @@ class LoginCredentials
     }
 
     /**
+     * Get Intacct company ID
      *
      * @return string
      */
@@ -147,6 +123,7 @@ class LoginCredentials
     }
 
     /**
+     * Get Intacct user ID
      *
      * @return string
      */
@@ -156,6 +133,7 @@ class LoginCredentials
     }
 
     /**
+     * Get Intacct user password
      *
      * @return string
      */
@@ -165,6 +143,7 @@ class LoginCredentials
     }
 
     /**
+     * Get sender credentials
      *
      * @return SenderCredentials
      */
@@ -174,6 +153,7 @@ class LoginCredentials
     }
 
     /**
+     * Get endpoint
      *
      * @return Endpoint
      */
@@ -183,6 +163,7 @@ class LoginCredentials
     }
     
     /**
+     * Get mock handler for unit tests
      *
      * @return MockHandler
      */

@@ -21,11 +21,13 @@ class StandardObjects
 {
 
     /**
+     * Get methods not allowed for certain implicit functions.
+     *
      * This is not an all encompassing list.  It is meant to catch a majority
      * of developer's doing silly things that should never have been allowed
      * in the v3.0 API of the product.
      *
-     * @param $objectName
+     * @param string $objectName
      *
      * @return array
      */
@@ -367,6 +369,8 @@ class StandardObjects
         $methods = [];
         if (isset($objects[$objectName])) {
             $methods = $objects[$objectName];
+        } elseif (isset($objects[strtoupper($objectName)])) {
+            $methods = $objects[strtoupper($objectName)];
         }
 
         return $methods;

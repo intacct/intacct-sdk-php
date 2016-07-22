@@ -24,6 +24,7 @@ class RecordIterator extends ArrayIterator
 {
 
     /**
+     * Initializes the class
      *
      * @param SimpleXMLIterator $xml
      */

@@ -20,5 +20,10 @@ namespace Intacct\Xml\Request\Operation;
 abstract class AbstractAuthentication
 {
 
+    /**
+     * Write the operation block XML
+     *
+     * @param XMLWriter $xml
+     */
     abstract public function getXml(&$xml);
 }

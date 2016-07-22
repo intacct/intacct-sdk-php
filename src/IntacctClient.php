@@ -17,6 +17,7 @@
 
 namespace Intacct;
 
+use GuzzleHttp\MessageFormatter;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
@@ -24,48 +25,54 @@ use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\SynchronousResponse;
-use Intacct\Content;
-use Intacct\Xml\Response\Operation\Result;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 
 class IntacctClient
 {
 
     /**
+     * Profile environment name
+     *
      * @var string
      */
     const PROFILE_ENV_NAME = 'INTACCT_PROFILE';
 
     /**
+     * Session credentials
      *
      * @var SessionCredentials
      */
     private $sessionCreds;
 
     /**
+     * Last execution
      *
      * @var array
      */
     private $lastExecution = [];
 
     /**
-     * The constructor accepts the following options:
+     * Initializes the class with the given parameters.
      *
-     * - company_id: (string)
-     * - endpoint_url: (string)
-     * - logger: (LoggerInterface)
-     * - log_formatter: (MessageFormatter)
-     * - log_level: (int, default=int(400))
-     * - profile_file: (string)
-     * - profile_name: (string)
-     * - sender_id: (string)
-     * - sender_password: (string)
-     * - session_id: (string)
-     * - user_id: (string)
-     * - user_password: (string)
-     * - verify_ssl: (bool, default=bool(true))
-     *
-     * @param array $params
+     * @param array $params {
+     *      @var string $company_id Intacct company ID
+     *      @var string $endpoint_url Endpoint URL
+     *      @var LoggerInterface $logger
+     *      @var MessageFormatter $log_formatter
+     *      @var int $log_level Log level to use, default=400
+     *      @var int $max_retries Max number of retries, default=5
+     *      @var int[] $no_retry_server_error_codes HTTP server error codes to abort
+     *          retrying if one occurs, default=[ 524 ]
+     *      @var string $profile_file Profile file to load from
+     *      @var string $profile_name Profile name to use
+     *      @var string $sender_id Intacct sender ID
+     *      @var string $sender_password Intacct sender password
+     *      @var string $session_id Intacct session ID
+     *      @var string $user_id Intacct user ID
+     *      @var string $user_password Intacct user password
+     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -100,19 +107,21 @@ class IntacctClient
     }
 
     /**
+     * Session credentials
      *
      * @return SessionCredentials
      */
-    private function getSessionCreds()
+    public function getSessionCreds()
     {
         return $this->sessionCreds;
     }
 
     /**
+     * Get session config array
      *
      * @return array
      */
-    public function getSessionConfig()
+    private function getSessionConfig()
     {
         $sessionCreds = $this->getSessionCreds();
         $senderCreds = $sessionCreds->getSenderCredentials();
@@ -140,11 +149,7 @@ class IntacctClient
     }
 
     /**
-     * Returns an array of the last execution's requests and responses.
-     *
-     * The array returned by this method can be used to generate appropriate
-     * logging based on various exceptions and events.  This contains sensitive
-     * data and should only be logged with due care.
+     * Get array of the last execution's requests and responses
      *
      * @return array
      */
@@ -154,11 +159,13 @@ class IntacctClient
     }
 
     /**
-     * @param Content $contentBlock
-     * @param bool $transaction
-     * @param string $requestControlId
-     * @param bool $uniqueFunctionControlIds
-     * @param array $params
+     * Execute a synchronous request to the API
+     *
+     * @param Content $contentBlock Content block to send
+     * @param bool $transaction Force the operation to be one transaction
+     * @param string $requestControlId Request control ID
+     * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
+     * @param array $params Overriding params @see IntacctClient::__construct() for these
      *
      * @return SynchronousResponse
      */
@@ -191,12 +198,14 @@ class IntacctClient
     }
 
     /**
-     * @param Content $contentBlock
-     * @param string $asyncPolicyId
-     * @param bool $transaction
-     * @param string $requestControlId
-     * @param bool $uniqueFunctionControlIds
-     * @param array $params
+     * Execute an asynchronous request to the API
+     *
+     * @param Content $contentBlock Content block to send
+     * @param string $asyncPolicyId Intacct asynchronous policy ID
+     * @param bool $transaction Force the operation to be one transaction
+     * @param string $requestControlId Request control ID
+     * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
+     * @param array $params Overriding params @see IntacctClient::__construct() for these
      *
      * @return AsynchronousResponse
      */

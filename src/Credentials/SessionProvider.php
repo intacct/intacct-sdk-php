@@ -20,25 +20,24 @@ namespace Intacct\Credentials;
 use Intacct\Content;
 use Intacct\Functions\GetAPISession;
 use Intacct\Xml\RequestHandler;
-use Intacct\Xml\RequestBlock;
-use Intacct\Xml\SynchronousResponse;
 use Intacct\Endpoint;
 
 class SessionProvider
 {
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $lastExecution = [];
-    
+
+    /**
+     * Initializes the class.
+     */
     public function __construct()
     {
         //nothing to see here
     }
     
     /**
+     * Get array of the last execution's requests and responses
      *
      * @return array
      */
@@ -48,6 +47,8 @@ class SessionProvider
     }
 
     /**
+     * Get config array
+     *
      * @param SenderCredentials $senderCreds
      * @param Endpoint $endpoint
      * @return array
@@ -70,6 +71,8 @@ class SessionProvider
     }
 
     /**
+     * Get API session array
+     *
      * @param array $config
      * @return array
      */
@@ -88,6 +91,7 @@ class SessionProvider
         }
         
         $operation = $response->getOperation();
+        $authentication = $operation->getAuthentication();
         $result = $operation->getResult(0);
         $data = $result->getData();
         $api = $data->api;
@@ -96,12 +100,17 @@ class SessionProvider
             'session_id' => strval($api->sessionid),
             'endpoint_url' => strval($api->endpoint),
             'verify_ssl' => $requestHandler->getVerifySSL(),
+            'current_company_id' => $authentication->getCompanyId(),
+            'current_user_id' => $authentication->getUserId(),
+            'current_user_is_external' => $authentication->getSlideInUser(),
         ];
         
         return $session;
     }
 
     /**
+     * Generate an Intacct session based on login credentials
+     *
      * @param LoginCredentials $loginCreds
      * @return SessionCredentials
      */
@@ -121,6 +130,8 @@ class SessionProvider
     }
 
     /**
+     * Generate an Intacct session based on existing session credentials
+     *
      * @param SessionCredentials $sessionCreds
      * @return SessionCredentials
      */

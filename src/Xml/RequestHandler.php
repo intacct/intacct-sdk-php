@@ -18,7 +18,6 @@
 namespace Intacct\Xml;
 
 use Intacct\Content;
-use Intacct\Xml\Response\Operation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -33,77 +32,56 @@ use XMLWriter;
 class RequestHandler
 {
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const VERSION = '1.0';
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     const REQUEST_CONTENT_TYPE = 'x-intacct-xml-request';
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     protected $endpointURL;
     
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     protected $verifySSL;
 
-    /**
-     *
-     * @var MockHandler
-     */
+    /** @var MockHandler */
     protected $mockHandler;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     protected $history = [];
 
-    /**
-     *
-     * @var int
-     */
+    /** @var int */
     protected $maxRetries;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     protected $noRetryServerErrorCodes;
 
-    /**
-     * @var LoggerInterface
-     */
+    /** @var LoggerInterface */
     protected $logger;
 
-    /**
-     * @var MessageFormatter
-     */
+    /** @var MessageFormatter */
     protected $logMessageFormat;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $logLevel;
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $lastExecution = [];
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $encoding Encoding to use, default=UTF-8
+     *      @var string $endpoint_url Endpoint URL
+     *      @var LoggerInterface $logger
+     *      @var MessageFormatter $log_formatter
+     *      @var int $log_level Log level to use, default=400
+     *      @var int $max_retries Max number of retries, default=5
+     *      @var int[] $no_retry_server_error_codes HTTP server error codes to abort
+     *          retrying if one occurs, default=[ 524 ]
+     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params)
@@ -111,15 +89,15 @@ class RequestHandler
         $defaults = [
             'encoding' => 'UTF-8',
             'endpoint_url' => null,
-            'verify_ssl' => true,
+            'logger' => null,
+            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
+            'log_level' => LogLevel::DEBUG,
             'mock_handler' => null,
             'max_retries' => 5,
             'no_retry_server_error_codes' => [
                 524, //CDN cut connection, Intacct is still processing the request
             ],
-            'logger' => null,
-            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
-            'log_level' => LogLevel::DEBUG,
+            'verify_ssl' => true,
         ];
         $config = array_merge($defaults, $params);
 
@@ -136,6 +114,7 @@ class RequestHandler
     }
     
     /**
+     * Get user agent to use in the HTTP headers
      *
      * @return string
      */
@@ -147,6 +126,7 @@ class RequestHandler
     }
     
     /**
+     * Get verify SSL
      *
      * @return bool
      */
@@ -156,6 +136,7 @@ class RequestHandler
     }
     
     /**
+     * Get history array
      *
      * @return array
      */
@@ -165,6 +146,7 @@ class RequestHandler
     }
     
     /**
+     * Set max retries
      *
      * @param int $maxRetries
      * @throws InvalidArgumentException
@@ -185,6 +167,7 @@ class RequestHandler
     }
     
     /**
+     * Get max retries
      *
      * @return int
      */
@@ -194,6 +177,7 @@ class RequestHandler
     }
     
     /**
+     * Set no retry server error codes
      *
      * @param array $errorCodes
      * @throws InvalidArgumentException
@@ -216,30 +200,7 @@ class RequestHandler
     }
 
     /**
-     * @param LoggerInterface $logger
-     */
-    private function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
-    /**
-     * @param MessageFormatter $formatter
-     */
-    private function setLogMessageFormatter(MessageFormatter $formatter)
-    {
-        $this->logMessageFormat = $formatter;
-    }
-
-    /**
-     * @param int $logLevel
-     */
-    private function setLogLevel($logLevel)
-    {
-        $this->logLevel = $logLevel;
-    }
-    
-    /**
+     * Get no retry server error codes
      *
      * @return array
      */
@@ -249,6 +210,38 @@ class RequestHandler
     }
 
     /**
+     * Set logger
+     *
+     * @param LoggerInterface $logger
+     */
+    private function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * Set log message formatter
+     *
+     * @param MessageFormatter $formatter
+     */
+    private function setLogMessageFormatter(MessageFormatter $formatter)
+    {
+        $this->logMessageFormat = $formatter;
+    }
+
+    /**
+     * Set log level
+     *
+     * @param int $logLevel
+     */
+    private function setLogLevel($logLevel)
+    {
+        $this->logLevel = $logLevel;
+    }
+
+    /**
+     * Execute a request synchronously
+     *
      * @param array $params
      * @param Content $contentBlock
      *
@@ -274,6 +267,8 @@ class RequestHandler
     }
 
     /**
+     * Execute a request asynchronously with a policy ID
+     *
      * @param array $params
      * @param Content $contentBlock
      *
@@ -303,6 +298,7 @@ class RequestHandler
     }
 
     /**
+     * Execute an XML request to Intacct
      *
      * @param XMLWriter $xml
      * @return ResponseInterface

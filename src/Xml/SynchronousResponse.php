@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\AbstractResponse;
 use Intacct\Xml\Response\Operation;
 use Intacct\Exception;
 use SimpleXMLIterator;
@@ -25,13 +24,11 @@ use SimpleXMLIterator;
 class SynchronousResponse extends AbstractResponse
 {
 
-    /**
-     *
-     * @var Operation
-     */
+    /** @var Operation */
     private $operation;
 
     /**
+     * Initializes the class with the given body XML response
      *
      * @param string $body
      * @throws Exception
@@ -46,6 +43,7 @@ class SynchronousResponse extends AbstractResponse
     }
 
     /**
+     * Set response's operation
      *
      * @param SimpleXMLIterator $operation
      * @throws Exception
@@ -56,6 +54,7 @@ class SynchronousResponse extends AbstractResponse
     }
 
     /**
+     * Get response's operation
      *
      * @return Operation
      */

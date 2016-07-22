@@ -22,13 +22,11 @@ use SimpleXMLIterator;
 class ErrorMessage
 {
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $errors;
 
     /**
+     * Initializes the class
      *
      * @param SimpleXMLIterator $errorMessage
      */
@@ -51,6 +49,7 @@ class ErrorMessage
     }
     
     /**
+     * Get errors array
      *
      * @return array
      */
@@ -60,6 +59,7 @@ class ErrorMessage
     }
 
     /**
+     * Cleanse the errors by sanitizing the string
      *
      * @param string $value
      * @return string

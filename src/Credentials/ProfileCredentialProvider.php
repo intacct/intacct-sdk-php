@@ -22,18 +22,14 @@ use InvalidArgumentException;
 class ProfileCredentialProvider
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_PROFILE_FILE = '/.intacct/credentials.ini';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_PROFILE_NAME = 'default';
 
     /**
-     *
+     * Initializes the class
      */
     public function __construct()
     {
@@ -41,8 +37,12 @@ class ProfileCredentialProvider
     }
     
     /**
+     * Get INI profile data with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $profile_file Profile file to load from
+     *      @var string $profile_name Profile name to use
+     * }
      * @return array
      */
     private function getIniProfileData(array $params = [])
@@ -79,8 +79,12 @@ class ProfileCredentialProvider
     }
     
     /**
+     * Get Intacct login credentials with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $profile_file Profile file to load from
+     *      @var string $profile_name Profile name to use
+     * }
      * @return array
      */
     public function getLoginCredentials(array $params = [])
@@ -102,8 +106,12 @@ class ProfileCredentialProvider
     }
 
     /**
+     * Get Intacct sender credentials with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $profile_file Profile file to load from
+     *      @var string $profile_name Profile name to use
+     * }
      * @return array
      */
     public function getSenderCredentials(array $params = [])
@@ -125,6 +133,7 @@ class ProfileCredentialProvider
     }
 
     /**
+     * Get home directory containing profile file
      *
      * @return string
      */

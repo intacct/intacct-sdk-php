@@ -23,27 +23,24 @@ use Intacct\Xml\XMLWriter;
 class LoginAuthentication extends AbstractAuthentication
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $userId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $companyId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $password;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $company_id Intacct company ID
+     *      @var string $user_id Intacct user ID
+     *      @var string $user_password Intacct user password
+     * }
+     * @todo Add clientid and location since people don't know to pipe them with companyid
      */
     public function __construct(array $params)
     {
@@ -76,6 +73,7 @@ class LoginAuthentication extends AbstractAuthentication
     }
 
     /**
+     * Write the operation block XML
      *
      * @param XMLWriter $xml
      */

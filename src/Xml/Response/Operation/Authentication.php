@@ -23,31 +23,20 @@ use SimpleXMLIterator;
 class Authentication
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $status;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $userId;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $companyId;
 
-    /**
-     *
-     * @var boolean
-     */
+    /** @var boolean */
     private $slideInUser;
 
     /**
+     * Initializes the class
      *
      * @param SimpleXMLIterator $authentication
      * @throws Exception
@@ -73,6 +62,7 @@ class Authentication
     }
 
     /**
+     * Get authentication status
      *
      * @return string
      */
@@ -82,6 +72,7 @@ class Authentication
     }
 
     /**
+     * Get user ID
      *
      * @return string
      */
@@ -91,6 +82,7 @@ class Authentication
     }
 
     /**
+     * Get company ID
      *
      * @return string
      */
@@ -100,6 +92,7 @@ class Authentication
     }
 
     /**
+     * Get if user is external
      *
      * @return boolean
      */
@@ -109,6 +102,7 @@ class Authentication
     }
 
     /**
+     * Set if user is external
      *
      * @param string $userId
      */
@@ -118,6 +112,10 @@ class Authentication
         if (strpos($userId, 'CPAUser') !== false) {
             $slideInUser = true;
         } elseif (strpos($userId, 'ExtUser|') !== false) {
+            $slideInUser = true;
+        } elseif (strpos($userId, 'SvcUser|') !== false) {
+            $slideInUser = true;
+        } elseif (strpos($userId, 'intacct') !== false) {
             $slideInUser = true;
         }
         $this->slideInUser = $slideInUser;

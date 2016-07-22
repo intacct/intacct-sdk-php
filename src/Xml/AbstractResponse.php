@@ -18,7 +18,6 @@
 namespace Intacct\Xml;
 
 use Intacct\Xml\Response\Control;
-use Intacct\Xml\ResponseException;
 use Intacct\Xml\Response\ErrorMessage;
 use Intacct\Exception;
 use SimpleXMLIterator;
@@ -26,19 +25,14 @@ use SimpleXMLIterator;
 abstract class AbstractResponse
 {
     
-    /**
-     *
-     * @var SimpleXMLIterator
-     */
+    /** @var SimpleXMLIterator */
     protected $xml;
 
-    /**
-     *
-     * @var Control
-     */
+    /** @var Control */
     private $control;
 
     /**
+     * Initializes the class with the given body XML response
      *
      * @param string $body
      * @throws Exception
@@ -69,6 +63,7 @@ abstract class AbstractResponse
     }
 
     /**
+     * Set response control
      *
      * @param SimpleXMLIterator $control
      * @throws Exception
@@ -79,6 +74,7 @@ abstract class AbstractResponse
     }
 
     /**
+     * Get response control
      *
      * @return Control
      */

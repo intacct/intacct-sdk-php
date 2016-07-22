@@ -23,13 +23,11 @@ use SimpleXMLIterator;
 class Acknowledgement
 {
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $status;
 
     /**
+     * Initializes the class
      *
      * @param SimpleXMLIterator $acknowledgement
      * @throws Exception
@@ -44,6 +42,7 @@ class Acknowledgement
     }
 
     /**
+     * Get acknowledgement status
      *
      * @return string
      */

@@ -24,8 +24,9 @@ class Date extends DateTime
 {
 
     /**
+     * Initializes the class
      *
-     * @param string $date
+     * @param string $date Date, default=now
      * @param DateTimeZone $timezone
      */
     public function __construct($date = 'now', DateTimeZone $timezone = null)

@@ -24,63 +24,49 @@ use InvalidArgumentException;
 class ControlBlock
 {
     
-    /**
-     * @var array
-     *
-     * @todo deprecate 2.1 support?
-     */
-    const DTD_VERSIONS = ['2.1', '3.0'];
+    /** @var array */
+    const DTD_VERSIONS = [
+        '2.1',
+        '3.0',
+    ];
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $senderId;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $password;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $controlId;
     
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $uniqueId;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $dtdVersion;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $policyId;
     
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $includeWhitespace;
     
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $debug;
 
     /**
+     * Initializes the class with the given parameters.
      *
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var bool $debug Enable debug mode, Intacct internal, default=false
+     *      @var string $dtd_version DTD version, default=3.0
+     *      @var bool $include_whitespace Have Intacct prettify response XML, default=false
+     *      @var string $policy_id Asynchronous policy ID
+     *      @var string $sender_id Intacct sender ID
+     *      @var string $sender_password Intacct sender password
+     *      @var bool $unique_id Force function control ID's to be unique, default=false
+     * }
      * @param array $params
      * @throws InvalidArgumentException
      */
@@ -121,6 +107,7 @@ class ControlBlock
     }
     
     /**
+     * Set control ID
      *
      * @param string $controlId
      */
@@ -142,6 +129,7 @@ class ControlBlock
     }
     
     /**
+     * Set unique ID
      *
      * @param bool $uniqueId
      * @throws InvalidArgumentException
@@ -156,6 +144,7 @@ class ControlBlock
     }
     
     /**
+     * Get unique ID
      *
      * @return string
      */
@@ -166,6 +155,7 @@ class ControlBlock
 
 
     /**
+     * Set DTD version
      *
      * @param string $dtdVersion
      * @throws InvalidArgumentException
@@ -180,6 +170,7 @@ class ControlBlock
     }
     
     /**
+     * Set include whitespace
      *
      * @param bool $includeWhitespace
      * @throws InvalidArgumentException
@@ -194,6 +185,7 @@ class ControlBlock
     }
     
     /**
+     * Get include whitespace
      *
      * @return string
      */
@@ -203,6 +195,7 @@ class ControlBlock
     }
     
     /**
+     * Set debug mode
      *
      * @param bool $debug
      * @throws InvalidArgumentException
@@ -217,6 +210,7 @@ class ControlBlock
     }
     
     /**
+     * Get debug mode
      *
      * @return string
      */
@@ -226,6 +220,7 @@ class ControlBlock
     }
     
     /**
+     * Write the control block XML
      *
      * @param XMLWriter $xml
      */

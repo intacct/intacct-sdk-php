@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\XMLWriter;
 use Intacct\Xml\Request\ControlBlock;
 use Intacct\Xml\Request\OperationBlock;
 use Intacct\Content;
@@ -26,33 +25,25 @@ use InvalidArgumentException;
 class RequestBlock
 {
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     const XML_VERSION = '1.0';
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     protected $encoding;
 
-    /**
-     *
-     * @var ControlBlock
-     */
+    /** @var ControlBlock */
     protected $controlBlock;
 
-    /**
-     *
-     * @var OperationBlock
-     */
+    /** @var OperationBlock */
     protected $operationBlock;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $encoding Encoding to use, default=UTF-8
+     *      @see IntacctClient::__construct for more params
+     * }
      * @param Content $contentBlock
      *
      * @throws InvalidArgumentException
@@ -73,6 +64,7 @@ class RequestBlock
     }
 
     /**
+     * Generate the request XML writer
      *
      * @return XMLWriter
      */
