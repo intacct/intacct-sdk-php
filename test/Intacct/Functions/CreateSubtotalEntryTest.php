@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\OrderEntry;
+namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
@@ -23,8 +23,8 @@ class CreateSubtotalEntryTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\OrderEntry\CreateSubtotalEntry::__construct
-     * @covers Intacct\Functions\OrderEntry\CreateSubtotalEntry::getXml
+     * @covers Intacct\Functions\CreateSubtotalEntry::__construct
+     * @covers Intacct\Functions\CreateSubtotalEntry::getXml
      */
     public function testDefaultParams()
     {
@@ -53,8 +53,8 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\OrderEntry\CreateSubtotalEntry::__construct
-     * @covers Intacct\Functions\OrderEntry\CreateSubtotalEntry::getXml
+     * @covers Intacct\Functions\CreateSubtotalEntry::__construct
+     * @covers Intacct\Functions\CreateSubtotalEntry::getXml
      */
     public function testParamsOverrides()
     {

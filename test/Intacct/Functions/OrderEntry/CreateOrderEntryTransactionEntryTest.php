@@ -18,9 +18,11 @@
 namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Xml\XMLWriter;
+use Intacct\Functions\CreateItemDetail;
 
 class CreateOrderEntryTransactionEntryTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @covers Intacct\Functions\OrderEntry\CreateOrderEntryTransactionEntry::__construct
      * @covers Intacct\Functions\OrderEntry\CreateOrderEntryTransactionEntry::getXml
@@ -114,7 +116,7 @@ EOF;
         <month>07</month>
         <day>31</day>
     </revrecenddate>
-    <renewalmacro>29034</renewalmacro>
+    <renewalmacro>Quarterly</renewalmacro>
     <projectid>235</projectid>
     <customerid>23423434</customerid>
     <vendorid>797656</vendorid>
@@ -159,7 +161,7 @@ EOF;
             'rev_rec_template' => 'template',
             'rev_rec_start_date' => '2015-06-30',
             'rev_rec_end_date' => '2015-07-31',
-            'renewal_macro' => '29034',
+            'renewal_macro' => 'Quarterly',
             'project_id' => '235',
             'customer_id' => '23423434',
             'vendor_id' => '797656',

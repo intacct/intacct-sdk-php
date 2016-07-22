@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\OrderEntry;
+namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
@@ -23,10 +23,10 @@ class CreateItemDetailTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::__construct
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::setItemExpiration
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::getXml
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::getSerialOrLotNumberXml
+     * @covers Intacct\Functions\CreateItemDetail::__construct
+     * @covers Intacct\Functions\CreateItemDetail::setItemExpiration
+     * @covers Intacct\Functions\CreateItemDetail::getXml
+     * @covers Intacct\Functions\CreateItemDetail::getSerialOrLotNumberXml
      */
     public function testDefaultParams()
     {
@@ -61,10 +61,10 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::__construct
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::setItemExpiration
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::getXml
-     * @covers Intacct\Functions\OrderEntry\CreateItemDetail::getSerialOrLotNumberXml
+     * @covers Intacct\Functions\CreateItemDetail::__construct
+     * @covers Intacct\Functions\CreateItemDetail::setItemExpiration
+     * @covers Intacct\Functions\CreateItemDetail::getXml
+     * @covers Intacct\Functions\CreateItemDetail::getSerialOrLotNumberXml
      *
      */
     public function testParamsOverrides()

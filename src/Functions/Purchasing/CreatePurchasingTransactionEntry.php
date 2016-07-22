@@ -1,38 +1,35 @@
 <?php
-
 /**
- * Copyright 2016 Intacct Corporation.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- * use this file except in compliance with the License. You may obtain a copy
- * of the License at
+ * *
+ *  * Copyright 2016 Intacct Corporation.
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ *  * use this file except in compliance with the License. You may obtain a copy
+ *  * of the License at
+ *  *
+ *  * http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * or in the "LICENSE" file accompanying this file. This file is distributed on
+ *  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ *  * express or implied. See the License for the specific language governing
+ *  * permissions and limitations under the License.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the License for the specific language governing
- * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\OrderEntry;
+namespace Intacct\Functions\Purchasing;
 
-use Intacct\Fields\Date;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Functions\Traits\DimensionsTrait;
 use Intacct\Xml\XMLWriter;
 use Intacct\Functions\CreateItemDetail;
 
-class CreateOrderEntryTransactionEntry
+class CreatePurchasingTransactionEntry
 {
 
     use DimensionsTrait;
     use CustomFieldsTrait;
-
-    /**
-     * @var string
-     */
-    private $bundleNumber;
 
     /**
      * @var string
@@ -57,17 +54,17 @@ class CreateOrderEntryTransactionEntry
     /**
      * @var string
      */
-    private $discountPercent;
-
-    /**
-     * @var string
-     */
     private $price;
 
     /**
      * @var string
      */
-    private $discountSurchargeMemo;
+    private $overrideTaxAmount;
+
+    /**
+     * @var string
+     */
+    private $tax;
 
     /**
      * @var string
@@ -80,39 +77,14 @@ class CreateOrderEntryTransactionEntry
     private $itemDetails;
 
     /**
-     * @var string
+     * @var bool
      */
-    private $revRecTemplate;
+    private $form1099;
 
     /**
-     * @var Date
+     * @var bool
      */
-    private $revRecStartDate;
-
-    /**
-     * @var Date
-     */
-    private $revRecEndDate;
-
-    /**
-     * @var string
-     */
-    private $renewalMacro;
-
-    /**
-     * @var string
-     */
-    private $fulfillmentStatus;
-
-    /**
-     * @var string
-     */
-    private $taskNumber;
-
-    /**
-     * @var string
-     */
-    private $billingTemplate;
+    private $billable;
 
     /**
      * CreateOrderEntryTransactionEntry constructor.
@@ -121,89 +93,53 @@ class CreateOrderEntryTransactionEntry
     public function __construct(array $params = [])
     {
         $defaults = [
-            'bundle_number' => null,
             'item_id' => null,
             'item_description' => null,
             'taxable' => null,
             'warehouse_id' => null,
             'quantity' => null,
             'unit' => null,
-            'discount_percent' => null,
             'price' => null,
-            'discount_surcharge_memo' => null,
+            'override_tax_amount' => null,
+            'tax' => null,
             'location_id' => null,
             'department_id' => null,
             'memo' => null,
             'item_details' => [],
+            'form1099' => null,
             'custom_fields' => [],
-            'rev_rec_template' => null,
-            'rev_rec_start_date' => null,
-            'rev_rec_end_date' => null,
-            'renewal_macro' => null,
             'project_id' => null,
             'customer_id' => null,
             'vendor_id' => null,
             'employee_id' => null,
             'class_id' => null,
             'contract_id' => null,
-            'fulfillment_status' => null,
-            'task_number' => null,
-            'billing_template' => null,
+            'billable' => null,
         ];
         $config = array_merge($defaults, $params);
 
-        $this->bundleNumber = $config['bundle_number'];
         $this->setItemId($config['item_id']);
         $this->itemDescription = $config['item_description'];
         $this->taxable = $config['taxable'];
         $this->setWarehouseId($config['warehouse_id']);
         $this->quantity = $config['quantity'];
         $this->unit = $config['unit'];
-        $this->discountPercent = $config['discount_percent'];
         $this->price = $config['price'];
-        $this->discountSurchargeMemo = $config['discount_surcharge_memo'];
+        $this->overrideTaxAmount = $config['override_tax_amount'];
+        $this->tax = $config['tax'];
         $this->setLocationId($config['location_id']);
         $this->setDepartmentId($config['department_id']);
         $this->memo = $config['memo'];
+        $this->form1099 = $config['form1099'];
         $this->itemDetails = $config['item_details'];
         $this->setCustomFields($config['custom_fields']);
-        $this->revRecTemplate = $config['rev_rec_template'];
-        $this->setRevRecStartDate($config['rev_rec_start_date']);
-        $this->setRevRecEndDate($config['rev_rec_end_date']);
-        $this->renewalMacro = $config['renewal_macro'];
         $this->setProjectId($config['project_id']);
         $this->setCustomerId($config['customer_id']);
         $this->setVendorId($config['vendor_id']);
         $this->setEmployeeId($config['employee_id']);
         $this->setClassId($config['class_id']);
         $this->setContractId($config['contract_id']);
-        $this->fulfillmentStatus = $config['fulfillment_status'];
-        $this->taskNumber = $config['task_number'];
-        $this->billingTemplate = $config['billing_template'];
-    }
-
-    /**
-     * @param string|Date $revRecStartDate
-     */
-    private function setRevRecStartDate($revRecStartDate)
-    {
-        if (is_null($revRecStartDate) || $revRecStartDate instanceof Date) {
-            $this->revRecStartDate = $revRecStartDate;
-        } else {
-            $this->revRecStartDate = new Date($revRecStartDate);
-        }
-    }
-
-    /**
-     * @param string|Date $revRecEndDate
-     */
-    private function setRevRecEndDate($revRecEndDate)
-    {
-        if (is_null($revRecEndDate) || $revRecEndDate instanceof Date) {
-            $this->revRecEndDate = $revRecEndDate;
-        } else {
-            $this->revRecEndDate = new Date($revRecEndDate);
-        }
+        $this->billable = $config['billable'];
     }
 
     /**
@@ -212,12 +148,13 @@ class CreateOrderEntryTransactionEntry
     private function getItemDetails(XMLWriter &$xml)
     {
         if (count($this->itemDetails) > 0) {
+
             $xml->startElement('itemdetails');
 
             foreach ($this->itemDetails as $itemDetail) {
                 if ($itemDetail instanceof CreateItemDetail) {
                     $itemDetail->getXml($xml);
-                } elseif (is_array($itemDetail)) {
+                } else if (is_array($itemDetail)) {
                     $itemDetail = new CreateItemDetail($itemDetail);
 
                     $itemDetail->getXml($xml);
@@ -232,51 +169,35 @@ class CreateOrderEntryTransactionEntry
      */
     public function getXml(XMLWriter &$xml)
     {
-        $xml->startElement('sotransitem');
+        $xml->startElement('potransitem');
 
-        $xml->writeElement('bundlenumber', $this->bundleNumber);
         $xml->writeElement('itemid', $this->getItemId(), true);
         $xml->writeElement('itemdesc', $this->itemDescription);
         $xml->writeElement('taxable', $this->taxable);
         $xml->writeElement('warehouseid', $this->getWarehouseId());
         $xml->writeElement('quantity', $this->quantity, true);
         $xml->writeElement('unit', $this->unit);
-        $xml->writeElement('discountpercent', $this->discountPercent);
         $xml->writeElement('price', $this->price);
-        $xml->writeElement('discsurchargememo', $this->discountSurchargeMemo);
+        $xml->writeElement('overridetaxamount', $this->overrideTaxAmount);
+        $xml->writeElement('tax', $this->tax);
         $xml->writeElement('locationid', $this->getLocationId());
         $xml->writeElement('departmentid', $this->getDepartmentId());
         $xml->writeElement('memo', $this->memo);
 
         $this->getItemDetails($xml);
 
+        $xml->writeElement('form1099', $this->form1099);
+
         $this->getCustomFieldsXml($xml);
 
-        $xml->writeElement('revrectemplate', $this->revRecTemplate);
-
-        if ($this->revRecStartDate) {
-            $xml->startElement('revrecstartdate');
-            $xml->writeDateSplitElements($this->revRecStartDate, true);
-            $xml->endElement(); //revrecstartdate
-        }
-
-        if ($this->revRecEndDate) {
-            $xml->startElement('revrecenddate');
-            $xml->writeDateSplitElements($this->revRecEndDate, true);
-            $xml->endElement(); //revrecenddate
-        }
-
-        $xml->writeElement('renewalmacro', $this->renewalMacro);
         $xml->writeElement('projectid', $this->getProjectId());
         $xml->writeElement('customerid', $this->getCustomerId());
         $xml->writeElement('vendorid', $this->getVendorId());
         $xml->writeElement('employeeid', $this->getEmployeeId());
         $xml->writeElement('classid', $this->getClassId());
         $xml->writeElement('contractid', $this->getContractId());
-        $xml->writeElement('fulfillmentstatus', $this->fulfillmentStatus);
-        $xml->writeElement('taskno', $this->taskNumber);
-        $xml->writeElement('billingtemplate', $this->billingTemplate);
+        $xml->writeElement('billable' , $this->billable);
 
-        $xml->endElement(); //sotransitem
+        $xml->endElement(); //potransitem
     }
 }

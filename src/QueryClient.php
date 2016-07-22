@@ -18,7 +18,6 @@
 
 namespace Intacct;
 
-use Intacct\Content;
 use Intacct\Functions\ReadByQuery;
 use Intacct\Functions\ReadMore;
 use Intacct\Xml\Response\Operation\Result;

@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\OrderEntry;
+namespace Intacct\Functions;
 
 use Intacct\Fields\Date;
 use Intacct\Xml\XMLWriter;

@@ -19,9 +19,11 @@ namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use Intacct\Functions\CreateSubtotalEntry;
 
 class CreateOrderEntryTransactionTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @covers Intacct\Functions\OrderEntry\CreateOrderEntryTransaction::__construct
      * @covers Intacct\Functions\OrderEntry\CreateOrderEntryTransaction::getXml
@@ -61,7 +63,7 @@ EOF;
         $orderEntryTransaction = new CreateOrderEntryTransaction([
             'control_id' => 'unittest',
             'transaction_definition' => 'Sales Order',
-            'when_created' => '2015-06-30',
+            'transaction_date' => '2015-06-30',
             'customer_id' => '2530',
             'order_entry_transaction_entries' => [
                 [
@@ -122,7 +124,7 @@ EOF;
         $orderEntryTransaction = new CreateOrderEntryTransaction([
             'control_id' => 'unittest',
             'transaction_definition' => 'Sales Order',
-            'when_created' => '2015-06-30',
+            'transaction_date' => '2015-06-30',
             'customer_id' => '2530',
             'order_entry_transaction_entries' => [
                 [
@@ -244,8 +246,8 @@ EOF;
         $orderEntryTransaction = new CreateOrderEntryTransaction([
             'control_id' => 'unittest',
             'transaction_definition' => 'Sales Order',
-            'when_created' => '2015-06-30',
-            'when_posted' => '2015-06-30 06:00',
+            'transaction_date' => '2015-06-30',
+            'gl_posting_date' => '2015-06-30 06:00',
             'created_from' => 'Sales Quote-Q1002',
             'customer_id' => '23530',
             'document_number' => '23430',
@@ -304,7 +306,7 @@ EOF;
         $orderEntryTransaction = new CreateOrderEntryTransaction([
             'control_id' => 'unittest',
             'transaction_type' => 'Sales Order',
-            'when_created' => '2015-06-30',
+            'transaction_date' => '2015-06-30',
             'customer_id' => '2530',
         ]);
 

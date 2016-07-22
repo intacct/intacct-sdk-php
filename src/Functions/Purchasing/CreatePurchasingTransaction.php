@@ -1,51 +1,52 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- * use this file except in compliance with the License. You may obtain a copy
- * of the License at
+ * *
+ *  * Copyright 2016 Intacct Corporation.
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ *  * use this file except in compliance with the License. You may obtain a copy
+ *  * of the License at
+ *  *
+ *  * http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * or in the "LICENSE" file accompanying this file. This file is distributed on
+ *  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ *  * express or implied. See the License for the specific language governing
+ *  * permissions and limitations under the License.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "LICENSE" file accompanying this file. This file is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the License for the specific language governing
- * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\OrderEntry;
+namespace Intacct\Functions\Purchasing;
 
-use Intacct\Fields\Date;
 use Intacct\Functions\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Functions\Traits\BillToTrait;
-use Intacct\Functions\Traits\CustomerIdTrait;
+use Intacct\Functions\Traits\PayToTrait;
+use Intacct\Functions\Traits\VendorIdTrait;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Functions\Traits\DueDateTrait;
 use Intacct\Functions\Traits\ExchangeRateInfoTrait;
 use Intacct\Functions\Traits\GlPostingDateTrait;
-use Intacct\Functions\Traits\ProjectIdTrait;
-use Intacct\Functions\Traits\ShipToTrait;
+use Intacct\Functions\Traits\ReturnToTrait;
 use Intacct\Functions\Traits\TransactionDateTrait;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 use Intacct\Functions\CreateSubtotalEntry;
 
-class CreateOrderEntryTransaction implements FunctionInterface
+class CreatePurchasingTransaction implements FunctionInterface
 {
 
     use ControlIdTrait;
-    use CustomerIdTrait;
+    use VendorIdTrait;
     use TransactionDateTrait;
     use GlPostingDateTrait;
     use DueDateTrait;
-    use ShipToTrait;
-    use BillToTrait;
+    use PayToTrait;
+    use ReturnToTrait;
     use ExchangeRateInfoTrait;
     use CustomFieldsTrait;
-    use ProjectIdTrait;
 
     /**
      * @var string
@@ -78,14 +79,14 @@ class CreateOrderEntryTransaction implements FunctionInterface
     private $documentNumber;
 
     /**
-     * @var Date
+     * @var string
      */
-    private $originalDocumentDate;
+    private $referenceNumber;
 
     /**
      * @var string
      */
-    private $referenceNumber;
+    private $vendorDocNumber;
 
     /**
      * @var string
@@ -115,17 +116,12 @@ class CreateOrderEntryTransaction implements FunctionInterface
     /**
      * @var string
      */
-    private $vsoePriceList;
-
-    /**
-     * @var string
-     */
     private $state;
 
     /**
      * @var array
      */
-    private $orderEntryTransactionEntries;
+    private $purchasingTransactionEntries;
 
     /**
      * @var array
@@ -144,16 +140,16 @@ class CreateOrderEntryTransaction implements FunctionInterface
             'transaction_date' => null,
             'gl_posting_date' => null,
             'created_from' => null,
-            'customer_id' => null,
+            'vendor_id' => null,
             'document_number' => null,
-            'original_document_date' => null,
             'reference_number' => null,
+            'vendor_document_number' => null,
             'payment_term' => null,
             'due_date' => null,
             'message' => null,
             'shipping_method' => null,
-            'ship_to_contact_name' => null,
-            'bill_to_contact_name' => null,
+            'return_to_contact_name' => null,
+            'pay_to_contact_name' => null,
             'attachments_id' => null,
             'external_id' => null,
             'base_currency' => null,
@@ -161,11 +157,9 @@ class CreateOrderEntryTransaction implements FunctionInterface
             'exchange_rate_date' => null,
             'exchange_rate_type' => null,
             'exchange_rate' => null,
-            'vsoe_price_list' => null,
             'custom_fields' => [],
             'state' => null,
-            'project_id' => null,
-            'order_entry_transaction_entries' => [],
+            'purchasing_transaction_entries' => [],
             'subtotals' => []
         ];
         $config = array_merge($defaults, $params);
@@ -176,16 +170,16 @@ class CreateOrderEntryTransaction implements FunctionInterface
         $this->setTransactionDate($config['transaction_date']);
         $this->setGlPostingDate($config['gl_posting_date']);
         $this->createdFrom = $config['created_from'];
-        $this->setCustomerId($config['customer_id']);
+        $this->setVendorId($config['vendor_id']);
         $this->documentNumber = $config['document_number'];
-        $this->setOriginalDocumentDate($config['original_document_date']);
         $this->referenceNumber = $config['reference_number'];
+        $this->vendorDocNumber = $config['vendor_document_number'];
         $this->paymentTerm = $config['payment_term'];
         $this->setDueDate($config['due_date']);
         $this->message = $config['message'];
         $this->shippingMethod = $config['shipping_method'];
-        $this->setShipToContactName($config['ship_to_contact_name']);
-        $this->setBillToContactName($config['bill_to_contact_name']);
+        $this->setReturnToContactName($config['return_to_contact_name']);
+        $this->setPayToContactName($config['pay_to_contact_name']);
         $this->attachmentsId = $config['attachments_id'];
         $this->externalId = $config['external_id'];
         $this->setBaseCurrency($config['base_currency']);
@@ -193,48 +187,34 @@ class CreateOrderEntryTransaction implements FunctionInterface
         $this->setExchangeRateDate($config['exchange_rate_date']);
         $this->setExchangeRateType($config['exchange_rate_type']);
         $this->setExchangeRateValue($config['exchange_rate']);
-        $this->vsoePriceList = $config['vsoe_price_list'];
         $this->setCustomFields($config['custom_fields']);
         $this->state = $config['state'];
-        $this->setProjectId($config['project_id']);
-        $this->orderEntryTransactionEntries = $config['order_entry_transaction_entries'];
+        $this->purchasingTransactionEntries = $config['purchasing_transaction_entries'];
         $this->subtotalsEntries = $config['subtotals'];
-    }
-
-    /**
-     * @param string|Date $originalDocumentDate
-     */
-    private function setOriginalDocumentDate($originalDocumentDate)
-    {
-        if (is_null($originalDocumentDate) || $originalDocumentDate instanceof Date) {
-            $this->originalDocumentDate = $originalDocumentDate;
-        } else {
-            $this->originalDocumentDate = new Date($originalDocumentDate);
-        }
     }
 
     /**
      * @param XMLWriter $xml
      */
-    private function getOrderEntryTransactionEntries(XMLWriter &$xml)
+    private function getPurchasingTransactionEntries(XMLWriter &$xml)
     {
-        $xml->startElement('sotransitems');
+        $xml->startElement('potransitems');
 
-        if (count($this->orderEntryTransactionEntries) > 0) {
-            foreach ($this->orderEntryTransactionEntries as $orderEntryTransactionEntry) {
-                if ($orderEntryTransactionEntry instanceof CreateOrderEntryTransactionEntry) {
-                    $orderEntryTransactionEntry->getXml($xml);
-                } elseif (is_array($orderEntryTransactionEntry)) {
-                    $orderEntryTransactionEntry = new CreateOrderEntryTransactionEntry($orderEntryTransactionEntry);
+        if (count($this->purchasingTransactionEntries) > 0) {
+            foreach ($this->purchasingTransactionEntries as $purchasingTransactionEntry) {
+                if ($purchasingTransactionEntry instanceof CreatePurchasingTransactionEntry) {
+                    $purchasingTransactionEntry->getXml($xml);
+                } else if (is_array($purchasingTransactionEntry)) {
+                    $purchasingTransactionEntry = new CreatePurchasingTransactionEntry($purchasingTransactionEntry);
 
-                    $orderEntryTransactionEntry->getXml($xml);
+                    $purchasingTransactionEntry->getXml($xml);
                 }
             }
         } else {
-            throw new InvalidArgumentException('"order_entry_transaction_entries" param must have at least 1 entry');
+            throw new InvalidArgumentException('"purchasing_transaction_entries" param must have at least 1 entry');
         }
 
-        $xml->endElement(); //sotransitems
+        $xml->endElement(); //potransitems
     }
 
     /**
@@ -247,7 +227,7 @@ class CreateOrderEntryTransaction implements FunctionInterface
             foreach ($this->subtotalsEntries as $subtotalEntry) {
                 if ($subtotalEntry instanceof CreateSubtotalEntry) {
                     $subtotalEntry->getXml($xml);
-                } elseif (is_array($subtotalEntry)) {
+                } else if (is_array($subtotalEntry)) {
                     $subtotalEntry = new CreateSubtotalEntry($subtotalEntry);
 
                     $subtotalEntry->getXml($xml);
@@ -265,7 +245,7 @@ class CreateOrderEntryTransaction implements FunctionInterface
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId);
 
-        $xml->startElement('create_sotransaction');
+        $xml->startElement('create_potransaction');
 
         $xml->writeElement('transactiontype', $this->transactionDefinition, true);
 
@@ -280,48 +260,46 @@ class CreateOrderEntryTransaction implements FunctionInterface
         }
 
         $xml->writeElement('createdfrom', $this->createdFrom);
-        $xml->writeElement('customerid', $this->getCustomerId(), true);
+        $xml->writeElement('vendorid', $this->getVendorId(), true);
         $xml->writeElement('documentno', $this->documentNumber);
 
-        if ($this->originalDocumentDate) {
-            $xml->startElement('origdocdate');
-            $xml->writeDateSplitElements($this->originalDocumentDate, true);
-            $xml->endElement(); //origdocdate
-        }
-
         $xml->writeElement('referenceno', $this->referenceNumber);
+        $xml->writeElement('vendordocno', $this->vendorDocNumber);
         $xml->writeElement('termname', $this->paymentTerm);
 
-        if ($this->dueDate) {
+        if (is_null($this->getDueDate()) == false) {
             $xml->startElement('datedue');
             $xml->writeDateSplitElements($this->getDueDate(), true);
             $xml->endElement(); //datedue
+        } else {
+            throw new InvalidArgumentException('Missing required "due_date" param');
         }
 
         $xml->writeElement('message', $this->message);
         $xml->writeElement('shippingmethod', $this->shippingMethod);
 
-        $this->getShipToContactNameXml($xml);
+        $xml->startElement('returnto');
+        $xml->writeElement('contactname', $this->getReturnToContactName(), true);
+        $xml->endElement(); //returnto
 
-        $this->getBillToContactNameXml($xml);
+        $xml->startElement('payto');
+        $xml->writeElement('contactname', $this->getPayToContactName(), true);
+        $xml->endElement(); //payto
 
         $xml->writeElement('supdocid', $this->attachmentsId);
         $xml->writeElement('externalid', $this->externalId);
 
         $this->getExchangeRateInfoXml($xml);
 
-        $xml->writeElement('vsoepricelist', $this->vsoePriceList);
-
         $this->getCustomFieldsXml($xml);
 
         $xml->writeElement('state', $this->state);
-        $xml->writeElement('projectid', $this->getProjectId());
 
-        $this->getOrderEntryTransactionEntries($xml);
+        $this->getPurchasingTransactionEntries($xml);
 
         $this->getSubtotalEntries($xml);
 
-        $xml->endElement(); //create_sotransaction
+        $xml->endElement(); //create_potransaction
 
         $xml->endElement(); //function
     }
