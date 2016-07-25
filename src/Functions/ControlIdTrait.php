@@ -23,24 +23,19 @@ use InvalidArgumentException;
 trait ControlIdTrait
 {
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $controlId;
     
-    /**
-     *
-     * @return string
-     */
+    /** @return string */
     public function getControlId()
     {
         return $this->controlId;
     }
     
     /**
+     * Set control ID
      *
-     * @param string $controlId Control ID
+     * @param string $controlId Control ID, default=random UUID
      * @throws InvalidArgumentException
      */
     public function setControlId($controlId = null)

@@ -25,15 +25,17 @@ class GetUserPermissions implements FunctionInterface
     
     use ControlIdTrait;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $userId;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $user_id User ID to get permissions for
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -54,6 +56,7 @@ class GetUserPermissions implements FunctionInterface
     }
     
     /**
+     * Write the getUserPermissions block XML
      *
      * @param XMLWriter $xml
      */

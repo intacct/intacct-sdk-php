@@ -24,17 +24,22 @@ use InvalidArgumentException;
 
 class GetAuditTrail implements FunctionInterface
 {
+    
     use ControlIdTrait;
     use ObjectNameTrait;
     use XMLHelperTrait;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $objectKey;
+    
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $object Object name to get
+     *      @var string $object_key Object key to get
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
@@ -53,7 +58,9 @@ class GetAuditTrail implements FunctionInterface
     }
 
     /**
-     * @param null $objectKey
+     * Set object key
+     *
+     * @param string $objectKey
      * @throws InvalidArgumentException
      */
     private function setObjectKey($objectKey = null)
@@ -69,6 +76,7 @@ class GetAuditTrail implements FunctionInterface
     }
 
     /**
+     * Write the getObjectTrail block XML
      *
      * @param XMLWriter $xml
      */

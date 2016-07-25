@@ -28,48 +28,39 @@ class ReadByName implements FunctionInterface
 
     use ObjectNameTrait;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_NAME_COUNT = 100;
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $fields;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $names;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $docParId;
 
     /**
      *
-     * @param array $params
+     * Initializes the class with the given parameters.
+     *
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $doc_par_id Document param ID (transaction definition) to read by
+     *      @var array $fields Fields to return, default=*
+     *      @var array $names Record names to read by
+     *      @var string $object Object name to query
+     *      @var string $return_format Return format of response, default=xml
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -92,6 +83,7 @@ class ReadByName implements FunctionInterface
     }
 
     /**
+     * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
@@ -105,6 +97,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
+     * Set fields
      *
      * @param array $fields
      */
@@ -114,6 +107,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
+     * Get fields
      *
      * @return string
      */
@@ -129,6 +123,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
+     * Set names
      *
      * @param array $names
      * @throws InvalidArgumentException
@@ -143,6 +138,7 @@ class ReadByName implements FunctionInterface
     }
     
     /**
+     * Get names
      *
      * @return string
      */
@@ -158,6 +154,8 @@ class ReadByName implements FunctionInterface
     }
 
     /**
+     * Set doc par ID
+     *
      * @param string $docParId
      * @throws InvalidArgumentException
      */
@@ -171,6 +169,7 @@ class ReadByName implements FunctionInterface
     }
 
     /**
+     * Write the readByName block XML
      *
      * @param XMLWriter $xml
      */

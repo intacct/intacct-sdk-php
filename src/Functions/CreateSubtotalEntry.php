@@ -27,29 +27,37 @@ class CreateSubtotalEntry
     use DimensionsTrait;
     use CustomFieldsTrait;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $total;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $absoluteValue;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $percentageValue;
 
     /**
-     * CreateSubtotalEntry constructor.
-     * @param array $params
+     * Initializes the class with the given parameters.
+     *
+     * @param array $params {
+     *      @var float|string $absolute_value
+     *      @var string $class_id
+     *      @var string $contract_id
+     *      @var array $custom_fields
+     *      @var string $customer_id
+     *      @var string $department_id
+     *      @var string $description
+     *      @var string $employee_id
+     *      @var string $item_id
+     *      @var string $location_id
+     *      @var float|string $percentage_value
+     *      @var string $project_id
+     *      @var float|string $total
+     *      @var string $vendor_id
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -88,6 +96,8 @@ class CreateSubtotalEntry
     }
 
     /**
+     * Write the subtotal block XML
+     *
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)

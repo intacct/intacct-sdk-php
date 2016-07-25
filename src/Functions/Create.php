@@ -30,14 +30,18 @@ class Create extends ArrayIterator implements FunctionInterface
     use ControlIdTrait;
     use XMLHelperTrait;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_CREATE_COUNT = 100;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var array $records Records to create, @see Record::__construct
+     * }
+     * @throws InvalidArgumentException
+     * @todo Get rid of magic method for records
      */
     public function __construct(array $params = [])
     {
@@ -72,6 +76,7 @@ class Create extends ArrayIterator implements FunctionInterface
     }
 
     /**
+     * Write the create block XML
      *
      * @param XMLWriter $xml
      */

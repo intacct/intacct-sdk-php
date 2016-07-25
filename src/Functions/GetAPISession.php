@@ -25,8 +25,11 @@ class GetAPISession implements FunctionInterface
     use ControlIdTrait;
     
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -39,6 +42,7 @@ class GetAPISession implements FunctionInterface
     }
     
     /**
+     * Write the getAPISession block XML
      *
      * @param XMLWriter $xml
      */

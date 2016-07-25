@@ -28,64 +28,48 @@ class ReadByQuery implements FunctionInterface
 
     use ObjectNameTrait;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MIN_PAGE_SIZE = 1;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_PAGE_SIZE = 1000;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const DEFAULT_PAGE_SIZE = 1000;
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $fields;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $query;
     
-    /**
-     *
-     * @var int
-     */
+    /** @var int */
     private $pageSize;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $docParId;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $doc_par_id Document param ID (transaction definition) to read by
+     *      @var array $fields Fields to return, default=*
+     *      @var string $object Object name to query
+     *      @var int $page_size Max page size 1-1000, default=1000
+     *      @var string $query Query to filter by
+     *      @var string $return_format Return format of response, default=xml
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -110,6 +94,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
+     * Set page size
      *
      * @param int $pageSize
      * @throws InvalidArgumentException
@@ -138,6 +123,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
+     * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
@@ -151,6 +137,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
+     * Set fields
      *
      * @param array $fields
      */
@@ -160,6 +147,7 @@ class ReadByQuery implements FunctionInterface
     }
     
     /**
+     * Get fields
      *
      * @return string
      */
@@ -175,7 +163,10 @@ class ReadByQuery implements FunctionInterface
     }
 
     /**
+     * Set query
+     *
      * @param string $query
+     * @throws InvalidArgumentException
      */
     private function setQuery($query)
     {
@@ -185,6 +176,12 @@ class ReadByQuery implements FunctionInterface
         $this->query = $query;
     }
 
+    /**
+     * Set doc par ID
+     *
+     * @param type $docParId
+     * @throws InvalidArgumentException
+     */
     private function setDocParId($docParId)
     {
         if (is_string($docParId) === false) {
@@ -194,6 +191,7 @@ class ReadByQuery implements FunctionInterface
     }
 
     /**
+     * Write the readByQuery block XML
      *
      * @param XMLWriter $xml
      */

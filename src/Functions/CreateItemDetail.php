@@ -23,44 +23,39 @@ use Intacct\Xml\XMLWriter;
 class CreateItemDetail
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $quantity;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $serialNumber;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $lotNumber;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $aisle;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $row;
 
-    /**
-     * @var  string
-     */
+    /** @var string */
     private $bin;
 
-    /**
-     * @var string | Date
-     */
+    /** @var string|Date */
     private $itemExpiration;
 
     /**
-     * CreateItemDetail constructor.
-     * @param array $params
+     * Initializes the class with the given parameters.
+     *
+     * @param array $params {
+     *      @var int|float|string $quantity
+     *      @var string $serial_number
+     *      @var string $lot_number
+     *      @var string $aisle
+     *      @var string $row
+     *      @var string $bin
+     *      @var string|Date $item_expiration
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -85,6 +80,8 @@ class CreateItemDetail
     }
 
     /**
+     * Set item expiration
+     *
      * @param string|Date $itemExpiration
      */
     private function setItemExpiration($itemExpiration)
@@ -97,6 +94,8 @@ class CreateItemDetail
     }
 
     /**
+     * Write the serial or lot number XML
+     *
      * @param XMLWriter $xml
      */
     private function getSerialOrLotNumberXml(XMLWriter &$xml)
@@ -109,6 +108,8 @@ class CreateItemDetail
     }
 
     /**
+     * Write the itemdetail block XML
+     * 
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)

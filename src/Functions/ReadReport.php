@@ -27,90 +27,65 @@ class ReadReport implements FunctionInterface
     use ControlIdTrait;
     use XMLHelperTrait;
     
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MIN_PAGE_SIZE = 1;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_PAGE_SIZE = 1000;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const DEFAULT_PAGE_SIZE = 1000;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MIN_WAIT_TIME = 0;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_WAIT_TIME = 30;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const DEFAULT_WAIT_TIME = 0;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $reportName;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $arguments;
     
-    /**
-     *
-     * @var int
-     */
+    /** @var int */
     private $pageSize;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
     
-    /**
-     *
-     * @var int
-     */
+    /** @var int */
     private $waitTime;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $listSeparator;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $returnDef;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
-     * @todo finish the arguments collection
+     * @param array $params {
+     *      @var array $arguments Arguments to use at report run time
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $list_separator List separator to use
+     *      @var int $page_size Max page size 1-1000, default=1000
+     *      @var string $report Report name to read
+     *      @var bool $return_def Return the report definition in the response, default=false
+     *      @var string $return_format Return format of response, default=xml
+     *      @var int $wait_time Time to wait for response between 0-30, default=0
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -143,7 +118,9 @@ class ReadReport implements FunctionInterface
     }
 
     /**
-     * @param $report
+     * Set report name
+     * 
+     * @param string $report Report name
      * @throws InvalidArgumentException
      */
     private function setReportName($report)
@@ -158,8 +135,9 @@ class ReadReport implements FunctionInterface
     }
 
     /**
+     * Set page size
      *
-     * @param int $pageSize
+     * @param int $pageSize Page size
      * @throws InvalidArgumentException
      */
     private function setPageSize($pageSize)
@@ -186,8 +164,9 @@ class ReadReport implements FunctionInterface
     }
     
     /**
+     * Set wait time
      *
-     * @param int $waitTime
+     * @param int $waitTime Wait time
      * @throws InvalidArgumentException
      */
     private function setWaitTime($waitTime)
@@ -214,8 +193,9 @@ class ReadReport implements FunctionInterface
     }
     
     /**
+     * Set return format
      *
-     * @param string $format
+     * @param string $format Return format
      * @throws InvalidArgumentException
      */
     private function setReturnFormat($format)
@@ -227,8 +207,9 @@ class ReadReport implements FunctionInterface
     }
     
     /**
+     * Set arguments
      *
-     * @param array $arguments
+     * @param array $arguments Arguments
      */
     private function setArguments(array $arguments)
     {
@@ -236,6 +217,8 @@ class ReadReport implements FunctionInterface
     }
 
     /**
+     * Set list separator
+     *
      * @param string $listSeparator
      * @throws InvalidArgumentException
      */
@@ -249,6 +232,8 @@ class ReadReport implements FunctionInterface
     }
 
     /**
+     * Get list separator
+     *
      * @return string
      */
     private function getListSeparator()
@@ -261,7 +246,9 @@ class ReadReport implements FunctionInterface
     }
 
     /**
-     * @param $returnDef
+     * Set return def
+     *
+     * @param bool $returnDef
      * @throws InvalidArgumentException
      */
     private function setReturnDef($returnDef)
@@ -274,6 +261,8 @@ class ReadReport implements FunctionInterface
     }
 
     /**
+     * Get return def
+     *
      * @return string
      */
     private function getReturnDef()
@@ -282,6 +271,7 @@ class ReadReport implements FunctionInterface
     }
 
     /**
+     * Write the readReport block XML
      *
      * @param XMLWriter $xml
      */

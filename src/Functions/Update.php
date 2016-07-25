@@ -30,14 +30,17 @@ class Update extends ArrayIterator implements FunctionInterface
     use ControlIdTrait;
     use XMLHelperTrait;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_UPDATE_COUNT = 100;
     
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var array $records Records to update, @see Record::__construct
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -59,7 +62,7 @@ class Update extends ArrayIterator implements FunctionInterface
             );
         }
 
-        //TODO fix this
+        //TODO change these magic methods
         foreach ($config['records'] as $record) {
             $objectName = $record->getObjectName();
             if (in_array('update', StandardObjects::getMethodsNotAllowed($objectName))) {
@@ -73,6 +76,7 @@ class Update extends ArrayIterator implements FunctionInterface
     }
 
     /**
+     * Write the update block XML
      *
      * @param XMLWriter $xml
      */

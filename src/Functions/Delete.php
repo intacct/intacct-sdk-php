@@ -40,8 +40,13 @@ class Delete implements FunctionInterface
     private $keys;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var array $keys Record keys to delete
+     *      @var string $object Object name to delete from
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
@@ -71,6 +76,7 @@ class Delete implements FunctionInterface
     }
 
     /**
+     * Set keys
      *
      * @param array $keys
      * @throws InvalidArgumentException
@@ -91,6 +97,7 @@ class Delete implements FunctionInterface
     }
     
     /**
+     * Get keys
      *
      * @return string
      */
@@ -102,6 +109,7 @@ class Delete implements FunctionInterface
     }
     
     /**
+     * Write the delete block XML
      *
      * @param XMLWriter $xml
      */

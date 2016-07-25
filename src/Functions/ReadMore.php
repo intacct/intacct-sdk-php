@@ -25,15 +25,17 @@ class ReadMore implements FunctionInterface
     
     use ControlIdTrait;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $resultId;
     
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $result_id Result ID to use
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -54,6 +56,7 @@ class ReadMore implements FunctionInterface
     }
     
     /**
+     * Write the readMore block XML
      *
      * @param XMLWriter $xml
      */

@@ -27,15 +27,17 @@ class Inspect implements FunctionInterface
     use ControlIdTrait;
     use ObjectNameTrait;
 
-    /**
-     *
-     * @var bool
-     */
+    /** @var bool */
     private $showDetail;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $object Object name to query
+     *      @var bool $show_detail Show object and field detail
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
@@ -53,6 +55,7 @@ class Inspect implements FunctionInterface
     }
     
     /**
+     * Set show detail
      *
      * @param bool $showDetail
      * @throws InvalidArgumentException
@@ -67,6 +70,7 @@ class Inspect implements FunctionInterface
     }
     
     /**
+     * Get show detail
      *
      * @return string
      */
@@ -76,6 +80,7 @@ class Inspect implements FunctionInterface
     }
     
     /**
+     * Write the inspect block XML
      *
      * @param XMLWriter $xml
      */

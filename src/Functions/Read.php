@@ -28,48 +28,38 @@ class Read implements FunctionInterface
 
     use ObjectNameTrait;
     
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_KEY_COUNT = 100;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $fields;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $keys;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $docParId;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $doc_par_id Document param ID (transaction definition) to read by
+     *      @var array $fields Fields to return, default=*
+     *      @var array $keys Record keys to read by
+     *      @var string $object Object name to query
+     *      @var string $return_format Return format of response, default=xml
+     * }
      */
     public function __construct(array $params = [])
     {
@@ -92,6 +82,7 @@ class Read implements FunctionInterface
     }
 
     /**
+     * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
@@ -105,6 +96,7 @@ class Read implements FunctionInterface
     }
     
     /**
+     * Set fields
      *
      * @param array $fields
      */
@@ -114,6 +106,7 @@ class Read implements FunctionInterface
     }
     
     /**
+     * Get fields
      *
      * @return string
      */
@@ -129,6 +122,7 @@ class Read implements FunctionInterface
     }
     
     /**
+     * Set keys
      *
      * @param array $keys
      * @throws InvalidArgumentException
@@ -143,6 +137,7 @@ class Read implements FunctionInterface
     }
     
     /**
+     * Get keys
      *
      * @return string
      */
@@ -158,6 +153,8 @@ class Read implements FunctionInterface
     }
 
     /**
+     * Set doc par ID
+     *
      * @param $docParId
      * @throws InvalidArgumentException
      */
@@ -171,6 +168,7 @@ class Read implements FunctionInterface
     }
 
     /**
+     * Write the read block XML
      *
      * @param XMLWriter $xml
      */

@@ -29,6 +29,7 @@ interface FunctionInterface
     public function setControlId($controlId);
 
     /**
+     * Write the XML
      *
      * @param XMLWriter $xml
      */

@@ -25,52 +25,40 @@ class ReadView implements FunctionInterface
     
     use ControlIdTrait;
     
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
     
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MIN_PAGE_SIZE = 1;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_PAGE_SIZE = 1000;
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const DEFAULT_PAGE_SIZE = 1000;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $viewName;
     
-    /**
-     *
-     * @var int
-     */
+    /** @var int */
     private $pageSize;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var int $page_size Max page size 1-1000, default=1000
+     *      @var string $return_format Return format of response, default=xml
+     *      @var string $view View name to read
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -96,6 +84,7 @@ class ReadView implements FunctionInterface
     }
     
     /**
+     * Set page size
      *
      * @param int $pageSize
      * @throws InvalidArgumentException
@@ -124,6 +113,7 @@ class ReadView implements FunctionInterface
     }
 
     /**
+     * Set view name
      *
      * @param string $view
      * @throws InvalidArgumentException
@@ -138,6 +128,7 @@ class ReadView implements FunctionInterface
     }
 
     /**
+     * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
@@ -151,9 +142,9 @@ class ReadView implements FunctionInterface
     }
     
     /**
+     * Write the readView block XML
      *
      * @param XMLWriter $xml
-     * @todo add filters
      */
     public function getXml(XMLWriter &$xml)
     {

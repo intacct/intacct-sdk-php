@@ -25,15 +25,16 @@ class InstallApp implements FunctionInterface
 
     use ControlIdTrait;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $xmlFilename;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $xml_filename XML filename to use for install
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
@@ -48,6 +49,12 @@ class InstallApp implements FunctionInterface
         $this->setXmlFilename($config['xml_filename']);
     }
     
+    /**
+     * Set XML filename
+     *
+     * @param string $xmlFilename
+     * @throws InvalidArgumentException
+     */
     private function setXmlFilename($xmlFilename)
     {
         if (!$xmlFilename) {
@@ -65,10 +72,11 @@ class InstallApp implements FunctionInterface
     }
     
     /**
+     * Write the installApp block XML
      *
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
-     * @todo Validate the app.xml is actually a platform app?
+     * @todo Validate the app.xml is actually a platform app
      */
     public function getXml(XMLWriter &$xml)
     {

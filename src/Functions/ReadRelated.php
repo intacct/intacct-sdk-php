@@ -28,48 +28,39 @@ class ReadRelated implements FunctionInterface
 
     use ObjectNameTrait;
     
-    /**
-     * @var array
-     */
+    /** @var array */
     const RETURN_FORMATS = ['xml'];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_RETURN_FORMAT = 'xml';
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_KEY_COUNT = 100;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $relationName;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $fields;
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $keys;
     
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $returnFormat;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params
+     * @param array $params {
+     *      @var string $control_id Control ID, default=Random UUID
+     *      @var array $fields Fields to return, default=*
+     *      @var array $keys Keys to return
+     *      @var string $object Object name to read
+     *      @var string $relation Relation name to read
+     *      @var string $return_format Return format of response, default=xml
+     * }
+     * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
     {
@@ -98,6 +89,8 @@ class ReadRelated implements FunctionInterface
     }
 
     /**
+     * Set relation
+     *
      * @param string $relation
      * @throws InvalidArgumentException
      */
@@ -112,6 +105,7 @@ class ReadRelated implements FunctionInterface
 
 
     /**
+     * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
@@ -125,6 +119,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
+     * Set fields
      *
      * @param array $fields
      */
@@ -134,6 +129,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
+     * Get fields
      *
      * @return string
      */
@@ -149,6 +145,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
+     * Set keys
      *
      * @param array $keys
      * @throws InvalidArgumentException
@@ -162,6 +159,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
+     * Get keys
      *
      * @return string
      */
@@ -177,6 +175,7 @@ class ReadRelated implements FunctionInterface
     }
     
     /**
+     * Write the readRelated block XML
      *
      * @param XMLWriter $xml
      */

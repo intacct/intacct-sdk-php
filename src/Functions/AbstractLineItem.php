@@ -28,64 +28,66 @@ abstract class AbstractLineItem
     use DimensionsTrait;
     use CustomFieldsTrait;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $accountLabel;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $glAccountNumber;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $offsetGLAccountNumber;
 
-    /**
-     * @var string|float
-     */
+    /** @var string|float */
     private $transactionAmount;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $allocationId;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $memo;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $form1099;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $key;
 
-    /**
-     * @var string|float
-     */
+    /** @var string|float */
     private $totalPaid;
 
-    /**
-     * @var string|float
-     */
+    /** @var string|float */
     private $totalDue;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $billable;
 
     /**
+     * Initializes the class with the given parameters.
      *
-     * @param array $params my params
+     * @param array $params {
+     *      @var string $account_label
+     *      @var string $gl_account_no
+     *      @var string $offset_gl_account_no
+     *      @var float|string $transaction_amount
+     *      @var string $allocation_id
+     *      @var string $memo
+     *      @var string $location_id
+     *      @var string $department_id
+     *      @var bool $form_1099
+     *      @var string|int $key
+     *      @var float|string $total_paid
+     *      @var float|string $total_due
+     *      @var array $custom_fields
+     *      @var string $project_id
+     *      @var string $customer_id
+     *      @var string $vendor_id
+     *      @var string $employee_id
+     *      @var string $item_id
+     *      @var string $class_id
+     *      @var string $contract_id
+     *      @var string $warehouse_id
+     *      @var bool $billable
+     * }
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])
@@ -142,7 +144,9 @@ abstract class AbstractLineItem
     }
 
     /**
-     * @param $amount
+     * Set transaction amount
+     *
+     * @param float|string $amount
      * @throws InvalidArgumentException
      */
     private function setTransactionAmount($amount)
@@ -155,7 +159,9 @@ abstract class AbstractLineItem
     }
 
     /**
-     * @param $form1099
+     * Set form 1099
+     *
+     * @param bool $form1099
      * @throws InvalidArgumentException
      */
     private function setForm1099($form1099)
@@ -169,7 +175,9 @@ abstract class AbstractLineItem
     }
 
     /**
-     * @param $totalPaid
+     * Set total paid
+     *
+     * @param float|string $totalPaid
      * @throws InvalidArgumentException
      */
     private function setTotalPaid($totalPaid)
@@ -182,7 +190,9 @@ abstract class AbstractLineItem
     }
 
     /**
-     * @param $totalDue
+     * Set total due
+     *
+     * @param float|string $totalDue
      * @throws InvalidArgumentException
      */
     private function setTotalDue($totalDue)
@@ -195,7 +205,9 @@ abstract class AbstractLineItem
     }
 
     /**
-     * @param $billable
+     * Set billable
+     *
+     * @param bool $billable
      * @throws InvalidArgumentException
      */
     private function setBillable($billable)
@@ -209,6 +221,8 @@ abstract class AbstractLineItem
     }
 
     /**
+     * Write the lineitem block XML
+     * 
      * @param XMLWriter $xml
      */
     public function getXml(XMLWriter &$xml)
