@@ -43,12 +43,12 @@ class RunDdsJobTest extends \PHPUnit_Framework_TestCase
         <cloudDelivery>My Cloud Bucket</cloudDelivery>
         <jobType>all</jobType>
         <fileConfiguration>
-          <delimiter>,</delimiter>
-          <enclosure>"</enclosure>
-          <includeHeaders>false</includeHeaders>
-          <fileFormat>unix</fileFormat>
-          <splitSize>100000</splitSize>
-          <compress>false</compress>
+            <delimiter>,</delimiter>
+            <enclosure>"</enclosure>
+            <includeHeaders>false</includeHeaders>
+            <fileFormat>unix</fileFormat>
+            <splitSize>100000</splitSize>
+            <compress>false</compress>
         </fileConfiguration>
     </runDdsJob>
 </function>
