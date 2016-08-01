@@ -47,9 +47,9 @@ class GetAPISessionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Intacct\Functions\GetAPISession::__construct
-     * @covers Intacct\Functions\GetAPISession::getXml
+     * @covers Intacct\Functions\GetAPISession::writeXml
      */
-    public function testGetXml()
+    public function testWriteXml()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +64,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $this->object->getXml($xml);
+        $this->object->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -44,10 +44,10 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlSession()
+    public function testWriteXmlSession()
     {
         $config = [
             'session_id' => 'fakesession..',
@@ -80,7 +80,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -88,10 +88,10 @@ EOF;
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlLogin()
+    public function testWriteXmlLogin()
     {
         $config = [
             'company_id' => 'testcompany',
@@ -130,7 +130,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -138,10 +138,10 @@ EOF;
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setTransaction
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlTransaction()
+    public function testWriteXmlTransaction()
     {
         $config = [
             'session_id' => 'fakesession..',
@@ -175,7 +175,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }

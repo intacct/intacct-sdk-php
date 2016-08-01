@@ -24,9 +24,13 @@ trait ControlIdTrait
 {
     
     /** @var string */
-    private $controlId;
+    protected $controlId;
     
-    /** @return string */
+    /**
+     * Get control ID
+     *
+     * @return string
+     */
     public function getControlId()
     {
         return $this->controlId;

@@ -19,10 +19,8 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
-class GetAPISession implements FunctionInterface
+class GetAPISession extends AbstractFunction
 {
-    
-    use ControlIdTrait;
     
     /**
      * Initializes the class with the given parameters.
@@ -34,11 +32,11 @@ class GetAPISession implements FunctionInterface
     public function __construct(array $params = [])
     {
         $defaults = [
-            'control_id' => null,
+            // nothing to see here
         ];
         $config = array_merge($defaults, $params);
-        
-        $this->setControlId($config['control_id']);
+
+        parent::__construct($config);
     }
     
     /**
@@ -46,7 +44,7 @@ class GetAPISession implements FunctionInterface
      *
      * @param XMLWriter $xml
      */
-    public function getXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter &$xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());

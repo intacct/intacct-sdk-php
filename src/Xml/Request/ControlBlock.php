@@ -1,23 +1,22 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- * use this file except in compliance with the License. You may obtain a copy 
+ * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
 namespace Intacct\Xml\Request;
 
-use Ramsey\Uuid\Uuid;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -58,7 +57,7 @@ class ControlBlock
      * Initializes the class with the given parameters.
      *
      * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
+     *      @var string $control_id Control ID
      *      @var bool $debug Enable debug mode, Intacct internal, default=false
      *      @var string $dtd_version DTD version, default=3.0
      *      @var bool $include_whitespace Have Intacct prettify response XML, default=false
@@ -113,11 +112,6 @@ class ControlBlock
      */
     private function setControlId($controlId)
     {
-        if (!$controlId) {
-            // generate a version 4 (random) UUID
-            $controlId = Uuid::uuid4()->toString();
-        }
-
         $length = strlen($controlId);
         if ($length < 1 || $length > 256) {
             throw new InvalidArgumentException(
@@ -224,7 +218,7 @@ class ControlBlock
      *
      * @param XMLWriter $xml
      */
-    public function getXml(&$xml)
+    public function writeXml(&$xml)
     {
         $xml->startElement('control');
         $xml->writeElement('senderid', $this->senderId, true);

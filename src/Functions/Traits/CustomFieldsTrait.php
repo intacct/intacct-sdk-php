@@ -26,7 +26,7 @@ trait CustomFieldsTrait
      *
      * @var array
      */
-    private $customFields;
+    protected $customFields;
 
     /**
      * @return array
@@ -44,7 +44,10 @@ trait CustomFieldsTrait
         $this->customFields = $customFields;
     }
 
-    public function getCustomFieldsXml(XMLWriter &$xml)
+    /**
+     * @param XMLWriter $xml
+     */
+    protected function writeXmlExplicitCustomFields(XMLWriter &$xml)
     {
         if (count($this->customFields) > 0) {
             $xml->startElement('customfields');
@@ -55,6 +58,18 @@ trait CustomFieldsTrait
                 $xml->endElement(); //customfield
             }
             $xml->endElement(); //customfields
+        }
+    }
+
+    /**
+     * @param XMLWriter $xml
+     */
+    protected function writeXmlImplicitCustomFields(XMLWriter &$xml)
+    {
+        if (count($this->customFields) > 0) {
+            foreach ($this->customFields as $customFieldName => $customFieldValue) {
+                $xml->writeElement($customFieldName, $customFieldValue, true);
+            }
         }
     }
 }

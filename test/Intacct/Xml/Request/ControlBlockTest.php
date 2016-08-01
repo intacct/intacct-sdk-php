@@ -41,9 +41,9 @@ class ControlBlockTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @covers Intacct\Xml\Request\ControlBlock::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::writeXml
      */
-    public function testGetXmlDefaults()
+    public function testWriteXmlDefaults()
     {
         $config = [
             'sender_id' => 'testsenderid',
@@ -70,7 +70,7 @@ EOF;
         $xml->startDocument();
 
         $controlBlock = new ControlBlock($config);
-        $controlBlock->getXml($xml);
+        $controlBlock->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -80,7 +80,7 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_id" key not supplied in params
      */
-    public function testGetXmlInvalidSenderId()
+    public function testWriteXmlInvalidSenderId()
     {
         $config = [
             'sender_id' => null,
@@ -95,7 +95,7 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_password" key not supplied in params
      */
-    public function testGetXmlInvalidSenderPassword()
+    public function testWriteXmlInvalidSenderPassword()
     {
         $config = [
             'sender_id' => 'testsenderid',
@@ -113,9 +113,9 @@ EOF;
      * @covers Intacct\Xml\Request\ControlBlock::setDtdVersion
      * @covers Intacct\Xml\Request\ControlBlock::setIncludeWhitespace
      * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
-     * @covers Intacct\Xml\Request\ControlBlock::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::writeXml
      */
-    public function testGetXmlDefaultsOverride30()
+    public function testWriteXmlDefaultsOverride30()
     {
         $config = [
             'sender_id' => 'testsenderid',
@@ -147,7 +147,7 @@ EOF;
         $xml->startDocument();
 
         $controlBlock = new ControlBlock($config);
-        $controlBlock->getXml($xml);
+        $controlBlock->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -162,9 +162,9 @@ EOF;
      * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
      * @covers Intacct\Xml\Request\ControlBlock::setDebug
      * @covers Intacct\Xml\Request\ControlBlock::getDebug
-     * @covers Intacct\Xml\Request\ControlBlock::getXml
+     * @covers Intacct\Xml\Request\ControlBlock::writeXml
      */
-    public function testGetXmlDefaultsOverride21()
+    public function testWriteXmlDefaultsOverride21()
     {
         $config = [
             'sender_id' => 'testsenderid',
@@ -198,7 +198,7 @@ EOF;
         $xml->startDocument();
 
         $controlBlock = new ControlBlock($config);
-        $controlBlock->getXml($xml);
+        $controlBlock->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -207,12 +207,12 @@ EOF;
      * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @covers Intacct\Xml\Request\ControlBlock::setControlId
      */
-    public function testGetXmlInvalidControlIdShort()
+    public function testWriteXmlInvalidControlIdShort()
     {
         $config = [
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
-            'control_id' => '', //will set a random uuid
+            'control_id' => 'unittest',
         ];
         
         new ControlBlock($config);
@@ -223,7 +223,7 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
      */
-    public function testGetXmlInvalidControlIdLong()
+    public function testWriteXmlInvalidControlIdLong()
     {
         $config = [
             'sender_id' => 'testsenderid',
@@ -239,9 +239,10 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage uniqueid not valid boolean type
      */
-    public function testGetXmlInvalidUniqueId()
+    public function testWriteXmlInvalidUniqueId()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'unique_id' => 'true',
@@ -255,9 +256,10 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage dtdversion is not a valid version
      */
-    public function testGetXmlInvalidDtdVersion()
+    public function testWriteXmlInvalidDtdVersion()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'dtd_version' => '1.2',
@@ -271,9 +273,10 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage include_whitespace not valid boolean type
      */
-    public function testGetXmlInvalidIncludeWhitespace()
+    public function testWriteXmlInvalidIncludeWhitespace()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'include_whitespace' => 'true',
@@ -287,9 +290,10 @@ EOF;
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage debug not valid boolean type
      */
-    public function testGetXmlInvalidDebug()
+    public function testWriteXmlInvalidDebug()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'debug' => 'true',

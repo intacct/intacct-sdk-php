@@ -20,7 +20,6 @@ namespace Intacct\Credentials;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
-use Intacct\Credentials\SenderCredentials;
 
 class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
 {

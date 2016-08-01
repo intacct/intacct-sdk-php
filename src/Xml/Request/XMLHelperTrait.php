@@ -1,17 +1,17 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- * use this file except in compliance with the License. You may obtain a copy 
+ * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
@@ -68,12 +68,12 @@ trait XMLHelperTrait
      * @param array|ArrayIterator $array
      * @param XMLWriter $xml
      */
-    protected function recursiveGetXml($array, XMLWriter &$xml)
+    protected function recursiveWriteXml($array, XMLWriter &$xml)
     {
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $xml->startElement($key);
-                $this->recursiveGetXml($value, $xml);
+                $this->recursiveWriteXml($value, $xml);
                 $xml->endElement();
             } else {
                 $xml->writeElement($key, $value, true);

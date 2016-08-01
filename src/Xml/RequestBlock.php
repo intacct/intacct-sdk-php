@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -68,7 +68,7 @@ class RequestBlock
      *
      * @return XMLWriter
      */
-    public function getXml()
+    public function writeXml()
     {
         $xml = new XMLWriter();
         $xml->openMemory();
@@ -76,9 +76,9 @@ class RequestBlock
         $xml->startDocument(self::XML_VERSION, $this->encoding);
         $xml->startElement('request');
 
-        $this->controlBlock->getXml($xml); //create control block
+        $this->controlBlock->writeXml($xml); //create control block
 
-        $this->operationBlock->getXml($xml); //create operation block
+        $this->operationBlock->writeXml($xml); //create operation block
 
         $xml->endElement(); //request
 

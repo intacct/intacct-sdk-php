@@ -33,5 +33,5 @@ interface FunctionInterface
      *
      * @param XMLWriter $xml
      */
-    public function getXml(XMLWriter &$xml);
+    public function writeXml(XMLWriter &$xml);
 }

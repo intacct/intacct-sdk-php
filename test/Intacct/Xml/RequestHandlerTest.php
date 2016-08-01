@@ -23,7 +23,6 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\GetAPISession;
 use InvalidArgumentException;
-use Intacct\Xml\RequestBlock;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -52,6 +51,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testGetVerifySSL()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -73,6 +73,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetMaxRetries()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -112,6 +113,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetMaxRetriesInvalidType()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -132,6 +134,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetMaxRetriesInvalidInt()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -151,6 +154,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetNoRetryServerErrorCodes()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -179,6 +183,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetNoRetryServerErrorCodesInvalidInt()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -202,6 +207,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSetNoRetryServerErrorCodesInvalidRange()
     {
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -265,6 +271,7 @@ EOF;
         ]);
 
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -412,6 +419,7 @@ EOF;
         ]);
         
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -449,6 +457,7 @@ EOF;
         ]);
         
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -476,6 +485,7 @@ EOF;
         ]);
         
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
@@ -545,6 +555,7 @@ EOF;
         $logger->pushHandler($handler);
 
         $config = [
+            'control_id' => 'unittest',
             'sender_id' => 'testsenderid',
             'sender_password' => 'pass123!',
             'session_id' => 'testsession..',
