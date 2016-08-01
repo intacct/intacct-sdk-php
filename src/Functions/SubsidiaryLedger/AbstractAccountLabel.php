@@ -15,12 +15,31 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\SupplyChainManagement;
+namespace Intacct\Functions\SubsidiaryLedger;
 
+use Intacct\Functions\AbstractFunction;
 
-class UpdateOrderEntryTransaction
+abstract class AbstractAccountLabel extends AbstractFunction
 {
 
-    // TODO: finish me!
+    /** @var string */
+    protected $accountLabel;
 
+    /** @var string */
+    protected $expenseType;
+
+    /** @var string */
+    protected $description;
+
+    /** @var string */
+    protected $glAccountNo;
+
+    /** @var string */
+    protected $offsetGlAccountNo;
+
+    /** @var string */
+    protected $itemId;
+
+    /** @var bool */
+    protected $active;
 }

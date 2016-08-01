@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
+use Intacct\Fields\Date;
 use Intacct\Xml\XMLWriter;
 
 class CreateItemDetailTest extends \PHPUnit_Framework_TestCase
@@ -24,9 +25,7 @@ class CreateItemDetailTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::__construct
-     * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::setItemExpiration
      * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::writeXml
-     * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::getSerialOrLotNumberXml
      */
     public function testDefaultParams()
     {
@@ -52,7 +51,7 @@ EOF;
         $itemDetail = new CreateItemDetail([
             'quantity' => 5523,
             'lot_number' => 223,
-            'item_expiration' => '2017-12-31',
+            'item_expiration' => new Date('2017-12-31'),
         ]);
 
         $itemDetail->writeXml($xml);
@@ -62,9 +61,7 @@ EOF;
 
     /**
      * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::__construct
-     * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::setItemExpiration
      * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::writeXml
-     * @covers Intacct\Functions\SupplyChainManagement\CreateItemDetail::getSerialOrLotNumberXml
      *
      */
     public function testParamsOverrides()

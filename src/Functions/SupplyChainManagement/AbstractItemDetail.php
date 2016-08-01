@@ -17,10 +17,29 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
+use Intacct\Fields\Date;
 
-class UpdateOrderEntryTransaction
+class AbstractItemDetail
 {
+    
+    /** @var string */
+    protected $quantity;
 
-    // TODO: finish me!
+    /** @var string */
+    protected $serialNumber;
 
+    /** @var string */
+    protected $lotNumber;
+
+    /** @var string */
+    protected $aisle;
+
+    /** @var string */
+    protected $row;
+
+    /** @var string */
+    protected $bin;
+
+    /** @var Date */
+    protected $itemExpiration;
 }

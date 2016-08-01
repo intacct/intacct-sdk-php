@@ -15,12 +15,31 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\SupplyChainManagement;
+namespace Intacct\Functions\Company;
 
+use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Traits\CustomFieldsTrait;
 
-class UpdateOrderEntryTransaction
+abstract class AbstractDepartment extends AbstractFunction
 {
 
-    // TODO: finish me!
+    use CustomFieldsTrait;
 
+    /** @var string */
+    protected $departmentId;
+
+    /** @var string */
+    protected $departmentName;
+
+    /** @var string */
+    protected $parentDepartmentId;
+
+    /** @var string */
+    protected $managerEmployeeId;
+
+    /** @var string */
+    protected $departmentTitle;
+
+    /** @var bool */
+    protected $active;
 }
