@@ -246,13 +246,13 @@ class UpdateLocation extends AbstractLocation
         $xml->writeElement('PARENTID', $this->getParentLocationId());
         $xml->writeElement('SUPERVISORID', $this->getManagerEmployeeId());
 
-        if ($this->getLocationContactName()) {
+        if ($this->getLocationContactName() !== null) {
             $xml->startElement('CONTACTINFO');
             $xml->writeElement('CONTACTNAME', $this->getLocationContactName());
             $xml->endElement();
         }
 
-        if ($this->getShipToContactName()) {
+        if ($this->getShipToContactName() !== null) {
             $xml->startElement('SHIPTO');
             $xml->writeElement('CONTACTNAME', $this->getShipToContactName());
             $xml->endElement();
