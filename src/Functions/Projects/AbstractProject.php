@@ -102,7 +102,7 @@ abstract class AbstractProject extends AbstractFunction
     protected $classId;
 
     /** @var string */
-    protected $currency;
+    protected $attachmentsId;
 
     /** @var bool */
     protected $billableEmployeeExpense;
@@ -114,13 +114,16 @@ abstract class AbstractProject extends AbstractFunction
     protected $observedPercentComplete;
 
     /** @var string */
+    protected $currency;
+
+    /** @var string */
     protected $salesOrderNo;
 
     /** @var string */
     protected $purchaseOrderNo;
 
     /** @var float|string */
-    protected $puchaseOrderAmount;
+    protected $purchaseOrderAmount;
 
     /** @var string */
     protected $purchaseQuoteNo;
@@ -147,7 +150,7 @@ abstract class AbstractProject extends AbstractFunction
     protected $apPurchasingPricingDefaultRate;
 
     /** @var float|string */
-    protected $budgetedAmount;
+    protected $budgetedBillingAmount;
 
     /** @var float|string */
     protected $budgetedCost;
@@ -158,4 +161,9 @@ abstract class AbstractProject extends AbstractFunction
     /** @var string */
     protected $glBudgetId;
 
+    /** @var string */
+    protected $invoiceMessage;
+
+    /** @var string */
+    protected $invoiceCurrency;
 }
