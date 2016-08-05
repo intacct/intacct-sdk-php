@@ -189,20 +189,4 @@ EOF;
             'return_format' => ''
         ]);
     }
-
-    /**
-     * @covers Intacct\Functions\Common\ReadByQuery::setDocParId
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage doc_par_id must be a string
-     */
-    public function testInvalidDocParId()
-    {
-        new ReadByQuery([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 2',
-            'page_size' => 100,
-            'doc_par_id' => null
-        ]);
-    }
 }

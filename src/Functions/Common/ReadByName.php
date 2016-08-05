@@ -68,7 +68,7 @@ class ReadByName extends AbstractFunction
             'fields' => [],
             'names' => [],
             'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => '',
+            'doc_par_id' => null,
         ];
         $config = array_merge($defaults, $params);
 

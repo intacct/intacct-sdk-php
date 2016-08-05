@@ -44,7 +44,7 @@ class XMLWriter extends \XMLWriter
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {
-        if (($content !== null && $content !== '') || $writeNull === true) {
+        if ($content !== null || $writeNull === true) {
             if (is_bool($content)) {
                 $content = ($content === true) ? 'true' : 'false';
             } elseif ($content instanceof Date) {

@@ -78,7 +78,7 @@ class ReadByQuery extends AbstractFunction
             'query' => null,
             'page_size' => static::DEFAULT_PAGE_SIZE,
             'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => '',
+            'doc_par_id' => null,
         ];
         $config = array_merge($defaults, $params);
 
@@ -179,13 +179,9 @@ class ReadByQuery extends AbstractFunction
      * Set doc par ID
      *
      * @param string $docParId
-     * @throws InvalidArgumentException
      */
     private function setDocParId($docParId)
     {
-        if (is_string($docParId) === false) {
-            throw new InvalidArgumentException('doc_par_id must be a string');
-        }
         $this->docParId = $docParId;
     }
 
