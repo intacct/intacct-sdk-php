@@ -23,11 +23,6 @@ class ReadViewTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers Intacct\Functions\Common\ReadView::__construct
-     * @covers Intacct\Functions\Common\ReadView::setViewName
-     * @covers Intacct\Functions\Common\ReadView::setControlId
-     * @covers Intacct\Functions\Common\ReadView::getControlId
-     * @covers Intacct\Functions\Common\ReadView::setPageSize
-     * @covers Intacct\Functions\Common\ReadView::setReturnFormat
      * @covers Intacct\Functions\Common\ReadView::writeXml
      */
     public function testDefaultParams()
@@ -49,10 +44,9 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readView = new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setViewName('TestBill Date Runtime');
+
         $readView->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -60,11 +54,6 @@ EOF;
 
     /**
      * @covers Intacct\Functions\Common\ReadView::__construct
-     * @covers Intacct\Functions\Common\ReadView::setViewName
-     * @covers Intacct\Functions\Common\ReadView::setControlId
-     * @covers Intacct\Functions\Common\ReadView::getControlId
-     * @covers Intacct\Functions\Common\ReadView::setPageSize
-     * @covers Intacct\Functions\Common\ReadView::setReturnFormat
      * @covers Intacct\Functions\Common\ReadView::writeXml
      */
     public function testParamOverrides()
@@ -86,12 +75,11 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readView = new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 10,
-            'return_format' => 'xml'
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setViewName('TestBill Date Runtime');
+        $readView->setPageSize(10);
+        $readView->setReturnFormat('xml');
+
         $readView->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -100,7 +88,7 @@ EOF;
     /**
      * @covers Intacct\Functions\Common\ReadView::__construct
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "view" key not supplied in params
+     * @expectedExceptionMessage View Name is required for read view
      */
     public function testNoView()
     {
@@ -110,76 +98,64 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        new ReadView([
-        ]);
+        $readView = new ReadView('unittest');
+        //$readView->setViewName('TestBill Date Runtime');
+
+        $readView->writeXml($xml);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadView::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size not valid int type
+     * @expectedExceptionMessage Page Size not valid int type
      */
     public function testInvalidPageSize()
     {
-        new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => '200',
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setPageSize('200');
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadView::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be less than 1
+     * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
     {
-        new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 0,
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setPageSize(0);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadView::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be greater than 1000
+     * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
     public function testMaxPageSize()
     {
-        new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 1001,
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setPageSize(1001);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadView::setViewName
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage view is not a valid string
+     * @expectedExceptionMessage View Name is not a valid string
      */
     public function testInvalidViewName()
     {
-        new ReadView([
-            'view' => 234234234,
-            'control_id' => 'unittest',
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setViewName(23232323);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadView::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testInvalidReturnFormat()
     {
-        new ReadView([
-            'view' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'return_format' => ''
-        ]);
+        $readView = new ReadView('unittest');
+        $readView->setReturnFormat('');
     }
 }

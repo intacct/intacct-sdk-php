@@ -23,7 +23,6 @@ class GetDdsObjectsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\GetDdsObjects::__construct
      * @covers Intacct\Functions\DataDeliveryService\GetDdsObjects::writeXml
      */
     public function testDefaultParams()
@@ -41,9 +40,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $objects = new GetDdsObjects([
-            'control_id' => 'unittest',
-        ]);
+        $objects = new GetDdsObjects('unittest');
 
         $objects->writeXml($xml);
 

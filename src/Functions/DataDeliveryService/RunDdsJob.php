@@ -58,119 +58,186 @@ class RunDdsJob extends AbstractFunction
     /** @var string */
     private $objectName;
 
-    /**
-     *
-     * @var string
-     */
+    /** @var string */
     private $cloudDeliveryName;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $jobType;
 
-    /**
-     * @var DateTime
-     */
+    /** @var DateTime */
     private $timestamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $delimiter;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $enclosure;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $includeHeaders;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $fileFormat;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $splitSize;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $compressed;
 
     /**
-     *
-     * @param array $params
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'cloud_delivery_name' => null,
-            'job_type' => null,
-            'timestamp' => null,
-            'delimiter' => ',',
-            'enclosure' => '"',
-            'include_headers' => false,
-            'file_format' => static::FILE_FORMAT_UNIX,
-            'split_size' => static::DEFAULT_SPLIT_SIZE,
-            'compress' => false,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
 
-        $this->objectName = $config['object'];
-        $this->cloudDeliveryName = $config['cloud_delivery_name'];
-        $this->setJobType($config['job_type']);
-        $this->timestamp = $config['timestamp'];
-        $this->delimiter = $config['delimiter'];
-        $this->enclosure = $config['enclosure'];
-        $this->includeHeaders = $config['include_headers'];
-        $this->setFileFormat($config['file_format']);
-        $this->setSplitSize($config['split_size']);
-        $this->compressed = $config['compress'];
+    /**
+     * @return string
+     */
+    public function getCloudDeliveryName()
+    {
+        return $this->cloudDeliveryName;
+    }
+
+    /**
+     * @param string $cloudDeliveryName
+     */
+    public function setCloudDeliveryName($cloudDeliveryName)
+    {
+        $this->cloudDeliveryName = $cloudDeliveryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJobType()
+    {
+        return $this->jobType;
     }
 
     /**
      * @param string $jobType
      * @throws InvalidArgumentException
      */
-    private function setJobType($jobType)
+    public function setJobType($jobType)
     {
         if (!in_array($jobType, static::JOB_TYPES)) {
-            throw new InvalidArgumentException('job_type is not a valid type');
+            throw new InvalidArgumentException('Job Type is not a valid type');
         }
         $this->jobType = $jobType;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @param DateTime $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDelimiter()
+    {
+        return $this->delimiter;
+    }
+
+    /**
+     * @param string $delimiter
+     */
+    public function setDelimiter($delimiter)
+    {
+        $this->delimiter = $delimiter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnclosure()
+    {
+        return $this->enclosure;
+    }
+
+    /**
+     * @param string $enclosure
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->enclosure = $enclosure;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIncludeHeaders()
+    {
+        return $this->includeHeaders;
+    }
+
+    /**
+     * @param boolean $includeHeaders
+     */
+    public function setIncludeHeaders($includeHeaders)
+    {
+        $this->includeHeaders = $includeHeaders;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileFormat()
+    {
+        return $this->fileFormat;
     }
 
     /**
      * @param $fileFormat
      * @throws InvalidArgumentException
      */
-    private function setFileFormat($fileFormat)
+    public function setFileFormat($fileFormat)
     {
         if (!in_array($fileFormat, static::FILE_FORMATS)) {
-            throw new InvalidArgumentException('file_format is not a valid type');
+            throw new InvalidArgumentException('File Format is not a valid type');
         }
         $this->fileFormat = $fileFormat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSplitSize()
+    {
+        return $this->splitSize;
     }
 
     /**
      * @param $splitSize
      * @throws InvalidArgumentException
      */
-    private function setSplitSize($splitSize)
+    public function setSplitSize($splitSize)
     {
         if ($splitSize < static::MIN_SPLIT_SIZE || $splitSize > static::MAX_SPLIT_SIZE) {
             throw new InvalidArgumentException(
-                'split_size must be between ' . static::MIN_SPLIT_SIZE
+                'Split Size must be between ' . static::MIN_SPLIT_SIZE
                 . ' and ' . static::MAX_SPLIT_SIZE
             );
         }
@@ -178,6 +245,23 @@ class RunDdsJob extends AbstractFunction
     }
 
     /**
+     * @return boolean
+     */
+    public function isCompressed()
+    {
+        return $this->compressed;
+    }
+
+    /**
+     * @param boolean $compressed
+     */
+    public function setCompressed($compressed)
+    {
+        $this->compressed = $compressed;
+    }
+
+    /**
+     * Write the function block XML
      *
      * @param XMLWriter $xml
      */
@@ -188,22 +272,22 @@ class RunDdsJob extends AbstractFunction
 
         $xml->startElement('runDdsJob');
 
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('cloudDelivery', $this->cloudDeliveryName, true);
-        $xml->writeElement('jobType', $this->jobType, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
+        $xml->writeElement('cloudDelivery', $this->getCloudDeliveryName(), true);
+        $xml->writeElement('jobType', $this->getJobType(), true);
 
-        if ($this->timestamp) {
-            $xml->writeElement('timeStamp', $this->timestamp->format('Y-m-d\TH:i:s'));
+        if ($this->getTimestamp()) {
+            $xml->writeElement('timeStamp', $this->getTimestamp()->format('Y-m-d\TH:i:s'));
         }
 
         $xml->startElement('fileConfiguration');
 
-        $xml->writeElement('delimiter', $this->delimiter);
-        $xml->writeElement('enclosure', $this->enclosure);
-        $xml->writeElement('includeHeaders', $this->includeHeaders);
-        $xml->writeElement('fileFormat', $this->fileFormat);
-        $xml->writeElement('splitSize', $this->splitSize);
-        $xml->writeElement('compress', $this->compressed);
+        $xml->writeElement('delimiter', $this->getDelimiter());
+        $xml->writeElement('enclosure', $this->getEnclosure());
+        $xml->writeElement('includeHeaders', $this->isIncludeHeaders());
+        $xml->writeElement('fileFormat', $this->getFileFormat());
+        $xml->writeElement('splitSize', $this->getSplitSize());
+        $xml->writeElement('compress', $this->isCompressed());
 
         $xml->endElement(); //fileConfiguration
 

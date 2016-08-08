@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Intacct Corporation.
  *
@@ -21,9 +22,8 @@ use InvalidArgumentException;
 
 class ReadMoreTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
-     * @covers Intacct\Functions\Common\ReadMore::__construct
-     * @covers Intacct\Functions\Common\ReadMore::setControlId
      * @covers Intacct\Functions\Common\ReadMore::writeXml
      */
     public function testParamOverrides()
@@ -43,26 +43,30 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readMore = new ReadMore([
-            'result_id' => '6465763031VyprCMCoHYQAAGr@aRsAAAAU4',
-            'control_id' => 'unittest',
-        ]);
+        $readMore = new ReadMore('unittest');
+        $readMore->setResultId('6465763031VyprCMCoHYQAAGr@aRsAAAAU4');
+
         $readMore->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-
-
     /**
-     * @covers Intacct\Functions\Common\ReadMore::__construct
-     * @covers Intacct\Functions\Common\ReadMore::setControlId
+     * @covers Intacct\Functions\Common\ReadMore::writeXml
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "result_id" key not supplied in params
+     * @expectedExceptionMessage Result ID is required for read more
      */
     public function testNoResultId()
     {
-        new ReadMore([
-        ]);
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $readMore = new ReadMore('unittest');
+        //$readMore->setResultId('6465763031VyprCMCoHYQAAGr@aRsAAAAU4');
+
+        $readMore->writeXml($xml);
     }
 }

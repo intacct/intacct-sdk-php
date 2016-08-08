@@ -24,9 +24,6 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Common\Delete::__construct
-     * @covers Intacct\Functions\Common\Delete::setKeys
-     * @covers Intacct\Functions\Common\Delete::getKeys
      * @covers Intacct\Functions\Common\Delete::writeXml
      */
     public function testWriteXml()
@@ -47,37 +44,22 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $delete = new Delete([
-            'object' => 'CLASS',
-            'keys' => [
-                '5',
-                '6',
-            ],
-            'control_id' => 'unittest'
+        $delete = new Delete('unittest');
+        $delete->setObjectName('CLASS');
+        $delete->setKeys([
+            '5',
+            '6',
         ]);
+
         $delete->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\Delete::__construct
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "object" key not supplied in params
-     */
-    public function testNoObject()
-    {
-        new Delete([
-            'keys' => [
-                '5'
-            ],
-        ]);
-    }
-
-    /**
      * @covers Intacct\Functions\Common\Delete::setKeys
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage keys count cannot exceed 100
+     * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testTooManyKeys()
     {
@@ -86,40 +68,33 @@ EOF;
             $keys[] = $i;
         }
 
-        new Delete([
-            'object' => 'CLASS',
-            'keys' => $keys,
-        ]);
+        $delete = new Delete('unittest');
+        $delete->setObjectName('CLASS');
+        $delete->setKeys($keys);
     }
 
     /**
      * @covers Intacct\Functions\Common\Delete::setKeys
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage keys count must be greater than zero
+     * @expectedExceptionMessage Keys count must be greater than zero
      */
     public function testNoKeys()
     {
         $keys = [];
 
-        new Delete([
-            'object' => 'CLASS',
-            'keys' => $keys,
-        ]);
+        $delete = new Delete('unittest');
+        $delete->setObjectName('CLASS');
+        $delete->setKeys($keys);
     }
 
     /**
-     * @covers Intacct\Functions\Common\Delete::__construct
+     * @covers Intacct\Functions\Common\Delete::setObjectName
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage using delete on object "TIMESHEETENTRY" is not allowed
+     * @expectedExceptionMessage Using delete on object "TIMESHEETENTRY" is not allowed
      */
     public function testNotAllowedObject()
     {
-        new Delete([
-            'object' => 'TIMESHEETENTRY',
-            'keys' => [
-                '5',
-                '6',
-            ],
-        ]);
+        $delete = new Delete('unittest');
+        $delete->setObjectName('TIMESHEETENTRY');
     }
 }

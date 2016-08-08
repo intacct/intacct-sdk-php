@@ -49,36 +49,66 @@ class ReadByName extends AbstractFunction
     private $docParId;
 
     /**
-     *
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $doc_par_id Document param ID (transaction definition) to read by
-     *      @var array $fields Fields to return, default=*
-     *      @var array $names Record names to read by
-     *      @var string $object Object name to query
-     *      @var string $return_format Return format of response, default=xml
-     * }
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'fields' => [],
-            'names' => [],
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
 
-        $this->objectName = $config['object'];
-        $this->fields = $config['fields'];
-        $this->setNames($config['names']);
-        $this->setReturnFormat($config['return_format']);
-        $this->docParId = $config['doc_par_id'];
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @param array $fields
+     */
+    public function setFields($fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNames()
+    {
+        return $this->names;
+    }
+
+    /**
+     * Set names
+     *
+     * @param array $names
+     * @throws InvalidArgumentException
+     */
+    public function setNames(array $names)
+    {
+        if (count($names) > static::MAX_NAME_COUNT) {
+            throw new InvalidArgumentException('Names count cannot exceed ' . static::MAX_NAME_COUNT);
+        }
+
+        $this->names = $names;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnFormat()
+    {
+        return $this->returnFormat;
     }
 
     /**
@@ -87,27 +117,28 @@ class ReadByName extends AbstractFunction
      * @param string $format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
     }
-    
-    /**
-     * Set names
-     *
-     * @param array $names
-     * @throws InvalidArgumentException
-     */
-    private function setNames(array $names)
-    {
-        if (count($names) > static::MAX_NAME_COUNT) {
-            throw new InvalidArgumentException('names count cannot exceed ' . static::MAX_NAME_COUNT);
-        }
 
-        $this->names = $names;
+    /**
+     * @return string
+     */
+    public function getDocParId()
+    {
+        return $this->docParId;
+    }
+
+    /**
+     * @param string $docParId
+     */
+    public function setDocParId($docParId)
+    {
+        $this->docParId = $docParId;
     }
     
     /**
@@ -115,7 +146,7 @@ class ReadByName extends AbstractFunction
      *
      * @return string
      */
-    private function getNamesForXml()
+    private function writeXmlNames()
     {
         $names = '';
 
@@ -131,7 +162,7 @@ class ReadByName extends AbstractFunction
      *
      * @return string
      */
-    private function getFieldsForXml()
+    private function writeXmlFields()
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -154,11 +185,11 @@ class ReadByName extends AbstractFunction
         
         $xml->startElement('readByName');
         
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('keys', $this->getNamesForXml(), true);
-        $xml->writeElement('fields', $this->getFieldsForXml());
-        $xml->writeElement('returnFormat', $this->returnFormat);
-        $xml->writeElement('docparid', $this->docParId);
+        $xml->writeElement('object', $this->getObjectName(), true);
+        $xml->writeElement('keys', $this->writeXmlNames(), true);
+        $xml->writeElement('fields', $this->writeXmlFields());
+        $xml->writeElement('returnFormat', $this->getReturnFormat());
+        $xml->writeElement('docparid', $this->getDocParId());
         
         $xml->endElement(); //readByName
         

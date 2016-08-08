@@ -39,4 +39,84 @@ abstract class AbstractClass extends AbstractFunction
 
     /** @var bool */
     protected $active;
+
+    /**
+     * @return string
+     */
+    public function getClassId()
+    {
+        return $this->classId;
+    }
+
+    /**
+     * @param string $classId
+     */
+    public function setClassId($classId)
+    {
+        $this->classId = $classId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @param string $className
+     */
+    public function setClassName($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentClassId()
+    {
+        return $this->parentClassId;
+    }
+
+    /**
+     * @param string $parentClassId
+     */
+    public function setParentClassId($parentClassId)
+    {
+        $this->parentClassId = $parentClassId;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 }

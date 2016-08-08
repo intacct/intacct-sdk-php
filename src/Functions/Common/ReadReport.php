@@ -73,48 +73,11 @@ class ReadReport extends AbstractFunction
     private $returnDef;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var array $arguments Arguments to use at report run time
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $list_separator List separator to use
-     *      @var int $page_size Max page size 1-1000, default=1000
-     *      @var string $report Report name to read
-     *      @var bool $return_def Return the report definition in the response, default=false
-     *      @var string $return_format Return format of response, default=xml
-     *      @var int $wait_time Time to wait for response between 0-30, default=0
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getReportName()
     {
-        $defaults = [
-            'report' => null,
-            'arguments' => [],
-            'page_size' => static::DEFAULT_PAGE_SIZE,
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'wait_time' => static::DEFAULT_WAIT_TIME,
-            'return_def' => false,
-            'list_separator' => '',
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-        
-        if (!$config['report']) {
-            throw new InvalidArgumentException(
-                'Required "report" key not supplied in params'
-            );
-        }
-
-        $this->setReportName($config['report']);
-        $this->setReturnDef($config['return_def']);
-        $this->setArguments($config['arguments']);
-        $this->setPageSize($config['page_size']);
-        $this->setReturnFormat($config['return_format']);
-        $this->setWaitTime($config['wait_time']);
-        $this->setListSeparator($config['list_separator']);
+        return $this->reportName;
     }
 
     /**
@@ -123,15 +86,39 @@ class ReadReport extends AbstractFunction
      * @param string $report Report name
      * @throws InvalidArgumentException
      */
-    private function setReportName($report)
+    public function setReportName($report)
     {
         if (is_string($report) === false) {
             throw new InvalidArgumentException(
-                'report must be a string'
+                'Report Name must be a string'
             );
         }
 
         $this->reportName = $report;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
+
+    /**
+     * @param array $arguments
+     */
+    public function setArguments($arguments)
+    {
+        $this->arguments = $arguments;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->pageSize;
     }
 
     /**
@@ -140,80 +127,94 @@ class ReadReport extends AbstractFunction
      * @param int $pageSize Page size
      * @throws InvalidArgumentException
      */
-    private function setPageSize($pageSize)
+    public function setPageSize($pageSize)
     {
         if (!is_int($pageSize)) {
             throw new InvalidArgumentException(
-                'page_size not valid int type'
+                'Page Size not valid int type'
             );
         }
-        
+
         if ($pageSize < static::MIN_PAGE_SIZE) {
             throw new InvalidArgumentException(
-                'page_size cannot be less than ' . static::MIN_PAGE_SIZE
+                'Page Size cannot be less than ' . static::MIN_PAGE_SIZE
             );
         }
-        
+
         if ($pageSize > static::MAX_PAGE_SIZE) {
             throw new InvalidArgumentException(
-                'page_size cannot be greater than ' . static::MAX_PAGE_SIZE
+                'Page Size cannot be greater than ' . static::MAX_PAGE_SIZE
             );
         }
-        
+
         $this->pageSize = $pageSize;
     }
-    
+
     /**
-     * Set wait time
-     *
-     * @param int $waitTime Wait time
-     * @throws InvalidArgumentException
+     * @return string
      */
-    private function setWaitTime($waitTime)
+    public function getReturnFormat()
     {
-        if (!is_int($waitTime)) {
-            throw new InvalidArgumentException(
-                'wait_time not valid int type'
-            );
-        }
-        
-        if ($waitTime < static::MIN_WAIT_TIME) {
-            throw new InvalidArgumentException(
-                'wait_time cannot be less than ' . static::MIN_WAIT_TIME
-            );
-        }
-        
-        if ($waitTime > static::MAX_WAIT_TIME) {
-            throw new InvalidArgumentException(
-                'wait_time cannot be greater than ' . static::MAX_WAIT_TIME
-            );
-        }
-        
-        $this->waitTime = $waitTime;
+        return $this->returnFormat;
     }
-    
+
     /**
      * Set return format
      *
      * @param string $format Return format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
     }
-    
+
     /**
-     * Set arguments
-     *
-     * @param array $arguments Arguments
+     * @return int
      */
-    private function setArguments(array $arguments)
+    public function getWaitTime()
     {
-        $this->arguments = $arguments;
+        return $this->waitTime;
+    }
+
+    /**
+     * Set wait time
+     *
+     * @param int $waitTime Wait time
+     * @throws InvalidArgumentException
+     */
+    public function setWaitTime($waitTime)
+    {
+        if (!is_int($waitTime)) {
+            throw new InvalidArgumentException(
+                'Wait Time not valid int type'
+            );
+        }
+
+        if ($waitTime < static::MIN_WAIT_TIME) {
+            throw new InvalidArgumentException(
+                'Wait Time cannot be less than ' . static::MIN_WAIT_TIME
+            );
+        }
+
+        if ($waitTime > static::MAX_WAIT_TIME) {
+            throw new InvalidArgumentException(
+                'Wait Time cannot be greater than ' . static::MAX_WAIT_TIME
+            );
+        }
+
+        $this->waitTime = $waitTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getListSeparator()
+    {
+        return $this->listSeparator;
     }
 
     /**
@@ -222,52 +223,51 @@ class ReadReport extends AbstractFunction
      * @param string $listSeparator
      * @throws InvalidArgumentException
      */
-    private function setListSeparator($listSeparator)
+    public function setListSeparator($listSeparator)
     {
         if (is_string($listSeparator) === false) {
-            throw new InvalidArgumentException('list_separator must be a string');
+            throw new InvalidArgumentException('List Separator must be a string');
         }
 
         $this->listSeparator = $listSeparator;
     }
 
     /**
-     * Get list separator
-     *
-     * @return string
-     */
-    private function getListSeparator()
-    {
-        if ($this->listSeparator === '') {
-            return null;
-        }
-
-        return $this->listSeparator;
-    }
-
-    /**
-     * Set return def
-     *
      * @param bool $returnDef
-     * @throws InvalidArgumentException
      */
-    private function setReturnDef($returnDef)
+    public function setReturnDef($returnDef)
     {
-        if (is_bool($returnDef) === false) {
-            throw new InvalidArgumentException('return_def must be a bool');
-        }
-
         $this->returnDef = $returnDef;
     }
 
     /**
-     * Get return def
+     * @return boolean
+     */
+    public function isReturnDef()
+    {
+        return $this->returnDef;
+    }
+
+    /**
+     * Initializes the class with the given parameters.
      *
+     * @param string $controlId
+     */
+    public function __construct($controlId = null)
+    {
+        parent::__construct($controlId);
+
+        $this->setPageSize(static::DEFAULT_PAGE_SIZE);
+        $this->setReturnFormat(static::DEFAULT_RETURN_FORMAT);
+        $this->setWaitTime(static::DEFAULT_WAIT_TIME);
+    }
+
+    /**
      * @return string
      */
-    private function getReturnDef()
+    private function writeXmlReturnDef()
     {
-        return $this->returnDef === true ? "true" : null;
+        return $this->isReturnDef() === true ? "true" : null;
     }
 
     /**
@@ -282,19 +282,25 @@ class ReadReport extends AbstractFunction
         
         $xml->startElement('readReport');
 
+        if (!$this->getReportName()) {
+            throw new InvalidArgumentException(
+                'Report Name is required for read report'
+            );
+        }
+
         if ($this->returnDef === true) {
-            $xml->writeAttribute('returnDef', $this->getReturnDef());
-            $xml->writeElement('report', $this->reportName, true);
+            $xml->writeAttribute('returnDef', $this->writeXmlReturnDef());
+            $xml->writeElement('report', $this->getReportName(), true);
         } else {
-            $xml->writeElement('report', $this->reportName, true);
-            if (count($this->arguments) > 0) {
+            $xml->writeElement('report', $this->getReportName(), true);
+            if (count($this->getArguments()) > 0) {
                 $xml->startElement('arguments');
-                $this->recursiveWriteXml($this->arguments, $xml);
+                $this->recursiveWriteXml($this->getArguments(), $xml);
                 $xml->endElement(); //arguments
             }
-            $xml->writeElement('waitTime', $this->waitTime);
-            $xml->writeElement('pagesize', $this->pageSize);
-            $xml->writeElement('returnFormat', $this->returnFormat);
+            $xml->writeElement('waitTime', $this->getWaitTime());
+            $xml->writeElement('pagesize', $this->getPageSize());
+            $xml->writeElement('returnFormat', $this->getReturnFormat());
             $xml->writeElement('listSeparator', $this->getListSeparator());
         }
         $xml->endElement(); //readReport

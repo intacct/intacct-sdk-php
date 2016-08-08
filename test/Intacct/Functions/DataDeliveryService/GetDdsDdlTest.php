@@ -23,7 +23,6 @@ class GetDdsDdlTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\GetDdsDdl::__construct
      * @covers Intacct\Functions\DataDeliveryService\GetDdsDdl::writeXml
      */
     public function testDefaultParams()
@@ -43,10 +42,8 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $ddl = new GetDdsDdl([
-            'object' => 'GLACCOUNT',
-            'control_id' => 'unittest',
-        ]);
+        $ddl = new GetDdsDdl('unittest');
+        $ddl->setObjectName('GLACCOUNT');
 
         $ddl->writeXml($xml);
 

@@ -21,6 +21,9 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @todo implement filters
+ */
 class ReadView extends AbstractFunction
 {
     
@@ -49,66 +52,11 @@ class ReadView extends AbstractFunction
     private $returnFormat;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var int $page_size Max page size 1-1000, default=1000
-     *      @var string $return_format Return format of response, default=xml
-     *      @var string $view View name to read
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getViewName()
     {
-        $defaults = [
-            'view' => null,
-            'page_size' => static::DEFAULT_PAGE_SIZE,
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-            //'filters' => [], //TODO implement filters
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-        
-        if (!$config['view']) {
-            throw new InvalidArgumentException(
-                'Required "view" key not supplied in params'
-            );
-        }
-
-        $this->setViewName($config['view']);
-        $this->setPageSize($config['page_size']);
-        $this->setReturnFormat($config['return_format']);
-    }
-    
-    /**
-     * Set page size
-     *
-     * @param int $pageSize
-     * @throws InvalidArgumentException
-     */
-    private function setPageSize($pageSize)
-    {
-        if (!is_int($pageSize)) {
-            throw new InvalidArgumentException(
-                'page_size not valid int type'
-            );
-        }
-        
-        if ($pageSize < static::MIN_PAGE_SIZE) {
-            throw new InvalidArgumentException(
-                'page_size cannot be less than ' . static::MIN_PAGE_SIZE
-            );
-        }
-        
-        if ($pageSize > static::MAX_PAGE_SIZE) {
-            throw new InvalidArgumentException(
-                'page_size cannot be greater than ' . static::MAX_PAGE_SIZE
-            );
-        }
-        
-        $this->pageSize = $pageSize;
+        return $this->viewName;
     }
 
     /**
@@ -117,13 +65,58 @@ class ReadView extends AbstractFunction
      * @param string $view
      * @throws InvalidArgumentException
      */
-    private function setViewName($view)
+    public function setViewName($view)
     {
         if (!is_string($view)) {
-            throw new InvalidArgumentException('view is not a valid string');
+            throw new InvalidArgumentException('View Name is not a valid string');
         }
 
         $this->viewName = $view;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->pageSize;
+    }
+
+    /**
+     * Set page size
+     *
+     * @param int $pageSize
+     * @throws InvalidArgumentException
+     */
+    public function setPageSize($pageSize)
+    {
+        if (!is_int($pageSize)) {
+            throw new InvalidArgumentException(
+                'Page Size not valid int type'
+            );
+        }
+
+        if ($pageSize < static::MIN_PAGE_SIZE) {
+            throw new InvalidArgumentException(
+                'Page Size cannot be less than ' . static::MIN_PAGE_SIZE
+            );
+        }
+
+        if ($pageSize > static::MAX_PAGE_SIZE) {
+            throw new InvalidArgumentException(
+                'Page Size cannot be greater than ' . static::MAX_PAGE_SIZE
+            );
+        }
+
+        $this->pageSize = $pageSize;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnFormat()
+    {
+        return $this->returnFormat;
     }
 
     /**
@@ -132,12 +125,25 @@ class ReadView extends AbstractFunction
      * @param string $format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
+    }
+
+    /**
+     * Initializes the class with the given parameters.
+     *
+     * @param string $controlId
+     */
+    public function __construct($controlId = null)
+    {
+        parent::__construct($controlId);
+
+        $this->setPageSize(static::DEFAULT_PAGE_SIZE);
+        $this->setReturnFormat(static::DEFAULT_RETURN_FORMAT);
     }
     
     /**
@@ -151,10 +157,16 @@ class ReadView extends AbstractFunction
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('readView');
-        
-        $xml->writeElement('view', $this->viewName, true);
-        $xml->writeElement('pagesize', $this->pageSize);
-        $xml->writeElement('returnFormat', $this->returnFormat);
+
+        if (!$this->getViewName()) {
+            throw new InvalidArgumentException(
+                'View Name is required for read view'
+            );
+        }
+        $xml->writeElement('view', $this->getViewName(), true);
+
+        $xml->writeElement('pagesize', $this->getPageSize());
+        $xml->writeElement('returnFormat', $this->getReturnFormat());
         
         $xml->endElement(); //readView
         

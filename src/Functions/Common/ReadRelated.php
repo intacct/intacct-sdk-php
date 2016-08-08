@@ -23,7 +23,7 @@ use InvalidArgumentException;
 
 class ReadRelated extends AbstractFunction
 {
-    
+
     /** @var array */
     const RETURN_FORMATS = ['xml'];
 
@@ -49,42 +49,81 @@ class ReadRelated extends AbstractFunction
     private $returnFormat;
 
     /**
-     * Initializes the class with the given parameters.
+     * @return string
+     */
+    public function getObjectName()
+    {
+        return $this->objectName;
+    }
+
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelationName()
+    {
+        return $this->relationName;
+    }
+
+    /**
+     * @param string $relationName
+     */
+    public function setRelationName($relationName)
+    {
+        $this->relationName = $relationName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @param array $fields
+     */
+    public function setFields($fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKeys()
+    {
+        return $this->keys;
+    }
+
+    /**
+     * Set keys
      *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var array $fields Fields to return, default=*
-     *      @var array $keys Keys to return
-     *      @var string $object Object name to read
-     *      @var string $relation Relation name to read
-     *      @var string $return_format Return format of response, default=xml
-     * }
+     * @param array $keys
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params = [])
+    public function setKeys(array $keys)
     {
-        $defaults = [
-            'object' => null,
-            'relation' => null,
-            'fields' => [],
-            'keys' => [],
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-
-        if (!$config['relation']) {
-            throw new InvalidArgumentException(
-                'Required "relation" key not supplied in params'
-            );
+        if (count($keys) > static::MAX_KEY_COUNT) {
+            throw new InvalidArgumentException('Keys count cannot exceed ' . static::MAX_KEY_COUNT);
         }
+        $this->keys = $keys;
+    }
 
-        $this->objectName = $config['object'];
-        $this->relationName = $config['relation'];
-        $this->fields = $config['fields'];
-        $this->setKeys($config['keys']);
-        $this->setReturnFormat($config['return_format']);
+    /**
+     * @return string
+     */
+    public function getReturnFormat()
+    {
+        return $this->returnFormat;
     }
 
     /**
@@ -93,26 +132,12 @@ class ReadRelated extends AbstractFunction
      * @param string $format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
-    }
-    
-    /**
-     * Set keys
-     *
-     * @param array $keys
-     * @throws InvalidArgumentException
-     */
-    private function setKeys(array $keys)
-    {
-        if (count($keys) > static::MAX_KEY_COUNT) {
-            throw new InvalidArgumentException('keys count cannot exceed ' . static::MAX_KEY_COUNT);
-        }
-        $this->keys = $keys;
     }
 
     /**
@@ -120,7 +145,7 @@ class ReadRelated extends AbstractFunction
      *
      * @return string
      */
-    private function getFieldsForXml()
+    private function writeXmlFields()
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -136,7 +161,7 @@ class ReadRelated extends AbstractFunction
      *
      * @return string
      */
-    private function getKeysForXml()
+    private function writeXmlKeys()
     {
         if (count($this->keys) > 0) {
             $fields = implode(',', $this->keys);
@@ -158,12 +183,18 @@ class ReadRelated extends AbstractFunction
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('readRelated');
-        
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('relation', $this->relationName, true);
-        $xml->writeElement('keys', $this->getKeysForXml(), true);
-        $xml->writeElement('fields', $this->getFieldsForXml());
-        $xml->writeElement('returnFormat', $this->returnFormat);
+
+        if (!$this->getObjectName()) {
+            throw new InvalidArgumentException('Object Name is required for read related');
+        }
+        $xml->writeElement('object', $this->getObjectName(), true);
+        if (!$this->getRelationName()) {
+            throw new InvalidArgumentException('Relation Name is required for read related');
+        }
+        $xml->writeElement('relation', $this->getRelationName(), true);
+        $xml->writeElement('keys', $this->writeXmlKeys(), true);
+        $xml->writeElement('fields', $this->writeXmlFields());
+        $xml->writeElement('returnFormat', $this->getReturnFormat());
         
         $xml->endElement(); //readRelated
         

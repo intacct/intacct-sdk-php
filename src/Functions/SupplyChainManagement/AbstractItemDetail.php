@@ -19,7 +19,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Fields\Date;
 
-class AbstractItemDetail
+abstract class AbstractItemDetail
 {
     
     /** @var string */
@@ -42,4 +42,116 @@ class AbstractItemDetail
 
     /** @var Date */
     protected $itemExpiration;
+
+    /**
+     * @return string
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param string $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
+    }
+
+    /**
+     * @param string $serialNumber
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLotNumber()
+    {
+        return $this->lotNumber;
+    }
+
+    /**
+     * @param string $lotNumber
+     */
+    public function setLotNumber($lotNumber)
+    {
+        $this->lotNumber = $lotNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAisle()
+    {
+        return $this->aisle;
+    }
+
+    /**
+     * @param string $aisle
+     */
+    public function setAisle($aisle)
+    {
+        $this->aisle = $aisle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRow()
+    {
+        return $this->row;
+    }
+
+    /**
+     * @param string $row
+     */
+    public function setRow($row)
+    {
+        $this->row = $row;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBin()
+    {
+        return $this->bin;
+    }
+
+    /**
+     * @param string $bin
+     */
+    public function setBin($bin)
+    {
+        $this->bin = $bin;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getItemExpiration()
+    {
+        return $this->itemExpiration;
+    }
+
+    /**
+     * @param Date $itemExpiration
+     */
+    public function setItemExpiration($itemExpiration)
+    {
+        $this->itemExpiration = $itemExpiration;
+    }
 }

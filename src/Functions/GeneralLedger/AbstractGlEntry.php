@@ -17,11 +17,9 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\Fields\Date;
-use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-abstract class AbstractGlEntry extends AbstractFunction
+abstract class AbstractGlEntry
 {
 
     /** @var string */
@@ -31,30 +29,6 @@ abstract class AbstractGlEntry extends AbstractFunction
 
     /** @var string */
     protected $documentNumber;
-
-    /** @var string */
-    protected $glAccountNumber;
-
-    /** @var string|float */
-    protected $transactionAmount;
-
-    /** @var string */
-    protected $transactionCurrency;
-
-    /** @var Date */
-    protected $exchangeRateDate;
-
-    /** @var float */
-    protected $exchangeRateValue;
-
-    /** @var string */
-    protected $exchangeRateType;
-
-    /** @var string */
-    protected $statAccountNumber;
-
-    /** @var string|float|int */
-    protected $amount;
 
     /** @var string */
     protected $allocationId;
@@ -94,4 +68,228 @@ abstract class AbstractGlEntry extends AbstractFunction
 
     /** @var array */
     protected $customAllocationSplits;
+
+    /**
+     * @return string
+     */
+    public function getDocumentNumber()
+    {
+        return $this->documentNumber;
+    }
+
+    /**
+     * @param string $documentNumber
+     */
+    public function setDocumentNumber($documentNumber)
+    {
+        $this->documentNumber = $documentNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAllocationId()
+    {
+        return $this->allocationId;
+    }
+
+    /**
+     * @param string $allocationId
+     */
+    public function setAllocationId($allocationId)
+    {
+        $this->allocationId = $allocationId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMemo()
+    {
+        return $this->memo;
+    }
+
+    /**
+     * @param string $memo
+     */
+    public function setMemo($memo)
+    {
+        $this->memo = $memo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartmentId()
+    {
+        return $this->departmentId;
+    }
+
+    /**
+     * @param string $departmentId
+     */
+    public function setDepartmentId($departmentId)
+    {
+        $this->departmentId = $departmentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->locationId;
+    }
+
+    /**
+     * @param string $locationId
+     */
+    public function setLocationId($locationId)
+    {
+        $this->locationId = $locationId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProjectId()
+    {
+        return $this->projectId;
+    }
+
+    /**
+     * @param string $projectId
+     */
+    public function setProjectId($projectId)
+    {
+        $this->projectId = $projectId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param string $customerId
+     */
+    public function setCustomerId($customerId)
+    {
+        $this->customerId = $customerId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVendorId()
+    {
+        return $this->vendorId;
+    }
+
+    /**
+     * @param string $vendorId
+     */
+    public function setVendorId($vendorId)
+    {
+        $this->vendorId = $vendorId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmployeeId()
+    {
+        return $this->employeeId;
+    }
+
+    /**
+     * @param string $employeeId
+     */
+    public function setEmployeeId($employeeId)
+    {
+        $this->employeeId = $employeeId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getItemId()
+    {
+        return $this->itemId;
+    }
+
+    /**
+     * @param string $itemId
+     */
+    public function setItemId($itemId)
+    {
+        $this->itemId = $itemId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassId()
+    {
+        return $this->classId;
+    }
+
+    /**
+     * @param string $classId
+     */
+    public function setClassId($classId)
+    {
+        $this->classId = $classId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContractId()
+    {
+        return $this->contractId;
+    }
+
+    /**
+     * @param string $contractId
+     */
+    public function setContractId($contractId)
+    {
+        $this->contractId = $contractId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWarehouseId()
+    {
+        return $this->warehouseId;
+    }
+
+    /**
+     * @param string $warehouseId
+     */
+    public function setWarehouseId($warehouseId)
+    {
+        $this->warehouseId = $warehouseId;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomAllocationSplits()
+    {
+        return $this->customAllocationSplits;
+    }
+
+    /**
+     * @param array $customAllocationSplits
+     */
+    public function setCustomAllocationSplits($customAllocationSplits)
+    {
+        $this->customAllocationSplits = $customAllocationSplits;
+    }
 }

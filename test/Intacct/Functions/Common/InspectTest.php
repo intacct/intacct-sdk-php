@@ -21,7 +21,6 @@ use Intacct\Xml\XMLWriter;
 class InspectTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Common\Inspect::__construct
      * @covers Intacct\Functions\Common\Inspect::writeXmlShowDetail
      * @covers Intacct\Functions\Common\Inspect::writeXml
      */
@@ -42,17 +41,15 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $inspect = new Inspect([
-            'object' => 'APBILL',
-            'control_id' => 'unittest',
-        ]);
+        $inspect = new Inspect('unittest');
+        $inspect->setObjectName('APBILL');
+
         $inspect->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\Inspect::__construct
      * @covers Intacct\Functions\Common\Inspect::writeXmlShowDetail
      * @covers Intacct\Functions\Common\Inspect::writeXml
      */
@@ -73,11 +70,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $inspect = new Inspect([
-            'object' => 'APBILL',
-            'control_id' => 'unittest',
-            'show_detail' => true,
-        ]);
+        $inspect = new Inspect('unittest');
+        $inspect->setObjectName('APBILL');
+        $inspect->setShowDetail(true);
+
         $inspect->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

@@ -32,9 +32,7 @@ class GetAPISessionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new GetAPISession([
-            'control_id' => 'unittest'
-        ]);
+        $this->object = new GetAPISession('unittest');
     }
 
     /**

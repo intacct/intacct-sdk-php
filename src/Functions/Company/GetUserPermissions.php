@@ -19,39 +19,27 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class GetUserPermissions extends AbstractFunction
 {
-    
+
     /** @var string */
     private $userId;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $user_id User ID to get permissions for
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getUserId()
     {
-        $defaults = [
-            'user_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->userId;
+    }
 
-        parent::__construct($config);
-        
-        if (!$config['user_id']) {
-            throw new InvalidArgumentException(
-                'Required "user_id" key not supplied in params'
-            );
-        }
-
-        $this->userId = $config['user_id'];
+    /**
+     * @param string $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
     }
     
     /**
@@ -66,7 +54,7 @@ class GetUserPermissions extends AbstractFunction
         
         $xml->startElement('getUserPermissions');
         
-        $xml->writeElement('userId', $this->userId, true);
+        $xml->writeElement('userId', $this->getUserId(), true);
         
         $xml->endElement(); //getUserPermissions
         

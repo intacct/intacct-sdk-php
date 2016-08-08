@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Intacct Corporation.
  *
@@ -20,11 +21,11 @@ use Intacct\Xml\XMLWriter;
 
 class GetAuditTrailTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
-     * @covers Intacct\Functions\Company\GetAuditTrail::__construct
      * @covers Intacct\Functions\Company\GetAuditTrail::writeXml
      */
-    public function testDefaultParams()
+    public function testConstruct()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -42,11 +43,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $getAuditTrail = new GetAuditTrail([
-            'object' => 'GLENTRY',
-            'control_id' => 'unittest',
-            'object_key' => 'GLENTRY123'
-        ]);
+        $getAuditTrail = new GetAuditTrail('unittest');
+        $getAuditTrail->setObjectName('GLENTRY');
+        $getAuditTrail->setObjectKey('GLENTRY123');
+
         $getAuditTrail->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

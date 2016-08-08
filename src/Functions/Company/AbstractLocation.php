@@ -55,4 +55,164 @@ abstract class AbstractLocation extends AbstractFunction
 
     /** @var bool */
     protected $active;
+
+    /**
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->locationId;
+    }
+
+    /**
+     * @param string $locationId
+     */
+    public function setLocationId($locationId)
+    {
+        $this->locationId = $locationId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocationName()
+    {
+        return $this->locationName;
+    }
+
+    /**
+     * @param string $locationName
+     */
+    public function setLocationName($locationName)
+    {
+        $this->locationName = $locationName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentLocationId()
+    {
+        return $this->parentLocationId;
+    }
+
+    /**
+     * @param string $parentLocationId
+     */
+    public function setParentLocationId($parentLocationId)
+    {
+        $this->parentLocationId = $parentLocationId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getManagerEmployeeId()
+    {
+        return $this->managerEmployeeId;
+    }
+
+    /**
+     * @param string $managerEmployeeId
+     */
+    public function setManagerEmployeeId($managerEmployeeId)
+    {
+        $this->managerEmployeeId = $managerEmployeeId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocationContactName()
+    {
+        return $this->locationContactName;
+    }
+
+    /**
+     * @param string $locationContactName
+     */
+    public function setLocationContactName($locationContactName)
+    {
+        $this->locationContactName = $locationContactName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipToContactName()
+    {
+        return $this->shipToContactName;
+    }
+
+    /**
+     * @param string $shipToContactName
+     */
+    public function setShipToContactName($shipToContactName)
+    {
+        $this->shipToContactName = $shipToContactName;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param Date $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param Date $endDate
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocationTitle()
+    {
+        return $this->locationTitle;
+    }
+
+    /**
+     * @param string $locationTitle
+     */
+    public function setLocationTitle($locationTitle)
+    {
+        $this->locationTitle = $locationTitle;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 }

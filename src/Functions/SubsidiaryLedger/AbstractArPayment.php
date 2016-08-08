@@ -19,6 +19,7 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Fields\Date;
 use Intacct\Functions\AbstractFunction;
+use InvalidArgumentException;
 
 abstract class AbstractArPayment extends AbstractFunction
 {
@@ -105,4 +106,280 @@ abstract class AbstractArPayment extends AbstractFunction
 
     /** @var array */
     protected $applyToTransactions;
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param string $paymentMethod
+     * @throws InvalidArgumentException
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        if (!in_array($paymentMethod, static::PAYMENT_METHODS)) {
+            throw new InvalidArgumentException('Payment method is not valid');
+        }
+        $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankAccountId()
+    {
+        return $this->bankAccountId;
+    }
+
+    /**
+     * @param string $bankAccountId
+     */
+    public function setBankAccountId($bankAccountId)
+    {
+        $this->bankAccountId = $bankAccountId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUndepositedFundsGlAccountNo()
+    {
+        return $this->undepositedFundsGlAccountNo;
+    }
+
+    /**
+     * @param string $undepositedFundsGlAccountNo
+     */
+    public function setUndepositedFundsGlAccountNo($undepositedFundsGlAccountNo)
+    {
+        $this->undepositedFundsGlAccountNo = $undepositedFundsGlAccountNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransactionCurrency()
+    {
+        return $this->transactionCurrency;
+    }
+
+    /**
+     * @param string $transactionCurrency
+     */
+    public function setTransactionCurrency($transactionCurrency)
+    {
+        $this->transactionCurrency = $transactionCurrency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseCurrency()
+    {
+        return $this->baseCurrency;
+    }
+
+    /**
+     * @param string $baseCurrency
+     */
+    public function setBaseCurrency($baseCurrency)
+    {
+        $this->baseCurrency = $baseCurrency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param string $customerId
+     */
+    public function setCustomerId($customerId)
+    {
+        $this->customerId = $customerId;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getReceivedDate()
+    {
+        return $this->receivedDate;
+    }
+
+    /**
+     * @param Date $receivedDate
+     */
+    public function setReceivedDate($receivedDate)
+    {
+        $this->receivedDate = $receivedDate;
+    }
+
+    /**
+     * @return float|string
+     */
+    public function getTransactionPaymentAmount()
+    {
+        return $this->transactionPaymentAmount;
+    }
+
+    /**
+     * @param float|string $transactionPaymentAmount
+     */
+    public function setTransactionPaymentAmount($transactionPaymentAmount)
+    {
+        $this->transactionPaymentAmount = $transactionPaymentAmount;
+    }
+
+    /**
+     * @return float|string
+     */
+    public function getBasePaymentAmount()
+    {
+        return $this->basePaymentAmount;
+    }
+
+    /**
+     * @param float|string $basePaymentAmount
+     */
+    public function setBasePaymentAmount($basePaymentAmount)
+    {
+        $this->basePaymentAmount = $basePaymentAmount;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getExchangeRateDate()
+    {
+        return $this->exchangeRateDate;
+    }
+
+    /**
+     * @param Date $exchangeRateDate
+     */
+    public function setExchangeRateDate($exchangeRateDate)
+    {
+        $this->exchangeRateDate = $exchangeRateDate;
+    }
+
+    /**
+     * @return float
+     */
+    public function getExchangeRateValue()
+    {
+        return $this->exchangeRateValue;
+    }
+
+    /**
+     * @param float $exchangeRateValue
+     */
+    public function setExchangeRateValue($exchangeRateValue)
+    {
+        $this->exchangeRateValue = $exchangeRateValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExchangeRateType()
+    {
+        return $this->exchangeRateType;
+    }
+
+    /**
+     * @param string $exchangeRateType
+     */
+    public function setExchangeRateType($exchangeRateType)
+    {
+        $this->exchangeRateType = $exchangeRateType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizationCode()
+    {
+        return $this->authorizationCode;
+    }
+
+    /**
+     * @param string $authorizationCode
+     */
+    public function setAuthorizationCode($authorizationCode)
+    {
+        $this->authorizationCode = $authorizationCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOverpaymentLocationId()
+    {
+        return $this->overpaymentLocationId;
+    }
+
+    /**
+     * @param string $overpaymentLocationId
+     */
+    public function setOverpaymentLocationId($overpaymentLocationId)
+    {
+        $this->overpaymentLocationId = $overpaymentLocationId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOverpaymentDepartmentId()
+    {
+        return $this->overpaymentDepartmentId;
+    }
+
+    /**
+     * @param string $overpaymentDepartmentId
+     */
+    public function setOverpaymentDepartmentId($overpaymentDepartmentId)
+    {
+        $this->overpaymentDepartmentId = $overpaymentDepartmentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReferenceNumber()
+    {
+        return $this->referenceNumber;
+    }
+
+    /**
+     * @param string $referenceNumber
+     */
+    public function setReferenceNumber($referenceNumber)
+    {
+        $this->referenceNumber = $referenceNumber;
+    }
+
+    /**
+     * @return array
+     */
+    public function getApplyToTransactions()
+    {
+        return $this->applyToTransactions;
+    }
+
+    /**
+     * @param array $applyToTransactions
+     */
+    public function setApplyToTransactions($applyToTransactions)
+    {
+        $this->applyToTransactions = $applyToTransactions;
+    }
 }

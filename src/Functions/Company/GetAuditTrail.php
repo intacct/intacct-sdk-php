@@ -28,28 +28,37 @@ class GetAuditTrail extends AbstractFunction
 
     /** @var string */
     private $objectKey;
-    
+
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $object Object name to get
-     *      @var string $object_key Object key to get
-     * }
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'object_key' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
 
-        $this->objectName = $config['object'];
-        $this->objectKey = $config['object_key'];
+    /**
+     * @return string
+     */
+    public function getObjectKey()
+    {
+        return $this->objectKey;
+    }
+
+    /**
+     * @param string $objectKey
+     */
+    public function setObjectKey($objectKey)
+    {
+        $this->objectKey = $objectKey;
     }
 
     /**
@@ -64,8 +73,8 @@ class GetAuditTrail extends AbstractFunction
 
         $xml->startElement('getObjectTrail');
 
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('objectKey', $this->objectKey, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
+        $xml->writeElement('objectKey', $this->getObjectKey(), true);
 
         $xml->endElement(); //getObjectTrail
 

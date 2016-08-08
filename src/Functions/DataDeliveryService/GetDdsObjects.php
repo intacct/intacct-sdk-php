@@ -19,26 +19,12 @@ namespace Intacct\Functions\DataDeliveryService;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class GetDdsObjects extends AbstractFunction
 {
 
     /**
-     *
-     * @param array $params
-     * @throws InvalidArgumentException
-     */
-    public function __construct(array $params = [])
-    {
-        $defaults = [
-            // nothing to see here
-        ];
-        $config = array_merge($defaults, $params);
-        parent::__construct($config);
-    }
-
-    /**
+     * Write the function block XML
      *
      * @param XMLWriter $xml
      */

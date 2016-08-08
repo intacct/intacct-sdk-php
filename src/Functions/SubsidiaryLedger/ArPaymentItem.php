@@ -29,24 +29,35 @@ class ArPaymentItem
     private $amountToApply;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $apply_to_record_no
-     *      @var string $amount_to_apply
-     * }
+     * @return int|string
      */
-    public function __construct(array $params = [])
+    public function getApplyToRecordId()
     {
-        $defaults = [
-            'apply_to_record_no' => null,
-            'amount_to_apply' => null,
-        ];
+        return $this->applyToRecordId;
+    }
 
-        $config = array_merge($defaults, $params);
+    /**
+     * @param int|string $applyToRecordId
+     */
+    public function setApplyToRecordId($applyToRecordId)
+    {
+        $this->applyToRecordId = $applyToRecordId;
+    }
 
-        $this->applyToRecordId = $config['apply_to_record_no'];
-        $this->amountToApply = $config['amount_to_apply'];
+    /**
+     * @return float|string
+     */
+    public function getAmountToApply()
+    {
+        return $this->amountToApply;
+    }
+
+    /**
+     * @param float|string $amountToApply
+     */
+    public function setAmountToApply($amountToApply)
+    {
+        $this->amountToApply = $amountToApply;
     }
 
     /**

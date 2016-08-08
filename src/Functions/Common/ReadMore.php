@@ -26,33 +26,21 @@ class ReadMore extends AbstractFunction
     
     /** @var string */
     private $resultId;
-    
+
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $result_id Result ID to use
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getResultId()
     {
-        $defaults = [
-            'result_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->resultId;
+    }
 
-        parent::__construct($config);
-
-        // TODO: Do we need to also check for object, view, or reportId?
-        if (!$config['result_id']) {
-            throw new InvalidArgumentException(
-                'Required "result_id" key not supplied in params'
-            );
-        }
-
-        $this->resultId = $config['result_id'];
+    /**
+     * @param string $resultId
+     */
+    public function setResultId($resultId)
+    {
+        $this->resultId = $resultId;
     }
     
     /**
@@ -66,8 +54,13 @@ class ReadMore extends AbstractFunction
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('readMore');
-        
-        $xml->writeElement('resultId', $this->resultId, true);
+
+        if (!$this->getResultId()) {
+            throw new InvalidArgumentException(
+                'Result ID is required for read more'
+            );
+        }
+        $xml->writeElement('resultId', $this->getResultId(), true);
         
         $xml->endElement(); //readMore
         

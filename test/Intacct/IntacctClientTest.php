@@ -227,9 +227,7 @@ EOF;
         ];
 
         $content = new Content([
-            new GetAPISession([
-                'control_id' => 'func1UnitTest',
-            ])
+            new GetAPISession('func1UnitTest')
         ]);
 
         $client = $this->client; //grab the setUp object
@@ -273,9 +271,7 @@ EOF;
         ];
 
         $content = new Content([
-            new GetAPISession([
-                'control_id' => 'func1UnitTest',
-            ])
+            new GetAPISession('func1UnitTest')
         ]);
 
         $client = $this->client; //grab the setUp object

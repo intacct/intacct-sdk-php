@@ -21,7 +21,7 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 
-class QueryClientTest extends \PHPUnit_Framework_TestCase
+class QueryClientTest// extends \PHPUnit_Framework_TestCase
 {
 
     /**

@@ -25,87 +25,65 @@ use InvalidArgumentException;
 class Delete extends AbstractFunction
 {
     
-    /**
-     * @var int
-     */
+    /** @var int */
     const MAX_KEY_COUNT = 100;
 
     /** @var string */
     private $objectName;
 
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     private $keys;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var array $keys Record keys to delete
-     *      @var string $object Object name to delete from
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'keys' => [],
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-
-        if (!$config['object']) {
-            throw new InvalidArgumentException(
-                'Required "object" key not supplied in params'
-            );
-        }
-
-        if (in_array('delete', StandardObjects::getMethodsNotAllowed($config['object']))) {
-            throw new InvalidArgumentException(
-                'using delete on object "' . $config['object'] . '" is not allowed'
-            );
-        }
-
-        $this->objectName = $config['object'];
-        $this->setKeys($config['keys']);
+        return $this->objectName;
     }
 
     /**
-     * Set keys
-     *
+     * @param string $objectName
+     * @throws InvalidArgumentException
+     */
+    public function setObjectName($objectName)
+    {
+        if (in_array('delete', StandardObjects::getMethodsNotAllowed($objectName))) {
+            throw new InvalidArgumentException(
+                'Using delete on object "' . $objectName . '" is not allowed'
+            );
+        }
+
+        $this->objectName = $objectName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeys()
+    {
+        $keys = implode(',', $this->keys);
+
+        return $keys;
+    }
+
+    /**
      * @param array $keys
      * @throws InvalidArgumentException
      */
-    private function setKeys(array $keys)
+    public function setKeys(array $keys)
     {
         if (count($keys) > static::MAX_KEY_COUNT) {
             throw new InvalidArgumentException(
-                'keys count cannot exceed ' . static::MAX_KEY_COUNT
+                'Keys count cannot exceed ' . static::MAX_KEY_COUNT
             );
         } elseif (count($keys) === 0) {
             throw new InvalidArgumentException(
-                'keys count must be greater than zero'
+                'Keys count must be greater than zero'
             );
         }
 
         $this->keys = $keys;
-    }
-    
-    /**
-     * Get keys
-     *
-     * @return string
-     */
-    private function getKeys()
-    {
-        $keys = implode(',', $this->keys);
-        
-        return $keys;
     }
     
     /**
@@ -120,7 +98,7 @@ class Delete extends AbstractFunction
         
         $xml->startElement('delete');
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->getKeys(), true);
         
         $xml->endElement(); //delete

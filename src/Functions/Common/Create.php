@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Common;
 
-use Intacct\Functions\ControlIdTrait;
+use Intacct\Functions\Traits\ControlIdTrait;
 use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\Request\XMLHelperTrait;
 use Intacct\Xml\Request\Operation\Content\StandardObjects;

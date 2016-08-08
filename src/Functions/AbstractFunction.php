@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions;
 
+use Intacct\Functions\Traits\ControlIdTrait;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractFunction implements FunctionInterface
@@ -27,18 +28,11 @@ abstract class AbstractFunction implements FunctionInterface
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     * }
+     * @param string $controlId Control ID, default=random UUID
      */
-    public function __construct(array $params = [])
+    public function __construct($controlId = null)
     {
-        $defaults = [
-            'control_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
-
-        $this->setControlId($config['control_id']);
+        $this->setControlId($controlId);
     }
 
     abstract public function writeXml(XMLWriter &$xml);

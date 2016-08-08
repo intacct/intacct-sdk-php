@@ -26,11 +26,6 @@ class RunDdsJobTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setControlId
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setFileFormat
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setSplitSize
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::writeXml
      */
     public function testDefaultParams()
@@ -42,14 +37,7 @@ class RunDdsJobTest extends \PHPUnit_Framework_TestCase
         <object>GLACCOUNT</object>
         <cloudDelivery>My Cloud Bucket</cloudDelivery>
         <jobType>all</jobType>
-        <fileConfiguration>
-            <delimiter>,</delimiter>
-            <enclosure>"</enclosure>
-            <includeHeaders>false</includeHeaders>
-            <fileFormat>unix</fileFormat>
-            <splitSize>100000</splitSize>
-            <compress>false</compress>
-        </fileConfiguration>
+        <fileConfiguration/>
     </runDdsJob>
 </function>
 EOF;
@@ -60,12 +48,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $runJob = new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-            'control_id' => 'unittest',
-            'job_type' => 'all',
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setObjectName('GLACCOUNT');
+        $runJob->setCloudDeliveryName('My Cloud Bucket');
+        $runJob->setJobType('all');
 
         $runJob->writeXml($xml);
 
@@ -73,10 +59,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setFileFormat
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setSplitSize
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::writeXml
      */
     public function testParamsOverrides()
@@ -107,19 +89,17 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $runJob = new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-            'control_id' => 'unittest',
-            'job_type' => 'change',
-            'timestamp' => new DateTime('2002-09-24 06:00'),
-            'delimiter' => ',',
-            'enclosure' => '"',
-            'include_headers' => true,
-            'file_format' => 'unix',
-            'split_size' => 10000,
-            'compress' => false,
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setObjectName('GLACCOUNT');
+        $runJob->setCloudDeliveryName('My Cloud Bucket');
+        $runJob->setJobType('change');
+        $runJob->setTimestamp(new DateTime('2002-09-24 06:00'));
+        $runJob->setDelimiter(',');
+        $runJob->setEnclosure('"');
+        $runJob->setIncludeHeaders(true);
+        $runJob->setFileFormat('unix');
+        $runJob->setSplitSize(10000);
+        $runJob->setCompressed(false);
 
         $runJob->writeXml($xml);
 
@@ -127,71 +107,46 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage job_type is not a valid type
+     * @expectedExceptionMessage Job Type is not a valid type
      */
     public function testNoJobType()
     {
-        new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'control_id' => 'unittest',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setJobType('test');
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setFileFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage file_format is not a valid type
+     * @expectedExceptionMessage File Format is not a valid type
      */
     public function testInvalidFileFormat()
     {
-        new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'control_id' => 'unittest',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-            'job_type' => 'change',
-            'file_format' => "beos",
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setFileFormat('beos');
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setSplitSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage split_size must be between 10000 and 100000
+     * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */
     public function testMinSplitSize()
     {
-        new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'control_id' => 'unittest',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-            'job_type' => 'change',
-            'split_size' => 100,
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setSplitSize(100);
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::__construct
-     * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setJobType
      * @covers Intacct\Functions\DataDeliveryService\RunDdsJob::setSplitSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage split_size must be between 10000 and 100000
+     * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */
     public function testMaxSplitSize()
     {
-        new RunDdsJob([
-            'object' => 'GLACCOUNT',
-            'control_id' => 'unittest',
-            'cloud_delivery_name' => 'My Cloud Bucket',
-            'job_type' => 'change',
-            'split_size' => 100001,
-        ]);
+        $runJob = new RunDdsJob('unittest');
+        $runJob->setSplitSize(100001);
     }
 }

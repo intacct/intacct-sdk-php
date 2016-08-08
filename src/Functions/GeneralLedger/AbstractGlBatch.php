@@ -45,14 +45,155 @@ abstract class AbstractGlBatch extends AbstractFunction
     protected $referenceNumber;
 
     /** @var string */
-    protected $sourceEntityId;
-
-    /** @var string */
     protected $attachmentsId;
 
     /** @var string */
     protected $action;
 
     /** @var array */
-    protected $entries;
+    protected $lines;
+
+    /**
+     * @return string
+     */
+    public function getJournalSymbol()
+    {
+        return $this->journalSymbol;
+    }
+
+    /**
+     * @param string $journalSymbol
+     */
+    public function setJournalSymbol($journalSymbol)
+    {
+        $this->journalSymbol = $journalSymbol;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getPostingDate()
+    {
+        return $this->postingDate;
+    }
+
+    /**
+     * @param Date $postingDate
+     */
+    public function setPostingDate($postingDate)
+    {
+        $this->postingDate = $postingDate;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getReverseDate()
+    {
+        return $this->reverseDate;
+    }
+
+    /**
+     * @param Date $reverseDate
+     */
+    public function setReverseDate($reverseDate)
+    {
+        $this->reverseDate = $reverseDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHistoryComment()
+    {
+        return $this->historyComment;
+    }
+
+    /**
+     * @param string $historyComment
+     */
+    public function setHistoryComment($historyComment)
+    {
+        $this->historyComment = $historyComment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReferenceNumber()
+    {
+        return $this->referenceNumber;
+    }
+
+    /**
+     * @param string $referenceNumber
+     */
+    public function setReferenceNumber($referenceNumber)
+    {
+        $this->referenceNumber = $referenceNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttachmentsId()
+    {
+        return $this->attachmentsId;
+    }
+
+    /**
+     * @param string $attachmentsId
+     */
+    public function setAttachmentsId($attachmentsId)
+    {
+        $this->attachmentsId = $attachmentsId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param string $action
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLines()
+    {
+        return $this->lines;
+    }
+
+    /**
+     * @param array $lines
+     */
+    public function setLines($lines)
+    {
+        $this->lines = $lines;
+    }
 }

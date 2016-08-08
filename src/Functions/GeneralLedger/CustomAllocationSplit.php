@@ -19,8 +19,43 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 
-class CustomAllocationSplit extends AbstractCustomAllocationSplit
+class CustomAllocationSplit
 {
+
+    /** @var float|string */
+    private $amount;
+
+    /** @var string */
+    private $departmentId;
+
+    /** @var string */
+    private $locationId;
+
+    /** @var string */
+    private $projectId;
+
+    /** @var string */
+    private $customerId;
+
+    /** @var string */
+    private $vendorId;
+
+    /** @var string */
+    private $employeeId;
+
+    /** @var string */
+    private $itemId;
+
+    /** @var string */
+    private $classId;
+
+    /** @var string */
+    private $contractId;
+
+    /** @var string */
+    private $warehouseId;
+
+    //TODO support UDD's
 
     /**
      * @return float|string
@@ -196,55 +231,6 @@ class CustomAllocationSplit extends AbstractCustomAllocationSplit
     public function setWarehouseId($warehouseId)
     {
         $this->warehouseId = $warehouseId;
-    }
-
-    /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var float|string $amount
-     *      @var string $location_id
-     *      @var string $department_id
-     *      @var string $project_id
-     *      @var string $customer_id
-     *      @var string $vendor_id
-     *      @var string $employee_id
-     *      @var string $item_id
-     *      @var string $class_id
-     *      @var string $contract_id
-     *      @var string $warehouse_id
-     * }
-     * @todo add support for user defined dimensions
-     */
-    public function __construct(array $params = [])
-    {
-        $defaults = [
-            'amount' => null,
-            'location_id' => null,
-            'department_id' => null,
-            'project_id' => null,
-            'customer_id' => null,
-            'vendor_id' => null,
-            'employee_id' => null,
-            'item_id' => null,
-            'class_id' => null,
-            'contract_id' => null,
-            'warehouse_id' => null,
-        ];
-
-        $config = array_merge($defaults, $params);
-
-        $this->setAmount($config['amount']);
-        $this->setLocationId($config['location_id']);
-        $this->setDepartmentId($config['department_id']);
-        $this->setProjectId($config['project_id']);
-        $this->setCustomerId($config['customer_id']);
-        $this->setVendorId($config['vendor_id']);
-        $this->setEmployeeId($config['employee_id']);
-        $this->setItemId($config['item_id']);
-        $this->setClassId($config['class_id']);
-        $this->setContractId($config['contract_id']);
-        $this->setWarehouseId($config['warehouse_id']);
     }
 
     /**

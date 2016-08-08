@@ -19,7 +19,6 @@ namespace Intacct\Functions\DataDeliveryService;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class GetDdsDdl extends AbstractFunction
 {
@@ -28,20 +27,19 @@ class GetDdsDdl extends AbstractFunction
     private $objectName;
 
     /**
-     *
-     * @param array $params
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
-
-        $this->objectName = $config['object'];
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
     }
 
     /**
@@ -56,7 +54,7 @@ class GetDdsDdl extends AbstractFunction
 
         $xml->startElement('getDdsDdl');
 
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
 
         $xml->endElement(); //getDdsDdl
 

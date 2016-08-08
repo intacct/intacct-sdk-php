@@ -23,11 +23,6 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Common\ReadByName::__construct
-     * @covers Intacct\Functions\Common\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\Common\ReadByName::setNames
-     * @covers Intacct\Functions\Common\ReadByName::getNamesForXml
-     * @covers Intacct\Functions\Common\ReadByName::getFieldsForXml
      * @covers Intacct\Functions\Common\ReadByName::writeXml
      */
     public function testDefaultParams()
@@ -39,7 +34,6 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
         <object>GLENTRY</object>
         <keys></keys>
         <fields>*</fields>
-        <returnFormat>xml</returnFormat>
     </readByName>
 </function>
 EOF;
@@ -50,21 +44,15 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readByName = new ReadByName([
-            'object' => 'GLENTRY',
-            'control_id' => 'unittest',
-        ]);
+        $readByName = new ReadByName('unittest');
+        $readByName->setObjectName('GLENTRY');
+
         $readByName->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByName::__construct
-     * @covers Intacct\Functions\Common\ReadByName::setReturnFormat
-     * @covers Intacct\Functions\Common\ReadByName::setNames
-     * @covers Intacct\Functions\Common\ReadByName::getNamesForXml
-     * @covers Intacct\Functions\Common\ReadByName::getFieldsForXml
      * @covers Intacct\Functions\Common\ReadByName::writeXml
      */
     public function testParamOverrides()
@@ -77,7 +65,7 @@ EOF;
         <keys>987</keys>
         <fields>TRX_AMOUNT,RECORDNO,BATCHNO</fields>
         <returnFormat>xml</returnFormat>
-        <docparid>390FJ234MGF0-323F&amp;23T.</docparid>
+        <docparid>Sales Invoice</docparid>
     </readByName>
 </function>
 EOF;
@@ -88,14 +76,13 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readByName = new ReadByName([
-            'object' => 'GLENTRY',
-            'control_id' => 'unittest',
-            'names' => ['987'],
-            'fields' => ['TRX_AMOUNT','RECORDNO','BATCHNO'],
-            'doc_par_id' => '390FJ234MGF0-323F&23T.',
-            'return_format' => 'xml',
-        ]);
+        $readByName = new ReadByName('unittest');
+        $readByName->setObjectName('GLENTRY');
+        $readByName->setNames(['987']);
+        $readByName->setFields(['TRX_AMOUNT','RECORDNO','BATCHNO']);
+        $readByName->setDocParId('Sales Invoice');
+        $readByName->setReturnFormat('xml');
+
         $readByName->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -104,30 +91,24 @@ EOF;
     /**
      * @covers Intacct\Functions\Common\ReadByName::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testInvalidReturnFormat()
     {
-        new ReadByName([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'return_format' => ''
-        ]);
+        $readByName = new ReadByName('unittest');
+        $readByName->setReturnFormat('blah');
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadByName::setNames
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage names count cannot exceed 100
+     * @expectedExceptionMessage Names count cannot exceed 100
      */
     public function testMaxNumberOfNames()
     {
         $names = new \SplFixedArray(101);
 
-        new ReadByName([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'names' => $names->toArray(),
-        ]);
+        $readByName = new ReadByName('unittest');
+        $readByName->setNames($names->toArray());
     }
 }

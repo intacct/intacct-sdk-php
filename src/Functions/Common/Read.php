@@ -49,35 +49,66 @@ class Read extends AbstractFunction
     private $docParId;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $doc_par_id Document param ID (transaction definition) to read by
-     *      @var array $fields Fields to return, default=*
-     *      @var array $keys Record keys to read by
-     *      @var string $object Object name to query
-     *      @var string $return_format Return format of response, default=xml
-     * }
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'fields' => [],
-            'keys' => [],
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
 
-        $this->objectName = $config['object'];
-        $this->fields = $config['fields'];
-        $this->setKeys($config['keys']);
-        $this->setReturnFormat($config['return_format']);
-        $this->docParId = $config['doc_par_id'];
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @param array $fields
+     */
+    public function setFields($fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKeys()
+    {
+        return $this->keys;
+    }
+
+    /**
+     * Set keys
+     *
+     * @param array $keys
+     * @throws InvalidArgumentException
+     */
+    public function setKeys(array $keys)
+    {
+        if (count($keys) > static::MAX_KEY_COUNT) {
+            throw new InvalidArgumentException('Keys count cannot exceed ' . static::MAX_KEY_COUNT);
+        }
+
+        $this->keys = $keys;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnFormat()
+    {
+        return $this->returnFormat;
     }
 
     /**
@@ -86,27 +117,28 @@ class Read extends AbstractFunction
      * @param string $format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
     }
-    
+
     /**
-     * Set keys
-     *
-     * @param array $keys
-     * @throws InvalidArgumentException
+     * @return string
      */
-    private function setKeys(array $keys)
+    public function getDocParId()
     {
-        if (count($keys) > static::MAX_KEY_COUNT) {
-            throw new InvalidArgumentException('keys count cannot exceed ' . static::MAX_KEY_COUNT);
-        }
-        
-        $this->keys = $keys;
+        return $this->docParId;
+    }
+
+    /**
+     * @param string $docParId
+     */
+    public function setDocParId($docParId)
+    {
+        $this->docParId = $docParId;
     }
 
     /**
@@ -114,7 +146,7 @@ class Read extends AbstractFunction
      *
      * @return string
      */
-    private function getFieldsForXml()
+    private function writeXmlFields()
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -130,7 +162,7 @@ class Read extends AbstractFunction
      *
      * @return string
      */
-    private function getKeysForXml()
+    private function writeXmlKeys()
     {
         if (count($this->keys) > 0) {
             $keys = implode(',', $this->keys);
@@ -152,12 +184,15 @@ class Read extends AbstractFunction
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('read');
-        
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('keys', $this->getKeysForXml(), true);
-        $xml->writeElement('fields', $this->getFieldsForXml());
-        $xml->writeElement('returnFormat', $this->returnFormat);
-        $xml->writeElement('docparid', $this->docParId);
+
+        if (!$this->getObjectName()) {
+            throw new InvalidArgumentException('Object Name is required for read');
+        }
+        $xml->writeElement('object', $this->getObjectName(), true);
+        $xml->writeElement('keys', $this->writeXmlKeys(), true);
+        $xml->writeElement('fields', $this->writeXmlFields());
+        $xml->writeElement('returnFormat', $this->getReturnFormat());
+        $xml->writeElement('docparid', $this->getDocParId());
         
         $xml->endElement(); //read
         

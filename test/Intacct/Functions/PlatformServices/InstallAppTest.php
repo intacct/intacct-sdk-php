@@ -21,13 +21,13 @@ use InvalidArgumentException;
 
 class InstallAppTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
-     * @covers Intacct\Functions\PlatformServices\InstallApp::__construct
-     * @covers Intacct\Functions\PlatformServices\InstallApp::setXmlFilename
+     * @covers Intacct\Functions\PlatformServices\InstallApp::writeXml
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required xml_filename is missing
+     * @expectedExceptionMessage XML Filename is required for install
      */
-    public function testNoFilename()
+    public function testRequiredXmlFilename()
     {
         $xml = new XMLWriter();
         $xml->openMemory();
@@ -35,7 +35,9 @@ class InstallAppTest extends \PHPUnit_Framework_TestCase
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        new InstallApp([
-        ]);
+        $app = new InstallApp('unittest');
+        //$app->setXmlFilename('app.xml');
+
+        $app->writeXml($xml);
     }
 }

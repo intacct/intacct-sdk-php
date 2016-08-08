@@ -58,91 +58,134 @@ class ReadByQuery extends AbstractFunction
     private $docParId;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $doc_par_id Document param ID (transaction definition) to read by
-     *      @var array $fields Fields to return, default=*
-     *      @var string $object Object name to query
-     *      @var int $page_size Max page size 1-1000, default=1000
-     *      @var string $query Query to filter by
-     *      @var string $return_format Return format of response, default=xml
-     * }
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'object' => null,
-            'fields' => [],
-            'query' => null,
-            'page_size' => static::DEFAULT_PAGE_SIZE,
-            'return_format' => static::DEFAULT_RETURN_FORMAT,
-            'doc_par_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-
-        $this->objectName = $config['object'];
-        $this->setFields($config['fields']);
-        $this->setQuery($config['query']);
-        $this->setPageSize($config['page_size']);
-        $this->setReturnFormat($config['return_format']);
-        $this->setDocParId($config['doc_par_id']);
+        return $this->objectName;
     }
-    
+
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @param array $fields
+     */
+    public function setFields($fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
+     * @param string $query
+     */
+    public function setQuery($query)
+    {
+        $this->query = $query;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->pageSize;
+    }
+
     /**
      * Set page size
      *
      * @param int $pageSize
      * @throws InvalidArgumentException
      */
-    private function setPageSize($pageSize)
+    public function setPageSize($pageSize)
     {
         if (!is_int($pageSize)) {
             throw new InvalidArgumentException(
-                'page_size not valid int type'
+                'Page Size not valid int type'
             );
         }
-        
+
         if ($pageSize < static::MIN_PAGE_SIZE) {
             throw new InvalidArgumentException(
-                'page_size cannot be less than ' . static::MIN_PAGE_SIZE
+                'Page Size cannot be less than ' . static::MIN_PAGE_SIZE
             );
         }
-        
+
         if ($pageSize > static::MAX_PAGE_SIZE) {
             throw new InvalidArgumentException(
-                'page_size cannot be greater than ' . static::MAX_PAGE_SIZE
+                'Page Size cannot be greater than ' . static::MAX_PAGE_SIZE
             );
         }
-        
+
         $this->pageSize = $pageSize;
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getReturnFormat()
+    {
+        return $this->returnFormat;
+    }
+
     /**
      * Set return format
      *
      * @param string $format
      * @throws InvalidArgumentException
      */
-    private function setReturnFormat($format)
+    public function setReturnFormat($format)
     {
         if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('return_format is not a valid format');
+            throw new InvalidArgumentException('Return Format is not a valid format');
         }
         $this->returnFormat = $format;
     }
-    
+
     /**
-     * Set fields
-     *
-     * @param array $fields
+     * @return string
      */
-    private function setFields(array $fields)
+    public function getDocParId()
     {
-        $this->fields = $fields;
+        return $this->docParId;
+    }
+
+    /**
+     * @param string $docParId
+     */
+    public function setDocParId($docParId)
+    {
+        $this->docParId = $docParId;
+    }
+
+    public function __construct($controlId = null)
+    {
+        parent::__construct($controlId);
+
+        $this->setPageSize(static::DEFAULT_PAGE_SIZE);
+        $this->setReturnFormat(static::DEFAULT_RETURN_FORMAT);
     }
     
     /**
@@ -150,7 +193,7 @@ class ReadByQuery extends AbstractFunction
      *
      * @return string
      */
-    private function getFields()
+    private function writeXmlFields()
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -159,30 +202,6 @@ class ReadByQuery extends AbstractFunction
         }
         
         return $fields;
-    }
-
-    /**
-     * Set query
-     *
-     * @param string $query
-     * @throws InvalidArgumentException
-     */
-    private function setQuery($query)
-    {
-        if (is_string($query) === false) {
-            throw new InvalidArgumentException('query must be a string');
-        }
-        $this->query = $query;
-    }
-
-    /**
-     * Set doc par ID
-     *
-     * @param string $docParId
-     */
-    private function setDocParId($docParId)
-    {
-        $this->docParId = $docParId;
     }
 
     /**
@@ -197,12 +216,12 @@ class ReadByQuery extends AbstractFunction
         
         $xml->startElement('readByQuery');
         
-        $xml->writeElement('object', $this->objectName, true);
-        $xml->writeElement('query', $this->query, true);
-        $xml->writeElement('fields', $this->getFields());
-        $xml->writeElement('pagesize', $this->pageSize);
-        $xml->writeElement('returnFormat', $this->returnFormat);
-        $xml->writeElement('docparid', $this->docParId);
+        $xml->writeElement('object', $this->getObjectName(), true);
+        $xml->writeElement('query', $this->getQuery(), true);
+        $xml->writeElement('fields', $this->writeXmlFields());
+        $xml->writeElement('pagesize', $this->getPageSize());
+        $xml->writeElement('returnFormat', $this->getReturnFormat());
+        $xml->writeElement('docparid', $this->getDocParId());
         
         $xml->endElement(); //readByQuery
         

@@ -24,15 +24,6 @@ class ReadReportTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
-     * @covers Intacct\Functions\Common\ReadReport::setControlId
-     * @covers Intacct\Functions\Common\ReadReport::getControlId
-     * @covers Intacct\Functions\Common\ReadReport::setReportName
-     * @covers Intacct\Functions\Common\ReadReport::setListSeparator
-     * @covers Intacct\Functions\Common\ReadReport::getListSeparator
-     * @covers Intacct\Functions\Common\ReadReport::setReturnDef
-     * @covers Intacct\Functions\Common\ReadReport::setArguments
-     * @covers Intacct\Functions\Common\ReadReport::setPageSize
-     * @covers Intacct\Functions\Common\ReadReport::setReturnFormat
      * @covers Intacct\Functions\Common\ReadReport::writeXml
      */
     public function testDefaultParams()
@@ -55,10 +46,9 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readReport = new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+
         $readReport->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -66,14 +56,6 @@ EOF;
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
-     * @covers Intacct\Functions\Common\ReadReport::setReportName
-     * @covers Intacct\Functions\Common\ReadReport::setControlId
-     * @covers Intacct\Functions\Common\ReadReport::getControlId
-     * @covers Intacct\Functions\Common\ReadReport::setPageSize
-     * @covers Intacct\Functions\Common\ReadReport::setReturnFormat
-     * @covers Intacct\Functions\Common\ReadReport::setWaitTime
-     * @covers Intacct\Functions\Common\ReadReport::setListSeparator
-     * @covers Intacct\Functions\Common\ReadReport::getListSeparator
      * @covers Intacct\Functions\Common\ReadReport::writeXml
      */
     public function testParamOverrides()
@@ -97,14 +79,13 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readReport = new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 200,
-            'return_format' => 'xml',
-            'wait_time' => 15,
-            'list_separator' => ',',
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setPageSize(200);
+        $readReport->setReturnFormat('xml');
+        $readReport->setWaitTime(15);
+        $readReport->setListSeparator(',');
+
         $readReport->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -113,148 +94,126 @@ EOF;
     /**
      * @covers Intacct\Functions\Common\ReadReport::setReportName
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage report must be a string
+     * @expectedExceptionMessage Report Name must be a string
      */
     public function testInvalidReport()
     {
-        new ReadReport([
-            'control_id' => 'unittest',
-            'report' => 43645346347124757
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName(43645346347124757);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "report" key not supplied in params
+     * @expectedExceptionMessage Report Name is required for read report
      */
     public function testNoReport()
     {
-        new ReadReport([
-            'control_id' => 'unittest',
-        ]);
-    }
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
 
+        $readReport = new ReadReport('unittest');
+        //$readReport->setReportName('TestBill Date Runtime');
+
+        $readReport->writeXml($xml);
+    }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size not valid int type
+     * @expectedExceptionMessage Page Size not valid int type
      */
     public function testInvalidPageSize()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => '200',
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setPageSize('200');
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be less than 1
+     * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 0,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setPageSize(0);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setPageSize
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page_size cannot be greater than 1000
+     * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
     public function testMaxPageSize()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'page_size' => 1001,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setPageSize(1001);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setWaitTime
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage wait_time not valid int type
+     * @expectedExceptionMessage Wait Time not valid int type
      */
     public function testInvalidWaitTime()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'wait_time' => '1',
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setWaitTime('1');
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setWaitTime
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage wait_time cannot be less than 0
+     * @expectedExceptionMessage Wait Time cannot be less than 0
      */
     public function testMinWaitTime()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'wait_time' => -1,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setWaitTime(-1);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setWaitTime
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage wait_time cannot be greater than 30
+     * @expectedExceptionMessage Wait Time cannot be greater than 30
      */
     public function testMaxWaitTime()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'wait_time' => 31,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setWaitTime(31);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testInvalidReturnFormat()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'return_format' => ''
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReturnFormat('bad');
     }
-
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::setListSeparator
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage list_separator must be a string
+     * @expectedExceptionMessage List Separator must be a string
      */
     public function testInvalidListSeparator()
     {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'list_separator' => null,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setListSeparator(true);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
-     * @covers Intacct\Functions\Common\ReadReport::setControlId
-     * @covers Intacct\Functions\Common\ReadReport::setReportName
-     * @covers Intacct\Functions\Common\ReadReport::setReturnDef
-     * @covers Intacct\Functions\Common\ReadReport::getReturnDef
      * @covers Intacct\Functions\Common\ReadReport::writeXml
      */
     public function testReturnDef()
@@ -274,36 +233,17 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readReport = new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'return_def' => true,
-        ]);
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setReturnDef(true);
+
         $readReport->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadReport::setReturnDef
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_def must be a bool
-     */
-    public function testInvalidReturnDef()
-    {
-        new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'return_def' => null,
-        ]);
-    }
-
-    /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
-     * @covers Intacct\Functions\Common\ReadReport::setControlId
-     * @covers Intacct\Functions\Common\ReadReport::setReportName
-     * @covers Intacct\Functions\Common\ReadReport::setReturnDef
-     * @covers Intacct\Functions\Common\ReadReport::getReturnDef
      * @covers Intacct\Functions\Common\ReadReport::writeXml
      */
     public function testComplexArguments()
@@ -332,28 +272,22 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readReport = new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'arguments' => [
-                'APBILL.TEST_DATE' => [
-                    'FROM_DATE' => '1/1/2014',
-                    'TO_DATE' => '12/31/2016'
-                ]
-            ],
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setArguments([
+            'APBILL.TEST_DATE' => [
+                'FROM_DATE' => '1/1/2014',
+                'TO_DATE' => '12/31/2016'
+            ]
         ]);
+
         $readReport->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-
     /**
      * @covers Intacct\Functions\Common\ReadReport::__construct
-     * @covers Intacct\Functions\Common\ReadReport::setControlId
-     * @covers Intacct\Functions\Common\ReadReport::setReportName
-     * @covers Intacct\Functions\Common\ReadReport::setReturnDef
-     * @covers Intacct\Functions\Common\ReadReport::getReturnDef
      * @covers Intacct\Functions\Common\ReadReport::writeXml
      */
     public function testSimpleArguments()
@@ -379,13 +313,12 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readReport = new ReadReport([
-            'report' => 'TestBill Date Runtime',
-            'control_id' => 'unittest',
-            'arguments' => [
-                'REPORTINGPERIOD' => 'Current Year'
-            ],
+        $readReport = new ReadReport('unittest');
+        $readReport->setReportName('TestBill Date Runtime');
+        $readReport->setArguments([
+            'REPORTINGPERIOD' => 'Current Year'
         ]);
+
         $readReport->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

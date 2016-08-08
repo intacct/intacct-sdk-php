@@ -23,12 +23,6 @@ abstract class AbstractAccountLabel extends AbstractFunction
 {
 
     /** @var string */
-    protected $accountLabel;
-
-    /** @var string */
-    protected $expenseType;
-
-    /** @var string */
     protected $description;
 
     /** @var string */
@@ -37,9 +31,70 @@ abstract class AbstractAccountLabel extends AbstractFunction
     /** @var string */
     protected $offsetGlAccountNo;
 
-    /** @var string */
-    protected $itemId;
-
     /** @var bool */
     protected $active;
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGlAccountNo()
+    {
+        return $this->glAccountNo;
+    }
+
+    /**
+     * @param string $glAccountNo
+     */
+    public function setGlAccountNo($glAccountNo)
+    {
+        $this->glAccountNo = $glAccountNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOffsetGlAccountNo()
+    {
+        return $this->offsetGlAccountNo;
+    }
+
+    /**
+     * @param string $offsetGlAccountNo
+     */
+    public function setOffsetGlAccountNo($offsetGlAccountNo)
+    {
+        $this->offsetGlAccountNo = $offsetGlAccountNo;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 }

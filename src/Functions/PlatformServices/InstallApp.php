@@ -28,42 +28,22 @@ class InstallApp extends AbstractFunction
     private $xmlFilename;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $xml_filename XML filename to use for install
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getXmlFilename()
     {
-        $defaults = [
-            'xml_filename' => null,
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-        
-        $this->setXmlFilename($config['xml_filename']);
+        return $this->xmlFilename;
     }
     
     /**
-     * Set XML filename
-     *
      * @param string $xmlFilename
      * @throws InvalidArgumentException
      */
-    private function setXmlFilename($xmlFilename)
+    public function setXmlFilename($xmlFilename)
     {
-        if (!$xmlFilename) {
-            throw new InvalidArgumentException(
-                'Required xml_filename is missing'
-            );
-        }
         if (!is_readable($xmlFilename)) {
             throw new InvalidArgumentException(
-                'xml_filename is not readable'
+                'XML Filename is not readable'
             );
         }
         
@@ -71,7 +51,7 @@ class InstallApp extends AbstractFunction
     }
     
     /**
-     * Write the installApp block XML
+     * Write the function block XML
      *
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
@@ -84,13 +64,16 @@ class InstallApp extends AbstractFunction
         
         $xml->startElement('installApp');
         $xml->startElement('appxml');
-        
-        if (!is_readable($this->xmlFilename)) {
+
+        if (!$this->getXmlFilename()) {
+            throw new InvalidArgumentException('XML Filename is required for install');
+        }
+        if (!is_readable($this->getXmlFilename())) {
             throw new InvalidArgumentException(
-                'xml_filename is not readable for installApp'
+                'XML Filename is not readable for install'
             );
         }
-        $xml->writeCdata(file_get_contents($this->xmlFilename));
+        $xml->writeCdata(file_get_contents($this->getXmlFilename()));
         
         $xml->endElement(); //appxml
         $xml->endElement(); //installApp

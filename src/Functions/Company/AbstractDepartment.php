@@ -42,4 +42,100 @@ abstract class AbstractDepartment extends AbstractFunction
 
     /** @var bool */
     protected $active;
+
+    /**
+     * @return string
+     */
+    public function getDepartmentId()
+    {
+        return $this->departmentId;
+    }
+
+    /**
+     * @param string $departmentId
+     */
+    public function setDepartmentId($departmentId)
+    {
+        $this->departmentId = $departmentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartmentName()
+    {
+        return $this->departmentName;
+    }
+
+    /**
+     * @param string $departmentName
+     */
+    public function setDepartmentName($departmentName)
+    {
+        $this->departmentName = $departmentName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentDepartmentId()
+    {
+        return $this->parentDepartmentId;
+    }
+
+    /**
+     * @param string $parentDepartmentId
+     */
+    public function setParentDepartmentId($parentDepartmentId)
+    {
+        $this->parentDepartmentId = $parentDepartmentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getManagerEmployeeId()
+    {
+        return $this->managerEmployeeId;
+    }
+
+    /**
+     * @param string $managerEmployeeId
+     */
+    public function setManagerEmployeeId($managerEmployeeId)
+    {
+        $this->managerEmployeeId = $managerEmployeeId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartmentTitle()
+    {
+        return $this->departmentTitle;
+    }
+
+    /**
+     * @param string $departmentTitle
+     */
+    public function setDepartmentTitle($departmentTitle)
+    {
+        $this->departmentTitle = $departmentTitle;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 }

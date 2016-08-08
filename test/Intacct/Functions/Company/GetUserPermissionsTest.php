@@ -17,14 +17,10 @@
 namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class GetUserPermissionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Company\GetUserPermissions::__construct
-     * @covers Intacct\Functions\Company\GetUserPermissions::setControlId
-     * @covers Intacct\Functions\Company\GetUserPermissions::getControlId
      * @covers Intacct\Functions\Company\GetUserPermissions::writeXml
      */
     public function testDefaultParams()
@@ -33,7 +29,7 @@ class GetUserPermissionTest extends \PHPUnit_Framework_TestCase
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
     <getUserPermissions>
-        <userId>U2398598234</userId>
+        <userId>helloworld</userId>
     </getUserPermissions>
 </function>
 EOF;
@@ -44,29 +40,11 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $userPermissions = new GetUserPermissions([
-            'user_id' => 'U2398598234',
-            'control_id' => 'unittest',
-        ]);
+        $userPermissions = new GetUserPermissions('unittest');
+        $userPermissions->setUserId('helloworld');
+
         $userPermissions->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @covers Intacct\Functions\Company\GetUserPermissions::__construct
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "user_id" key not supplied in params
-     */
-    public function testNoUserId()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        new GetUserPermissions([
-        ]);
     }
 }

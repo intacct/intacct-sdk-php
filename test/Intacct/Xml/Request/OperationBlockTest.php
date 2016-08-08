@@ -54,9 +54,7 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest'
-        ]);
+        $func = new GetAPISession('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -100,9 +98,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest',
-        ]);
+        $func = new GetAPISession('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -149,9 +145,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest',
-        ]);
+        $func = new GetAPISession('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF

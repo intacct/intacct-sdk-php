@@ -31,27 +31,35 @@ class Inspect extends AbstractFunction
     private $showDetail;
 
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var string $object Object name to query
-     *      @var bool $show_detail Show object and field detail
-     * }
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function __construct(array $params = [])
+    public function getObjectName()
     {
-        $defaults = [
-            'show_detail' => false,
-            'object' => null,
-        ];
-        $config = array_merge($defaults, $params);
+        return $this->objectName;
+    }
 
-        parent::__construct($config);
+    /**
+     * @param string $objectName
+     */
+    public function setObjectName($objectName)
+    {
+        $this->objectName = $objectName;
+    }
 
-        $this->showDetail = $config['show_detail'];
-        $this->objectName = $config['object'];
+    /**
+     * @return boolean
+     */
+    public function isShowDetail()
+    {
+        return $this->showDetail;
+    }
+
+    /**
+     * @param boolean $showDetail
+     */
+    public function setShowDetail($showDetail)
+    {
+        $this->showDetail = $showDetail;
     }
     
     /**
@@ -61,7 +69,7 @@ class Inspect extends AbstractFunction
      */
     private function writeXmlShowDetail()
     {
-        return $this->showDetail === true ? '1' : '0';
+        return $this->isShowDetail() === true ? '1' : '0';
     }
     
     /**
@@ -77,7 +85,7 @@ class Inspect extends AbstractFunction
         $xml->startElement('inspect');
         $xml->writeAttribute('detail', $this->writeXmlShowDetail());
         
-        $xml->writeElement('object', $this->objectName, true);
+        $xml->writeElement('object', $this->getObjectName(), true);
         
         $xml->endElement(); //inspect
         

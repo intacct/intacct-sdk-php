@@ -22,11 +22,6 @@ use InvalidArgumentException;
 class ReadRelatedTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::__construct
-     * @covers Intacct\Functions\Common\ReadRelated::setKeys
-     * @covers Intacct\Functions\Common\ReadRelated::setReturnFormat
-     * @covers Intacct\Functions\Common\ReadRelated::getFieldsForXml
-     * @covers Intacct\Functions\Common\ReadRelated::getKeysForXml
      * @covers Intacct\Functions\Common\ReadRelated::writeXml
      */
     public function testDefaultParams()
@@ -39,7 +34,6 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
         <relation>CUSTOM_OBJECT_ITEM</relation>
         <keys/>
         <fields>*</fields>
-        <returnFormat>xml</returnFormat>
     </readRelated>
 </function>
 EOF;
@@ -50,11 +44,9 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readRelated = new ReadRelated([
-            'object' => 'CUSTOM_OBJECT',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-            'control_id' => 'unittest',
-        ]);
+        $readRelated = new ReadRelated('unittest');
+        $readRelated->setObjectName('CUSTOM_OBJECT');
+        $readRelated->setRelationName('CUSTOM_OBJECT_ITEM');
 
         $readRelated->writeXml($xml);
 
@@ -62,11 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::__construct
-     * @covers Intacct\Functions\Common\ReadRelated::setKeys
-     * @covers Intacct\Functions\Common\ReadRelated::setReturnFormat
-     * @covers Intacct\Functions\Common\ReadRelated::getFieldsForXml
-     * @covers Intacct\Functions\Common\ReadRelated::getKeysForXml
      * @covers Intacct\Functions\Common\ReadRelated::writeXml
      */
     public function testParamOverrides()
@@ -90,62 +77,58 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $readRelated = new ReadRelated([
-            'object' => 'CUSTOM_OBJECT',
-            'control_id' => 'unittest',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-            'keys' => ['KEY1','KEY2'],
-            'fields' => ['FIELD1','FIELD2'],
-            'return_format' => 'xml',
-        ]);
+        $readRelated = new ReadRelated('unittest');
+        $readRelated->setObjectName('CUSTOM_OBJECT');
+        $readRelated->setRelationName('CUSTOM_OBJECT_ITEM');
+        $readRelated->setKeys(['KEY1','KEY2']);
+        $readRelated->setFields(['FIELD1','FIELD2']);
+        $readRelated->setReturnFormat('xml');
+
         $readRelated->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::__construct
+     * @covers Intacct\Functions\Common\ReadRelated::writeXml
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "relation" key not supplied in params
+     * @expectedExceptionMessage Relation Name is required for read related
      */
     public function testNoRelation()
     {
-        new ReadRelated([
-            'control_id' => 'unittest',
-            'object' => 'CUSTOM_OBJECT',
-        ]);
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $read = new ReadRelated('unittest');
+        $read->setObjectName('CUSTOM_OBJECT');
+
+        $read->writeXml($xml);
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadRelated::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testInvalidReturnFormat()
     {
-        new ReadRelated([
-            'object' => 'CUSTOM_OBJECT',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-            'control_id' => 'unittest',
-            'return_format' => ''
-        ]);
+        $read = new ReadRelated('unittest');
+        $read->setReturnFormat('bad');
     }
 
     /**
      * @covers Intacct\Functions\Common\ReadRelated::setKeys
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage keys count cannot exceed 100
+     * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testMaxNumberOfKeys()
     {
         $keys = new \SplFixedArray(101);
 
-        new ReadRelated([
-            'object' => 'CUSTOM_OBJECT',
-            'relation' => 'CUSTOM_OBJECT_ITEM',
-            'control_id' => 'unittest',
-            'fields' => ['FIELD1','FIELD2'],
-            'keys' => $keys->toArray(),
-        ]);
+        $read = new ReadRelated('unittest');
+        $read->setKeys($keys->toArray());
     }
 }

@@ -23,23 +23,6 @@ class GetAPISession extends AbstractFunction
 {
     
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     * }
-     */
-    public function __construct(array $params = [])
-    {
-        $defaults = [
-            // nothing to see here
-        ];
-        $config = array_merge($defaults, $params);
-
-        parent::__construct($config);
-    }
-    
-    /**
      * Write the getAPISession block XML
      *
      * @param XMLWriter $xml

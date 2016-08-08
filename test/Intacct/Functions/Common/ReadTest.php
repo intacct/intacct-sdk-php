@@ -23,11 +23,6 @@ use InvalidArgumentException;
 class ReadTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Common\Read::__construct
-     * @covers Intacct\Functions\Common\Read::setReturnFormat
-     * @covers Intacct\Functions\Common\Read::setKeys
-     * @covers Intacct\Functions\Common\Read::getFieldsForXml
-     * @covers Intacct\Functions\Common\Read::getKeysForXml
      * @covers Intacct\Functions\Common\Read::writeXml
      */
     public function testDefaultParams()
@@ -39,7 +34,6 @@ class ReadTest extends \PHPUnit_Framework_TestCase
         <object>CLASS</object>
         <keys></keys>
         <fields>*</fields>
-        <returnFormat>xml</returnFormat>
     </read>
 </function>
 EOF;
@@ -50,21 +44,15 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $read = new Read([
-            'object' => 'CLASS',
-            'control_id' => 'unittest'
-        ]);
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+
         $read->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\Read::__construct
-     * @covers Intacct\Functions\Common\Read::setReturnFormat
-     * @covers Intacct\Functions\Common\Read::setKeys
-     * @covers Intacct\Functions\Common\Read::getFieldsForXml
-     * @covers Intacct\Functions\Common\Read::getKeysForXml
      * @covers Intacct\Functions\Common\Read::writeXml
      */
     public function testParamOverrides()
@@ -77,7 +65,7 @@ EOF;
         <keys>Key1,Key2</keys>
         <fields>Field1,Field2</fields>
         <returnFormat>xml</returnFormat>
-        <docparid>0293jgi823j4iof2w</docparid>
+        <docparid>Sales Invoice</docparid>
     </read>
 </function>
 EOF;
@@ -88,21 +76,19 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $read = new Read([
-            'object' => 'CLASS',
-            'control_id' => 'unittest',
-            'return_format' => 'xml',
-            'fields' => [
-                'Field1',
-                'Field2',
-            ],
-            'keys' => [
-                'Key1',
-                'Key2',
-            ],
-            'doc_par_id' => '0293jgi823j4iof2w',
-
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+        $read->setReturnFormat('xml');
+        $read->setFields([
+            'Field1',
+            'Field2',
         ]);
+        $read->setKeys([
+            'Key1',
+            'Key2',
+        ]);
+        $read->setDocParId('Sales Invoice');
+
         $read->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -111,39 +97,31 @@ EOF;
     /**
      * @covers Intacct\Functions\Common\Read::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testReturnFormatJson()
     {
-        new Read([
-            'object' => 'CLASS',
-            'keys' => [
-                '5'
-            ],
-            'return_format' => 'json',
-        ]);
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+        $read->setReturnFormat('json');
     }
 
     /**
      * @covers Intacct\Functions\Common\Read::setReturnFormat
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage return_format is not a valid format
+     * @expectedExceptionMessage Return Format is not a valid format
      */
     public function testReturnFormatCsv()
     {
-        new Read([
-            'object' => 'CLASS',
-            'keys' => [
-                '5'
-            ],
-            'return_format' => 'csv',
-        ]);
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+        $read->setReturnFormat('csv');
     }
 
     /**
      * @covers Intacct\Functions\Common\Read::setKeys
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage keys count cannot exceed 100
+     * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testTooManyKeys()
     {
@@ -152,17 +130,16 @@ EOF;
             $keys[] = $i;
         }
 
-        new Read([
-            'object' => 'CLASS',
-            'keys' => $keys,
-        ]);
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+        $read->setKeys($keys);
     }
 
     /**
      * @covers Intacct\Functions\Common\Read::setKeys
-     * @covers Intacct\Functions\Common\Read::getKeysForXml
+     * @covers Intacct\Functions\Common\Read::writeXmlKeys
      */
-    public function testGetKeysForXml()
+    public function testWriteXmlKeys()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -171,7 +148,6 @@ EOF;
         <object>CLASS</object>
         <keys>5,6</keys>
         <fields>*</fields>
-        <returnFormat>xml</returnFormat>
     </read>
 </function>
 EOF;
@@ -182,14 +158,13 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $read = new Read([
-            'object' => 'CLASS',
-            'keys' => [
-                '5',
-                '6',
-            ],
-            'control_id' => 'unittest'
+        $read = new Read('unittest');
+        $read->setObjectName('CLASS');
+        $read->setKeys([
+            '5',
+            '6',
         ]);
+
         $read->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
