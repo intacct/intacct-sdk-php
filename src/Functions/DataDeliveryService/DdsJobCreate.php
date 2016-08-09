@@ -22,7 +22,7 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class RunDdsJob extends AbstractFunction
+class DdsJobCreate extends AbstractFunction
 {
 
     /** @var array */

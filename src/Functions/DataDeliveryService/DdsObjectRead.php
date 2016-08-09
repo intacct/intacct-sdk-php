@@ -20,27 +20,8 @@ namespace Intacct\Functions\DataDeliveryService;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
-class GetDdsDdl extends AbstractFunction
+class DdsObjectRead extends AbstractFunction
 {
-
-    /** @var string */
-    private $objectName;
-
-    /**
-     * @return string
-     */
-    public function getObjectName()
-    {
-        return $this->objectName;
-    }
-
-    /**
-     * @param string $objectName
-     */
-    public function setObjectName($objectName)
-    {
-        $this->objectName = $objectName;
-    }
 
     /**
      * Write the function block XML
@@ -52,11 +33,9 @@ class GetDdsDdl extends AbstractFunction
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('getDdsDdl');
+        $xml->startElement('getDdsObjects');
 
-        $xml->writeElement('object', $this->getObjectName(), true);
-
-        $xml->endElement(); //getDdsDdl
+        $xml->endElement(); //getDdsObjects
 
         $xml->endElement(); //function
     }

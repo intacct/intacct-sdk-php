@@ -19,11 +19,11 @@ namespace Intacct\Functions\PlatformServices;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class InstallAppTest extends \PHPUnit_Framework_TestCase
+class ApplicationInstallTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\PlatformServices\InstallApp::writeXml
+     * @covers Intacct\Functions\PlatformServices\ApplicationInstall::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage XML Filename is required for install
      */
@@ -35,7 +35,7 @@ class InstallAppTest extends \PHPUnit_Framework_TestCase
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $app = new InstallApp('unittest');
+        $app = new ApplicationInstall('unittest');
         //$app->setXmlFilename('app.xml');
 
         $app->writeXml($xml);

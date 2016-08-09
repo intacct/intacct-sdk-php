@@ -19,18 +19,20 @@ namespace Intacct\Functions\DataDeliveryService;
 
 use Intacct\Xml\XMLWriter;
 
-class GetDdsObjectsTest extends \PHPUnit_Framework_TestCase
+class DdsObjectDdlReadTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\GetDdsObjects::writeXml
+     * @covers Intacct\Functions\DataDeliveryService\DdsObjectDdlRead::writeXml
      */
     public function testDefaultParams()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <getDdsObjects/>
+    <getDdsDdl>
+        <object>GLACCOUNT</object>
+    </getDdsDdl>
 </function>
 EOF;
 
@@ -40,9 +42,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $objects = new GetDdsObjects('unittest');
+        $ddl = new DdsObjectDdlRead('unittest');
+        $ddl->setObjectName('GLACCOUNT');
 
-        $objects->writeXml($xml);
+        $ddl->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }

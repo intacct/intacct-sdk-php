@@ -21,7 +21,7 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class InstallApp extends AbstractFunction
+class ApplicationInstall extends AbstractFunction
 {
     
     /** @var string */
