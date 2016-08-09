@@ -18,11 +18,11 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
-class GetAPISessionTest extends \PHPUnit_Framework_TestCase
+class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var GetAPISession
+     * @var ApiSessionCreate
      */
     protected $object;
 
@@ -32,7 +32,7 @@ class GetAPISessionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new GetAPISession('unittest');
+        $this->object = new ApiSessionCreate('unittest');
     }
 
     /**
@@ -44,8 +44,8 @@ class GetAPISessionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Functions\GetAPISession::__construct
-     * @covers Intacct\Functions\GetAPISession::writeXml
+     * @covers Intacct\Functions\ApiSessionCreate::__construct
+     * @covers Intacct\Functions\ApiSessionCreate::writeXml
      */
     public function testWriteXml()
     {

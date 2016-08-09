@@ -19,7 +19,7 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
-class GetAPISession extends AbstractFunction
+class ApiSessionCreate extends AbstractFunction
 {
     
     /**

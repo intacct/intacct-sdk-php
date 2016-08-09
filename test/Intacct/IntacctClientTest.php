@@ -20,7 +20,7 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Content;
-use Intacct\Functions\GetAPISession;
+use Intacct\Functions\ApiSessionCreate;
 
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -227,7 +227,7 @@ EOF;
         ];
 
         $content = new Content([
-            new GetAPISession('func1UnitTest')
+            new ApiSessionCreate('func1UnitTest')
         ]);
 
         $client = $this->client; //grab the setUp object
@@ -271,7 +271,7 @@ EOF;
         ];
 
         $content = new Content([
-            new GetAPISession('func1UnitTest')
+            new ApiSessionCreate('func1UnitTest')
         ]);
 
         $client = $this->client; //grab the setUp object

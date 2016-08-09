@@ -21,7 +21,7 @@ namespace Intacct\Xml;
 use Intacct\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Functions\GetAPISession;
+use Intacct\Functions\ApiSessionCreate;
 use InvalidArgumentException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -279,7 +279,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -334,7 +334,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -364,7 +364,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -427,7 +427,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -465,7 +465,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -493,7 +493,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);
@@ -564,7 +564,7 @@ EOF;
         ];
 
         $contentBlock = new Content([
-            new GetAPISession(),
+            new ApiSessionCreate(),
         ]);
 
         $requestHandler = new RequestHandler($config);

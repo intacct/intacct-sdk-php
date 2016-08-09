@@ -18,7 +18,7 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Content;
-use Intacct\Functions\GetAPISession;
+use Intacct\Functions\ApiSessionCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -54,7 +54,7 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession('unittest');
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -98,7 +98,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession('unittest');
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -145,7 +145,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession('unittest');
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -188,7 +188,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession();
+        $func = new ApiSessionCreate();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
     }
@@ -208,7 +208,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession();
+        $func = new ApiSessionCreate();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
     }
