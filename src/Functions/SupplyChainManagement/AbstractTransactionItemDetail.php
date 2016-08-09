@@ -19,7 +19,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Fields\Date;
 
-abstract class AbstractItemDetail
+abstract class AbstractTransactionItemDetail
 {
     
     /** @var string */

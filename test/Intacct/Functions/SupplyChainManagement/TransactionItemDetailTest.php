@@ -20,11 +20,11 @@ namespace Intacct\Functions\SupplyChainManagement;
 use Intacct\Fields\Date;
 use Intacct\Xml\XMLWriter;
 
-class ItemDetailTest extends \PHPUnit_Framework_TestCase
+class TransactionItemDetailTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\SupplyChainManagement\ItemDetail::writeXml
+     * @covers Intacct\Functions\SupplyChainManagement\TransactionItemDetail::writeXml
      */
     public function testDefaultParams()
     {
@@ -47,7 +47,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $itemDetail = new ItemDetail();
+        $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(5523);
         $itemDetail->setLotNumber('223');
         $itemDetail->setItemExpiration(new Date('2017-12-31'));
@@ -58,7 +58,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\SupplyChainManagement\ItemDetail::writeXml
+     * @covers Intacct\Functions\SupplyChainManagement\TransactionItemDetail::writeXml
      *
      */
     public function testParamsOverrides()
@@ -80,7 +80,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $itemDetail = new ItemDetail();
+        $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(15325);
         $itemDetail->setSerialNumber('S2355235');
         $itemDetail->setAisle('55');

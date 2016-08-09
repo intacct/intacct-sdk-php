@@ -19,7 +19,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
 
-class ItemDetail extends AbstractItemDetail
+class TransactionItemDetail extends AbstractTransactionItemDetail
 {
 
     /**

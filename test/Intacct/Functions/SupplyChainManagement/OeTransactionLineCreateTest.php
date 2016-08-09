@@ -142,7 +142,7 @@ EOF;
         $entry->setClassId('243609');
         $entry->setContractId('9062');
 
-        $itemDetail1 = new ItemDetail();
+        $itemDetail1 = new TransactionItemDetail();
         $itemDetail1->setQuantity(52);
         $itemDetail1->setLotNumber('3243');
 
