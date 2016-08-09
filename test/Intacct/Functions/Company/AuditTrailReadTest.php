@@ -19,11 +19,11 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 
-class GetAuditTrailTest extends \PHPUnit_Framework_TestCase
+class AuditTrailReadTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Company\GetAuditTrail::writeXml
+     * @covers Intacct\Functions\Company\AuditTrailRead::writeXml
      */
     public function testConstruct()
     {
@@ -43,7 +43,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $getAuditTrail = new GetAuditTrail('unittest');
+        $getAuditTrail = new AuditTrailRead('unittest');
         $getAuditTrail->setObjectName('GLENTRY');
         $getAuditTrail->setObjectKey('GLENTRY123');
 

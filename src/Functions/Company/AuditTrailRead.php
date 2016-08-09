@@ -20,7 +20,7 @@ namespace Intacct\Functions\Company;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
-class GetAuditTrail extends AbstractFunction
+class AuditTrailRead extends AbstractFunction
 {
 
     /** @var string */
