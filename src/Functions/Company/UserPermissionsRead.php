@@ -20,7 +20,7 @@ namespace Intacct\Functions\Company;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
-class GetUserPermissions extends AbstractFunction
+class UserPermissionsRead extends AbstractFunction
 {
 
     /** @var string */

@@ -18,10 +18,10 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 
-class GetUserPermissionTest extends \PHPUnit_Framework_TestCase
+class UserPermissionsReadTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Company\GetUserPermissions::writeXml
+     * @covers Intacct\Functions\Company\UserPermissionsRead::writeXml
      */
     public function testDefaultParams()
     {
@@ -40,7 +40,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $userPermissions = new GetUserPermissions('unittest');
+        $userPermissions = new UserPermissionsRead('unittest');
         $userPermissions->setUserId('helloworld');
 
         $userPermissions->writeXml($xml);
