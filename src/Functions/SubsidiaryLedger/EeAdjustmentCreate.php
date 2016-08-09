@@ -39,7 +39,7 @@ class EeAdjustmentCreate extends AbstractEeAdjustment
         $xml->writeElement('employeeid', $this->getEmployeeId(), true);
 
         $xml->startElement('datecreated');
-        $xml->writeDateSplitElements($this->getTransactionDate());
+        $xml->writeDateSplitElements($this->getTransactionDate(), true);
         $xml->endElement(); //datecreated
 
         if ($this->getGlPostingDate()) {
@@ -55,7 +55,7 @@ class EeAdjustmentCreate extends AbstractEeAdjustment
         $xml->writeElement('basecurr', $this->getBaseCurrency());
         $xml->writeElement('currency', $this->getReimbursementCurrency());
 
-        // TODO: Current schema does not allow custom fields
+        // Current schema does not allow custom fields
         // $this->writeXmlExplicitCustomFields($xml);
 
         $xml->startElement('expenseadjustments');

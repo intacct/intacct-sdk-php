@@ -165,22 +165,6 @@ class AbstractEeAdjustmentLine
     }
 
     /**
-     * @return boolean
-     */
-    public function isForm1099()
-    {
-        return $this->form1099;
-    }
-
-    /**
-     * @param boolean $form1099
-     */
-    public function setForm1099($form1099)
-    {
-        $this->form1099 = $form1099;
-    }
-
-    /**
      * @return string
      */
     public function getMemo()

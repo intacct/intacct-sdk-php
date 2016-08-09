@@ -19,9 +19,6 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
-/**
- * @todo add unit tests
- */
 class EeAdjustmentLineCreate extends AbstractEeAdjustmentLine
 {
 
@@ -41,8 +38,8 @@ class EeAdjustmentLineCreate extends AbstractEeAdjustmentLine
         }
 
         $xml->writeElement('amount', $this->getReimbursementAmount(), true);
-        $xml->writeElement('currency', $this->getTransactionCurrency(), true);
-        $xml->writeElement('trx_amount', $this->getTransactionAmount(), true);
+        $xml->writeElement('currency', $this->getTransactionCurrency());
+        $xml->writeElement('trx_amount', $this->getTransactionAmount());
 
         if ($this->getExchangeRateDate()) {
             $xml->startElement('exchratedate');

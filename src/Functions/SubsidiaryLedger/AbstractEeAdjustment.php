@@ -23,9 +23,9 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractEeAdjustment extends AbstractFunction
 {
-    //TODO add unit tests
 
-    use CustomFieldsTrait;
+    //Current schema does not allow custom fields
+    //use CustomFieldsTrait;
 
     /** @var Date */
     protected $transactionDate;

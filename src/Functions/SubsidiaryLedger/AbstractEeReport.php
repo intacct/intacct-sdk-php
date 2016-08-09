@@ -23,7 +23,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractEeReport extends AbstractFunction
 {
-    //TODO add unit tests
 
     use CustomFieldsTrait;
 
