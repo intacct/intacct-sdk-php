@@ -79,6 +79,7 @@ EOF;
     <employeeid>Employee1</employeeid>
     <itemid>Item1</itemid>
     <classid>Class1</classid>
+    <contractid>Contract1</contractid>
     <warehouseid>Warehouse1</warehouseid>
     <billable>true</billable>
 </lineitem>
@@ -108,6 +109,7 @@ EOF;
         $line->setEmployeeId('Employee1');
         $line->setItemId('Item1');
         $line->setClassId('Class1');
+        $line->setContractId('Contract1');
         $line->setWarehouseId('Warehouse1');
         $line->setCustomFields([
             'customfield1' => 'customvalue1',
