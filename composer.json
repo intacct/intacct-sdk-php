@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Intacct\\": "src/"
+            "Intacct\\": "src/Intacct/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Intacct\\Tests\\": "test/Intacct/"
+            "Intacct\\Tests\\": "test/"
         }
     }
 }
