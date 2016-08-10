@@ -17,7 +17,7 @@
 
 namespace Intacct;
 
-use GuzzleHttp\MessageFormatter;
+use Intacct\Logging\MessageFormatter;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
