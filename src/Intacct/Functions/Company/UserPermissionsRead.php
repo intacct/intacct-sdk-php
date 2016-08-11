@@ -20,6 +20,9 @@ namespace Intacct\Functions\Company;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Read a user's derived permissions
+ */
 class UserPermissionsRead extends AbstractFunction
 {
 

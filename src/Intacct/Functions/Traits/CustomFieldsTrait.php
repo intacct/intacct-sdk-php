@@ -22,10 +22,7 @@ use Intacct\Xml\XMLWriter;
 trait CustomFieldsTrait
 {
     
-    /**
-     *
-     * @var array
-     */
+    /** @var array */
     protected $customFields;
 
     /**

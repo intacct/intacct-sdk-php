@@ -22,13 +22,25 @@ use InvalidArgumentException;
 class Endpoint
 {
 
-    /** @var string */
+    /**
+     * Default endpoint
+     *
+     * @var string
+     */
     const DEFAULT_ENDPOINT = 'https://api.intacct.com/ia/xml/xmlgw.phtml';
     
-    /** @var string */
+    /**
+     * Endpoint URL environment name
+     *
+     * @var string
+     */
     const ENDPOINT_URL_ENV_NAME = 'INTACCT_ENDPOINT_URL';
     
-    /** @var string */
+    /**
+     * Intacct domain name
+     *
+     * @var string
+     */
     const DOMAIN_NAME = 'intacct.com';
 
     /** @var string */
@@ -40,10 +52,12 @@ class Endpoint
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $endpoint_url Endpoint URL
-     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
-     * }
+     * The constructor accepts the following options:
+     *
+     * - `endpoint_url` (string, default=string "https://api.intacct.com/ia/xml/xmlgw.phtml") Endpoint URL
+     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
+     *
+     * @param array $params Endpoint configuration options
      */
     public function __construct(array $params = [])
     {
@@ -57,7 +71,11 @@ class Endpoint
         $this->setVerifySSL($config['verify_ssl']);
     }
     
-    /** @return string */
+    /**
+     * Return the string representation of the current element
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->endpoint;

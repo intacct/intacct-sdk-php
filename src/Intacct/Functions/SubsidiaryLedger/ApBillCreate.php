@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new accounts payable bill record
+ */
 class ApBillCreate extends AbstractApBill
 {
 

@@ -55,24 +55,27 @@ class IntacctClient
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $company_id Intacct company ID
-     *      @var string $endpoint_url Endpoint URL
-     *      @var LoggerInterface $logger
-     *      @var MessageFormatter $log_formatter
-     *      @var int $log_level Log level to use, default=400
-     *      @var int $max_retries Max number of retries, default=5
-     *      @var int[] $no_retry_server_error_codes HTTP server error codes to abort
-     *          retrying if one occurs, default=[ 524 ]
-     *      @var string $profile_file Profile file to load from
-     *      @var string $profile_name Profile name to use
-     *      @var string $sender_id Intacct sender ID
-     *      @var string $sender_password Intacct sender password
-     *      @var string $session_id Intacct session ID
-     *      @var string $user_id Intacct user ID
-     *      @var string $user_password Intacct user password
-     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
-     * }
+     * The constructor accepts the following options:
+     *
+     * - `profile_name` (string, default=string "default") Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     * - `sender_id` (string) Intacct sender ID
+     * - `sender_password` (string) Intacct sender password
+     * - `session_id` (string) Intacct session ID
+     * - `endpoint_url` (string) Endpoint URL
+     * - `company_id` (string) Intacct company ID
+     * - `user_id` (string) Intacct user ID
+     * - `user_password` (string) Intacct user password
+     * - `max_retries` (int, default=int(5)) Max number of retries
+     * - `no_retry_server_error_codes` (int[], default=array(524)) HTTP server error codes to abort
+     * retrying if one occurs
+     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
+     * - `logger` (Psr\Log\LoggerInterface)
+     * - `log_formatter` (Intacct\Logging\MessageFormatter) Log formatter
+     * - `log_level` (int, default=int(400)) Log level
+     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
+     *
+     * @param array $params Client configuration options
      */
     public function __construct(array $params = [])
     {
@@ -165,7 +168,7 @@ class IntacctClient
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
      * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
-     * @param array $params Overriding params @see IntacctClient::__construct() for these
+     * @param array $params Overriding params, @see IntacctClient::__construct()
      *
      * @return SynchronousResponse
      */
@@ -205,7 +208,7 @@ class IntacctClient
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
      * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
-     * @param array $params Overriding params @see IntacctClient::__construct() for these
+     * @param array $params Overriding params, @see IntacctClient::__construct()
      *
      * @return AsynchronousResponse
      */

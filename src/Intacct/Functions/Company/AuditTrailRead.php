@@ -20,6 +20,9 @@ namespace Intacct\Functions\Company;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Read an audit trail
+ */
 class AuditTrailRead extends AbstractFunction
 {
 

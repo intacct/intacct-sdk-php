@@ -48,6 +48,20 @@ class SessionCredentials
     /**
      * Initializes the class with the given parameters.
      *
+     * The constructor accepts the following options:
+     *
+     * - `session_id` (string) Intacct session ID
+     * - `endpoint_url` (string) Endpoint URL
+     * - `current_company_id` (string) Current Intacct company ID
+     * - `current_user_id` (string) Current Intacct user ID
+     * - `current_user_is_external` (bool) Current Intacct user is external
+     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
+     *
+     * @param array $params Client configuration options
+     * @throws InvalidArgumentException
+     *
+     * Initializes the class with the given parameters.
+     *
      * @param array $params {
      *      @var string $endpoint_url Endpoint URL
      *      @var MockHandler $mock_handler Mock handler for unit testing

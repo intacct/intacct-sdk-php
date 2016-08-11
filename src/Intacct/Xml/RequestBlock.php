@@ -40,12 +40,11 @@ class RequestBlock
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $encoding Encoding to use, default=UTF-8
-     *      @see IntacctClient::__construct for more params
-     * }
-     * @param Content $contentBlock
+     * The constructor accepts the following options:
      *
+     * - `encoding` (string, default=string "UTF-8") Encoding to use
+     *
+     * @param array $params RequestBlock configuration options
      * @throws InvalidArgumentException
      */
     public function __construct(array $params, Content $contentBlock)

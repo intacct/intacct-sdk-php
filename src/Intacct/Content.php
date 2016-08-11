@@ -24,9 +24,9 @@ class Content extends ArrayIterator
 {
 
     /**
-     * Initializes the class with the given array of functions
+     * Initializes the class with the given array of FunctionInterface objects
      *
-     * @param array $functions
+     * @param FunctionInterface[] $functions
      * @todo this should be its own collection type object, don't like magic methods
      */
     public function __construct(array $functions = [])

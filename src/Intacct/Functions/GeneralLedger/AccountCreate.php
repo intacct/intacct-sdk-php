@@ -20,6 +20,9 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new account record
+ */
 class AccountCreate extends AbstractAccount
 {
 

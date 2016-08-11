@@ -20,6 +20,9 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing project record
+ */
 class ProjectUpdate extends AbstractProject
 {
 

@@ -57,13 +57,16 @@ class LoginCredentials
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $company_id Intacct company ID
-     *      @var MockHandler $mock_handler Mock handler for unit testing
-     *      @var string $profile_name Profile name to use
-     *      @var string $user_id Intacct user ID
-     *      @var string $user_password Intacct user password
-     * }
+     * The constructor accepts the following options:
+     *
+     * - `profile_name` (string, default=string "default") Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     * - `company_id` (string) Intacct company ID
+     * - `user_id` (string) Intacct user ID
+     * - `user_password` (string) Intacct user password
+     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
+     *
+     * @param array $params Login Credentials configuration options
      * @param SenderCredentials $senderCreds
      * @throws InvalidArgumentException
      */

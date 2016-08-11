@@ -19,6 +19,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new accounts receivable invoice line record
+ */
 class ArInvoiceLineCreate extends AbstractArInvoiceLine
 {
 

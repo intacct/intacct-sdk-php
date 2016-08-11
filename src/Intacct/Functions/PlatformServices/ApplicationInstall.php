@@ -21,6 +21,9 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Install a new, or update an existing, platform application
+ */
 class ApplicationInstall extends AbstractFunction
 {
     

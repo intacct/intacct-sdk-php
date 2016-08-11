@@ -39,7 +39,7 @@ trait ControlIdTrait
     /**
      * Set control ID
      *
-     * @param string $controlId Control ID, default=random UUID
+     * @param string $controlId Control ID, default=random UUID string
      * @throws InvalidArgumentException
      */
     public function setControlId($controlId = null)

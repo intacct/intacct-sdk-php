@@ -47,13 +47,16 @@ class SenderCredentials
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $endpoint_url Endpoint URL
-     *      @var string $profile_name Profile name to use
-     *      @var string $sender_id Intacct sender ID
-     *      @var string $sender_password Intacct sender password
-     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
-     * }
+     * The constructor accepts the following options:
+     *
+     * - `profile_name` (string) Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     * - `sender_id` (string) Intacct sender ID
+     * - `sender_password` (string) Intacct sender password
+     * - `endpoint_url` (string) Endpoint URL
+     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
+     *
+     * @param array $params Sender Credentials configuration options
      * @throws InvalidArgumentException
      */
     public function __construct(array $params = [])

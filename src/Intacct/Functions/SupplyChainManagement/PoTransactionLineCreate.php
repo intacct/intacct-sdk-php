@@ -19,6 +19,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new purchasing transaction line record
+ */
 class PoTransactionLineCreate extends AbstractPoTransactionLine
 {
 

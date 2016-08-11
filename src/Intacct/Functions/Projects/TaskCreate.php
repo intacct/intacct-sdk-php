@@ -20,6 +20,9 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new task record
+ */
 class TaskCreate extends AbstractTask
 {
 

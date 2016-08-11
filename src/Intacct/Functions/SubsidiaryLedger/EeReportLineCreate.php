@@ -19,6 +19,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new employee expense report line record
+ */
 class EeReportLineCreate extends AbstractEeReportLine
 {
 

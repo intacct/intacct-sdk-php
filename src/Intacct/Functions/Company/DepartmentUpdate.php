@@ -20,6 +20,9 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing department record
+ */
 class DepartmentUpdate extends AbstractDepartment
 {
 

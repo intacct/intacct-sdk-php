@@ -19,6 +19,9 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new statistical journal entry line record
+ */
 class StatisticalJournalEntryLineCreate extends AbstractStatisticalJournalEntryLine
 {
 

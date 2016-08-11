@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing accounts payable account label record
+ */
 class ApAccountLabelUpdate extends AbstractApAccountLabel
 {
 

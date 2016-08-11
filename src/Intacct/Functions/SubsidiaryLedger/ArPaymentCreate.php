@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new accounts receivable payment record
+ */
 class ArPaymentCreate extends AbstractArPayment
 {
 

@@ -23,10 +23,16 @@ use DateTime;
 class XMLWriter extends \XMLWriter
 {
 
-    /** @var string */
+    /**
+     * Intacct date format
+     *
+     * @var string
+     */
     const IA_DATE_FORMAT = 'm/d/Y';
 
     /**
+     * Intacct datetime format
+     *
      * @var string
      * @todo review this is correct
      */

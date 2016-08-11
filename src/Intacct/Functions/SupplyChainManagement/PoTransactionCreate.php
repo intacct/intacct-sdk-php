@@ -20,6 +20,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new purchasing transaction record
+ */
 class PoTransactionCreate extends AbstractPoTransaction
 {
 

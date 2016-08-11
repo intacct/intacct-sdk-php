@@ -37,12 +37,14 @@ class ProfileCredentialProvider
     }
     
     /**
-     * Get INI profile data with the given parameters.
+     * Get INI profile data with the given options.
      *
-     * @param array $params {
-     *      @var string $profile_file Profile file to load from
-     *      @var string $profile_name Profile name to use
-     * }
+     * The function accepts the following options:
+     *
+     * - `profile_name` (string, default=string "default") Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     *
+     * @param array $params Client configuration options
      * @return array
      */
     private function getIniProfileData(array $params = [])
@@ -77,14 +79,16 @@ class ProfileCredentialProvider
         
         return $data[$config['profile_name']];
     }
-    
+
     /**
      * Get Intacct login credentials with the given parameters.
      *
-     * @param array $params {
-     *      @var string $profile_file Profile file to load from
-     *      @var string $profile_name Profile name to use
-     * }
+     * The function accepts the following options:
+     *
+     * - `profile_name` (string, default=string "default") Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     *
+     * @param array $params Client configuration options
      * @return array
      */
     public function getLoginCredentials(array $params = [])
@@ -108,10 +112,12 @@ class ProfileCredentialProvider
     /**
      * Get Intacct sender credentials with the given parameters.
      *
-     * @param array $params {
-     *      @var string $profile_file Profile file to load from
-     *      @var string $profile_name Profile name to use
-     * }
+     * The function accepts the following options:
+     *
+     * - `profile_name` (string, default=string "default") Profile name to use
+     * - `profile_file` (string) Profile file to load from
+     *
+     * @param array $params Client configuration options
      * @return array
      */
     public function getSenderCredentials(array $params = [])

@@ -20,6 +20,9 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new department record
+ */
 class DepartmentCreate extends AbstractDepartment
 {
 

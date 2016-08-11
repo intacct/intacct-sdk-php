@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing accounts receivable account label record
+ */
 class ArAccountLabelUpdate extends AbstractArAccountLabel
 {
 

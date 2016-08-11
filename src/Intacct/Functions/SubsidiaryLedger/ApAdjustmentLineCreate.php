@@ -19,6 +19,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new accounts payable adjustment line record
+ */
 class ApAdjustmentLineCreate extends AbstractApAdjustmentLine
 {
 

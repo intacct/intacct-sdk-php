@@ -20,6 +20,9 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing account record
+ */
 class AccountUpdate extends AbstractAccount
 {
 

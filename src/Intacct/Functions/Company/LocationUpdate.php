@@ -20,6 +20,9 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing location record
+ */
 class LocationUpdate extends AbstractLocation
 {
 

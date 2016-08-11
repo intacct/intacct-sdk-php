@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing employee expense type record
+ */
 class EeExpenseTypeUpdate extends AbstractEeExpenseType
 {
 

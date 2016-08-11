@@ -24,7 +24,7 @@ class Date extends DateTime
 {
 
     /**
-     * Initializes the class
+     * Initializes the class with the given parameters.
      *
      * @param string $date Date, default=now
      * @param DateTimeZone $timezone

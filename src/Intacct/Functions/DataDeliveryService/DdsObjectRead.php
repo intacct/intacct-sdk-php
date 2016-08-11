@@ -20,6 +20,9 @@ namespace Intacct\Functions\DataDeliveryService;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Read the objects available for DDS
+ */
 class DdsObjectRead extends AbstractFunction
 {
 

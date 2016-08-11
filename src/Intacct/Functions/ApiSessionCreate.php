@@ -19,11 +19,14 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new Intacct API session
+ */
 class ApiSessionCreate extends AbstractFunction
 {
     
     /**
-     * Write the getAPISession block XML
+     * Write the function block XML
      *
      * @param XMLWriter $xml
      */

@@ -71,18 +71,20 @@ class RequestHandler
     /**
      * Initializes the class with the given parameters.
      *
-     * @param array $params {
-     *      @var string $encoding Encoding to use, default=UTF-8
-     *      @var string $endpoint_url Endpoint URL
-     *      @var LoggerInterface $logger
-     *      @var MessageFormatter $log_formatter
-     *      @var int $log_level Log level to use, default=400
-     *      @var int $max_retries Max number of retries, default=5
-     *      @var int[] $no_retry_server_error_codes HTTP server error codes to abort
-     *          retrying if one occurs, default=[ 524 ]
-     *      @var bool $verify_ssl Verify SSL certificate of response, default=true
-     * }
-     * @throws InvalidArgumentException
+     * The constructor accepts the following options:
+     *
+     * - `encoding` (string, default=string "UTF-8") Encoding to use
+     * - `endpoint_url` (string) Endpoint URL
+     * - `logger` (Psr\Log\LoggerInterface)
+     * - `log_formatter` (Intacct\Logging\MessageFormatter) Log formatter
+     * - `log_level` (int, default=int(400)) Log level
+     * - `max_retries` (int, default=int(5)) Max number of retries
+     * - `no_retry_server_error_codes` (int[], default=array(524)) HTTP server error codes to abort
+     * retrying if one occurs
+     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
+     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
+     *
+     * @param array $params RequestHandler configuration options
      */
     public function __construct(array $params)
     {

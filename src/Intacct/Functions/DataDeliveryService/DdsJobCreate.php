@@ -22,6 +22,9 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new DDS job record
+ */
 class DdsJobCreate extends AbstractFunction
 {
 

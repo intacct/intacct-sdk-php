@@ -19,6 +19,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new order entry transaction line record
+ */
 class OeTransactionLineCreate extends AbstractOeTransactionLine
 {
 

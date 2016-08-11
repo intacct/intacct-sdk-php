@@ -20,6 +20,9 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing statistical account record
+ */
 class StatisticalAccountUpdate extends AbstractStatisticalAccount
 {
 

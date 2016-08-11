@@ -19,6 +19,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new accounts payable bill line record
+ */
 class ApBillLineCreate extends AbstractApBillLine
 {
 

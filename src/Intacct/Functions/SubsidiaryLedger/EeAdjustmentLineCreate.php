@@ -19,6 +19,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new employee expense adjustment line record
+ */
 class EeAdjustmentLineCreate extends AbstractEeAdjustmentLine
 {
 

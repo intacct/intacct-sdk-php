@@ -20,6 +20,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Update an existing order entry transaction line record
+ */
 class OeTransactionLineUpdate extends AbstractOeTransactionLine
 {
 

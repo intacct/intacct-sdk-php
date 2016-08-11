@@ -18,6 +18,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new accounts receivable adjustment line record
+ */
 class ArAdjustmentLineCreate extends AbstractArAdjustmentLine
 {
 

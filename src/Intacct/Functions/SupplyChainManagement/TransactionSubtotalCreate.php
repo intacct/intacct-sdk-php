@@ -19,6 +19,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new transaction subtotal record
+ */
 class TransactionSubtotalCreate extends AbstractTransactionSubtotal
 {
 

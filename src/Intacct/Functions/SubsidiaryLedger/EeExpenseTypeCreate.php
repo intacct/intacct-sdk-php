@@ -20,6 +20,9 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * Create a new employee expense type record
+ */
 class EeExpenseTypeCreate extends AbstractEeExpenseType
 {
 

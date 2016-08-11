@@ -19,6 +19,9 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Create a new custom allocation split record
+ */
 class CustomAllocationSplit
 {
 

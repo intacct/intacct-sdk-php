@@ -19,6 +19,9 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * Update an existing order entry transaction record
+ */
 class OeTransactionUpdate extends AbstractOeTransaction
 {
 
