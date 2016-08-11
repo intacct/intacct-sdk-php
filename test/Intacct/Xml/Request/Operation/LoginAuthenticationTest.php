@@ -29,7 +29,6 @@ class LoginAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -38,14 +37,13 @@ class LoginAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
      * @covers Intacct\Xml\Request\Operation\LoginAuthentication::__construct
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::getXml
+     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::writeXml
      */
-    public function testGetXml()
+    public function testWriteXml()
     {
         $config = [
             'company_id' => 'testcompany',
@@ -71,7 +69,7 @@ EOF;
         $xml->startDocument();
 
         $loginAuth = new LoginAuthentication($config);
-        $loginAuth->getXml($xml);
+        $loginAuth->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -123,5 +121,4 @@ EOF;
         
         new LoginAuthentication($config);
     }
-
 }

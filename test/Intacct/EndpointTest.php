@@ -28,7 +28,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -37,7 +36,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
     
     /**
@@ -165,5 +163,4 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         
         new Endpoint($config);
     }
-
 }

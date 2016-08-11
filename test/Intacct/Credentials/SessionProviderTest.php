@@ -57,7 +57,6 @@ class SessionProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -119,7 +118,10 @@ EOF;
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $endpoint = $sessionCreds->getEndpoint();
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertThat($sessionCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
+        $this->assertThat(
+            $sessionCreds->getSenderCredentials(),
+            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+        );
     }
     
     /**
@@ -179,8 +181,10 @@ EOF;
         
         $this->assertEquals('fAkESesSiOnId..', $newSessionCreds->getSessionId());
         $endpoint = $newSessionCreds->getEndpoint();
-        $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
+        $this->assertEquals(
+            'https://unittest.intacct.com/ia/xml/xmlgw.phtml',
+            $endpoint->getEndpoint()
+        );
         $this->assertThat($newSessionCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
     }
-
 }

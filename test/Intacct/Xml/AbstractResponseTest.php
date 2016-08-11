@@ -19,7 +19,6 @@ namespace Intacct\Xml;
 
 use Exception;
 
-
 class AbstractResponseTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -34,7 +33,6 @@ class AbstractResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -43,7 +41,6 @@ class AbstractResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -144,5 +141,4 @@ EOF;
         $control = $stub->getControl();
         $this->assertThat($control, $this->isInstanceOf('Intacct\Xml\Response\Control'));
     }
-
 }

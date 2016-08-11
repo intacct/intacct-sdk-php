@@ -59,7 +59,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -92,5 +91,4 @@ EOF;
 EOF;
         new AsynchronousResponse($xml);
     }
-
 }

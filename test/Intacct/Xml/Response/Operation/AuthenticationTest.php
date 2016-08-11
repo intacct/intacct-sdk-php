@@ -77,7 +77,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -294,5 +293,4 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-
 }

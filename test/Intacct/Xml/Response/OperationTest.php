@@ -18,7 +18,6 @@
 namespace Intacct\Xml\Response;
 
 use Intacct\Xml\SynchronousResponse;
-use Intacct\Xml\Response\Operation;
 use Exception;
 
 class OperationTest extends \PHPUnit_Framework_TestCase
@@ -77,7 +76,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -92,7 +90,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException \Intacct\Xml\Response\OperationException
      * @expectedExceptionMessage Response authentication status failure
      */
@@ -129,7 +127,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing from operation element
      */
@@ -152,7 +150,7 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct 
+     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing from operation element
      */
@@ -191,5 +189,4 @@ EOF;
         $results = $this->object->getResults();
         $this->assertInternalType('array', $results);
     }
-
 }

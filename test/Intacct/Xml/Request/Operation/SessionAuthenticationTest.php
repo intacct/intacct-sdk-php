@@ -14,7 +14,6 @@ class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -23,14 +22,13 @@ class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
      * @covers Intacct\Xml\Request\Operation\SessionAuthentication::__construct
-     * @covers Intacct\Xml\Request\Operation\SessionAuthentication::getXml
+     * @covers Intacct\Xml\Request\Operation\SessionAuthentication::writeXml
      */
-    public function testGetXml()
+    public function testWriteXml()
     {
         $config = [
             'session_id' => 'testsessionid..',
@@ -50,7 +48,7 @@ EOF;
         $xml->startDocument();
 
         $sessionAuth = new SessionAuthentication($config);
-        $sessionAuth->getXml($xml);
+        $sessionAuth->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -68,5 +66,4 @@ EOF;
         
         new SessionAuthentication($config);
     }
-
 }

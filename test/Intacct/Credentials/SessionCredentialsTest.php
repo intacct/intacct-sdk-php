@@ -20,7 +20,6 @@ namespace Intacct\Credentials;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
-use Intacct\Credentials\SenderCredentials;
 
 class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,7 +49,6 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -70,7 +68,10 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('faKEsesSiOnId..', $sessionCreds->getSessionId());
         $endpoint = $sessionCreds->getEndpoint();
         $this->assertEquals('https://p1.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertThat($sessionCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
+        $this->assertThat(
+            $sessionCreds->getSenderCredentials(),
+            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+        );
     }
     
     /**
@@ -120,5 +121,4 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
         $sessionCreds = new SessionCredentials($config, $this->senderCreds);
         $this->assertThat($sessionCreds->getMockHandler(), $this->isInstanceOf('GuzzleHttp\Handler\MockHandler'));
     }
-
 }

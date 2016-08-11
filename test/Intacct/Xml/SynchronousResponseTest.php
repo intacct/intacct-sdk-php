@@ -33,7 +33,6 @@ class SynchronousResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -42,7 +41,6 @@ class SynchronousResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -110,5 +108,4 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-
 }

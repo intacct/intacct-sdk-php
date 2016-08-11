@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -18,7 +18,7 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Content;
-use Intacct\Functions\GetAPISession;
+use Intacct\Functions\ApiSessionCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -31,7 +31,6 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -40,25 +39,22 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlSession()
+    public function testWriteXmlSession()
     {
         $config = [
             'session_id' => 'fakesession..',
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest'
-        ]);
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -82,7 +78,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -90,10 +86,10 @@ EOF;
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlLogin()
+    public function testWriteXmlLogin()
     {
         $config = [
             'company_id' => 'testcompany',
@@ -102,9 +98,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest',
-        ]);
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -132,7 +126,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -140,10 +134,10 @@ EOF;
     /**
      * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @covers Intacct\Xml\Request\OperationBlock::setTransaction
-     * @covers Intacct\Xml\Request\OperationBlock::getXml
+     * @covers Intacct\Xml\Request\OperationBlock::writeXml
      * @covers Intacct\Xml\Request\OperationBlock::getTransaction
      */
-    public function testGetXmlTransaction()
+    public function testWriteXmlTransaction()
     {
         $config = [
             'session_id' => 'fakesession..',
@@ -151,9 +145,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession([
-            'control_id' => 'unittest',
-        ]);
+        $func = new ApiSessionCreate('unittest');
         $contentBlock->append($func);
         
         $expected = <<<EOF
@@ -177,7 +169,7 @@ EOF;
         $xml->startDocument();
 
         $operation = new OperationBlock($config, $contentBlock);
-        $operation->getXml($xml);
+        $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -196,7 +188,7 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession();
+        $func = new ApiSessionCreate();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
     }
@@ -216,9 +208,8 @@ EOF;
         ];
         
         $contentBlock = new Content();
-        $func = new GetAPISession();
+        $func = new ApiSessionCreate();
         $contentBlock->append($func);
         new OperationBlock($config, $contentBlock);
     }
-
 }

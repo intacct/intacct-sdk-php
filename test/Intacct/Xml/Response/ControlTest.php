@@ -60,7 +60,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -226,5 +225,4 @@ EOF;
         ];
         $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
     }
-
 }

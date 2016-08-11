@@ -17,8 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Xml\SynchronousResponse;
-
 class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -33,7 +31,6 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -42,7 +39,6 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -77,5 +73,4 @@ EOF;
             $this->assertInternalType('array', $ex->getErrors());
         }
     }
-
 }

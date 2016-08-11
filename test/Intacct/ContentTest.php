@@ -17,7 +17,7 @@
 
 namespace Intacct;
 
-use Intacct\Functions\GetAPISession;
+use Intacct\Functions\ApiSessionCreate;
 
 class ContentTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
     }
 
     /**
@@ -37,7 +36,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -46,8 +44,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     public function testContent()
     {
         $contentBlock = new Content();
-        $func = new GetAPISession();
+        $func = new ApiSessionCreate();
         $contentBlock->append($func);
     }
-
 }

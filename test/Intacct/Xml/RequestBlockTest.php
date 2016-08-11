@@ -23,9 +23,9 @@ class RequestBlockTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers Intacct\Xml\RequestBlock::__construct
-     * @covers Intacct\Xml\RequestBlock::getXml
+     * @covers Intacct\Xml\RequestBlock::writeXml
      */
-    public function testGetXml()
+    public function testWriteXml()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="iso-8859-1"?>
@@ -43,7 +43,7 @@ EOF;
 
         $requestHandler = new RequestBlock($config, $contentBlock);
 
-        $xml = $requestHandler->getXml();
+        $xml = $requestHandler->writeXml();
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }

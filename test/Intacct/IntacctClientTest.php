@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Copyright 2016 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -20,6 +20,7 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Content;
+use Intacct\Functions\ApiSessionCreate;
 
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -92,27 +93,31 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
      * @covers Intacct\IntacctClient::__construct
      * @covers Intacct\IntacctClient::getSessionCreds
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithSessionId()
     {
         $client = $this->client; //grab the setUp object
-        
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'testSeSsionID..');
+
+        $creds = $client->getSessionCreds();
+        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds->getSessionId(), 'testSeSsionID..');
+        $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
+        $this->assertEquals($creds->getCurrentUserId(), 'testuser');
+        $this->assertEquals($creds->getCurrentUserIsExternal(), false);
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
     
     /**
      * @covers Intacct\IntacctClient::__construct
      * @covers Intacct\IntacctClient::getSessionCreds
+     * @covers Intacct\IntacctClient::getSessionConfig
      * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithLogin()
@@ -163,10 +168,126 @@ EOF;
             'mock_handler' => $mock,
         ]);
         
-        $creds = $client->getSessionConfig();
-        $this->assertEquals($creds['endpoint_url'], 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
-        $this->assertEquals($creds['session_id'], 'helloworld..');
+        $creds = $client->getSessionCreds();
+        $this->assertEquals($creds->getEndpoint(), 'https://p1.intacct.com/ia/xml/xmlgw.phtml');
+        $this->assertEquals($creds->getSessionId(), 'helloworld..');
+        $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
+        $this->assertEquals($creds->getCurrentUserId(), 'testuser');
+        $this->assertEquals($creds->getCurrentUserIsExternal(), false);
         $this->assertEquals(count($client->getLastExecution()), 1);
     }
 
+    /**
+     * @covers Intacct\IntacctClient::__construct
+     * @covers Intacct\IntacctClient::execute
+     */
+    public function testExecuteSynchronous()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <data>
+                        <api>
+                              <sessionid>unittest..</sessionid>
+                              <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'mock_handler' => $mock, //put a new handler on here
+        ];
+
+        $content = new Content([
+            new ApiSessionCreate('func1UnitTest')
+        ]);
+
+        $client = $this->client; //grab the setUp object
+
+        $response = $client->execute($content, false, 'requestUnitTest', false, $config);
+
+        $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
+    }
+
+    /**
+     * @covers Intacct\IntacctClient::__construct
+     * @covers Intacct\IntacctClient::executeAsync
+     */
+    public function testExecuteAsynchronous()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <acknowledgement>
+            <status>success</status>
+      </acknowledgement>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $config = [
+            'mock_handler' => $mock, //put a new handler on here
+        ];
+
+        $content = new Content([
+            new ApiSessionCreate('func1UnitTest')
+        ]);
+
+        $client = $this->client; //grab the setUp object
+
+        $response = $client->executeAsync($content, 'asyncPolicyId', false, 'requestUnitTest', false, $config);
+
+        $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
+    }
+
+    /**
+     * * @covers Intacct\IntacctClient::getRandomControlId
+     */
+    public function testRandomControlId()
+    {
+        $controlId = $this->client->getRandomControlId();
+        $this->assertInternalType('string', $controlId);
+        $this->assertContains('-', $controlId);
+    }
 }

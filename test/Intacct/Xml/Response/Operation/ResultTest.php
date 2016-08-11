@@ -18,7 +18,6 @@
 namespace Intacct\Xml\Response\Operation;
 
 use Intacct\Xml\SynchronousResponse;
-use Intacct\Xml\Response\Operation\Result;
 use Exception;
 
 class ResultTest extends \PHPUnit_Framework_TestCase
@@ -73,7 +72,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
     
     /**
@@ -162,7 +160,6 @@ EOF;
         
         $this->assertEquals('failure', $result->getStatus());
         $this->assertInternalType('array', $result->getErrors());
-        
     }
     
     /**
@@ -272,5 +269,4 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-
 }

@@ -58,7 +58,6 @@ EOF;
      */
     protected function tearDown()
     {
-        
     }
 
     /**
@@ -73,5 +72,4 @@ EOF;
         $this->assertEquals('1234: description: Object definition BADOBJECT not found: stripthesetags', $errors[0]);
         $this->assertEquals('5678: stripthesetags: Object definition BADOBJECT not found: correct', $errors[1]);
     }
-
 }
