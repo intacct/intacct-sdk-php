@@ -37,15 +37,14 @@ class StatisticalAccountDelete extends AbstractStatisticalAccount
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'STATACCOUNT');
+        $xml->startElement('delete_statglaccount');
 
         if (!$this->getAccountNo()) {
             throw new InvalidArgumentException('Account No is required for delete');
         }
-        $xml->writeElement('keys', $this->getAccountNo(), true);
+        $xml->writeAttribute('glaccountno', $this->getAccountNo());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_statglaccount
 
         $xml->endElement(); //function
     }

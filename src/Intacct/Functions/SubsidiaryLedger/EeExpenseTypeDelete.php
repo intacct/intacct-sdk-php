@@ -37,15 +37,14 @@ class EeExpenseTypeDelete extends AbstractEeExpenseType
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'EEACCOUNTLABEL');
+        $xml->startElement('delete_expensetype');
 
         if (!$this->getExpenseType()) {
             throw new InvalidArgumentException('Expense Type is required for delete');
         }
-        $xml->writeElement('keys', $this->getExpenseType(), true);
+        $xml->writeAttribute('expensetype', $this->getExpenseType());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_expensetype
 
         $xml->endElement(); //function
     }

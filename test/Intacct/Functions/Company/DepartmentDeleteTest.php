@@ -31,10 +31,7 @@ class DepartmentDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>DEPARTMENT</object>
-        <keys>D1234</keys>
-    </delete>
+    <delete_department departmentid="D1234" />
 </function>
 EOF;
 
@@ -66,7 +63,6 @@ EOF;
         $xml->startDocument();
 
         $classObj = new DepartmentDelete('unittest');
-        //$classObj->setDepartmentId('D1234');
 
         $classObj->writeXml($xml);
     }

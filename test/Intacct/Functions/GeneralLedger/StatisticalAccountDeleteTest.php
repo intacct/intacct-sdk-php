@@ -31,10 +31,7 @@ class StatisticalAccountDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>STATACCOUNT</object>
-        <keys>9000</keys>
-    </delete>
+    <delete_statglaccount glaccountno="9000" />
 </function>
 EOF;
 

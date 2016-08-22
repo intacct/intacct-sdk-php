@@ -31,10 +31,7 @@ class TimesheetDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>TIMESHEET</object>
-        <keys>1234</keys>
-    </delete>
+    <delete_timesheet key="1234" />
 </function>
 EOF;
 

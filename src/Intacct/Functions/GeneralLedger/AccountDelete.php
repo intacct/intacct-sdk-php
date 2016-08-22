@@ -37,13 +37,12 @@ class AccountDelete extends AbstractAccount
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'GLACCOUNT');
+        $xml->startElement('delete_glaccount');
 
         if (!$this->getAccountNo()) {
             throw new InvalidArgumentException('Account No is required for delete');
         }
-        $xml->writeElement('keys', $this->getAccountNo(), true);
+        $xml->writeAttribute('glaccountno', $this->getAccountNo());
 
         $xml->endElement(); //delete
 

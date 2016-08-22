@@ -37,15 +37,14 @@ class ProjectDelete extends AbstractProject
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'PROJECT');
+        $xml->startElement('delete_project');
 
         if (!$this->getProjectId()) {
             throw new InvalidArgumentException('Project ID is required for delete');
         }
-        $xml->writeElement('keys', $this->getProjectId(), true);
+        $xml->writeAttribute('key', $this->getProjectId());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_project
 
         $xml->endElement(); //function
     }

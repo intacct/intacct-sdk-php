@@ -37,15 +37,14 @@ class TimesheetDelete extends AbstractTimesheet
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'TIMESHEET');
+        $xml->startElement('delete_timesheet');
 
         if (!$this->getRecordNo()) {
             throw new InvalidArgumentException('Record No is required for delete');
         }
-        $xml->writeElement('keys', $this->getRecordNo(), true);
+        $xml->writeAttribute('key', $this->getRecordNo());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_timesheet
 
         $xml->endElement(); //function
     }

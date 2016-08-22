@@ -37,15 +37,14 @@ class LocationDelete extends AbstractLocation
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'LOCATION');
+        $xml->startElement('delete_location');
 
         if (!$this->getLocationId()) {
             throw new InvalidArgumentException('Location ID is required for delete');
         }
-        $xml->writeElement('keys', $this->getLocationId(), true);
+        $xml->writeAttribute('locationid', $this->getLocationId());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_location
 
         $xml->endElement(); //function
     }

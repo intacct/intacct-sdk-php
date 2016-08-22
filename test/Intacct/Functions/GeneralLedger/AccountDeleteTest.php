@@ -31,10 +31,7 @@ class AccountDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>GLACCOUNT</object>
-        <keys>1010</keys>
-    </delete>
+    <delete_glaccount glaccountno="1010" />
 </function>
 EOF;
 

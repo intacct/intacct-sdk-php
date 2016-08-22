@@ -31,10 +31,7 @@ class LocationDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>LOCATION</object>
-        <keys>L1234</keys>
-    </delete>
+    <delete_location locationid="L1234" />
 </function>
 EOF;
 

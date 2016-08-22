@@ -31,10 +31,7 @@ class ClassDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>CLASS</object>
-        <keys>C1234</keys>
-    </delete>
+    <delete_class key="C1234" />
 </function>
 EOF;
 
@@ -66,7 +63,6 @@ EOF;
         $xml->startDocument();
 
         $classObj = new ClassDelete('unittest');
-        //$classObj->setClassId('C1234');
 
         $classObj->writeXml($xml);
     }

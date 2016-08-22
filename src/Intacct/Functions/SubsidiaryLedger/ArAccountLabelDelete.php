@@ -37,15 +37,14 @@ class ArAccountLabelDelete extends AbstractArAccountLabel
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'ARACCOUNTLABEL');
+        $xml->startElement('delete_araccountlabel');
 
         if (!$this->getAccountLabel()) {
             throw new InvalidArgumentException('Account Label is required for delete');
         }
-        $xml->writeElement('keys', $this->getAccountLabel(), true);
+        $xml->writeAttribute('accountlabel', $this->getAccountLabel());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_araccountlabel
 
         $xml->endElement(); //function
     }

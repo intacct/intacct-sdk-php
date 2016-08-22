@@ -37,15 +37,14 @@ class TaskDelete extends AbstractTask
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'TASK');
+        $xml->startElement('delete_task');
 
         if (!$this->getRecordNo()) {
             throw new InvalidArgumentException('Task Record No is required for delete');
         }
-        $xml->writeElement('keys', $this->getRecordNo(), true);
+        $xml->writeAttribute('key', $this->getRecordNo());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_task
 
         $xml->endElement(); //function
     }

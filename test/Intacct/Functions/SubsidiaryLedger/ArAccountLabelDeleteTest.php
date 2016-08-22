@@ -31,10 +31,7 @@ class ArAccountLabelDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>ARACCOUNTLABEL</object>
-        <keys>Revenue</keys>
-    </delete>
+    <delete_araccountlabel accountlabel="Revenue" />
 </function>
 EOF;
 

@@ -31,10 +31,7 @@ class ProjectDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>PROJECT</object>
-        <keys>P1234</keys>
-    </delete>
+    <delete_project key="P1234" />
 </function>
 EOF;
 

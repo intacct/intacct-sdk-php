@@ -37,15 +37,14 @@ class DepartmentDelete extends AbstractDepartment
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete');
-        $xml->writeElement('object', 'DEPARTMENT');
+        $xml->startElement('delete_department');
 
         if (!$this->getDepartmentId()) {
             throw new InvalidArgumentException('Department ID is required for delete');
         }
-        $xml->writeElement('keys', $this->getDepartmentId(), true);
+        $xml->writeAttribute('departmentid', $this->getDepartmentId());
 
-        $xml->endElement(); //delete
+        $xml->endElement(); //delete_department
 
         $xml->endElement(); //function
     }

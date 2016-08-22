@@ -31,10 +31,7 @@ class EeExpenseTypeDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>EEACCOUNTLABEL</object>
-        <keys>Hotel</keys>
-    </delete>
+    <delete_expensetype expensetype="Hotel" />
 </function>
 EOF;
 
