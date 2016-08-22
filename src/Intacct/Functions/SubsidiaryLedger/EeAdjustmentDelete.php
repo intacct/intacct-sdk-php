@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * Delete an existing AR invoice record
+ * Delete an existing EE adjustment record
  */
 class EeAdjustmentDelete extends AbstractEeAdjustment
 {
