@@ -27,6 +27,9 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     //Current schema does not allow custom fields
     //use CustomFieldsTrait;
 
+    /** @var int */
+    protected $recordNo;
+
     /** @var Date */
     protected $transactionDate;
 
@@ -71,6 +74,22 @@ abstract class AbstractEeAdjustment extends AbstractFunction
 
     /** @var array */
     protected $lines;
+
+    /**
+     * @return int|string
+     */
+    public function getRecordNo()
+    {
+        return $this->recordNo;
+    }
+
+    /**
+     * @param int|string $recordNo
+     */
+    public function setRecordNo($recordNo)
+    {
+        $this->recordNo = $recordNo;
+    }
 
     /**
      * @return Date
