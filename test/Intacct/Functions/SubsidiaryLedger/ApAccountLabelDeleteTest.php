@@ -31,10 +31,7 @@ class ApAccountLabelDeleteTest extends \PHPUnit_Framework_TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete>
-        <object>APACCOUNTLABEL</object>
-        <keys>Expense</keys>
-    </delete>
+    <delete_apaccountlabel accountlabel="Expense" />
 </function>
 EOF;
 

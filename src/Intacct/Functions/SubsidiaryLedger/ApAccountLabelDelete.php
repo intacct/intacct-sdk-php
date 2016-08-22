@@ -37,14 +37,14 @@ class ApAccountLabelDelete extends AbstractApAccountLabel
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('delete_apadjustment');
+        $xml->startElement('delete_apaccountlabel');
 
         if (!$this->getAccountLabel()) {
             throw new InvalidArgumentException('Account Label is required for delete');
         }
         $xml->writeAttribute('accountlabel', $this->getAccountLabel());
 
-        $xml->endElement(); //delete_apadjustment
+        $xml->endElement(); //delete_apaccountlabel
 
         $xml->endElement(); //function
     }
