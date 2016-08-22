@@ -49,6 +49,9 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /** @var string */
     const PAYMENT_METHOD_ACH = 'ACH';
 
+    /** @var int */
+    protected $recordNo;
+
     /** @var string */
     protected $paymentMethod;
 
@@ -84,6 +87,22 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
 
     /** @var array */
     protected $applyToTransactions;
+
+    /**
+     * @return int|string
+     */
+    public function getRecordNo()
+    {
+        return $this->recordNo;
+    }
+
+    /**
+     * @param int|string $recordNo
+     */
+    public function setRecordNo($recordNo)
+    {
+        $this->recordNo = $recordNo;
+    }
 
     /**
      * @return string
