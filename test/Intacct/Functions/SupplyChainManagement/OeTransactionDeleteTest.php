@@ -42,7 +42,7 @@ EOF;
         $xml->startDocument();
 
         $classObj = new OeTransactionDelete('unittest');
-        $classObj->setRecordNo('Sales Invoice-INV1234');
+        $classObj->setDocumentId('Sales Invoice-INV1234');
 
         $classObj->writeXml($xml);
 

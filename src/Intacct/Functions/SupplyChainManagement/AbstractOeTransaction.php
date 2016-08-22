@@ -127,7 +127,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /**
      * @param string $documentId
      */
-    public function setRecordNo($documentId)
+    public function setDocumentId($documentId)
     {
         $this->documentId = $documentId;
     }
