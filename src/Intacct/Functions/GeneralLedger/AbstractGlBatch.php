@@ -26,6 +26,7 @@ abstract class AbstractGlBatch extends AbstractFunction
 
     use CustomFieldsTrait;
 
+    /** @var int|string */
     protected $recordNo;
 
     /** @var string */

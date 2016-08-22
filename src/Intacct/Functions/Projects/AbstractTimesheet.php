@@ -24,6 +24,7 @@ abstract class AbstractTimesheet extends AbstractFunction
 
     // TODO: Finish this object
 
+    /** @var int|string */
     protected $recordNo;
 
     /**
