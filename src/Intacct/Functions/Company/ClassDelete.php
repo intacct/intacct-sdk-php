@@ -42,7 +42,7 @@ class ClassDelete extends AbstractClass
         if (!$this->getClassId()) {
             throw new InvalidArgumentException('Class ID is required for delete');
         }
-        $xml->writeAttribute('key', $this->getClassId(), true);
+        $xml->writeAttribute('key', $this->getClassId());
 
         $xml->endElement(); //delete_class
 
