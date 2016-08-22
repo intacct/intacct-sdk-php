@@ -76,9 +76,33 @@ final class MessageFormatter extends \GuzzleHttp\MessageFormatter
     ) {
         $message = parent::format($request, $response, $error);
 
+        $patterns = [];
+        $replacements = [];
+
+        $patterns[] = '/(<password[^>]*>)(.*?)(<\/password>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<accountnumber[^>]*>)(.*?)(<\/accountnumber>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<cardnum[^>]*>)(.*?)(<\/cardnum>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<ssn[^>]*>)(.*?)(<\/ssn>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<achaccountnumber[^>]*>)(.*?)(<\/achaccountnumber>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<wireaccountnumber[^>]*>)(.*?)(<\/wireaccountnumber>)/i';
+        $replacements[] = '$1REDACTED$3';
+
+        $patterns[] = '/(<taxid[^>]*>)(.*?)(<\/taxid>)/i';
+        $replacements[] = '$1REDACTED$3';
+
         return preg_replace(
-            '#<(password)(?:[^>]+)?>.*?</\1>#s',
-            '<password>REDACTED</password>',
+            $patterns,
+            $replacements,
             $message
         );
     }
