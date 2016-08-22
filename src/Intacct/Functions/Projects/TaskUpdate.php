@@ -27,22 +27,6 @@ class TaskUpdate extends AbstractTask
 {
 
     /**
-     * @return int|string
-     */
-    public function getRecordNo()
-    {
-        return $this->recordNo;
-    }
-
-    /**
-     * @param int|string $recordNo
-     */
-    public function setRecordNo($recordNo)
-    {
-        $this->recordNo = $recordNo;
-    }
-
-    /**
      * Write the function block XML
      *
      * @param XMLWriter $xml

@@ -87,6 +87,22 @@ abstract class AbstractTask extends AbstractFunction
     protected $estimatedDuration;
 
     /**
+     * @return int|string
+     */
+    public function getRecordNo()
+    {
+        return $this->recordNo;
+    }
+
+    /**
+     * @param int|string $recordNo
+     */
+    public function setRecordNo($recordNo)
+    {
+        $this->recordNo = $recordNo;
+    }
+
+    /**
      * @return string
      */
     public function getTaskName()
