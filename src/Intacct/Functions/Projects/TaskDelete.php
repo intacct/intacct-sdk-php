@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * Delete an existing account record
+ * Delete an existing task record
  */
 class TaskDelete extends AbstractTask
 {
