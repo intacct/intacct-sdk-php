@@ -36,6 +36,9 @@ abstract class AbstractPoTransaction extends AbstractFunction
     use CustomFieldsTrait;
 
     /** @var string */
+    protected $documentId;
+
+    /** @var string */
     protected $transactionDefinition;
 
     /** @var Date */
@@ -115,6 +118,22 @@ abstract class AbstractPoTransaction extends AbstractFunction
 
     /** @var array */
     protected $lines;
+
+    /**
+     * @return string
+     */
+    public function getDocumentId()
+    {
+        return $this->documentId;
+    }
+
+    /**
+     * @param string $documentId
+     */
+    public function setRecordNo($documentId)
+    {
+        $this->documentId = $documentId;
+    }
 
     /**
      * @return string
