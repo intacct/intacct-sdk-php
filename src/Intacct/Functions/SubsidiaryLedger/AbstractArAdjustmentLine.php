@@ -19,7 +19,7 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-class AbstractArAdjustmentLine
+abstract class AbstractArAdjustmentLine
 {
 
     use CustomFieldsTrait;

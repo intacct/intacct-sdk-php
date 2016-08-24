@@ -20,7 +20,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 use Intacct\Fields\Date;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-class AbstractOeTransactionLine
+abstract class AbstractOeTransactionLine
 {
 
     use CustomFieldsTrait;

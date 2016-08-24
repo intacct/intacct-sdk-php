@@ -19,7 +19,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-class AbstractIcTransactionLine
+abstract class AbstractIcTransactionLine
 {
 
     use CustomFieldsTrait;

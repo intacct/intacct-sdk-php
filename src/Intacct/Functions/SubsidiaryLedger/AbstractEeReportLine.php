@@ -20,7 +20,7 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Fields\Date;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-class AbstractEeReportLine
+abstract class AbstractEeReportLine
 {
 
     use CustomFieldsTrait;
