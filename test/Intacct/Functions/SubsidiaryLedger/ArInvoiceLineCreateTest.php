@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 class ArInvoiceLineCreateTest extends \PHPUnit_Framework_TestCase
@@ -111,8 +111,8 @@ EOF;
         $line->setTotalDue(0.00);
         $line->setRevRecTemplateId('RevRec1');
         $line->setDeferredRevGlAccountNo('2100');
-        $line->setRevRecStartDate(new Date('2016-06-01'));
-        $line->setRevRecEndDate(new Date('2017-05-31'));
+        $line->setRevRecStartDate(new DateType('2016-06-01'));
+        $line->setRevRecEndDate(new DateType('2017-05-31'));
         $line->setLocationId('Location1');
         $line->setDepartmentId('Department1');
         $line->setProjectId('Project1');

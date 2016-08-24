@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -57,7 +57,7 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new Date('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateType('2015-06-30'));
 
         $line1 = new ApBillLineCreate();
         $line1->setTransactionAmount(76343.43);
@@ -130,8 +130,8 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new Date('2015-06-30'));
-        $apAdjustment->setGlPostingDate(new Date('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateType('2015-06-30'));
+        $apAdjustment->setGlPostingDate(new DateType('2015-06-30'));
         $apAdjustment->setBatchKey(20323);
         $apAdjustment->setAdjustmentNumber('234');
         $apAdjustment->setAction('Submit');
@@ -140,7 +140,7 @@ EOF;
         $apAdjustment->setExternalId('20394');
         $apAdjustment->setBaseCurrency('USD');
         $apAdjustment->setTransactionCurrency('USD');
-        $apAdjustment->setExchangeRateDate(new Date('2015-06-30'));
+        $apAdjustment->setExchangeRateDate(new DateType('2015-06-30'));
         $apAdjustment->setExchangeRateType('Intacct Daily Rate');
         $apAdjustment->setDoNotPostToGL(false);
         $apAdjustment->setAttachmentsId('6942');
@@ -175,7 +175,7 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new Date('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateType('2015-06-30'));
 
         $apAdjustment->writeXml($xml);
     }

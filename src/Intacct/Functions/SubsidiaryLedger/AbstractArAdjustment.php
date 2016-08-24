@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
@@ -32,10 +32,10 @@ abstract class AbstractArAdjustment extends AbstractFunction
     /** @var string */
     protected $customerId;
 
-    /** @var Date */
+    /** @var DateType */
     protected $transactionDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $glPostingDate;
 
     /** @var string */
@@ -59,7 +59,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -110,7 +110,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getTransactionDate()
     {
@@ -118,7 +118,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @param Date $transactionDate
+     * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -126,7 +126,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getGlPostingDate()
     {
@@ -134,7 +134,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @param Date $glPostingDate
+     * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {
@@ -254,7 +254,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -262,7 +262,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

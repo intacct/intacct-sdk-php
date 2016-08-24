@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 class JournalEntryLineCreateTest extends \PHPUnit_Framework_TestCase
@@ -119,7 +119,7 @@ EOF;
         $jeEntry->setGlAccountNumber('1010');
         $jeEntry->setTransactionAmount(1456.54);
         $jeEntry->setTransactionCurrency('USD');
-        $jeEntry->setExchangeRateDate(new Date('2016-06-30'));
+        $jeEntry->setExchangeRateDate(new DateType('2016-06-30'));
         $jeEntry->setExchangeRateType('Intacct Daily Rate');
         $jeEntry->setMemo('my memo');
         $jeEntry->setLocationId('100');

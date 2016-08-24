@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use InvalidArgumentException;
 
@@ -74,7 +74,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var string */
     protected $customerId;
 
-    /** @var Date */
+    /** @var DateType */
     protected $receivedDate;
 
     /** @var float|string */
@@ -83,7 +83,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var float|string */
     protected $basePaymentAmount;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -208,7 +208,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getReceivedDate()
     {
@@ -216,7 +216,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @param Date $receivedDate
+     * @param DateType $receivedDate
      */
     public function setReceivedDate($receivedDate)
     {
@@ -256,7 +256,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -264,7 +264,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

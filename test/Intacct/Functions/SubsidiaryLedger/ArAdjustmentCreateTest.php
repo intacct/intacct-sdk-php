@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -56,7 +56,7 @@ EOF;
 
         $arAdjustment = new ArAdjustmentCreate('unittest');
         $arAdjustment->setCustomerId('CUSTOMER1');
-        $arAdjustment->setTransactionDate(new Date('2015-06-30'));
+        $arAdjustment->setTransactionDate(new DateType('2015-06-30'));
 
         $line1 = new ArAdjustmentLineCreate();
         $line1->setTransactionAmount(76343.43);
@@ -123,8 +123,8 @@ EOF;
 
         $arAdjustment = new ArAdjustmentCreate('unittest');
         $arAdjustment->setCustomerId('CUSTOMER1');
-        $arAdjustment->setTransactionDate(new Date('2015-06-30'));
-        $arAdjustment->setGlPostingDate(new Date('2015-06-30'));
+        $arAdjustment->setTransactionDate(new DateType('2015-06-30'));
+        $arAdjustment->setGlPostingDate(new DateType('2015-06-30'));
         $arAdjustment->setBatchKey('20323');
         $arAdjustment->setAdjustmentNumber('234235');
         $arAdjustment->setAction('Submit');
@@ -133,7 +133,7 @@ EOF;
         $arAdjustment->setExternalId('20394');
         $arAdjustment->setBaseCurrency('USD');
         $arAdjustment->setTransactionCurrency('USD');
-        $arAdjustment->setExchangeRateDate(new Date('2015-06-30'));
+        $arAdjustment->setExchangeRateDate(new DateType('2015-06-30'));
         $arAdjustment->setExchangeRateType('Intacct Daily Rate');
         $arAdjustment->setDoNotPostToGL(false);
 
@@ -164,7 +164,7 @@ EOF;
 
         $arAdjustment = new ArAdjustmentCreate('unittest');
         $arAdjustment->setCustomerId('CUSTOMER1');
-        $arAdjustment->setTransactionDate(new Date('2015-06-30'));
+        $arAdjustment->setTransactionDate(new DateType('2015-06-30'));
 
         $arAdjustment->writeXml($xml);
     }

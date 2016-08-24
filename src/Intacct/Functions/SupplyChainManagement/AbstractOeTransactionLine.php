@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractOeTransactionLine
@@ -61,10 +61,10 @@ abstract class AbstractOeTransactionLine
     /** @var string */
     protected $revRecTemplate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $revRecStartDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $revRecEndDate;
 
     /** @var string */
@@ -299,7 +299,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getRevRecStartDate()
     {
@@ -307,7 +307,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @param Date $revRecStartDate
+     * @param DateType $revRecStartDate
      */
     public function setRevRecStartDate($revRecStartDate)
     {
@@ -315,7 +315,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getRevRecEndDate()
     {
@@ -323,7 +323,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @param Date $revRecEndDate
+     * @param DateType $revRecEndDate
      */
     public function setRevRecEndDate($revRecEndDate)
     {

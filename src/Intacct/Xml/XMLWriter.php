@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use DateTime;
 
 class XMLWriter extends \XMLWriter
@@ -53,7 +53,7 @@ class XMLWriter extends \XMLWriter
         if ($content !== null || $writeNull === true) {
             if (is_bool($content)) {
                 $content = ($content === true) ? 'true' : 'false';
-            } elseif ($content instanceof Date) {
+            } elseif ($content instanceof DateType) {
                 $content = $content->format(self::IA_DATE_FORMAT);
             } elseif ($content instanceof DateTime) {
                 $content = $content->format(self::IA_DATETIME_FORMAT);
@@ -68,12 +68,12 @@ class XMLWriter extends \XMLWriter
     /**
      * Write full element date tags
      *
-     * @param Date $date
+     * @param DateType $date
      * @param bool $writeNull
      *
      * @return bool
      */
-    public function writeDateSplitElements(Date $date, $writeNull = true)
+    public function writeDateSplitElements(DateType $date, $writeNull = true)
     {
         list($year, $month, $day) = explode('-', $date->format('Y-m-d'));
 

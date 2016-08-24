@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -41,7 +41,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     /** @var string */
     protected $transactionDefinition;
 
-    /** @var Date */
+    /** @var DateType */
     protected $transactionDate;
 
     /** @var string */
@@ -104,7 +104,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getTransactionDate()
     {
@@ -112,7 +112,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $transactionDate
+     * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {

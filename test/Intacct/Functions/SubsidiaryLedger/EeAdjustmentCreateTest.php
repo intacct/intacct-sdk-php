@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -57,7 +57,7 @@ EOF;
 
         $expense = new EeAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new Date('2015-06-30'));
+        $expense->setTransactionDate(new DateType('2015-06-30'));
 
         $line1 = new EeAdjustmentLineCreate();
 
@@ -115,8 +115,8 @@ EOF;
 
         $expense = new EeAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new Date('2015-06-30'));
-        $expense->setGlPostingDate(new Date('2015-06-30'));
+        $expense->setTransactionDate(new DateType('2015-06-30'));
+        $expense->setGlPostingDate(new DateType('2015-06-30'));
         $expense->setSummaryRecordNo('123');
         $expense->setExpenseAdjustmentNumber('ADJ001');
         $expense->setExpenseReportNumber('EXP001');
@@ -150,7 +150,7 @@ EOF;
 
         $expense = new EeAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new Date('2015-06-30'));
+        $expense->setTransactionDate(new DateType('2015-06-30'));
 
         $expense->writeXml($xml);
     }

@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
@@ -33,10 +33,10 @@ abstract class AbstractArInvoice extends AbstractFunction
     /** @var string */
     protected $customerId;
 
-    /** @var Date */
+    /** @var DateType */
     protected $transactionDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $glPostingDate;
 
     /** @var string */
@@ -60,7 +60,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -72,7 +72,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     /** @var bool */
     protected $doNotPostToGL;
 
-    /** @var Date */
+    /** @var DateType */
     protected $dueDate;
 
     /** @var string */
@@ -129,7 +129,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getTransactionDate()
     {
@@ -137,7 +137,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @param Date $transactionDate
+     * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -145,7 +145,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getGlPostingDate()
     {
@@ -153,7 +153,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @param Date $glPostingDate
+     * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {
@@ -273,7 +273,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -281,7 +281,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {
@@ -337,7 +337,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getDueDate()
     {
@@ -345,7 +345,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @param Date $dueDate
+     * @param DateType $dueDate
      */
     public function setDueDate($dueDate)
     {

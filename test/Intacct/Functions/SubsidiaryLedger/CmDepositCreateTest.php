@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -55,7 +55,7 @@ EOF;
 
         $deposit = new CmDepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new Date('2015-06-30'));
+        $deposit->setDepositDate(new DateType('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setTransactionKeysToDeposit([
             1234,
@@ -105,7 +105,7 @@ EOF;
 
         $deposit = new CmDepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new Date('2015-06-30'));
+        $deposit->setDepositDate(new DateType('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setDescription('Desc');
         $deposit->setAttachmentsId('AT111');
@@ -136,7 +136,7 @@ EOF;
 
         $deposit = new CmDepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new Date('2015-06-30'));
+        $deposit->setDepositDate(new DateType('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
 
         $deposit->writeXml($xml);

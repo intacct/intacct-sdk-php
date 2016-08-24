@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 class TransactionItemDetailTest extends \PHPUnit_Framework_TestCase
@@ -50,7 +50,7 @@ EOF;
         $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(5523);
         $itemDetail->setLotNumber('223');
-        $itemDetail->setItemExpiration(new Date('2017-12-31'));
+        $itemDetail->setItemExpiration(new DateType('2017-12-31'));
 
         $itemDetail->writeXml($xml);
 

@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -29,7 +29,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     /** @var string */
     protected $bankAccountId;
 
-    /** @var Date */
+    /** @var DateType */
     protected $depositDate;
 
     /** @var string */
@@ -61,7 +61,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getDepositDate()
     {
@@ -69,7 +69,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     }
 
     /**
-     * @param Date $depositDate
+     * @param DateType $depositDate
      */
     public function setDepositDate($depositDate)
     {

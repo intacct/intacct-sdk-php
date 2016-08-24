@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractEeReportLine
@@ -46,7 +46,7 @@ abstract class AbstractEeReportLine
     /** @var string */
     protected $paidFor;
 
-    /** @var Date */
+    /** @var DateType */
     protected $expenseDate;
 
     /** @var int|float|string */
@@ -61,7 +61,7 @@ abstract class AbstractEeReportLine
     /** @var float|string */
     protected $transactionAmount;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -216,7 +216,7 @@ abstract class AbstractEeReportLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExpenseDate()
     {
@@ -224,7 +224,7 @@ abstract class AbstractEeReportLine
     }
 
     /**
-     * @param Date $expenseDate
+     * @param DateType $expenseDate
      */
     public function setExpenseDate($expenseDate)
     {
@@ -296,7 +296,7 @@ abstract class AbstractEeReportLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -304,7 +304,7 @@ abstract class AbstractEeReportLine
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

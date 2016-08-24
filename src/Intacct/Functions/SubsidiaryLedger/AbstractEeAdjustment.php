@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -30,7 +30,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     /** @var int */
     protected $recordNo;
 
-    /** @var Date */
+    /** @var DateType */
     protected $transactionDate;
 
     /** @var string */
@@ -42,7 +42,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     /** @var string */
     protected $expenseAdjustmentNumber;
 
-    /** @var Date */
+    /** @var DateType */
     protected $glPostingDate;
 
     /** @var string|int */
@@ -92,7 +92,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getTransactionDate()
     {
@@ -100,7 +100,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @param Date $transactionDate
+     * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -156,7 +156,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getGlPostingDate()
     {
@@ -164,7 +164,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @param Date $glPostingDate
+     * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {

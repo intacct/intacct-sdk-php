@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -32,7 +32,7 @@ abstract class AbstractEmployee extends AbstractFunction
     /** @var string */
     protected $contactName;
 
-    /** @var Date */
+    /** @var DateType */
     protected $startDate;
 
     /** @var string */
@@ -50,10 +50,10 @@ abstract class AbstractEmployee extends AbstractFunction
     /** @var bool */
     protected $placeholderResource;
 
-    /** @var Date */
+    /** @var DateType */
     protected $birthDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $endDate;
 
     /** @var string */
@@ -152,7 +152,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getStartDate()
     {
@@ -160,7 +160,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param Date $startDate
+     * @param DateType $startDate
      */
     public function setStartDate($startDate)
     {
@@ -248,7 +248,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getBirthDate()
     {
@@ -256,7 +256,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param Date $birthDate
+     * @param DateType $birthDate
      */
     public function setBirthDate($birthDate)
     {
@@ -264,7 +264,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getEndDate()
     {
@@ -272,7 +272,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param Date $endDate
+     * @param DateType $endDate
      */
     public function setEndDate($endDate)
     {

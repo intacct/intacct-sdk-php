@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -41,10 +41,10 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /** @var string */
     protected $transactionDefinition;
 
-    /** @var Date */
+    /** @var DateType */
     protected $transactionDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $glPostingDate;
 
     /** @var string */
@@ -56,7 +56,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /** @var string */
     protected $documentNumber;
 
-    /** @var Date */
+    /** @var DateType */
     protected $originalDocumentDate;
 
     /** @var string */
@@ -65,7 +65,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /** @var string */
     protected $paymentTerm;
 
-    /** @var Date */
+    /** @var DateType */
     protected $dueDate;
 
     /** @var string */
@@ -92,7 +92,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -149,7 +149,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getTransactionDate()
     {
@@ -157,7 +157,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $transactionDate
+     * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -165,7 +165,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getGlPostingDate()
     {
@@ -173,7 +173,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $glPostingDate
+     * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {
@@ -229,7 +229,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getOriginalDocumentDate()
     {
@@ -237,7 +237,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $originalDocumentDate
+     * @param DateType $originalDocumentDate
      */
     public function setOriginalDocumentDate($originalDocumentDate)
     {
@@ -277,7 +277,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getDueDate()
     {
@@ -285,7 +285,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $dueDate
+     * @param DateType $dueDate
      */
     public function setDueDate($dueDate)
     {
@@ -421,7 +421,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -429,7 +429,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

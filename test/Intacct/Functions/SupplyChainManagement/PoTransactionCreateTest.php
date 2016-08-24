@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -69,9 +69,9 @@ EOF;
 
         $transaction = new PoTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new Date('2019-09-15'));
+        $transaction->setDueDate(new DateType('2019-09-15'));
 
         $line1 = new PoTransactionLineCreate();
         $line1->setItemId('02354032');
@@ -165,14 +165,14 @@ EOF;
 
         $transaction = new PoTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
-        $transaction->setGlPostingDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setGlPostingDate(new DateType('2015-06-30'));
         $transaction->setCreatedFrom('Purchase Order-P1002');
         $transaction->setVendorId('23530');
         $transaction->setDocumentNumber('23430');
         $transaction->setReferenceNumber('234235');
         $transaction->setPaymentTerm('N30');
-        $transaction->setDueDate(new Date('2020-09-24'));
+        $transaction->setDueDate(new DateType('2020-09-24'));
         $transaction->setMessage('Submit');
         $transaction->setShippingMethod('USPS');
         $transaction->setReturnToContactName('Bobbi Reese');
@@ -181,7 +181,7 @@ EOF;
         $transaction->setExternalId('20394');
         $transaction->setBaseCurrency('USD');
         $transaction->setTransactionCurrency('USD');
-        $transaction->setExchangeRateDate(new Date('2015-06-30'));
+        $transaction->setExchangeRateDate(new DateType('2015-06-30'));
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setState('Pending');
         $transaction->setCustomFields([
@@ -224,9 +224,9 @@ EOF;
 
         $transaction = new PoTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new Date('2019-09-15'));
+        $transaction->setDueDate(new DateType('2019-09-15'));
 
         $transaction->writeXml($xml);
     }

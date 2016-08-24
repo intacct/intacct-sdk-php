@@ -15,12 +15,12 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Fields;
+namespace Intacct\FieldTypes;
 
 use DateTime;
 use DateTimeZone;
 
-class Date extends DateTime
+class DateType extends DateTime
 {
 
     /**

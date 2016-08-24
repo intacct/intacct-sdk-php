@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 
 abstract class AbstractJournalEntryLine extends AbstractGlEntry
 {
@@ -31,7 +31,7 @@ abstract class AbstractJournalEntryLine extends AbstractGlEntry
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var Date */
+    /** @var DateType */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -89,7 +89,7 @@ abstract class AbstractJournalEntryLine extends AbstractGlEntry
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getExchangeRateDate()
     {
@@ -97,7 +97,7 @@ abstract class AbstractJournalEntryLine extends AbstractGlEntry
     }
 
     /**
-     * @param Date $exchangeRateDate
+     * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

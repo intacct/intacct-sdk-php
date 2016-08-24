@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 class OeTransactionLineUpdateTest extends \PHPUnit_Framework_TestCase
@@ -129,8 +129,8 @@ EOF;
         $entry->setDiscountSurchargeMemo('None');
         $entry->setMemo('Memo');
         $entry->setRevRecTemplate('template');
-        $entry->setRevRecStartDate(new Date('2015-06-30'));
-        $entry->setRevRecEndDate(new Date('2015-07-31'));
+        $entry->setRevRecStartDate(new DateType('2015-06-30'));
+        $entry->setRevRecEndDate(new DateType('2015-07-31'));
         $entry->setRenewalMacro('Quarterly');
         $entry->setFulfillmentStatus('Complete');
         $entry->setTaskNumber('9850');

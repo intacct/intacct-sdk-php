@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -61,7 +61,7 @@ EOF;
         $payment->setBankAccountId('BA1143');
         $payment->setVendorId('V0001');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
-        $payment->setPaymentDate(new Date('2015-06-30'));
+        $payment->setPaymentDate(new DateType('2015-06-30'));
 
         $line1 = new ApPaymentRequestItem();
         $line1->setApplyToRecordId(123);
@@ -122,7 +122,7 @@ EOF;
         $payment->setMemo('Memo');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
         $payment->setGroupPayments(true);
-        $payment->setPaymentDate(new Date('2015-06-30'));
+        $payment->setPaymentDate(new DateType('2015-06-30'));
         $payment->setMergeOption('vendorpref');
         $payment->setDocumentNo('10000');
         $payment->setNotificationContactName('Jim Smith');
@@ -158,7 +158,7 @@ EOF;
         $payment->setBankAccountId('BA1143');
         $payment->setVendorId('V0001');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
-        $payment->setPaymentDate(new Date('2015-06-30'));
+        $payment->setPaymentDate(new DateType('2015-06-30'));
 
         $payment->writeXml($xml);
     }

@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use InvalidArgumentException;
 
@@ -59,7 +59,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     /** @var string */
     protected $mergeOption;
 
-    /** @var Date */
+    /** @var DateType */
     protected $paymentDate;
 
     /** @var string */
@@ -159,7 +159,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getPaymentDate()
     {
@@ -167,7 +167,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @param Date $paymentDate
+     * @param DateType $paymentDate
      */
     public function setPaymentDate($paymentDate)
     {

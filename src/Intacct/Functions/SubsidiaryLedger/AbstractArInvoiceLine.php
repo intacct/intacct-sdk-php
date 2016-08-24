@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractArInvoiceLine
@@ -58,10 +58,10 @@ abstract class AbstractArInvoiceLine
     /** @var string */
     protected $deferredRevGlAccountNo;
 
-    /** @var Date */
+    /** @var DateType */
     protected $revRecStartDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $revRecEndDate;
 
     /** @var string */
@@ -271,7 +271,7 @@ abstract class AbstractArInvoiceLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getRevRecStartDate()
     {
@@ -279,7 +279,7 @@ abstract class AbstractArInvoiceLine
     }
 
     /**
-     * @param Date $revRecStartDate
+     * @param DateType $revRecStartDate
      */
     public function setRevRecStartDate($revRecStartDate)
     {
@@ -287,7 +287,7 @@ abstract class AbstractArInvoiceLine
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getRevRecEndDate()
     {
@@ -295,7 +295,7 @@ abstract class AbstractArInvoiceLine
     }
 
     /**
-     * @param Date $revRecEndDate
+     * @param DateType $revRecEndDate
      */
     public function setRevRecEndDate($revRecEndDate)
     {

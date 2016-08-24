@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Company;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -44,10 +44,10 @@ abstract class AbstractLocation extends AbstractFunction
     /** @var string */
     protected $shipToContactName;
 
-    /** @var Date */
+    /** @var DateType */
     protected $startDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $endDate;
 
     /** @var string */
@@ -153,7 +153,7 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getStartDate()
     {
@@ -161,7 +161,7 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @param Date $startDate
+     * @param DateType $startDate
      */
     public function setStartDate($startDate)
     {
@@ -169,7 +169,7 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getEndDate()
     {
@@ -177,7 +177,7 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @param Date $endDate
+     * @param DateType $endDate
      */
     public function setEndDate($endDate)
     {

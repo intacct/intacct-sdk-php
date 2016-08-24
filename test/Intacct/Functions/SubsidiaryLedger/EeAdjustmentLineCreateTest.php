@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 class EeAdjustmentLineCreateTest extends \PHPUnit_Framework_TestCase
@@ -107,9 +107,9 @@ EOF;
         $line->setReimbursementAmount(1025.99);
         $line->setTransactionCurrency('USD');
         $line->setTransactionAmount(76343.43);
-        $line->setExchangeRateDate(new Date('2016-06-30'));
+        $line->setExchangeRateDate(new DateType('2016-06-30'));
         $line->setExchangeRateType('Intacct Daily Rate');
-        $line->setExpenseDate(new Date('2016-06-30'));
+        $line->setExpenseDate(new DateType('2016-06-30'));
         $line->setMemo('Marriott');
         $line->setBillable(true);
         $line->setPaymentTypeName('AMEX');

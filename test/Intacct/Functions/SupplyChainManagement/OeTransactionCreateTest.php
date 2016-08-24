@@ -18,7 +18,7 @@
 namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Xml\XMLWriter;
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use InvalidArgumentException;
 
 class OeTransactionCreateTest extends \PHPUnit_Framework_TestCase
@@ -58,7 +58,7 @@ EOF;
 
         $transaction = new OeTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $line1 = new OeTransactionLineCreate();
@@ -113,7 +113,7 @@ EOF;
 
         $transaction = new OeTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $line1 = new OeTransactionLineCreate();
@@ -221,15 +221,15 @@ EOF;
 
         $transaction = new OeTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
-        $transaction->setGlPostingDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setGlPostingDate(new DateType('2015-06-30'));
         $transaction->setCreatedFrom('Sales Quote-Q1002');
         $transaction->setCustomerId('23530');
         $transaction->setDocumentNumber('23430');
-        $transaction->setOriginalDocumentDate(new Date('2015-06-15'));
+        $transaction->setOriginalDocumentDate(new DateType('2015-06-15'));
         $transaction->setReferenceNumber('234235');
         $transaction->setPaymentTerm('N30');
-        $transaction->setDueDate(new Date('2020-09-24'));
+        $transaction->setDueDate(new DateType('2020-09-24'));
         $transaction->setMessage('Submit');
         $transaction->setShippingMethod('USPS');
         $transaction->setShipToContactName('28952');
@@ -238,7 +238,7 @@ EOF;
         $transaction->setExternalId('20394');
         $transaction->setBaseCurrency('USD');
         $transaction->setTransactionCurrency('USD');
-        $transaction->setExchangeRateDate(new Date('2015-06-30'));
+        $transaction->setExchangeRateDate(new DateType('2015-06-30'));
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setVsoePriceList('VSOEPricing');
         $transaction->setCustomFields([
@@ -281,7 +281,7 @@ EOF;
 
         $transaction = new OeTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new Date('2015-06-30'));
+        $transaction->setTransactionDate(new DateType('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $transaction->writeXml($xml);

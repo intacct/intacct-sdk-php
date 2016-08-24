@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SubsidiaryLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -58,7 +58,7 @@ EOF;
 
         $arInvoice = new ArInvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new Date('2015-06-30'));
+        $arInvoice->setTransactionDate(new DateType('2015-06-30'));
         $arInvoice->setPaymentTerm('N30');
 
         $line1 = new ArInvoiceLineCreate();
@@ -146,9 +146,9 @@ EOF;
 
         $arInvoice = new ArInvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new Date('2015-06-30'));
-        $arInvoice->setGlPostingDate(new Date('2015-06-30'));
-        $arInvoice->setDueDate(new Date('2020-09-24'));
+        $arInvoice->setTransactionDate(new DateType('2015-06-30'));
+        $arInvoice->setGlPostingDate(new DateType('2015-06-30'));
+        $arInvoice->setDueDate(new DateType('2020-09-24'));
         $arInvoice->setPaymentTerm('N30');
         $arInvoice->setAction('Submit');
         $arInvoice->setBatchKey('20323');
@@ -161,7 +161,7 @@ EOF;
         $arInvoice->setShipToContactName('289533');
         $arInvoice->setBaseCurrency('USD');
         $arInvoice->setTransactionCurrency('USD');
-        $arInvoice->setExchangeRateDate(new Date('2015-06-30'));
+        $arInvoice->setExchangeRateDate(new DateType('2015-06-30'));
         $arInvoice->setExchangeRateType('Intacct Daily Rate');
         $arInvoice->setDoNotPostToGL(false);
         $arInvoice->setAttachmentsId('6942');
@@ -196,7 +196,7 @@ EOF;
 
         $arInvoice = new ArInvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new Date('2015-06-30'));
+        $arInvoice->setTransactionDate(new DateType('2015-06-30'));
         $arInvoice->setPaymentTerm('N30');
 
         $arInvoice->writeXml($xml);

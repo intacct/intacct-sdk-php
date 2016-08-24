@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Projects;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -86,10 +86,10 @@ abstract class AbstractProject extends AbstractFunction
     /** @var string */
     protected $billingType;
 
-    /** @var Date */
+    /** @var DateType */
     protected $beginDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $endDate;
 
     /** @var string */
@@ -488,7 +488,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getBeginDate()
     {
@@ -496,7 +496,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param Date $beginDate
+     * @param DateType $beginDate
      */
     public function setBeginDate($beginDate)
     {
@@ -504,7 +504,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getEndDate()
     {
@@ -512,7 +512,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param Date $endDate
+     * @param DateType $endDate
      */
     public function setEndDate($endDate)
     {

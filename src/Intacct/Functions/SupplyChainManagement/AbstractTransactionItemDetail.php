@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\SupplyChainManagement;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 
 abstract class AbstractTransactionItemDetail
 {
@@ -40,7 +40,7 @@ abstract class AbstractTransactionItemDetail
     /** @var string */
     protected $bin;
 
-    /** @var Date */
+    /** @var DateType */
     protected $itemExpiration;
 
     /**
@@ -140,7 +140,7 @@ abstract class AbstractTransactionItemDetail
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getItemExpiration()
     {
@@ -148,7 +148,7 @@ abstract class AbstractTransactionItemDetail
     }
 
     /**
-     * @param Date $itemExpiration
+     * @param DateType $itemExpiration
      */
     public function setItemExpiration($itemExpiration)
     {
