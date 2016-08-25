@@ -15,27 +15,23 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\GeneralLedger;
+namespace Intacct\Functions\Company;
 
-use Intacct\Functions\Company\AbstractAllocationLine;
 use Intacct\Xml\XMLWriter;
 
-/**
- * Create a new custom allocation split record
- */
-class CustomAllocationSplit extends AbstractAllocationLine
+class AllocationLine extends AbstractAllocationLine
 {
 
     /**
-     * Write the SPLIT block XML
+     * Write the ALLOCATIONENTRY block XML
      *
      * @param XMLWriter $xml
      */
     public function writeXml(XMLWriter &$xml)
     {
-        $xml->startElement('SPLIT');
+        $xml->startElement('ALLOCATIONENTRY');
 
-        $xml->writeElement('AMOUNT', $this->getAmount(), true);
+        $xml->writeElement('VALUE', $this->getAmount(), true);
 
         $xml->writeElement('LOCATIONID', $this->getLocationId());
         $xml->writeElement('DEPARTMENTID', $this->getDepartmentId());
@@ -48,6 +44,6 @@ class CustomAllocationSplit extends AbstractAllocationLine
         $xml->writeElement('CONTRACTID', $this->getContractId());
         $xml->writeElement('WAREHOUSEID', $this->getWarehouseId());
 
-        $xml->endElement(); //SPLIT
+        $xml->endElement(); //ALLOCATIONENTRY
     }
 }
