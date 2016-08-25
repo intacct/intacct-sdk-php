@@ -20,9 +20,8 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
-abstract class AbstractVendor extends AbstractFunction
+abstract class AbstractCustomer extends AbstractFunction
 {
 
     /** @var string */
@@ -37,10 +36,10 @@ abstract class AbstractVendor extends AbstractFunction
     use CustomFieldsTrait;
 
     /** @var string */
-    protected $vendorId;
+    protected $customerId;
 
     /** @var string */
-    protected $vendorName;
+    protected $customerName;
 
     /** @var bool */
     protected $oneTime;
@@ -115,31 +114,37 @@ abstract class AbstractVendor extends AbstractFunction
     protected $excludedFromContactList;
 
     /** @var string */
-    protected $vendorTypeId;
+    protected $customerTypeId;
 
     /** @var string */
-    protected $parentVendorId;
+    protected $salesRepEmployeeId;
+
+    /** @var string */
+    protected $parentCustomerId;
 
     /** @var string */
     protected $glGroupName;
 
     /** @var string */
-    protected $taxId;
-
-    /** @var string */
-    protected $form1099Name;
-
-    /** @var string */
-    protected $form1099Type;
-
-    /** @var int|string */
-    protected $form1099Box;
+    protected $territoryId;
 
     /** @var string */
     protected $attachmentsId;
 
     /** @var string */
-    protected $defaultExpenseGlAccountNo;
+    protected $paymentTerm;
+
+    /** @var string */
+    protected $offsetArGlAccountNo;
+
+    /** @var string */
+    protected $defaultRevenueGlAccountNo;
+
+    /** @var string */
+    protected $shippingMethod;
+
+    /** @var string */
+    protected $resaleNumber;
 
     /** @var bool */
     protected $taxable;
@@ -147,14 +152,20 @@ abstract class AbstractVendor extends AbstractFunction
     /** @var string */
     protected $contactTaxGroupName;
 
+    /** @var string */
+    protected $taxId;
+
     /** @var float|string|int */
     protected $creditLimit;
 
     /** @var bool */
     protected $onHold;
 
-    /** @var bool */
-    protected $doNotPay;
+    /** @var string */
+    protected $deliveryMethod;
+
+    /** @var string */
+    protected $defaultInvoiceMessage;
 
     /** @var string */
     protected $comments;
@@ -163,63 +174,38 @@ abstract class AbstractVendor extends AbstractFunction
     protected $defaultCurrency;
 
     /** @var string */
+    protected $printOptionArInvoiceTemplateName;
+
+    /** @var string */
+    protected $printOptionOeQuoteTemplateName;
+
+    /** @var string */
+    protected $printOptionOeOrderTemplateName;
+
+    /** @var string */
+    protected $printOptionOeListTemplateName;
+
+    /** @var string */
+    protected $printOptionOeInvoiceTemplateName;
+
+    /** @var string */
+    protected $printOptionOeAdjustmentTemplateName;
+
+    /** @var string */
+    protected $printOptionOeOtherTemplateName;
+
+    // TODO: Email template options
+
+    /** @var string */
     protected $primaryContactName;
 
     /** @var string */
-    protected $payToContactName;
+    protected $billToContactName;
 
     /** @var string */
-    protected $returnToContactName;
+    protected $shipToContactName;
 
     // TODO contact list
-
-    /** @var string */
-    protected $preferredPaymentMethod;
-
-    /** @var bool */
-    protected $sendAutomaticPaymentNotification;
-
-    /** @var bool */
-    protected $mergePaymentRequests;
-
-    /** @var string */
-    protected $vendorBillingType;
-
-    // TODO default bill payment date
-
-    /** @var string */
-    protected $paymentPriority;
-
-    /** @var string */
-    protected $paymentTerm;
-
-    /** @var bool */
-    protected $termDiscountDisplayedOnCheckStub;
-
-    /** @var bool */
-    protected $achEnabled;
-
-    /** @var string */
-    protected $achBankRoutingNo;
-
-    /** @var string */
-    protected $achBankAccountNo;
-
-    /** @var string */
-    protected $achBankAccountType;
-
-    /** @var string */
-    protected $achBankAccountClass;
-
-    // TODO check delivery and ACH payment services
-
-    /** @var string */
-    protected $vendorAccountNo;
-
-    /** @var bool */
-    protected $locationAssignedAccountNoDisplayedOnCheckStub;
-
-    // TODO location assigned vendor account no's
 
     /** @var string */
     protected $restrictionType;
@@ -233,33 +219,33 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
-    public function getVendorId()
+    public function getCustomerId()
     {
-        return $this->vendorId;
+        return $this->customerId;
     }
 
     /**
-     * @param string $vendorId
+     * @param string $customerId
      */
-    public function setVendorId($vendorId)
+    public function setCustomerId($customerId)
     {
-        $this->vendorId = $vendorId;
+        $this->customerId = $customerId;
     }
 
     /**
      * @return string
      */
-    public function getVendorName()
+    public function getCustomerName()
     {
-        return $this->vendorName;
+        return $this->customerName;
     }
 
     /**
-     * @param string $vendorName
+     * @param string $customerName
      */
-    public function setVendorName($vendorName)
+    public function setCustomerName($customerName)
     {
-        $this->vendorName = $vendorName;
+        $this->customerName = $customerName;
     }
 
     /**
@@ -649,33 +635,49 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
-    public function getVendorTypeId()
+    public function getCustomerTypeId()
     {
-        return $this->vendorTypeId;
+        return $this->customerTypeId;
     }
 
     /**
-     * @param string $vendorTypeId
+     * @param string $customerTypeId
      */
-    public function setVendorTypeId($vendorTypeId)
+    public function setCustomerTypeId($customerTypeId)
     {
-        $this->vendorTypeId = $vendorTypeId;
+        $this->customerTypeId = $customerTypeId;
     }
 
     /**
      * @return string
      */
-    public function getParentVendorId()
+    public function getSalesRepEmployeeId()
     {
-        return $this->parentVendorId;
+        return $this->salesRepEmployeeId;
     }
 
     /**
-     * @param string $parentVendorId
+     * @param string $salesRepEmployeeId
      */
-    public function setParentVendorId($parentVendorId)
+    public function setSalesRepEmployeeId($salesRepEmployeeId)
     {
-        $this->parentVendorId = $parentVendorId;
+        $this->salesRepEmployeeId = $salesRepEmployeeId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentCustomerId()
+    {
+        return $this->parentCustomerId;
+    }
+
+    /**
+     * @param string $parentCustomerId
+     */
+    public function setParentCustomerId($parentCustomerId)
+    {
+        $this->parentCustomerId = $parentCustomerId;
     }
 
     /**
@@ -697,65 +699,17 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
-    public function getTaxId()
+    public function getTerritoryId()
     {
-        return $this->taxId;
+        return $this->territoryId;
     }
 
     /**
-     * @param string $taxId
+     * @param string $territoryId
      */
-    public function setTaxId($taxId)
+    public function setTerritoryId($territoryId)
     {
-        $this->taxId = $taxId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getForm1099Name()
-    {
-        return $this->form1099Name;
-    }
-
-    /**
-     * @param string $form1099Name
-     */
-    public function setForm1099Name($form1099Name)
-    {
-        $this->form1099Name = $form1099Name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getForm1099Type()
-    {
-        return $this->form1099Type;
-    }
-
-    /**
-     * @param string $form1099Type
-     */
-    public function setForm1099Type($form1099Type)
-    {
-        $this->form1099Type = $form1099Type;
-    }
-
-    /**
-     * @return int|string
-     */
-    public function getForm1099Box()
-    {
-        return $this->form1099Box;
-    }
-
-    /**
-     * @param int|string $form1099Box
-     */
-    public function setForm1099Box($form1099Box)
-    {
-        $this->form1099Box = $form1099Box;
+        $this->territoryId = $territoryId;
     }
 
     /**
@@ -777,17 +731,81 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
-    public function getDefaultExpenseGlAccountNo()
+    public function getPaymentTerm()
     {
-        return $this->defaultExpenseGlAccountNo;
+        return $this->paymentTerm;
     }
 
     /**
-     * @param string $defaultExpenseGlAccountNo
+     * @param string $paymentTerm
      */
-    public function setDefaultExpenseGlAccountNo($defaultExpenseGlAccountNo)
+    public function setPaymentTerm($paymentTerm)
     {
-        $this->defaultExpenseGlAccountNo = $defaultExpenseGlAccountNo;
+        $this->paymentTerm = $paymentTerm;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOffsetArGlAccountNo()
+    {
+        return $this->offsetArGlAccountNo;
+    }
+
+    /**
+     * @param string $offsetArGlAccountNo
+     */
+    public function setOffsetArGlAccountNo($offsetArGlAccountNo)
+    {
+        $this->offsetArGlAccountNo = $offsetArGlAccountNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultRevenueGlAccountNo()
+    {
+        return $this->defaultRevenueGlAccountNo;
+    }
+
+    /**
+     * @param string $defaultRevenueGlAccountNo
+     */
+    public function setDefaultRevenueGlAccountNo($defaultRevenueGlAccountNo)
+    {
+        $this->defaultRevenueGlAccountNo = $defaultRevenueGlAccountNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+
+    /**
+     * @param string $shippingMethod
+     */
+    public function setShippingMethod($shippingMethod)
+    {
+        $this->shippingMethod = $shippingMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResaleNumber()
+    {
+        return $this->resaleNumber;
+    }
+
+    /**
+     * @param string $resaleNumber
+     */
+    public function setResaleNumber($resaleNumber)
+    {
+        $this->resaleNumber = $resaleNumber;
     }
 
     /**
@@ -823,19 +841,19 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
-     * @return float|int|string
+     * @return string
      */
-    public function getCreditLimit()
+    public function getTaxId()
     {
-        return $this->creditLimit;
+        return $this->taxId;
     }
 
     /**
-     * @param float|int|string $creditLimit
+     * @param string $taxId
      */
-    public function setCreditLimit($creditLimit)
+    public function setTaxId($taxId)
     {
-        $this->creditLimit = $creditLimit;
+        $this->taxId = $taxId;
     }
 
     /**
@@ -855,19 +873,51 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return float|int|string
      */
-    public function isDoNotPay()
+    public function getCreditLimit()
     {
-        return $this->doNotPay;
+        return $this->creditLimit;
     }
 
     /**
-     * @param boolean $doNotPay
+     * @param float|int|string $creditLimit
      */
-    public function setDoNotPay($doNotPay)
+    public function setCreditLimit($creditLimit)
     {
-        $this->doNotPay = $doNotPay;
+        $this->creditLimit = $creditLimit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeliveryMethod()
+    {
+        return $this->deliveryMethod;
+    }
+
+    /**
+     * @param string $deliveryMethod
+     */
+    public function setDeliveryMethod($deliveryMethod)
+    {
+        $this->deliveryMethod = $deliveryMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultInvoiceMessage()
+    {
+        return $this->defaultInvoiceMessage;
+    }
+
+    /**
+     * @param string $defaultInvoiceMessage
+     */
+    public function setDefaultInvoiceMessage($defaultInvoiceMessage)
+    {
+        $this->defaultInvoiceMessage = $defaultInvoiceMessage;
     }
 
     /**
@@ -905,6 +955,128 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
+    public function getPrintOptionArInvoiceTemplateName()
+    {
+        return $this->printOptionArInvoiceTemplateName;
+    }
+
+    /**
+     * @param string $printOptionArInvoiceTemplateName
+     */
+    public function setPrintOptionArInvoiceTemplateName(
+        $printOptionArInvoiceTemplateName
+    ) {
+        $this->printOptionArInvoiceTemplateName
+            = $printOptionArInvoiceTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeQuoteTemplateName()
+    {
+        return $this->printOptionOeQuoteTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeQuoteTemplateName
+     */
+    public function setPrintOptionOeQuoteTemplateName(
+        $printOptionOeQuoteTemplateName
+    ) {
+        $this->printOptionOeQuoteTemplateName = $printOptionOeQuoteTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeOrderTemplateName()
+    {
+        return $this->printOptionOeOrderTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeOrderTemplateName
+     */
+    public function setPrintOptionOeOrderTemplateName(
+        $printOptionOeOrderTemplateName
+    ) {
+        $this->printOptionOeOrderTemplateName = $printOptionOeOrderTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeListTemplateName()
+    {
+        return $this->printOptionOeListTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeListTemplateName
+     */
+    public function setPrintOptionOeListTemplateName(
+        $printOptionOeListTemplateName
+    ) {
+        $this->printOptionOeListTemplateName = $printOptionOeListTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeInvoiceTemplateName()
+    {
+        return $this->printOptionOeInvoiceTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeInvoiceTemplateName
+     */
+    public function setPrintOptionOeInvoiceTemplateName(
+        $printOptionOeInvoiceTemplateName
+    ) {
+        $this->printOptionOeInvoiceTemplateName
+            = $printOptionOeInvoiceTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeAdjustmentTemplateName()
+    {
+        return $this->printOptionOeAdjustmentTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeAdjustmentTemplateName
+     */
+    public function setPrintOptionOeAdjustmentTemplateName(
+        $printOptionOeAdjustmentTemplateName
+    ) {
+        $this->printOptionOeAdjustmentTemplateName
+            = $printOptionOeAdjustmentTemplateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintOptionOeOtherTemplateName()
+    {
+        return $this->printOptionOeOtherTemplateName;
+    }
+
+    /**
+     * @param string $printOptionOeOtherTemplateName
+     */
+    public function setPrintOptionOeOtherTemplateName(
+        $printOptionOeOtherTemplateName
+    ) {
+        $this->printOptionOeOtherTemplateName = $printOptionOeOtherTemplateName;
+    }
+
+    /**
+     * @return string
+     */
     public function getPrimaryContactName()
     {
         return $this->primaryContactName;
@@ -921,257 +1093,33 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * @return string
      */
-    public function getPayToContactName()
+    public function getBillToContactName()
     {
-        return $this->payToContactName;
+        return $this->billToContactName;
     }
 
     /**
-     * @param string $payToContactName
+     * @param string $billToContactName
      */
-    public function setPayToContactName($payToContactName)
+    public function setBillToContactName($billToContactName)
     {
-        $this->payToContactName = $payToContactName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReturnToContactName()
-    {
-        return $this->returnToContactName;
-    }
-
-    /**
-     * @param string $returnToContactName
-     */
-    public function setReturnToContactName($returnToContactName)
-    {
-        $this->returnToContactName = $returnToContactName;
+        $this->billToContactName = $billToContactName;
     }
 
     /**
      * @return string
      */
-    public function getPreferredPaymentMethod()
+    public function getShipToContactName()
     {
-        return $this->preferredPaymentMethod;
+        return $this->shipToContactName;
     }
 
     /**
-     * @param string $preferredPaymentMethod
+     * @param string $shipToContactName
      */
-    public function setPreferredPaymentMethod($preferredPaymentMethod)
+    public function setShipToContactName($shipToContactName)
     {
-        $this->preferredPaymentMethod = $preferredPaymentMethod;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isSendAutomaticPaymentNotification()
-    {
-        return $this->sendAutomaticPaymentNotification;
-    }
-
-    /**
-     * @param boolean $sendAutomaticPaymentNotification
-     */
-    public function setSendAutomaticPaymentNotification($sendAutomaticPaymentNotification)
-    {
-        $this->sendAutomaticPaymentNotification = $sendAutomaticPaymentNotification;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isMergePaymentRequests()
-    {
-        return $this->mergePaymentRequests;
-    }
-
-    /**
-     * @param boolean $mergePaymentRequests
-     */
-    public function setMergePaymentRequests($mergePaymentRequests)
-    {
-        $this->mergePaymentRequests = $mergePaymentRequests;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVendorBillingType()
-    {
-        return $this->vendorBillingType;
-    }
-
-    /**
-     * @param string $vendorBillingType
-     */
-    public function setVendorBillingType($vendorBillingType)
-    {
-        $this->vendorBillingType = $vendorBillingType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentPriority()
-    {
-        return $this->paymentPriority;
-    }
-
-    /**
-     * @param string $paymentPriority
-     */
-    public function setPaymentPriority($paymentPriority)
-    {
-        $this->paymentPriority = $paymentPriority;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentTerm()
-    {
-        return $this->paymentTerm;
-    }
-
-    /**
-     * @param string $paymentTerm
-     */
-    public function setPaymentTerm($paymentTerm)
-    {
-        $this->paymentTerm = $paymentTerm;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isTermDiscountDisplayedOnCheckStub()
-    {
-        return $this->termDiscountDisplayedOnCheckStub;
-    }
-
-    /**
-     * @param boolean $termDiscountDisplayedOnCheckStub
-     */
-    public function setTermDiscountDisplayedOnCheckStub($termDiscountDisplayedOnCheckStub)
-    {
-        $this->termDiscountDisplayedOnCheckStub = $termDiscountDisplayedOnCheckStub;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isAchEnabled()
-    {
-        return $this->achEnabled;
-    }
-
-    /**
-     * @param boolean $achEnabled
-     */
-    public function setAchEnabled($achEnabled)
-    {
-        $this->achEnabled = $achEnabled;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAchBankRoutingNo()
-    {
-        return $this->achBankRoutingNo;
-    }
-
-    /**
-     * @param string $achBankRoutingNo
-     */
-    public function setAchBankRoutingNo($achBankRoutingNo)
-    {
-        $this->achBankRoutingNo = $achBankRoutingNo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAchBankAccountNo()
-    {
-        return $this->achBankAccountNo;
-    }
-
-    /**
-     * @param string $achBankAccountNo
-     */
-    public function setAchBankAccountNo($achBankAccountNo)
-    {
-        $this->achBankAccountNo = $achBankAccountNo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAchBankAccountType()
-    {
-        return $this->achBankAccountType;
-    }
-
-    /**
-     * @param string $achBankAccountType
-     */
-    public function setAchBankAccountType($achBankAccountType)
-    {
-        $this->achBankAccountType = $achBankAccountType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAchBankAccountClass()
-    {
-        return $this->achBankAccountClass;
-    }
-
-    /**
-     * @param string $achBankAccountClass
-     */
-    public function setAchBankAccountClass($achBankAccountClass)
-    {
-        $this->achBankAccountClass = $achBankAccountClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVendorAccountNo()
-    {
-        return $this->vendorAccountNo;
-    }
-
-    /**
-     * @param string $vendorAccountNo
-     */
-    public function setVendorAccountNo($vendorAccountNo)
-    {
-        $this->vendorAccountNo = $vendorAccountNo;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isLocationAssignedAccountNoDisplayedOnCheckStub()
-    {
-        return $this->locationAssignedAccountNoDisplayedOnCheckStub;
-    }
-
-    /**
-     * @param boolean $locationAssignedAccountNoDisplayedOnCheckStub
-     */
-    public function setLocationAssignedAccountNoDisplayedOnCheckStub($locationAssignedAccountNoDisplayedOnCheckStub)
-    {
-        $this->locationAssignedAccountNoDisplayedOnCheckStub = $locationAssignedAccountNoDisplayedOnCheckStub;
+        $this->shipToContactName = $shipToContactName;
     }
 
     /**
