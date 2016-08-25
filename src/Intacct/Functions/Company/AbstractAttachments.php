@@ -34,7 +34,7 @@ abstract class AbstractAttachments extends AbstractFunction
     /** @var string */
     protected $description;
 
-    /** @var AttachmentFile[] */
+    /** @var AttachmentInterface[] */
     protected $files;
 
     /**
@@ -102,7 +102,7 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
-     * @return AttachmentFile[]
+     * @return AttachmentInterface[]
      */
     public function getFiles()
     {
@@ -110,7 +110,7 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
-     * @param AttachmentFile[] $files
+     * @param AttachmentInterface[] $files
      */
     public function setFiles(array $files)
     {
