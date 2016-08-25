@@ -20,15 +20,16 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 abstract class AbstractVendor extends AbstractFunction
 {
 
-    //const RESTRICTION_TYPE_UNRESTRICTED = 'Unrestricted';
+    const RESTRICTION_TYPE_UNRESTRICTED = 'Unrestricted';
 
-    //const RESTRICTION_TYPE_TOPLEVEL = 'RootOnly';
+    const RESTRICTION_TYPE_TOPLEVEL = 'RootOnly';
 
-    //const RESTRICTION_TYPE_RESTRICTED = 'Restricted';
+    const RESTRICTION_TYPE_RESTRICTED = 'Restricted';
 
     use CustomFieldsTrait;
 
@@ -218,13 +219,13 @@ abstract class AbstractVendor extends AbstractFunction
     // TODO location assigned vendor account no's
 
     /** @var string */
-    //protected $restrictionType;
+    protected $restrictionType;
 
     /** @var array */
-    //protected $restrictedLocations;
+    protected $restrictedLocations;
 
     /** @var array */
-    //protected $restrictedDepartments;
+    protected $restrictedDepartments;
 
     /**
      * @return string
@@ -1168,6 +1169,62 @@ abstract class AbstractVendor extends AbstractFunction
     public function setLocationAssignedAccountNoDisplayedOnCheckStub($locationAssignedAccountNoDisplayedOnCheckStub)
     {
         $this->locationAssignedAccountNoDisplayedOnCheckStub = $locationAssignedAccountNoDisplayedOnCheckStub;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRestrictionType()
+    {
+        return $this->restrictionType;
+    }
+
+    /**
+     * @param string $restrictionType
+     */
+    public function setRestrictionType($restrictionType)
+    {
+        $restrictionTypes = [
+            static::RESTRICTION_TYPE_UNRESTRICTED,
+            static::RESTRICTION_TYPE_RESTRICTED,
+            static::RESTRICTION_TYPE_TOPLEVEL,
+        ];
+        if (!in_array($restrictionType, $restrictionTypes)) {
+            throw new InvalidArgumentException('Restriction Type is not valid');
+        }
+        $this->restrictionType = $restrictionType;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRestrictedLocations()
+    {
+        return $this->restrictedLocations;
+    }
+
+    /**
+     * @param array $restrictedLocations
+     */
+    public function setRestrictedLocations($restrictedLocations)
+    {
+        $this->restrictedLocations = $restrictedLocations;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRestrictedDepartments()
+    {
+        return $this->restrictedDepartments;
+    }
+
+    /**
+     * @param array $restrictedDepartments
+     */
+    public function setRestrictedDepartments($restrictedDepartments)
+    {
+        $this->restrictedDepartments = $restrictedDepartments;
     }
 
     /**

@@ -21,9 +21,9 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * Create a new vendor record
+ * Update an existing vendor record
  */
-class VendorCreate extends AbstractVendor
+class VendorUpdate extends AbstractVendor
 {
 
     /**
@@ -37,28 +37,19 @@ class VendorCreate extends AbstractVendor
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('create');
+        $xml->startElement('update');
         $xml->startElement('VENDOR');
 
-        // Vendor ID is not required if auto-numbering is configured in module
-        $xml->writeElement('VENDORID', $this->getVendorId());
-
-        if (!$this->getVendorName()) {
-            throw new InvalidArgumentException('Vendor Name is required for create');
+        if (!$this->getVendorId()) {
+            throw new InvalidArgumentException('Vendor ID is required for update');
         }
-        $xml->writeElement('NAME', $this->getVendorName(), true);
+        $xml->writeElement('VENDORID', $this->getVendorId(), true);
+
+        $xml->writeElement('NAME', $this->getVendorName());
 
         $xml->startElement('DISPLAYCONTACT');
 
-        // CONTACTNAME is auto created as '[VendorName](V[VendorID])'
-
-        if (!$this->getPrintAs()) {
-            // Use the vendor name if the print as is missing
-            $xml->writeElement('PRINTAS', $this->getVendorName(), true);
-        } else {
-            $xml->writeElement('PRINTAS', $this->getPrintAs(), true);
-        }
-
+        $xml->writeElement('PRINTAS', $this->getPrintAs());
         $xml->writeElement('COMPANYNAME', $this->getCompanyName());
         $xml->writeElement('TAXABLE', $this->isTaxable());
         // TAXID is passed in with VENDOR element below
@@ -105,19 +96,19 @@ class VendorCreate extends AbstractVendor
         $xml->writeElement('COMMENTS', $this->getComments());
         $xml->writeElement('CURRENCY', $this->getDefaultCurrency());
 
-        if ($this->getPrimaryContactName()) {
+        if ($this->getPrimaryContactName() !== null) {
             $xml->startElement('CONTACTINFO');
             $xml->writeElement('CONTACTNAME', $this->getPrimaryContactName(), true);
             $xml->endElement(); //CONTACTINFO
         }
 
-        if ($this->getPayToContactName()) {
+        if ($this->getPayToContactName() !== null) {
             $xml->startElement('PAYTO');
             $xml->writeElement('CONTACTNAME', $this->getPayToContactName(), true);
             $xml->endElement(); //PAYTO
         }
 
-        if ($this->getReturnToContactName()) {
+        if ($this->getReturnToContactName() !== null) {
             $xml->startElement('RETURNTO');
             $xml->writeElement('CONTACTNAME', $this->getReturnToContactName(), true);
             $xml->endElement(); //RETURNTO
@@ -157,7 +148,7 @@ class VendorCreate extends AbstractVendor
         $this->writeXmlImplicitCustomFields($xml);
 
         $xml->endElement(); //VENDOR
-        $xml->endElement(); //create
+        $xml->endElement(); //update
 
         $xml->endElement(); //function
     }

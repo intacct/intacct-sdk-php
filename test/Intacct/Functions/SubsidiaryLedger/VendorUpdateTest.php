@@ -20,25 +20,23 @@ namespace Intacct\Functions\SubsidiaryLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class VendorCreateTest extends \PHPUnit_Framework_TestCase
+class VendorUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\SubsidiaryLedger\VendorCreate::writeXml
+     * @covers Intacct\Functions\SubsidiaryLedger\VendorUpdate::writeXml
      */
     public function testConstruct()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <create>
+    <update>
         <VENDOR>
-            <NAME>Intacct Corp</NAME>
-            <DISPLAYCONTACT>
-                <PRINTAS>Intacct Corporation</PRINTAS>
-            </DISPLAYCONTACT>
+            <VENDORID>V1234</VENDORID>
+            <DISPLAYCONTACT/>
         </VENDOR>
-    </create>
+    </update>
 </function>
 EOF;
 
@@ -48,9 +46,8 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $record = new VendorCreate('unittest');
-        $record->setVendorName('Intacct Corp');
-        $record->setPrintAs('Intacct Corporation');
+        $record = new VendorUpdate('unittest');
+        $record->setVendorId('V1234');
 
         $record->writeXml($xml);
 
@@ -58,14 +55,14 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\SubsidiaryLedger\VendorCreate::writeXml
+     * @covers Intacct\Functions\SubsidiaryLedger\VendorUpdate::writeXml
      */
     public function testFullXml()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <create>
+    <update>
         <VENDOR>
             <VENDORID>V1234</VENDORID>
             <NAME>Intacct Corp</NAME>
@@ -141,7 +138,7 @@ EOF;
             <RESTRICTEDDEPARTMENTS>D100#~#D200</RESTRICTEDDEPARTMENTS>
             <CUSTOMFIELD1>Hello</CUSTOMFIELD1>
         </VENDOR>
-    </create>
+    </update>
 </function>
 EOF;
 
@@ -151,7 +148,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $record = new VendorCreate('unittest');
+        $record = new VendorUpdate('unittest');
         $record->setVendorId('V1234');
         $record->setVendorName('Intacct Corp');
         $record->setPrintAs('Intacct Corporation');
@@ -211,7 +208,7 @@ EOF;
         $record->setAchBankAccountClass('CTX');
         $record->setVendorAccountNo('9999999');
         $record->setLocationAssignedAccountNoDisplayedOnCheckStub(false);
-        $record->setRestrictionType(VendorCreate::RESTRICTION_TYPE_RESTRICTED);
+        $record->setRestrictionType(VendorUpdate::RESTRICTION_TYPE_RESTRICTED);
         $record->setRestrictedLocations([
             '100',
             '200',
@@ -230,9 +227,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\SubsidiaryLedger\VendorCreate::writeXml
+     * @covers Intacct\Functions\SubsidiaryLedger\VendorUpdate::writeXml
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Vendor Name is required for create
+     * @expectedExceptionMessage Vendor ID is required for update
      */
     public function testRequiredName()
     {
@@ -242,8 +239,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $record = new VendorCreate('unittest');
-        //$record->setVendorName('Intacct Corp');
+        $record = new VendorUpdate('unittest');
 
         $record->writeXml($xml);
     }
