@@ -69,8 +69,8 @@ class ArPaymentItem
     {
         $xml->startElement('arpaymentitem');
 
-        $xml->writeElement('invoicekey', $this->applyToRecordId, true);
-        $xml->writeElement('amount', $this->amountToApply, true);
+        $xml->writeElement('invoicekey', $this->getApplyToRecordId(), true);
+        $xml->writeElement('amount', $this->getAmountToApply(), true);
 
         $xml->endElement(); //arpaymentitem
     }
