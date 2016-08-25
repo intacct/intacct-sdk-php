@@ -20,23 +20,23 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class LocationUpdateTest extends \PHPUnit_Framework_TestCase
+class LocationCreateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Company\LocationUpdate::writeXml
+     * @covers Intacct\Functions\Company\LocationCreate::writeXml
      */
     public function testConstruct()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <update>
+    <create>
         <LOCATION>
             <LOCATIONID>L1234</LOCATIONID>
             <NAME>hello world</NAME>
         </LOCATION>
-    </update>
+    </create>
 </function>
 EOF;
 
@@ -46,7 +46,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $location = new LocationUpdate('unittest');
+        $location = new LocationCreate('unittest');
         $location->setLocationId('L1234');
         $location->setLocationName('hello world');
 
@@ -56,9 +56,9 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\LocationUpdate::writeXml
+     * @covers Intacct\Functions\Company\LocationCreate::writeXml
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Location ID is required for update
+     * @expectedExceptionMessage Location ID is required for create
      */
     public function testRequiredLocationId()
     {
@@ -68,9 +68,29 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $location = new LocationUpdate('unittest');
+        $location = new LocationCreate('unittest');
         //$location->setLocationId('L1234');
         $location->setLocationName('hello world');
+
+        $location->writeXml($xml);
+    }
+
+    /**
+     * @covers Intacct\Functions\Company\LocationCreate::writeXml
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Location Name is required for create
+     */
+    public function testRequiredDepartmentName()
+    {
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $location = new LocationCreate('unittest');
+        $location->setLocationId('L1234');
+        //$location->setLocationName('hello world');
 
         $location->writeXml($xml);
     }
