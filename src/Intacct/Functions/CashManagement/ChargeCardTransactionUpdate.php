@@ -21,9 +21,9 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * Create a new cash management charge card transaction record
+ * Update an existing cash management charge card transaction record
  */
-class ChargeCardTransactionCreate extends AbstractChargeCardTransaction
+class ChargeCardTransactionUpdate extends AbstractChargeCardTransaction
 {
 
     /**
@@ -37,13 +37,18 @@ class ChargeCardTransactionCreate extends AbstractChargeCardTransaction
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('record_cctransaction');
+        $xml->startElement('update_cctransaction');
 
-        $xml->writeElement('chargecardid', $this->getChargeCardId(), true);
+        if (!$this->getRecordNo()) {
+            throw new InvalidArgumentException('Record No is required for update');
+        }
+        $xml->writeAttribute('key', $this->getRecordNo());
 
-        $xml->startElement('paymentdate');
-        $xml->writeDateSplitElements($this->getTransactionDate());
-        $xml->endElement(); //paymentdate
+        if ($this->getTransactionDate()) {
+            $xml->startElement('paymentdate');
+            $xml->writeDateSplitElements($this->getTransactionDate());
+            $xml->endElement(); //paymentdate
+        }
 
         $xml->writeElement('referenceno', $this->getReferenceNumber());
         $xml->writeElement('payee', $this->getPayee());
@@ -65,17 +70,15 @@ class ChargeCardTransactionCreate extends AbstractChargeCardTransaction
 
         $this->writeXmlExplicitCustomFields($xml);
 
-        $xml->startElement('ccpayitems');
         if (count($this->getLines()) > 0) {
+            $xml->startElement('updateccpayitems');
             foreach ($this->getLines() as $line) {
                 $line->writeXml($xml);
             }
-        } else {
-            throw new InvalidArgumentException('CM Charge Card Transaction must have at least 1 line');
+            $xml->endElement(); //updateccpayitems
         }
-        $xml->endElement(); //ccpayitems
 
-        $xml->endElement(); //record_cctransaction
+        $xml->endElement(); //update_cctransaction
 
         $xml->endElement(); //function
     }
