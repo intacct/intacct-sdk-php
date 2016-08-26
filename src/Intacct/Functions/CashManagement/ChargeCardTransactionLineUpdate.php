@@ -42,6 +42,9 @@ class ChargeCardTransactionLineUpdate extends AbstractChargeCardTransactionLine
      */
     public function setLineNo($lineNo)
     {
+        if ($lineNo < 1) {
+            throw new InvalidArgumentException('Line No must be greater than zero');
+        }
         $this->lineNo = $lineNo;
     }
 
