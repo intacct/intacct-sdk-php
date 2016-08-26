@@ -65,10 +65,10 @@ abstract class AbstractIcTransaction extends AbstractFunction
     /** @var string */
     protected $state;
 
-    /** @var array */
+    /** @var AbstractTransactionSubtotal[] */
     protected $subtotals;
 
-    /** @var array */
+    /** @var AbstractIcTransactionLine[] */
     protected $lines;
 
     /**
@@ -232,7 +232,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractTransactionSubtotal[]
      */
     public function getSubtotals()
     {
@@ -240,7 +240,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $subtotals
+     * @param AbstractTransactionSubtotal[] $subtotals
      */
     public function setSubtotals($subtotals)
     {
@@ -248,7 +248,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractIcTransactionLine[]
      */
     public function getLines()
     {
@@ -256,7 +256,7 @@ abstract class AbstractIcTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractIcTransactionLine[] $lines
      */
     public function setLines($lines)
     {

@@ -19,6 +19,7 @@ namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOeTransactionLine
 {
@@ -79,7 +80,7 @@ abstract class AbstractOeTransactionLine
     /** @var string */
     protected $billingTemplate;
 
-    /** @var array */
+    /** @var AbstractTransactionItemDetail */
     protected $itemDetails;
 
     /** @var string */
@@ -395,7 +396,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @return array
+     * @return AbstractTransactionItemDetail[]
      */
     public function getItemDetails()
     {
@@ -403,7 +404,7 @@ abstract class AbstractOeTransactionLine
     }
 
     /**
-     * @param array $itemDetails
+     * @param AbstractTransactionItemDetail[] $itemDetails
      */
     public function setItemDetails($itemDetails)
     {
@@ -537,4 +538,6 @@ abstract class AbstractOeTransactionLine
     {
         $this->contractId = $contractId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

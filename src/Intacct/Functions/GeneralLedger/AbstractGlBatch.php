@@ -53,7 +53,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     /** @var string */
     protected $action;
 
-    /** @var array */
+    /** @var AbstractGlEntry[] */
     protected $lines;
 
     /**
@@ -201,7 +201,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractGlEntry[]
      */
     public function getLines()
     {
@@ -209,7 +209,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractGlEntry[] $lines
      */
     public function setLines($lines)
     {

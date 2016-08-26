@@ -19,12 +19,11 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
-use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractEeAdjustment extends AbstractFunction
 {
 
-    //Current schema does not allow custom fields
+    //TODO: Current schema does not allow custom fields
     //use CustomFieldsTrait;
 
     /** @var int */
@@ -72,7 +71,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     /** @var string */
     protected $memo;
 
-    /** @var array */
+    /** @var AbstractEeAdjustmentLine[] */
     protected $lines;
 
     /**
@@ -252,7 +251,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractEeAdjustmentLine[]
      */
     public function getLines()
     {
@@ -260,7 +259,7 @@ abstract class AbstractEeAdjustment extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractEeAdjustmentLine[] $lines
      */
     public function setLines($lines)
     {

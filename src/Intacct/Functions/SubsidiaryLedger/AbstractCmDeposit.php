@@ -41,7 +41,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     /** @var string */
     protected $attachmentsId;
 
-    /** @var array */
+    /** @var int[] */
     protected $transactionsKeysToDeposit;
 
     /**
@@ -125,7 +125,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return int[]
      */
     public function getTransactionKeysToDeposit()
     {
@@ -133,7 +133,7 @@ abstract class AbstractCmDeposit extends AbstractFunction
     }
 
     /**
-     * @param array $transactionKeysToDeposit
+     * @param int[] $transactionKeysToDeposit
      */
     public function setTransactionKeysToDeposit($transactionKeysToDeposit)
     {

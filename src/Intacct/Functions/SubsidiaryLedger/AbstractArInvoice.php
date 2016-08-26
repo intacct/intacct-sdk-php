@@ -93,7 +93,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     /** @var string */
     protected $attachmentsId;
 
-    /** @var array */
+    /** @var AbstractArInvoiceLine[] */
     protected $lines;
 
     /**
@@ -449,7 +449,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractArInvoiceLine[]
      */
     public function getLines()
     {
@@ -457,7 +457,7 @@ abstract class AbstractArInvoice extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractArInvoiceLine[] $lines
      */
     public function setLines($lines)
     {

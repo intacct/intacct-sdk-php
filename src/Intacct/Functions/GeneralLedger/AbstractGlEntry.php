@@ -18,6 +18,7 @@
 namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractGlEntry
 {
@@ -66,7 +67,7 @@ abstract class AbstractGlEntry
     /** @var string */
     protected $warehouseId;
 
-    /** @var array */
+    /** @var CustomAllocationSplit[] */
     protected $customAllocationSplits;
 
     /**
@@ -278,7 +279,7 @@ abstract class AbstractGlEntry
     }
 
     /**
-     * @return array
+     * @return CustomAllocationSplit[]
      */
     public function getCustomAllocationSplits()
     {
@@ -286,10 +287,12 @@ abstract class AbstractGlEntry
     }
 
     /**
-     * @param array $customAllocationSplits
+     * @param CustomAllocationSplit[] $customAllocationSplits
      */
     public function setCustomAllocationSplits($customAllocationSplits)
     {
         $this->customAllocationSplits = $customAllocationSplits;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

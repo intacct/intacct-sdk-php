@@ -104,7 +104,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var string */
     protected $referenceNumber;
 
-    /** @var array */
+    /** @var ArPaymentItem[] */
     protected $applyToTransactions;
 
     /**
@@ -368,7 +368,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return ArPaymentItem[]
      */
     public function getApplyToTransactions()
     {
@@ -376,7 +376,7 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
-     * @param array $applyToTransactions
+     * @param ArPaymentItem[] $applyToTransactions
      */
     public function setApplyToTransactions($applyToTransactions)
     {

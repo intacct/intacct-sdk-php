@@ -18,6 +18,7 @@
 namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractApBillLine
 {
@@ -422,4 +423,6 @@ abstract class AbstractApBillLine
     {
         $this->warehouseId = $warehouseId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

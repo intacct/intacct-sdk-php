@@ -17,6 +17,8 @@
 
 namespace Intacct\Functions\Company;
 
+use Intacct\Xml\XMLWriter;
+
 abstract class AbstractAllocationLine
 {
 
@@ -230,4 +232,6 @@ abstract class AbstractAllocationLine
     {
         $this->warehouseId = $warehouseId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

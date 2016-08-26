@@ -46,7 +46,7 @@ abstract class AbstractAllocation extends AbstractFunction
     /** @var bool */
     private $active;
 
-    /** @var AllocationLine[] */
+    /** @var AbstractAllocationLine[] */
     private $lines;
 
     /**
@@ -146,7 +146,7 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
-     * @return AllocationLine[]
+     * @return AbstractAllocationLine[]
      */
     public function getLines()
     {
@@ -154,7 +154,7 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
-     * @param AllocationLine[] $lines
+     * @param AbstractAllocationLine[] $lines
      */
     public function setLines(array $lines)
     {

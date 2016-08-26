@@ -18,6 +18,7 @@
 namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractIcTransactionLine
 {
@@ -42,7 +43,7 @@ abstract class AbstractIcTransactionLine
     /** @var float|string */
     protected $cost;
 
-    /** @var array */
+    /** @var AbstractTransactionItemDetail[] */
     protected $itemDetails;
 
     /** @var string */
@@ -166,7 +167,7 @@ abstract class AbstractIcTransactionLine
     }
 
     /**
-     * @return array
+     * @return AbstractTransactionItemDetail[]
      */
     public function getItemDetails()
     {
@@ -174,7 +175,7 @@ abstract class AbstractIcTransactionLine
     }
 
     /**
-     * @param array $itemDetails
+     * @param AbstractTransactionItemDetail[] $itemDetails
      */
     public function setItemDetails($itemDetails)
     {
@@ -308,4 +309,6 @@ abstract class AbstractIcTransactionLine
     {
         $this->contractId = $contractId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

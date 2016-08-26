@@ -18,6 +18,7 @@
 namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\FieldTypes\DateType;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractTransactionItemDetail
 {
@@ -154,4 +155,6 @@ abstract class AbstractTransactionItemDetail
     {
         $this->itemExpiration = $itemExpiration;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

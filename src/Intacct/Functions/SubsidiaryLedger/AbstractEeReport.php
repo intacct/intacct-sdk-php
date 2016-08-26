@@ -68,7 +68,7 @@ abstract class AbstractEeReport extends AbstractFunction
     /** @var string */
     protected $memo;
 
-    /** @var array */
+    /** @var AbstractEeReportLine[] */
     protected $lines;
 
     /**
@@ -280,7 +280,7 @@ abstract class AbstractEeReport extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractEeReportLine[]
      */
     public function getLines()
     {
@@ -288,7 +288,7 @@ abstract class AbstractEeReport extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractEeReportLine[] $lines
      */
     public function setLines($lines)
     {

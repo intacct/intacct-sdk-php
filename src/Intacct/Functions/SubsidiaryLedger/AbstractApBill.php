@@ -93,7 +93,7 @@ abstract class AbstractApBill extends AbstractFunction
     /** @var string */
     protected $attachmentsId;
 
-    /** @var array */
+    /** @var AbstractApBillLine[] */
     protected $lines;
 
     /**
@@ -449,7 +449,7 @@ abstract class AbstractApBill extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractApBillLine[]
      */
     public function getLines()
     {
@@ -457,7 +457,7 @@ abstract class AbstractApBill extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractApBillLine[] $lines
      */
     public function setLines($lines)
     {

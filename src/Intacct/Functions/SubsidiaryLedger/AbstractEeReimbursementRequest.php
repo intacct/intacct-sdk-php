@@ -71,7 +71,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     /** @var string */
     protected $notificationContactName;
 
-    /** @var array */
+    /** @var EeReimbursementRequestItem[] */
     protected $applyToTransactions;
 
     /**
@@ -223,7 +223,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return EeReimbursementRequestItem[]
      */
     public function getApplyToTransactions()
     {
@@ -231,7 +231,7 @@ abstract class AbstractEeReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @param array $applyToTransactions
+     * @param EeReimbursementRequestItem[] $applyToTransactions
      */
     public function setApplyToTransactions($applyToTransactions)
     {

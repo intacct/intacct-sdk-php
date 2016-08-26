@@ -110,10 +110,10 @@ abstract class AbstractOeTransaction extends AbstractFunction
     /** @var string */
     protected $projectId;
 
-    /** @var array */
+    /** @var AbstractTransactionSubtotal[] */
     protected $subtotals;
 
-    /** @var array */
+    /** @var AbstractOeTransactionLine[] */
     protected $lines;
 
     /**
@@ -517,7 +517,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractTransactionSubtotal[]
      */
     public function getSubtotals()
     {
@@ -525,7 +525,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $subtotals
+     * @param AbstractTransactionSubtotal[] $subtotals
      */
     public function setSubtotals($subtotals)
     {
@@ -533,7 +533,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractOeTransactionLine[]
      */
     public function getLines()
     {
@@ -541,7 +541,7 @@ abstract class AbstractOeTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractOeTransactionLine[] $lines
      */
     public function setLines($lines)
     {

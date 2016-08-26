@@ -113,10 +113,10 @@ abstract class AbstractPoTransaction extends AbstractFunction
     /** @var string */
     protected $projectId;
 
-    /** @var array */
+    /** @var AbstractTransactionSubtotal[] */
     protected $subtotals;
 
-    /** @var array */
+    /** @var AbstractPoTransactionLine[] */
     protected $lines;
 
     /**
@@ -536,7 +536,7 @@ abstract class AbstractPoTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractTransactionSubtotal[]
      */
     public function getSubtotals()
     {
@@ -544,7 +544,7 @@ abstract class AbstractPoTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $subtotals
+     * @param AbstractTransactionSubtotal[] $subtotals
      */
     public function setSubtotals($subtotals)
     {
@@ -552,7 +552,7 @@ abstract class AbstractPoTransaction extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractPoTransactionLine[]
      */
     public function getLines()
     {
@@ -560,7 +560,7 @@ abstract class AbstractPoTransaction extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractPoTransactionLine[] $lines
      */
     public function setLines($lines)
     {

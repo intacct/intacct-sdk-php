@@ -18,6 +18,7 @@
 namespace Intacct\Functions\SupplyChainManagement;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractTransactionSubtotal
 {
@@ -270,4 +271,6 @@ abstract class AbstractTransactionSubtotal
     {
         $this->contractId = $contractId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }

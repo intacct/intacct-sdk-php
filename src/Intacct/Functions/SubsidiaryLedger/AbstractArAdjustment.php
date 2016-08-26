@@ -74,7 +74,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     /** @var string */
     protected $adjustmentNumber;
 
-    /** @var array */
+    /** @var AbstractArAdjustmentLine[] */
     protected $lines;
 
     /**
@@ -334,7 +334,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractArAdjustmentLine[]
      */
     public function getLines()
     {
@@ -342,7 +342,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractArAdjustmentLine[] $lines
      */
     public function setLines($lines)
     {

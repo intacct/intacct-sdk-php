@@ -19,6 +19,7 @@ namespace Intacct\Functions\SubsidiaryLedger;
 
 use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Xml\XMLWriter;
 
 abstract class AbstractEeAdjustmentLine
 {
@@ -483,4 +484,6 @@ abstract class AbstractEeAdjustmentLine
     {
         $this->warehouseId = $warehouseId;
     }
+
+    abstract public function writeXml(XMLWriter &$xml);
 }
