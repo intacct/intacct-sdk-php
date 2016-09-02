@@ -40,13 +40,13 @@ class JournalEntryCreateTest extends \PHPUnit_Framework_TestCase
             <ENTRIES>
                 <GLENTRY>
                     <ACCOUNTNO/>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT/>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT/>
                 </GLENTRY>
                 <GLENTRY>
                     <ACCOUNTNO/>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT/>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT/>
                 </GLENTRY>
             </ENTRIES>
         </GLBATCH>
@@ -94,13 +94,13 @@ EOF;
             <ENTRIES>
                 <GLENTRY>
                     <ACCOUNTNO></ACCOUNTNO>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT></AMOUNT>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT></TRX_AMOUNT>
                 </GLENTRY>
                 <GLENTRY>
                     <ACCOUNTNO></ACCOUNTNO>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT></AMOUNT>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT></TRX_AMOUNT>
                 </GLENTRY>
             </ENTRIES>
         </GLBATCH>

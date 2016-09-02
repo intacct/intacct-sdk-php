@@ -15,16 +15,13 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\CashManagement;
+namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-/**
- * Reverse an existing CM charge card transaction record
- */
-class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
+class ApPaymentReverse extends AbstractApPayment
 {
 
     /** @var DateType */
@@ -76,7 +73,7 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
-        $xml->startElement('reverse_cctransaction');
+        $xml->startElement('reverse_appayment');
 
         if (!$this->getRecordNo()) {
             throw new InvalidArgumentException('Record No is required for reverse');
@@ -90,9 +87,9 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
         $xml->writeDateSplitElements($this->getReverseDate());
         $xml->endElement(); //datereversed
 
-        $xml->writeElement('memo', $this->getMemo());
+        $xml->writeElement('description', $this->getMemo());
 
-        $xml->endElement(); //reverse_cctransaction
+        $xml->endElement(); //reverse_appayment
 
         $xml->endElement(); //function
     }
