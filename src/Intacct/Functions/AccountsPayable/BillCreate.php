@@ -62,7 +62,7 @@ class BillCreate extends AbstractBill
         }
 
         $xml->writeElement('action', $this->getAction());
-        $xml->writeElement('batchkey', $this->getBatchKey());
+        $xml->writeElement('batchkey', $this->getSummaryRecordNo());
         $xml->writeElement('billno', $this->getBillNumber());
         $xml->writeElement('ponumber', $this->getReferenceNumber());
         $xml->writeElement('onhold', $this->isOnHold());

@@ -132,7 +132,7 @@ EOF;
         $apAdjustment->setVendorId('VENDOR1');
         $apAdjustment->setTransactionDate(new DateType('2015-06-30'));
         $apAdjustment->setGlPostingDate(new DateType('2015-06-30'));
-        $apAdjustment->setBatchKey(20323);
+        $apAdjustment->setSummaryRecordNo(20323);
         $apAdjustment->setAdjustmentNumber('234');
         $apAdjustment->setAction('Submit');
         $apAdjustment->setBillNumber('234235');

@@ -125,7 +125,7 @@ EOF;
         $arAdjustment->setCustomerId('CUSTOMER1');
         $arAdjustment->setTransactionDate(new DateType('2015-06-30'));
         $arAdjustment->setGlPostingDate(new DateType('2015-06-30'));
-        $arAdjustment->setBatchKey('20323');
+        $arAdjustment->setSummaryRecordNo('20323');
         $arAdjustment->setAdjustmentNumber('234235');
         $arAdjustment->setAction('Submit');
         $arAdjustment->setInvoiceNumber('234');

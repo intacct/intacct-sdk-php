@@ -60,7 +60,7 @@ class InvoiceCreate extends AbstractInvoice
         }
 
         $xml->writeElement('action', $this->getAction());
-        $xml->writeElement('batchkey', $this->getBatchKey());
+        $xml->writeElement('batchkey', $this->getSummaryRecordNo());
         $xml->writeElement('invoiceno', $this->getInvoiceNumber());
         $xml->writeElement('ponumber', $this->getReferenceNumber());
         $xml->writeElement('onhold', $this->isOnHold());

@@ -27,22 +27,22 @@ class ArPaymentApply extends AbstractArPayment
 {
 
     /** @var string|int */
-    protected $batchKey;
+    protected $summaryRecordNo;
 
     /**
      * @return int|string
      */
-    public function getBatchKey()
+    public function getSummaryRecordNo()
     {
-        return $this->batchKey;
+        return $this->summaryRecordNo;
     }
 
     /**
-     * @param int|string $batchKey
+     * @param int|string $summaryRecordNo
      */
-    public function setBatchKey($batchKey)
+    public function setSummaryRecordNo($summaryRecordNo)
     {
-        $this->batchKey = $batchKey;
+        $this->summaryRecordNo = $summaryRecordNo;
     }
 
     /**
@@ -68,7 +68,7 @@ class ArPaymentApply extends AbstractArPayment
         $xml->writeDateSplitElements($this->getReceivedDate(), true);
         $xml->endElement(); //paymentdate
 
-        $xml->writeElement('batchkey', $this->getBatchKey());
+        $xml->writeElement('batchkey', $this->getSummaryRecordNo());
         $xml->writeElement('overpaylocid', $this->getOverpaymentLocationId());
         $xml->writeElement('overpaydeptid', $this->getOverpaymentDepartmentId());
 

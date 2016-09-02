@@ -151,7 +151,7 @@ EOF;
         $apBill->setDueDate(new DateType('2020-09-24'));
         $apBill->setPaymentTerm('N30');
         $apBill->setAction('Submit');
-        $apBill->setBatchKey(20323);
+        $apBill->setSummaryRecordNo(20323);
         $apBill->setBillNumber('234');
         $apBill->setReferenceNumber('234235');
         $apBill->setOnHold(true);

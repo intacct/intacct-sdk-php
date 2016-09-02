@@ -151,7 +151,7 @@ EOF;
         $arInvoice->setDueDate(new DateType('2020-09-24'));
         $arInvoice->setPaymentTerm('N30');
         $arInvoice->setAction('Submit');
-        $arInvoice->setBatchKey('20323');
+        $arInvoice->setSummaryRecordNo('20323');
         $arInvoice->setInvoiceNumber('234');
         $arInvoice->setReferenceNumber('234235');
         $arInvoice->setOnHold(true);
