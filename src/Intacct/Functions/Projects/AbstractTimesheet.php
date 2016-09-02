@@ -17,15 +17,35 @@
 
 namespace Intacct\Functions\Projects;
 
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractTimesheet extends AbstractFunction
 {
 
-    // TODO: Finish this object
+    use CustomFieldsTrait;
 
     /** @var int|string */
     protected $recordNo;
+
+    /** @var string */
+    protected $employeeId;
+
+    /** @var DateType */
+    protected $beginDate;
+
+    /** @var string */
+    protected $description;
+
+    /** @var string */
+    protected $attachmentsId;
+
+    /** @var string */
+    protected $action;
+
+    /** @var AbstractTimesheetEntry[] */
+    protected $entries;
 
     /**
      * @return int|string
@@ -41,5 +61,101 @@ abstract class AbstractTimesheet extends AbstractFunction
     public function setRecordNo($recordNo)
     {
         $this->recordNo = $recordNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmployeeId()
+    {
+        return $this->employeeId;
+    }
+
+    /**
+     * @param string $employeeId
+     */
+    public function setEmployeeId($employeeId)
+    {
+        $this->employeeId = $employeeId;
+    }
+
+    /**
+     * @return DateType
+     */
+    public function getBeginDate()
+    {
+        return $this->beginDate;
+    }
+
+    /**
+     * @param DateType $beginDate
+     */
+    public function setBeginDate($beginDate)
+    {
+        $this->beginDate = $beginDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttachmentsId()
+    {
+        return $this->attachmentsId;
+    }
+
+    /**
+     * @param string $attachmentsId
+     */
+    public function setAttachmentsId($attachmentsId)
+    {
+        $this->attachmentsId = $attachmentsId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param string $action
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * @return AbstractTimesheetEntry[]
+     */
+    public function getEntries()
+    {
+        return $this->entries;
+    }
+
+    /**
+     * @param AbstractTimesheetEntry[] $entries
+     */
+    public function setEntries($entries)
+    {
+        $this->entries = $entries;
     }
 }
