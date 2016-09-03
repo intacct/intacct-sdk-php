@@ -39,6 +39,13 @@ class XMLWriter extends \XMLWriter
     const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
 
     /**
+     * Intacct multi select string separator
+     *
+     * @var string
+     */
+    const IA_MULTI_SELECT_GLUE = '#~#';
+
+    /**
      * Write full element tag
      *
      * @param string $name
@@ -57,6 +64,8 @@ class XMLWriter extends \XMLWriter
                 $content = $content->format(self::IA_DATE_FORMAT);
             } elseif ($content instanceof DateTime) {
                 $content = $content->format(self::IA_DATETIME_FORMAT);
+            } elseif(is_array($content)) {
+                $content = implode(self::IA_MULTI_SELECT_GLUE, $content);
             }
 
             return parent::writeElement($name, $content);

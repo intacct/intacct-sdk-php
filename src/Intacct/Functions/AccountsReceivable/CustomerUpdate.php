@@ -95,9 +95,6 @@ class CustomerUpdate extends AbstractCustomer
         $xml->writeElement('TAXID', $this->getTaxId());
         $xml->writeElement('CREDITLIMIT', $this->getCreditLimit());
         $xml->writeElement('ONHOLD', $this->isOnHold());
-
-        // If delivery method is Both then value = Print#~#E-Mail
-        // TODO: make this an object or static
         $xml->writeElement('DELIVERYOPTIONS', $this->getDeliveryMethod());
         $xml->writeElement('CUSTMESSAGEID', $this->getDefaultInvoiceMessage());
         $xml->writeElement('COMMENTS', $this->getComments());
@@ -131,10 +128,10 @@ class CustomerUpdate extends AbstractCustomer
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
         if (count($this->getRestrictedLocations()) > 0) {
-            $xml->writeElement('RESTRICTEDLOCATIONS', implode('#~#', $this->getRestrictedLocations()));
+            $xml->writeElement('RESTRICTEDLOCATIONS', $this->getRestrictedLocations());
         }
         if (count($this->getRestrictedDepartments()) > 0) {
-            $xml->writeElement('RESTRICTEDDEPARTMENTS', implode('#~#', $this->getRestrictedDepartments()));
+            $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
 
         // TODO Salesforce tab

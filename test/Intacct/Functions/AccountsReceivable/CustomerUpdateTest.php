@@ -109,7 +109,7 @@ EOF;
             <TAXID>12-3456789</TAXID>
             <CREDITLIMIT>1234.56</CREDITLIMIT>
             <ONHOLD>false</ONHOLD>
-            <DELIVERYOPTIONS>Print</DELIVERYOPTIONS>
+            <DELIVERYOPTIONS>Print#~#E-Mail</DELIVERYOPTIONS>
             <CUSTMESSAGEID>hello</CUSTMESSAGEID>
             <COMMENTS>my comment</COMMENTS>
             <CURRENCY>USD</CURRENCY>
@@ -186,7 +186,10 @@ EOF;
         $record->setResaleNumber('123');
         $record->setCreditLimit(1234.56);
         $record->setOnHold(false);
-        $record->setDeliveryMethod('Print');
+        $record->setDeliveryMethod([
+            'Print',
+            'E-Mail',
+        ]);
         $record->setDefaultInvoiceMessage('hello');
         $record->setComments('my comment');
         $record->setDefaultCurrency('USD');

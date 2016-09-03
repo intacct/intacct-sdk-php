@@ -148,10 +148,10 @@ class VendorCreate extends AbstractVendor
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
         if (count($this->getRestrictedLocations()) > 0) {
-            $xml->writeElement('RESTRICTEDLOCATIONS', implode('#~#', $this->getRestrictedLocations()));
+            $xml->writeElement('RESTRICTEDLOCATIONS', $this->getRestrictedLocations());
         }
         if (count($this->getRestrictedDepartments()) > 0) {
-            $xml->writeElement('RESTRICTEDDEPARTMENTS', implode('#~#', $this->getRestrictedDepartments()));
+            $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
 
         $this->writeXmlImplicitCustomFields($xml);
