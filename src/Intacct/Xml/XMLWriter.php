@@ -19,6 +19,7 @@ namespace Intacct\Xml;
 
 use Intacct\FieldTypes\DateType;
 use DateTime;
+use InvalidArgumentException;
 
 class XMLWriter extends \XMLWriter
 {
@@ -46,6 +47,31 @@ class XMLWriter extends \XMLWriter
     const IA_MULTI_SELECT_GLUE = '#~#';
 
     /**
+     * @param string $name
+     * @return bool
+     */
+    protected function isValidXmlName($name)
+    {
+        try {
+            new \DOMElement($name);
+            return true;
+        } catch (\DOMException $ex) {
+            return false;
+        }
+    }
+
+    public function startElement($name)
+    {
+        if ($this->isValidXmlName($name) === false) {
+            throw new InvalidArgumentException(
+                '"' . $name . '" is not a valid name for an XML element'
+            );
+        }
+
+        parent::startElement($name);
+    }
+
+    /**
      * Write full element tag
      *
      * @param string $name
@@ -57,6 +83,12 @@ class XMLWriter extends \XMLWriter
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {
+        if ($this->isValidXmlName($name) === false) {
+            throw new InvalidArgumentException(
+                '"' . $name . '" is not a valid name for an XML element'
+            );
+        }
+
         if ($content !== null || $writeNull === true) {
             if (is_bool($content)) {
                 $content = ($content === true) ? 'true' : 'false';
