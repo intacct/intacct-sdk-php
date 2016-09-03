@@ -20,6 +20,7 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 abstract class AbstractCustomer extends AbstractFunction
 {

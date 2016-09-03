@@ -20,7 +20,6 @@ namespace Intacct\Functions\CashManagement;
 use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
-use Intacct\Xml\XMLWriter;
 
 abstract class AbstractChargeCardTransaction extends AbstractFunction
 {

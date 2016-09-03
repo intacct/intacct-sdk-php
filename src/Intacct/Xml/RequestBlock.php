@@ -45,6 +45,7 @@ class RequestBlock
      * - `encoding` (string, default=string "UTF-8") Encoding to use
      *
      * @param array $params RequestBlock configuration options
+     * @param Content $contentBlock ContentBlock of request
      * @throws InvalidArgumentException
      */
     public function __construct(array $params, Content $contentBlock)
