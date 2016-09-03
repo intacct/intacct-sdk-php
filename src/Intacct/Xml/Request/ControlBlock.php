@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Xml\XMLWriter;
+use Ramsey\Uuid\Uuid;
 use InvalidArgumentException;
 
 class ControlBlock
@@ -112,6 +113,11 @@ class ControlBlock
      */
     private function setControlId($controlId)
     {
+        if (!$controlId) {
+            // generate a version 4 (random) UUID
+            $controlId = Uuid::uuid4()->toString();
+        }
+
         $length = strlen($controlId);
         if ($length < 1 || $length > 256) {
             throw new InvalidArgumentException(

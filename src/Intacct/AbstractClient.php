@@ -17,12 +17,31 @@
 
 namespace Intacct;
 
+use Intacct\Credentials\LoginCredentials;
+use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
+use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\AsynchronousResponse;
+use Intacct\Xml\RequestHandler;
 use Intacct\Xml\SynchronousResponse;
+use Ramsey\Uuid\Uuid;
 
-class IntacctClient extends AbstractClient
+abstract class AbstractClient
 {
+
+    /**
+     * Profile environment name
+     *
+     * @var string
+     */
+    const PROFILE_ENV_NAME = 'INTACCT_PROFILE';
+
+    /**
+     * Session credentials
+     *
+     * @var SessionCredentials
+     */
+    protected $sessionCreds;
 
     /**
      * Initializes the class with the given parameters.
@@ -51,7 +70,30 @@ class IntacctClient extends AbstractClient
      */
     public function __construct(array $params = [])
     {
-        parent::__construct($params);
+        $defaults = [
+            'session_id' => null,
+            'endpoint_url' => null,
+            'verify_ssl' => true,
+        ];
+        $envProfile = getenv(static::PROFILE_ENV_NAME);
+        if ($envProfile) {
+            $defaults['profile_name'] = $envProfile;
+        }
+        $config = array_merge($defaults, $params);
+
+        $provider = new SessionProvider();
+
+        $senderCreds = new SenderCredentials($config);
+
+        if ($config['session_id']) {
+            $sessionCreds = new SessionCredentials($config, $senderCreds);
+
+            $this->sessionCreds = $provider->fromSessionCredentials($sessionCreds);
+        } else {
+            $loginCreds = new LoginCredentials($config, $senderCreds);
+
+            $this->sessionCreds = $provider->fromLoginCredentials($loginCreds);
+        }
     }
 
     /**
@@ -59,9 +101,41 @@ class IntacctClient extends AbstractClient
      *
      * @return SessionCredentials
      */
-    public function getSessionCreds()
+    protected function getSessionCreds()
     {
-        return parent::getSessionCreds();
+        return $this->sessionCreds;
+    }
+
+    /**
+     * Get session config array
+     *
+     * @return array
+     */
+    private function getSessionConfig()
+    {
+        $sessionCreds = $this->getSessionCreds();
+        $senderCreds = $sessionCreds->getSenderCredentials();
+        $endpoint = $sessionCreds->getEndpoint();
+
+        $config = [
+            'sender_id' => $senderCreds->getSenderId(),
+            'sender_password' => $senderCreds->getPassword(),
+            'endpoint_url' => $endpoint->getEndpoint(),
+            'verify_ssl' => $endpoint->getVerifySSL(),
+            'session_id' => $sessionCreds->getSessionId(),
+        ];
+
+        return $config;
+    }
+
+    /**
+     * Generate a version 4 (random) UUID
+     *
+     * @return string
+     */
+    public function generateRandomControlId()
+    {
+        return Uuid::uuid4()->toString();
     }
 
     /**
@@ -75,14 +149,28 @@ class IntacctClient extends AbstractClient
      *
      * @return SynchronousResponse
      */
-    public function execute(
+    protected function execute(
         Content $contentBlock,
         $transaction = false,
         $requestControlId = null,
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        return parent::execute($contentBlock, $transaction, $requestControlId, $uniqueFunctionControlIds, $params);
+        $config = array_merge(
+            $this->getSessionConfig(),
+            [
+                'transaction' => $transaction,
+                'control_id' => $requestControlId,
+                'unique_id' => $uniqueFunctionControlIds,
+            ],
+            $params
+        );
+
+        $requestHandler = new RequestHandler($config);
+
+        $response = $requestHandler->executeSynchronous($config, $contentBlock);
+
+        return $response;
     }
 
     /**
@@ -97,7 +185,7 @@ class IntacctClient extends AbstractClient
      *
      * @return AsynchronousResponse
      */
-    public function executeAsync(
+    protected function executeAsync(
         Content $contentBlock,
         $asyncPolicyId,
         $transaction = false,
@@ -105,6 +193,21 @@ class IntacctClient extends AbstractClient
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        return parent::executeAsync($contentBlock, $asyncPolicyId, $transaction, $requestControlId, $uniqueFunctionControlIds, $params);
+        $config = array_merge(
+            $this->getSessionConfig(),
+            [
+                'policy_id' => $asyncPolicyId,
+                'transaction' => $transaction,
+                'control_id' => $requestControlId,
+                'unique_id' => $uniqueFunctionControlIds,
+            ],
+            $params
+        );
+
+        $requestHandler = new RequestHandler($config);
+
+        $response = $requestHandler->executeAsynchronous($config, $contentBlock);
+
+        return $response;
     }
 }
