@@ -111,8 +111,8 @@ class XMLWriter extends \XMLWriter
             $value = $value->format(self::IA_DATE_FORMAT);
         } elseif ($value instanceof DateTime) {
             $value = $value->format(self::IA_DATETIME_FORMAT);
-        } elseif(is_array($content)) {
-            $content = implode(self::IA_MULTI_SELECT_GLUE, $content);
+        } elseif (is_array($value)) {
+            $value = implode(self::IA_MULTI_SELECT_GLUE, $value);
         }
         return $value;
     }
