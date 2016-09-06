@@ -51,18 +51,29 @@ class XMLWriter extends \XMLWriter
     public function writeElement($name, $content = null, $writeNull = false)
     {
         if ($content !== null || $writeNull === true) {
-            if (is_bool($content)) {
-                $content = ($content === true) ? 'true' : 'false';
-            } elseif ($content instanceof DateType) {
-                $content = $content->format(self::IA_DATE_FORMAT);
-            } elseif ($content instanceof DateTime) {
-                $content = $content->format(self::IA_DATETIME_FORMAT);
-            }
+            $content = $this->transformValue($content);
 
             return parent::writeElement($name, $content);
         } else {
             return true;
         }
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    private function transformValue($value)
+    {
+        if (is_bool($value)) {
+            $value = ($value === true) ? 'true' : 'false';
+        } elseif ($value instanceof DateType) {
+            $value = $value->format(self::IA_DATE_FORMAT);
+        } elseif ($value instanceof DateTime) {
+            $value = $value->format(self::IA_DATETIME_FORMAT);
+        }
+        return $value;
     }
 
     /**
@@ -82,5 +93,25 @@ class XMLWriter extends \XMLWriter
         $this->writeElement('day', $day, $writeNull);
 
         return true;
+    }
+
+    /**
+     * Write full attribute
+     *
+     * @param string $name
+     * @param string $value
+     * @param bool $writeNull
+     *
+     * @return bool
+     */
+    public function writeAttribute($name, $value, $writeNull = true)
+    {
+        if ($value !== null || $writeNull === true) {
+            $value = $this->transformValue($value);
+
+            return parent::writeAttribute($name, $value);
+        } else {
+            return true;
+        }
     }
 }
