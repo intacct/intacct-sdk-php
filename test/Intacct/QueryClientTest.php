@@ -86,6 +86,9 @@ EOF;
         $this->client = new QueryClient($params);
     }
 
+    /**
+     * @covers Intacct\QueryClient::executeQuery
+     */
     public function testExecuteQuery()
     {
         $xml = <<<EOF
