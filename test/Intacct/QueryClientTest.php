@@ -20,17 +20,73 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Functions\Common\ReadByQuery;
 
-class QueryClientTest// extends \PHPUnit_Framework_TestCase
+class QueryClientTest extends \PHPUnit_Framework_TestCase
 {
 
+    /** @var QueryClient */
+    private $client;
+
     /**
-     * @covers Intacct\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\QueryClient::performReadByQuery
-     * @covers Intacct\QueryClient::performReadMore
-     * @covers Intacct\QueryClient::addRecords
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
      */
-    public function testPerformReadByQuery()
+    protected function setUp()
+    {
+        //the Client constructor will always get a session id, so mock it
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>sessionProvider</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getAPISession</function>
+                  <controlid>getSession</controlid>
+                  <data>
+                        <api>
+                              <sessionid>testSeSsionID..</sessionid>
+                              <endpoint>https://p1.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $params = [
+            'sender_id' => 'testsenderid',
+            'sender_password' => 'pass123!',
+            'company_id' => 'testcompany',
+            'user_id' => 'testuser',
+            'user_password' => 'testpass',
+            'mock_handler' => $mock,
+        ];
+
+        $this->client = new QueryClient($params);
+    }
+
+    public function testExecuteQuery()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -38,7 +94,7 @@ class QueryClientTest// extends \PHPUnit_Framework_TestCase
     <control>
         <status>success</status>
         <senderid>testsenderid</senderid>
-        <controlid>sessionProvider</controlid>
+        <controlid>unittest</controlid>
         <uniqueid>false</uniqueid>
         <dtdversion>3.0</dtdversion>
     </control>
@@ -52,11 +108,10 @@ class QueryClientTest// extends \PHPUnit_Framework_TestCase
         <result>
             <status>success</status>
             <function>readByQuery</function>
-            <controlid>testFunctionId</controlid>
+            <controlid>funcunittest</controlid>
             <data listtype="customer" count="1" totalcount="2" numremaining="1" resultId="6465763031V2wi28CoHYQAAF0HcP8AAAAc5">
                 <customer>
                     <RECORDNO>1</RECORDNO>
-                    <!-- Removed remaining elements -->
                 </customer>
             </data>
         </result>
@@ -70,7 +125,7 @@ EOF;
     <control>
         <status>success</status>
         <senderid>testsenderid</senderid>
-        <controlid>sessionProvider</controlid>
+        <controlid>unittest</controlid>
         <uniqueid>false</uniqueid>
         <dtdversion>3.0</dtdversion>
     </control>
@@ -88,7 +143,6 @@ EOF;
             <data listtype="customer" count="1" totalcount="2" numremaining="0" resultId="6465763031V2wi28CoHYQAAF0HcP8AAAAc5">
                 <customer>
                     <RECORDNO>2</RECORDNO>
-                    <!-- Removed remaining elements -->
                 </customer>
             </data>
         </result>
@@ -105,26 +159,23 @@ EOF;
         ]);
 
         $params = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
             'mock_handler' => $mock,
-            'object' => 'CUSTOMER',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 3',
-            'page_size' => 1,
         ];
 
-        $queryClient = new QueryClient();
-        $records = $queryClient->readAllObjectsByQuery($params);
+        $query = new ReadByQuery();
+        $query->setObjectName('CUSTOMER');
+        $query->setFields([
+            'RECORDNO',
+        ]);
+        $query->setPageSize(1);
+
+        $records = $this->client->executeQuery($query, 100000, $params);
 
         $this->assertEquals(count($records), 2);
     }
 
     /**
-     * @covers Intacct\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\QueryClient::performReadByQuery
-     * @covers Intacct\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
      * @expectedExceptionMessage An error occurred trying to get query records
      */
@@ -172,27 +223,24 @@ EOF;
         ]);
 
         $params = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
             'mock_handler' => $mock,
-            'object' => 'CUSTOMER1',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 3',
-            'page_size' => 1,
         ];
 
-        $queryClient = new QueryClient();
-        $queryClient->readAllObjectsByQuery($params);
+        $query = new ReadByQuery();
+        $query->setObjectName('CUSTOMER');
+        $query->setFields([
+            'RECORDNO',
+        ]);
+        $query->setPageSize(1);
+
+        $records = $this->client->executeQuery($query, 100000, $params);
     }
 
 
     /**
-     * @covers Intacct\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\QueryClient::performReadByQuery
-     * @covers Intacct\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage Query result totalcount of 100001 exceeds max_total_count parameter of 100000
+     * @expectedExceptionMessage Query result totalcount of 100001 exceeds max totalcount parameter of 100000
      */
     public function testMaxReadByQueryResults()
     {
@@ -236,25 +284,23 @@ EOF;
         ]);
 
         $params = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
             'mock_handler' => $mock,
-            'object' => 'CUSTOMER',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 3',
         ];
 
-        $queryClient = new QueryClient();
-        $queryClient->readAllObjectsByQuery($params);
+        $query = new ReadByQuery();
+        $query->setObjectName('CUSTOMER');
+        $query->setFields([
+            'RECORDNO',
+        ]);
+        $query->setPageSize(1);
+
+        $records = $this->client->executeQuery($query, 100000, $params);
     }
 
     /**
-     * @covers Intacct\QueryClient::readAllObjectsByQuery
-     * @covers Intacct\QueryClient::performReadByQuery
-     * @covers Intacct\QueryClient::performReadMore
+     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Xml\Response\Operation\ResultException
-     * @expectedExceptionMessage An error occurred trying to get query records
+     * @expectedExceptionMessage An error occurred trying to query subsequent records
      */
     public function testUnsuccessfulReadMore()
     {
@@ -333,17 +379,16 @@ EOF;
         ]);
 
         $params = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
             'mock_handler' => $mock,
-            'object' => 'CUSTOMER',
-            'control_id' => 'unittest',
-            'query' => 'RECORDNO < 3',
-            'page_size' => 1,
         ];
 
-        $queryClient = new QueryClient();
-        $queryClient->readAllObjectsByQuery($params);
+        $query = new ReadByQuery();
+        $query->setObjectName('CUSTOMER');
+        $query->setFields([
+            'RECORDNO',
+        ]);
+        $query->setPageSize(1);
+
+        $records = $this->client->executeQuery($query, 100000, $params);
     }
 }

@@ -20,6 +20,7 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 abstract class AbstractCustomer extends AbstractFunction
 {
@@ -161,7 +162,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /** @var bool */
     protected $onHold;
 
-    /** @var string */
+    /** @var string|string[] */
     protected $deliveryMethod;
 
     /** @var string */
@@ -889,7 +890,7 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
-     * @return string
+     * @return string|string[]
      */
     public function getDeliveryMethod()
     {
@@ -897,7 +898,7 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
-     * @param string $deliveryMethod
+     * @param string|string[] $deliveryMethod
      */
     public function setDeliveryMethod($deliveryMethod)
     {

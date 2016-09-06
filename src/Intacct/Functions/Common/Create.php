@@ -17,70 +17,61 @@
 
 namespace Intacct\Functions\Common;
 
-use Intacct\Functions\Traits\ControlIdTrait;
-use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\Request\XMLHelperTrait;
+use Intacct\FieldTypes\Record;
+use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\Request\Operation\Content\StandardObjects;
-use Intacct\Xml\Request\Operation\Content\Record;
 use Intacct\Xml\XMLWriter;
-use ArrayIterator;
 use InvalidArgumentException;
 
-class Create extends ArrayIterator implements FunctionInterface
+class Create extends AbstractFunction
 {
-
-    use ControlIdTrait;
-    use XMLHelperTrait;
 
     /** @var int */
     const MAX_CREATE_COUNT = 100;
 
+    /** @var Record[] */
+    protected $records;
+
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var array $records Records to create, @see Record::__construct
-     * }
-     * @throws InvalidArgumentException
-     * @todo Get rid of magic method for records
+     * @return Record[]
      */
-    public function __construct(array $params = [])
+    public function getRecords()
     {
-        $defaults = [
-            'control_id' => null,
-            'records' => [],
-        ];
-        $config = array_merge($defaults, $params);
-        
-        $this->setControlId($config['control_id']);
-        
-        if (count($config['records']) > static::MAX_CREATE_COUNT) {
+        return $this->records;
+    }
+
+    /**
+     * @param Record[] $records
+     */
+    public function setRecords(array $records)
+    {
+        if (count($records) > static::MAX_CREATE_COUNT) {
             throw new InvalidArgumentException(
-                'records count cannot exceed ' . static::MAX_CREATE_COUNT
+                'Records count cannot exceed ' . static::MAX_CREATE_COUNT
             );
-        } elseif (count($config['records']) < 1) {
+        } elseif (count($records) < 1) {
             throw new InvalidArgumentException(
-                'records count must be greater than zero'
+                'Records count must be greater than zero'
             );
         }
 
-        foreach ($config['records'] as $record) {
+        foreach ($records as $record) {
             $objectName = $record->getObjectName();
             if (in_array('create', StandardObjects::getMethodsNotAllowed($objectName))) {
                 throw new InvalidArgumentException(
-                    'using create on object "' . $objectName . '" is not allowed'
+                    'Using create on object "' . $objectName . '" is not allowed'
                 );
             }
         }
-        
-        parent::__construct($config['records']);
+
+        $this->records = $records;
     }
 
     /**
      * Write the create block XML
      *
      * @param XMLWriter $xml
+     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
@@ -89,10 +80,8 @@ class Create extends ArrayIterator implements FunctionInterface
         
         $xml->startElement('create');
         
-        foreach ($this as $record) {
-            $xml->startElement($record->getObjectName());
-            $this->recursiveWriteXml($record, $xml);
-            $xml->endElement();
+        foreach ($this->getRecords() as $record) {
+            $record->writeXml($xml);
         }
         
         $xml->endElement(); //create

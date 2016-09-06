@@ -42,7 +42,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     protected $action;
 
     /** @var string|int */
-    protected $batchKey;
+    protected $summaryRecordNo;
 
     /** @var string */
     protected $invoiceNumber;
@@ -160,17 +160,17 @@ abstract class AbstractArAdjustment extends AbstractFunction
     /**
      * @return int|string
      */
-    public function getBatchKey()
+    public function getSummaryRecordNo()
     {
-        return $this->batchKey;
+        return $this->summaryRecordNo;
     }
 
     /**
-     * @param int|string $batchKey
+     * @param int|string $summaryRecordNo
      */
-    public function setBatchKey($batchKey)
+    public function setSummaryRecordNo($summaryRecordNo)
     {
-        $this->batchKey = $batchKey;
+        $this->summaryRecordNo = $summaryRecordNo;
     }
 
     /**

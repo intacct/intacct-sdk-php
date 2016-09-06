@@ -51,7 +51,7 @@ class ApAdjustmentCreate extends AbstractApAdjustment
             $xml->endElement(); //dateposted
         }
 
-        $xml->writeElement('batchkey', $this->getBatchKey());
+        $xml->writeElement('batchkey', $this->getSummaryRecordNo());
         $xml->writeElement('adjustmentno', $this->getAdjustmentNumber());
         $xml->writeElement('action', $this->getAction());
         $xml->writeElement('billno', $this->getBillNumber());

@@ -21,31 +21,40 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
-abstract class AbstractChargeCardTransaction extends AbstractFunction
+abstract class AbstractOtherReceipt extends AbstractFunction
 {
 
     use CustomFieldsTrait;
 
-    /** @var int */
-    protected $recordNo;
+    /** @var DateType */
+    protected $receiptDate;
 
     /** @var string */
-    protected $chargeCardId;
+    protected $payer;
+
+    /** @var string */
+    protected $paymentMethod;
 
     /** @var DateType */
     protected $transactionDate;
 
     /** @var string */
-    protected $referenceNumber;
-
-    /** @var string */
-    protected $payee;
+    protected $transactionNo;
 
     /** @var string */
     protected $description;
 
     /** @var string */
     protected $attachmentsId;
+
+    /** @var string */
+    protected $bankAccountId;
+
+    /** @var DateType */
+    protected $depositDate;
+
+    /** @var string */
+    protected $undepositedFundsGlAccountNo;
 
     /** @var string */
     protected $transactionCurrency;
@@ -59,39 +68,55 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /** @var string */
     protected $exchangeRateType;
 
-    /** @var AbstractChargeCardTransactionLine[] */
+    /** @var AbstractOtherReceiptLine[] */
     protected $lines;
 
     /**
-     * @return int
+     * @return DateType
      */
-    public function getRecordNo()
+    public function getReceiptDate()
     {
-        return $this->recordNo;
+        return $this->receiptDate;
     }
 
     /**
-     * @param int $recordNo
+     * @param DateType $receiptDate
      */
-    public function setRecordNo($recordNo)
+    public function setReceiptDate($receiptDate)
     {
-        $this->recordNo = $recordNo;
+        $this->receiptDate = $receiptDate;
     }
 
     /**
      * @return string
      */
-    public function getChargeCardId()
+    public function getPayer()
     {
-        return $this->chargeCardId;
+        return $this->payer;
     }
 
     /**
-     * @param string $chargeCardId
+     * @param string $payer
      */
-    public function setChargeCardId($chargeCardId)
+    public function setPayer($payer)
     {
-        $this->chargeCardId = $chargeCardId;
+        $this->payer = $payer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param string $paymentMethod
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
     }
 
     /**
@@ -113,33 +138,17 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /**
      * @return string
      */
-    public function getReferenceNumber()
+    public function getTransactionNo()
     {
-        return $this->referenceNumber;
+        return $this->transactionNo;
     }
 
     /**
-     * @param string $referenceNumber
+     * @param string $transactionNo
      */
-    public function setReferenceNumber($referenceNumber)
+    public function setTransactionNo($transactionNo)
     {
-        $this->referenceNumber = $referenceNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayee()
-    {
-        return $this->payee;
-    }
-
-    /**
-     * @param string $payee
-     */
-    public function setPayee($payee)
-    {
-        $this->payee = $payee;
+        $this->transactionNo = $transactionNo;
     }
 
     /**
@@ -172,6 +181,54 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     public function setAttachmentsId($attachmentsId)
     {
         $this->attachmentsId = $attachmentsId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankAccountId()
+    {
+        return $this->bankAccountId;
+    }
+
+    /**
+     * @param string $bankAccountId
+     */
+    public function setBankAccountId($bankAccountId)
+    {
+        $this->bankAccountId = $bankAccountId;
+    }
+
+    /**
+     * @return DateType
+     */
+    public function getDepositDate()
+    {
+        return $this->depositDate;
+    }
+
+    /**
+     * @param DateType $depositDate
+     */
+    public function setDepositDate($depositDate)
+    {
+        $this->depositDate = $depositDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUndepositedFundsGlAccountNo()
+    {
+        return $this->undepositedFundsGlAccountNo;
+    }
+
+    /**
+     * @param string $undepositedFundsGlAccountNo
+     */
+    public function setUndepositedFundsGlAccountNo($undepositedFundsGlAccountNo)
+    {
+        $this->undepositedFundsGlAccountNo = $undepositedFundsGlAccountNo;
     }
 
     /**
@@ -239,7 +296,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
-     * @return AbstractChargeCardTransactionLine[]
+     * @return AbstractOtherReceiptLine[]
      */
     public function getLines()
     {
@@ -247,7 +304,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
-     * @param AbstractChargeCardTransactionLine[] $lines
+     * @param AbstractOtherReceiptLine[] $lines
      */
     public function setLines($lines)
     {

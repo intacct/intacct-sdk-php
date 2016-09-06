@@ -24,9 +24,6 @@ use Intacct\Endpoint;
 
 class SessionProvider
 {
-    
-    /** @var array */
-    private $lastExecution = [];
 
     /**
      * Initializes the class.
@@ -34,16 +31,6 @@ class SessionProvider
     public function __construct()
     {
         //nothing to see here
-    }
-    
-    /**
-     * Get array of the last execution's requests and responses
-     *
-     * @return array
-     */
-    public function getLastExecution()
-    {
-        return $this->lastExecution;
     }
 
     /**
@@ -83,12 +70,8 @@ class SessionProvider
         $contentBlock->append($getApiSession);
 
         $requestHandler = new RequestHandler($config);
-        
-        try {
-            $response = $requestHandler->executeSynchronous($config, $contentBlock);
-        } finally {
-            $this->lastExecution = $requestHandler->getHistory();
-        }
+
+        $response = $requestHandler->executeSynchronous($config, $contentBlock);
         
         $operation = $response->getOperation();
         $authentication = $operation->getAuthentication();
