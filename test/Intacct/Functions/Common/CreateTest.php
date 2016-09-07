@@ -26,7 +26,7 @@ class CreateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Common\Create::__construct
+     * @covers Intacct\Functions\Common\Create::setRecords
      * @covers Intacct\Functions\Common\Create::writeXml
      */
     public function testWriteXml()
@@ -67,7 +67,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::__construct
+     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Records count cannot exceed 100
      */
@@ -90,7 +90,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::__construct
+     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Records count must be greater than zero
      */
@@ -101,7 +101,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::__construct
+     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Using create on object "TIMESHEETENTRY" is not allowed
      */
@@ -117,7 +117,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::__construct
      * @covers Intacct\Functions\Common\Create::writeXml
      */
     public function testWriteXmlOwnedObject()

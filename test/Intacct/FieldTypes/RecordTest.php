@@ -44,6 +44,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Intacct\FieldTypes\Record::writeXml
+     * @covers Intacct\FieldTypes\Record::writeXmlRecursiveArray
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Object Name is required for the record
      */
