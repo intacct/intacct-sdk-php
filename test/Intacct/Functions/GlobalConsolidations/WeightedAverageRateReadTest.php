@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 class WeightedAverageRateReadTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Company\WeightedAverageRateRead::writeXml
+     * @covers Intacct\Functions\GlobalConsolidations\WeightedAverageRateRead::writeXml
      */
     public function testDefaultParams()
     {

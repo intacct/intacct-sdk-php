@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 class SpotRateReadTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Intacct\Functions\Company\SpotRateRead::writeXml
+     * @covers Intacct\Functions\GlobalConsolidations\SpotRateRead::writeXml
      */
     public function testDefaultParams()
     {

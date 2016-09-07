@@ -23,7 +23,7 @@ class ConsolidationCreateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Company\ConsolidationCreate::writeXml
+     * @covers Intacct\Functions\GlobalConsolidations\ConsolidationCreate::writeXml
      */
     public function testDefaultParams()
     {
@@ -53,7 +53,7 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\ConsolidationCreate::writeXml
+     * @covers Intacct\Functions\GlobalConsolidations\ConsolidationCreate::writeXml
      */
     public function testFull()
     {
