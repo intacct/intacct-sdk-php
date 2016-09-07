@@ -470,6 +470,9 @@ abstract class AbstractCustomer extends AbstractFunction
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
     {
+        if (filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
+            throw new InvalidArgumentException('Primary Email Address is not a valid email');
+        }
         $this->primaryEmailAddress = $primaryEmailAddress;
     }
 
@@ -486,6 +489,9 @@ abstract class AbstractCustomer extends AbstractFunction
      */
     public function setSecondaryEmailAddress($secondaryEmailAddress)
     {
+        if (filter_var($secondaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
+            throw new InvalidArgumentException('Secondary Email Address is not a valid email');
+        }
         $this->secondaryEmailAddress = $secondaryEmailAddress;
     }
 
