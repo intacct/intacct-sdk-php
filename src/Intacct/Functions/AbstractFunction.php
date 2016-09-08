@@ -17,13 +17,47 @@
 
 namespace Intacct\Functions;
 
-use Intacct\Functions\Traits\ControlIdTrait;
 use Intacct\Xml\XMLWriter;
+use Ramsey\Uuid\Uuid;
+use InvalidArgumentException;
 
 abstract class AbstractFunction implements FunctionInterface
 {
 
-    use ControlIdTrait;
+    /** @var string */
+    protected $controlId;
+
+    /**
+     * Get control ID
+     *
+     * @return string
+     */
+    public function getControlId()
+    {
+        return $this->controlId;
+    }
+
+    /**
+     * Set control ID
+     *
+     * @param string $controlId Control ID, default=random UUID string
+     * @throws InvalidArgumentException
+     */
+    public function setControlId($controlId = null)
+    {
+        if (!$controlId) {
+            // generate a version 4 (random) UUID
+            $controlId = Uuid::uuid4()->toString();
+        }
+
+        $length = strlen($controlId);
+        if ($length < 1 || $length > 256) {
+            throw new InvalidArgumentException(
+                'controlid must be between 1 and 256 characters in length'
+            );
+        }
+        $this->controlId = $controlId;
+    }
 
     /**
      * Initializes the class with the given parameters.

@@ -15,20 +15,25 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\Traits;
+namespace Intacct\Functions;
 
 use InvalidArgumentException;
 
-class ControlIdTraitTest extends \PHPUnit_Framework_TestCase
+class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
 {
-    
+
+    /** @var AbstractFunction */
     protected $object;
 
     public function setUp()
     {
-        $this->object = $this->getMockForTrait(ControlIdTrait::class);
+        $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
     }
 
+    /**
+     * @covers Intacct\Functions\AbstractFunction::setControlId
+     * @covers Intacct\Functions\AbstractFunction::getControlId
+     */
     public function testValidControlId()
     {
         $controlId = "unittest";
@@ -37,6 +42,10 @@ class ControlIdTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($controlId, $this->object->getControlId());
     }
 
+    /**
+     * @covers Intacct\Functions\AbstractFunction::setControlId
+     * @covers Intacct\Functions\AbstractFunction::getControlId
+     */
     public function testNoControlId()
     {
         $this->object->setControlId();
@@ -44,6 +53,10 @@ class ControlIdTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($this->object->getControlId());
     }
 
+    /**
+     * @covers Intacct\Functions\AbstractFunction::setControlId
+     * @covers Intacct\Functions\AbstractFunction::getControlId
+     */
     public function testMinimalLengthControlId()
     {
         $controlId = "";
@@ -53,6 +66,7 @@ class ControlIdTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Intacct\Functions\AbstractFunction::setControlId
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage controlid must be between 1 and 256 characters in length
      */

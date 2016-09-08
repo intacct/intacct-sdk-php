@@ -18,14 +18,11 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
-use Intacct\Xml\Request\XMLHelperTrait;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 class ReadReport extends AbstractFunction
 {
-
-    use XMLHelperTrait;
     
     /** @var array */
     const RETURN_FORMATS = ['xml'];
@@ -107,6 +104,7 @@ class ReadReport extends AbstractFunction
 
     /**
      * @param array $arguments
+     * @todo change this to a class
      */
     public function setArguments($arguments)
     {
@@ -271,6 +269,25 @@ class ReadReport extends AbstractFunction
     }
 
     /**
+     * Recurse through arguments write XML
+     *
+     * @param array $array
+     * @param XMLWriter $xml
+     */
+    protected function writeXmlArguments($array, XMLWriter &$xml)
+    {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $xml->startElement($key);
+                $this->writeXmlArguments($value, $xml);
+                $xml->endElement();
+            } else {
+                $xml->writeElement($key, $value, true);
+            }
+        }
+    }
+
+    /**
      * Write the readReport block XML
      *
      * @param XMLWriter $xml
@@ -295,7 +312,7 @@ class ReadReport extends AbstractFunction
             $xml->writeElement('report', $this->getReportName(), true);
             if (count($this->getArguments()) > 0) {
                 $xml->startElement('arguments');
-                $this->recursiveWriteXml($this->getArguments(), $xml);
+                $this->writeXmlArguments($this->getArguments(), $xml);
                 $xml->endElement(); //arguments
             }
             $xml->writeElement('waitTime', $this->getWaitTime());
