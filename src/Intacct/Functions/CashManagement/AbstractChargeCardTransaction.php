@@ -63,6 +63,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     protected $lines;
 
     /**
+     * Get record number
+     *
      * @return int
      */
     public function getRecordNo()
@@ -71,6 +73,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int $recordNo
      */
     public function setRecordNo($recordNo)
@@ -79,6 +83,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get charge card ID
+     *
      * @return string
      */
     public function getChargeCardId()
@@ -87,6 +93,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set charge card ID
+     *
      * @param string $chargeCardId
      */
     public function setChargeCardId($chargeCardId)
@@ -95,6 +103,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get transaction date
+     *
      * @return DateType
      */
     public function getTransactionDate()
@@ -103,6 +113,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set transaction date
+     *
      * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
@@ -111,6 +123,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get reference number
+     *
      * @return string
      */
     public function getReferenceNumber()
@@ -119,6 +133,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set reference number
+     *
      * @param string $referenceNumber
      */
     public function setReferenceNumber($referenceNumber)
@@ -127,6 +143,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get payee
+     *
      * @return string
      */
     public function getPayee()
@@ -135,6 +153,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set payee
+     *
      * @param string $payee
      */
     public function setPayee($payee)
@@ -143,6 +163,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -151,6 +173,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -159,6 +183,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -167,6 +193,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -175,6 +203,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get transaction currency
+     *
      * @return string
      */
     public function getTransactionCurrency()
@@ -183,6 +213,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set transaction currency
+     *
      * @param string $transactionCurrency
      */
     public function setTransactionCurrency($transactionCurrency)
@@ -191,6 +223,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get exchange rate date
+     *
      * @return DateType
      */
     public function getExchangeRateDate()
@@ -199,6 +233,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set exchange rate date
+     *
      * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
@@ -207,6 +243,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get exchange rate value
+     *
      * @return float
      */
     public function getExchangeRateValue()
@@ -215,6 +253,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set exchange rate value
+     *
      * @param float $exchangeRateValue
      */
     public function setExchangeRateValue($exchangeRateValue)
@@ -223,6 +263,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get exchange rate type
+     *
      * @return string
      */
     public function getExchangeRateType()
@@ -231,6 +273,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set exchange rate type
+     *
      * @param string $exchangeRateType
      */
     public function setExchangeRateType($exchangeRateType)
@@ -239,6 +283,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Get transaction lines
+     *
      * @return AbstractChargeCardTransactionLine[]
      */
     public function getLines()
@@ -247,6 +293,8 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     }
 
     /**
+     * Set transaction lines
+     *
      * @param AbstractChargeCardTransactionLine[] $lines
      */
     public function setLines($lines)

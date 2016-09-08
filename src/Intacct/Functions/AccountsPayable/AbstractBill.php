@@ -97,6 +97,8 @@ abstract class AbstractBill extends AbstractFunction
     protected $lines;
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -105,6 +107,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -113,6 +117,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -121,6 +127,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -129,6 +137,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get transaction date
+     *
      * @return DateType
      */
     public function getTransactionDate()
@@ -137,6 +147,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set transaction date
+     *
      * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
@@ -145,6 +157,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get GL posting date
+     *
      * @return DateType
      */
     public function getGlPostingDate()
@@ -153,6 +167,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set GL posting date
+     *
      * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
@@ -161,6 +177,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get action
+     *
      * @return string
      */
     public function getAction()
@@ -169,7 +187,10 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set action
+     *
      * @param string $action
+     * @todo add allowed actions: draft, posted, etc
      */
     public function setAction($action)
     {
@@ -177,6 +198,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get summary record number
+     *
      * @return int|string
      */
     public function getSummaryRecordNo()
@@ -185,6 +208,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set summary record number
+     *
      * @param int|string $summaryRecordNo
      */
     public function setSummaryRecordNo($summaryRecordNo)
@@ -193,6 +218,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get bill number
+     *
      * @return string
      */
     public function getBillNumber()
@@ -201,6 +228,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set bill number
+     *
      * @param string $billNumber
      */
     public function setBillNumber($billNumber)
@@ -209,6 +238,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -217,6 +248,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -225,6 +258,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get external ID
+     *
      * @return string
      */
     public function getExternalId()
@@ -233,6 +268,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set external ID
+     *
      * @param string $externalId
      */
     public function setExternalId($externalId)
@@ -241,6 +278,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get base currency
+     *
      * @return string
      */
     public function getBaseCurrency()
@@ -249,6 +288,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set base currency
+     *
      * @param string $baseCurrency
      */
     public function setBaseCurrency($baseCurrency)
@@ -257,6 +298,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get transaction currency
+     *
      * @return string
      */
     public function getTransactionCurrency()
@@ -265,6 +308,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set transaction currency
+     *
      * @param string $transactionCurrency
      */
     public function setTransactionCurrency($transactionCurrency)
@@ -273,6 +318,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get exchange rate date
+     *
      * @return DateType
      */
     public function getExchangeRateDate()
@@ -281,6 +328,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set exchange rate date
+     *
      * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
@@ -289,6 +338,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get exchange rate value
+     *
      * @return float
      */
     public function getExchangeRateValue()
@@ -297,6 +348,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set exchange rate value
+     *
      * @param float $exchangeRateValue
      */
     public function setExchangeRateValue($exchangeRateValue)
@@ -305,6 +358,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get exchange rate type
+     *
      * @return string
      */
     public function getExchangeRateType()
@@ -313,6 +368,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set exchange rate type
+     *
      * @param string $exchangeRateType
      */
     public function setExchangeRateType($exchangeRateType)
@@ -321,6 +378,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get do not post to general ledger
+     *
      * @return boolean
      */
     public function isDoNotPostToGL()
@@ -329,6 +388,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set do not post to general ledger
+     *
      * @param boolean $doNotPostToGL
      */
     public function setDoNotPostToGL($doNotPostToGL)
@@ -337,6 +398,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get due date
+     *
      * @return DateType
      */
     public function getDueDate()
@@ -345,6 +408,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set due date
+     *
      * @param DateType $dueDate
      */
     public function setDueDate($dueDate)
@@ -353,6 +418,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get payment term
+     *
      * @return string
      */
     public function getPaymentTerm()
@@ -361,6 +428,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set payment term
+     *
      * @param string $paymentTerm
      */
     public function setPaymentTerm($paymentTerm)
@@ -369,6 +438,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get reference number
+     *
      * @return string
      */
     public function getReferenceNumber()
@@ -377,6 +448,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set reference number
+     *
      * @param string $referenceNumber
      */
     public function setReferenceNumber($referenceNumber)
@@ -385,6 +458,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get on hold
+     *
      * @return boolean
      */
     public function isOnHold()
@@ -393,6 +468,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set on hold
+     *
      * @param boolean $onHold
      */
     public function setOnHold($onHold)
@@ -401,6 +478,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get pay to contact name
+     *
      * @return string
      */
     public function getPayToContactName()
@@ -409,6 +488,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set pay to contact name
+     *
      * @param string $payToContactName
      */
     public function setPayToContactName($payToContactName)
@@ -417,6 +498,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get return to contact name
+     *
      * @return string
      */
     public function getReturnToContactName()
@@ -425,6 +508,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set return to contact name
+     *
      * @param string $returnToContactName
      */
     public function setReturnToContactName($returnToContactName)
@@ -433,6 +518,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -441,6 +528,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -449,6 +538,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get bill lines
+     *
      * @return AbstractBillLine[]
      */
     public function getLines()
@@ -457,6 +548,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set bill lines
+     *
      * @param AbstractBillLine[] $lines
      */
     public function setLines($lines)

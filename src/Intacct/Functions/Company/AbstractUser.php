@@ -71,6 +71,8 @@ abstract class AbstractUser extends AbstractFunction
     protected $ssoFederatedUserId;
 
     /**
+     * Get user ID
+     *
      * @return string
      */
     public function getUserId()
@@ -79,6 +81,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set user ID
+     *
      * @param string $userId
      */
     public function setUserId($userId)
@@ -87,6 +91,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get user name
+     *
      * @return string
      */
     public function getUserName()
@@ -95,6 +101,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set user name
+     *
      * @param string $userName
      */
     public function setUserName($userName)
@@ -103,6 +111,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get user type
+     *
      * @return string
      */
     public function getUserType()
@@ -111,6 +121,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set user type
+     *
      * @param string $userType
      */
     public function setUserType($userType)
@@ -119,6 +131,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -127,6 +141,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)
@@ -135,6 +151,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get web services only
+     *
      * @return boolean
      */
     public function isWebServicesOnly()
@@ -143,6 +161,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set web services only
+     *
      * @param boolean $webServicesOnly
      */
     public function setWebServicesOnly($webServicesOnly)
@@ -151,6 +171,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get restricted entities
+     *
      * @return array
      */
     public function getRestrictedEntities()
@@ -159,6 +181,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set restricted entities
+     *
      * @param array $restrictedEntities
      */
     public function setRestrictedEntities($restrictedEntities)
@@ -167,6 +191,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get restricted departments
+     *
      * @return array
      */
     public function getRestrictedDepartments()
@@ -175,6 +201,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set restricted departments
+     *
      * @param array $restrictedDepartments
      */
     public function setRestrictedDepartments($restrictedDepartments)
@@ -183,6 +211,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get single sign on enabled
+     *
      * @return boolean
      */
     public function isSsoEnabled()
@@ -191,6 +221,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set single sign on enabled
+     *
      * @param boolean $ssoEnabled
      */
     public function setSsoEnabled($ssoEnabled)
@@ -199,6 +231,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Get single sign on federated user ID
+     *
      * @return string
      */
     public function getSsoFederatedUserId()
@@ -207,6 +241,8 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
+     * Set single sign on federated user ID
+     *
      * @param string $ssoFederatedUserId
      */
     public function setSsoFederatedUserId($ssoFederatedUserId)

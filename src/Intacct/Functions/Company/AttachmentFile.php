@@ -33,6 +33,8 @@ class AttachmentFile implements AttachmentInterface
     protected $fileName;
 
     /**
+     * Get file path
+     *
      * @return string
      */
     public function getFilePath()
@@ -41,6 +43,8 @@ class AttachmentFile implements AttachmentInterface
     }
 
     /**
+     * Set file path
+     *
      * @param string $filePath
      */
     public function setFilePath($filePath)
@@ -57,6 +61,8 @@ class AttachmentFile implements AttachmentInterface
     }
 
     /**
+     * Get extension
+     *
      * @return string
      */
     public function getExtension()
@@ -65,6 +71,8 @@ class AttachmentFile implements AttachmentInterface
     }
 
     /**
+     * Set extension
+     *
      * @param string $extension
      */
     public function setExtension($extension)
@@ -73,6 +81,8 @@ class AttachmentFile implements AttachmentInterface
     }
 
     /**
+     * Get file name
+     *
      * @return string
      */
     public function getFileName()
@@ -81,6 +91,8 @@ class AttachmentFile implements AttachmentInterface
     }
 
     /**
+     * Set file name
+     *
      * @param string $fileName
      */
     public function setFileName($fileName)

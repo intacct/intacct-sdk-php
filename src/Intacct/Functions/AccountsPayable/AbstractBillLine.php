@@ -89,6 +89,8 @@ abstract class AbstractBillLine
     protected $warehouseId;
 
     /**
+     * Get account label
+     *
      * @return string
      */
     public function getAccountLabel()
@@ -97,6 +99,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set account label
+     *
      * @param string $accountLabel
      */
     public function setAccountLabel($accountLabel)
@@ -105,6 +109,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get GL account number
+     *
      * @return string
      */
     public function getGlAccountNumber()
@@ -113,6 +119,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set GL account number
+     *
      * @param string $glAccountNumber
      */
     public function setGlAccountNumber($glAccountNumber)
@@ -121,6 +129,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get offset GL account number
+     *
      * @return string
      */
     public function getOffsetGLAccountNumber()
@@ -129,6 +139,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set offset GL account number
+     *
      * @param string $offsetGLAccountNumber
      */
     public function setOffsetGLAccountNumber($offsetGLAccountNumber)
@@ -137,6 +149,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get transaction amount
+     *
      * @return float|string
      */
     public function getTransactionAmount()
@@ -145,6 +159,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set transaction amount
+     *
      * @param float|string $transactionAmount
      */
     public function setTransactionAmount($transactionAmount)
@@ -153,6 +169,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get allocation ID
+     *
      * @return string
      */
     public function getAllocationId()
@@ -161,6 +179,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set allocation ID
+     *
      * @param string $allocationId
      */
     public function setAllocationId($allocationId)
@@ -169,6 +189,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get memo
+     *
      * @return string
      */
     public function getMemo()
@@ -177,6 +199,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set memo
+     *
      * @param string $memo
      */
     public function setMemo($memo)
@@ -185,6 +209,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get form 1099
+     *
      * @return boolean
      */
     public function isForm1099()
@@ -193,6 +219,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set form 1099
+     *
      * @param boolean $form1099
      */
     public function setForm1099($form1099)
@@ -201,6 +229,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get key
+     *
      * @return string
      */
     public function getKey()
@@ -209,6 +239,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set key
+     *
      * @param string $key
      */
     public function setKey($key)
@@ -217,6 +249,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get total paid
+     *
      * @return float|string
      */
     public function getTotalPaid()
@@ -225,6 +259,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set total paid
+     *
      * @param float|string $totalPaid
      */
     public function setTotalPaid($totalPaid)
@@ -233,6 +269,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get total due
+     *
      * @return float|string
      */
     public function getTotalDue()
@@ -241,6 +279,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set total due
+     *
      * @param float|string $totalDue
      */
     public function setTotalDue($totalDue)
@@ -249,6 +289,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get billable
+     *
      * @return boolean
      */
     public function isBillable()
@@ -257,6 +299,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set billable
+     *
      * @param boolean $billable
      */
     public function setBillable($billable)
@@ -265,6 +309,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get department ID
+     *
      * @return string
      */
     public function getDepartmentId()
@@ -273,6 +319,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set department ID
+     *
      * @param string $departmentId
      */
     public function setDepartmentId($departmentId)
@@ -281,6 +329,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get location ID
+     *
      * @return string
      */
     public function getLocationId()
@@ -289,6 +339,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set location ID
+     *
      * @param string $locationId
      */
     public function setLocationId($locationId)
@@ -297,6 +349,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get project ID
+     *
      * @return string
      */
     public function getProjectId()
@@ -305,6 +359,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set project ID
+     *
      * @param string $projectId
      */
     public function setProjectId($projectId)
@@ -313,6 +369,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get customer ID
+     *
      * @return string
      */
     public function getCustomerId()
@@ -321,6 +379,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set customer ID
+     *
      * @param string $customerId
      */
     public function setCustomerId($customerId)
@@ -329,6 +389,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -337,6 +399,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -345,6 +409,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get employee ID
+     *
      * @return string
      */
     public function getEmployeeId()
@@ -353,6 +419,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set employee ID
+     *
      * @param string $employeeId
      */
     public function setEmployeeId($employeeId)
@@ -361,6 +429,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get item ID
+     *
      * @return string
      */
     public function getItemId()
@@ -369,6 +439,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set item ID
+     *
      * @param string $itemId
      */
     public function setItemId($itemId)
@@ -377,6 +449,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get class ID
+     *
      * @return string
      */
     public function getClassId()
@@ -385,6 +459,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set class ID
+     *
      * @param string $classId
      */
     public function setClassId($classId)
@@ -393,6 +469,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get contract ID
+     *
      * @return string
      */
     public function getContractId()
@@ -401,6 +479,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set contract ID
+     *
      * @param string $contractId
      */
     public function setContractId($contractId)
@@ -409,6 +489,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Get warehouse ID
+     *
      * @return string
      */
     public function getWarehouseId()
@@ -417,6 +499,8 @@ abstract class AbstractBillLine
     }
 
     /**
+     * Set warehouse ID
+     *
      * @param string $warehouseId
      */
     public function setWarehouseId($warehouseId)

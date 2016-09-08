@@ -111,6 +111,8 @@ abstract class AbstractArPayment extends AbstractFunction
     protected $applyToTransactions;
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -119,6 +121,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -127,6 +131,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get payment method
+     *
      * @return string
      */
     public function getPaymentMethod()
@@ -135,6 +141,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set payment method
+     *
      * @param string $paymentMethod
      * @throws InvalidArgumentException
      */
@@ -147,6 +155,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get bank account ID
+     *
      * @return string
      */
     public function getBankAccountId()
@@ -155,6 +165,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set bank account ID
+     *
      * @param string $bankAccountId
      */
     public function setBankAccountId($bankAccountId)
@@ -163,6 +175,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get undeposited funds GL account number
+     *
      * @return string
      */
     public function getUndepositedFundsGlAccountNo()
@@ -171,6 +185,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set undeposited funds GL account number
+     *
      * @param string $undepositedFundsGlAccountNo
      */
     public function setUndepositedFundsGlAccountNo($undepositedFundsGlAccountNo)
@@ -179,6 +195,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get transaction currency
+     *
      * @return string
      */
     public function getTransactionCurrency()
@@ -187,6 +205,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set transaction currency
+     *
      * @param string $transactionCurrency
      */
     public function setTransactionCurrency($transactionCurrency)
@@ -195,6 +215,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get base currency
+     *
      * @return string
      */
     public function getBaseCurrency()
@@ -203,6 +225,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set base currency
+     *
      * @param string $baseCurrency
      */
     public function setBaseCurrency($baseCurrency)
@@ -211,6 +235,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get customer ID
+     *
      * @return string
      */
     public function getCustomerId()
@@ -219,6 +245,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set customer ID
+     *
      * @param string $customerId
      */
     public function setCustomerId($customerId)
@@ -227,6 +255,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get received date
+     *
      * @return DateType
      */
     public function getReceivedDate()
@@ -235,6 +265,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set received date
+     *
      * @param DateType $receivedDate
      */
     public function setReceivedDate($receivedDate)
@@ -243,6 +275,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get transaction payment amount
+     *
      * @return float|string
      */
     public function getTransactionPaymentAmount()
@@ -251,6 +285,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set transaction payment amount
+     *
      * @param float|string $transactionPaymentAmount
      */
     public function setTransactionPaymentAmount($transactionPaymentAmount)
@@ -259,6 +295,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get base payment amount
+     *
      * @return float|string
      */
     public function getBasePaymentAmount()
@@ -267,6 +305,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set base payment amount
+     *
      * @param float|string $basePaymentAmount
      */
     public function setBasePaymentAmount($basePaymentAmount)
@@ -275,6 +315,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate date
+     *
      * @return DateType
      */
     public function getExchangeRateDate()
@@ -283,6 +325,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate date
+     *
      * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
@@ -291,6 +335,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate value
+     *
      * @return float
      */
     public function getExchangeRateValue()
@@ -299,6 +345,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate value
+     *
      * @param float $exchangeRateValue
      */
     public function setExchangeRateValue($exchangeRateValue)
@@ -307,6 +355,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate type
+     *
      * @return string
      */
     public function getExchangeRateType()
@@ -315,6 +365,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate type
+     *
      * @param string $exchangeRateType
      */
     public function setExchangeRateType($exchangeRateType)
@@ -323,6 +375,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get authorization code
+     *
      * @return string
      */
     public function getAuthorizationCode()
@@ -331,6 +385,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set authorization code
+     *
      * @param string $authorizationCode
      */
     public function setAuthorizationCode($authorizationCode)
@@ -339,6 +395,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get overpayment location ID
+     *
      * @return string
      */
     public function getOverpaymentLocationId()
@@ -347,6 +405,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set overpayment location ID
+     *
      * @param string $overpaymentLocationId
      */
     public function setOverpaymentLocationId($overpaymentLocationId)
@@ -355,6 +415,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get overpayment department ID
+     *
      * @return string
      */
     public function getOverpaymentDepartmentId()
@@ -363,6 +425,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set overpayment department ID
+     *
      * @param string $overpaymentDepartmentId
      */
     public function setOverpaymentDepartmentId($overpaymentDepartmentId)
@@ -371,6 +435,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get reference number
+     *
      * @return string
      */
     public function getReferenceNumber()
@@ -379,6 +445,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set reference number
+     *
      * @param string $referenceNumber
      */
     public function setReferenceNumber($referenceNumber)
@@ -387,6 +455,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Get apply to transactions
+     *
      * @return ArPaymentItem[]
      */
     public function getApplyToTransactions()
@@ -395,6 +465,8 @@ abstract class AbstractArPayment extends AbstractFunction
     }
 
     /**
+     * Set apply to transactions
+     *
      * @param ArPaymentItem[] $applyToTransactions
      */
     public function setApplyToTransactions($applyToTransactions)

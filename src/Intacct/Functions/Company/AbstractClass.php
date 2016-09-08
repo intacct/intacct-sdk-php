@@ -41,6 +41,8 @@ abstract class AbstractClass extends AbstractFunction
     protected $active;
 
     /**
+     * Get class ID
+     *
      * @return string
      */
     public function getClassId()
@@ -49,6 +51,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Set class ID
+     *
      * @param string $classId
      */
     public function setClassId($classId)
@@ -57,6 +61,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Get class name
+     *
      * @return string
      */
     public function getClassName()
@@ -65,6 +71,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Set class name
+     *
      * @param string $className
      */
     public function setClassName($className)
@@ -73,6 +81,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -81,6 +91,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -89,6 +101,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Get parent class ID
+     *
      * @return string
      */
     public function getParentClassId()
@@ -97,6 +111,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Set parent class ID
+     *
      * @param string $parentClassId
      */
     public function setParentClassId($parentClassId)
@@ -105,6 +121,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -113,6 +131,8 @@ abstract class AbstractClass extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)

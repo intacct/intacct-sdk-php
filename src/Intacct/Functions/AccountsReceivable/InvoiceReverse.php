@@ -31,6 +31,8 @@ class InvoiceReverse extends AbstractInvoice
     protected $memo;
 
     /**
+     * Get reverse date
+     *
      * @return DateType
      */
     public function getReverseDate()
@@ -39,6 +41,8 @@ class InvoiceReverse extends AbstractInvoice
     }
 
     /**
+     * Set reverse date
+     *
      * @param DateType $reverseDate
      */
     public function setReverseDate($reverseDate)
@@ -47,6 +51,8 @@ class InvoiceReverse extends AbstractInvoice
     }
 
     /**
+     * Get memo
+     *
      * @return string
      */
     public function getMemo()
@@ -55,6 +61,8 @@ class InvoiceReverse extends AbstractInvoice
     }
 
     /**
+     * Set memo
+     *
      * @param string $memo
      */
     public function setMemo($memo)

@@ -31,6 +31,8 @@ class ApPaymentReverse extends AbstractApPayment
     protected $memo;
 
     /**
+     * Get reverse date
+     *
      * @return DateType
      */
     public function getReverseDate()
@@ -39,6 +41,8 @@ class ApPaymentReverse extends AbstractApPayment
     }
 
     /**
+     * Set reverse date
+     *
      * @param DateType $reverseDate
      */
     public function setReverseDate($reverseDate)

@@ -30,6 +30,8 @@ class ChargeCardTransactionLineUpdate extends AbstractChargeCardTransactionLine
     protected $lineNo;
 
     /**
+     * Get line number
+     *
      * @return int|string
      */
     public function getLineNo()
@@ -38,6 +40,8 @@ class ChargeCardTransactionLineUpdate extends AbstractChargeCardTransactionLine
     }
 
     /**
+     * Set line number
+     *
      * @param int|string $lineNo
      */
     public function setLineNo($lineNo)

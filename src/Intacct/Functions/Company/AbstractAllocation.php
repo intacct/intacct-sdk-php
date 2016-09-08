@@ -50,6 +50,8 @@ abstract class AbstractAllocation extends AbstractFunction
     private $lines;
 
     /**
+     * Get allocation ID
+     *
      * @return string
      */
     public function getAllocationId()
@@ -58,6 +60,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set allocation ID
+     *
      * @param string $allocationId
      */
     public function setAllocationId($allocationId)
@@ -66,6 +70,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -74,6 +80,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -82,6 +90,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get document number
+     *
      * @return string
      */
     public function getDocumentNo()
@@ -90,6 +100,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set document number
+     *
      * @param string $documentNo
      */
     public function setDocumentNo($documentNo)
@@ -98,6 +110,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get allocate by
+     *
      * @return string
      */
     public function getAllocateBy()
@@ -106,7 +120,10 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set allocate by
+     *
      * @param string $allocateBy
+     * @todo add valid allocate by's
      */
     public function setAllocateBy($allocateBy)
     {
@@ -114,6 +131,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -122,6 +141,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -130,6 +151,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -138,6 +161,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)
@@ -146,6 +171,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Get allocation lines
+     *
      * @return AbstractAllocationLine[]
      */
     public function getLines()
@@ -154,6 +181,8 @@ abstract class AbstractAllocation extends AbstractFunction
     }
 
     /**
+     * Set allocation lines
+     *
      * @param AbstractAllocationLine[] $lines
      */
     public function setLines(array $lines)

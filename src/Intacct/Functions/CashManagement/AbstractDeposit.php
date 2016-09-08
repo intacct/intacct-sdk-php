@@ -45,6 +45,8 @@ abstract class AbstractDeposit extends AbstractFunction
     protected $transactionsKeysToDeposit;
 
     /**
+     * Get bank account ID
+     *
      * @return string
      */
     public function getBankAccountId()
@@ -53,6 +55,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set bank account ID
+     *
      * @param string $bankAccountId
      */
     public function setBankAccountId($bankAccountId)
@@ -61,6 +65,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Get deposit date
+     *
      * @return DateType
      */
     public function getDepositDate()
@@ -69,6 +75,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set deposit date
+     *
      * @param DateType $depositDate
      */
     public function setDepositDate($depositDate)
@@ -77,6 +85,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Get deposit slip ID
+     *
      * @return string
      */
     public function getDepositSlipId()
@@ -85,6 +95,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set deposit slip ID
+     *
      * @param string $depositSlipId
      */
     public function setDepositSlipId($depositSlipId)
@@ -93,6 +105,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -101,6 +115,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -109,6 +125,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -117,6 +135,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -125,6 +145,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Get transaction keys to deposit
+     *
      * @return int[]
      */
     public function getTransactionKeysToDeposit()
@@ -133,6 +155,8 @@ abstract class AbstractDeposit extends AbstractFunction
     }
 
     /**
+     * Set transaction keys to deposit
+     *
      * @param int[] $transactionKeysToDeposit
      */
     public function setTransactionKeysToDeposit($transactionKeysToDeposit)

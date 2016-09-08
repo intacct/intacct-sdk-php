@@ -218,6 +218,8 @@ abstract class AbstractCustomer extends AbstractFunction
     protected $restrictedDepartments;
 
     /**
+     * Get customer ID
+     *
      * @return string
      */
     public function getCustomerId()
@@ -226,6 +228,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set customer ID
+     *
      * @param string $customerId
      */
     public function setCustomerId($customerId)
@@ -234,6 +238,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get customer name
+     *
      * @return string
      */
     public function getCustomerName()
@@ -242,6 +248,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set customer name
+     *
      * @param string $customerName
      */
     public function setCustomerName($customerName)
@@ -250,6 +258,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get one time
+     *
      * @return boolean
      */
     public function isOneTime()
@@ -258,6 +268,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set one time
+     *
      * @param boolean $oneTime
      */
     public function setOneTime($oneTime)
@@ -266,6 +278,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -274,6 +288,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)
@@ -282,6 +298,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get last name
+     *
      * @return string
      */
     public function getLastName()
@@ -290,6 +308,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set last name
+     *
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -298,6 +318,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get first name
+     *
      * @return string
      */
     public function getFirstName()
@@ -306,6 +328,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set first name
+     *
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -314,6 +338,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get middle name
+     *
      * @return string
      */
     public function getMiddleName()
@@ -322,6 +348,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set middle name
+     *
      * @param string $middleName
      */
     public function setMiddleName($middleName)
@@ -330,6 +358,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get prefix
+     *
      * @return string
      */
     public function getPrefix()
@@ -338,6 +368,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set prefix
+     *
      * @param string $prefix
      */
     public function setPrefix($prefix)
@@ -346,6 +378,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get company name
+     *
      * @return string
      */
     public function getCompanyName()
@@ -354,6 +388,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set company name
+     *
      * @param string $companyName
      */
     public function setCompanyName($companyName)
@@ -362,6 +398,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print as
+     *
      * @return string
      */
     public function getPrintAs()
@@ -370,6 +408,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print as
+     *
      * @param string $printAs
      */
     public function setPrintAs($printAs)
@@ -378,6 +418,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get primary phone number
+     *
      * @return string
      */
     public function getPrimaryPhoneNo()
@@ -386,6 +428,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set primary phone number
+     *
      * @param string $primaryPhoneNo
      */
     public function setPrimaryPhoneNo($primaryPhoneNo)
@@ -394,6 +438,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get secondary phone number
+     *
      * @return string
      */
     public function getSecondaryPhoneNo()
@@ -402,6 +448,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set secondary phone number
+     *
      * @param string $secondaryPhoneNo
      */
     public function setSecondaryPhoneNo($secondaryPhoneNo)
@@ -410,6 +458,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get cellular phone number
+     *
      * @return string
      */
     public function getCellularPhoneNo()
@@ -418,6 +468,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set cellular phone number
+     *
      * @param string $cellularPhoneNo
      */
     public function setCellularPhoneNo($cellularPhoneNo)
@@ -426,6 +478,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get pager number
+     *
      * @return string
      */
     public function getPagerNo()
@@ -434,6 +488,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set pager number
+     *
      * @param string $pagerNo
      */
     public function setPagerNo($pagerNo)
@@ -442,6 +498,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get fax number
+     *
      * @return string
      */
     public function getFaxNo()
@@ -450,6 +508,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set fax number
+     *
      * @param string $faxNo
      */
     public function setFaxNo($faxNo)
@@ -458,6 +518,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get primary email address
+     *
      * @return string
      */
     public function getPrimaryEmailAddress()
@@ -466,6 +528,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set primary email address
+     *
      * @param string $primaryEmailAddress
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
@@ -477,6 +541,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get secondary email address
+     *
      * @return string
      */
     public function getSecondaryEmailAddress()
@@ -485,6 +551,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set secondary email address
+     *
      * @param string $secondaryEmailAddress
      */
     public function setSecondaryEmailAddress($secondaryEmailAddress)
@@ -496,6 +564,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get primary URL
+     *
      * @return string
      */
     public function getPrimaryUrl()
@@ -504,6 +574,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set primary URL
+     *
      * @param string $primaryUrl
      */
     public function setPrimaryUrl($primaryUrl)
@@ -512,6 +584,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get secondary URL
+     *
      * @return string
      */
     public function getSecondaryUrl()
@@ -520,6 +594,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set secondary URL
+     *
      * @param string $secondaryUrl
      */
     public function setSecondaryUrl($secondaryUrl)
@@ -528,6 +604,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get address line 1
+     *
      * @return string
      */
     public function getAddressLine1()
@@ -536,6 +614,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set address line 1
+     *
      * @param string $addressLine1
      */
     public function setAddressLine1($addressLine1)
@@ -544,6 +624,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get address line 2
+     *
      * @return string
      */
     public function getAddressLine2()
@@ -552,6 +634,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set address line 2
+     *
      * @param string $addressLine2
      */
     public function setAddressLine2($addressLine2)
@@ -560,6 +644,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get city
+     *
      * @return string
      */
     public function getCity()
@@ -568,6 +654,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set city
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -576,6 +664,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get state/province
+     *
      * @return string
      */
     public function getStateProvince()
@@ -584,6 +674,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set state/province
+     *
      * @param string $stateProvince
      */
     public function setStateProvince($stateProvince)
@@ -592,6 +684,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get zip/postal code
+     *
      * @return string
      */
     public function getZipPostalCode()
@@ -600,6 +694,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set zip/postal code
+     *
      * @param string $zipPostalCode
      */
     public function setZipPostalCode($zipPostalCode)
@@ -608,6 +704,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get country
+     *
      * @return string
      */
     public function getCountry()
@@ -616,6 +714,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set country
+     *
      * @param string $country
      */
     public function setCountry($country)
@@ -624,6 +724,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get excluded from contact list
+     *
      * @return boolean
      */
     public function isExcludedFromContactList()
@@ -632,6 +734,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set excluded from contact list
+     *
      * @param boolean $excludedFromContactList
      */
     public function setExcludedFromContactList($excludedFromContactList)
@@ -640,6 +744,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get customer type ID
+     *
      * @return string
      */
     public function getCustomerTypeId()
@@ -648,6 +754,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set customer type ID
+     *
      * @param string $customerTypeId
      */
     public function setCustomerTypeId($customerTypeId)
@@ -656,6 +764,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get sales representative employee ID
+     *
      * @return string
      */
     public function getSalesRepEmployeeId()
@@ -664,6 +774,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set sales representative employee ID
+     *
      * @param string $salesRepEmployeeId
      */
     public function setSalesRepEmployeeId($salesRepEmployeeId)
@@ -672,6 +784,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get parent customer ID
+     *
      * @return string
      */
     public function getParentCustomerId()
@@ -680,6 +794,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set parent customer ID
+     *
      * @param string $parentCustomerId
      */
     public function setParentCustomerId($parentCustomerId)
@@ -688,6 +804,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get GL group name
+     *
      * @return string
      */
     public function getGlGroupName()
@@ -696,6 +814,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set GL group name
+     *
      * @param string $glGroupName
      */
     public function setGlGroupName($glGroupName)
@@ -704,6 +824,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get territory ID
+     *
      * @return string
      */
     public function getTerritoryId()
@@ -712,6 +834,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set territory ID
+     *
      * @param string $territoryId
      */
     public function setTerritoryId($territoryId)
@@ -720,6 +844,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -728,6 +854,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -736,6 +864,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get payment term
+     *
      * @return string
      */
     public function getPaymentTerm()
@@ -744,6 +874,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set payment term
+     *
      * @param string $paymentTerm
      */
     public function setPaymentTerm($paymentTerm)
@@ -752,6 +884,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get offset AR GL account number
+     *
      * @return string
      */
     public function getOffsetArGlAccountNo()
@@ -760,6 +894,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set offset AR GL account number
+     *
      * @param string $offsetArGlAccountNo
      */
     public function setOffsetArGlAccountNo($offsetArGlAccountNo)
@@ -768,6 +904,7 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get default revenue GL account number
      * @return string
      */
     public function getDefaultRevenueGlAccountNo()
@@ -776,6 +913,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set default revenue GL account number
+     *
      * @param string $defaultRevenueGlAccountNo
      */
     public function setDefaultRevenueGlAccountNo($defaultRevenueGlAccountNo)
@@ -784,6 +923,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get shipping method
+     *
      * @return string
      */
     public function getShippingMethod()
@@ -792,6 +933,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set shipping method
+     *
      * @param string $shippingMethod
      */
     public function setShippingMethod($shippingMethod)
@@ -800,6 +943,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get resale number
+     *
      * @return string
      */
     public function getResaleNumber()
@@ -808,6 +953,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set resale number
+     *
      * @param string $resaleNumber
      */
     public function setResaleNumber($resaleNumber)
@@ -816,6 +963,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get taxable
+     *
      * @return boolean
      */
     public function isTaxable()
@@ -824,6 +973,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set taxable
+     *
      * @param boolean $taxable
      */
     public function setTaxable($taxable)
@@ -832,6 +983,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get contact tax group name
+     *
      * @return string
      */
     public function getContactTaxGroupName()
@@ -840,6 +993,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set contact tax group name
+     *
      * @param string $contactTaxGroupName
      */
     public function setContactTaxGroupName($contactTaxGroupName)
@@ -848,6 +1003,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get tax ID
+     *
      * @return string
      */
     public function getTaxId()
@@ -856,6 +1013,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set tax ID
+     *
      * @param string $taxId
      */
     public function setTaxId($taxId)
@@ -864,6 +1023,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get on hold
+     *
      * @return boolean
      */
     public function isOnHold()
@@ -872,6 +1033,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set on hold
+     *
      * @param boolean $onHold
      */
     public function setOnHold($onHold)
@@ -880,6 +1043,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get credit limit
+     *
      * @return float|int|string
      */
     public function getCreditLimit()
@@ -888,6 +1053,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set credit limit
+     *
      * @param float|int|string $creditLimit
      */
     public function setCreditLimit($creditLimit)
@@ -896,6 +1063,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get delivery method
+     *
      * @return string|string[]
      */
     public function getDeliveryMethod()
@@ -904,6 +1073,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set delivery method
+     *
      * @param string|string[] $deliveryMethod
      */
     public function setDeliveryMethod($deliveryMethod)
@@ -912,6 +1083,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get default invoice message
+     *
      * @return string
      */
     public function getDefaultInvoiceMessage()
@@ -920,6 +1093,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set default invoice message
+     *
      * @param string $defaultInvoiceMessage
      */
     public function setDefaultInvoiceMessage($defaultInvoiceMessage)
@@ -928,6 +1103,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get comments
+     *
      * @return string
      */
     public function getComments()
@@ -936,6 +1113,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set comments
+     *
      * @param string $comments
      */
     public function setComments($comments)
@@ -944,6 +1123,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get default currency
+     *
      * @return string
      */
     public function getDefaultCurrency()
@@ -952,6 +1133,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set default currency
+     *
      * @param string $defaultCurrency
      */
     public function setDefaultCurrency($defaultCurrency)
@@ -960,6 +1143,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option AR invoice template name
+     *
      * @return string
      */
     public function getPrintOptionArInvoiceTemplateName()
@@ -968,6 +1153,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option AR invoice template name
+     *
      * @param string $printOptionArInvoiceTemplateName
      */
     public function setPrintOptionArInvoiceTemplateName(
@@ -978,6 +1165,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE quote template name
+     *
      * @return string
      */
     public function getPrintOptionOeQuoteTemplateName()
@@ -986,6 +1175,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE quote template name
+     *
      * @param string $printOptionOeQuoteTemplateName
      */
     public function setPrintOptionOeQuoteTemplateName(
@@ -995,6 +1186,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE order template name
+     *
      * @return string
      */
     public function getPrintOptionOeOrderTemplateName()
@@ -1003,6 +1196,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE order template name
+     *
      * @param string $printOptionOeOrderTemplateName
      */
     public function setPrintOptionOeOrderTemplateName(
@@ -1012,6 +1207,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE list template name
+     *
      * @return string
      */
     public function getPrintOptionOeListTemplateName()
@@ -1020,6 +1217,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE list template name
+     *
      * @param string $printOptionOeListTemplateName
      */
     public function setPrintOptionOeListTemplateName(
@@ -1029,6 +1228,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE invoice template name
+     *
      * @return string
      */
     public function getPrintOptionOeInvoiceTemplateName()
@@ -1037,6 +1238,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE invoice template name
+     *
      * @param string $printOptionOeInvoiceTemplateName
      */
     public function setPrintOptionOeInvoiceTemplateName(
@@ -1047,6 +1250,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE adjustment template name
+     *
      * @return string
      */
     public function getPrintOptionOeAdjustmentTemplateName()
@@ -1055,6 +1260,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE adjustment template name
+     *
      * @param string $printOptionOeAdjustmentTemplateName
      */
     public function setPrintOptionOeAdjustmentTemplateName(
@@ -1064,6 +1271,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get print option OE other template name
+     *
      * @return string
      */
     public function getPrintOptionOeOtherTemplateName()
@@ -1072,6 +1281,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set print option OE other template name
+     *
      * @param string $printOptionOeOtherTemplateName
      */
     public function setPrintOptionOeOtherTemplateName(
@@ -1081,6 +1292,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get primary contact name
+     *
      * @return string
      */
     public function getPrimaryContactName()
@@ -1089,6 +1302,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set primary contact name
+     *
      * @param string $primaryContactName
      */
     public function setPrimaryContactName($primaryContactName)
@@ -1097,6 +1312,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get bill to contact name
+     *
      * @return string
      */
     public function getBillToContactName()
@@ -1105,6 +1322,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set bill to contact name
+     *
      * @param string $billToContactName
      */
     public function setBillToContactName($billToContactName)
@@ -1113,6 +1332,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get ship to contact name
+     *
      * @return string
      */
     public function getShipToContactName()
@@ -1121,6 +1342,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set ship to contact name
+     *
      * @param string $shipToContactName
      */
     public function setShipToContactName($shipToContactName)
@@ -1129,6 +1352,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get restriction type
+     *
      * @return string
      */
     public function getRestrictionType()
@@ -1137,6 +1362,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set restriction type
+     *
      * @param string $restrictionType
      */
     public function setRestrictionType($restrictionType)
@@ -1153,6 +1380,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get restricted locations
+     *
      * @return array
      */
     public function getRestrictedLocations()
@@ -1161,6 +1390,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set restricted locations
+     *
      * @param array $restrictedLocations
      */
     public function setRestrictedLocations($restrictedLocations)
@@ -1169,6 +1400,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Get restricted departments
+     *
      * @return array
      */
     public function getRestrictedDepartments()
@@ -1177,6 +1410,8 @@ abstract class AbstractCustomer extends AbstractFunction
     }
 
     /**
+     * Set restricted departments
+     *
      * @param array $restrictedDepartments
      */
     public function setRestrictedDepartments($restrictedDepartments)

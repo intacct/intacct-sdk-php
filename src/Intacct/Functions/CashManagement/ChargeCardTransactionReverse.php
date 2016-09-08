@@ -34,6 +34,8 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
     protected $memo;
 
     /**
+     * Get reverse date
+     *
      * @return DateType
      */
     public function getReverseDate()
@@ -42,6 +44,8 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
     }
 
     /**
+     * Set reverse date
+     *
      * @param DateType $reverseDate
      */
     public function setReverseDate($reverseDate)
@@ -50,6 +54,8 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
     }
 
     /**
+     * Get memo
+     *
      * @return string
      */
     public function getMemo()
@@ -58,6 +64,8 @@ class ChargeCardTransactionReverse extends AbstractChargeCardTransaction
     }
 
     /**
+     * Set memo
+     *
      * @param string $memo
      */
     public function setMemo($memo)

@@ -82,6 +82,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     protected $lines;
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -90,6 +92,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -98,6 +102,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -106,6 +112,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -114,6 +122,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get transaction date
+     *
      * @return DateType
      */
     public function getTransactionDate()
@@ -122,6 +132,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set transaction date
+     *
      * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
@@ -130,6 +142,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get GL posting date
+     *
      * @return DateType
      */
     public function getGlPostingDate()
@@ -138,6 +152,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set GL posting date
+     *
      * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
@@ -146,6 +162,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get action
+     *
      * @return string
      */
     public function getAction()
@@ -154,7 +172,10 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set action
+     *
      * @param string $action
+     * @todo add allowed values for action: draft,posted,etc
      */
     public function setAction($action)
     {
@@ -162,6 +183,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get summary record number
+     *
      * @return int|string
      */
     public function getSummaryRecordNo()
@@ -170,6 +193,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set summary record number
+     *
      * @param int|string $summaryRecordNo
      */
     public function setSummaryRecordNo($summaryRecordNo)
@@ -178,6 +203,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get bill number
+     *
      * @return string
      */
     public function getBillNumber()
@@ -186,6 +213,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set bill number
+     *
      * @param string $billNumber
      */
     public function setBillNumber($billNumber)
@@ -194,6 +223,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -202,6 +233,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -210,6 +243,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get external ID
+     *
      * @return string
      */
     public function getExternalId()
@@ -218,6 +253,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set external ID
+     *
      * @param string $externalId
      */
     public function setExternalId($externalId)
@@ -226,6 +263,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get base currency
+     *
      * @return string
      */
     public function getBaseCurrency()
@@ -234,6 +273,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set base currency
+     *
      * @param string $baseCurrency
      */
     public function setBaseCurrency($baseCurrency)
@@ -242,6 +283,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get transaction currency
+     *
      * @return string
      */
     public function getTransactionCurrency()
@@ -250,6 +293,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set transaction currency
+     *
      * @param string $transactionCurrency
      */
     public function setTransactionCurrency($transactionCurrency)
@@ -258,6 +303,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate date
+     *
      * @return DateType
      */
     public function getExchangeRateDate()
@@ -266,6 +313,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate date
+     *
      * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
@@ -274,6 +323,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate value
+     *
      * @return float
      */
     public function getExchangeRateValue()
@@ -282,6 +333,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate value
+     *
      * @param float $exchangeRateValue
      */
     public function setExchangeRateValue($exchangeRateValue)
@@ -290,6 +343,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get exchange rate type
+     *
      * @return string
      */
     public function getExchangeRateType()
@@ -298,6 +353,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set exchange rate type
+     *
      * @param string $exchangeRateType
      */
     public function setExchangeRateType($exchangeRateType)
@@ -306,6 +363,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get do not post to general ledger
+     *
      * @return boolean
      */
     public function isDoNotPostToGL()
@@ -314,6 +373,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set do not post to general ledger
+     *
      * @param boolean $doNotPostToGL
      */
     public function setDoNotPostToGL($doNotPostToGL)
@@ -322,6 +383,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -330,6 +393,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -338,6 +403,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get adjustment number
+     *
      * @return string
      */
     public function getAdjustmentNumber()
@@ -346,6 +413,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set adjustment number
+     *
      * @param string $adjustmentNumber
      */
     public function setAdjustmentNumber($adjustmentNumber)
@@ -354,6 +423,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Get AP adjustment lines
+     *
      * @return AbstractApAdjustmentLine[]
      */
     public function getLines()
@@ -362,6 +433,8 @@ abstract class AbstractApAdjustment extends AbstractFunction
     }
 
     /**
+     * Set AP adjustment lines
+     *
      * @param AbstractApAdjustmentLine[] $lines
      */
     public function setLines($lines)

@@ -32,6 +32,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     protected $parentFolderName;
 
     /**
+     * Get folder name
+     *
      * @return string
      */
     public function getFolderName()
@@ -40,6 +42,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     }
 
     /**
+     * Set folder name
+     *
      * @param string $folderName
      */
     public function setFolderName($folderName)
@@ -48,6 +52,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -56,6 +62,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -64,6 +72,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     }
 
     /**
+     * Get parent folder name
+     *
      * @return string
      */
     public function getParentFolderName()
@@ -72,6 +82,8 @@ abstract class AbstractAttachmentsFolder extends AbstractFunction
     }
 
     /**
+     * Set parent folder name
+     *
      * @param string $parentFolderName
      */
     public function setParentFolderName($parentFolderName)

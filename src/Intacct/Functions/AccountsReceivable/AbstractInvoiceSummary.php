@@ -35,6 +35,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     // TODO: Allow setting AbstractInvoice
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -43,6 +45,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -51,6 +55,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     }
 
     /**
+     * Get title
+     *
      * @return string
      */
     public function getTitle()
@@ -59,6 +65,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     }
 
     /**
+     * Set title
+     *
      * @param string $title
      */
     public function setTitle($title)
@@ -67,6 +75,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     }
 
     /**
+     * Get GL posting date
+     *
      * @return DateType
      */
     public function getGlPostingDate()
@@ -75,6 +85,8 @@ abstract class AbstractInvoiceSummary extends AbstractFunction
     }
 
     /**
+     * Set GL posting date
+     *
      * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)

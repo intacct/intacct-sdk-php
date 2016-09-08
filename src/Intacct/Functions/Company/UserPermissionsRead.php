@@ -30,6 +30,8 @@ class UserPermissionsRead extends AbstractFunction
     private $userId;
 
     /**
+     * Get user ID
+     *
      * @return string
      */
     public function getUserId()
@@ -38,6 +40,8 @@ class UserPermissionsRead extends AbstractFunction
     }
 
     /**
+     * Set user ID
+     *
      * @param string $userId
      */
     public function setUserId($userId)

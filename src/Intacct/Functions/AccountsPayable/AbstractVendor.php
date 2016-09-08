@@ -231,6 +231,8 @@ abstract class AbstractVendor extends AbstractFunction
     protected $restrictedDepartments;
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -239,6 +241,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -247,6 +251,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get vendor name
+     *
      * @return string
      */
     public function getVendorName()
@@ -255,6 +261,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set vendor name
+     *
      * @param string $vendorName
      */
     public function setVendorName($vendorName)
@@ -263,6 +271,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get one time
+     *
      * @return boolean
      */
     public function isOneTime()
@@ -271,6 +281,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set one time
+     *
      * @param boolean $oneTime
      */
     public function setOneTime($oneTime)
@@ -279,6 +291,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -287,6 +301,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)
@@ -295,6 +311,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get last name
+     *
      * @return string
      */
     public function getLastName()
@@ -303,6 +321,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set last name
+     *
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -311,6 +331,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get first name
+     *
      * @return string
      */
     public function getFirstName()
@@ -319,6 +341,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set first name
+     *
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -327,6 +351,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get middle name
+     *
      * @return string
      */
     public function getMiddleName()
@@ -335,6 +361,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set middle name
+     *
      * @param string $middleName
      */
     public function setMiddleName($middleName)
@@ -343,6 +371,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get prefix
+     *
      * @return string
      */
     public function getPrefix()
@@ -351,6 +381,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set prefix
+     *
      * @param string $prefix
      */
     public function setPrefix($prefix)
@@ -359,6 +391,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get company name
+     *
      * @return string
      */
     public function getCompanyName()
@@ -367,6 +401,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set company name
+     *
      * @param string $companyName
      */
     public function setCompanyName($companyName)
@@ -375,6 +411,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get print as
+     *
      * @return string
      */
     public function getPrintAs()
@@ -383,6 +421,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set print as
+     *
      * @param string $printAs
      */
     public function setPrintAs($printAs)
@@ -391,6 +431,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get primary phone number
+     *
      * @return string
      */
     public function getPrimaryPhoneNo()
@@ -399,6 +441,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set primary phone number
+     *
      * @param string $primaryPhoneNo
      */
     public function setPrimaryPhoneNo($primaryPhoneNo)
@@ -407,6 +451,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get secondary phone number
+     *
      * @return string
      */
     public function getSecondaryPhoneNo()
@@ -415,6 +461,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set secondary phone number
+     *
      * @param string $secondaryPhoneNo
      */
     public function setSecondaryPhoneNo($secondaryPhoneNo)
@@ -423,6 +471,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get cellular phone number
+     *
      * @return string
      */
     public function getCellularPhoneNo()
@@ -431,6 +481,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set cellular phone number
+     *
      * @param string $cellularPhoneNo
      */
     public function setCellularPhoneNo($cellularPhoneNo)
@@ -439,6 +491,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get pager number
+     *
      * @return string
      */
     public function getPagerNo()
@@ -447,6 +501,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set pager number
+     *
      * @param string $pagerNo
      */
     public function setPagerNo($pagerNo)
@@ -455,6 +511,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get fax number
+     *
      * @return string
      */
     public function getFaxNo()
@@ -463,6 +521,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set fax number
+     *
      * @param string $faxNo
      */
     public function setFaxNo($faxNo)
@@ -471,6 +531,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get primary email address
+     *
      * @return string
      */
     public function getPrimaryEmailAddress()
@@ -479,6 +541,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set primary email address
+     *
      * @param string $primaryEmailAddress
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
@@ -490,6 +554,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get secondary email address
+     *
      * @return string
      */
     public function getSecondaryEmailAddress()
@@ -498,6 +564,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set secondary email address
+     *
      * @param string $secondaryEmailAddress
      */
     public function setSecondaryEmailAddress($secondaryEmailAddress)
@@ -509,6 +577,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get primary URL
+     *
      * @return string
      */
     public function getPrimaryUrl()
@@ -517,6 +587,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set primary URL
+     *
      * @param string $primaryUrl
      */
     public function setPrimaryUrl($primaryUrl)
@@ -525,6 +597,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get secondary URL
+     *
      * @return string
      */
     public function getSecondaryUrl()
@@ -533,6 +607,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set secondary URL
+     *
      * @param string $secondaryUrl
      */
     public function setSecondaryUrl($secondaryUrl)
@@ -541,6 +617,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get address line 1
+     *
      * @return string
      */
     public function getAddressLine1()
@@ -549,6 +627,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set address line 1
+     *
      * @param string $addressLine1
      */
     public function setAddressLine1($addressLine1)
@@ -557,6 +637,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get address line 2
+     *
      * @return string
      */
     public function getAddressLine2()
@@ -565,6 +647,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set address line 2
+     *
      * @param string $addressLine2
      */
     public function setAddressLine2($addressLine2)
@@ -573,6 +657,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get city
+     *
      * @return string
      */
     public function getCity()
@@ -581,6 +667,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set city
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -589,6 +677,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get state/province
+     *
      * @return string
      */
     public function getStateProvince()
@@ -597,6 +687,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set state/province
+     *
      * @param string $stateProvince
      */
     public function setStateProvince($stateProvince)
@@ -605,6 +697,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get zip/postal code
+     *
      * @return string
      */
     public function getZipPostalCode()
@@ -613,6 +707,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set zip/postal code
+     *
      * @param string $zipPostalCode
      */
     public function setZipPostalCode($zipPostalCode)
@@ -621,6 +717,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get country
+     *
      * @return string
      */
     public function getCountry()
@@ -629,6 +727,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set country
+     *
      * @param string $country
      */
     public function setCountry($country)
@@ -637,6 +737,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get excluded from contact list
+     *
      * @return boolean
      */
     public function isExcludedFromContactList()
@@ -645,6 +747,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set excluded from contact list
+     *
      * @param boolean $excludedFromContactList
      */
     public function setExcludedFromContactList($excludedFromContactList)
@@ -653,6 +757,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get vendor type ID
+     *
      * @return string
      */
     public function getVendorTypeId()
@@ -661,6 +767,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set vendor type ID
+     *
      * @param string $vendorTypeId
      */
     public function setVendorTypeId($vendorTypeId)
@@ -669,6 +777,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get parent vendor ID
+     *
      * @return string
      */
     public function getParentVendorId()
@@ -677,6 +787,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set parent vendor ID
+     *
      * @param string $parentVendorId
      */
     public function setParentVendorId($parentVendorId)
@@ -685,6 +797,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get GL group name
+     *
      * @return string
      */
     public function getGlGroupName()
@@ -693,6 +807,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set GL group name
+     *
      * @param string $glGroupName
      */
     public function setGlGroupName($glGroupName)
@@ -701,6 +817,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get tax ID
+     *
      * @return string
      */
     public function getTaxId()
@@ -709,6 +827,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set tax ID
+     *
      * @param string $taxId
      */
     public function setTaxId($taxId)
@@ -717,6 +837,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get form 1099 name
+     *
      * @return string
      */
     public function getForm1099Name()
@@ -725,6 +847,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set form 1099 name
+     *
      * @param string $form1099Name
      */
     public function setForm1099Name($form1099Name)
@@ -733,6 +857,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get form 1099 type
+     *
      * @return string
      */
     public function getForm1099Type()
@@ -741,7 +867,10 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set form 1099 type
+     *
      * @param string $form1099Type
+     * @todo add validation for 1099 types
      */
     public function setForm1099Type($form1099Type)
     {
@@ -749,6 +878,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get form 1099 box
+     *
      * @return int|string
      */
     public function getForm1099Box()
@@ -757,6 +888,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set form 1099 box
+     *
      * @param int|string $form1099Box
      */
     public function setForm1099Box($form1099Box)
@@ -765,6 +898,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -773,6 +908,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -781,6 +918,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get default expense GL account number
+     *
      * @return string
      */
     public function getDefaultExpenseGlAccountNo()
@@ -789,6 +928,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set default expense GL account number
+     *
      * @param string $defaultExpenseGlAccountNo
      */
     public function setDefaultExpenseGlAccountNo($defaultExpenseGlAccountNo)
@@ -797,6 +938,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get taxable
+     *
      * @return boolean
      */
     public function isTaxable()
@@ -805,6 +948,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set taxable
+     *
      * @param boolean $taxable
      */
     public function setTaxable($taxable)
@@ -813,6 +958,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get contact tax group name
+     *
      * @return string
      */
     public function getContactTaxGroupName()
@@ -821,6 +968,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set contact tax group name
+     *
      * @param string $contactTaxGroupName
      */
     public function setContactTaxGroupName($contactTaxGroupName)
@@ -829,6 +978,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get credit limit
+     *
      * @return float|int|string
      */
     public function getCreditLimit()
@@ -837,6 +988,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set credit limit
+     *
      * @param float|int|string $creditLimit
      */
     public function setCreditLimit($creditLimit)
@@ -845,6 +998,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get on hold
+     *
      * @return boolean
      */
     public function isOnHold()
@@ -853,6 +1008,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set on hold
+     *
      * @param boolean $onHold
      */
     public function setOnHold($onHold)
@@ -861,6 +1018,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get do not pay
+     *
      * @return boolean
      */
     public function isDoNotPay()
@@ -869,6 +1028,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set do not pay
+     *
      * @param boolean $doNotPay
      */
     public function setDoNotPay($doNotPay)
@@ -877,6 +1038,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get comments
+     *
      * @return string
      */
     public function getComments()
@@ -885,6 +1048,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set comments
+     *
      * @param string $comments
      */
     public function setComments($comments)
@@ -893,6 +1058,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get default currency
+     *
      * @return string
      */
     public function getDefaultCurrency()
@@ -901,6 +1068,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set default currency
+     *
      * @param string $defaultCurrency
      */
     public function setDefaultCurrency($defaultCurrency)
@@ -909,6 +1078,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get primary contact name
+     *
      * @return string
      */
     public function getPrimaryContactName()
@@ -917,6 +1088,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set primary contact name
+     *
      * @param string $primaryContactName
      */
     public function setPrimaryContactName($primaryContactName)
@@ -925,6 +1098,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get pay to contact name
+     *
      * @return string
      */
     public function getPayToContactName()
@@ -933,6 +1108,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set pay to contact name
+     *
      * @param string $payToContactName
      */
     public function setPayToContactName($payToContactName)
@@ -941,6 +1118,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get return to contact name
+     *
      * @return string
      */
     public function getReturnToContactName()
@@ -949,6 +1128,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set return to contact name
+     *
      * @param string $returnToContactName
      */
     public function setReturnToContactName($returnToContactName)
@@ -957,6 +1138,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get preferred payment method
+     *
      * @return string
      */
     public function getPreferredPaymentMethod()
@@ -965,6 +1148,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set preferred payment method
+     *
      * @param string $preferredPaymentMethod
      */
     public function setPreferredPaymentMethod($preferredPaymentMethod)
@@ -973,6 +1158,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get send automatic payment notification
+     *
      * @return boolean
      */
     public function isSendAutomaticPaymentNotification()
@@ -981,6 +1168,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set send automatic payment notification
+     *
      * @param boolean $sendAutomaticPaymentNotification
      */
     public function setSendAutomaticPaymentNotification($sendAutomaticPaymentNotification)
@@ -989,6 +1178,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get merge payment requests
+     *
      * @return boolean
      */
     public function isMergePaymentRequests()
@@ -997,6 +1188,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set merge payment requests
+     *
      * @param boolean $mergePaymentRequests
      */
     public function setMergePaymentRequests($mergePaymentRequests)
@@ -1005,6 +1198,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get vendor billing type
+     *
      * @return string
      */
     public function getVendorBillingType()
@@ -1013,6 +1208,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set vendor billing type
+     *
      * @param string $vendorBillingType
      */
     public function setVendorBillingType($vendorBillingType)
@@ -1021,6 +1218,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get payment priority
+     *
      * @return string
      */
     public function getPaymentPriority()
@@ -1029,6 +1228,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set payment priority
+     *
      * @param string $paymentPriority
      */
     public function setPaymentPriority($paymentPriority)
@@ -1037,6 +1238,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get payment term
+     *
      * @return string
      */
     public function getPaymentTerm()
@@ -1045,6 +1248,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set payment term
+     *
      * @param string $paymentTerm
      */
     public function setPaymentTerm($paymentTerm)
@@ -1053,6 +1258,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get term discount displayed on check stub
+     *
      * @return boolean
      */
     public function isTermDiscountDisplayedOnCheckStub()
@@ -1061,6 +1268,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set term discount displayed on check stub
+     *
      * @param boolean $termDiscountDisplayedOnCheckStub
      */
     public function setTermDiscountDisplayedOnCheckStub($termDiscountDisplayedOnCheckStub)
@@ -1069,6 +1278,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get ACH enabled
+     *
      * @return boolean
      */
     public function isAchEnabled()
@@ -1077,6 +1288,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set ACH enabled
+     *
      * @param boolean $achEnabled
      */
     public function setAchEnabled($achEnabled)
@@ -1085,6 +1298,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get ACH bank routing number
+     *
      * @return string
      */
     public function getAchBankRoutingNo()
@@ -1093,6 +1308,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set ACH bank routing number
+     *
      * @param string $achBankRoutingNo
      */
     public function setAchBankRoutingNo($achBankRoutingNo)
@@ -1101,6 +1318,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get ACH bank account number
+     *
      * @return string
      */
     public function getAchBankAccountNo()
@@ -1109,6 +1328,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set ACH bank account number
+     *
      * @param string $achBankAccountNo
      */
     public function setAchBankAccountNo($achBankAccountNo)
@@ -1117,6 +1338,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get ACH bank account type
+     *
      * @return string
      */
     public function getAchBankAccountType()
@@ -1125,7 +1348,10 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set ACH bank account type
+     *
      * @param string $achBankAccountType
+     * @todo add valid types
      */
     public function setAchBankAccountType($achBankAccountType)
     {
@@ -1133,6 +1359,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get ACH bank account class
+     *
      * @return string
      */
     public function getAchBankAccountClass()
@@ -1141,7 +1369,10 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set ACH bank account class
+     *
      * @param string $achBankAccountClass
+     * @todo add valid classes
      */
     public function setAchBankAccountClass($achBankAccountClass)
     {
@@ -1149,6 +1380,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get vendor account number
+     *
      * @return string
      */
     public function getVendorAccountNo()
@@ -1157,6 +1390,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set vendor account number
+     *
      * @param string $vendorAccountNo
      */
     public function setVendorAccountNo($vendorAccountNo)
@@ -1165,6 +1400,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get location assigned account numbers displayed on check stub
+     *
      * @return boolean
      */
     public function isLocationAssignedAccountNoDisplayedOnCheckStub()
@@ -1173,6 +1410,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set location assigned account numbers displayed on check stub
+     *
      * @param boolean $locationAssignedAccountNoDisplayedOnCheckStub
      */
     public function setLocationAssignedAccountNoDisplayedOnCheckStub($locationAssignedAccountNoDisplayedOnCheckStub)
@@ -1181,6 +1420,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get restriction type
+     *
      * @return string
      */
     public function getRestrictionType()
@@ -1189,6 +1430,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set restriction type
+     *
      * @param string $restrictionType
      */
     public function setRestrictionType($restrictionType)
@@ -1205,6 +1448,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get restricted locations
+     *
      * @return array
      */
     public function getRestrictedLocations()
@@ -1213,6 +1458,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set restricted locations
+     *
      * @param array $restrictedLocations
      */
     public function setRestrictedLocations($restrictedLocations)
@@ -1221,6 +1468,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Get restricted departments
+     *
      * @return array
      */
     public function getRestrictedDepartments()
@@ -1229,6 +1478,8 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Set restricted departments
+     *
      * @param array $restrictedDepartments
      */
     public function setRestrictedDepartments($restrictedDepartments)

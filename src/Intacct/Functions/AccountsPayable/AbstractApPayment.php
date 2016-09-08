@@ -26,6 +26,8 @@ abstract class AbstractApPayment extends AbstractFunction
     protected $recordNo;
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -34,6 +36,8 @@ abstract class AbstractApPayment extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)

@@ -38,6 +38,8 @@ abstract class AbstractAttachments extends AbstractFunction
     protected $files;
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -46,6 +48,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -54,6 +58,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Get attachments name
+     *
      * @return string
      */
     public function getAttachmentsName()
@@ -62,6 +68,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Set attachments name
+     *
      * @param string $attachmentsName
      */
     public function setAttachmentsName($attachmentsName)
@@ -70,6 +78,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Get attachment folder name
+     *
      * @return string
      */
     public function getAttachmentFolderName()
@@ -78,6 +88,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Set attachment folder name
+     *
      * @param string $attachmentFolderName
      */
     public function setAttachmentFolderName($attachmentFolderName)
@@ -86,6 +98,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -94,6 +108,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -102,6 +118,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Get files
+     *
      * @return AttachmentInterface[]
      */
     public function getFiles()
@@ -110,6 +128,8 @@ abstract class AbstractAttachments extends AbstractFunction
     }
 
     /**
+     * Set files
+     *
      * @param AttachmentInterface[] $files
      */
     public function setFiles(array $files)

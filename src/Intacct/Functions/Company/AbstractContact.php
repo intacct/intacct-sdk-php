@@ -103,6 +103,8 @@ abstract class AbstractContact extends AbstractFunction
     protected $country;
 
     /**
+     * Get contact name
+     *
      * @return string
      */
     public function getContactName()
@@ -111,6 +113,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set contact name
+     *
      * @param string $contactName
      */
     public function setContactName($contactName)
@@ -119,6 +123,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get last name
+     *
      * @return string
      */
     public function getLastName()
@@ -127,6 +133,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set last name
+     *
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -135,6 +143,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get first name
+     *
      * @return string
      */
     public function getFirstName()
@@ -143,6 +153,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set first name
+     *
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -151,6 +163,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get middle name
+     *
      * @return string
      */
     public function getMiddleName()
@@ -159,6 +173,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set middle name
+     *
      * @param string $middleName
      */
     public function setMiddleName($middleName)
@@ -167,6 +183,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get prefix
+     *
      * @return string
      */
     public function getPrefix()
@@ -175,6 +193,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set prefix
+     *
      * @param string $prefix
      */
     public function setPrefix($prefix)
@@ -183,6 +203,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get company name
+     *
      * @return string
      */
     public function getCompanyName()
@@ -191,6 +213,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set company name
+     *
      * @param string $companyName
      */
     public function setCompanyName($companyName)
@@ -199,6 +223,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get print as
+     *
      * @return string
      */
     public function getPrintAs()
@@ -207,6 +233,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set print as
+     *
      * @param string $printAs
      */
     public function setPrintAs($printAs)
@@ -215,6 +243,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get taxable
+     *
      * @return boolean
      */
     public function isTaxable()
@@ -223,6 +253,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set taxable
+     *
      * @param boolean $taxable
      */
     public function setTaxable($taxable)
@@ -231,6 +263,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get tax ID
+     *
      * @return string
      */
     public function getTaxId()
@@ -239,6 +273,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set tax ID
+     *
      * @param string $taxId
      */
     public function setTaxId($taxId)
@@ -247,6 +283,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get contact tax group name
+     *
      * @return string
      */
     public function getContactTaxGroupName()
@@ -255,6 +293,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set contact tax group name
+     *
      * @param string $contactTaxGroupName
      */
     public function setContactTaxGroupName($contactTaxGroupName)
@@ -263,6 +303,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -271,6 +313,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)
@@ -279,6 +323,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get primary phone number
+     *
      * @return string
      */
     public function getPrimaryPhoneNo()
@@ -287,6 +333,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set primary phone number
+     *
      * @param string $primaryPhoneNo
      */
     public function setPrimaryPhoneNo($primaryPhoneNo)
@@ -295,6 +343,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get secondary phone number
+     *
      * @return string
      */
     public function getSecondaryPhoneNo()
@@ -303,6 +353,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set secondary phone number
+     *
      * @param string $secondaryPhoneNo
      */
     public function setSecondaryPhoneNo($secondaryPhoneNo)
@@ -311,6 +363,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get cellular phone number
+     *
      * @return string
      */
     public function getCellularPhoneNo()
@@ -319,6 +373,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set cellular phone number
+     *
      * @param string $cellularPhoneNo
      */
     public function setCellularPhoneNo($cellularPhoneNo)
@@ -327,6 +383,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get pager number
+     *
      * @return string
      */
     public function getPagerNo()
@@ -335,6 +393,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set pager number
+     *
      * @param string $pagerNo
      */
     public function setPagerNo($pagerNo)
@@ -343,6 +403,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get fax number
+     *
      * @return string
      */
     public function getFaxNo()
@@ -351,6 +413,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set fax number
+     *
      * @param string $faxNo
      */
     public function setFaxNo($faxNo)
@@ -359,6 +423,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get primary email address
+     *
      * @return string
      */
     public function getPrimaryEmailAddress()
@@ -367,6 +433,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set primary email address
+     *
      * @param string $primaryEmailAddress
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
@@ -378,6 +446,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get secondary email address
+     *
      * @return string
      */
     public function getSecondaryEmailAddress()
@@ -386,6 +456,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set secondary email address
+     *
      * @param string $secondaryEmailAddress
      */
     public function setSecondaryEmailAddress($secondaryEmailAddress)
@@ -397,6 +469,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get primary URL
+     *
      * @return string
      */
     public function getPrimaryUrl()
@@ -405,6 +479,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set primary URL
+     *
      * @param string $primaryUrl
      */
     public function setPrimaryUrl($primaryUrl)
@@ -413,6 +489,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get secondary URL
+     *
      * @return string
      */
     public function getSecondaryUrl()
@@ -421,6 +499,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set secondary URL
+     *
      * @param string $secondaryUrl
      */
     public function setSecondaryUrl($secondaryUrl)
@@ -429,6 +509,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get address line 1
+     *
      * @return string
      */
     public function getAddressLine1()
@@ -437,6 +519,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set address line 1
+     *
      * @param string $addressLine1
      */
     public function setAddressLine1($addressLine1)
@@ -445,6 +529,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get address line 2
+     *
      * @return string
      */
     public function getAddressLine2()
@@ -453,6 +539,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set address line 2
+     *
      * @param string $addressLine2
      */
     public function setAddressLine2($addressLine2)
@@ -461,6 +549,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get city
+     *
      * @return string
      */
     public function getCity()
@@ -469,6 +559,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set city
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -477,6 +569,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get state/province
+     *
      * @return string
      */
     public function getStateProvince()
@@ -485,6 +579,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set state/province
+     *
      * @param string $stateProvince
      */
     public function setStateProvince($stateProvince)
@@ -493,6 +589,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get zip/postal code
+     *
      * @return string
      */
     public function getZipPostalCode()
@@ -501,6 +599,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set zip/postal code
+     *
      * @param string $zipPostalCode
      */
     public function setZipPostalCode($zipPostalCode)
@@ -509,6 +609,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Get country
+     *
      * @return string
      */
     public function getCountry()
@@ -517,6 +619,8 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * Set country
+     *
      * @param string $country
      */
     public function setCountry($country)

@@ -58,6 +58,8 @@ abstract class AbstractAllocationLine
     //TODO support UDD's
 
     /**
+     * Get amount
+     *
      * @return float|string|int
      */
     public function getAmount()
@@ -66,6 +68,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set amount
+     *
      * @param float|string|int $amount
      */
     public function setAmount($amount)
@@ -74,6 +78,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get department ID
+     *
      * @return string
      */
     public function getDepartmentId()
@@ -82,6 +88,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set department ID
+     *
      * @param string $departmentId
      */
     public function setDepartmentId($departmentId)
@@ -90,6 +98,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get location ID
+     *
      * @return string
      */
     public function getLocationId()
@@ -98,6 +108,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set location ID
+     *
      * @param string $locationId
      */
     public function setLocationId($locationId)
@@ -106,6 +118,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get project ID
+     *
      * @return string
      */
     public function getProjectId()
@@ -114,6 +128,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set project ID
+     *
      * @param string $projectId
      */
     public function setProjectId($projectId)
@@ -122,6 +138,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get customer ID
+     *
      * @return string
      */
     public function getCustomerId()
@@ -130,6 +148,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set customer ID
+     *
      * @param string $customerId
      */
     public function setCustomerId($customerId)
@@ -138,6 +158,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -146,6 +168,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -154,6 +178,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get employee ID
+     *
      * @return string
      */
     public function getEmployeeId()
@@ -162,6 +188,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set employee ID
+     *
      * @param string $employeeId
      */
     public function setEmployeeId($employeeId)
@@ -170,6 +198,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get item ID
+     *
      * @return string
      */
     public function getItemId()
@@ -178,6 +208,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set item ID
+     *
      * @param string $itemId
      */
     public function setItemId($itemId)
@@ -186,6 +218,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get class ID
+     *
      * @return string
      */
     public function getClassId()
@@ -194,6 +228,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set class ID
+     *
      * @param string $classId
      */
     public function setClassId($classId)
@@ -202,6 +238,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get contract ID
+     *
      * @return string
      */
     public function getContractId()
@@ -210,6 +248,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set contract ID
+     *
      * @param string $contractId
      */
     public function setContractId($contractId)
@@ -218,6 +258,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Get warehouse ID
+     *
      * @return string
      */
     public function getWarehouseId()
@@ -226,6 +268,8 @@ abstract class AbstractAllocationLine
     }
 
     /**
+     * Set warehouse ID
+     *
      * @param string $warehouseId
      */
     public function setWarehouseId($warehouseId)

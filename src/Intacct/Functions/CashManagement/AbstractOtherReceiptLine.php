@@ -68,6 +68,8 @@ abstract class AbstractOtherReceiptLine
     protected $warehouseId;
 
     /**
+     * Get account label
+     *
      * @return string
      */
     public function getAccountLabel()
@@ -76,6 +78,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set account label
+     *
      * @param string $accountLabel
      */
     public function setAccountLabel($accountLabel)
@@ -84,6 +88,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get GL account number
+     *
      * @return string
      */
     public function getGlAccountNumber()
@@ -92,6 +98,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set GL account number
+     *
      * @param string $glAccountNumber
      */
     public function setGlAccountNumber($glAccountNumber)
@@ -100,6 +108,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get transaction amount
+     *
      * @return float|string
      */
     public function getTransactionAmount()
@@ -108,6 +118,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set transaction amount
+     *
      * @param float|string $transactionAmount
      */
     public function setTransactionAmount($transactionAmount)
@@ -116,6 +128,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get memo
+     *
      * @return string
      */
     public function getMemo()
@@ -124,6 +138,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set memo
+     *
      * @param string $memo
      */
     public function setMemo($memo)
@@ -132,6 +148,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get department ID
+     *
      * @return string
      */
     public function getDepartmentId()
@@ -140,6 +158,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set department ID
+     *
      * @param string $departmentId
      */
     public function setDepartmentId($departmentId)
@@ -148,6 +168,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get location ID
+     *
      * @return string
      */
     public function getLocationId()
@@ -156,6 +178,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set location ID
+     *
      * @param string $locationId
      */
     public function setLocationId($locationId)
@@ -164,6 +188,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get project ID
+     *
      * @return string
      */
     public function getProjectId()
@@ -172,6 +198,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set project ID
+     *
      * @param string $projectId
      */
     public function setProjectId($projectId)
@@ -180,6 +208,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get customer ID
+     *
      * @return string
      */
     public function getCustomerId()
@@ -188,6 +218,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set customer ID
+     *
      * @param string $customerId
      */
     public function setCustomerId($customerId)
@@ -196,6 +228,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -204,6 +238,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -212,6 +248,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get employee ID
+     *
      * @return string
      */
     public function getEmployeeId()
@@ -220,6 +258,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set employee ID
+     *
      * @param string $employeeId
      */
     public function setEmployeeId($employeeId)
@@ -228,6 +268,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get item ID
+     *
      * @return string
      */
     public function getItemId()
@@ -236,6 +278,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set item ID
+     *
      * @param string $itemId
      */
     public function setItemId($itemId)
@@ -244,6 +288,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get class ID
+     *
      * @return string
      */
     public function getClassId()
@@ -252,6 +298,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set class ID
+     *
      * @param string $classId
      */
     public function setClassId($classId)
@@ -260,6 +308,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get contract ID
+     *
      * @return string
      */
     public function getContractId()
@@ -268,6 +318,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set contract ID
+     *
      * @param string $contractId
      */
     public function setContractId($contractId)
@@ -276,6 +328,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Get warehouse ID
+     *
      * @return string
      */
     public function getWarehouseId()
@@ -284,6 +338,8 @@ abstract class AbstractOtherReceiptLine
     }
 
     /**
+     * Set warehouse ID
+     *
      * @param string $warehouseId
      */
     public function setWarehouseId($warehouseId)

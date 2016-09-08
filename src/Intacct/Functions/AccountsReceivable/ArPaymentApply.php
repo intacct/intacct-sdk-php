@@ -30,6 +30,8 @@ class ArPaymentApply extends AbstractArPayment
     protected $summaryRecordNo;
 
     /**
+     * Get summary record number
+     *
      * @return int|string
      */
     public function getSummaryRecordNo()
@@ -38,6 +40,8 @@ class ArPaymentApply extends AbstractArPayment
     }
 
     /**
+     * Set summary record number
+     *
      * @param int|string $summaryRecordNo
      */
     public function setSummaryRecordNo($summaryRecordNo)

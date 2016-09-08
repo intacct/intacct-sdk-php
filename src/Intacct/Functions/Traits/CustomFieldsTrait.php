@@ -26,6 +26,8 @@ trait CustomFieldsTrait
     protected $customFields;
 
     /**
+     * Get custom fields
+     *
      * @return array
      */
     public function getCustomFields()
@@ -34,6 +36,8 @@ trait CustomFieldsTrait
     }
 
     /**
+     * Set custom fields
+     *
      * @param array $customFields
      */
     public function setCustomFields(array $customFields)

@@ -89,6 +89,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     protected $applyToTransactions;
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -97,6 +99,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -105,6 +109,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get payment method
+     *
      * @return string
      */
     public function getPaymentMethod()
@@ -113,6 +119,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set payment method
+     *
      * @param string $paymentMethod
      * @throws InvalidArgumentException
      */
@@ -125,6 +133,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get bank account ID
+     *
      * @return string
      */
     public function getBankAccountId()
@@ -133,6 +143,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set bank account ID
+     *
      * @param string $bankAccountId
      */
     public function setBankAccountId($bankAccountId)
@@ -141,6 +153,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get charge card ID
+     *
      * @return string
      */
     public function getChargeCardId()
@@ -149,6 +163,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set charge card ID
+     *
      * @param string $chargeCardId
      */
     public function setChargeCardId($chargeCardId)
@@ -157,6 +173,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get vendor ID
+     *
      * @return string
      */
     public function getVendorId()
@@ -165,6 +183,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set vendor ID
+     *
      * @param string $vendorId
      */
     public function setVendorId($vendorId)
@@ -173,6 +193,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get merge option
+     *
      * @return string
      */
     public function getMergeOption()
@@ -181,7 +203,10 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set merge option
+     *
      * @param string $mergeOption
+     * @todo add merge options
      */
     public function setMergeOption($mergeOption)
     {
@@ -189,6 +214,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get group payments
+     *
      * @return boolean
      */
     public function isGroupPayments()
@@ -197,6 +224,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set group payments
+     *
      * @param boolean $groupPayments
      */
     public function setGroupPayments($groupPayments)
@@ -205,6 +234,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get payment date
+     *
      * @return DateType
      */
     public function getPaymentDate()
@@ -213,6 +244,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set payment date
+     *
      * @param DateType $paymentDate
      */
     public function setPaymentDate($paymentDate)
@@ -221,6 +254,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get transaction amount
+     *
      * @return float|string
      */
     public function getTransactionAmount()
@@ -229,6 +264,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set transaction amount
+     *
      * @param float|string $transactionAmount
      */
     public function setTransactionAmount($transactionAmount)
@@ -237,6 +274,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get document number
+     *
      * @return string
      */
     public function getDocumentNo()
@@ -245,6 +284,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set document number
+     *
      * @param string $documentNo
      */
     public function setDocumentNo($documentNo)
@@ -253,6 +294,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get memo
+     *
      * @return string
      */
     public function getMemo()
@@ -261,6 +304,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set memo
+     *
      * @param string $memo
      */
     public function setMemo($memo)
@@ -269,6 +314,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get notification contact name
+     *
      * @return string
      */
     public function getNotificationContactName()
@@ -277,6 +324,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set notification contact name
+     *
      * @param string $notificationContactName
      */
     public function setNotificationContactName($notificationContactName)
@@ -285,6 +334,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Get apply to transactions
+     *
      * @return ApPaymentRequestItem[]
      */
     public function getApplyToTransactions()
@@ -293,6 +344,8 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     }
 
     /**
+     * Set apply to transactions
+     *
      * @param ApPaymentRequestItem[] $applyToTransactions
      */
     public function setApplyToTransactions($applyToTransactions)

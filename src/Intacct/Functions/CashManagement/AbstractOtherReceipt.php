@@ -72,6 +72,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     protected $lines;
 
     /**
+     * Get receipt date
+     *
      * @return DateType
      */
     public function getReceiptDate()
@@ -80,6 +82,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set receipt date
+     *
      * @param DateType $receiptDate
      */
     public function setReceiptDate($receiptDate)
@@ -88,6 +92,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get payer
+     *
      * @return string
      */
     public function getPayer()
@@ -96,6 +102,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set payer
+     *
      * @param string $payer
      */
     public function setPayer($payer)
@@ -104,6 +112,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get payment method
+     *
      * @return string
      */
     public function getPaymentMethod()
@@ -112,6 +122,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set payment method
+     *
      * @param string $paymentMethod
      */
     public function setPaymentMethod($paymentMethod)
@@ -120,6 +132,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get transaction date
+     *
      * @return DateType
      */
     public function getTransactionDate()
@@ -128,6 +142,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set transaction date
+     *
      * @param DateType $transactionDate
      */
     public function setTransactionDate($transactionDate)
@@ -136,6 +152,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get transaction number
+     *
      * @return string
      */
     public function getTransactionNo()
@@ -144,6 +162,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set transaction number
+     *
      * @param string $transactionNo
      */
     public function setTransactionNo($transactionNo)
@@ -152,6 +172,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -160,6 +182,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -168,6 +192,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get attachments ID
+     *
      * @return string
      */
     public function getAttachmentsId()
@@ -176,6 +202,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set attachments ID
+     *
      * @param string $attachmentsId
      */
     public function setAttachmentsId($attachmentsId)
@@ -184,6 +212,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get bank account ID
+     *
      * @return string
      */
     public function getBankAccountId()
@@ -192,6 +222,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set bank account ID
+     *
      * @param string $bankAccountId
      */
     public function setBankAccountId($bankAccountId)
@@ -200,6 +232,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get deposit date
+     *
      * @return DateType
      */
     public function getDepositDate()
@@ -208,6 +242,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set deposit date
+     *
      * @param DateType $depositDate
      */
     public function setDepositDate($depositDate)
@@ -216,6 +252,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get undeposited funds GL account number
+     *
      * @return string
      */
     public function getUndepositedFundsGlAccountNo()
@@ -224,6 +262,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set undeposited funds GL account number
+     *
      * @param string $undepositedFundsGlAccountNo
      */
     public function setUndepositedFundsGlAccountNo($undepositedFundsGlAccountNo)
@@ -232,6 +272,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get transaction currency
+     *
      * @return string
      */
     public function getTransactionCurrency()
@@ -240,6 +282,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set transaction currency
+     *
      * @param string $transactionCurrency
      */
     public function setTransactionCurrency($transactionCurrency)
@@ -248,6 +292,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get exchange rate date
+     *
      * @return DateType
      */
     public function getExchangeRateDate()
@@ -256,6 +302,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set exchange rate date
+     *
      * @param DateType $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
@@ -264,6 +312,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get exchange rate value
+     *
      * @return float
      */
     public function getExchangeRateValue()
@@ -272,6 +322,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set exchange rate value
+     *
      * @param float $exchangeRateValue
      */
     public function setExchangeRateValue($exchangeRateValue)
@@ -280,6 +332,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get exchange rate type
+     *
      * @return string
      */
     public function getExchangeRateType()
@@ -288,6 +342,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set exchange rate type
+     *
      * @param string $exchangeRateType
      */
     public function setExchangeRateType($exchangeRateType)
@@ -296,6 +352,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Get other receipt lines
+     *
      * @return AbstractOtherReceiptLine[]
      */
     public function getLines()
@@ -304,6 +362,8 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     }
 
     /**
+     * Set other receipt lines
+     *
      * @param AbstractOtherReceiptLine[] $lines
      */
     public function setLines($lines)

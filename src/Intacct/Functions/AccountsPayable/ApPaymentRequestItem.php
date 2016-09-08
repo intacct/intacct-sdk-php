@@ -39,6 +39,8 @@ class ApPaymentRequestItem
      */
 
     /**
+     * Get apply to record ID
+     *
      * @return int|string
      */
     public function getApplyToRecordId()
@@ -47,6 +49,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Set apply to record ID
+     *
      * @param int|string $applyToRecordId
      */
     public function setApplyToRecordId($applyToRecordId)
@@ -55,6 +59,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Get amount to apply
+     *
      * @return float|string
      */
     public function getAmountToApply()
@@ -63,6 +69,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Set amount to apply
+     *
      * @param float|string $amountToApply
      */
     public function setAmountToApply($amountToApply)
@@ -71,6 +79,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Get credit to apply
+     *
      * @return float|string
      */
     public function getCreditToApply()
@@ -79,6 +89,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Set credit to apply
+     *
      * @param float|string $creditToApply
      */
     public function setCreditToApply($creditToApply)
@@ -87,6 +99,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Get discount to apply
+     *
      * @return float|string
      */
     public function getDiscountToApply()
@@ -95,6 +109,8 @@ class ApPaymentRequestItem
     }
 
     /**
+     * Set discount to apply
+     *
      * @param float|string $discountToApply
      */
     public function setDiscountToApply($discountToApply)

@@ -29,6 +29,8 @@ class ArPaymentItem
     private $amountToApply;
 
     /**
+     * Get apply to record ID
+     *
      * @return int|string
      */
     public function getApplyToRecordId()
@@ -37,6 +39,8 @@ class ArPaymentItem
     }
 
     /**
+     * Set apply to record ID
+     *
      * @param int|string $applyToRecordId
      */
     public function setApplyToRecordId($applyToRecordId)
@@ -45,6 +49,8 @@ class ArPaymentItem
     }
 
     /**
+     * Get amount to apply
+     *
      * @return float|string
      */
     public function getAmountToApply()
@@ -53,6 +59,8 @@ class ArPaymentItem
     }
 
     /**
+     * Set amount to apply
+     *
      * @param float|string $amountToApply
      */
     public function setAmountToApply($amountToApply)

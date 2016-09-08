@@ -38,6 +38,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     protected $active;
 
     /**
+     * Get account label
+     *
      * @return string
      */
     public function getAccountLabel()
@@ -46,6 +48,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Set account label
+     *
      * @param string $accountLabel
      */
     public function setAccountLabel($accountLabel)
@@ -54,6 +58,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -62,6 +68,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Set description
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -70,6 +78,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Get GL account number
+     *
      * @return string
      */
     public function getGlAccountNo()
@@ -78,6 +88,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Set GL account number
+     *
      * @param string $glAccountNo
      */
     public function setGlAccountNo($glAccountNo)
@@ -86,6 +98,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Get offset GL account number
+     *
      * @return string
      */
     public function getOffsetGlAccountNo()
@@ -94,6 +108,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Set offset GL account number
+     *
      * @param string $offsetGlAccountNo
      */
     public function setOffsetGlAccountNo($offsetGlAccountNo)
@@ -102,6 +118,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -110,6 +128,8 @@ abstract class AbstractArAccountLabel extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)

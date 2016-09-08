@@ -41,6 +41,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     // TODO: Allow setting AbstractArPayment
 
     /**
+     * Get record number
+     *
      * @return int|string
      */
     public function getRecordNo()
@@ -49,6 +51,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Set record number
+     *
      * @param int|string $recordNo
      */
     public function setRecordNo($recordNo)
@@ -57,6 +61,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Get title
+     *
      * @return string
      */
     public function getTitle()
@@ -65,6 +71,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Set title
+     *
      * @param string $title
      */
     public function setTitle($title)
@@ -73,6 +81,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Get GL posting date
+     *
      * @return DateType
      */
     public function getGlPostingDate()
@@ -81,6 +91,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Set GL posting date
+     *
      * @param DateType $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
@@ -89,6 +101,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Get bank account ID
+     *
      * @return string
      */
     public function getBankAccountId()
@@ -97,6 +111,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Set bank account ID
+     *
      * @param string $bankAccountId
      */
     public function setBankAccountId($bankAccountId)
@@ -105,6 +121,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Get undeposited funds GL account number
+     *
      * @return string
      */
     public function getUndepositedFundsGlAccountNo()
@@ -113,6 +131,8 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     }
 
     /**
+     * Set undeposited funds GL account number
+     *
      * @param string $undepositedFundsGlAccountNo
      */
     public function setUndepositedFundsGlAccountNo($undepositedFundsGlAccountNo)
