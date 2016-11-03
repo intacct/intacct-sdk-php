@@ -18,9 +18,9 @@
 
 namespace Intacct;
 
+use Intacct\Exception\ResultException;
 use Intacct\Functions\Common\ReadByQuery;
 use Intacct\Functions\Common\ReadMore;
-use Intacct\Xml\Response\Operation\ResultException;
 use ArrayIterator;
 
 class QueryClient extends AbstractClient

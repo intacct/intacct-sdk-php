@@ -91,7 +91,7 @@ EOF;
     
     /**
      * @covers Intacct\Xml\Response\Operation::__construct
-     * @expectedException \Intacct\Xml\Response\OperationException
+     * @expectedException \Intacct\Exception\OperationException
      * @expectedExceptionMessage Response authentication status failure
      */
     public function testAuthenticationFailure()

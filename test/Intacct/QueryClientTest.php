@@ -179,7 +179,7 @@ EOF;
 
     /**
      * @covers Intacct\QueryClient::executeQuery
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage An error occurred trying to get query records
      */
     public function testUnsuccessfulReadByQuery()
@@ -242,7 +242,7 @@ EOF;
 
     /**
      * @covers Intacct\QueryClient::executeQuery
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage Query result totalcount of 100001 exceeds max totalcount parameter of 100000
      */
     public function testMaxReadByQueryResults()
@@ -302,7 +302,7 @@ EOF;
 
     /**
      * @covers Intacct\QueryClient::executeQuery
-     * @expectedException \Intacct\Xml\Response\Operation\ResultException
+     * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage An error occurred trying to query subsequent records
      */
     public function testUnsuccessfulReadMore()

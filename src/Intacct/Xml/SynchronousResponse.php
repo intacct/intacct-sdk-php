@@ -17,8 +17,8 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
 use Intacct\Xml\Response\Operation;
-use Intacct\Exception;
 use SimpleXMLIterator;
 
 class SynchronousResponse extends AbstractResponse
@@ -31,13 +31,13 @@ class SynchronousResponse extends AbstractResponse
      * Initializes the class with the given body XML response
      *
      * @param string $body
-     * @throws Exception
+     * @throws IntacctException
      */
     public function __construct($body)
     {
         parent::__construct($body);
         if (!isset($this->xml->operation)) {
-            throw new Exception('Response is missing operation block');
+            throw new IntacctException('Response is missing operation block');
         }
         $this->setOperation($this->xml->operation);
     }
@@ -46,7 +46,6 @@ class SynchronousResponse extends AbstractResponse
      * Set response's operation
      *
      * @param SimpleXMLIterator $operation
-     * @throws Exception
      */
     private function setOperation(SimpleXMLIterator $operation)
     {

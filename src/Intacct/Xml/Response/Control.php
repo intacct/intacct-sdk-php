@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml\Response;
 
-use Intacct\Exception;
+use Intacct\Exception\IntacctException;
 use SimpleXMLIterator;
 
 class Control
@@ -42,24 +42,24 @@ class Control
      * Initializes the class
      *
      * @param SimpleXMLIterator $control
-     * @throws Exception
+     * @throws IntacctException
      */
     public function __construct(SimpleXMLIterator $control)
     {
         if (!isset($control->status)) {
-            throw new Exception('Control block is missing status element');
+            throw new IntacctException('Control block is missing status element');
         }
         if (!isset($control->senderid)) {
-            throw new Exception('Control block is missing senderid element');
+            throw new IntacctException('Control block is missing senderid element');
         }
         if (!isset($control->controlid)) {
-            throw new Exception('Control block is missing controlid element');
+            throw new IntacctException('Control block is missing controlid element');
         }
         if (!isset($control->uniqueid)) {
-            throw new Exception('Control block is missing uniqueid element');
+            throw new IntacctException('Control block is missing uniqueid element');
         }
         if (!isset($control->dtdversion)) {
-            throw new Exception('Control block is missing dtdversion element');
+            throw new IntacctException('Control block is missing dtdversion element');
         }
 
         $this->status = strval($control->status);

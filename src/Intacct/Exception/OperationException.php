@@ -15,10 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Response;
-
-use Intacct\Xml\ResponseException;
-use Exception;
+namespace Intacct\Exception;
 
 class OperationException extends ResponseException
 {
@@ -29,7 +26,7 @@ class OperationException extends ResponseException
      * @param string $message
      * @param array $errors
      * @param int $code
-     * @param Exception $previous
+     * @param \Exception $previous
      */
     public function __construct($message, array $errors = [], $code = 0, $previous = null)
     {

@@ -15,7 +15,7 @@
  *
  */
 
-namespace Intacct\Xml\Response;
+namespace Intacct\Exception;
 
 use Intacct\Xml\SynchronousResponse;
 
@@ -44,8 +44,8 @@ class OperationExceptionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Xml\Response\OperationException::__construct
-     * @covers Intacct\Xml\Response\OperationException::getErrors
+     * @covers Intacct\Exception\OperationException::__construct
+     * @covers Intacct\Exception\OperationException::getErrors
      */
     public function testGetErrors()
     {

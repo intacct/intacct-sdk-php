@@ -15,25 +15,9 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Response\Operation;
+namespace Intacct\Exception;
 
-use Intacct\Xml\Response\OperationException;
-use Exception;
-
-class ResultException extends OperationException
+class IntacctException extends \RuntimeException
 {
 
-    /**
-     * Initializes the class
-     *
-     * @param string $message
-     * @param array $errors
-     * @param int $code
-     * @param Exception $previous
-     * @todo add controlid, status, function, etc
-     */
-    public function __construct($message, array $errors = [], $code = 0, $previous = null)
-    {
-        parent::__construct($message, $errors, $code, $previous);
-    }
 }

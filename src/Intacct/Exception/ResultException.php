@@ -15,9 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct;
+namespace Intacct\Exception;
 
-class Exception extends \RuntimeException
+class ResultException extends OperationException
 {
 
+    /**
+     * Initializes the class
+     *
+     * @param string $message
+     * @param array $errors
+     * @param int $code
+     * @param \Exception $previous
+     * @todo add controlid, status, function, etc
+     */
+    public function __construct($message, array $errors = [], $code = 0, $previous = null)
+    {
+        parent::__construct($message, $errors, $code, $previous);
+    }
 }

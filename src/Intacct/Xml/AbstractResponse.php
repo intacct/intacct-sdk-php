@@ -17,9 +17,10 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResponseException;
 use Intacct\Xml\Response\Control;
 use Intacct\Xml\Response\ErrorMessage;
-use Intacct\Exception;
 use SimpleXMLIterator;
 
 abstract class AbstractResponse
@@ -35,20 +36,21 @@ abstract class AbstractResponse
      * Initializes the class with the given body XML response
      *
      * @param string $body
-     * @throws Exception
+     * @throws IntacctException
+     * @throws ResponseException
      */
     public function __construct($body)
     {
         libxml_use_internal_errors(true);
         $this->xml = simplexml_load_string($body, 'SimpleXMLIterator');
         if ($this->xml === false) {
-            throw new Exception('XML could not be parsed properly');
+            throw new IntacctException('XML could not be parsed properly');
         }
         libxml_clear_errors();
         libxml_use_internal_errors(false);
 
         if (!isset($this->xml->control)) {
-            throw new Exception('Response is missing control block');
+            throw new IntacctException('Response is missing control block');
         }
         $this->setControl($this->xml->control);
 
@@ -66,7 +68,7 @@ abstract class AbstractResponse
      * Set response control
      *
      * @param SimpleXMLIterator $control
-     * @throws Exception
+     * @throws \Exception
      */
     protected function setControl(SimpleXMLIterator $control)
     {
