@@ -154,19 +154,19 @@ class UserCreate extends AbstractUser
         $xml->writeElement('SSO_FEDERATED_ID', $this->getSsoFederatedUserId());
 
         if (count($this->getRestrictedEntities()) > 0) {
-            $xml->startElement('USERLOCATIONS');
             foreach ($this->getRestrictedEntities() as $restrictedEntity) {
+                $xml->startElement('USERLOCATIONS');
                 $xml->writeElement('LOCATIONID', $restrictedEntity, true);
+                $xml->endElement(); //USERLOCATIONS
             }
-            $xml->endElement(); //USERLOCATIONS
         }
 
         if (count($this->getRestrictedDepartments()) > 0) {
-            $xml->startElement('USERDEPARTMENTS');
             foreach ($this->getRestrictedDepartments() as $restrictedDepartment) {
+                $xml->startElement('USERDEPARTMENTS');
                 $xml->writeElement('DEPARTMENTID', $restrictedDepartment, true);
+                $xml->endElement(); //USERDEPARTMENTS
             }
-            $xml->endElement(); //USERDEPARTMENTS
         }
 
         $this->writeXmlImplicitCustomFields($xml);

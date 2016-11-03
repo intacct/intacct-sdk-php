@@ -173,4 +173,65 @@ EOF;
 
         $record->writeXml($xml);
     }
+
+    /**
+     * @covers Intacct\Functions\Company\UserCreate::writeXml
+     */
+    public function testRestrictions()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <create>
+        <USERINFO>
+            <LOGINID>U1234</LOGINID>
+            <USERTYPE>business user</USERTYPE>
+            <CONTACTINFO>
+                <LASTNAME>Last</LASTNAME>
+                <FIRSTNAME>First</FIRSTNAME>
+                <EMAIL1>noreply@intacct.com</EMAIL1>
+            </CONTACTINFO>
+            <USERLOCATIONS>
+                <LOCATIONID>E100</LOCATIONID>
+            </USERLOCATIONS>
+            <USERLOCATIONS>
+                <LOCATIONID>E200</LOCATIONID>
+            </USERLOCATIONS>
+            <USERDEPARTMENTS>
+                <DEPARTMENTID>D100</DEPARTMENTID>
+            </USERDEPARTMENTS>
+            <USERDEPARTMENTS>
+                <DEPARTMENTID>D200</DEPARTMENTID>
+            </USERDEPARTMENTS>
+        </USERINFO>
+    </create>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new UserCreate('unittest');
+        $record->setUserId('U1234');
+        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setLastName('Last');
+        $record->setFirstName('First');
+        $record->setPrimaryEmailAddress('noreply@intacct.com');
+        $record->setRestrictedEntities([
+            'E100',
+            'E200',
+        ]);
+        $record->setRestrictedDepartments([
+            'D100',
+            'D200',
+        ]);
+
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
 }

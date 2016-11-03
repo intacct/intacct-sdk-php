@@ -71,4 +71,55 @@ EOF;
 
         $record->writeXml($xml);
     }
+
+    /**
+     * @covers Intacct\Functions\Company\UserUpdate::writeXml
+     */
+    public function testRestrictions()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <update>
+        <USERINFO>
+            <LOGINID>U1234</LOGINID>
+            <USERLOCATIONS>
+                <LOCATIONID>E100</LOCATIONID>
+            </USERLOCATIONS>
+            <USERLOCATIONS>
+                <LOCATIONID>E200</LOCATIONID>
+            </USERLOCATIONS>
+            <USERDEPARTMENTS>
+                <DEPARTMENTID>D100</DEPARTMENTID>
+            </USERDEPARTMENTS>
+            <USERDEPARTMENTS>
+                <DEPARTMENTID>D200</DEPARTMENTID>
+            </USERDEPARTMENTS>
+        </USERINFO>
+    </update>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new UserUpdate('unittest');
+        $record->setUserId('U1234');
+        $record->setRestrictedEntities([
+            'E100',
+            'E200',
+        ]);
+        $record->setRestrictedDepartments([
+            'D100',
+            'D200',
+        ]);
+
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
 }
