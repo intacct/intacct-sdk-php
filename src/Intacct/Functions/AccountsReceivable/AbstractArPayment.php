@@ -96,6 +96,9 @@ abstract class AbstractArPayment extends AbstractFunction
     protected $exchangeRateType;
 
     /** @var string */
+    protected $creditCardType;
+
+    /** @var string */
     protected $authorizationCode;
 
     /** @var string */
@@ -372,6 +375,22 @@ abstract class AbstractArPayment extends AbstractFunction
     public function setExchangeRateType($exchangeRateType)
     {
         $this->exchangeRateType = $exchangeRateType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreditCardType()
+    {
+        return $this->creditCardType;
+    }
+
+    /**
+     * @param string $creditCardType
+     */
+    public function setCreditCardType($creditCardType)
+    {
+        $this->creditCardType = $creditCardType;
     }
 
     /**

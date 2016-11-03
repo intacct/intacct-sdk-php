@@ -83,6 +83,9 @@ class ArPaymentCreate extends AbstractArPayment
             $xml->writeElement('exchratetype', $this->getExchangeRateType(), true);
         }
 
+        $xml->writeElement('cctype', $this->getCreditCardType());
+        $xml->writeElement('authcode', $this->getAuthorizationCode());
+
         if (count($this->getApplyToTransactions()) > 0) {
             foreach ($this->getApplyToTransactions() as $applyToTransaction) {
                 $applyToTransaction->writeXml($xml);
