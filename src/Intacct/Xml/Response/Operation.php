@@ -29,7 +29,7 @@ class Operation
     /** @var Authentication */
     private $authentication;
 
-    /** @var array */
+    /** @var Result[] */
     private $results = [];
 
     /**
@@ -97,7 +97,7 @@ class Operation
     }
 
     /**
-     * @return array
+     * @return Result[]
      */
     public function getResults()
     {
