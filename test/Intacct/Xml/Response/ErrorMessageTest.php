@@ -37,14 +37,14 @@ class ErrorMessageTest extends \PHPUnit_Framework_TestCase
     <error>
           <errorno>1234</errorno>
           <description>description</description>
-          <description2>Object definition BADOBJECT not found</description2>
-          <correction>strip&lt;out&gt;these&lt;/out&gt;tags</correction>
+          <description2>Object definition &#39;BADOBJECT&#39; not found.</description2>
+          <correction>strip&lt;out&gt;these&lt;/out&gt;tags.</correction>
     </error>
     <error>
           <errorno>5678</errorno>
-          <description>strip&lt;out&gt;these&lt;/out&gt;tags</description>
-          <description2>Object definition BADOBJECT not found</description2>
-          <correction>correct</correction>
+          <description>strip&lt;out&gt;these&lt;/out&gt;tags.</description>
+          <description2>Object definition &#39;BADOBJECT&#39; not found.</description2>
+          <correction>correct.</correction>
     </error>
 </errormessage>
 EOF;
@@ -69,7 +69,7 @@ EOF;
     {
         $errors = $this->object->getErrors();
         $this->assertInternalType('array', $errors);
-        $this->assertEquals('1234: description: Object definition BADOBJECT not found: stripthesetags', $errors[0]);
-        $this->assertEquals('5678: stripthesetags: Object definition BADOBJECT not found: correct', $errors[1]);
+        $this->assertEquals('1234 description Object definition \'BADOBJECT\' not found. stripthesetags.', $errors[0]);
+        $this->assertEquals('5678 stripthesetags. Object definition \'BADOBJECT\' not found. correct.', $errors[1]);
     }
 }
