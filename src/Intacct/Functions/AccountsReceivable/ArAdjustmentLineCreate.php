@@ -33,7 +33,7 @@ class ArAdjustmentLineCreate extends AbstractArAdjustmentLine
     {
         $xml->startElement('lineitem');
 
-        if (!is_null($this->getAccountLabel())) {
+        if (!empty($this->getAccountLabel())) {
             $xml->writeElement('accountlabel', $this->getAccountLabel(), true);
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber(), true);

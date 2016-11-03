@@ -66,7 +66,7 @@ class ChargeCardTransactionLineUpdate extends AbstractChargeCardTransactionLine
         }
         $xml->writeAttribute('line_num', $this->getLineNo());
 
-        if (!is_null($this->getAccountLabel())) {
+        if (!empty($this->getAccountLabel())) {
             $xml->writeElement('accountlabel', $this->getAccountLabel());
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber());

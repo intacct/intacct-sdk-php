@@ -34,7 +34,7 @@ class ExpenseAdjustmentLineCreate extends AbstractExpenseAdjustmentLine
     {
         $xml->startElement('expenseadjustment');
 
-        if (!is_null($this->getExpenseType())) {
+        if (!empty($this->getExpenseType())) {
             $xml->writeElement('expensetype', $this->getExpenseType(), true);
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber(), true);

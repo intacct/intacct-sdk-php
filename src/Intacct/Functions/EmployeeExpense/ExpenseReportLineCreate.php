@@ -34,7 +34,7 @@ class ExpenseReportLineCreate extends AbstractExpenseReportLine
     {
         $xml->startElement('expense');
 
-        if (!is_null($this->getExpenseType())) {
+        if (!empty($this->getExpenseType())) {
             $xml->writeElement('expensetype', $this->getExpenseType(), true);
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber(), true);
