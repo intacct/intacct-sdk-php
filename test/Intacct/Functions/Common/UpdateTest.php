@@ -17,7 +17,8 @@
 
 namespace Intacct\Functions\Common;
 
-use Intacct\Xml\Request\Operation\Content\Record;
+use Intacct\FieldTypes\DateType;
+use Intacct\FieldTypes\Record;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -25,7 +26,7 @@ class UpdateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers Intacct\Functions\Common\Update::__construct
+     * @covers Intacct\Functions\Common\Update::setRecords
      * @covers Intacct\Functions\Common\Update::writeXml
      */
     public function testWriteXml()
@@ -42,15 +43,12 @@ class UpdateTest extends \PHPUnit_Framework_TestCase
 </function>
 EOF;
 
-        $records = [
-            new Record([
-                'object' => 'CLASS',
-                'fields' => [
-                    'CLASSID' => 'UT01',
-                    'NAME' => 'Unit Test 01',
-                ],
-            ]),
-        ];
+        $record1 = new Record();
+        $record1->setObjectName('CLASS');
+        $record1->setFields([
+            'CLASSID' => 'UT01',
+            'NAME' => 'Unit Test 01',
+        ]);
 
         $xml = new XMLWriter();
         $xml->openMemory();
@@ -58,71 +56,162 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $update = new Update([
-            'records' => $records,
-            'control_id' => 'unittest'
+        $update = new Update('unittest');
+        $update->setRecords([
+            $record1,
         ]);
+
         $update->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
     /**
-     * @covers Intacct\Functions\Common\Update::__construct
+     * @covers Intacct\Functions\Common\Update::setRecords
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage records count cannot exceed 100
+     * @expectedExceptionMessage Records count cannot exceed 100
      */
     public function testTooManyRecords()
     {
         $records = [];
         for ($i = 1; $i <= 101; $i++) {
-            $records[] = new Record([
-                'object' => 'CLASS',
-                'fields' => [
-                    'CLASSID' => 'UT' . $i,
-                    'NAME' => 'Unit Test ' . $i,
-                ],
+            $record = new Record();
+            $record->setObjectName('CLASS');
+            $record->setFields([
+                'CLASSID' => 'UT' . $i,
+                'NAME' => 'Unit Test ' . $i,
             ]);
+
+            $records[] = $record;
         }
 
-        new Update([
-            'records' => $records,
-        ]);
+        $update = new Update();
+        $update->setRecords($records);
     }
 
     /**
-     * @covers Intacct\Functions\Common\Update::__construct
+     * @covers Intacct\Functions\Common\Update::setRecords
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage records count must be greater than zero
+     * @expectedExceptionMessage Records count must be greater than zero
      */
     public function testNoRecords()
     {
-        $records = [];
+        $update = new Update();
+        $update->setRecords([]);
+    }
 
-        new Update([
-            'records' => $records,
+    /**
+     * @covers Intacct\Functions\Common\Update::setRecords
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Using update on object "TIMESHEETENTRY" is not allowed
+     */
+    public function testNotAllowedObject()
+    {
+        $record1 = new Record();
+        $record1->setObjectName('TIMESHEETENTRY');
+
+        $update = new Update();
+        $update->setRecords([
+            $record1,
         ]);
     }
 
     /**
-     * @covers Intacct\Functions\Common\Update::__construct
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage using update on object "TIMESHEETENTRY" is not allowed
+     * @covers Intacct\Functions\Common\Update::setRecords
+     * @covers Intacct\Functions\Common\Update::writeXml
      */
-    public function testNotAllowedObject()
+    public function testWriteXmlOwnedObject()
     {
-        $records = [
-            new Record([
-                'object' => 'TIMESHEETENTRY',
-                'fields' => [
-                    'RECORDNO' => '1',
-                    'NOTES' => 'Unit Test',
-                ],
-            ])
-        ];
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <update>
+        <GLBATCH>
+            <RECORDNO>1234</RECORDNO>
+            <JOURNAL>GJ</JOURNAL>
+            <BATCH_DATE>06/30/2016</BATCH_DATE>
+            <BATCH_TITLE>test</BATCH_TITLE>
+            <ENTRIES>
+                <GLENTRY>
+                    <ACCOUNTNO>1000</ACCOUNTNO>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT>10.12</TRX_AMOUNT>
+                </GLENTRY>
+                <GLENTRY>
+                    <ACCOUNTNO>2000</ACCOUNTNO>
+                    <TR_TYPE>-1</TR_TYPE>
+                    <TRX_AMOUNT>10.12</TRX_AMOUNT>
+                    <ALLOCATION>Custom</ALLOCATION>
+                    <SPLIT>
+                        <AMOUNT>600</AMOUNT>
+                    </SPLIT>
+                    <SPLIT>
+                        <AMOUNT>400</AMOUNT>
+                    </SPLIT>
+                </GLENTRY>
+            </ENTRIES>
+        </GLBATCH>
+    </update>
+</function>
+EOF;
 
-        new Update([
-            'records' => $records,
+        $entry1 = new Record();
+        $entry1->setObjectName('GLENTRY');
+        $entry1->setFields([
+            'ACCOUNTNO' => '1000',
+            'TR_TYPE' => '1',
+            'TRX_AMOUNT' => 10.12,
         ]);
+
+        $split1 = new Record();
+        $split1->setObjectName('SPLIT');
+        $split1->setFields([
+            'AMOUNT' => 600,
+        ]);
+
+        $split2 = new Record();
+        $split2->setObjectName('SPLIT');
+        $split2->setFields([
+            'AMOUNT' => 400,
+        ]);
+
+        $entry2 = new Record();
+        $entry2->setObjectName('GLENTRY');
+        $entry2->setFields([
+            'ACCOUNTNO' => '2000',
+            'TR_TYPE' => '-1',
+            'TRX_AMOUNT' => 10.12,
+            'ALLOCATION' => 'Custom',
+            $split1,
+            $split2,
+        ]);
+
+        $batch = new Record();
+        $batch->setObjectName('GLBATCH');
+        $batch->setFields([
+            'RECORDNO' => 1234,
+            'JOURNAL' => 'GJ',
+            'BATCH_DATE' => new DateType('2016-06-30'),
+            'BATCH_TITLE' => 'test',
+            'ENTRIES' => [
+                $entry1,
+                $entry2,
+            ],
+        ]);
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $update = new Update('unittest');
+        $update->setRecords([
+            $batch,
+        ]);
+
+        $update->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }

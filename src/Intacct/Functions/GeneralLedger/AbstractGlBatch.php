@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -26,13 +26,16 @@ abstract class AbstractGlBatch extends AbstractFunction
 
     use CustomFieldsTrait;
 
+    /** @var int|string */
+    protected $recordNo;
+
     /** @var string */
     protected $journalSymbol;
 
-    /** @var Date */
+    /** @var DateType */
     protected $postingDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $reverseDate;
 
     /** @var string */
@@ -50,8 +53,24 @@ abstract class AbstractGlBatch extends AbstractFunction
     /** @var string */
     protected $action;
 
-    /** @var array */
+    /** @var AbstractGlEntry[] */
     protected $lines;
+
+    /**
+     * @return int|string
+     */
+    public function getRecordNo()
+    {
+        return $this->recordNo;
+    }
+
+    /**
+     * @param int|string $recordNo
+     */
+    public function setRecordNo($recordNo)
+    {
+        $this->recordNo = $recordNo;
+    }
 
     /**
      * @return string
@@ -70,7 +89,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getPostingDate()
     {
@@ -78,7 +97,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param Date $postingDate
+     * @param DateType $postingDate
      */
     public function setPostingDate($postingDate)
     {
@@ -86,7 +105,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getReverseDate()
     {
@@ -94,7 +113,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param Date $reverseDate
+     * @param DateType $reverseDate
      */
     public function setReverseDate($reverseDate)
     {
@@ -182,7 +201,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return array
+     * @return AbstractGlEntry[]
      */
     public function getLines()
     {
@@ -190,7 +209,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param array $lines
+     * @param AbstractGlEntry[] $lines
      */
     public function setLines($lines)
     {

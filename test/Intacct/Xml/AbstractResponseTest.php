@@ -80,8 +80,8 @@ EOF;
 
     /**
      * @covers Intacct\Xml\AbstractResponse::__construct
-     * @covers Intacct\Xml\ResponseException::__construct
-     * @expectedException \Intacct\Xml\ResponseException
+     * @covers Intacct\Exception\ResponseException::__construct
+     * @expectedException \Intacct\Exception\ResponseException
      * @expectedExceptionMessage Response control status failure
      */
     public function testConstructControlFailure()

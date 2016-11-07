@@ -44,6 +44,8 @@ abstract class AbstractDepartment extends AbstractFunction
     protected $active;
 
     /**
+     * Get department ID
+     *
      * @return string
      */
     public function getDepartmentId()
@@ -52,6 +54,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set department ID
+     *
      * @param string $departmentId
      */
     public function setDepartmentId($departmentId)
@@ -60,6 +64,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Get department name
+     *
      * @return string
      */
     public function getDepartmentName()
@@ -68,6 +74,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set department name
+     *
      * @param string $departmentName
      */
     public function setDepartmentName($departmentName)
@@ -76,6 +84,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Get parent department ID
+     *
      * @return string
      */
     public function getParentDepartmentId()
@@ -84,6 +94,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set parent department ID
+     *
      * @param string $parentDepartmentId
      */
     public function setParentDepartmentId($parentDepartmentId)
@@ -92,6 +104,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Get manager employee ID
+     *
      * @return string
      */
     public function getManagerEmployeeId()
@@ -100,6 +114,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set manager employee ID
+     *
      * @param string $managerEmployeeId
      */
     public function setManagerEmployeeId($managerEmployeeId)
@@ -108,6 +124,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Get department title
+     *
      * @return string
      */
     public function getDepartmentTitle()
@@ -116,6 +134,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set department title
+     *
      * @param string $departmentTitle
      */
     public function setDepartmentTitle($departmentTitle)
@@ -124,6 +144,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -132,6 +154,8 @@ abstract class AbstractDepartment extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)

@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Projects;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -35,10 +35,10 @@ abstract class AbstractTask extends AbstractFunction
     /** @var string */
     protected $projectId;
 
-    /** @var Date */
+    /** @var DateType */
     protected $plannedBeginDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $plannedEndDate;
 
     /** @var string */
@@ -87,6 +87,22 @@ abstract class AbstractTask extends AbstractFunction
     protected $estimatedDuration;
 
     /**
+     * @return int|string
+     */
+    public function getRecordNo()
+    {
+        return $this->recordNo;
+    }
+
+    /**
+     * @param int|string $recordNo
+     */
+    public function setRecordNo($recordNo)
+    {
+        $this->recordNo = $recordNo;
+    }
+
+    /**
      * @return string
      */
     public function getTaskName()
@@ -119,7 +135,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getPlannedBeginDate()
     {
@@ -127,7 +143,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @param Date $plannedBeginDate
+     * @param DateType $plannedBeginDate
      */
     public function setPlannedBeginDate($plannedBeginDate)
     {
@@ -135,7 +151,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * @return DateType
      */
     public function getPlannedEndDate()
     {
@@ -143,7 +159,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @param Date $plannedEndDate
+     * @param DateType $plannedEndDate
      */
     public function setPlannedEndDate($plannedEndDate)
     {

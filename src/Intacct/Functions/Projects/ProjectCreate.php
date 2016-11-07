@@ -40,10 +40,8 @@ class ProjectCreate extends AbstractProject
         $xml->startElement('create');
         $xml->startElement('PROJECT');
 
-        if (!$this->getProjectId()) {
-            throw new InvalidArgumentException('Project ID is required for create');
-        }
-        $xml->writeElement('PROJECTID', $this->getProjectId(), true);
+        // Project ID is not required if auto-numbering is configured in module
+        $xml->writeElement('PROJECTID', $this->getProjectId());
 
         if (!$this->getProjectName()) {
             throw new InvalidArgumentException('Project Name is required for create');

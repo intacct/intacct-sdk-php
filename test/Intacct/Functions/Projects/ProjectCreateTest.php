@@ -33,7 +33,6 @@ class ProjectCreateTest extends \PHPUnit_Framework_TestCase
 <function controlid="unittest">
     <create>
         <PROJECT>
-            <PROJECTID>P1234</PROJECTID>
             <NAME>hello world</NAME>
             <PROJECTCATEGORY>Contract</PROJECTCATEGORY>
         </PROJECT>
@@ -48,34 +47,12 @@ EOF;
         $xml->startDocument();
 
         $project = new ProjectCreate('unittest');
-        $project->setProjectId('P1234');
         $project->setProjectName('hello world');
         $project->setProjectCategory('Contract');
 
         $project->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @covers Intacct\Functions\Projects\ProjectCreate::writeXml
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Project ID is required for create
-     */
-    public function testRequiredProjectId()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $project = new ProjectCreate('unittest');
-        //$project->setProjectId('P1234');
-        //$project->setProjectName('hello world');
-        //$project->setProjectCategory('Contract');
-
-        $project->writeXml($xml);
     }
 
     /**
@@ -92,7 +69,6 @@ EOF;
         $xml->startDocument();
 
         $project = new ProjectCreate('unittest');
-        $project->setProjectId('P1234');
         //$project->setProjectName('hello world');
         //$project->setProjectCategory('Contract');
 
@@ -113,7 +89,6 @@ EOF;
         $xml->startDocument();
 
         $project = new ProjectCreate('unittest');
-        $project->setProjectId('P1234');
         $project->setProjectName('hello world');
         //$project->setProjectCategory('Contract');
 

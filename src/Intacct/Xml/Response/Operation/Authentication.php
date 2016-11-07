@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml\Response\Operation;
 
-use Intacct\Exception;
+use Intacct\Exception\IntacctException;
 use SimpleXMLIterator;
 
 class Authentication
@@ -39,18 +39,18 @@ class Authentication
      * Initializes the class
      *
      * @param SimpleXMLIterator $authentication
-     * @throws Exception
+     * @throws IntacctException
      */
     public function __construct(SimpleXMLIterator $authentication)
     {
         if (!isset($authentication->status)) {
-            throw new Exception('Authentication block is missing status element');
+            throw new IntacctException('Authentication block is missing status element');
         }
         if (!isset($authentication->userid)) {
-            throw new Exception('Authentication block is missing userid element');
+            throw new IntacctException('Authentication block is missing userid element');
         }
         if (!isset($authentication->companyid)) {
-            throw new Exception('Authentication block is missing companyid element');
+            throw new IntacctException('Authentication block is missing companyid element');
         }
 
         $this->status = strval($authentication->status);

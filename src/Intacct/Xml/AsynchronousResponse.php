@@ -8,7 +8,7 @@
  * of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * or in the "LICENSE" file accompanying this file. This file is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -17,8 +17,8 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
 use Intacct\Xml\Response\Acknowledgement;
-use Intacct\Exception;
 use SimpleXMLIterator;
 
 class AsynchronousResponse extends AbstractResponse
@@ -31,13 +31,13 @@ class AsynchronousResponse extends AbstractResponse
      * Initializes the class with the given body XML response
      *
      * @param string $body
-     * @throws Exception
+     * @throws IntacctException
      */
     public function __construct($body)
     {
         parent::__construct($body);
         if (!isset($this->xml->acknowledgement)) {
-            throw new Exception('Response is missing acknowledgement block');
+            throw new IntacctException('Response is missing acknowledgement block');
         }
         $this->setAcknowledgement($this->xml->acknowledgement);
     }
@@ -46,7 +46,7 @@ class AsynchronousResponse extends AbstractResponse
      * Set response acknowledgement
      *
      * @param SimpleXMLIterator $acknowledgement
-     * @throws Exception
+     * @throws IntacctException
      */
     private function setAcknowledgement(SimpleXMLIterator $acknowledgement)
     {

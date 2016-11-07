@@ -17,86 +17,75 @@
 
 namespace Intacct\Functions\Common;
 
-use Intacct\Functions\Traits\ControlIdTrait;
-use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\Request\Operation\Content\Record;
+use Intacct\FieldTypes\Record;
+use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\Request\Operation\Content\StandardObjects;
-use Intacct\Xml\Request\XMLHelperTrait;
 use Intacct\Xml\XMLWriter;
-use ArrayIterator;
 use InvalidArgumentException;
 
-class Update extends ArrayIterator implements FunctionInterface
+class Update extends AbstractFunction
 {
-    
-    use ControlIdTrait;
-    use XMLHelperTrait;
     
     /** @var int */
     const MAX_UPDATE_COUNT = 100;
-    
+
+    /** @var Record[] */
+    protected $records;
+
     /**
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $control_id Control ID, default=Random UUID
-     *      @var array $records Records to update, @see Record::__construct
-     * }
-     * @throws InvalidArgumentException
+     * @return Record[]
      */
-    public function __construct(array $params = [])
+    public function getRecords()
     {
-        $defaults = [
-            'control_id' => null,
-            'records' => [],
-        ];
-        $config = array_merge($defaults, $params);
-        
-        $this->setControlId($config['control_id']);
-        
-        if (count($config['records']) > static::MAX_UPDATE_COUNT) {
+        return $this->records;
+    }
+
+    /**
+     * @param Record[] $records
+     */
+    public function setRecords(array $records)
+    {
+        if (count($records) > static::MAX_UPDATE_COUNT) {
             throw new InvalidArgumentException(
-                'records count cannot exceed ' . static::MAX_UPDATE_COUNT
+                'Records count cannot exceed ' . static::MAX_UPDATE_COUNT
             );
-        } elseif (count($config['records']) < 1) {
+        } elseif (count($records) < 1) {
             throw new InvalidArgumentException(
-                'records count must be greater than zero'
+                'Records count must be greater than zero'
             );
         }
 
-        //TODO change these magic methods
-        foreach ($config['records'] as $record) {
+        foreach ($records as $record) {
             $objectName = $record->getObjectName();
             if (in_array('update', StandardObjects::getMethodsNotAllowed($objectName))) {
                 throw new InvalidArgumentException(
-                    'using update on object "' . $objectName . '" is not allowed'
+                    'Using update on object "' . $objectName . '" is not allowed'
                 );
             }
         }
-        
-        parent::__construct($config['records']);
+
+        $this->records = $records;
     }
 
     /**
      * Write the update block XML
      *
      * @param XMLWriter $xml
+     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        
+
         $xml->startElement('update');
-        
-        foreach ($this as $record) {
-            $xml->startElement($record->getObjectName());
-            $this->recursiveWriteXml($record, $xml);
-            $xml->endElement();
+
+        foreach ($this->getRecords() as $record) {
+            $record->writeXml($xml);
         }
-        
+
         $xml->endElement(); //update
-        
+
         $xml->endElement(); //function
     }
 }

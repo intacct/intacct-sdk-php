@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Company;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -44,10 +44,10 @@ abstract class AbstractLocation extends AbstractFunction
     /** @var string */
     protected $shipToContactName;
 
-    /** @var Date */
+    /** @var DateType */
     protected $startDate;
 
-    /** @var Date */
+    /** @var DateType */
     protected $endDate;
 
     /** @var string */
@@ -57,6 +57,8 @@ abstract class AbstractLocation extends AbstractFunction
     protected $active;
 
     /**
+     * Get location ID
+     *
      * @return string
      */
     public function getLocationId()
@@ -65,6 +67,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set location ID
+     *
      * @param string $locationId
      */
     public function setLocationId($locationId)
@@ -73,6 +77,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get location name
+     *
      * @return string
      */
     public function getLocationName()
@@ -81,6 +87,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set location name
+     *
      * @param string $locationName
      */
     public function setLocationName($locationName)
@@ -89,6 +97,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get parent location ID
+     *
      * @return string
      */
     public function getParentLocationId()
@@ -97,6 +107,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set parent location ID
+     *
      * @param string $parentLocationId
      */
     public function setParentLocationId($parentLocationId)
@@ -105,6 +117,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get manager employee ID
+     *
      * @return string
      */
     public function getManagerEmployeeId()
@@ -113,6 +127,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set manager employee ID
+     *
      * @param string $managerEmployeeId
      */
     public function setManagerEmployeeId($managerEmployeeId)
@@ -121,6 +137,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get location contact name
+     *
      * @return string
      */
     public function getLocationContactName()
@@ -129,6 +147,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set location contact name
+     *
      * @param string $locationContactName
      */
     public function setLocationContactName($locationContactName)
@@ -137,6 +157,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get ship to contact name
+     *
      * @return string
      */
     public function getShipToContactName()
@@ -145,6 +167,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set ship to contact name
+     *
      * @param string $shipToContactName
      */
     public function setShipToContactName($shipToContactName)
@@ -153,7 +177,9 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * Get start date
+     *
+     * @return DateType
      */
     public function getStartDate()
     {
@@ -161,7 +187,9 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @param Date $startDate
+     * Set start date
+     *
+     * @param DateType $startDate
      */
     public function setStartDate($startDate)
     {
@@ -169,7 +197,9 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @return Date
+     * Get end date
+     *
+     * @return DateType
      */
     public function getEndDate()
     {
@@ -177,7 +207,9 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
-     * @param Date $endDate
+     * Set end date
+     *
+     * @param DateType $endDate
      */
     public function setEndDate($endDate)
     {
@@ -185,6 +217,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get location title
+     *
      * @return string
      */
     public function getLocationTitle()
@@ -193,6 +227,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set location title
+     *
      * @param string $locationTitle
      */
     public function setLocationTitle($locationTitle)
@@ -201,6 +237,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Get active
+     *
      * @return boolean
      */
     public function isActive()
@@ -209,6 +247,8 @@ abstract class AbstractLocation extends AbstractFunction
     }
 
     /**
+     * Set active
+     *
      * @param boolean $active
      */
     public function setActive($active)

@@ -17,40 +17,12 @@
 
 namespace Intacct;
 
-use Intacct\Logging\MessageFormatter;
-use Intacct\Credentials\LoginCredentials;
-use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
-use Intacct\Credentials\SessionProvider;
 use Intacct\Xml\AsynchronousResponse;
-use Intacct\Xml\RequestHandler;
 use Intacct\Xml\SynchronousResponse;
-use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\Uuid;
 
-class IntacctClient
+class IntacctClient extends AbstractClient
 {
-
-    /**
-     * Profile environment name
-     *
-     * @var string
-     */
-    const PROFILE_ENV_NAME = 'INTACCT_PROFILE';
-
-    /**
-     * Session credentials
-     *
-     * @var SessionCredentials
-     */
-    private $sessionCreds;
-
-    /**
-     * Last execution
-     *
-     * @var array
-     */
-    private $lastExecution = [];
 
     /**
      * Initializes the class with the given parameters.
@@ -79,34 +51,7 @@ class IntacctClient
      */
     public function __construct(array $params = [])
     {
-        $defaults = [
-            'session_id' => null,
-            'endpoint_url' => null,
-            'verify_ssl' => true,
-        ];
-        $envProfile = getenv(static::PROFILE_ENV_NAME);
-        if ($envProfile) {
-            $defaults['profile_name'] = $envProfile;
-        }
-        $config = array_merge($defaults, $params);
-
-        $provider = new SessionProvider();
-
-        $senderCreds = new SenderCredentials($config);
-
-        try {
-            if ($config['session_id']) {
-                $sessionCreds = new SessionCredentials($config, $senderCreds);
-
-                $this->sessionCreds = $provider->fromSessionCredentials($sessionCreds);
-            } else {
-                $loginCreds = new LoginCredentials($config, $senderCreds);
-
-                $this->sessionCreds = $provider->fromLoginCredentials($loginCreds);
-            }
-        } finally {
-            $this->lastExecution = $provider->getLastExecution();
-        }
+        parent::__construct($params);
     }
 
     /**
@@ -116,49 +61,7 @@ class IntacctClient
      */
     public function getSessionCreds()
     {
-        return $this->sessionCreds;
-    }
-
-    /**
-     * Get session config array
-     *
-     * @return array
-     */
-    private function getSessionConfig()
-    {
-        $sessionCreds = $this->getSessionCreds();
-        $senderCreds = $sessionCreds->getSenderCredentials();
-        $endpoint = $sessionCreds->getEndpoint();
-
-        $config = [
-            'sender_id' => $senderCreds->getSenderId(),
-            'sender_password' => $senderCreds->getPassword(),
-            'endpoint_url' => $endpoint->getEndpoint(),
-            'verify_ssl' => $endpoint->getVerifySSL(),
-            'session_id' => $sessionCreds->getSessionId(),
-        ];
-
-        return $config;
-    }
-
-    /**
-     * Generate a version 4 (random) UUID
-     *
-     * @return string
-     */
-    public function getRandomControlId()
-    {
-        return Uuid::uuid4()->toString();
-    }
-
-    /**
-     * Get array of the last execution's requests and responses
-     *
-     * @return array
-     */
-    public function getLastExecution()
-    {
-        return $this->lastExecution;
+        return parent::getSessionCreds();
     }
 
     /**
@@ -179,25 +82,13 @@ class IntacctClient
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        $config = array_merge(
-            $this->getSessionConfig(),
-            [
-                'transaction' => $transaction,
-                'control_id' => $requestControlId,
-                'unique_id' => $uniqueFunctionControlIds,
-            ],
+        return parent::execute(
+            $contentBlock,
+            $transaction,
+            $requestControlId,
+            $uniqueFunctionControlIds,
             $params
         );
-        
-        $requestHandler = new RequestHandler($config);
-
-        try {
-            $response = $requestHandler->executeSynchronous($config, $contentBlock);
-        } finally {
-            $this->lastExecution = $requestHandler->getHistory();
-        }
-        
-        return $response;
     }
 
     /**
@@ -220,25 +111,13 @@ class IntacctClient
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        $config = array_merge(
-            $this->getSessionConfig(),
-            [
-                'policy_id' => $asyncPolicyId,
-                'transaction' => $transaction,
-                'control_id' => $requestControlId,
-                'unique_id' => $uniqueFunctionControlIds,
-            ],
+        return parent::executeAsync(
+            $contentBlock,
+            $asyncPolicyId,
+            $transaction,
+            $requestControlId,
+            $uniqueFunctionControlIds,
             $params
         );
-
-        $requestHandler = new RequestHandler($config);
-
-        try {
-            $response = $requestHandler->executeAsynchronous($config, $contentBlock);
-        } finally {
-            $this->lastExecution = $requestHandler->getHistory();
-        }
-
-        return $response;
     }
 }

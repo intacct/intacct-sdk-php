@@ -65,9 +65,6 @@ class RequestHandler
     /** @var int */
     protected $logLevel;
 
-    /** @var array */
-    private $lastExecution = [];
-
     /**
      * Initializes the class with the given parameters.
      *
@@ -255,11 +252,7 @@ class RequestHandler
 
         $requestBlock = new RequestBlock($params, $contentBlock);
 
-        try {
-            $client = $this->execute($requestBlock->writeXml());
-        } finally {
-            $this->lastExecution = $this->getHistory();
-        }
+        $client = $this->execute($requestBlock->writeXml());
 
         $body = $client->getBody();
         $body->rewind();

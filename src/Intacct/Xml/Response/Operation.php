@@ -17,9 +17,10 @@
 
 namespace Intacct\Xml\Response;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Exception\OperationException;
 use Intacct\Xml\Response\Operation\Result;
 use Intacct\Xml\Response\Operation\Authentication;
-use Intacct\Exception;
 use SimpleXMLIterator;
 
 class Operation
@@ -28,7 +29,7 @@ class Operation
     /** @var Authentication */
     private $authentication;
 
-    /** @var array */
+    /** @var Result[] */
     private $results = [];
 
     /**
@@ -39,7 +40,7 @@ class Operation
     public function __construct(SimpleXMLIterator $operation)
     {
         if (!isset($operation->authentication)) {
-            throw new Exception('Authentication block is missing from operation element');
+            throw new IntacctException('Authentication block is missing from operation element');
         }
         $this->setAuthentication($operation->authentication);
 
@@ -53,7 +54,7 @@ class Operation
         }
         
         if (!isset($operation->result[0])) {
-            throw new Exception('Result block is missing from operation element');
+            throw new IntacctException('Result block is missing from operation element');
         }
         
         foreach ($operation->result as $result) {
@@ -96,7 +97,7 @@ class Operation
     }
 
     /**
-     * @return array
+     * @return Result[]
      */
     public function getResults()
     {

@@ -37,13 +37,14 @@ class ErrorMessage
             $pieces = [];
             foreach ($error->children() as $piece) {
                 //strip out any tags in error messages
-                $piece = $this->cleanse($piece);
+                $piece = htmlspecialchars_decode($this->cleanse($piece), ENT_QUOTES);
+
                 if ($piece !== '') {
                     $pieces[] = $piece;
                 }
             }
 
-            $errors[] = implode(': ', $pieces);
+            $errors[] = implode(' ', $pieces);
         }
         $this->errors = $errors;
     }

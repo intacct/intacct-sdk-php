@@ -98,8 +98,6 @@ EOF;
     /**
      * @covers Intacct\IntacctClient::__construct
      * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getSessionConfig
-     * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithSessionId()
     {
@@ -111,14 +109,11 @@ EOF;
         $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
         $this->assertEquals($creds->getCurrentUserId(), 'testuser');
         $this->assertEquals($creds->getCurrentUserIsExternal(), false);
-        $this->assertEquals(count($client->getLastExecution()), 1);
     }
     
     /**
      * @covers Intacct\IntacctClient::__construct
      * @covers Intacct\IntacctClient::getSessionCreds
-     * @covers Intacct\IntacctClient::getSessionConfig
-     * @covers Intacct\IntacctClient::getLastExecution
      */
     public function testConstructWithLogin()
     {
@@ -174,7 +169,6 @@ EOF;
         $this->assertEquals($creds->getCurrentCompanyId(), 'testcompany');
         $this->assertEquals($creds->getCurrentUserId(), 'testuser');
         $this->assertEquals($creds->getCurrentUserIsExternal(), false);
-        $this->assertEquals(count($client->getLastExecution()), 1);
     }
 
     /**
@@ -282,11 +276,11 @@ EOF;
     }
 
     /**
-     * * @covers Intacct\IntacctClient::getRandomControlId
+     * * @covers Intacct\IntacctClient::generateRandomControlId
      */
     public function testRandomControlId()
     {
-        $controlId = $this->client->getRandomControlId();
+        $controlId = $this->client->generateRandomControlId();
         $this->assertInternalType('string', $controlId);
         $this->assertContains('-', $controlId);
     }

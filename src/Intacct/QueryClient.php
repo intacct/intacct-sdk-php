@@ -18,133 +18,99 @@
 
 namespace Intacct;
 
+use Intacct\Exception\ResultException;
 use Intacct\Functions\Common\ReadByQuery;
 use Intacct\Functions\Common\ReadMore;
-use Intacct\Xml\Response\Operation\Result;
-use Intacct\Xml\Response\Operation\ResultException;
-use Intacct\Xml\RequestHandler;
 use ArrayIterator;
 
-class QueryClient
+class QueryClient extends AbstractClient
 {
 
-    /**
-     * @var int
-     */
-    const MAX_QUERY_TOTAL_COUNT = 100000;
+    /** @var int */
+    const DEFAULT_MAX_TOTAL_COUNT = 100000;
+
+    /** @var int */
+    protected $maxTotalCount;
 
     /**
-     * Accepts the following options:
-     *
-     * - sender_id: (string)
-     * - sender_password: (string)
-     * - session_id: (string)
-     * - control_id: (string)
-     * - doc_par_id: (string)
-     * - fields: (array)
-     * - max_total_count: (int, default=int(100000))
-     * - object: (string, required)
-     * - page_size: (int, default=int(1000)
-     * - query: (string)
-     * - return_format: (string, default=string(3) "xml")
-     *
-     * @param array $params
+     * @return int
+     */
+    public function getMaxTotalCount()
+    {
+        return $this->maxTotalCount;
+    }
+
+    /**
+     * @param int $maxTotalCount
+     */
+    public function setMaxTotalCount($maxTotalCount)
+    {
+        $this->maxTotalCount = $maxTotalCount;
+    }
+
+    /**
+     * @param ReadByQuery $query
+     * @param int $maxTotalCount
+     * @param array $params Overriding params
      *
      * @return ArrayIterator
+     * @throws ResultException
      */
-    public function readAllObjectsByQuery(array $params)
+    public function executeQuery(ReadByQuery $query, $maxTotalCount = self::DEFAULT_MAX_TOTAL_COUNT, array $params = [])
     {
-        $defaults = [
-            'max_total_count' => self::MAX_QUERY_TOTAL_COUNT,
-        ];
+        $this->setMaxTotalCount($maxTotalCount);
 
-        $config = array_merge($defaults, $params);
+        $content = new Content([
+            $query,
+        ]);
+        $response = parent::execute($content, false, null, false, $params);
+        $result = $response->getOperation()->getResult();
 
-        $result = $this->performReadByQuery($config);
+        if ($result->getStatus() !== 'success') {
+            throw new ResultException(
+                'An error occurred trying to get query records',
+                $result->getErrors()
+            );
+        }
+
+        if ($result->getTotalCount() > $this->getMaxTotalCount()) {
+            throw new ResultException(
+                'Query result totalcount of ' . $result->getTotalCount() .
+                ' exceeds max totalcount parameter of ' . $this->getMaxTotalCount()
+            );
+        }
 
         $records = new ArrayIterator();
 
-        $this->addRecords($records, $result);
-
-        while ($result->getNumRemaining() > 0) {
-            // Do readMore now with the resultId
-            $result = $this->performReadMore($result->getResultId(), $config);
-
-            $this->addRecords($records, $result);
-        }
-
-        return $records;
-    }
-
-    /**
-     * @param array $params
-     *
-     * @return Result
-     */
-    private function performReadByQuery(array $params)
-    {
-        $readByQuery = new ReadByQuery($params);
-
-        $contentBlock = new Content([$readByQuery]);
-
-        $requestHandler = new RequestHandler($params);
-        $response = $requestHandler->executeSynchronous($params, $contentBlock);
-
-        $result = $response->getOperation()->getResult();
-
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to get query records',
-                $result->getErrors()
-            );
-        }
-
-        if ($result->getTotalCount() > $params['max_total_count']) {
-            throw new ResultException(
-                'Query result totalcount of ' . $result->getTotalCount() .
-                ' exceeds max_total_count parameter of ' . $params['max_total_count']
-            );
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param $resultId
-     * @param array $params
-     *
-     * @return Result
-     */
-    private function performReadMore($resultId, array $params)
-    {
-        $contentBlock = new Content([
-            new ReadMore([
-                'result_id' => $resultId,
-            ])
-        ]);
-
-        $requestHandler = new RequestHandler($params);
-        $response = $requestHandler->executeSynchronous($params, $contentBlock);
-        $result = $response->getOperation()->getResult();
-
-        if ($result->getStatus() !== 'success') {
-            throw new ResultException(
-                'An error occurred trying to get query records',
-                $result->getErrors()
-            );
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param ArrayIterator $records
-     * @param Result $result
-     */
-    private function addRecords(ArrayIterator $records, Result $result)
-    {
         foreach ($result->getDataArray() as $record) {
             $records->append($record);
         }
+
+        while ($result->getNumRemaining() > 0) {
+            // Do readMore's with the resultId until number remaining is zero
+            $readMore = new ReadMore();
+            $readMore->setResultId($result->getResultId());
+
+            $content = new Content([
+                $readMore,
+            ]);
+            $response = parent::execute($content, false, null, false, $params);
+            $result = $response->getOperation()->getResult();
+
+            if ($result->getStatus() !== 'success') {
+                throw new ResultException(
+                    'An error occurred trying to query subsequent records',
+                    $result->getErrors()
+                );
+            }
+
+            foreach ($result->getDataArray() as $record) {
+                $records->append($record);
+            }
+        }
+
+        $records->rewind();
+
+        return $records;
     }
 }

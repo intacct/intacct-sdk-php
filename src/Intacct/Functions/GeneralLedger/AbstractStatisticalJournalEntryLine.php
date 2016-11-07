@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-
 abstract class AbstractStatisticalJournalEntryLine extends AbstractGlEntry
 {
 

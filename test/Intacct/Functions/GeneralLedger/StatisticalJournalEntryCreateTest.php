@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\Fields\Date;
+use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -40,8 +40,8 @@ class StatisticalJournalEntryCreateTest extends \PHPUnit_Framework_TestCase
             <ENTRIES>
                 <GLENTRY>
                     <ACCOUNTNO/>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT/>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT/>
                 </GLENTRY>
             </ENTRIES>
         </GLBATCH>
@@ -87,8 +87,8 @@ EOF;
             <ENTRIES>
                 <GLENTRY>
                     <ACCOUNTNO></ACCOUNTNO>
-                    <TRTYPE>1</TRTYPE>
-                    <AMOUNT></AMOUNT>
+                    <TR_TYPE>1</TR_TYPE>
+                    <TRX_AMOUNT></TRX_AMOUNT>
                 </GLENTRY>
             </ENTRIES>
         </GLBATCH>
@@ -104,8 +104,8 @@ EOF;
 
         $journalEntry = new StatisticalJournalEntryCreate('unittest');
         $journalEntry->setJournalSymbol('SJ');
-        $journalEntry->setPostingDate(new Date('2016-06-30'));
-        $journalEntry->setReverseDate(new Date('2016-07-01'));
+        $journalEntry->setPostingDate(new DateType('2016-06-30'));
+        $journalEntry->setReverseDate(new DateType('2016-07-01'));
         $journalEntry->setDescription('My desc');
         $journalEntry->setHistoryComment('comment!');
         $journalEntry->setReferenceNumber('123');

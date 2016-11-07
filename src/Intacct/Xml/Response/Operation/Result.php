@@ -17,8 +17,8 @@
 
 namespace Intacct\Xml\Response\Operation;
 
+use Intacct\Exception\IntacctException;
 use Intacct\Xml\Response\ErrorMessage;
-use Intacct\Exception;
 use ArrayIterator;
 use SimpleXMLIterator;
 
@@ -59,17 +59,18 @@ class Result
      * Initializes the class
      *
      * @param SimpleXMLIterator $result
+     * @throws IntacctException
      */
     public function __construct(SimpleXMLIterator $result)
     {
         if (!isset($result->status)) {
-            throw new Exception('Result block is missing status element');
+            throw new IntacctException('Result block is missing status element');
         }
         if (!isset($result->function)) {
-            throw new Exception('Result block is missing function element');
+            throw new IntacctException('Result block is missing function element');
         }
         if (!isset($result->controlid)) {
-            throw new Exception('Result block is missing controlid element');
+            throw new IntacctException('Result block is missing controlid element');
         }
 
         $this->status = strval($result->status);

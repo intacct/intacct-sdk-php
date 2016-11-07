@@ -37,11 +37,11 @@ class JournalEntryLineCreate extends AbstractJournalEntryLine
         $xml->writeElement('DOCUMENT', $this->getDocumentNumber());
         $xml->writeElement('ACCOUNTNO', $this->getGlAccountNumber(), true);
         if ($this->getTransactionAmount()< 0) {
-            $xml->writeElement('TRTYPE', '-1'); //Credit
-            $xml->writeElement('AMOUNT', abs($this->getTransactionAmount()), true);
+            $xml->writeElement('TR_TYPE', '-1'); //Credit
+            $xml->writeElement('TRX_AMOUNT', abs($this->getTransactionAmount()), true);
         } else {
-            $xml->writeElement('TRTYPE', '1'); //Debit
-            $xml->writeElement('AMOUNT', $this->getTransactionAmount(), true);
+            $xml->writeElement('TR_TYPE', '1'); //Debit
+            $xml->writeElement('TRX_AMOUNT', $this->getTransactionAmount(), true);
         }
 
         $xml->writeElement('CURRENCY', $this->getTransactionCurrency());

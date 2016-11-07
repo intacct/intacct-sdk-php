@@ -37,11 +37,11 @@ class StatisticalJournalEntryLineCreate extends AbstractStatisticalJournalEntryL
         $xml->writeElement('DOCUMENT', $this->getDocumentNumber());
         $xml->writeElement('ACCOUNTNO', $this->getStatAccountNumber(), true);
         if ($this->getAmount() < 0) {
-            $xml->writeElement('TRTYPE', '-1'); //Decrease
-            $xml->writeElement('AMOUNT', abs($this->getAmount()), true);
+            $xml->writeElement('TR_TYPE', '-1'); //Decrease
+            $xml->writeElement('TRX_AMOUNT', abs($this->getAmount()), true);
         } else {
-            $xml->writeElement('TRTYPE', '1'); //Increase
-            $xml->writeElement('AMOUNT', $this->getAmount(), true);
+            $xml->writeElement('TR_TYPE', '1'); //Increase
+            $xml->writeElement('TRX_AMOUNT', $this->getAmount(), true);
         }
 
         if ($this->getAllocationId()) {

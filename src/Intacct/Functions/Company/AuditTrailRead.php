@@ -33,6 +33,8 @@ class AuditTrailRead extends AbstractFunction
     private $objectKey;
 
     /**
+     * Get object name
+     *
      * @return string
      */
     public function getObjectName()
@@ -41,6 +43,8 @@ class AuditTrailRead extends AbstractFunction
     }
 
     /**
+     * Set object name
+     *
      * @param string $objectName
      */
     public function setObjectName($objectName)
@@ -49,6 +53,8 @@ class AuditTrailRead extends AbstractFunction
     }
 
     /**
+     * Get object key
+     *
      * @return string
      */
     public function getObjectKey()
@@ -57,6 +63,8 @@ class AuditTrailRead extends AbstractFunction
     }
 
     /**
+     * Set object key
+     *
      * @param string $objectKey
      */
     public function setObjectKey($objectKey)
