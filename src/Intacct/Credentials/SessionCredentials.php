@@ -19,7 +19,10 @@ namespace Intacct\Credentials;
 
 use Intacct\Endpoint;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Logging\MessageFormatter;
 use InvalidArgumentException;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 class SessionCredentials
 {
@@ -44,6 +47,15 @@ class SessionCredentials
     
     /** @var MockHandler */
     protected $mockHandler;
+
+    /** @var LoggerInterface */
+    private $logger;
+
+    /** @var MessageFormatter */
+    private $logMessageFormat;
+
+    /** @var int */
+    private $logLevel;
 
     /**
      * Initializes the class with the given parameters.
@@ -78,6 +90,9 @@ class SessionCredentials
             'current_company_id' => null,
             'current_user_id' => null,
             'current_user_is_external' => false,
+            'logger' => null,
+            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
+            'log_level' => LogLevel::DEBUG,
         ];
         $config = array_merge($defaults, $params);
         
@@ -98,6 +113,12 @@ class SessionCredentials
         $this->currentUserId = $config['current_user_id'];
         $this->currentUserIsExternal = $config['current_user_is_external'];
         $this->mockHandler = $config['mock_handler'];
+
+        if ($config['logger']) {
+            $this->logger = $config['logger'];
+        }
+        $this->logMessageFormat = $config['log_formatter'];
+        $this->logLevel = $config['log_level'];
     }
 
     /**
@@ -168,5 +189,29 @@ class SessionCredentials
     public function getMockHandler()
     {
         return $this->mockHandler;
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @return MessageFormatter
+     */
+    public function getLogMessageFormat()
+    {
+        return $this->logMessageFormat;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLogLevel()
+    {
+        return $this->logLevel;
     }
 }

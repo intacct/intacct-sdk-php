@@ -123,6 +123,9 @@ abstract class AbstractClient
             'endpoint_url' => $endpoint->getEndpoint(),
             'verify_ssl' => $endpoint->getVerifySSL(),
             'session_id' => $sessionCreds->getSessionId(),
+            'logger' => $sessionCreds->getLogger(),
+            'log_formatter' => $sessionCreds->getLogMessageFormat(),
+            'log_level' => $sessionCreds->getLogLevel(),
         ];
 
         return $config;
