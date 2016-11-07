@@ -579,5 +579,4 @@ abstract class AbstractInvoice extends AbstractFunction
             $xml->writeElement('exchratetype', $this->exchangeRateType, true);
         }
     }
-
 }

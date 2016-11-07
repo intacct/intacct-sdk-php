@@ -82,7 +82,13 @@ class IntacctClient extends AbstractClient
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        return parent::execute($contentBlock, $transaction, $requestControlId, $uniqueFunctionControlIds, $params);
+        return parent::execute(
+            $contentBlock,
+            $transaction,
+            $requestControlId,
+            $uniqueFunctionControlIds,
+            $params
+        );
     }
 
     /**
@@ -105,6 +111,13 @@ class IntacctClient extends AbstractClient
         $uniqueFunctionControlIds = false,
         array $params = []
     ) {
-        return parent::executeAsync($contentBlock, $asyncPolicyId, $transaction, $requestControlId, $uniqueFunctionControlIds, $params);
+        return parent::executeAsync(
+            $contentBlock,
+            $asyncPolicyId,
+            $transaction,
+            $requestControlId,
+            $uniqueFunctionControlIds,
+            $params
+        );
     }
 }

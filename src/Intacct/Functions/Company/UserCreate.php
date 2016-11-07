@@ -132,7 +132,9 @@ class UserCreate extends AbstractUser
             !($this->getLastName() && $this->getFirstName() && $this->getPrimaryEmailAddress())
             && !$this->getContactName()
         ) {
-            throw new InvalidArgumentException('Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create');
+            throw new InvalidArgumentException(
+                'Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create'
+            );
         }
         $xml->startElement('CONTACTINFO');
         $xml->writeElement('LASTNAME', $this->getLastName());

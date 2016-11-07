@@ -440,5 +440,4 @@ abstract class AbstractArAdjustment extends AbstractFunction
             $xml->writeElement('exchratetype', $this->exchangeRateType, true);
         }
     }
-
 }

@@ -94,11 +94,15 @@ class ConsolidationEntity
         }
         $xml->writeElement('entityid', $this->getEntityId(), true);
         // Rates support up to 10 decimal places
-        $bsrate = is_float($this->getEndingSpotRate()) ? number_format($this->getEndingSpotRate(), 10) : $this->getEndingSpotRate();
-        $warate = is_float($this->getWeightedAverageRate()) ? number_format($this->getWeightedAverageRate(), 10) : $this->getWeightedAverageRate();
+        $bsRate = is_float($this->getEndingSpotRate())
+            ? number_format($this->getEndingSpotRate(), 10)
+            : $this->getEndingSpotRate();
+        $waRate = is_float($this->getWeightedAverageRate())
+            ? number_format($this->getWeightedAverageRate(), 10)
+            : $this->getWeightedAverageRate();
 
-        $xml->writeElement('bsrate', $bsrate);
-        $xml->writeElement('warate', $warate);
+        $xml->writeElement('bsrate', $bsRate);
+        $xml->writeElement('warate', $waRate);
 
         $xml->endElement(); //csnentity
     }

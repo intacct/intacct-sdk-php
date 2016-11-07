@@ -135,5 +135,4 @@ class ApPaymentRequestItem
 
         $xml->endElement(); //paymentrequestitem
     }
-
 }

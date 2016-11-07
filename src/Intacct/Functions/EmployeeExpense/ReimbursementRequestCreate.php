@@ -71,7 +71,9 @@ class ReimbursementRequestCreate extends AbstractReimbursementRequest
             }
             $xml->endElement(); //eppaymentrequestitems
         } else {
-            throw new InvalidArgumentException('EE Reimbursement Request must have at least 1 transaction to apply against');
+            throw new InvalidArgumentException(
+                'EE Reimbursement Request must have at least 1 transaction to apply against'
+            );
         }
 
         $xml->writeElement('documentnumber', $this->getDocumentNo());
