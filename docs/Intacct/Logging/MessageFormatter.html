@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Logging\MessageFormatter | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Logging_MessageFormatter" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../Intacct/Logging.html">Logging</a></li>
+    
+                <li>MessageFormatter</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            MessageFormatter
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>MessageFormatter</strong>        extends <abbr title="GuzzleHttp\MessageFormatter">MessageFormatter</abbr>
+</p>
+
+        
+    
+
+    
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $template = self::CLF)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_format">format</a>(<abbr title="Psr\Http\Message\RequestInterface">RequestInterface</abbr> $request, <abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr> $response = null, <a target="_blank" href="http://php.net/Exception">Exception</a> $error = null)
+        
+                                            <p>Returns a formatted message string.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line         line 58</div>
+        <code>                    
+    <strong>__construct</strong>(string $template = self::CLF)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                    <p>Formats log messages using variable substitutions for requests, responses,
+and other transactional data.</p>
+
+<p>The following variable substitutions are supported:</p>
+
+<ul>
+<li><code>{request}</code> Full HTTP request message</li>
+<li><code>{response}</code> Full HTTP response message</li>
+<li><code>{ts}</code> ISO 8601 date in GMT</li>
+<li><code>{date_iso_8601}</code> ISO 8601 date in GMT</li>
+<li><code>{date_common_log}</code> Apache common log date using the configured timezone.</li>
+<li><code>{host}</code> Host of the request</li>
+<li><code>{method}</code> Method of the request</li>
+<li><code>{uri}</code> URI of the request</li>
+<li><code>{host}</code> Host of the request</li>
+<li><code>{version}</code> Protocol version</li>
+<li><code>{target}</code> Request target of the request (path + query + fragment)</li>
+<li><code>{hostname}</code> Hostname of the machine that sent the request</li>
+<li><code>{code}</code> Status code of the response (if available)</li>
+<li><code>{phrase}</code> Reason phrase of the response  (if available)</li>
+<li><code>{error}</code> Any error messages (if available)</li>
+<li><code>{req_header_*}</code> Replace <code>*</code> with the lowercased name of a request header to add to the message</li>
+<li><code>{res_header_*}</code> Replace <code>*</code> with the lowercased name of a response header to add to the message</li>
+<li><code>{req_headers}</code> Request headers</li>
+<li><code>{res_headers}</code> Response headers</li>
+<li><code>{req_body}</code> Request body</li>
+<li><code>{res_body}</code> Response body</li>
+</ul>
+</p>            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$template</td>
+                <td>Log message template</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_format">
+        <div class="location">at line         line 72</div>
+        <code>                    string
+    <strong>format</strong>(<abbr title="Psr\Http\Message\RequestInterface">RequestInterface</abbr> $request, <abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr> $response = null, <a target="_blank" href="http://php.net/Exception">Exception</a> $error = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a formatted message string.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Psr\Http\Message\RequestInterface">RequestInterface</abbr></td>
+                <td>$request</td>
+                <td>Request that was sent</td>
+            </tr>
+                    <tr>
+                <td><abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></td>
+                <td>$response</td>
+                <td>Response that was received</td>
+            </tr>
+                    <tr>
+                <td><a target="_blank" href="http://php.net/Exception">Exception</a></td>
+                <td>$error</td>
+                <td>Exception that was received</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
