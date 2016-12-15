@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/Intacct/intacct-sdk-php.svg?branch=master)](https://travis-ci.org/Intacct/intacct-sdk-php)
 
-Please note the Intacct SDK for PHP is actively being developed and should **not** be used in a production environment.
-
 If you would like to get involved please fork the repository and submit a pull request.
 
 ## Resources
@@ -31,7 +29,7 @@ Specify the Intacct SDK for PHP as a dependency in your project's composer.json 
 ```json
 {
     "require": {
-        "intacct/intacct-sdk-php": "v0.*"
+        "intacct/intacct-sdk-php": "v1.*"
     }
 }
 ```
