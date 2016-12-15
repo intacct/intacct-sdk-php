@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Functions\CashManagement\ChargeCardTransactionReverse | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Functions_CashManagement_ChargeCardTransactionReverse" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../../Intacct/Functions.html">Functions</a></li>
+                                        <li><a href="../../../Intacct/Functions/CashManagement.html">CashManagement</a></li>
+    
+                <li>ChargeCardTransactionReverse</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            ChargeCardTransactionReverse
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>ChargeCardTransactionReverse</strong>        extends <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Reverse an existing CM charge card transaction record</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+            </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getControlId">getControlId</a>()
+        
+                                            <p>Get control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setControlId">setControlId</a>($controlId = null)
+        
+                                            <p>Set control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $controlId = null)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeXml">writeXml</a>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        
+                                            <p>Write the function block XML</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCustomFields">getCustomFields</a>()
+        
+                                            <p>Get custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setCustomFields">setCustomFields</a>(array $customFields)
+        
+                                            <p>Set custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRecordNo">getRecordNo</a>()
+        
+                                            <p>Get record number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getRecordNo"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRecordNo">setRecordNo</a>(int $recordNo)
+        
+                                            <p>Set record number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setRecordNo"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getChargeCardId">getChargeCardId</a>()
+        
+                                            <p>Get charge card ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getChargeCardId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setChargeCardId">setChargeCardId</a>(string $chargeCardId)
+        
+                                            <p>Set charge card ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setChargeCardId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTransactionDate">getTransactionDate</a>()
+        
+                                            <p>Get transaction date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getTransactionDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTransactionDate">setTransactionDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $transactionDate)
+        
+                                            <p>Set transaction date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setTransactionDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getReferenceNumber">getReferenceNumber</a>()
+        
+                                            <p>Get reference number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getReferenceNumber"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setReferenceNumber">setReferenceNumber</a>(string $referenceNumber)
+        
+                                            <p>Set reference number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setReferenceNumber"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPayee">getPayee</a>()
+        
+                                            <p>Get payee</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getPayee"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPayee">setPayee</a>(string $payee)
+        
+                                            <p>Set payee</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setPayee"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDescription">getDescription</a>()
+        
+                                            <p>Get description</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getDescription"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setDescription">setDescription</a>(string $description)
+        
+                                            <p>Set description</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setDescription"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAttachmentsId">getAttachmentsId</a>()
+        
+                                            <p>Get attachments ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getAttachmentsId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAttachmentsId">setAttachmentsId</a>(string $attachmentsId)
+        
+                                            <p>Set attachments ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setAttachmentsId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTransactionCurrency">getTransactionCurrency</a>()
+        
+                                            <p>Get transaction currency</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getTransactionCurrency"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTransactionCurrency">setTransactionCurrency</a>(string $transactionCurrency)
+        
+                                            <p>Set transaction currency</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setTransactionCurrency"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExchangeRateDate">getExchangeRateDate</a>()
+        
+                                            <p>Get exchange rate date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setExchangeRateDate">setExchangeRateDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $exchangeRateDate)
+        
+                                            <p>Set exchange rate date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    float
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExchangeRateValue">getExchangeRateValue</a>()
+        
+                                            <p>Get exchange rate value</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateValue"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setExchangeRateValue">setExchangeRateValue</a>(float $exchangeRateValue)
+        
+                                            <p>Set exchange rate value</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateValue"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExchangeRateType">getExchangeRateType</a>()
+        
+                                            <p>Get exchange rate type</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateType"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setExchangeRateType">setExchangeRateType</a>(string $exchangeRateType)
+        
+                                            <p>Set exchange rate type</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateType"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[]
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLines">getLines</a>()
+        
+                                            <p>Get transaction lines</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getLines"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setLines">setLines</a>(<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[] $lines)
+        
+                                            <p>Set transaction lines</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setLines"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getReverseDate">getReverseDate</a>()
+        
+                                            <p>Get reverse date</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setReverseDate">setReverseDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $reverseDate)
+        
+                                            <p>Set reverse date</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMemo">getMemo</a>()
+        
+                                            <p>Get memo</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setMemo">setMemo</a>(string $memo)
+        
+                                            <p>Set memo</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 35</div>
+        <code>                    
+    <strong>getControlId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get control ID</p>                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 46</div>
+        <code>                    
+    <strong>setControlId</strong>($controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set control ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$controlId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 67</div>
+        <code>                    
+    <strong>__construct</strong>(string $controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controlId</td>
+                <td>Control ID, default=random UUID</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeXml">
+        <div class="location">at line         line 82</div>
+        <code>                    
+    <strong>writeXml</strong>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Write the function block XML</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a></td>
+                <td>$xml</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 33</div>
+        <code>                    array
+    <strong>getCustomFields</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get custom fields</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 43</div>
+        <code>                    
+    <strong>setCustomFields</strong>(array $customFields)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set custom fields</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$customFields</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getRecordNo"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 70</div>
+        <code>                    int
+    <strong>getRecordNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get record number</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setRecordNo"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 80</div>
+        <code>                    
+    <strong>setRecordNo</strong>(int $recordNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set record number</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$recordNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getChargeCardId">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getChargeCardId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 90</div>
+        <code>                    string
+    <strong>getChargeCardId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get charge card ID</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setChargeCardId">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setChargeCardId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 100</div>
+        <code>                    
+    <strong>setChargeCardId</strong>(string $chargeCardId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set charge card ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$chargeCardId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTransactionDate">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getTransactionDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 110</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getTransactionDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get transaction date</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTransactionDate">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setTransactionDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 120</div>
+        <code>                    
+    <strong>setTransactionDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $transactionDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set transaction date</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$transactionDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getReferenceNumber">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getReferenceNumber"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 130</div>
+        <code>                    string
+    <strong>getReferenceNumber</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get reference number</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setReferenceNumber">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setReferenceNumber"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 140</div>
+        <code>                    
+    <strong>setReferenceNumber</strong>(string $referenceNumber)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set reference number</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$referenceNumber</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPayee">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getPayee"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 150</div>
+        <code>                    string
+    <strong>getPayee</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get payee</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPayee">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setPayee"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 160</div>
+        <code>                    
+    <strong>setPayee</strong>(string $payee)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set payee</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$payee</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDescription">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getDescription"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 170</div>
+        <code>                    string
+    <strong>getDescription</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get description</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDescription">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setDescription"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 180</div>
+        <code>                    
+    <strong>setDescription</strong>(string $description)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set description</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$description</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAttachmentsId">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getAttachmentsId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 190</div>
+        <code>                    string
+    <strong>getAttachmentsId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get attachments ID</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAttachmentsId">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setAttachmentsId"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 200</div>
+        <code>                    
+    <strong>setAttachmentsId</strong>(string $attachmentsId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set attachments ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$attachmentsId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTransactionCurrency">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getTransactionCurrency"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 210</div>
+        <code>                    string
+    <strong>getTransactionCurrency</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get transaction currency</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTransactionCurrency">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setTransactionCurrency"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 220</div>
+        <code>                    
+    <strong>setTransactionCurrency</strong>(string $transactionCurrency)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set transaction currency</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$transactionCurrency</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExchangeRateDate">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 230</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getExchangeRateDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get exchange rate date</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setExchangeRateDate">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateDate"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 240</div>
+        <code>                    
+    <strong>setExchangeRateDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $exchangeRateDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set exchange rate date</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$exchangeRateDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExchangeRateValue">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateValue"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 250</div>
+        <code>                    float
+    <strong>getExchangeRateValue</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get exchange rate value</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>float</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setExchangeRateValue">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateValue"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 260</div>
+        <code>                    
+    <strong>setExchangeRateValue</strong>(float $exchangeRateValue)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set exchange rate value</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>float</td>
+                <td>$exchangeRateValue</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExchangeRateType">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getExchangeRateType"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 270</div>
+        <code>                    string
+    <strong>getExchangeRateType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get exchange rate type</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setExchangeRateType">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setExchangeRateType"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 280</div>
+        <code>                    
+    <strong>setExchangeRateType</strong>(string $exchangeRateType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set exchange rate type</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$exchangeRateType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLines">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_getLines"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 290</div>
+        <code>                    <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[]
+    <strong>getLines</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get transaction lines</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[]</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setLines">
+        <div class="location">in <a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransaction.html#method_setLines"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransaction">AbstractChargeCardTransaction</abbr></a> at line         line 300</div>
+        <code>                    
+    <strong>setLines</strong>(<a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[] $lines)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set transaction lines</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Functions/CashManagement/AbstractChargeCardTransactionLine.html"><abbr title="Intacct\Functions\CashManagement\AbstractChargeCardTransactionLine">AbstractChargeCardTransactionLine</abbr></a>[]</td>
+                <td>$lines</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getReverseDate">
+        <div class="location">at line         line 41</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getReverseDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get reverse date</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setReverseDate">
+        <div class="location">at line         line 51</div>
+        <code>                    
+    <strong>setReverseDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $reverseDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set reverse date</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$reverseDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMemo">
+        <div class="location">at line         line 61</div>
+        <code>                    string
+    <strong>getMemo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get memo</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setMemo">
+        <div class="location">at line         line 71</div>
+        <code>                    
+    <strong>setMemo</strong>(string $memo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set memo</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$memo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

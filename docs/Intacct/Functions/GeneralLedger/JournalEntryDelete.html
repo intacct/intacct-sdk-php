@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Functions\GeneralLedger\JournalEntryDelete | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Functions_GeneralLedger_JournalEntryDelete" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../../Intacct/Functions.html">Functions</a></li>
+                                        <li><a href="../../../Intacct/Functions/GeneralLedger.html">GeneralLedger</a></li>
+    
+                <li>JournalEntryDelete</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            JournalEntryDelete
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>JournalEntryDelete</strong>        extends <a href="../../../Intacct/Functions/GeneralLedger/AbstractJournalEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractJournalEntry">AbstractJournalEntry</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Delete an existing journal entry record</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+            </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getControlId">getControlId</a>()
+        
+                                            <p>Get control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setControlId">setControlId</a>($controlId = null)
+        
+                                            <p>Set control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $controlId = null)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeXml">writeXml</a>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        
+                                            <p>Write the function block XML</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCustomFields">getCustomFields</a>()
+        
+                                            <p>Get custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setCustomFields">setCustomFields</a>(array $customFields)
+        
+                                            <p>Set custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRecordNo">getRecordNo</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getRecordNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRecordNo">setRecordNo</a>(int|string $recordNo)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setRecordNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getJournalSymbol">getJournalSymbol</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getJournalSymbol"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setJournalSymbol">setJournalSymbol</a>(string $journalSymbol)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setJournalSymbol"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPostingDate">getPostingDate</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getPostingDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPostingDate">setPostingDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $postingDate)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setPostingDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getReverseDate">getReverseDate</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getReverseDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setReverseDate">setReverseDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $reverseDate)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setReverseDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDescription">getDescription</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getDescription"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setDescription">setDescription</a>(string $description)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setDescription"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHistoryComment">getHistoryComment</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getHistoryComment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHistoryComment">setHistoryComment</a>(string $historyComment)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setHistoryComment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getReferenceNumber">getReferenceNumber</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getReferenceNumber"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setReferenceNumber">setReferenceNumber</a>(string $referenceNumber)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setReferenceNumber"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAttachmentsId">getAttachmentsId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getAttachmentsId"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAttachmentsId">setAttachmentsId</a>(string $attachmentsId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setAttachmentsId"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAction">getAction</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getAction"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAction">setAction</a>(string $action)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setAction"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[]
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLines">getLines</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getLines"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setLines">setLines</a>(<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[] $lines)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setLines"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSourceEntityId">getSourceEntityId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractJournalEntry.html#method_getSourceEntityId"><abbr title="Intacct\Functions\GeneralLedger\AbstractJournalEntry">AbstractJournalEntry</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setSourceEntityId">setSourceEntityId</a>(string $sourceEntityId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractJournalEntry.html#method_setSourceEntityId"><abbr title="Intacct\Functions\GeneralLedger\AbstractJournalEntry">AbstractJournalEntry</abbr></a></small></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 35</div>
+        <code>                    
+    <strong>getControlId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get control ID</p>                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 46</div>
+        <code>                    
+    <strong>setControlId</strong>($controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set control ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$controlId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 67</div>
+        <code>                    
+    <strong>__construct</strong>(string $controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controlId</td>
+                <td>Control ID, default=random UUID</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeXml">
+        <div class="location">at line         line 35</div>
+        <code>                    
+    <strong>writeXml</strong>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Write the function block XML</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a></td>
+                <td>$xml</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 33</div>
+        <code>                    array
+    <strong>getCustomFields</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get custom fields</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 43</div>
+        <code>                    
+    <strong>setCustomFields</strong>(array $customFields)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set custom fields</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$customFields</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getRecordNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 62</div>
+        <code>                    int|string
+    <strong>getRecordNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setRecordNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 70</div>
+        <code>                    
+    <strong>setRecordNo</strong>(int|string $recordNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int|string</td>
+                <td>$recordNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getJournalSymbol">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getJournalSymbol"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 78</div>
+        <code>                    string
+    <strong>getJournalSymbol</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setJournalSymbol">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setJournalSymbol"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 86</div>
+        <code>                    
+    <strong>setJournalSymbol</strong>(string $journalSymbol)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$journalSymbol</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPostingDate">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getPostingDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 94</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getPostingDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPostingDate">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setPostingDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 102</div>
+        <code>                    
+    <strong>setPostingDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $postingDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$postingDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getReverseDate">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getReverseDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 110</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getReverseDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setReverseDate">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setReverseDate"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 118</div>
+        <code>                    
+    <strong>setReverseDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $reverseDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$reverseDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDescription">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getDescription"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 126</div>
+        <code>                    string
+    <strong>getDescription</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDescription">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setDescription"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 134</div>
+        <code>                    
+    <strong>setDescription</strong>(string $description)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$description</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHistoryComment">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getHistoryComment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 142</div>
+        <code>                    string
+    <strong>getHistoryComment</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHistoryComment">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setHistoryComment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 150</div>
+        <code>                    
+    <strong>setHistoryComment</strong>(string $historyComment)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$historyComment</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getReferenceNumber">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getReferenceNumber"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 158</div>
+        <code>                    string
+    <strong>getReferenceNumber</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setReferenceNumber">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setReferenceNumber"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 166</div>
+        <code>                    
+    <strong>setReferenceNumber</strong>(string $referenceNumber)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$referenceNumber</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAttachmentsId">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getAttachmentsId"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 174</div>
+        <code>                    string
+    <strong>getAttachmentsId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAttachmentsId">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setAttachmentsId"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 182</div>
+        <code>                    
+    <strong>setAttachmentsId</strong>(string $attachmentsId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$attachmentsId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAction">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getAction"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 190</div>
+        <code>                    string
+    <strong>getAction</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAction">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setAction"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 198</div>
+        <code>                    
+    <strong>setAction</strong>(string $action)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$action</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLines">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_getLines"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 206</div>
+        <code>                    <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[]
+    <strong>getLines</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[]</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setLines">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlBatch.html#method_setLines"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlBatch">AbstractGlBatch</abbr></a> at line         line 214</div>
+        <code>                    
+    <strong>setLines</strong>(<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[] $lines)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Functions/GeneralLedger/AbstractGlEntry.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlEntry">AbstractGlEntry</abbr></a>[]</td>
+                <td>$lines</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSourceEntityId">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractJournalEntry.html#method_getSourceEntityId"><abbr title="Intacct\Functions\GeneralLedger\AbstractJournalEntry">AbstractJournalEntry</abbr></a> at line         line 29</div>
+        <code>                    string
+    <strong>getSourceEntityId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setSourceEntityId">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractJournalEntry.html#method_setSourceEntityId"><abbr title="Intacct\Functions\GeneralLedger\AbstractJournalEntry">AbstractJournalEntry</abbr></a> at line         line 37</div>
+        <code>                    
+    <strong>setSourceEntityId</strong>(string $sourceEntityId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$sourceEntityId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

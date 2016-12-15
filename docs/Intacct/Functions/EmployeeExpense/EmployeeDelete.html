@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Functions\EmployeeExpense\EmployeeDelete | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Functions_EmployeeExpense_EmployeeDelete" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../../Intacct/Functions.html">Functions</a></li>
+                                        <li><a href="../../../Intacct/Functions/EmployeeExpense.html">EmployeeExpense</a></li>
+    
+                <li>EmployeeDelete</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            EmployeeDelete
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>EmployeeDelete</strong>        extends <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Delete an existing employee record</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+            </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getControlId">getControlId</a>()
+        
+                                            <p>Get control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setControlId">setControlId</a>($controlId = null)
+        
+                                            <p>Set control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $controlId = null)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeXml">writeXml</a>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        
+                                            <p>Write the function block XML</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCustomFields">getCustomFields</a>()
+        
+                                            <p>Get custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setCustomFields">setCustomFields</a>(array $customFields)
+        
+                                            <p>Set custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEmployeeId">getEmployeeId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEmployeeId">setEmployeeId</a>(string $employeeId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContactName">getContactName</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getContactName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setContactName">setContactName</a>(string $contactName)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setContactName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getStartDate">getStartDate</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getStartDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setStartDate">setStartDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $startDate)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setStartDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTitle">getTitle</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getTitle"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTitle">setTitle</a>(string $title)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setTitle"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSsn">getSsn</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getSsn"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setSsn">setSsn</a>(string $ssn)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setSsn"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEmployeeType">getEmployeeType</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEmployeeType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEmployeeType">setEmployeeType</a>(string $employeeType)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEmployeeType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isActive">isActive</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isActive"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setActive">setActive</a>(boolean $active)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setActive"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isPlaceholderResource">isPlaceholderResource</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isPlaceholderResource"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPlaceholderResource">setPlaceholderResource</a>(boolean $placeholderResource)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPlaceholderResource"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBirthDate">getBirthDate</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getBirthDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setBirthDate">setBirthDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $birthDate)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setBirthDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEndDate">getEndDate</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEndDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEndDate">setEndDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $endDate)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEndDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTerminationType">getTerminationType</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getTerminationType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTerminationType">setTerminationType</a>(string $terminationType)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setTerminationType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getManagerEmployeeId">getManagerEmployeeId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getManagerEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setManagerEmployeeId">setManagerEmployeeId</a>(string $managerEmployeeId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setManagerEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getGender">getGender</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getGender"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setGender">setGender</a>(string $gender)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setGender"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDepartmentId">getDepartmentId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getDepartmentId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setDepartmentId">setDepartmentId</a>(string $departmentId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setDepartmentId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLocationId">getLocationId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getLocationId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setLocationId">setLocationId</a>(string $locationId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setLocationId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getClassId">getClassId</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getClassId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setClassId">setClassId</a>(string $classId)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setClassId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDefaultCurrency">getDefaultCurrency</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getDefaultCurrency"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setDefaultCurrency">setDefaultCurrency</a>(string $defaultCurrency)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setDefaultCurrency"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEarningTypeName">getEarningTypeName</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEarningTypeName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEarningTypeName">setEarningTypeName</a>(string $earningTypeName)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEarningTypeName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isPostActualCost">isPostActualCost</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isPostActualCost"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPostActualCost">setPostActualCost</a>(boolean $postActualCost)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPostActualCost"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getForm1099Name">getForm1099Name</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Name"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setForm1099Name">setForm1099Name</a>(string $form1099Name)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Name"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getForm1099Type">getForm1099Type</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Type"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setForm1099Type">setForm1099Type</a>(string $form1099Type)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Type"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getForm1099Box">getForm1099Box</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Box"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setForm1099Box">setForm1099Box</a>(int|string $form1099Box)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Box"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAttachmentFolderName">getAttachmentFolderName</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAttachmentFolderName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAttachmentFolderName">setAttachmentFolderName</a>(string $attachmentFolderName)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAttachmentFolderName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPreferredPaymentMethod">getPreferredPaymentMethod</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getPreferredPaymentMethod"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPreferredPaymentMethod">setPreferredPaymentMethod</a>(string $preferredPaymentMethod)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPreferredPaymentMethod"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isSendAutomaticPaymentNotification">isSendAutomaticPaymentNotification</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isSendAutomaticPaymentNotification"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setSendAutomaticPaymentNotification">setSendAutomaticPaymentNotification</a>(boolean $sendAutomaticPaymentNotification)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setSendAutomaticPaymentNotification"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isMergePaymentRequests">isMergePaymentRequests</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isMergePaymentRequests"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setMergePaymentRequests">setMergePaymentRequests</a>(boolean $mergePaymentRequests)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setMergePaymentRequests"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isAchEnabled">isAchEnabled</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isAchEnabled"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAchEnabled">setAchEnabled</a>(boolean $achEnabled)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchEnabled"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAchBankRoutingNo">getAchBankRoutingNo</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankRoutingNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAchBankRoutingNo">setAchBankRoutingNo</a>(string $achBankRoutingNo)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankRoutingNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAchBankAccountNo">getAchBankAccountNo</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAchBankAccountNo">setAchBankAccountNo</a>(string $achBankAccountNo)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAchBankAccountType">getAchBankAccountType</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAchBankAccountType">setAchBankAccountType</a>(string $achBankAccountType)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAchBankAccountClass">getAchBankAccountClass</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountClass"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAchBankAccountClass">setAchBankAccountClass</a>(string $achBankAccountClass)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountClass"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a></small></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 35</div>
+        <code>                    
+    <strong>getControlId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get control ID</p>                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 46</div>
+        <code>                    
+    <strong>setControlId</strong>($controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set control ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$controlId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 67</div>
+        <code>                    
+    <strong>__construct</strong>(string $controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controlId</td>
+                <td>Control ID, default=random UUID</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeXml">
+        <div class="location">at line         line 35</div>
+        <code>                    
+    <strong>writeXml</strong>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Write the function block XML</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a></td>
+                <td>$xml</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 33</div>
+        <code>                    array
+    <strong>getCustomFields</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get custom fields</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 43</div>
+        <code>                    
+    <strong>setCustomFields</strong>(array $customFields)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set custom fields</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$customFields</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEmployeeId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 125</div>
+        <code>                    string
+    <strong>getEmployeeId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEmployeeId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 133</div>
+        <code>                    
+    <strong>setEmployeeId</strong>(string $employeeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$employeeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContactName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getContactName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 141</div>
+        <code>                    string
+    <strong>getContactName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setContactName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setContactName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 149</div>
+        <code>                    
+    <strong>setContactName</strong>(string $contactName)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$contactName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getStartDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getStartDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 157</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getStartDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setStartDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setStartDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 165</div>
+        <code>                    
+    <strong>setStartDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $startDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$startDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTitle">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getTitle"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 173</div>
+        <code>                    string
+    <strong>getTitle</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTitle">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setTitle"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 181</div>
+        <code>                    
+    <strong>setTitle</strong>(string $title)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$title</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSsn">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getSsn"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 189</div>
+        <code>                    string
+    <strong>getSsn</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setSsn">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setSsn"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 197</div>
+        <code>                    
+    <strong>setSsn</strong>(string $ssn)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$ssn</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEmployeeType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEmployeeType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 205</div>
+        <code>                    string
+    <strong>getEmployeeType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEmployeeType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEmployeeType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 213</div>
+        <code>                    
+    <strong>setEmployeeType</strong>(string $employeeType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$employeeType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isActive">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isActive"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 221</div>
+        <code>                    boolean
+    <strong>isActive</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setActive">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setActive"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 229</div>
+        <code>                    
+    <strong>setActive</strong>(boolean $active)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$active</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isPlaceholderResource">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isPlaceholderResource"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 237</div>
+        <code>                    boolean
+    <strong>isPlaceholderResource</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPlaceholderResource">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPlaceholderResource"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 245</div>
+        <code>                    
+    <strong>setPlaceholderResource</strong>(boolean $placeholderResource)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$placeholderResource</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBirthDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getBirthDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 253</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getBirthDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setBirthDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setBirthDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 261</div>
+        <code>                    
+    <strong>setBirthDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $birthDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$birthDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEndDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEndDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 269</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getEndDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEndDate">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEndDate"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 277</div>
+        <code>                    
+    <strong>setEndDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $endDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$endDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTerminationType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getTerminationType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 285</div>
+        <code>                    string
+    <strong>getTerminationType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTerminationType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setTerminationType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 293</div>
+        <code>                    
+    <strong>setTerminationType</strong>(string $terminationType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$terminationType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getManagerEmployeeId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getManagerEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 301</div>
+        <code>                    string
+    <strong>getManagerEmployeeId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setManagerEmployeeId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setManagerEmployeeId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 309</div>
+        <code>                    
+    <strong>setManagerEmployeeId</strong>(string $managerEmployeeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$managerEmployeeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getGender">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getGender"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 317</div>
+        <code>                    string
+    <strong>getGender</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setGender">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setGender"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 325</div>
+        <code>                    
+    <strong>setGender</strong>(string $gender)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$gender</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDepartmentId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getDepartmentId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 333</div>
+        <code>                    string
+    <strong>getDepartmentId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDepartmentId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setDepartmentId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 341</div>
+        <code>                    
+    <strong>setDepartmentId</strong>(string $departmentId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$departmentId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLocationId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getLocationId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 349</div>
+        <code>                    string
+    <strong>getLocationId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setLocationId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setLocationId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 357</div>
+        <code>                    
+    <strong>setLocationId</strong>(string $locationId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$locationId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getClassId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getClassId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 365</div>
+        <code>                    string
+    <strong>getClassId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setClassId">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setClassId"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 373</div>
+        <code>                    
+    <strong>setClassId</strong>(string $classId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$classId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDefaultCurrency">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getDefaultCurrency"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 381</div>
+        <code>                    string
+    <strong>getDefaultCurrency</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDefaultCurrency">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setDefaultCurrency"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 389</div>
+        <code>                    
+    <strong>setDefaultCurrency</strong>(string $defaultCurrency)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$defaultCurrency</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEarningTypeName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getEarningTypeName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 397</div>
+        <code>                    string
+    <strong>getEarningTypeName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEarningTypeName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setEarningTypeName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 405</div>
+        <code>                    
+    <strong>setEarningTypeName</strong>(string $earningTypeName)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$earningTypeName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isPostActualCost">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isPostActualCost"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 413</div>
+        <code>                    boolean
+    <strong>isPostActualCost</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPostActualCost">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPostActualCost"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 421</div>
+        <code>                    
+    <strong>setPostActualCost</strong>(boolean $postActualCost)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$postActualCost</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getForm1099Name">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Name"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 429</div>
+        <code>                    string
+    <strong>getForm1099Name</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setForm1099Name">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Name"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 437</div>
+        <code>                    
+    <strong>setForm1099Name</strong>(string $form1099Name)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$form1099Name</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getForm1099Type">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Type"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 445</div>
+        <code>                    string
+    <strong>getForm1099Type</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setForm1099Type">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Type"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 453</div>
+        <code>                    
+    <strong>setForm1099Type</strong>(string $form1099Type)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$form1099Type</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getForm1099Box">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getForm1099Box"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 461</div>
+        <code>                    int|string
+    <strong>getForm1099Box</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setForm1099Box">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setForm1099Box"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 469</div>
+        <code>                    
+    <strong>setForm1099Box</strong>(int|string $form1099Box)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int|string</td>
+                <td>$form1099Box</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAttachmentFolderName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAttachmentFolderName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 477</div>
+        <code>                    string
+    <strong>getAttachmentFolderName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAttachmentFolderName">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAttachmentFolderName"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 485</div>
+        <code>                    
+    <strong>setAttachmentFolderName</strong>(string $attachmentFolderName)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$attachmentFolderName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPreferredPaymentMethod">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getPreferredPaymentMethod"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 493</div>
+        <code>                    string
+    <strong>getPreferredPaymentMethod</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPreferredPaymentMethod">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setPreferredPaymentMethod"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 501</div>
+        <code>                    
+    <strong>setPreferredPaymentMethod</strong>(string $preferredPaymentMethod)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$preferredPaymentMethod</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isSendAutomaticPaymentNotification">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isSendAutomaticPaymentNotification"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 509</div>
+        <code>                    boolean
+    <strong>isSendAutomaticPaymentNotification</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setSendAutomaticPaymentNotification">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setSendAutomaticPaymentNotification"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 517</div>
+        <code>                    
+    <strong>setSendAutomaticPaymentNotification</strong>(boolean $sendAutomaticPaymentNotification)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$sendAutomaticPaymentNotification</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isMergePaymentRequests">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isMergePaymentRequests"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 527</div>
+        <code>                    boolean
+    <strong>isMergePaymentRequests</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setMergePaymentRequests">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setMergePaymentRequests"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 535</div>
+        <code>                    
+    <strong>setMergePaymentRequests</strong>(boolean $mergePaymentRequests)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$mergePaymentRequests</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isAchEnabled">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_isAchEnabled"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 543</div>
+        <code>                    boolean
+    <strong>isAchEnabled</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAchEnabled">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchEnabled"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 551</div>
+        <code>                    
+    <strong>setAchEnabled</strong>(boolean $achEnabled)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$achEnabled</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAchBankRoutingNo">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankRoutingNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 559</div>
+        <code>                    string
+    <strong>getAchBankRoutingNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAchBankRoutingNo">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankRoutingNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 567</div>
+        <code>                    
+    <strong>setAchBankRoutingNo</strong>(string $achBankRoutingNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$achBankRoutingNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAchBankAccountNo">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 575</div>
+        <code>                    string
+    <strong>getAchBankAccountNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAchBankAccountNo">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountNo"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 583</div>
+        <code>                    
+    <strong>setAchBankAccountNo</strong>(string $achBankAccountNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$achBankAccountNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAchBankAccountType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 591</div>
+        <code>                    string
+    <strong>getAchBankAccountType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAchBankAccountType">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountType"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 599</div>
+        <code>                    
+    <strong>setAchBankAccountType</strong>(string $achBankAccountType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$achBankAccountType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAchBankAccountClass">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_getAchBankAccountClass"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 607</div>
+        <code>                    string
+    <strong>getAchBankAccountClass</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAchBankAccountClass">
+        <div class="location">in <a href="../../../Intacct/Functions/EmployeeExpense/AbstractEmployee.html#method_setAchBankAccountClass"><abbr title="Intacct\Functions\EmployeeExpense\AbstractEmployee">AbstractEmployee</abbr></a> at line         line 615</div>
+        <code>                    
+    <strong>setAchBankAccountClass</strong>(string $achBankAccountClass)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$achBankAccountClass</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
