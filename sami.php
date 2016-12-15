@@ -26,6 +26,6 @@ $iterator = Finder::create()
 
 return new Sami($iterator, [
     'title' => 'Intacct SDK for PHP',
-    'build_dir' => './build/docs',
+    'build_dir' => './docs',
     'cache_dir' => './cache/docs',
 ]);

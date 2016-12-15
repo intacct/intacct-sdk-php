@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Functions\GeneralLedger\StatisticalAccountCreate | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Functions_GeneralLedger_StatisticalAccountCreate" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../../Intacct/Functions.html">Functions</a></li>
+                                        <li><a href="../../../Intacct/Functions/GeneralLedger.html">GeneralLedger</a></li>
+    
+                <li>StatisticalAccountCreate</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            StatisticalAccountCreate
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>StatisticalAccountCreate</strong>        extends <a href="../../../Intacct/Functions/GeneralLedger/AbstractStatisticalAccount.html"><abbr title="Intacct\Functions\GeneralLedger\AbstractStatisticalAccount">AbstractStatisticalAccount</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Create a new statistical account record</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+            </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getControlId">getControlId</a>()
+        
+                                            <p>Get control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setControlId">setControlId</a>($controlId = null)
+        
+                                            <p>Set control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $controlId = null)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeXml">writeXml</a>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        
+                                            <p>Write the function block XML</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCustomFields">getCustomFields</a>()
+        
+                                            <p>Get custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setCustomFields">setCustomFields</a>(array $customFields)
+        
+                                            <p>Set custom fields</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccountNo">getAccountNo</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getAccountNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAccountNo">setAccountNo</a>(string $accountNo)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setAccountNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTitle">getTitle</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getTitle"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTitle">setTitle</a>(string $title)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setTitle"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSystemCategory">getSystemCategory</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getSystemCategory"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setSystemCategory">setSystemCategory</a>(string $systemCategory)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setSystemCategory"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isActive">isActive</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isActive"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setActive">setActive</a>(boolean $active)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setActive"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireDepartment">isRequireDepartment</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireDepartment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireDepartment">setRequireDepartment</a>(boolean $requireDepartment)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireDepartment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireLocation">isRequireLocation</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireLocation"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireLocation">setRequireLocation</a>(boolean $requireLocation)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireLocation"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireProject">isRequireProject</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireProject"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireProject">setRequireProject</a>(boolean $requireProject)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireProject"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireCustomer">isRequireCustomer</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireCustomer"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireCustomer">setRequireCustomer</a>(boolean $requireCustomer)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireCustomer"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireVendor">isRequireVendor</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireVendor"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireVendor">setRequireVendor</a>(boolean $requireVendor)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireVendor"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireEmployee">isRequireEmployee</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireEmployee"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireEmployee">setRequireEmployee</a>(boolean $requireEmployee)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireEmployee"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireItem">isRequireItem</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireItem"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireItem">setRequireItem</a>(boolean $requireItem)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireItem"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireClass">isRequireClass</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireClass"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireClass">setRequireClass</a>(boolean $requireClass)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireClass"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireContract">isRequireContract</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireContract"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireContract">setRequireContract</a>(boolean $requireContract)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireContract"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isRequireWarehouse">isRequireWarehouse</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireWarehouse"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRequireWarehouse">setRequireWarehouse</a>(boolean $requireWarehouse)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireWarehouse"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getReportType">getReportType</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractStatisticalAccount.html#method_getReportType"><abbr title="Intacct\Functions\GeneralLedger\AbstractStatisticalAccount">AbstractStatisticalAccount</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setReportType">setReportType</a>(string $reportType)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/GeneralLedger/AbstractStatisticalAccount.html#method_setReportType"><abbr title="Intacct\Functions\GeneralLedger\AbstractStatisticalAccount">AbstractStatisticalAccount</abbr></a></small></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 35</div>
+        <code>                    
+    <strong>getControlId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get control ID</p>                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 46</div>
+        <code>                    
+    <strong>setControlId</strong>($controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set control ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$controlId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 67</div>
+        <code>                    
+    <strong>__construct</strong>(string $controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controlId</td>
+                <td>Control ID, default=random UUID</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeXml">
+        <div class="location">at line         line 35</div>
+        <code>                    
+    <strong>writeXml</strong>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Write the function block XML</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a></td>
+                <td>$xml</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_getCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 33</div>
+        <code>                    array
+    <strong>getCustomFields</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get custom fields</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setCustomFields">
+        <div class="location">in <a href="../../../Intacct/Functions/Traits/CustomFieldsTrait.html#method_setCustomFields"><abbr title="Intacct\Functions\Traits\CustomFieldsTrait">CustomFieldsTrait</abbr></a> at line         line 43</div>
+        <code>                    
+    <strong>setCustomFields</strong>(array $customFields)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set custom fields</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$customFields</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccountNo">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getAccountNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 73</div>
+        <code>                    string
+    <strong>getAccountNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAccountNo">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setAccountNo"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 81</div>
+        <code>                    
+    <strong>setAccountNo</strong>(string $accountNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$accountNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTitle">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getTitle"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 89</div>
+        <code>                    string
+    <strong>getTitle</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTitle">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setTitle"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 97</div>
+        <code>                    
+    <strong>setTitle</strong>(string $title)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$title</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSystemCategory">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_getSystemCategory"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 105</div>
+        <code>                    string
+    <strong>getSystemCategory</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setSystemCategory">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setSystemCategory"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 113</div>
+        <code>                    
+    <strong>setSystemCategory</strong>(string $systemCategory)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$systemCategory</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isActive">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isActive"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 121</div>
+        <code>                    boolean
+    <strong>isActive</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setActive">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setActive"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 129</div>
+        <code>                    
+    <strong>setActive</strong>(boolean $active)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$active</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireDepartment">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireDepartment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 137</div>
+        <code>                    boolean
+    <strong>isRequireDepartment</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireDepartment">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireDepartment"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 145</div>
+        <code>                    
+    <strong>setRequireDepartment</strong>(boolean $requireDepartment)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireDepartment</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireLocation">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireLocation"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 153</div>
+        <code>                    boolean
+    <strong>isRequireLocation</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireLocation">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireLocation"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 161</div>
+        <code>                    
+    <strong>setRequireLocation</strong>(boolean $requireLocation)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireLocation</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireProject">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireProject"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 169</div>
+        <code>                    boolean
+    <strong>isRequireProject</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireProject">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireProject"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 177</div>
+        <code>                    
+    <strong>setRequireProject</strong>(boolean $requireProject)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireProject</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireCustomer">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireCustomer"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 185</div>
+        <code>                    boolean
+    <strong>isRequireCustomer</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireCustomer">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireCustomer"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 193</div>
+        <code>                    
+    <strong>setRequireCustomer</strong>(boolean $requireCustomer)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireCustomer</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireVendor">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireVendor"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 201</div>
+        <code>                    boolean
+    <strong>isRequireVendor</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireVendor">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireVendor"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 209</div>
+        <code>                    
+    <strong>setRequireVendor</strong>(boolean $requireVendor)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireVendor</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireEmployee">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireEmployee"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 217</div>
+        <code>                    boolean
+    <strong>isRequireEmployee</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireEmployee">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireEmployee"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 225</div>
+        <code>                    
+    <strong>setRequireEmployee</strong>(boolean $requireEmployee)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireEmployee</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireItem">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireItem"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 233</div>
+        <code>                    boolean
+    <strong>isRequireItem</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireItem">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireItem"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 241</div>
+        <code>                    
+    <strong>setRequireItem</strong>(boolean $requireItem)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireItem</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireClass">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireClass"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 249</div>
+        <code>                    boolean
+    <strong>isRequireClass</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireClass">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireClass"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 257</div>
+        <code>                    
+    <strong>setRequireClass</strong>(boolean $requireClass)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireClass</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireContract">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireContract"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 265</div>
+        <code>                    boolean
+    <strong>isRequireContract</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireContract">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireContract"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 273</div>
+        <code>                    
+    <strong>setRequireContract</strong>(boolean $requireContract)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireContract</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRequireWarehouse">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_isRequireWarehouse"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 281</div>
+        <code>                    boolean
+    <strong>isRequireWarehouse</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRequireWarehouse">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractGlAccount.html#method_setRequireWarehouse"><abbr title="Intacct\Functions\GeneralLedger\AbstractGlAccount">AbstractGlAccount</abbr></a> at line         line 289</div>
+        <code>                    
+    <strong>setRequireWarehouse</strong>(boolean $requireWarehouse)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$requireWarehouse</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getReportType">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractStatisticalAccount.html#method_getReportType"><abbr title="Intacct\Functions\GeneralLedger\AbstractStatisticalAccount">AbstractStatisticalAccount</abbr></a> at line         line 29</div>
+        <code>                    string
+    <strong>getReportType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setReportType">
+        <div class="location">in <a href="../../../Intacct/Functions/GeneralLedger/AbstractStatisticalAccount.html#method_setReportType"><abbr title="Intacct\Functions\GeneralLedger\AbstractStatisticalAccount">AbstractStatisticalAccount</abbr></a> at line         line 37</div>
+        <code>                    
+    <strong>setReportType</strong>(string $reportType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$reportType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

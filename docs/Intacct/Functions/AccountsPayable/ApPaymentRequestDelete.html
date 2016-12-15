@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Intacct\Functions\AccountsPayable\ApPaymentRequestDelete | Intacct SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Intacct_Functions_AccountsPayable_ApPaymentRequestDelete" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Intacct SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Intacct.html">Intacct</a></li>
+                                        <li><a href="../../../Intacct/Functions.html">Functions</a></li>
+                                        <li><a href="../../../Intacct/Functions/AccountsPayable.html">AccountsPayable</a></li>
+    
+                <li>ApPaymentRequestDelete</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            ApPaymentRequestDelete
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>ApPaymentRequestDelete</strong>        extends <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Delete an existing AP payment request record</p>                    </div>
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>PAYMENT_METHODS</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>PAYMENT_METHOD_CHECK</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>PAYMENT_METHOD_CASH</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>PAYMENT_METHOD_RECORD_TRANSFER</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>PAYMENT_METHOD_CHARGE_CARD</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>PAYMENT_METHOD_ACH</td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getControlId">getControlId</a>()
+        
+                                            <p>Get control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setControlId">setControlId</a>($controlId = null)
+        
+                                            <p>Set control ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $controlId = null)
+        
+                                            <p>Initializes the class with the given parameters.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_writeXml">writeXml</a>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        
+                                            <p>Write the function block XML</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRecordNo">getRecordNo</a>()
+        
+                                            <p>Get record number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getRecordNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setRecordNo">setRecordNo</a>(int|string $recordNo)
+        
+                                            <p>Set record number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setRecordNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPaymentMethod">getPaymentMethod</a>()
+        
+                                            <p>Get payment method</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getPaymentMethod"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPaymentMethod">setPaymentMethod</a>(string $paymentMethod)
+        
+                                            <p>Set payment method</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setPaymentMethod"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBankAccountId">getBankAccountId</a>()
+        
+                                            <p>Get bank account ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getBankAccountId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setBankAccountId">setBankAccountId</a>(string $bankAccountId)
+        
+                                            <p>Set bank account ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setBankAccountId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getChargeCardId">getChargeCardId</a>()
+        
+                                            <p>Get charge card ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getChargeCardId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setChargeCardId">setChargeCardId</a>(string $chargeCardId)
+        
+                                            <p>Set charge card ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setChargeCardId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getVendorId">getVendorId</a>()
+        
+                                            <p>Get vendor ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getVendorId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setVendorId">setVendorId</a>(string $vendorId)
+        
+                                            <p>Set vendor ID</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setVendorId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMergeOption">getMergeOption</a>()
+        
+                                            <p>Get merge option</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getMergeOption"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setMergeOption">setMergeOption</a>(string $mergeOption)
+        
+                                            <p>Set merge option</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setMergeOption"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_isGroupPayments">isGroupPayments</a>()
+        
+                                            <p>Get group payments</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_isGroupPayments"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setGroupPayments">setGroupPayments</a>(boolean $groupPayments)
+        
+                                            <p>Set group payments</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setGroupPayments"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPaymentDate">getPaymentDate</a>()
+        
+                                            <p>Get payment date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getPaymentDate"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setPaymentDate">setPaymentDate</a>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $paymentDate)
+        
+                                            <p>Set payment date</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setPaymentDate"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    float|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTransactionAmount">getTransactionAmount</a>()
+        
+                                            <p>Get transaction amount</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getTransactionAmount"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTransactionAmount">setTransactionAmount</a>(float|string $transactionAmount)
+        
+                                            <p>Set transaction amount</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setTransactionAmount"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDocumentNo">getDocumentNo</a>()
+        
+                                            <p>Get document number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getDocumentNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setDocumentNo">setDocumentNo</a>(string $documentNo)
+        
+                                            <p>Set document number</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setDocumentNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMemo">getMemo</a>()
+        
+                                            <p>Get memo</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getMemo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setMemo">setMemo</a>(string $memo)
+        
+                                            <p>Set memo</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setMemo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getNotificationContactName">getNotificationContactName</a>()
+        
+                                            <p>Get notification contact name</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getNotificationContactName"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setNotificationContactName">setNotificationContactName</a>(string $notificationContactName)
+        
+                                            <p>Set notification contact name</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setNotificationContactName"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[]
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getApplyToTransactions">getApplyToTransactions</a>()
+        
+                                            <p>Get apply to transactions</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getApplyToTransactions"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setApplyToTransactions">setApplyToTransactions</a>(<a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[] $applyToTransactions)
+        
+                                            <p>Set apply to transactions</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setApplyToTransactions"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a></small></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_getControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 35</div>
+        <code>                    
+    <strong>getControlId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get control ID</p>                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setControlId">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method_setControlId"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 46</div>
+        <code>                    
+    <strong>setControlId</strong>($controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set control ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$controlId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Intacct/Functions/AbstractFunction.html#method___construct"><abbr title="Intacct\Functions\AbstractFunction">AbstractFunction</abbr></a> at line         line 67</div>
+        <code>                    
+    <strong>__construct</strong>(string $controlId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Initializes the class with the given parameters.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controlId</td>
+                <td>Control ID, default=random UUID</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeXml">
+        <div class="location">at line         line 35</div>
+        <code>                    
+    <strong>writeXml</strong>(<a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a> $xml)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Write the function block XML</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Xml/XMLWriter.html"><abbr title="Intacct\Xml\XMLWriter">XMLWriter</abbr></a></td>
+                <td>$xml</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getRecordNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 96</div>
+        <code>                    int|string
+    <strong>getRecordNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get record number</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRecordNo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setRecordNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 106</div>
+        <code>                    
+    <strong>setRecordNo</strong>(int|string $recordNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set record number</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int|string</td>
+                <td>$recordNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPaymentMethod">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getPaymentMethod"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 116</div>
+        <code>                    string
+    <strong>getPaymentMethod</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get payment method</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPaymentMethod">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setPaymentMethod"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 127</div>
+        <code>                    
+    <strong>setPaymentMethod</strong>(string $paymentMethod)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set payment method</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$paymentMethod</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBankAccountId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getBankAccountId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 140</div>
+        <code>                    string
+    <strong>getBankAccountId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get bank account ID</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setBankAccountId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setBankAccountId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 150</div>
+        <code>                    
+    <strong>setBankAccountId</strong>(string $bankAccountId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set bank account ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$bankAccountId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getChargeCardId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getChargeCardId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 160</div>
+        <code>                    string
+    <strong>getChargeCardId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get charge card ID</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setChargeCardId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setChargeCardId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 170</div>
+        <code>                    
+    <strong>setChargeCardId</strong>(string $chargeCardId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set charge card ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$chargeCardId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getVendorId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getVendorId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 180</div>
+        <code>                    string
+    <strong>getVendorId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get vendor ID</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setVendorId">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setVendorId"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 190</div>
+        <code>                    
+    <strong>setVendorId</strong>(string $vendorId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set vendor ID</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$vendorId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMergeOption">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getMergeOption"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 200</div>
+        <code>                    string
+    <strong>getMergeOption</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get merge option</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setMergeOption">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setMergeOption"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 211</div>
+        <code>                    
+    <strong>setMergeOption</strong>(string $mergeOption)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set merge option</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$mergeOption</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isGroupPayments">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_isGroupPayments"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 221</div>
+        <code>                    boolean
+    <strong>isGroupPayments</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get group payments</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setGroupPayments">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setGroupPayments"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 231</div>
+        <code>                    
+    <strong>setGroupPayments</strong>(boolean $groupPayments)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set group payments</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>boolean</td>
+                <td>$groupPayments</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPaymentDate">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getPaymentDate"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 241</div>
+        <code>                    <a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a>
+    <strong>getPaymentDate</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get payment date</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setPaymentDate">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setPaymentDate"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 251</div>
+        <code>                    
+    <strong>setPaymentDate</strong>(<a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a> $paymentDate)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set payment date</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/FieldTypes/DateType.html"><abbr title="Intacct\FieldTypes\DateType">DateType</abbr></a></td>
+                <td>$paymentDate</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTransactionAmount">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getTransactionAmount"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 261</div>
+        <code>                    float|string
+    <strong>getTransactionAmount</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get transaction amount</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>float|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTransactionAmount">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setTransactionAmount"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 271</div>
+        <code>                    
+    <strong>setTransactionAmount</strong>(float|string $transactionAmount)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set transaction amount</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>float|string</td>
+                <td>$transactionAmount</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDocumentNo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getDocumentNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 281</div>
+        <code>                    string
+    <strong>getDocumentNo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get document number</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDocumentNo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setDocumentNo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 291</div>
+        <code>                    
+    <strong>setDocumentNo</strong>(string $documentNo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set document number</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$documentNo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMemo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getMemo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 301</div>
+        <code>                    string
+    <strong>getMemo</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get memo</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setMemo">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setMemo"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 311</div>
+        <code>                    
+    <strong>setMemo</strong>(string $memo)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set memo</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$memo</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getNotificationContactName">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getNotificationContactName"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 321</div>
+        <code>                    string
+    <strong>getNotificationContactName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get notification contact name</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setNotificationContactName">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setNotificationContactName"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 331</div>
+        <code>                    
+    <strong>setNotificationContactName</strong>(string $notificationContactName)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set notification contact name</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$notificationContactName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getApplyToTransactions">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_getApplyToTransactions"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 341</div>
+        <code>                    <a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[]
+    <strong>getApplyToTransactions</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get apply to transactions</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[]</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setApplyToTransactions">
+        <div class="location">in <a href="../../../Intacct/Functions/AccountsPayable/AbstractApPaymentRequest.html#method_setApplyToTransactions"><abbr title="Intacct\Functions\AccountsPayable\AbstractApPaymentRequest">AbstractApPaymentRequest</abbr></a> at line         line 351</div>
+        <code>                    
+    <strong>setApplyToTransactions</strong>(<a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[] $applyToTransactions)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set apply to transactions</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Intacct/Functions/AccountsPayable/ApPaymentRequestItem.html"><abbr title="Intacct\Functions\AccountsPayable\ApPaymentRequestItem">ApPaymentRequestItem</abbr></a>[]</td>
+                <td>$applyToTransactions</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
