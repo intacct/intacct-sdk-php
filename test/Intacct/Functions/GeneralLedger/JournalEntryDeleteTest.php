@@ -20,12 +20,12 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GeneralLedger\JournalEntryDelete
+ */
 class JournalEntryDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\JournalEntryDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -53,7 +53,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\JournalEntryDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

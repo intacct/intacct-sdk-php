@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionUpdate
+ */
 class ChargeCardTransactionUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionUpdate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -50,9 +50,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionUpdate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -124,7 +121,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for update
      */

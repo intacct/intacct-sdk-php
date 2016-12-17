@@ -19,12 +19,12 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate
+ */
 class StatisticalJournalEntryLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,9 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate::writeXml
-     */
     public function testDecreaseAmount()
     {
         $expected = <<<EOF
@@ -77,9 +74,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -134,9 +128,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate::writeXml
-     */
     public function testAllocation()
     {
         $expected = <<<EOF
@@ -165,9 +156,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate::writeXml
-     */
     public function testCustomAllocation()
     {
         $expected = <<<EOF

@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate
+ */
 class StatisticalJournalEntryCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -65,9 +65,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -124,7 +121,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Statistical Journal Entry must have at least 1 line
      */
@@ -142,7 +138,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Statistical Journal Entry must have at least 1 line
      */

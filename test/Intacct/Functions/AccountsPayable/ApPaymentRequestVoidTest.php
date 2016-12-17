@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestVoid
+ */
 class ApPaymentRequestVoidTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApPaymentRequestVoid::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApPaymentRequestVoid::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for void
      */

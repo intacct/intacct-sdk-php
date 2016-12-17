@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentApply
+ */
 class ArPaymentApplyTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentApply::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -59,7 +59,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentApply::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for apply
      */
@@ -79,7 +78,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentApply::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Received Date is required for apply
      */

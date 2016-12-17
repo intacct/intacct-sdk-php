@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\EmployeeDelete
+ */
 class EmployeeDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\EmployeeDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\EmployeeDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Employee ID is required for delete
      */

@@ -19,12 +19,12 @@ namespace Intacct\Functions\GlobalConsolidations;
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GlobalConsolidations\ConsolidationCreate
+ */
 class ConsolidationCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GlobalConsolidations\ConsolidationCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -52,9 +52,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\GlobalConsolidations\ConsolidationCreate::writeXml
-     */
     public function testFull()
     {
         $expected = <<<EOF

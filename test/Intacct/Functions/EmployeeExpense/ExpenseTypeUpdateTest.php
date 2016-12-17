@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseTypeUpdate
+ */
 class ExpenseTypeUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expense Type is required for update
      */

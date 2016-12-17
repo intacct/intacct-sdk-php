@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentDelete
+ */
 class ApAdjustmentDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApAdjustmentDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAdjustmentDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

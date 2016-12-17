@@ -20,6 +20,9 @@ namespace Intacct\Xml\Request;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Request\ControlBlock
+ */
 class ControlBlockTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -39,10 +42,6 @@ class ControlBlockTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @covers Intacct\Xml\Request\ControlBlock::writeXml
-     */
     public function testWriteXmlDefaults()
     {
         $config = [
@@ -76,7 +75,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_id" key not supplied in params
      */
@@ -91,7 +89,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "sender_password" key not supplied in params
      */
@@ -105,16 +102,6 @@ EOF;
         new ControlBlock($config);
     }
 
-    /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @covers Intacct\Xml\Request\ControlBlock::setControlId
-     * @covers Intacct\Xml\Request\ControlBlock::setUniqueId
-     * @covers Intacct\Xml\Request\ControlBlock::getUniqueId
-     * @covers Intacct\Xml\Request\ControlBlock::setDtdVersion
-     * @covers Intacct\Xml\Request\ControlBlock::setIncludeWhitespace
-     * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
-     * @covers Intacct\Xml\Request\ControlBlock::writeXml
-     */
     public function testWriteXmlDefaultsOverride30()
     {
         $config = [
@@ -151,19 +138,7 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @covers Intacct\Xml\Request\ControlBlock::setControlId
-     * @covers Intacct\Xml\Request\ControlBlock::setUniqueId
-     * @covers Intacct\Xml\Request\ControlBlock::getUniqueId
-     * @covers Intacct\Xml\Request\ControlBlock::setDtdVersion
-     * @covers Intacct\Xml\Request\ControlBlock::setIncludeWhitespace
-     * @covers Intacct\Xml\Request\ControlBlock::getIncludeWhitespace
-     * @covers Intacct\Xml\Request\ControlBlock::setDebug
-     * @covers Intacct\Xml\Request\ControlBlock::getDebug
-     * @covers Intacct\Xml\Request\ControlBlock::writeXml
-     */
+
     public function testWriteXmlDefaultsOverride21()
     {
         $config = [
@@ -202,11 +177,7 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
-     * @covers Intacct\Xml\Request\ControlBlock::setControlId
-     */
+
     public function testWriteXmlInvalidControlIdShort()
     {
         $config = [
@@ -219,7 +190,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
      */
@@ -235,7 +205,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage uniqueid not valid boolean type
      */
@@ -252,7 +221,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage dtdversion is not a valid version
      */
@@ -269,7 +237,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage include_whitespace not valid boolean type
      */
@@ -286,7 +253,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\ControlBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage debug not valid boolean type
      */

@@ -22,12 +22,12 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 use DateTime;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsJobCreate
+ */
 class DdsJobCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -58,9 +58,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::writeXml
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF
@@ -107,7 +104,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::setJobType
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Job Type is not a valid type
      */
@@ -118,7 +114,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::setFileFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage File Format is not a valid type
      */
@@ -129,7 +124,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::setSplitSize
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */
@@ -140,7 +134,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsJobCreate::setSplitSize
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */

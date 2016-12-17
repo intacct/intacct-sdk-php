@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAccountLabelUpdate
+ */
 class ApAccountLabelUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Account Label is required for update
      */

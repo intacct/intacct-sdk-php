@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\CustomerUpdate
+ */
 class CustomerUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,9 +54,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerUpdate::writeXml
-     */
     public function testFullXml()
     {
         $expected = <<<EOF
@@ -222,7 +219,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Customer ID is required for update
      */

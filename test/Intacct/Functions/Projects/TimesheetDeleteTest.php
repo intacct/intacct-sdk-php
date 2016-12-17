@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\TimesheetDelete
+ */
 class TimesheetDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\TimesheetDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TimesheetDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

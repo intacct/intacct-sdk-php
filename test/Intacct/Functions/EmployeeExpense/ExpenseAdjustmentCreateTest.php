@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseAdjustmentCreate
+ */
 class ExpenseAdjustmentCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -70,9 +70,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -136,7 +133,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage EE ExpenseAdjustment must have at least 1 line
      */

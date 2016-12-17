@@ -20,12 +20,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\ReadMore
+ */
 class ReadMoreTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\ReadMore::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -52,7 +52,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadMore::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Result ID is required for read more
      */

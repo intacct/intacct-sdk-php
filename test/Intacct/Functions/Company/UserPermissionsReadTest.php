@@ -18,11 +18,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\UserPermissionsRead
+ */
 class UserPermissionsReadTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Functions\Company\UserPermissionsRead::writeXml
-     */
+
     public function testDefaultParams()
     {
         $expected = <<<EOF

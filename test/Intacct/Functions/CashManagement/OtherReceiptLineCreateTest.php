@@ -19,12 +19,12 @@ namespace Intacct\Functions\CashManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\OtherReceiptLineCreate
+ */
 class OtherReceiptLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\OtherReceiptLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,9 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\CashManagement\OtherReceiptLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

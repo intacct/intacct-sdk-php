@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\ContactDelete
+ */
 class ContactDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\ContactDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\ContactDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Contact Name is required for delete
      */

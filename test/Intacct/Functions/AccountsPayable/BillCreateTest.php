@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillCreate
+ */
 class BillCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -73,9 +73,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -182,7 +179,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\BillCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage AP Bill must have at least 1 line
      */

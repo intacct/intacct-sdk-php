@@ -20,12 +20,12 @@ namespace Intacct\Functions\OrderEntry;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionDelete
+ */
 class OrderEntryTransactionDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\OrderEntry\OrderEntryTransactionDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\OrderEntry\OrderEntryTransactionDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Document ID is required for delete
      */

@@ -18,6 +18,9 @@ namespace Intacct\Exception;
 
 use Intacct\Xml\SynchronousResponse;
 
+/**
+ * @coversDefaultClass \Intacct\Exception\ResponseException
+ */
 class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -42,10 +45,6 @@ class ResponseExceptionTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Exception\ResponseException::__construct
-     * @covers Intacct\Exception\ResponseException::getErrors
-     */
     public function testGetErrors()
     {
         $xml = <<<EOF

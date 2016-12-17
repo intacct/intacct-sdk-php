@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\DepositCreate
+ */
 class DepositCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\DepositCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -66,9 +66,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\CashManagement\DepositCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -122,7 +119,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\CashManagement\DepositCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage CM Deposit must have at least 1 transaction key to deposit
      */

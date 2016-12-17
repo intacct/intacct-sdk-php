@@ -18,6 +18,9 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\ApiSessionCreate
+ */
 class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -43,10 +46,6 @@ class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Functions\ApiSessionCreate::__construct
-     * @covers Intacct\Functions\ApiSessionCreate::writeXml
-     */
     public function testWriteXml()
     {
         $expected = <<<EOF

@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\VendorUpdate
+ */
 class VendorUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\VendorUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,9 +54,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\VendorUpdate::writeXml
-     */
     public function testFullXml()
     {
         $expected = <<<EOF
@@ -227,7 +224,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\VendorUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Vendor ID is required for update
      */

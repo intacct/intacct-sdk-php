@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\VendorDelete
+ */
 class VendorDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\VendorDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\VendorDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Vendor ID is required for delete
      */

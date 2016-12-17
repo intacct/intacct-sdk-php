@@ -19,12 +19,12 @@ namespace Intacct\Functions\CashManagement;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionLineUpdate
+ */
 class ChargeCardTransactionLineUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionLineUpdate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -46,9 +46,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionLineUpdate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

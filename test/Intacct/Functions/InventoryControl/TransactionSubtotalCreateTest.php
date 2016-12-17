@@ -19,12 +19,12 @@ namespace Intacct\Functions\InventoryControl;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\TransactionSubtotalCreate
+ */
 class TransactionSubtotalCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\TransactionSubtotalCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -50,9 +50,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\TransactionSubtotalCreate::writeXml
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF

@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAdjustmentDelete
+ */
 class ArAdjustmentDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

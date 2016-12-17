@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\ItemUpdate
+ */
 class ItemUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\ItemUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\ItemUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Item ID is required for update
      */

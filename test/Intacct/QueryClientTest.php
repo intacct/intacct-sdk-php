@@ -22,6 +22,9 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\Common\ReadByQuery;
 
+/**
+ * @coversDefaultClass \Intacct\QueryClient
+ */
 class QueryClientTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -86,9 +89,6 @@ EOF;
         $this->client = new QueryClient($params);
     }
 
-    /**
-     * @covers Intacct\QueryClient::executeQuery
-     */
     public function testExecuteQuery()
     {
         $xml = <<<EOF
@@ -178,7 +178,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage An error occurred trying to get query records
      */
@@ -241,7 +240,6 @@ EOF;
 
 
     /**
-     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage Query result totalcount of 100001 exceeds max totalcount parameter of 100000
      */
@@ -301,7 +299,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\QueryClient::executeQuery
      * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage An error occurred trying to query subsequent records
      */

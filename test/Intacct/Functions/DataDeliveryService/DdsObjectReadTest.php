@@ -19,12 +19,12 @@ namespace Intacct\Functions\DataDeliveryService;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsObjectRead
+ */
 class DdsObjectReadTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\DataDeliveryService\DdsObjectRead::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF

@@ -20,15 +20,12 @@ namespace Intacct\FieldTypes;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\FieldTypes\Record
+ */
 class RecordTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\FieldTypes\Record::setObjectName
-     * @covers Intacct\FieldTypes\Record::getObjectName
-     * @covers Intacct\FieldTypes\Record::setFields
-     * @covers Intacct\FieldTypes\Record::getFields
-     */
     public function testConstruct()
     {
         $record = new Record();
@@ -43,8 +40,6 @@ class RecordTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\FieldTypes\Record::writeXml
-     * @covers Intacct\FieldTypes\Record::writeXmlRecursiveArray
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Object Name is required for the record
      */
@@ -67,7 +62,6 @@ class RecordTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\FieldTypes\Record::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "123INVALID" is not a valid name for an XML element
      */
@@ -86,7 +80,6 @@ class RecordTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\FieldTypes\Record::setFields
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "456INVALID" is not a valid name for an XML element
      */

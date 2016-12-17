@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseTypeCreate
+ */
 class ExpenseTypeCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expense Type is required for create
      */
@@ -79,7 +78,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Description is required for create
      */
@@ -100,7 +98,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseTypeCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage GL Account is required for create
      */

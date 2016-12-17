@@ -26,6 +26,9 @@ use InvalidArgumentException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\RequestHandler
+ */
 class RequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -45,9 +48,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\RequestHandler::getVerifySSL
-     */
     public function testGetVerifySSL()
     {
         $config = [
@@ -66,10 +66,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($requestHandler->getVerifySSL(), false);
     }
     
-    /**
-     * @covers Intacct\Xml\RequestHandler::setMaxRetries
-     * @covers Intacct\Xml\RequestHandler::getMaxRetries
-     */
     public function testSetMaxRetries()
     {
         $config = [
@@ -89,7 +85,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Requested encoding is not supported
      */
@@ -106,7 +101,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::setMaxRetries
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage max retries not valid int type
      */
@@ -127,7 +121,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::setMaxRetries
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage max retries must be zero or greater
      */
@@ -146,11 +139,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
-    
-    /**
-     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
-     * @covers Intacct\Xml\RequestHandler::getNoRetryServerErrorCodes
-     */
+
     public function testSetNoRetryServerErrorCodes()
     {
         $config = [
@@ -176,7 +165,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage no retry server error code is not valid int type
      */
@@ -200,7 +188,6 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::setNoRetryServerErrorCodes
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage no retry server error code must be between 500-599
      */
@@ -221,14 +208,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
     }
-    
-    /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeSynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
-     * @covers Intacct\Xml\RequestHandler::getHistory
-     * @covers Intacct\Xml\RequestHandler::getUserAgent
-     */
+
     public function testMockExecuteSynchronous()
     {
         $xml = <<<EOF
@@ -292,13 +272,6 @@ EOF;
         $this->assertInstanceOf(SynchronousResponse::class, $response);
     }
 
-    /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeAsynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
-     * @covers Intacct\Xml\RequestHandler::getHistory
-     * @covers Intacct\Xml\RequestHandler::getUserAgent
-     */
     public function testMockExecuteAsynchronous()
     {
         $xml = <<<EOF
@@ -348,8 +321,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeAsynchronous
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "policy_id" key not supplied in params for asynchronous request
      */
@@ -370,12 +341,7 @@ EOF;
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->executeAsynchronous($config, $contentBlock);
     }
-    
-    /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeSynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
-     */
+
     public function testMockRetry()
     {
         $xml = <<<EOF
@@ -440,9 +406,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeSynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultRetryFailure()
@@ -473,9 +436,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeSynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
      * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultNo524Retry()
@@ -500,14 +460,6 @@ EOF;
         $requestHandler->executeSynchronous($config, $contentBlock);
     }
 
-    /**
-     * @covers Intacct\Xml\RequestHandler::__construct
-     * @covers Intacct\Xml\RequestHandler::executeSynchronous
-     * @covers Intacct\Xml\RequestHandler::execute
-     * @covers Intacct\Xml\RequestHandler::setLogger
-     * @covers Intacct\Xml\RequestHandler::setLogMessageFormatter
-     * @covers Intacct\Xml\RequestHandler::setLogLevel
-     */
     public function testMockExecuteWithDebugLogger()
     {
         $xml = <<<EOF

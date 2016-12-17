@@ -23,12 +23,12 @@ use Intacct\Content;
 use Intacct\Functions\ApiSessionCreate;
 use Intacct\Xml\RequestBlock;
 
+/**
+ * @coversDefaultClass \Intacct\Logging\MessageFormatter
+ */
 class MessageFormatterTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Logging\MessageFormatter::format
-     */
     public function testRequestAndResponseRemoval()
     {
         $config = [

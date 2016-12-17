@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAccountLabelCreate
+ */
 class ApAccountLabelCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Account Label is required for create
      */
@@ -79,7 +78,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Description is required for create
      */
@@ -100,7 +98,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAccountLabelCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage GL Account is required for create
      */

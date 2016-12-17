@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AllocationUpdate
+ */
 class AllocationUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AllocationUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AllocationUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Allocation ID is required for update
      */

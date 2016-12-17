@@ -20,12 +20,12 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalAccountCreate
+ */
 class StatisticalAccountCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalAccountCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalAccountCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Account No is required for create
      */
@@ -79,7 +78,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalAccountCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Title is required for create
      */

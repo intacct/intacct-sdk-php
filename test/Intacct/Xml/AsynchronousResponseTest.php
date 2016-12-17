@@ -19,6 +19,9 @@ namespace Intacct\Xml;
 
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\AsynchronousResponse
+ */
 class AsynchronousResponseTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -43,11 +46,6 @@ class AsynchronousResponseTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\AsynchronousResponse::__construct
-     * @covers Intacct\Xml\AsynchronousResponse::setAcknowledgement
-     * @covers Intacct\Xml\AsynchronousResponse::getAcknowledgement
-     */
     public function testGetAcknowledgement()
     {
         $xml = <<<EOF
@@ -71,7 +69,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\AsynchronousResponse::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Response is missing acknowledgement block
      */

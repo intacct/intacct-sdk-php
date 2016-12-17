@@ -20,12 +20,12 @@ namespace Intacct\Functions\GeneralLedger;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalAccountUpdate
+ */
 class StatisticalAccountUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalAccountUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\GeneralLedger\StatisticalAccountUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Account No is required for update
      */

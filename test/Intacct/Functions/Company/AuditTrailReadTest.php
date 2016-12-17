@@ -19,12 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AuditTrailRead
+ */
 class AuditTrailReadTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AuditTrailRead::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF

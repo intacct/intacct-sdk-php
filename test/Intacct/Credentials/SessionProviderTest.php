@@ -21,6 +21,9 @@ namespace Intacct\Credentials;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 
+/**
+ * @coversDefaultClass \Intacct\Credentials\SessionProvider
+ */
 class SessionProviderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -59,12 +62,6 @@ class SessionProviderTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Credentials\SessionProvider::__construct
-     * @covers Intacct\Credentials\SessionProvider::fromLoginCredentials
-     * @covers Intacct\Credentials\SessionProvider::getAPISession
-     * @covers Intacct\Credentials\SessionProvider::getConfig
-     */
     public function testFromLoginCredentials()
     {
         $xml = <<<EOF
@@ -123,13 +120,7 @@ EOF;
             $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
         );
     }
-    
-    /**
-     * @covers Intacct\Credentials\SessionProvider::__construct
-     * @covers Intacct\Credentials\SessionProvider::fromSessionCredentials
-     * @covers Intacct\Credentials\SessionProvider::getAPISession
-     * @covers Intacct\Credentials\SessionProvider::getConfig
-     */
+
     public function testFromSessionCredentials()
     {
         $xml = <<<EOF

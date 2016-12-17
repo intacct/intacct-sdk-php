@@ -21,6 +21,9 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Credentials\LoginCredentials
+ */
 class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
 {
     
@@ -51,14 +54,6 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
     {
     }
     
-    /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
-     * @covers Intacct\Credentials\LoginCredentials::getCompanyId
-     * @covers Intacct\Credentials\LoginCredentials::getUserId
-     * @covers Intacct\Credentials\LoginCredentials::getPassword
-     * @covers Intacct\Credentials\LoginCredentials::getSenderCredentials
-     * @covers Intacct\Credentials\LoginCredentials::getEndpoint
-     */
     public function testCredsFromArray()
     {
         $config = [
@@ -88,12 +83,6 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
         return $dir;
     }
     
-    /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
-     * @covers Intacct\Credentials\LoginCredentials::getCompanyId
-     * @covers Intacct\Credentials\LoginCredentials::getUserId
-     * @covers Intacct\Credentials\LoginCredentials::getPassword
-     */
     public function testCredsFromProfile()
     {
         $dir = $this->clearEnv();
@@ -117,7 +106,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "company_id" key not supplied in params or env variable "INTACCT_COMPANY_ID"
      */
@@ -132,7 +120,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "user_id" key not supplied in params or env variable "INTACCT_USER_ID"
      */
@@ -147,7 +134,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "user_password" key not supplied in params or env variable "INTACCT_USER_PASSWORD"
      */
@@ -161,10 +147,6 @@ EOF;
         new LoginCredentials($config, $this->senderCreds);
     }
     
-    /**
-     * @covers Intacct\Credentials\LoginCredentials::__construct
-     * @covers Intacct\Credentials\LoginCredentials::getMockHandler
-     */
     public function testGetMockHandler()
     {
         $response = new Response(200);

@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\ReadRelated
+ */
 class ReadRelatedTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Functions\Common\ReadRelated::writeXml
-     */
+
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -53,9 +54,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Common\ReadRelated::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -90,7 +88,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Relation Name is required for read related
      */
@@ -109,7 +106,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Return Format is not a valid format
      */
@@ -120,7 +116,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadRelated::setKeys
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Keys count cannot exceed 100
      */

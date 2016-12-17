@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\ContactUpdate
+ */
 class ContactUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\ContactUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\ContactUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Contact Name is required for update
      */

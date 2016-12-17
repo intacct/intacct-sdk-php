@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AllocationDelete
+ */
 class AllocationDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AllocationDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AllocationDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Allocation ID is required for delete
      */

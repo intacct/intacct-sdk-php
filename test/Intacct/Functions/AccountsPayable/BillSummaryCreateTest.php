@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillSummaryCreate
+ */
 class BillSummaryCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillSummaryCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -59,7 +59,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\BillSummaryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Title is required for create
      */
@@ -77,7 +76,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\BillSummaryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage GL Posting Date is required for create
      */

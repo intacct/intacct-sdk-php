@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\TaskUpdate
+ */
 class TaskUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\TaskUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TaskUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Task Record No is required for update
      */

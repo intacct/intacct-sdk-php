@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseAdjustmentDelete
+ */
 class ExpenseAdjustmentDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\TimesheetEntryCreate
+ */
 class TimesheetEntryCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\TimesheetEntryCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -50,9 +50,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Projects\TimesheetEntryCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

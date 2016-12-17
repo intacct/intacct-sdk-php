@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\TaskCreate
+ */
 class TaskCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\TaskCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TaskCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Task Name is required for create
      */
@@ -76,7 +75,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TaskCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Project ID is required for create
      */

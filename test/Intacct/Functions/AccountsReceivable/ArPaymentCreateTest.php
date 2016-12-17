@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentCreate
+ */
 class ArPaymentCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -63,7 +63,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Customer ID is required for create
      */
@@ -84,7 +83,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Received Date is required for create
      */
@@ -105,7 +103,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Payment Method is required for create
      */

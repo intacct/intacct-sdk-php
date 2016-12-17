@@ -17,12 +17,12 @@
 
 namespace Intacct\Xml\Request\Operation\Content;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Request\Operation\Content\StandardObjects
+ */
 class StandardObjectsTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Xml\Request\Operation\Content\StandardObjects::getMethodsNotAllowed
-     */
     public function test()
     {
         $expected = [
@@ -34,9 +34,6 @@ class StandardObjectsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $badMethods);
     }
 
-    /**
-     * @covers Intacct\Xml\Request\Operation\Content\StandardObjects::getMethodsNotAllowed
-     */
     public function testLowercase()
     {
         $expected = [

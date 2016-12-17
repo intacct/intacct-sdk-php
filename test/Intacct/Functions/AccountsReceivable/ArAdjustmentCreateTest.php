@@ -21,11 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAdjustmentCreate
+ */
 class ArAdjustmentCreateTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentCreate::writeXml
-     */
+
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -70,9 +71,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -150,7 +148,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage AR Adjustment must have at least 1 line
      */

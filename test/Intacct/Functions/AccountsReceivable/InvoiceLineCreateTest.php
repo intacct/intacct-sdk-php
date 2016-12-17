@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\InvoiceLineCreate
+ */
 class InvoiceLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\InvoiceLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -50,9 +50,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\InvoiceLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

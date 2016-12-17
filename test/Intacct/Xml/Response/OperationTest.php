@@ -20,6 +20,9 @@ namespace Intacct\Xml\Response;
 use Intacct\Xml\SynchronousResponse;
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\Operation
+ */
 class OperationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -78,11 +81,6 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation::__construct
-     * @covers Intacct\Xml\Response\Operation::setAuthentication
-     * @covers Intacct\Xml\Response\Operation::getAuthentication
-     */
     public function testGetAuthentication()
     {
         $authentication = $this->object->getAuthentication();
@@ -90,7 +88,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException \Intacct\Exception\OperationException
      * @expectedExceptionMessage Response authentication status failure
      */
@@ -127,7 +124,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing from operation element
      */
@@ -150,7 +146,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing from operation element
      */
@@ -178,12 +173,7 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-    
-    /**
-     * @covers Intacct\Xml\Response\Operation::__construct
-     * @covers Intacct\Xml\Response\Operation::setResult
-     * @covers Intacct\Xml\Response\Operation::getResults
-     */
+
     public function testGetResults()
     {
         $results = $this->object->getResults();

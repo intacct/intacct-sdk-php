@@ -19,12 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillLineCreate
+ */
 class BillLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,9 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

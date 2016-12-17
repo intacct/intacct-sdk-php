@@ -19,6 +19,9 @@ namespace Intacct\Credentials;
 
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Credentials\ProfileCredentialProvider
+ */
 class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -53,11 +56,6 @@ class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase
         return $dir;
     }
 
-    /**
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getSenderCredentials
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getIniProfileData
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getHomeDirProfile
-     */
     public function testGetCredentialsFromDefaultProfile()
     {
         $dir = $this->clearEnv();
@@ -96,10 +94,6 @@ EOF;
         $this->assertEquals($expectedSender, $senderCreds);
     }
 
-    /**
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getLoginCredentials
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getIniProfileData
-     */
     public function testGetLoginCredentialsFromSpecificProfile()
     {
         $dir = $this->clearEnv();
@@ -132,8 +126,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getLoginCredentials
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getIniProfileData
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "profile_name" key not supplied in params
      */
@@ -146,8 +138,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getLoginCredentials
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getIniProfileData
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Cannot read credentials from file, "notarealfile.ini"
      */
@@ -160,8 +150,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getLoginCredentials
-     * @covers Intacct\Credentials\ProfileCredentialProvider::getIniProfileData
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Profile name "default" not found in credentials file
      */

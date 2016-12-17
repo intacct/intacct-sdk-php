@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ReimbursementRequestCreate
+ */
 class ReimbursementRequestCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ReimbursementRequestCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -75,9 +75,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ReimbursementRequestCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -138,7 +135,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\ReimbursementRequestCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage EE Reimbursement Request must have at least 1 transaction to apply against
      */

@@ -20,6 +20,9 @@ namespace Intacct\Xml\Response;
 use Intacct\Xml\AsynchronousResponse;
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\Acknowledgement
+ */
 class AcknowledgementTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -61,16 +64,12 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Acknowledgement::getStatus
-     */
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
     
     /**
-     * @covers Intacct\Xml\Response\Acknowledgement::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Acknowledgement block is missing status element
      */

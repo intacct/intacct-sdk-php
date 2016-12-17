@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\CustomerDelete
+ */
 class CustomerDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Customer ID is required for delete
      */

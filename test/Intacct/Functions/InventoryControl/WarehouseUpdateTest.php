@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseUpdate
+ */
 class WarehouseUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Warehouse ID is required for update
      */

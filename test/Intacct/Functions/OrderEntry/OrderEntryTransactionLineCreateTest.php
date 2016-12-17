@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionLineCreate
+ */
 class OrderEntryTransactionLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\OrderEntry\OrderEntryTransactionLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -52,9 +52,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\OrderEntry\OrderEntryTransactionLineCreate::writeXml
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF

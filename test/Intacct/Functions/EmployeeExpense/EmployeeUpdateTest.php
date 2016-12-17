@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\EmployeeUpdate
+ */
 class EmployeeUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\EmployeeUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\EmployeeExpense\EmployeeUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Employee ID is required for update
      */

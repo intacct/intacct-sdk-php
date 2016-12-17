@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable\PaymentServices;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate
+ */
 class CustomerChargeCardCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -61,7 +61,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Customer ID is required for create
      */
@@ -84,7 +83,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Card Number is required for create
      */
@@ -107,7 +105,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Card Type is required for create
      */
@@ -130,7 +127,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expiration Month is required for create
      */
@@ -153,7 +149,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expiration Year is required for create
      */

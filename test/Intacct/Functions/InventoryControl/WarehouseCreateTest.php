@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseCreate
+ */
 class WarehouseCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -60,7 +60,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Warehouse ID is required for create
      */
@@ -81,7 +80,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Warehouse Name is required for create
      */
@@ -102,7 +100,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Location ID is required for create
      */

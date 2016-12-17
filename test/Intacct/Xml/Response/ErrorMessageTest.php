@@ -17,6 +17,9 @@
 
 namespace Intacct\Xml\Response;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\ErrorMessage
+ */
 class ErrorMessageTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -60,11 +63,6 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Response\ErrorMessage::__construct
-     * @covers Intacct\Xml\Response\ErrorMessage::getErrors
-     * @covers Intacct\Xml\Response\ErrorMessage::cleanse
-     */
     public function testGetErrors()
     {
         $errors = $this->object->getErrors();

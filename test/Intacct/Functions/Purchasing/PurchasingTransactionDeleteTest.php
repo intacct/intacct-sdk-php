@@ -20,12 +20,12 @@ namespace Intacct\Functions\Purchasing;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionDelete
+ */
 class PurchasingTransactionDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Document ID is required for delete
      */

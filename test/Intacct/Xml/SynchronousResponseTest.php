@@ -19,6 +19,9 @@ namespace Intacct\Xml;
 
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\SynchronousResponse
+ */
 class SynchronousResponseTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -43,11 +46,6 @@ class SynchronousResponseTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\SynchronousResponse::__construct
-     * @covers Intacct\Xml\SynchronousResponse::setOperation
-     * @covers Intacct\Xml\SynchronousResponse::getOperation
-     */
     public function testGetOperation()
     {
         $xml = <<<EOF
@@ -88,7 +86,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Xml\SynchronousResponse::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Response is missing operation block
      */

@@ -22,6 +22,9 @@ use Intacct\Functions\ApiSessionCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Request\OperationBlock
+ */
 class OperationBlockTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -41,12 +44,6 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Request\OperationBlock::__construct
-     * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::writeXml
-     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
-     */
     public function testWriteXmlSession()
     {
         $config = [
@@ -82,13 +79,7 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @covers Intacct\Xml\Request\OperationBlock::__construct
-     * @covers Intacct\Xml\Request\OperationBlock::setContent
-     * @covers Intacct\Xml\Request\OperationBlock::writeXml
-     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
-     */
+
     public function testWriteXmlLogin()
     {
         $config = [
@@ -130,13 +121,7 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @covers Intacct\Xml\Request\OperationBlock::__construct
-     * @covers Intacct\Xml\Request\OperationBlock::setTransaction
-     * @covers Intacct\Xml\Request\OperationBlock::writeXml
-     * @covers Intacct\Xml\Request\OperationBlock::getTransaction
-     */
+
     public function testWriteXmlTransaction()
     {
         $config = [
@@ -175,8 +160,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\OperationBlock::__construct
-     * @covers Intacct\Xml\Request\OperationBlock::setTransaction
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage transaction not valid boolean type
      */
@@ -194,7 +177,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\OperationBlock::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "company_id", "user_id", and "user_password" keys, or "session_id" key, not supplied in params
      */

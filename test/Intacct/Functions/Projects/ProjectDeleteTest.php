@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\ProjectDelete
+ */
 class ProjectDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\ProjectDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\ProjectDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Project ID is required for delete
      */

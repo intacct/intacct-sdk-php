@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\VendorCreate
+ */
 class VendorCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\VendorCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -57,9 +57,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\VendorCreate::writeXml
-     */
     public function testFullXml()
     {
         $expected = <<<EOF
@@ -230,7 +227,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\VendorCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Vendor Name is required for create
      */

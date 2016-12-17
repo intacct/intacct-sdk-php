@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\ClassCreate
+ */
 class ClassCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\ClassCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\ClassCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Class ID is required for create
      */
@@ -76,7 +75,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\ClassCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Class Name is required for create
      */

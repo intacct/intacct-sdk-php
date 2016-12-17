@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\TransactionItemDetail
+ */
 class TransactionItemDetailTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\TransactionItemDetail::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -57,10 +57,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\TransactionItemDetail::writeXml
-     *
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF

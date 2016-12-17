@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\CustomerCreate
+ */
 class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -57,9 +57,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerCreate::writeXml
-     */
     public function testFullXml()
     {
         $expected = <<<EOF
@@ -222,7 +219,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\CustomerCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Customer Name is required for create
      */

@@ -19,12 +19,12 @@ namespace Intacct\Xml;
 
 use Intacct\Content;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\RequestBlock
+ */
 class RequestBlockTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Xml\RequestBlock::__construct
-     * @covers Intacct\Xml\RequestBlock::writeXml
-     */
+
     public function testWriteXml()
     {
         $expected = <<<EOF

@@ -19,12 +19,12 @@ namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAdjustmentLineCreate
+ */
 class ArAdjustmentLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,9 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArAdjustmentLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

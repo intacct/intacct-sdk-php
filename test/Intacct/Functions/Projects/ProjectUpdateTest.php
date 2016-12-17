@@ -20,12 +20,12 @@ namespace Intacct\Functions\Projects;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\ProjectUpdate
+ */
 class ProjectUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\ProjectUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\ProjectUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Project ID is required for update
      */

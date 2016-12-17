@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AttachmentsFolderDelete
+ */
 class AttachmentsFolderDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AttachmentsFolderDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AttachmentsFolderDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Attachments Folder Name is required for delete
      */

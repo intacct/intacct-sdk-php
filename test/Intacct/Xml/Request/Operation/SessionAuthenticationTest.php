@@ -5,6 +5,9 @@ namespace Intacct\Xml\Request\Operation;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Request\Operation\SessionAuthentication
+ */
 class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -24,10 +27,6 @@ class SessionAuthenticationTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Request\Operation\SessionAuthentication::__construct
-     * @covers Intacct\Xml\Request\Operation\SessionAuthentication::writeXml
-     */
     public function testWriteXml()
     {
         $config = [
@@ -54,7 +53,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation\SessionAuthentication::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "session_id" key not supplied in params
      */

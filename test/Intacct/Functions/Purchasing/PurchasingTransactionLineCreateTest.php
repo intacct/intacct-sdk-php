@@ -20,12 +20,12 @@ namespace Intacct\Functions\Purchasing;
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionLineCreate
+ */
 class PurchasingTransactionLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -51,9 +51,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionLineCreate::writeXml
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF

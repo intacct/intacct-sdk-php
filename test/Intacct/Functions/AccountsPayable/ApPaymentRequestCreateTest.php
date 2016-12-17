@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestCreate
+ */
 class ApPaymentRequestCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApPaymentRequestCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -75,9 +75,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApPaymentRequestCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -142,7 +139,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApPaymentRequestCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage AP Payment Request must have at least 1 transaction to apply against
      */

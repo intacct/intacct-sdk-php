@@ -19,6 +19,9 @@ namespace Intacct;
 
 use Intacct\Functions\ApiSessionCreate;
 
+/**
+ * @coversDefaultClass \Intacct\Content
+ */
 class ContentTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -38,9 +41,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Content::__construct
-     */
     public function testContent()
     {
         $contentBlock = new Content();

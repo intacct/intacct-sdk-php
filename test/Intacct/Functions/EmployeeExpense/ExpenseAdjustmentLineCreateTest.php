@@ -20,12 +20,12 @@ namespace Intacct\Functions\EmployeeExpense;
 use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseAdjustmentLineCreate
+ */
 class ExpenseAdjustmentLineCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentLineCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,9 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\EmployeeExpense\ExpenseAdjustmentLineCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF

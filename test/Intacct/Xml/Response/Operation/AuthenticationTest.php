@@ -20,6 +20,9 @@ namespace Intacct\Xml\Response\Operation;
 use Intacct\Xml\SynchronousResponse;
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\Operation\Authentication
+ */
 class AuthenticationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -79,42 +82,26 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::getStatus
-     */
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::getUserId
-     */
     public function testGetUserId()
     {
         $this->assertEquals('fakeuser', $this->object->getUserId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::getCompanyId
-     */
     public function testGetCompanyId()
     {
         $this->assertEquals('fakecompany', $this->object->getCompanyId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::getSlideInUser
-     */
     public function testGetSlideInUserDirectLogin()
     {
         $this->assertEquals(false, $this->object->getSlideInUser());
     }
-    
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::__construct
-     * @covers Intacct\Xml\Response\Operation\Authentication::setSlideInUser
-     */
+
     public function testGetSlideInUserExternalLogin()
     {
         $xml = <<<EOF
@@ -155,11 +142,7 @@ EOF;
         $this->assertEquals('ExtUser|fakeconsole|fakeuser', $authentication->getUserId());
         $this->assertEquals(true, $authentication->getSlideInUser());
     }
-    
-    /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::__construct
-     * @covers Intacct\Xml\Response\Operation\Authentication::setSlideInUser
-     */
+
     public function testGetSlideInCPAUserLogin()
     {
         $xml = <<<EOF
@@ -202,7 +185,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing status element
      */
@@ -233,7 +215,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing userid element
      */
@@ -264,7 +245,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Authentication::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Authentication block is missing companyid element
      */

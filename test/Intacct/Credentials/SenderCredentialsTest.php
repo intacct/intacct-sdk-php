@@ -19,6 +19,9 @@ namespace Intacct\Credentials;
 
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Credentials\SenderCredentials
+ */
 class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -38,12 +41,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
-     * @covers Intacct\Credentials\SenderCredentials::getSenderId
-     * @covers Intacct\Credentials\SenderCredentials::getPassword
-     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
-     */
     public function testCredsFromArray()
     {
         $config = [
@@ -58,12 +55,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $creds->getEndpoint());
     }
 
-    /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
-     * @covers Intacct\Credentials\SenderCredentials::getSenderId
-     * @covers Intacct\Credentials\SenderCredentials::getPassword
-     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
-     */
     public function testCredsFromEnv()
     {
         putenv('INTACCT_SENDER_ID=envsender');
@@ -80,7 +71,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Required "sender_id" key not supplied in params or env variable "INTACCT_SENDER_ID"
      */
@@ -94,7 +84,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Required "sender_password" key not supplied in params or env variable "INTACCT_SENDER_PASSWORD"
      */
@@ -116,12 +105,6 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
         return $dir;
     }
 
-    /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
-     * @covers Intacct\Credentials\SenderCredentials::getSenderId
-     * @covers Intacct\Credentials\SenderCredentials::getPassword
-     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
-     */
     public function testCredsFromProfile()
     {
         $dir = $this->clearEnv();
@@ -144,12 +127,6 @@ EOF;
         $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
     }
 
-    /**
-     * @covers Intacct\Credentials\SenderCredentials::__construct
-     * @covers Intacct\Credentials\SenderCredentials::getSenderId
-     * @covers Intacct\Credentials\SenderCredentials::getPassword
-     * @covers Intacct\Credentials\SenderCredentials::getEndpoint
-     */
     public function testCredsFromProfileOverrideEndpoint()
     {
         $dir = $this->clearEnv();

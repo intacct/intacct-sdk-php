@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\UserUpdate
+ */
 class UserUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\UserUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage User ID is required for update
      */
@@ -72,9 +71,6 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @covers Intacct\Functions\Company\UserUpdate::writeXml
-     */
     public function testRestrictions()
     {
         $expected = <<<EOF

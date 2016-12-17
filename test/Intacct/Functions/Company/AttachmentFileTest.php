@@ -21,6 +21,9 @@ use Intacct\Xml\XMLWriter;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AttachmentFile
+ */
 class AttachmentFileTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -41,9 +44,6 @@ class AttachmentFileTest extends \PHPUnit_Framework_TestCase
         $this->root = vfsStream::setup('root', null, $structure);
     }
 
-    /**
-     * @covers Intacct\Functions\Company\AttachmentFile::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF

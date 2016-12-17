@@ -18,12 +18,12 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\Inspect
+ */
 class InspectTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Functions\Common\Inspect::writeXmlShowDetail
-     * @covers Intacct\Functions\Common\Inspect::writeXml
-     */
+
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -49,10 +49,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Common\Inspect::writeXmlShowDetail
-     * @covers Intacct\Functions\Common\Inspect::writeXml
-     */
     public function testParamsOverrides()
     {
         $expected = <<<EOF

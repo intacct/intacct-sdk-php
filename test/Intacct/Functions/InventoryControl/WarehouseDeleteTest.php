@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseDelete
+ */
 class WarehouseDeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseDelete::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -53,7 +53,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\WarehouseDelete::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for delete
      */

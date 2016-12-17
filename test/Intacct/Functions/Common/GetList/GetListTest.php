@@ -20,12 +20,12 @@ namespace Intacct\Functions\Common\GetList;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\GetList\GetList
+ */
 class GetListTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\GetList\GetList::writeXml
-     */
     public function testDefaultConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\GetList\GetList::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Object Name is required for get_list
      */

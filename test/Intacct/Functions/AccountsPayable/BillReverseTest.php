@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillReverse
+ */
 class BillReverseTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\BillReverse::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\BillReverse::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for reverse
      */
@@ -76,7 +75,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\BillReverse::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Reverse Date is required for reverse
      */

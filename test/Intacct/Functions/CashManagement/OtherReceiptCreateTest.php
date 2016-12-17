@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\OtherReceiptCreate
+ */
 class OtherReceiptCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\OtherReceiptCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -81,9 +81,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\CashManagement\OtherReceiptCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -170,7 +167,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\CashManagement\OtherReceiptCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage CM Other Receipt must have at least 1 line
      */

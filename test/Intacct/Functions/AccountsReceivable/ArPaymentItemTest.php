@@ -19,12 +19,12 @@ namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentItem
+ */
 class ArPaymentItemTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\ArPaymentItem::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF

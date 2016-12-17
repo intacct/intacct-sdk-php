@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AllocationCreate
+ */
 class AllocationCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AllocationCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,7 +56,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AllocationCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Allocation ID is required for create
      */
@@ -76,7 +75,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AllocationCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Allocate By is required for create
      */

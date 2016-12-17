@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AttachmentsUpdate
+ */
 class AttachmentsUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AttachmentsUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -52,7 +52,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AttachmentsUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Attachments ID is required for update
      */

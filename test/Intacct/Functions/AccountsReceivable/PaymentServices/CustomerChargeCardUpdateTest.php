@@ -20,12 +20,12 @@ namespace Intacct\Functions\AccountsReceivable\PaymentServices;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardUpdate
+ */
 class CustomerChargeCardUpdateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardUpdate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,7 +50,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardUpdate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for update
      */

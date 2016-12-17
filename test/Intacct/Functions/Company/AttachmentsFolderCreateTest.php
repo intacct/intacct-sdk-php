@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AttachmentsFolderCreate
+ */
 class AttachmentsFolderCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\AttachmentsFolderCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -52,7 +52,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\AttachmentsFolderCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Attachments Folder Name is required for create
      */
