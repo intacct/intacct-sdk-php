@@ -52,7 +52,7 @@ $loader = require __DIR__ . '/vendor/autoload.php';
 use Intacct\IntacctClient;
 
 try {
-    $client = IntacctClient();
+    $client = new IntacctClient();
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
