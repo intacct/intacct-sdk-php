@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,11 +20,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\Read
+ */
 class ReadTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Functions\Common\Read::writeXml
-     */
+
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -52,9 +53,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Common\Read::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -95,7 +93,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Read::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Return Format is not a valid format
      */
@@ -107,7 +104,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Read::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Return Format is not a valid format
      */
@@ -119,7 +115,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Read::setKeys
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Keys count cannot exceed 100
      */
@@ -135,10 +130,6 @@ EOF;
         $read->setKeys($keys);
     }
 
-    /**
-     * @covers Intacct\Functions\Common\Read::setKeys
-     * @covers Intacct\Functions\Common\Read::writeXmlKeys
-     */
     public function testWriteXmlKeys()
     {
         $expected = <<<EOF

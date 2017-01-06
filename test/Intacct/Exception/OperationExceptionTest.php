@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -19,6 +19,9 @@ namespace Intacct\Exception;
 
 use Intacct\Xml\SynchronousResponse;
 
+/**
+ * @coversDefaultClass \Intacct\Exception\OperationException
+ */
 class OperationExceptionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -43,10 +46,6 @@ class OperationExceptionTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Exception\OperationException::__construct
-     * @covers Intacct\Exception\OperationException::getErrors
-     */
     public function testGetErrors()
     {
         $xml = <<<EOF

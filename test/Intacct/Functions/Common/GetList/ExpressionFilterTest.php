@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,12 +20,12 @@ namespace Intacct\Functions\Common\GetList;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\GetList\ExpressionFilter
+ */
 class ExpressionFilterTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\GetList\ExpressionFilter::writeXml
-     */
     public function testDefaultConstruct()
     {
         $expected = <<<EOF
@@ -54,7 +54,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\GetList\ExpressionFilter::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Field Name is required for an expression filter
      */
@@ -75,7 +74,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\GetList\ExpressionFilter::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Operator is required for an expression filter
      */

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,12 +20,12 @@ namespace Intacct\Functions\InventoryControl;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\InventoryControl\ItemCreate
+ */
 class ItemCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\InventoryControl\ItemCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\ItemCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Item ID is required for create
      */
@@ -79,7 +78,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\ItemCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Item Name is required for create
      */
@@ -100,7 +98,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\InventoryControl\ItemCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Item Type is required for create
      */

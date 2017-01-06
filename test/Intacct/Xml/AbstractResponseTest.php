@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -19,6 +19,9 @@ namespace Intacct\Xml;
 
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\AbstractResponse
+ */
 class AbstractResponseTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -44,7 +47,6 @@ class AbstractResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Xml\AbstractResponse::__construct
      * @expectedException Exception
      * @expectedExceptionMessage XML could not be parsed properly
      */
@@ -59,7 +61,6 @@ class AbstractResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Xml\AbstractResponse::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Response is missing control block
      */
@@ -79,8 +80,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Xml\AbstractResponse::__construct
-     * @covers Intacct\Exception\ResponseException::__construct
      * @expectedException \Intacct\Exception\ResponseException
      * @expectedExceptionMessage Response control status failure
      */
@@ -113,11 +112,6 @@ EOF;
         $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
     }
 
-    /**
-     * @covers Intacct\Xml\AbstractResponse::__construct
-     * @covers Intacct\Xml\AbstractResponse::setControl
-     * @covers Intacct\Xml\AbstractResponse::getControl
-     */
     public function testGetControl()
     {
         $xml = <<<EOF

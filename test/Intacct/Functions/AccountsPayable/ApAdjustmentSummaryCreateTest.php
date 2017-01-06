@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentSummaryCreate
+ */
 class ApAdjustmentSummaryCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\AccountsPayable\ApAdjustmentSummaryCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -59,7 +59,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAdjustmentSummaryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Title is required for create
      */
@@ -77,7 +76,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\AccountsPayable\ApAdjustmentSummaryCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage GL Posting Date is required for create
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -19,6 +19,9 @@ namespace Intacct\Xml\Response;
 
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\Control
+ */
 class ControlTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -62,48 +65,32 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Control::getStatus
-     */
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Control::getSenderId
-     */
     public function testGetSenderId()
     {
         $this->assertEquals('testsenderid', $this->object->getSenderId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Control::getControlId
-     */
     public function testGetControlId()
     {
         $this->assertEquals('ControlIdHere', $this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Control::getUniqueId
-     */
     public function testGetUniqueId()
     {
         $this->assertEquals('false', $this->object->getUniqueId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Control::getDtdVersion
-     */
     public function testGetDtdVersion()
     {
         $this->assertEquals('3.0', $this->object->getDtdVersion());
     }
     
     /**
-     * @covers Intacct\Xml\Response\Control::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Control block is missing status element
      */
@@ -123,7 +110,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Control::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Control block is missing senderid element
      */
@@ -149,7 +135,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Control::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Control block is missing controlid element
      */
@@ -175,7 +160,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Control::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Control block is missing uniqueid element
      */
@@ -201,7 +185,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Control::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Control block is missing dtdversion element
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -19,13 +19,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\ReadByQuery
+ */
 class ReadByQueryTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\ReadByQuery::__construct
-     * @covers Intacct\Functions\Common\ReadByQuery::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -56,10 +55,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Common\ReadByQuery::__construct
-     * @covers Intacct\Functions\Common\ReadByQuery::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -97,7 +92,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByQuery::setPageSize
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Page Size not valid int type
      */
@@ -108,7 +102,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByQuery::setPageSize
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Page Size cannot be less than 1
      */
@@ -119,7 +112,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByQuery::setPageSize
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
@@ -130,7 +122,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByQuery::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Return Format is not a valid format
      */

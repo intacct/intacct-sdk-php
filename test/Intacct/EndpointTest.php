@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -19,6 +19,9 @@ namespace Intacct;
 
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Endpoint
+ */
 class EndpointTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -38,12 +41,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     {
     }
     
-    /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::__toString
-     * @covers Intacct\Endpoint::getEndpoint
-     * @covers Intacct\Endpoint::getVerifySSL
-     */
     public function testDefaultEndpoint()
     {
         $endpoint = new Endpoint();
@@ -52,12 +49,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $endpoint->getVerifySSL());
     }
     
-    /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::__toString
-     * @covers Intacct\Endpoint::getEndpoint
-     * @covers Intacct\Endpoint::getVerifySSL
-     */
     public function testEnvEndpoint()
     {
         putenv('INTACCT_ENDPOINT_URL=https://envunittest.intacct.com/ia/xml/xmlgw.phtml');
@@ -70,13 +61,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         putenv('INTACCT_ENDPOINT_URL');
     }
     
-    /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::__toString
-     * @covers Intacct\Endpoint::setEndpoint
-     * @covers Intacct\Endpoint::setVerifySSL
-     * @covers Intacct\Endpoint::getVerifySSL
-     */
     public function testArrayEndpoint()
     {
         $config = [
@@ -90,11 +74,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $endpoint->getVerifySSL());
     }
     
-    /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::__toString
-     * @covers Intacct\Endpoint::setEndpoint
-     */
     public function testNullEndpoint()
     {
         $config = [
@@ -106,7 +85,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Endpoint::setEndpoint
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage endpoint_url is not a valid string.
      */
@@ -120,8 +98,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::setEndpoint
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage endpoint_url is not a valid URL.
      */
@@ -135,8 +111,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::setEndpoint
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage endpoint_url is not a valid URL.
      */
@@ -150,8 +124,6 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Endpoint::__construct
-     * @covers Intacct\Endpoint::setVerifySSL
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage verify_ssl is not a valid boolean type
      */

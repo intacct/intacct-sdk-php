@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -19,9 +19,11 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Content;
 use Intacct\Functions\ApiSessionCreate;
 
+/**
+ * @coversDefaultClass \Intacct\IntacctClient
+ */
 class IntacctClientTest extends \PHPUnit_Framework_TestCase
 {
     
@@ -95,10 +97,6 @@ EOF;
     {
     }
 
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     */
     public function testConstructWithSessionId()
     {
         $client = $this->client; //grab the setUp object
@@ -111,10 +109,6 @@ EOF;
         $this->assertEquals($creds->getCurrentUserIsExternal(), false);
     }
     
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::getSessionCreds
-     */
     public function testConstructWithLogin()
     {
         $xml = <<<EOF
@@ -171,10 +165,6 @@ EOF;
         $this->assertEquals($creds->getCurrentUserIsExternal(), false);
     }
 
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::execute
-     */
     public function testExecuteSynchronous()
     {
         $xml = <<<EOF
@@ -231,10 +221,6 @@ EOF;
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }
 
-    /**
-     * @covers Intacct\IntacctClient::__construct
-     * @covers Intacct\IntacctClient::executeAsync
-     */
     public function testExecuteAsynchronous()
     {
         $xml = <<<EOF
@@ -275,9 +261,6 @@ EOF;
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }
 
-    /**
-     * * @covers Intacct\IntacctClient::generateRandomControlId
-     */
     public function testRandomControlId()
     {
         $controlId = $this->client->generateRandomControlId();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,12 +20,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\Delete
+ */
 class DeleteTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\Delete::writeXml
-     */
     public function testWriteXml()
     {
         $expected = <<<EOF
@@ -57,7 +57,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Delete::setKeys
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Keys count cannot exceed 100
      */
@@ -74,7 +73,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Delete::setKeys
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Keys count must be greater than zero
      */
@@ -88,7 +86,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Delete::setObjectName
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Using delete on object "TIMESHEETENTRY" is not allowed
      */

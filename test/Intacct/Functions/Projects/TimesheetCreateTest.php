@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Projects\TimesheetCreate
+ */
 class TimesheetCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Projects\TimesheetCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -70,9 +70,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Projects\TimesheetCreate::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -127,7 +124,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TimesheetCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Employee ID is required for create
      */
@@ -145,7 +141,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TimesheetCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Begin Date is required for create
      */
@@ -164,7 +159,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Projects\TimesheetCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Timesheet must have at least 1 entry
      */

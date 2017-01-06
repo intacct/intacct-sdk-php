@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -21,6 +21,9 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Credentials\SessionCredentials
+ */
 class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -51,12 +54,6 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Credentials\SessionCredentials::__construct
-     * @covers Intacct\Credentials\SessionCredentials::getSessionId
-     * @covers Intacct\Credentials\SessionCredentials::getEndpoint
-     * @covers Intacct\Credentials\SessionCredentials::getSenderCredentials
-     */
     public function testCredsFromArray()
     {
         $config = [
@@ -73,11 +70,7 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
             $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
         );
     }
-    
-    /**
-     * @covers Intacct\Credentials\SessionCredentials::__construct
-     * @covers Intacct\Credentials\SessionCredentials::getEndpoint
-     */
+
     public function testCredsFromArrayNoEndpoint()
     {
         $config = [
@@ -91,7 +84,6 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers Intacct\Credentials\SessionCredentials::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "session_id" key not supplied in params
      */
@@ -102,11 +94,7 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
         ];
         new SessionCredentials($config, $this->senderCreds);
     }
-    
-    /**
-     * @covers Intacct\Credentials\SessionCredentials::__construct
-     * @covers Intacct\Credentials\SessionCredentials::getMockHandler
-     */
+
     public function testGetMockHandler()
     {
         $response = new Response(200);

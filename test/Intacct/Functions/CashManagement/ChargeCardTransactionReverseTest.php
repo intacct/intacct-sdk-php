@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,12 +21,12 @@ use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionReverse
+ */
 class ChargeCardTransactionReverseTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionReverse::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,7 +58,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionReverse::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Record No is required for reverse
      */
@@ -76,7 +75,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\CashManagement\ChargeCardTransactionReverse::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Reverse Date is required for reverse
      */

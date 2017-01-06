@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,12 +20,12 @@ namespace Intacct\Xml;
 use Intacct\FieldTypes\DateType;
 use DateTime;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\XMLWriter
+ */
 class XMLWriterTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteElement()
     {
         $expected = <<<EOF
@@ -44,9 +44,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteNullAndNotNullElements()
     {
         $expected = <<<EOF
@@ -66,9 +63,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteElementAsBool()
     {
         $expected = <<<EOF
@@ -87,9 +81,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteElementAsDate()
     {
         $expected = <<<EOF
@@ -110,9 +101,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteElementAsDateTime()
     {
         $expected = <<<EOF
@@ -133,9 +121,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     */
     public function testWriteElementAsNull()
     {
         $expected = <<<EOF
@@ -153,10 +138,6 @@ EOF;
         $this->assertEquals($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Xml\XMLWriter::writeElement
-     * @covers Intacct\Xml\XMLWriter::writeDateSplitElements
-     */
     public function testDateSplitElements()
     {
         $expected = <<<EOF

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -20,6 +20,9 @@ namespace Intacct\Xml\Request\Operation;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Request\Operation\LoginAuthentication
+ */
 class LoginAuthenticationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -39,10 +42,6 @@ class LoginAuthenticationTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::__construct
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::writeXml
-     */
     public function testWriteXml()
     {
         $config = [
@@ -75,7 +74,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "company_id" key not supplied in params
      */
@@ -91,7 +89,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "user_id" key not supplied in params
      */
@@ -107,7 +104,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Request\Operation\LoginAuthentication::__construct
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Required "user_password" key not supplied in params
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -20,6 +20,9 @@ namespace Intacct\Xml\Response\Operation;
 use Intacct\Xml\SynchronousResponse;
 use Exception;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\Response\Operation\Result
+ */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -73,51 +76,32 @@ EOF;
     protected function tearDown()
     {
     }
-    
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::__construct
-     */
+
     public function testConstruct()
     {
         $this->assertThat($this->object, $this->isInstanceOf('Intacct\Xml\Response\Operation\Result'));
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::getStatus
-     */
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::getFunction
-     */
     public function testGetFunction()
     {
         $this->assertEquals('readByQuery', $this->object->getFunction());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::getControlId
-     */
     public function testGetControlId()
     {
         $this->assertEquals('testControlId', $this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::getData
-     */
     public function testGetData()
     {
         $this->assertThat($this->object->getData(), $this->isInstanceOf('SimpleXMLIterator'));
     }
 
-    /**
-     * @covers Intacct\Xml\Response\Operation\Result::__construct
-     * @covers Intacct\Xml\Response\Operation\Result::getErrors
-     */
     public function testGetErrors()
     {
         $xml = <<<EOF
@@ -163,7 +147,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Result::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing status element
      */
@@ -199,7 +182,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Result::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing function element
      */
@@ -235,7 +217,6 @@ EOF;
     }
     
     /**
-     * @covers Intacct\Xml\Response\Operation\Result::__construct
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing controlid element
      */

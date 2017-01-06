@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -18,6 +18,9 @@ namespace Intacct\Functions;
 
 use Intacct\Xml\XMLWriter;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\ApiSessionCreate
+ */
 class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -43,10 +46,6 @@ class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Intacct\Functions\ApiSessionCreate::__construct
-     * @covers Intacct\Functions\ApiSessionCreate::writeXml
-     */
     public function testWriteXml()
     {
         $expected = <<<EOF

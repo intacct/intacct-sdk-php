@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -19,12 +19,12 @@ namespace Intacct\Xml;
 
 use Intacct\Content;
 
+/**
+ * @coversDefaultClass \Intacct\Xml\RequestBlock
+ */
 class RequestBlockTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Intacct\Xml\RequestBlock::__construct
-     * @covers Intacct\Xml\RequestBlock::writeXml
-     */
+
     public function testWriteXml()
     {
         $expected = <<<EOF

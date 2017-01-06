@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,6 +21,9 @@ use Intacct\Xml\XMLWriter;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\AttachmentFile
+ */
 class AttachmentFileTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -41,9 +44,6 @@ class AttachmentFileTest extends \PHPUnit_Framework_TestCase
         $this->root = vfsStream::setup('root', null, $structure);
     }
 
-    /**
-     * @covers Intacct\Functions\Company\AttachmentFile::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF

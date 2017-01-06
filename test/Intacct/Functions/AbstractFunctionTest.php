@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -19,6 +19,9 @@ namespace Intacct\Functions;
 
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\AbstractFunction
+ */
 class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -30,10 +33,6 @@ class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
         $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
     }
 
-    /**
-     * @covers Intacct\Functions\AbstractFunction::setControlId
-     * @covers Intacct\Functions\AbstractFunction::getControlId
-     */
     public function testValidControlId()
     {
         $controlId = "unittest";
@@ -42,10 +41,6 @@ class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($controlId, $this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Functions\AbstractFunction::setControlId
-     * @covers Intacct\Functions\AbstractFunction::getControlId
-     */
     public function testNoControlId()
     {
         $this->object->setControlId();
@@ -53,10 +48,6 @@ class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($this->object->getControlId());
     }
 
-    /**
-     * @covers Intacct\Functions\AbstractFunction::setControlId
-     * @covers Intacct\Functions\AbstractFunction::getControlId
-     */
     public function testMinimalLengthControlId()
     {
         $controlId = "";
@@ -66,7 +57,6 @@ class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Intacct\Functions\AbstractFunction::setControlId
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage controlid must be between 1 and 256 characters in length
      */

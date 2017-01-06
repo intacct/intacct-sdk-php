@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -19,12 +19,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\ReadByName
+ */
 class ReadByNameTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\ReadByName::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -52,9 +52,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Common\ReadByName::writeXml
-     */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -89,7 +86,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByName::setReturnFormat
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Return Format is not a valid format
      */
@@ -100,7 +96,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\ReadByName::setNames
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Names count cannot exceed 100
      */

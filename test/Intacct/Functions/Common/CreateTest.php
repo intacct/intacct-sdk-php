@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,13 +22,12 @@ use Intacct\FieldTypes\Record;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Common\Create
+ */
 class CreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Common\Create::setRecords
-     * @covers Intacct\Functions\Common\Create::writeXml
-     */
     public function testWriteXml()
     {
         $expected = <<<EOF
@@ -67,7 +66,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Records count cannot exceed 100
      */
@@ -90,7 +88,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Records count must be greater than zero
      */
@@ -101,7 +98,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Common\Create::setRecords
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Using create on object "TIMESHEETENTRY" is not allowed
      */
@@ -116,9 +112,6 @@ EOF;
         ]);
     }
 
-    /**
-     * @covers Intacct\Functions\Common\Create::writeXml
-     */
     public function testWriteXmlOwnedObject()
     {
         $expected = <<<EOF

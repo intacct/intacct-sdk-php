@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,12 +22,12 @@ use Intacct\Functions\InventoryControl\TransactionSubtotalCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionCreate
+ */
 class PurchasingTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionCreate::writeXml
-     */
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -87,9 +87,6 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionCreate::writeXml
-      */
     public function testParamOverrides()
     {
         $expected = <<<EOF
@@ -210,7 +207,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Purchasing\PurchasingTransactionCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage PO Transaction must have at least 1 line
      */

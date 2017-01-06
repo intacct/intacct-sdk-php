@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2016 Intacct Corporation.
+ * Copyright 2017 Intacct Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,12 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
+/**
+ * @coversDefaultClass \Intacct\Functions\Company\UserCreate
+ */
 class UserCreateTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
-     */
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -64,7 +64,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage User ID is required for create
      */
@@ -87,7 +86,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage User Type is required for create
      */
@@ -110,7 +108,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create
      */
@@ -133,7 +130,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create
      */
@@ -156,7 +152,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Primary Email Address is not a valid email
      */
@@ -175,7 +170,6 @@ EOF;
     }
 
     /**
-     * @covers Intacct\Functions\Company\UserCreate::writeXml
      */
     public function testRestrictions()
     {
