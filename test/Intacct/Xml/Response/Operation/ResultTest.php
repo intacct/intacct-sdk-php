@@ -141,11 +141,11 @@ EOF;
         $operation = $response->getOperation();
         $results = $operation->getResults();
         $result = $results[0];
-        
+
         $this->assertEquals('failure', $result->getStatus());
         $this->assertInternalType('array', $result->getErrors());
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing status element
@@ -180,7 +180,7 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing function element
@@ -215,7 +215,7 @@ EOF;
 EOF;
         new SynchronousResponse($xml);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Result block is missing controlid element
@@ -249,5 +249,167 @@ EOF;
 </response>
 EOF;
         new SynchronousResponse($xml);
+    }
+
+    /**
+     * @expectedException \Intacct\Exception\ResultException
+     * @expectedExceptionMessage Result status: failure
+     */
+    public function testStatusFailure()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>read</function>
+                  <controlid>testFunctionId</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>XXX</errorno>
+                              <description></description>
+                              <description2>Object definition VENDOR2 not found</description2>
+                              <correction></correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $response = new SynchronousResponse($xml);
+
+        $results = $response->getOperation()->getResults();
+
+        $results[0]->ensureStatusNotFailure();
+    }
+
+    /**
+     * @expectedException \Intacct\Exception\ResultException
+     * @expectedExceptionMessage Result status: aborted
+     */
+    public function testStatusAbort()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>aborted</status>
+                  <function>readByQuery</function>
+                  <controlid>testFunctionId</controlid>
+                  <errormessage>
+                          <error>
+                                <errorno>Query Failed</errorno>
+                                <description></description>
+                                <description2>Object definition VENDOR9 not found</description2>
+                                <correction></correction>
+                          </error>
+                          <error>
+                                <errorno>XL03000009</errorno>
+                                <description></description>
+                                <description2>The entire transaction in this operation has been rolled back due to an error.</description2>
+                                <correction></correction>
+                          </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $response = new SynchronousResponse($xml);
+
+        $results = $response->getOperation()->getResults();
+
+        $results[0]->ensureStatusSuccess();
+    }
+
+    /**
+     * Test no exception is thrown even though the status is aborted
+     */
+    public function testStatusNotFailureOnAborted()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>aborted</status>
+                  <function>readByQuery</function>
+                  <controlid>testFunctionId</controlid>
+                  <errormessage>
+                          <error>
+                                <errorno>Query Failed</errorno>
+                                <description></description>
+                                <description2>Object definition VENDOR9 not found</description2>
+                                <correction></correction>
+                          </error>
+                          <error>
+                                <errorno>XL03000009</errorno>
+                                <description></description>
+                                <description2>The entire transaction in this operation has been rolled back due to an error.</description2>
+                                <correction></correction>
+                          </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $response = new SynchronousResponse($xml);
+
+        $results = $response->getOperation()->getResults();
+
+        $results[0]->ensureStatusNotFailure();
+
+        $this->addToAssertionCount(1);  //does not throw an exception
+    }
+
+    /**
+     * Test no exception is thrown when status is success
+     */
+    public function testStatusSuccess()
+    {
+
+        $this->object->ensureStatusSuccess();
+
+        $this->addToAssertionCount(1);  //does not throw an exception
     }
 }

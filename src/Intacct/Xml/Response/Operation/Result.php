@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Response\Operation;
 
 use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResultException;
 use Intacct\Xml\Response\ErrorMessage;
 use ArrayIterator;
 use SimpleXMLIterator;
