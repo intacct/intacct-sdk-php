@@ -163,6 +163,30 @@ class Result
     }
 
     /**
+     * Ensure the result status is success
+     *
+     * @throws ResultException
+     */
+    public function ensureStatusSuccess()
+    {
+        if ($this->getStatus() !== 'success') {
+            throw new ResultException('Result status: ' . $this->getStatus(), $this->getErrors());
+        }
+    }
+
+    /**
+     * Ensure the result status is not failure (result status will be success or aborted)
+     *
+     * @throws ResultException
+     */
+    public function ensureStatusNotFailure()
+    {
+        if ($this->getStatus() === 'failure') {
+            throw new ResultException('Result status: ' . $this->getStatus(), $this->getErrors());
+        }
+    }
+
+    /**
      * Get result list type
      *
      * @return string
