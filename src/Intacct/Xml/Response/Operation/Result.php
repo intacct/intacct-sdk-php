@@ -18,6 +18,7 @@
 namespace Intacct\Xml\Response\Operation;
 
 use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResultException;
 use Intacct\Xml\Response\ErrorMessage;
 use ArrayIterator;
 use SimpleXMLIterator;
@@ -160,6 +161,30 @@ class Result
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * Ensure the result status is success
+     *
+     * @throws ResultException
+     */
+    public function ensureStatusSuccess()
+    {
+        if ($this->getStatus() !== 'success') {
+            throw new ResultException('Result status: ' . $this->getStatus(), $this->getErrors());
+        }
+    }
+
+    /**
+     * Ensure the result status is not failure (result status will be success or aborted)
+     *
+     * @throws ResultException
+     */
+    public function ensureStatusNotFailure()
+    {
+        if ($this->getStatus() === 'failure') {
+            throw new ResultException('Result status: ' . $this->getStatus(), $this->getErrors());
+        }
     }
 
     /**
