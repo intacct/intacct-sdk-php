@@ -20,22 +20,21 @@ If you would like to get involved please fork the repository and submit a pull r
 ## Quick Installation Guide
 
 1. Install [Composer][composer]
-
 2. In your code, specify the Intacct SDK for PHP as a dependency in your project's composer.json file:
-
-```json
-{
-    "require": {
-        "intacct/intacct-sdk-php": "v1.*"
+    
+    ```json
+    {
+        "require": {
+            "intacct/intacct-sdk-php": "v1.*"
+        }
     }
-}
-```
-
+    ```
+    
 3. After installing, you need to require Composer's autoloader in your project file(s):
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-```
+    
+    ```php
+    require __DIR__ . '/vendor/autoload.php';
+    ```
 
 ## Quick Example
 
@@ -54,6 +53,7 @@ try {
     echo $ex->getMessage();
 }
 ```
+    
 Need more details and examples?  Coming soon will be a Getting Started guide with a complete code example using the IntacctClient
 
 [intacct]: http://www.intacct.com
