@@ -15,8 +15,9 @@ If you would like to get involved please fork the repository and submit a pull r
 * You must have an active Intacct Web Services Developer license
 * PHP >= 5.6
 * A recent version of cURL >= 7.19.4 compiled with OpenSSL and zlib
+* Composer latest version
 
-## Installation
+## Quick Installation Guide
 
 Install [Composer][composer]:
 
@@ -40,7 +41,7 @@ After installing, you need to require Composer's autoloader in your project file
 require __DIR__ . '/vendor/autoload.php';
 ```
 
-## Examples
+## Quick Example
 
 ### Create an Intacct Client
 
@@ -52,11 +53,12 @@ $loader = require __DIR__ . '/vendor/autoload.php';
 use Intacct\IntacctClient;
 
 try {
-    $client = new IntacctClient();
+    $client = new IntacctClient($login_array);
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
 ```
+Need more details and examples?  Coming soon...[GettingStarted.php](), a complete code example using the IntacctClient
 
 [intacct]: http://www.intacct.com
 [sdk-issues]: https://github.com/Intacct/intacct-sdk-php/issues
