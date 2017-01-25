@@ -21,11 +21,13 @@ use Symfony\Component\Finder\Finder;
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
-    ->in($dir = './src')
+    ->in($dir = __DIR__ . '/src')
 ;
 
-return new Sami($iterator, [
+$sami = new Sami($iterator, [
     'title' => 'Intacct SDK for PHP',
-    'build_dir' => './docs',
-    'cache_dir' => './cache/docs',
+    'build_dir' => __DIR__ . '/docs',
+    'cache_dir' => __DIR__ . '/cache/docs',
 ]);
+
+return $sami;
