@@ -106,7 +106,10 @@ class SessionProvider
         $config['user_id'] = $loginCreds->getUserId();
         $config['user_password'] = $loginCreds->getPassword();
         $config['mock_handler'] = $loginCreds->getMockHandler();
-        
+        $config['logger'] = $loginCreds->getLogger();
+        $config['log_formatter'] = $loginCreds->getLogMessageFormat();
+        $config['log_level'] = $loginCreds->getLogLevel();
+
         $session = $this->getAPISession($config);
 
         return new SessionCredentials($session, $senderCreds);
@@ -125,7 +128,10 @@ class SessionProvider
         $config = $this->getConfig($senderCreds, $endpoint);
         $config['session_id'] = $sessionCreds->getSessionId();
         $config['mock_handler'] = $sessionCreds->getMockHandler();
-        
+        $config['logger'] = $sessionCreds->getLogger();
+        $config['log_formatter'] = $sessionCreds->getLogMessageFormat();
+        $config['log_level'] = $sessionCreds->getLogLevel();
+
         $session = $this->getAPISession($config);
 
         return new SessionCredentials($session, $senderCreds);
