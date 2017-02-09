@@ -86,6 +86,9 @@ class SessionProvider
             'current_company_id' => $authentication->getCompanyId(),
             'current_user_id' => $authentication->getUserId(),
             'current_user_is_external' => $authentication->getSlideInUser(),
+            'logger' => $config['logger'],
+            'log_formatter' => $config['log_formatter'],
+            'log_level' => $config['log_level'],
         ];
         
         return $session;
