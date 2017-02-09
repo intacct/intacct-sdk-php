@@ -18,8 +18,11 @@
 namespace Intacct\Credentials;
 
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Logging\MessageFormatter;
 use InvalidArgumentException;
 use Intacct\Endpoint;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 class LoginCredentials
 {
@@ -54,6 +57,15 @@ class LoginCredentials
     /** @var MockHandler */
     protected $mockHandler;
 
+    /** @var LoggerInterface */
+    private $logger;
+
+    /** @var MessageFormatter */
+    private $logMessageFormat;
+
+    /** @var int */
+    private $logLevel;
+
     /**
      * Initializes the class with the given parameters.
      *
@@ -80,6 +92,9 @@ class LoginCredentials
             'user_id' => getenv(static::USER_ID_ENV_NAME),
             'user_password' => getenv(static::USER_PASSWORD_ENV_NAME),
             'mock_handler' => null,
+            'logger' => null,
+            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
+            'log_level' => LogLevel::DEBUG,
         ];
         $config = array_merge($defaults, $params);
 
@@ -113,6 +128,12 @@ class LoginCredentials
         $this->password = $config['user_password'];
         $this->senderCreds = $senderCreds;
         $this->mockHandler = $config['mock_handler'];
+
+        if ($config['logger']) {
+            $this->logger = $config['logger'];
+        }
+        $this->logMessageFormat = $config['log_formatter'];
+        $this->logLevel = $config['log_level'];
     }
 
     /**
@@ -173,5 +194,29 @@ class LoginCredentials
     public function getMockHandler()
     {
         return $this->mockHandler;
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @return MessageFormatter
+     */
+    public function getLogMessageFormat()
+    {
+        return $this->logMessageFormat;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLogLevel()
+    {
+        return $this->logLevel;
     }
 }

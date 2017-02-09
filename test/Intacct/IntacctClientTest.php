@@ -20,6 +20,9 @@ namespace Intacct;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Common\ReadByQuery;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  * @coversDefaultClass \Intacct\IntacctClient
@@ -266,5 +269,75 @@ EOF;
         $controlId = $this->client->generateRandomControlId();
         $this->assertInternalType('string', $controlId);
         $this->assertContains('-', $controlId);
+    }
+
+    public function testLogger()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>readByQuery</function>
+                <controlid>func1UnitTest</controlid>
+                <data listtype="customer" count="1" totalcount="1" numremaining="0" resultId="">
+                    <customer>
+                        <CUSTOMERID>C0001</CUSTOMERID>
+                        <NAME>Intacct Corporation</NAME>
+                    </customer>
+                </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $handle = fopen('php://memory', 'a+');
+        $handler = new StreamHandler($handle);
+
+        $logger = new Logger('unittest');
+        $logger->pushHandler($handler);
+
+        $config = [
+            'mock_handler' => $mock, //put a new handler on here
+            'logger' => $logger,
+        ];
+
+        $content = new Content([
+            new ReadByQuery('func1UnitTest')
+        ]);
+
+        $client = $this->client; //grab the setUp object
+
+        $response = $client->execute($content, false, 'requestUnitTest', false, $config);
+
+        fseek($handle, 0);
+        $contents = '';
+        while (!feof($handle)) {
+            $contents .= fread($handle, 8192);
+        }
+        fclose($handle);
+
+        $this->assertContains('<password>REDACTED</password>', $contents);
     }
 }
