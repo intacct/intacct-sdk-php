@@ -19,7 +19,7 @@ If you would like to get involved please fork the repository and submit a pull r
 
 ## Getting Started
     
-Coming soon will be a Getting Started guide with a complete code example using the IntacctClient and QueryClient...
+Coming soon will be a Getting Started guide.  Coding examples are available at [intacct-sdk-php-examples](https://github.com/Intacct/intacct-sdk-php-examples).
 
 In the meantime, look at the Quick Installation Guide and Example below to help you get started using the Intacct PHP SDK.
 
@@ -60,7 +60,7 @@ try {
 }
 ```
     
-With the IntacctClient, you can execute any FunctionInterface within a Content object.  See GettingStarted.php for a complete example.
+With the IntacctClient, you can execute any FunctionInterface within a Content object.  See [GettingStarted.php](https://github.com/Intacct/intacct-sdk-php-examples/blob/master/GettingStarted.php) for a complete example.
 
 [intacct]: http://www.intacct.com
 [sdk-issues]: https://github.com/Intacct/intacct-sdk-php/issues
