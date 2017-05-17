@@ -1,0 +1,30 @@
+var NAVTREE =
+[
+  [ "Intacct SDK for PHP", "index.html", [
+    [ "Namespace", "annotated.html", "annotated" ],
+    [ "Index", "classes.html", null ]
+  ] ]
+];
+
+var NAVTREEINDEX =
+[
+"annotated.html",
+"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_ap_payment_request.html#a393156a39ccdc85c0a6b1de5d50dc7b0",
+"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a5e356e6f71b1825918e90491a50241cd",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#acfe8aa2980f864578b51d1e45f829ed4",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a7e32e97e9e23a2f88b735fa87c5a2407",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_ar_adjustment_delete.html",
+"class_intacct_1_1_functions_1_1_cash_management_1_1_abstract_other_receipt.html#aa793f14fa27b45617a66eba021bb88fd",
+"class_intacct_1_1_functions_1_1_common_1_1_read_report.html#a1d4c324c5a088be98d99d3efbf3502e1",
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_location.html#aacd1fa47b7ea59451aff98beca4360ae",
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_employee.html#af5f649e6b9256c784342df5cdb7e3eb3",
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_report_summary.html#ab18c173d1534ea3ea3e8651b8ae5fbde",
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_journal_entry_line.html",
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#a8886f2038ecb3e9ef3d653aec6974aa5",
+"class_intacct_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction.html#af1960ffea707302978fb52816824c776",
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#afd8508125e1eaeeb9cb6dd8af8dadb82",
+"class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a111668af77698a32f8141a9ab1de535a"
+];
+
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';
