@@ -5,6 +5,5 @@
 docs/ export-ignore
 test/ export-ignore
 DEV.md export-ignore
-sami.php export-ignore
 phpunit.xml.dist export-ignore
 .travis.yml export-ignore
