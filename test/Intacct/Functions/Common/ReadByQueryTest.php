@@ -16,6 +16,7 @@
 
 namespace Intacct\Functions\Common;
 
+use Intacct\Functions\Common\Query\QueryString;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -48,7 +49,7 @@ EOF;
 
         $readByQuery = new ReadByQuery('unittest');
         $readByQuery->setObjectName('CLASS');
-        $readByQuery->setQuery('RECORDNO < 2');
+        $readByQuery->setQuery(new QueryString('RECORDNO < 2'));
 
         $readByQuery->writeXml($xml);
 
