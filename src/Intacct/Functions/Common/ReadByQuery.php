@@ -18,6 +18,8 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Common\Query\ConditionInterface;
+use Intacct\Functions\Common\Query\QueryInterface;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -45,7 +47,7 @@ class ReadByQuery extends AbstractFunction
     /** @var array */
     private $fields;
     
-    /** @var string */
+    /** @var QueryInterface */
     private $query;
     
     /** @var int */
@@ -90,7 +92,7 @@ class ReadByQuery extends AbstractFunction
     }
 
     /**
-     * @return string
+     * @return QueryInterface
      */
     public function getQuery()
     {
@@ -98,9 +100,9 @@ class ReadByQuery extends AbstractFunction
     }
 
     /**
-     * @param string $query
+     * @param QueryInterface $query
      */
-    public function setQuery($query)
+    public function setQuery(QueryInterface $query)
     {
         $this->query = $query;
     }

@@ -20,6 +20,7 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Functions\Common\Query\QueryString;
 use Intacct\Functions\Common\ReadByQuery;
 
 /**
@@ -170,6 +171,7 @@ EOF;
         $query->setFields([
             'RECORDNO',
         ]);
+        $query->setQuery(new QueryString('RECORDNO > 1'));
         $query->setPageSize(1);
 
         $records = $this->client->executeQuery($query, 100000, $params);
