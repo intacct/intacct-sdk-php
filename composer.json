@@ -6,12 +6,9 @@
     "authors": [
         {
             "name": "Intacct Corporation",
-            "homepage": "http://www.intacct.com"
+            "homepage": "https://developer.intacct.com"
         }
     ],
-    "support": {
-        "forum": "https://developer.intacct.com"
-    },
     "require": {
         "php": ">=5.6",
         "guzzlehttp/guzzle": "^6.2.3",
