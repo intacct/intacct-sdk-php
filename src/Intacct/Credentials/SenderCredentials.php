@@ -17,7 +17,6 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Endpoint;
 use InvalidArgumentException;
 
 class SenderCredentials

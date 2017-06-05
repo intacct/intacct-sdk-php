@@ -20,7 +20,6 @@ namespace Intacct\Credentials;
 use Intacct\Content;
 use Intacct\Functions\ApiSessionCreate;
 use Intacct\Xml\RequestHandler;
-use Intacct\Endpoint;
 
 class SessionProvider
 {

@@ -15,7 +15,7 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct;
+namespace Intacct\Credentials;
 
 use InvalidArgumentException;
 

@@ -20,7 +20,6 @@ namespace Intacct\Credentials;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Logging\MessageFormatter;
 use InvalidArgumentException;
-use Intacct\Endpoint;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 

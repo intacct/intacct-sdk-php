@@ -17,7 +17,6 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Endpoint;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Logging\MessageFormatter;
 use InvalidArgumentException;
