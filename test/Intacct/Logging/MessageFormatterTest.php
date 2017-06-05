@@ -20,7 +20,7 @@ namespace Intacct\Logging;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Intacct\Content;
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\RequestBlock;
 
 /**

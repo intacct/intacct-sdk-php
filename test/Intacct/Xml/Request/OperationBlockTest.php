@@ -18,7 +18,7 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Content;
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 

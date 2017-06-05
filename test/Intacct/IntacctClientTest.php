@@ -19,7 +19,7 @@ namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Functions\Common\ReadByQuery;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

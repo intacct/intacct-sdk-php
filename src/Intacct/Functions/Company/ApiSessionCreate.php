@@ -15,8 +15,9 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions;
+namespace Intacct\Functions\Company;
 
+use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
 /**

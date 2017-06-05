@@ -17,7 +17,7 @@
 
 namespace Intacct;
 
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 
 /**
  * @coversDefaultClass \Intacct\Content

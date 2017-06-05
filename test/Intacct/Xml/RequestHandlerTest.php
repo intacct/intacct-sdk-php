@@ -21,7 +21,7 @@ namespace Intacct\Xml;
 use Intacct\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 use InvalidArgumentException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

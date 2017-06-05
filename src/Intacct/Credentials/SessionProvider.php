@@ -18,7 +18,7 @@
 namespace Intacct\Credentials;
 
 use Intacct\Content;
-use Intacct\Functions\ApiSessionCreate;
+use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\RequestHandler;
 
 class SessionProvider
