@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use InvalidArgumentException;
 
@@ -70,7 +69,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /** @var bool */
     protected $groupPayments;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $paymentDate;
 
     /** @var float|string */
@@ -236,7 +235,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /**
      * Get payment date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getPaymentDate()
     {
@@ -246,7 +245,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /**
      * Set payment date
      *
-     * @param DateType $paymentDate
+     * @param \DateTime $paymentDate
      */
     public function setPaymentDate($paymentDate)
     {

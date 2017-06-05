@@ -19,7 +19,6 @@ namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Functions\InventoryControl\TransactionSubtotalCreate;
 use Intacct\Xml\XMLWriter;
-use Intacct\FieldTypes\DateType;
 use InvalidArgumentException;
 
 /**
@@ -59,7 +58,7 @@ EOF;
 
         $transaction = new OrderEntryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $line1 = new OrderEntryTransactionLineCreate();
@@ -111,7 +110,7 @@ EOF;
 
         $transaction = new OrderEntryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $line1 = new OrderEntryTransactionLineCreate();
@@ -216,15 +215,15 @@ EOF;
 
         $transaction = new OrderEntryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
-        $transaction->setGlPostingDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
+        $transaction->setGlPostingDate(new \DateTime('2015-06-30'));
         $transaction->setCreatedFrom('Sales Quote-Q1002');
         $transaction->setCustomerId('23530');
         $transaction->setDocumentNumber('23430');
-        $transaction->setOriginalDocumentDate(new DateType('2015-06-15'));
+        $transaction->setOriginalDocumentDate(new \DateTime('2015-06-15'));
         $transaction->setReferenceNumber('234235');
         $transaction->setPaymentTerm('N30');
-        $transaction->setDueDate(new DateType('2020-09-24'));
+        $transaction->setDueDate(new \DateTime('2020-09-24'));
         $transaction->setMessage('Submit');
         $transaction->setShippingMethod('USPS');
         $transaction->setShipToContactName('28952');
@@ -233,7 +232,7 @@ EOF;
         $transaction->setExternalId('20394');
         $transaction->setBaseCurrency('USD');
         $transaction->setTransactionCurrency('USD');
-        $transaction->setExchangeRateDate(new DateType('2015-06-30'));
+        $transaction->setExchangeRateDate(new \DateTime('2015-06-30'));
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setVsoePriceList('VSOEPricing');
         $transaction->setCustomFields([
@@ -275,7 +274,7 @@ EOF;
 
         $transaction = new OrderEntryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Sales Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setCustomerId('2530');
 
         $transaction->writeXml($xml);

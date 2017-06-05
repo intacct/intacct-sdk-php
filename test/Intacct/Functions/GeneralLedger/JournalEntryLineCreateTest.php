@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**
@@ -113,7 +112,7 @@ EOF;
         $jeEntry->setGlAccountNumber('1010');
         $jeEntry->setTransactionAmount(1456.54);
         $jeEntry->setTransactionCurrency('USD');
-        $jeEntry->setExchangeRateDate(new DateType('2016-06-30'));
+        $jeEntry->setExchangeRateDate(new \DateTime('2016-06-30'));
         $jeEntry->setExchangeRateType('Intacct Daily Rate');
         $jeEntry->setMemo('my memo');
         $jeEntry->setLocationId('100');

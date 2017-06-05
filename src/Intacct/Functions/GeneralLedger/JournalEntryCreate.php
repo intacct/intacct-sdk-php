@@ -41,8 +41,8 @@ class JournalEntryCreate extends AbstractJournalEntry
         $xml->startElement('GLBATCH');
 
         $xml->writeElement('JOURNAL', $this->getJournalSymbol(), true);
-        $xml->writeElement('BATCH_DATE', $this->getPostingDate(), true);
-        $xml->writeElement('REVERSEDATE', $this->getReverseDate());
+        $xml->writeElementDate('BATCH_DATE', $this->getPostingDate(), $xml::IA_DATE_FORMAT, true);
+        $xml->writeElementDate('REVERSEDATE', $this->getReverseDate());
         $xml->writeElement('BATCH_TITLE', $this->getDescription(), true);
         $xml->writeElement('HISTORY_COMMENT', $this->getHistoryComment());
         $xml->writeElement('REFERENCENO', $this->getReferenceNumber());

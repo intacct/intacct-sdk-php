@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 
 abstract class AbstractExpenseReportSummary extends AbstractFunction
@@ -29,7 +28,7 @@ abstract class AbstractExpenseReportSummary extends AbstractFunction
     /** @var string */
     protected $title;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $glPostingDate;
 
     // TODO: Allow setting AbstractExpenseReport
@@ -67,7 +66,7 @@ abstract class AbstractExpenseReportSummary extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getGlPostingDate()
     {
@@ -75,7 +74,7 @@ abstract class AbstractExpenseReportSummary extends AbstractFunction
     }
 
     /**
-     * @param DateType $glPostingDate
+     * @param \DateTime $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {

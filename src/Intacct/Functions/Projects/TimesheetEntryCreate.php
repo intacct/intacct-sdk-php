@@ -39,7 +39,7 @@ class TimesheetEntryCreate extends AbstractTimesheetEntry
         if (!$this->getEntryDate()) {
             throw new InvalidArgumentException('Entry Date is required for create');
         }
-        $xml->writeElement('ENTRYDATE', $this->getEntryDate(), true);
+        $xml->writeElementDate('ENTRYDATE', $this->getEntryDate(), $xml::IA_DATE_FORMAT, true);
 
         $xml->writeElement('QTY', $this->getQuantity(), true);
 

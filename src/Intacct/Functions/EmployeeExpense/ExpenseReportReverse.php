@@ -17,21 +17,20 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 class ExpenseReportReverse extends AbstractExpenseReport
 {
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $reverseDate;
 
     /** @var string */
     protected $memo;
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getReverseDate()
     {
@@ -39,7 +38,7 @@ class ExpenseReportReverse extends AbstractExpenseReport
     }
 
     /**
-     * @param DateType $reverseDate
+     * @param \DateTime $reverseDate
      */
     public function setReverseDate($reverseDate)
     {

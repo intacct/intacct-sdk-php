@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**
@@ -108,8 +107,8 @@ EOF;
         $line->setTotalDue(0.00);
         $line->setRevRecTemplateId('RevRec1');
         $line->setDeferredRevGlAccountNo('2100');
-        $line->setRevRecStartDate(new DateType('2016-06-01'));
-        $line->setRevRecEndDate(new DateType('2017-05-31'));
+        $line->setRevRecStartDate(new \DateTime('2016-06-01'));
+        $line->setRevRecEndDate(new \DateTime('2017-05-31'));
         $line->setLocationId('Location1');
         $line->setDepartmentId('Department1');
         $line->setProjectId('Project1');

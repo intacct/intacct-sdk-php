@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\InventoryControl;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -41,7 +40,7 @@ abstract class AbstractInventoryTransaction extends AbstractFunction
     /** @var string */
     protected $transactionDefinition;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
     /** @var string */
@@ -104,7 +103,7 @@ abstract class AbstractInventoryTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -112,7 +111,7 @@ abstract class AbstractInventoryTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {

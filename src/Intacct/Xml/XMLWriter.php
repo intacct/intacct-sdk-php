@@ -17,8 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\FieldTypes\DateType;
-use DateTime;
 use InvalidArgumentException;
 
 class XMLWriter extends \XMLWriter
@@ -98,6 +96,24 @@ class XMLWriter extends \XMLWriter
         }
     }
 
+    public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, $writeNull = false)
+    {
+        if ($date instanceof \DateTime) {
+            return self::writeElement($name, $date->format($format), $writeNull);
+        } else {
+            return self::writeElement($name, $date, $writeNull);
+        }
+    }
+
+    public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, $writeNull = false)
+    {
+        if ($date instanceof \DateTime) {
+            return self::writeElement($name, $date->format($format), $writeNull);
+        } else {
+            return self::writeElement($name, $date, $writeNull);
+        }
+    }
+
     /**
      * @param mixed $value
      *
@@ -107,10 +123,9 @@ class XMLWriter extends \XMLWriter
     {
         if (is_bool($value)) {
             $value = ($value === true) ? 'true' : 'false';
-        } elseif ($value instanceof DateType) {
+        } elseif ($value instanceof \DateTime) {
+            // Default to date output
             $value = $value->format(self::IA_DATE_FORMAT);
-        } elseif ($value instanceof DateTime) {
-            $value = $value->format(self::IA_DATETIME_FORMAT);
         } elseif (is_array($value)) {
             $value = implode(self::IA_MULTI_SELECT_GLUE, $value);
         }
@@ -120,12 +135,12 @@ class XMLWriter extends \XMLWriter
     /**
      * Write full element date tags
      *
-     * @param DateType $date
+     * @param \DateTime $date
      * @param bool $writeNull
      *
      * @return bool
      */
-    public function writeDateSplitElements(DateType $date, $writeNull = true)
+    public function writeDateSplitElements(\DateTime $date, $writeNull = true)
     {
         list($year, $month, $day) = explode('-', $date->format('Y-m-d'));
 

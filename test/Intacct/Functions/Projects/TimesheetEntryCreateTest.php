@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Projects;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**
@@ -43,7 +42,7 @@ EOF;
         $xml->startDocument();
 
         $line = new TimesheetEntryCreate();
-        $line->setEntryDate(new DateType('2016-06-30'));
+        $line->setEntryDate(new \DateTime('2016-06-30'));
 
         $line->writeXml($xml);
 
@@ -84,7 +83,7 @@ EOF;
         $xml->startDocument();
 
         $line = new TimesheetEntryCreate();
-        $line->setEntryDate(new DateType('2016-06-30'));
+        $line->setEntryDate(new \DateTime('2016-06-30'));
         $line->setQuantity(1.75);
         $line->setDescription('desc');
         $line->setNotes('my note');

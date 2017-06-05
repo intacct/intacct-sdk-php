@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Purchasing;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\InventoryControl\AbstractTransactionSubtotal;
 use Intacct\Functions\Traits\CustomFieldsTrait;
@@ -42,10 +41,10 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     /** @var string */
     protected $transactionDefinition;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $glPostingDate;
 
     /** @var string */
@@ -60,7 +59,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     /** @var string */
     protected $documentNumber;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $originalDocumentDate;
 
     /** @var string */
@@ -69,7 +68,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     /** @var string */
     protected $paymentTerm;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $dueDate;
 
     /** @var string */
@@ -96,7 +95,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -153,7 +152,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -161,7 +160,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -169,7 +168,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getGlPostingDate()
     {
@@ -177,7 +176,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $glPostingDate
+     * @param \DateTime $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {
@@ -249,7 +248,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getOriginalDocumentDate()
     {
@@ -257,7 +256,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $originalDocumentDate
+     * @param \DateTime $originalDocumentDate
      */
     public function setOriginalDocumentDate($originalDocumentDate)
     {
@@ -297,7 +296,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -305,7 +304,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $dueDate
+     * @param \DateTime $dueDate
      */
     public function setDueDate($dueDate)
     {
@@ -441,7 +440,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -449,7 +448,7 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     }
 
     /**
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

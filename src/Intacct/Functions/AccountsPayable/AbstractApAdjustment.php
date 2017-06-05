@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
@@ -33,10 +32,10 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /** @var string */
     protected $vendorId;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $glPostingDate;
 
     /** @var string */
@@ -60,7 +59,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -124,7 +123,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Get transaction date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -134,7 +133,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Set transaction date
      *
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -144,7 +143,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Get GL posting date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getGlPostingDate()
     {
@@ -154,7 +153,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Set GL posting date
      *
-     * @param DateType $glPostingDate
+     * @param \DateTime $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {
@@ -305,7 +304,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Get exchange rate date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -315,7 +314,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Set exchange rate date
      *
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use InvalidArgumentException;
 
@@ -59,7 +58,7 @@ abstract class AbstractReimbursementRequest extends AbstractFunction
     /** @var string */
     protected $mergeOption;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $paymentDate;
 
     /** @var string */
@@ -159,7 +158,7 @@ abstract class AbstractReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getPaymentDate()
     {
@@ -167,7 +166,7 @@ abstract class AbstractReimbursementRequest extends AbstractFunction
     }
 
     /**
-     * @param DateType $paymentDate
+     * @param \DateTime $paymentDate
      */
     public function setPaymentDate($paymentDate)
     {

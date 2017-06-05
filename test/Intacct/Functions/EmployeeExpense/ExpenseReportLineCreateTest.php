@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**
@@ -105,9 +104,9 @@ EOF;
         $line->setReimbursementAmount(1025.99);
         $line->setTransactionCurrency('USD');
         $line->setTransactionAmount(76343.43);
-        $line->setExchangeRateDate(new DateType('2016-06-30'));
+        $line->setExchangeRateDate(new \DateTime('2016-06-30'));
         $line->setExchangeRateType('Intacct Daily Rate');
-        $line->setExpenseDate(new DateType('2016-06-30'));
+        $line->setExpenseDate(new \DateTime('2016-06-30'));
         $line->setPaidTo('Marriott');
         $line->setPaidFor('Hotel');
         $line->setForm1099(true);

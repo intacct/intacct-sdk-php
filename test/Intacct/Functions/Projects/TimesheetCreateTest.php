@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Projects;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -55,10 +54,10 @@ EOF;
 
         $record = new TimesheetCreate('unittest');
         $record->setEmployeeId('E1234');
-        $record->setBeginDate(new DateType('2016-06-30'));
+        $record->setBeginDate(new \DateTime('2016-06-30'));
 
         $entry1 = new TimesheetEntryCreate();
-        $entry1->setEntryDate(new DateType('2016-06-30'));
+        $entry1->setEntryDate(new \DateTime('2016-06-30'));
         $entry1->setQuantity(1.75);
 
         $record->setEntries([
@@ -102,7 +101,7 @@ EOF;
 
         $record = new TimesheetCreate('unittest');
         $record->setEmployeeId('E1234');
-        $record->setBeginDate(new DateType('2016-06-30'));
+        $record->setBeginDate(new \DateTime('2016-06-30'));
         $record->setDescription('desc');
         $record->setAttachmentsId('A1234');
         $record->setAction('Submitted');
@@ -111,7 +110,7 @@ EOF;
         ]);
 
         $entry1 = new TimesheetEntryCreate();
-        $entry1->setEntryDate(new DateType('2016-06-30'));
+        $entry1->setEntryDate(new \DateTime('2016-06-30'));
         $entry1->setQuantity(1.75);
 
         $record->setEntries([
@@ -172,7 +171,7 @@ EOF;
 
         $record = new TimesheetCreate('unittest');
         $record->setEmployeeId('E1234');
-        $record->setBeginDate(new DateType('2016-06-30'));
+        $record->setBeginDate(new \DateTime('2016-06-30'));
 
         $record->writeXml($xml);
     }

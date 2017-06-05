@@ -49,8 +49,8 @@ class TaskCreate extends AbstractTask
         }
         $xml->writeElement('PROJECTID', $this->getProjectId(), true);
 
-        $xml->writeElement('PBEGINDATE', $this->getPlannedBeginDate());
-        $xml->writeElement('PENDDATE', $this->getPlannedEndDate());
+        $xml->writeElementDate('PBEGINDATE', $this->getPlannedBeginDate());
+        $xml->writeElementDate('PENDDATE', $this->getPlannedEndDate());
         $xml->writeElement('CLASSID', $this->getClassId());
         $xml->writeElement('ITEMID', $this->getItemId());
         $xml->writeElement('BILLABLE', $this->isBillable());

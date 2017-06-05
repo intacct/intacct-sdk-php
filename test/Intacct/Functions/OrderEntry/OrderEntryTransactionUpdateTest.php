@@ -19,7 +19,6 @@ namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Functions\InventoryControl\TransactionSubtotalUpdate;
 use Intacct\Xml\XMLWriter;
-use Intacct\FieldTypes\DateType;
 use InvalidArgumentException;
 
 /**
@@ -179,12 +178,12 @@ EOF;
 
         $transaction = new OrderEntryTransactionUpdate('unittest');
         $transaction->setTransactionId('Sales Order-SO0001');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
-        $transaction->setGlPostingDate(new DateType('2015-06-30'));
-        $transaction->setOriginalDocumentDate(new DateType('2015-06-15'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
+        $transaction->setGlPostingDate(new \DateTime('2015-06-30'));
+        $transaction->setOriginalDocumentDate(new \DateTime('2015-06-15'));
         $transaction->setReferenceNumber('234235');
         $transaction->setPaymentTerm('N30');
-        $transaction->setDueDate(new DateType('2020-09-24'));
+        $transaction->setDueDate(new \DateTime('2020-09-24'));
         $transaction->setMessage('Submit');
         $transaction->setShippingMethod('USPS');
         $transaction->setShipToContactName('28952');
@@ -192,7 +191,7 @@ EOF;
         $transaction->setAttachmentsId('6942');
         $transaction->setBaseCurrency('USD');
         $transaction->setTransactionCurrency('USD');
-        $transaction->setExchangeRateDate(new DateType('2015-06-30'));
+        $transaction->setExchangeRateDate(new \DateTime('2015-06-30'));
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setVsoePriceList('VSOEPricing');
         $transaction->setCustomFields([

@@ -51,7 +51,7 @@ class EmployeeUpdate extends AbstractEmployee
             $xml->endElement(); //PERSONALINFO
         }
 
-        $xml->writeElement('STARTDATE', $this->getStartDate());
+        $xml->writeElementDate('STARTDATE', $this->getStartDate());
         $xml->writeElement('TITLE', $this->getTitle());
         $xml->writeElement('SSN', $this->getSsn());
         $xml->writeElement('EMPLOYEETYPE', $this->getEmployeeType());
@@ -62,8 +62,8 @@ class EmployeeUpdate extends AbstractEmployee
             $xml->writeElement('STATUS', 'inactive');
         }
 
-        $xml->writeElement('BIRTHDATE', $this->getBirthDate());
-        $xml->writeElement('ENDDATE', $this->getEndDate());
+        $xml->writeElementDate('BIRTHDATE', $this->getBirthDate());
+        $xml->writeElementDate('ENDDATE', $this->getEndDate());
         $xml->writeElement('TERMINATIONTYPE', $this->getTerminationType());
         $xml->writeElement('SUPERVISORID', $this->getManagerEmployeeId());
         $xml->writeElement('GENDER', $this->getGender());

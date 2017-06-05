@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
@@ -59,10 +58,10 @@ abstract class AbstractInvoiceLine
     /** @var string */
     protected $deferredRevGlAccountNo;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $revRecStartDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $revRecEndDate;
 
     /** @var string */
@@ -318,7 +317,7 @@ abstract class AbstractInvoiceLine
     /**
      * Get revenue recognition start date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getRevRecStartDate()
     {
@@ -328,7 +327,7 @@ abstract class AbstractInvoiceLine
     /**
      * Set revenue recognition start date
      *
-     * @param DateType $revRecStartDate
+     * @param \DateTime $revRecStartDate
      */
     public function setRevRecStartDate($revRecStartDate)
     {
@@ -338,7 +337,7 @@ abstract class AbstractInvoiceLine
     /**
      * Get revenue recognition end date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getRevRecEndDate()
     {
@@ -348,7 +347,7 @@ abstract class AbstractInvoiceLine
     /**
      * Set revenue recognition end date
      *
-     * @param DateType $revRecEndDate
+     * @param \DateTime $revRecEndDate
      */
     public function setRevRecEndDate($revRecEndDate)
     {

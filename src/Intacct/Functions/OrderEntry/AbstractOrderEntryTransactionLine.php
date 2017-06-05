@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\OrderEntry;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\InventoryControl\AbstractTransactionItemDetail;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
@@ -63,10 +62,10 @@ abstract class AbstractOrderEntryTransactionLine
     /** @var string */
     protected $revRecTemplate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $revRecStartDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $revRecEndDate;
 
     /** @var string */
@@ -301,7 +300,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getRevRecStartDate()
     {
@@ -309,7 +308,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @param DateType $revRecStartDate
+     * @param \DateTime $revRecStartDate
      */
     public function setRevRecStartDate($revRecStartDate)
     {
@@ -317,7 +316,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getRevRecEndDate()
     {
@@ -325,7 +324,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @param DateType $revRecEndDate
+     * @param \DateTime $revRecEndDate
      */
     public function setRevRecEndDate($revRecEndDate)
     {

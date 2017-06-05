@@ -17,9 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\FieldTypes\DateType;
-use DateTime;
-
 /**
  * @coversDefaultClass \Intacct\Xml\XMLWriter
  */
@@ -94,9 +91,9 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $date = new DateType("2016-03-01");
+        $date = new \DateTime("2016-03-01");
 
-        $xml->writeElement('billdate', $date);
+        $xml->writeElementDate('billdate', $date);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -114,9 +111,9 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $dateTime = new DateTime("2016-03-01T12:30:59");
+        $dateTime = new \DateTime("2016-03-01T12:30:59");
 
-        $xml->writeElement('createdAt', $dateTime);
+        $xml->writeElementDateTime('createdAt', $dateTime);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -155,7 +152,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $date = new DateType("2016-03-01");
+        $date = new \DateTime("2016-03-01");
 
         $xml->startElement("date");
 

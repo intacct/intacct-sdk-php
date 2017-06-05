@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -32,7 +31,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /** @var string */
     protected $chargeCardId;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
     /** @var string */
@@ -50,7 +49,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -105,7 +104,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /**
      * Get transaction date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -115,7 +114,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /**
      * Set transaction date
      *
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -225,7 +224,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /**
      * Get exchange rate date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -235,7 +234,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     /**
      * Set exchange rate date
      *
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
@@ -44,7 +43,7 @@ abstract class AbstractExpenseAdjustmentLine
     /** @var string */
     protected $memo;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $expenseDate;
 
     /** @var int|float|string */
@@ -59,7 +58,7 @@ abstract class AbstractExpenseAdjustmentLine
     /** @var float|string */
     protected $transactionAmount;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -182,7 +181,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getExpenseDate()
     {
@@ -190,7 +189,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @param DateType $expenseDate
+     * @param \DateTime $expenseDate
      */
     public function setExpenseDate($expenseDate)
     {
@@ -262,7 +261,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -270,7 +269,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -29,7 +28,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     /** @var int */
     protected $recordNo;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
     /** @var string */
@@ -38,7 +37,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     /** @var string */
     protected $expenseReportNumber;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $glPostingDate;
 
     /** @var string|int */
@@ -88,7 +87,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -96,7 +95,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     }
 
     /**
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -136,7 +135,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getGlPostingDate()
     {
@@ -144,7 +143,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     }
 
     /**
-     * @param DateType $glPostingDate
+     * @param \DateTime $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {

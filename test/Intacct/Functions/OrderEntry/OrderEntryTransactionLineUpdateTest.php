@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\OrderEntry;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
 
@@ -127,8 +126,8 @@ EOF;
         $entry->setDiscountSurchargeMemo('None');
         $entry->setMemo('Memo');
         $entry->setRevRecTemplate('template');
-        $entry->setRevRecStartDate(new DateType('2015-06-30'));
-        $entry->setRevRecEndDate(new DateType('2015-07-31'));
+        $entry->setRevRecStartDate(new \DateTime('2015-06-30'));
+        $entry->setRevRecEndDate(new \DateTime('2015-07-31'));
         $entry->setRenewalMacro('Quarterly');
         $entry->setFulfillmentStatus('Complete');
         $entry->setTaskNumber('9850');

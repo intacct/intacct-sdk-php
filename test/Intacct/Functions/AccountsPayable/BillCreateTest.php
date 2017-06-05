@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -58,7 +57,7 @@ EOF;
 
         $apBill = new BillCreate('unittest');
         $apBill->setVendorId('VENDOR1');
-        $apBill->setTransactionDate(new DateType('2015-06-30'));
+        $apBill->setTransactionDate(new \DateTime('2015-06-30'));
         $apBill->setPaymentTerm('N30');
 
         $line1 = new BillLineCreate();
@@ -143,9 +142,9 @@ EOF;
 
         $apBill = new BillCreate('unittest');
         $apBill->setVendorId('VENDOR1');
-        $apBill->setTransactionDate(new DateType('2015-06-30'));
-        $apBill->setGlPostingDate(new DateType('2015-06-30'));
-        $apBill->setDueDate(new DateType('2020-09-24'));
+        $apBill->setTransactionDate(new \DateTime('2015-06-30'));
+        $apBill->setGlPostingDate(new \DateTime('2015-06-30'));
+        $apBill->setDueDate(new \DateTime('2020-09-24'));
         $apBill->setPaymentTerm('N30');
         $apBill->setAction('Submit');
         $apBill->setSummaryRecordNo(20323);
@@ -158,7 +157,7 @@ EOF;
         $apBill->setReturnToContactName('289533');
         $apBill->setBaseCurrency('USD');
         $apBill->setTransactionCurrency('USD');
-        $apBill->setExchangeRateDate(new DateType('2015-06-30'));
+        $apBill->setExchangeRateDate(new \DateTime('2015-06-30'));
         $apBill->setExchangeRateType('Intacct Daily Rate');
         $apBill->setDoNotPostToGL(false);
         $apBill->setAttachmentsId('6942');
@@ -192,7 +191,7 @@ EOF;
 
         $apBill = new BillCreate('unittest');
         $apBill->setVendorId('VENDOR1');
-        $apBill->setTransactionDate(new DateType('2015-06-30'));
+        $apBill->setTransactionDate(new \DateTime('2015-06-30'));
         $apBill->setPaymentTerm('N30');
 
         $apBill->writeXml($xml);

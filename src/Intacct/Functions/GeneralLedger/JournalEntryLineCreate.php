@@ -47,7 +47,7 @@ class JournalEntryLineCreate extends AbstractJournalEntryLine
         $xml->writeElement('CURRENCY', $this->getTransactionCurrency());
 
         if ($this->getExchangeRateDate()) {
-            $xml->writeElement('EXCH_RATE_DATE', $this->getExchangeRateDate());
+            $xml->writeElementDate('EXCH_RATE_DATE', $this->getExchangeRateDate());
         }
 
         if ($this->getExchangeRateType()) {
