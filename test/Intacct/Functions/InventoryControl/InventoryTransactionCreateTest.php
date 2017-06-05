@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\InventoryControl;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -58,7 +57,7 @@ EOF;
 
         $transaction = new InventoryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
 
         $line1 = new InventoryTransactionLineCreate();
         $line1->setItemId('02354032');
@@ -124,7 +123,7 @@ EOF;
 
         $transaction = new InventoryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Inventory Shipper');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setCreatedFrom('Inventory Shipper-P1002');
         $transaction->setDocumentNumber('23430');
         $transaction->setReferenceNumber('234235');
@@ -172,7 +171,7 @@ EOF;
 
         $transaction = new InventoryTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
 
         $transaction->writeXml($xml);
     }

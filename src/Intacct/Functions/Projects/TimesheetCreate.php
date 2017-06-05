@@ -47,7 +47,7 @@ class TimesheetCreate extends AbstractTimesheet
         if (!$this->getBeginDate()) {
             throw new InvalidArgumentException('Begin Date is required for create');
         }
-        $xml->writeElement('BEGINDATE', $this->getBeginDate(), true);
+        $xml->writeElementDate('BEGINDATE', $this->getBeginDate(), $xml::IA_DATE_FORMAT, true);
 
         $xml->writeElement('DESCRIPTION', $this->getDescription());
         $xml->writeElement('SUPDOCID', $this->getAttachmentsId());

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\InventoryControl;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractTransactionItemDetail
@@ -41,7 +40,7 @@ abstract class AbstractTransactionItemDetail
     /** @var string */
     protected $bin;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $itemExpiration;
 
     /**
@@ -141,7 +140,7 @@ abstract class AbstractTransactionItemDetail
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getItemExpiration()
     {
@@ -149,7 +148,7 @@ abstract class AbstractTransactionItemDetail
     }
 
     /**
-     * @param DateType $itemExpiration
+     * @param \DateTime $itemExpiration
      */
     public function setItemExpiration($itemExpiration)
     {

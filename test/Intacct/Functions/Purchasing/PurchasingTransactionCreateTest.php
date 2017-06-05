@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Purchasing;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\InventoryControl\TransactionSubtotalCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
@@ -70,9 +69,9 @@ EOF;
 
         $transaction = new PurchasingTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new DateType('2019-09-15'));
+        $transaction->setDueDate(new \DateTime('2019-09-15'));
 
         $line1 = new PurchasingTransactionLineCreate();
         $line1->setItemId('02354032');
@@ -163,14 +162,14 @@ EOF;
 
         $transaction = new PurchasingTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
-        $transaction->setGlPostingDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
+        $transaction->setGlPostingDate(new \DateTime('2015-06-30'));
         $transaction->setCreatedFrom('Purchase Order-P1002');
         $transaction->setVendorId('23530');
         $transaction->setDocumentNumber('23430');
         $transaction->setReferenceNumber('234235');
         $transaction->setPaymentTerm('N30');
-        $transaction->setDueDate(new DateType('2020-09-24'));
+        $transaction->setDueDate(new \DateTime('2020-09-24'));
         $transaction->setMessage('Submit');
         $transaction->setShippingMethod('USPS');
         $transaction->setReturnToContactName('Bobbi Reese');
@@ -179,7 +178,7 @@ EOF;
         $transaction->setExternalId('20394');
         $transaction->setBaseCurrency('USD');
         $transaction->setTransactionCurrency('USD');
-        $transaction->setExchangeRateDate(new DateType('2015-06-30'));
+        $transaction->setExchangeRateDate(new \DateTime('2015-06-30'));
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setState('Pending');
         $transaction->setCustomFields([
@@ -221,9 +220,9 @@ EOF;
 
         $transaction = new PurchasingTransactionCreate('unittest');
         $transaction->setTransactionDefinition('Purchase Order');
-        $transaction->setTransactionDate(new DateType('2015-06-30'));
+        $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new DateType('2019-09-15'));
+        $transaction->setDueDate(new \DateTime('2019-09-15'));
 
         $transaction->writeXml($xml);
     }

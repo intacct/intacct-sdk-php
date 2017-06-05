@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use InvalidArgumentException;
 
@@ -77,7 +76,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var string */
     protected $customerId;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $receivedDate;
 
     /** @var float|string */
@@ -86,7 +85,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var float|string */
     protected $basePaymentAmount;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -260,7 +259,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /**
      * Get received date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getReceivedDate()
     {
@@ -270,7 +269,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /**
      * Set received date
      *
-     * @param DateType $receivedDate
+     * @param \DateTime $receivedDate
      */
     public function setReceivedDate($receivedDate)
     {
@@ -320,7 +319,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /**
      * Get exchange rate date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -330,7 +329,7 @@ abstract class AbstractArPayment extends AbstractFunction
     /**
      * Set exchange rate date
      *
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

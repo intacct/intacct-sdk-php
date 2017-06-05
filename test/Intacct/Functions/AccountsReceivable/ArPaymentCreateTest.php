@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -54,7 +53,7 @@ EOF;
         $payment = new ArPaymentCreate('unittest');
         $payment->setCustomerId('C0020');
         $payment->setTransactionPaymentAmount(1922.12);
-        $payment->setReceivedDate(new DateType('2016-06-30'));
+        $payment->setReceivedDate(new \DateTime('2016-06-30'));
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);
@@ -76,7 +75,7 @@ EOF;
 
         $payment = new ArPaymentCreate('unittest');
         //$payment->setCustomerId('C0020');
-        $payment->setReceivedDate(new DateType('2016-06-30'));
+        $payment->setReceivedDate(new \DateTime('2016-06-30'));
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);
@@ -116,7 +115,7 @@ EOF;
 
         $payment = new ArPaymentCreate('unittest');
         $payment->setCustomerId('C0020');
-        $payment->setReceivedDate(new DateType('2016-06-30'));
+        $payment->setReceivedDate(new \DateTime('2016-06-30'));
         //$payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);

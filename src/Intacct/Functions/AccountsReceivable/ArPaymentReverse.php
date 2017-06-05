@@ -17,14 +17,13 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 class ArPaymentReverse extends AbstractArPayment
 {
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $reverseDate;
 
     /** @var string */
@@ -33,7 +32,7 @@ class ArPaymentReverse extends AbstractArPayment
     /**
      * Get reverse date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getReverseDate()
     {
@@ -43,7 +42,7 @@ class ArPaymentReverse extends AbstractArPayment
     /**
      * Set reverse date
      *
-     * @param DateType $reverseDate
+     * @param \DateTime $reverseDate
      */
     public function setReverseDate($reverseDate)
     {

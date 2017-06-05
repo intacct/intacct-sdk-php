@@ -16,7 +16,6 @@
 
 namespace Intacct\Functions\GlobalConsolidations;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**

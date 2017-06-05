@@ -64,8 +64,8 @@ class LocationCreate extends AbstractLocation
             $xml->endElement();
         }
 
-        $xml->writeElement('STARTDATE', $this->getStartDate());
-        $xml->writeElement('ENDDATE', $this->getEndDate());
+        $xml->writeElementDate('STARTDATE', $this->getStartDate());
+        $xml->writeElementDate('ENDDATE', $this->getEndDate());
         $xml->writeElement('CUSTTITLE', $this->getLocationTitle());
 
         if ($this->isActive() === true) {

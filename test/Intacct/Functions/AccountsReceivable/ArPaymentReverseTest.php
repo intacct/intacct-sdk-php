@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -50,7 +49,7 @@ EOF;
 
         $record = new ArPaymentReverse('unittest');
         $record->setRecordNo(1234);
-        $record->setReverseDate(new DateType('2015-06-30'));
+        $record->setReverseDate(new \DateTime('2015-06-30'));
 
         $record->writeXml($xml);
 

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -29,7 +28,7 @@ abstract class AbstractDeposit extends AbstractFunction
     /** @var string */
     protected $bankAccountId;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $depositDate;
 
     /** @var string */
@@ -67,7 +66,7 @@ abstract class AbstractDeposit extends AbstractFunction
     /**
      * Get deposit date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getDepositDate()
     {
@@ -77,7 +76,7 @@ abstract class AbstractDeposit extends AbstractFunction
     /**
      * Set deposit date
      *
-     * @param DateType $depositDate
+     * @param \DateTime $depositDate
      */
     public function setDepositDate($depositDate)
     {

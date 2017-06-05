@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -51,7 +50,7 @@ EOF;
 
         $record = new ExpenseReportSummaryCreate('unittest');
         $record->setTitle('unit test');
-        $record->setGlPostingDate(new DateType('2015-06-30'));
+        $record->setGlPostingDate(new \DateTime('2015-06-30'));
 
         $record->writeXml($xml);
 

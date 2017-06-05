@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -101,8 +100,8 @@ EOF;
 
         $journalEntry = new StatisticalJournalEntryCreate('unittest');
         $journalEntry->setJournalSymbol('SJ');
-        $journalEntry->setPostingDate(new DateType('2016-06-30'));
-        $journalEntry->setReverseDate(new DateType('2016-07-01'));
+        $journalEntry->setPostingDate(new \DateTime('2016-06-30'));
+        $journalEntry->setReverseDate(new \DateTime('2016-07-01'));
         $journalEntry->setDescription('My desc');
         $journalEntry->setHistoryComment('comment!');
         $journalEntry->setReferenceNumber('123');

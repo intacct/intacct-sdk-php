@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -63,9 +62,9 @@ EOF;
         $xml->startDocument();
 
         $record = new OtherReceiptCreate('unittest');
-        $record->setTransactionDate(new DateType('2015-06-30'));
+        $record->setTransactionDate(new \DateTime('2015-06-30'));
         $record->setPayer('Costco');
-        $record->setReceiptDate(new DateType('2015-07-01'));
+        $record->setReceiptDate(new \DateTime('2015-07-01'));
         $record->setPaymentMethod('Printed Check');
         $record->setUndepositedFundsGlAccountNo('1000');
 
@@ -138,17 +137,17 @@ EOF;
         $xml->startDocument();
 
         $record = new OtherReceiptCreate('unittest');
-        $record->setTransactionDate(new DateType('2015-06-30'));
+        $record->setTransactionDate(new \DateTime('2015-06-30'));
         $record->setPayer('Costco');
-        $record->setReceiptDate(new DateType('2015-07-01'));
+        $record->setReceiptDate(new \DateTime('2015-07-01'));
         $record->setPaymentMethod('Printed Check');
         $record->setBankAccountId('BA1234');
-        $record->setDepositDate(new DateType('2015-07-04'));
+        $record->setDepositDate(new \DateTime('2015-07-04'));
         $record->setTransactionNo('transno');
         $record->setDescription('my desc');
         $record->setAttachmentsId('A1234');
         $record->setTransactionCurrency('USD');
-        $record->setExchangeRateDate(new DateType('2015-07-04'));
+        $record->setExchangeRateDate(new \DateTime('2015-07-04'));
         $record->setExchangeRateType('Intacct Daily Rate');
         $record->setCustomFields([
             'customfield1' => 'customvalue1',
@@ -179,9 +178,9 @@ EOF;
         $xml->startDocument();
 
         $record = new OtherReceiptCreate('unittest');
-        $record->setTransactionDate(new DateType('2015-06-30'));
+        $record->setTransactionDate(new \DateTime('2015-06-30'));
         $record->setPayer('Costco');
-        $record->setReceiptDate(new DateType('2015-07-01'));
+        $record->setReceiptDate(new \DateTime('2015-07-01'));
         $record->setPaymentMethod('Printed Check');
         $record->setUndepositedFundsGlAccountNo('1000');
 

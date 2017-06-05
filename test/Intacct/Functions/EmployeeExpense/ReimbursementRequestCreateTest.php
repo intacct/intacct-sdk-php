@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -61,7 +60,7 @@ EOF;
         $payment->setBankAccountId('BA1143');
         $payment->setEmployeeId('E0001');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
-        $payment->setPaymentDate(new DateType('2015-06-30'));
+        $payment->setPaymentDate(new \DateTime('2015-06-30'));
 
         $line1 = new ReimbursementRequestItem();
         $line1->setApplyToRecordId(123);
@@ -116,7 +115,7 @@ EOF;
         $payment->setEmployeeId('E0001');
         $payment->setMemo('Memo');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
-        $payment->setPaymentDate(new DateType('2015-06-30'));
+        $payment->setPaymentDate(new \DateTime('2015-06-30'));
         $payment->setMergeOption('vendorpref');
         $payment->setDocumentNo('10000');
         $payment->setNotificationContactName('Jim Smith');
@@ -150,7 +149,7 @@ EOF;
         $payment->setBankAccountId('BA1143');
         $payment->setEmployeeId('E0001');
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
-        $payment->setPaymentDate(new DateType('2015-06-30'));
+        $payment->setPaymentDate(new \DateTime('2015-06-30'));
 
         $payment->writeXml($xml);
     }

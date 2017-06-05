@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Projects;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
@@ -26,7 +25,7 @@ abstract class AbstractTimesheetEntry
 
     use CustomFieldsTrait;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $entryDate;
 
     /** @var int|float|string */
@@ -81,7 +80,7 @@ abstract class AbstractTimesheetEntry
     protected $warehouseId;
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getEntryDate()
     {
@@ -89,7 +88,7 @@ abstract class AbstractTimesheetEntry
     }
 
     /**
-     * @param DateType $entryDate
+     * @param \DateTime $entryDate
      */
     public function setEntryDate($entryDate)
     {

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -95,13 +94,13 @@ EOF;
 
         $record = new ChargeCardTransactionUpdate('unittest');
         $record->setRecordNo(1234);
-        $record->setTransactionDate(new DateType('2015-06-30'));
+        $record->setTransactionDate(new \DateTime('2015-06-30'));
         $record->setReferenceNumber('321');
         $record->setPayee('Costco');
         $record->setDescription('Supplies');
         $record->setAttachmentsId('A1234');
         $record->setTransactionCurrency('USD');
-        $record->setExchangeRateDate(new DateType('2015-06-30'));
+        $record->setExchangeRateDate(new \DateTime('2015-06-30'));
         $record->setExchangeRateType('Intacct Daily Rate');
         $record->setCustomFields([
             'customfield1' => 'customvalue1',

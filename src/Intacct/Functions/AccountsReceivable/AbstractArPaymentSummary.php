@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 
 abstract class AbstractArPaymentSummary extends AbstractFunction
@@ -29,7 +28,7 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     /** @var string */
     protected $title;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $glPostingDate;
 
     /** @var string */
@@ -83,7 +82,7 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     /**
      * Get GL posting date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getGlPostingDate()
     {
@@ -93,7 +92,7 @@ abstract class AbstractArPaymentSummary extends AbstractFunction
     /**
      * Set GL posting date
      *
-     * @param DateType $glPostingDate
+     * @param \DateTime $glPostingDate
      */
     public function setGlPostingDate($glPostingDate)
     {

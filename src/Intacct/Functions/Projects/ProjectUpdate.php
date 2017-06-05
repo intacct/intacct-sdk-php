@@ -85,8 +85,8 @@ class ProjectUpdate extends AbstractProject
 
         $xml->writeElement('TERMNAME', $this->getPaymentTerms());
         $xml->writeElement('BILLINGTYPE', $this->getBillingType());
-        $xml->writeElement('BEGINDATE', $this->getBeginDate());
-        $xml->writeElement('ENDDATE', $this->getEndDate());
+        $xml->writeElementDate('BEGINDATE', $this->getBeginDate());
+        $xml->writeElementDate('ENDDATE', $this->getEndDate());
         $xml->writeElement('DEPARTMENTID', $this->getDepartmentId());
         $xml->writeElement('LOCATIONID', $this->getLocationId());
         $xml->writeElement('CLASSID', $this->getClassId());

@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -32,7 +31,7 @@ abstract class AbstractEmployee extends AbstractFunction
     /** @var string */
     protected $contactName;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $startDate;
 
     /** @var string */
@@ -50,10 +49,10 @@ abstract class AbstractEmployee extends AbstractFunction
     /** @var bool */
     protected $placeholderResource;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $birthDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $endDate;
 
     /** @var string */
@@ -152,7 +151,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -160,7 +159,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param DateType $startDate
+     * @param \DateTime $startDate
      */
     public function setStartDate($startDate)
     {
@@ -248,7 +247,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -256,7 +255,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param DateType $birthDate
+     * @param \DateTime $birthDate
      */
     public function setBirthDate($birthDate)
     {
@@ -264,7 +263,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -272,7 +271,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param DateType $endDate
+     * @param \DateTime $endDate
      */
     public function setEndDate($endDate)
     {

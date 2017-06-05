@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -57,7 +56,7 @@ EOF;
 
         $expense = new ExpenseAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new DateType('2015-06-30'));
+        $expense->setTransactionDate(new \DateTime('2015-06-30'));
 
         $line1 = new ExpenseAdjustmentLineCreate();
 
@@ -112,8 +111,8 @@ EOF;
 
         $expense = new ExpenseAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new DateType('2015-06-30'));
-        $expense->setGlPostingDate(new DateType('2015-06-30'));
+        $expense->setTransactionDate(new \DateTime('2015-06-30'));
+        $expense->setGlPostingDate(new \DateTime('2015-06-30'));
         $expense->setSummaryRecordNo('123');
         $expense->setExpenseAdjustmentNumber('ADJ001');
         $expense->setExpenseReportNumber('EXP001');
@@ -146,7 +145,7 @@ EOF;
 
         $expense = new ExpenseAdjustmentCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new DateType('2015-06-30'));
+        $expense->setTransactionDate(new \DateTime('2015-06-30'));
 
         $expense->writeXml($xml);
     }

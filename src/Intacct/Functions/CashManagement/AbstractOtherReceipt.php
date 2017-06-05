@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -26,7 +25,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
 
     use CustomFieldsTrait;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $receiptDate;
 
     /** @var string */
@@ -35,7 +34,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /** @var string */
     protected $paymentMethod;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $transactionDate;
 
     /** @var string */
@@ -50,7 +49,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /** @var string */
     protected $bankAccountId;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $depositDate;
 
     /** @var string */
@@ -59,7 +58,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /** @var string */
     protected $transactionCurrency;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $exchangeRateDate;
 
     /** @var float */
@@ -74,7 +73,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Get receipt date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getReceiptDate()
     {
@@ -84,7 +83,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Set receipt date
      *
-     * @param DateType $receiptDate
+     * @param \DateTime $receiptDate
      */
     public function setReceiptDate($receiptDate)
     {
@@ -134,7 +133,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Get transaction date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getTransactionDate()
     {
@@ -144,7 +143,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Set transaction date
      *
-     * @param DateType $transactionDate
+     * @param \DateTime $transactionDate
      */
     public function setTransactionDate($transactionDate)
     {
@@ -234,7 +233,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Get deposit date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getDepositDate()
     {
@@ -244,7 +243,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Set deposit date
      *
-     * @param DateType $depositDate
+     * @param \DateTime $depositDate
      */
     public function setDepositDate($depositDate)
     {
@@ -294,7 +293,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Get exchange rate date
      *
-     * @return DateType
+     * @return \DateTime
      */
     public function getExchangeRateDate()
     {
@@ -304,7 +303,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     /**
      * Set exchange rate date
      *
-     * @param DateType $exchangeRateDate
+     * @param \DateTime $exchangeRateDate
      */
     public function setExchangeRateDate($exchangeRateDate)
     {

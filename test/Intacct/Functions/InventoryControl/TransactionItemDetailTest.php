@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\InventoryControl;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 
 /**
@@ -50,7 +49,7 @@ EOF;
         $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(5523);
         $itemDetail->setLotNumber('223');
-        $itemDetail->setItemExpiration(new DateType('2017-12-31'));
+        $itemDetail->setItemExpiration(new \DateTime('2017-12-31'));
 
         $itemDetail->writeXml($xml);
 

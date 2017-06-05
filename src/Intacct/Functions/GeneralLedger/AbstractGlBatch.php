@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 
@@ -32,10 +31,10 @@ abstract class AbstractGlBatch extends AbstractFunction
     /** @var string */
     protected $journalSymbol;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $postingDate;
 
-    /** @var DateType */
+    /** @var \DateTime */
     protected $reverseDate;
 
     /** @var string */
@@ -89,7 +88,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getPostingDate()
     {
@@ -97,7 +96,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param DateType $postingDate
+     * @param \DateTime $postingDate
      */
     public function setPostingDate($postingDate)
     {
@@ -105,7 +104,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @return DateType
+     * @return \DateTime
      */
     public function getReverseDate()
     {
@@ -113,7 +112,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     }
 
     /**
-     * @param DateType $reverseDate
+     * @param \DateTime $reverseDate
      */
     public function setReverseDate($reverseDate)
     {

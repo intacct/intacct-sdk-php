@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\CashManagement;
 
-use Intacct\FieldTypes\DateType;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -55,7 +54,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new DateType('2015-06-30'));
+        $deposit->setDepositDate(new \DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setTransactionKeysToDeposit([
             1234,
@@ -102,7 +101,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new DateType('2015-06-30'));
+        $deposit->setDepositDate(new \DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setDescription('Desc');
         $deposit->setAttachmentsId('AT111');
@@ -132,7 +131,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new DateType('2015-06-30'));
+        $deposit->setDepositDate(new \DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
 
         $deposit->writeXml($xml);
