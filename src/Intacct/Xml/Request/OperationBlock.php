@@ -17,10 +17,10 @@
 
 namespace Intacct\Xml\Request;
 
+use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\Request\Operation\AbstractAuthentication;
 use Intacct\Xml\Request\Operation\SessionAuthentication;
 use Intacct\Xml\Request\Operation\LoginAuthentication;
-use Intacct\Content;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -33,7 +33,7 @@ class OperationBlock
     /** @var AbstractAuthentication */
     private $authentication;
 
-    /** @var Content */
+    /** @var FunctionInterface[] */
     private $contentBlock;
 
     /**
@@ -47,11 +47,11 @@ class OperationBlock
      *      @var string $user_id Intacct user ID
      *      @var string $user_password Intacct user password
      * }
-     * @param Content $contentBlock
+     * @param FunctionInterface[] $contentBlock
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params, Content $contentBlock)
+    public function __construct(array $params, array $contentBlock)
     {
         $defaults = [
             'transaction' => false,
@@ -125,9 +125,9 @@ class OperationBlock
     /**
      * Set content block of operation
      *
-     * @param Content $contentBlock
+     * @param FunctionInterface[] $contentBlock
      */
-    private function setContent(Content $contentBlock)
+    private function setContent(array $contentBlock)
     {
         $this->contentBlock = $contentBlock;
     }

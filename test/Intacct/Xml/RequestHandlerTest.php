@@ -18,7 +18,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Content;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\Company\ApiSessionCreate;
@@ -58,7 +57,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'verify_ssl' => false,
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -76,7 +75,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => 10,
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -94,7 +93,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'encoding' => 'invalid',
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -114,7 +113,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => '10',
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -134,7 +133,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             'max_retries' => -1,
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -153,7 +152,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         $requestHandler = new RequestHandler($config, $requestBlock);
@@ -181,7 +180,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -203,7 +202,7 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestBlock = new RequestBlock($config, $contentBlock);
         new RequestHandler($config, $requestBlock);
@@ -258,9 +257,9 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->executeSynchronous($config, $contentBlock);
@@ -306,9 +305,9 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->executeAsynchronous($config, $contentBlock);
@@ -334,9 +333,9 @@ EOF;
             'control_id' => 'requestUnitTest',
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->executeAsynchronous($config, $contentBlock);
@@ -392,9 +391,9 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $requestHandler->executeSynchronous($config, $contentBlock);
@@ -427,9 +426,9 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $requestHandler->executeSynchronous($config, $contentBlock);
@@ -452,9 +451,9 @@ EOF;
             'mock_handler' => $mock,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $requestHandler->executeSynchronous($config, $contentBlock);
@@ -515,9 +514,9 @@ EOF;
             'logger' => $logger,
         ];
 
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate(),
-        ]);
+        ];
 
         $requestHandler = new RequestHandler($config);
         $response = $requestHandler->executeSynchronous($config, $contentBlock);

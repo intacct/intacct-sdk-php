@@ -213,9 +213,9 @@ EOF;
             'mock_handler' => $mock, //put a new handler on here
         ];
 
-        $content = new Content([
+        $content = [
             new ApiSessionCreate('func1UnitTest')
-        ]);
+        ];
 
         $client = $this->client; //grab the setUp object
 
@@ -253,9 +253,9 @@ EOF;
             'mock_handler' => $mock, //put a new handler on here
         ];
 
-        $content = new Content([
+        $content = [
             new ApiSessionCreate('func1UnitTest')
-        ]);
+        ];
 
         $client = $this->client; //grab the setUp object
 
@@ -323,9 +323,9 @@ EOF;
             'logger' => $logger,
         ];
 
-        $content = new Content([
+        $content = [
             new ReadByQuery('func1UnitTest')
-        ]);
+        ];
 
         $client = $this->client; //grab the setUp object
 

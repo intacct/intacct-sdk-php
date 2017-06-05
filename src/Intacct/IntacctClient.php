@@ -18,6 +18,7 @@
 namespace Intacct;
 
 use Intacct\Credentials\SessionCredentials;
+use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\SynchronousResponse;
 
@@ -67,7 +68,7 @@ class IntacctClient extends AbstractClient
     /**
      * Execute a synchronous request to the API
      *
-     * @param Content $contentBlock Content block to send
+     * @param FunctionInterface[] $contentBlock Content block to send
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
      * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
@@ -76,7 +77,7 @@ class IntacctClient extends AbstractClient
      * @return SynchronousResponse
      */
     public function execute(
-        Content $contentBlock,
+        array $contentBlock,
         $transaction = false,
         $requestControlId = null,
         $uniqueFunctionControlIds = false,
@@ -94,7 +95,7 @@ class IntacctClient extends AbstractClient
     /**
      * Execute an asynchronous request to the API
      *
-     * @param Content $contentBlock Content block to send
+     * @param FunctionInterface[] $contentBlock Content block to send
      * @param string $asyncPolicyId Intacct asynchronous policy ID
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
@@ -104,7 +105,7 @@ class IntacctClient extends AbstractClient
      * @return AsynchronousResponse
      */
     public function executeAsync(
-        Content $contentBlock,
+        array $contentBlock,
         $asyncPolicyId,
         $transaction = false,
         $requestControlId = null,

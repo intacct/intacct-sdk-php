@@ -19,7 +19,6 @@ namespace Intacct\Logging;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Intacct\Content;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\RequestBlock;
 
@@ -39,9 +38,9 @@ class MessageFormatterTest extends \PHPUnit_Framework_TestCase
             'user_id' => 'testuser',
             'user_password' => 'P@ssW0rd!123',
         ];
-        $contentBlock = new Content([
+        $contentBlock = [
             new ApiSessionCreate('unittest'),
-        ]);
+        ];
         $xmlRequest = new RequestBlock($config, $contentBlock);
 
         $xmlResponse = <<<EOF

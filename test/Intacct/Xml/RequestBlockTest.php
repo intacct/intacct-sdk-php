@@ -17,8 +17,6 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Content;
-
 /**
  * @coversDefaultClass \Intacct\Xml\RequestBlock
  */
@@ -39,7 +37,7 @@ EOF;
             'control_id' => 'unittest',
         ];
 
-        $contentBlock = new Content();
+        $contentBlock = [];
 
         $requestHandler = new RequestBlock($config, $contentBlock);
 

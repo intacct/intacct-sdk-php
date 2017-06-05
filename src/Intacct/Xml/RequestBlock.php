@@ -17,9 +17,9 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\Request\ControlBlock;
 use Intacct\Xml\Request\OperationBlock;
-use Intacct\Content;
 use InvalidArgumentException;
 
 class RequestBlock
@@ -45,10 +45,10 @@ class RequestBlock
      * - `encoding` (string, default=string "UTF-8") Encoding to use
      *
      * @param array $params RequestBlock configuration options
-     * @param Content $contentBlock ContentBlock of request
+     * @param FunctionInterface[] $contentBlock Functions of request
      * @throws InvalidArgumentException
      */
-    public function __construct(array $params, Content $contentBlock)
+    public function __construct(array $params, array $contentBlock)
     {
         $defaults = [
             'encoding' => 'UTF-8',

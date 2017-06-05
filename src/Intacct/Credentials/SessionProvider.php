@@ -17,7 +17,6 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Content;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\RequestHandler;
 
@@ -64,9 +63,9 @@ class SessionProvider
      */
     private function getAPISession(array $config)
     {
-        $contentBlock = new Content();
+        $contentBlock = [];
         $getApiSession = new ApiSessionCreate();
-        $contentBlock->append($getApiSession);
+        $contentBlock[] = $getApiSession;
 
         $requestHandler = new RequestHandler($config);
 

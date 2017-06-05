@@ -21,6 +21,7 @@ use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Credentials\SessionProvider;
+use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\AsynchronousResponse;
 use Intacct\Xml\RequestHandler;
 use Intacct\Xml\SynchronousResponse;
@@ -144,7 +145,7 @@ abstract class AbstractClient
     /**
      * Execute a synchronous request to the API
      *
-     * @param Content $contentBlock Content block to send
+     * @param FunctionInterface[] $contentBlock Content block to send
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
      * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
@@ -153,7 +154,7 @@ abstract class AbstractClient
      * @return SynchronousResponse
      */
     protected function execute(
-        Content $contentBlock,
+        array $contentBlock,
         $transaction = false,
         $requestControlId = null,
         $uniqueFunctionControlIds = false,
@@ -179,7 +180,7 @@ abstract class AbstractClient
     /**
      * Execute an asynchronous request to the API
      *
-     * @param Content $contentBlock Content block to send
+     * @param FunctionInterface[] $contentBlock Content block to send
      * @param string $asyncPolicyId Intacct asynchronous policy ID
      * @param bool $transaction Force the operation to be one transaction
      * @param string $requestControlId Request control ID
@@ -189,7 +190,7 @@ abstract class AbstractClient
      * @return AsynchronousResponse
      */
     protected function executeAsync(
-        Content $contentBlock,
+        array $contentBlock,
         $asyncPolicyId,
         $transaction = false,
         $requestControlId = null,

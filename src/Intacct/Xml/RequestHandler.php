@@ -17,7 +17,7 @@
 
 namespace Intacct\Xml;
 
-use Intacct\Content;
+use Intacct\Functions\FunctionInterface;
 use Intacct\Logging\MessageFormatter;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -242,11 +242,11 @@ class RequestHandler
      * Execute a request synchronously
      *
      * @param array $params
-     * @param Content $contentBlock
+     * @param FunctionInterface[] $contentBlock
      *
      * @return SynchronousResponse
      */
-    public function executeSynchronous(array $params, Content $contentBlock)
+    public function executeSynchronous(array $params, array $contentBlock)
     {
         unset($params['policy_id']);
 
@@ -265,11 +265,11 @@ class RequestHandler
      * Execute a request asynchronously with a policy ID
      *
      * @param array $params
-     * @param Content $contentBlock
+     * @param FunctionInterface[] $contentBlock
      *
      * @return AsynchronousResponse
      */
-    public function executeAsynchronous(array $params, Content $contentBlock)
+    public function executeAsynchronous(array $params, array $contentBlock)
     {
         $defaults = [
             'policy_id' => null,

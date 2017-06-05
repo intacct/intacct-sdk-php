@@ -17,7 +17,6 @@
 
 namespace Intacct\Xml\Request;
 
-use Intacct\Content;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
@@ -50,9 +49,9 @@ class OperationBlockTest extends \PHPUnit_Framework_TestCase
             'session_id' => 'fakesession..',
         ];
         
-        $contentBlock = new Content();
+        $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
-        $contentBlock->append($func);
+        $contentBlock[] = $func;
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -87,10 +86,10 @@ EOF;
             'user_id' => 'testuser',
             'user_password' => 'testpass',
         ];
-        
-        $contentBlock = new Content();
+
+        $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
-        $contentBlock->append($func);
+        $contentBlock[] = $func;
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -128,10 +127,10 @@ EOF;
             'session_id' => 'fakesession..',
             'transaction' => true,
         ];
-        
-        $contentBlock = new Content();
+
+        $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
-        $contentBlock->append($func);
+        $contentBlock[] = $func;
         
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -169,10 +168,10 @@ EOF;
             'session_id' => 'fakesession..',
             'transaction' => 'true',
         ];
-        
-        $contentBlock = new Content();
-        $func = new ApiSessionCreate();
-        $contentBlock->append($func);
+
+        $contentBlock = [];
+        $func = new ApiSessionCreate('unittest');
+        $contentBlock[] = $func;
         new OperationBlock($config, $contentBlock);
     }
     
@@ -188,10 +187,10 @@ EOF;
             'user_id' => null,
             'user_password' => null,
         ];
-        
-        $contentBlock = new Content();
-        $func = new ApiSessionCreate();
-        $contentBlock->append($func);
+
+        $contentBlock = [];
+        $func = new ApiSessionCreate('unittest');
+        $contentBlock[] = $func;
         new OperationBlock($config, $contentBlock);
     }
 }
