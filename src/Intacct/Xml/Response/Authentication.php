@@ -15,10 +15,9 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Response\Operation;
+namespace Intacct\Xml\Response;
 
 use Intacct\Exception\IntacctException;
-use SimpleXMLIterator;
 
 class Authentication
 {
@@ -32,16 +31,13 @@ class Authentication
     /** @var string */
     private $companyId;
 
-    /** @var boolean */
-    private $slideInUser;
-
     /**
      * Initializes the class
      *
-     * @param SimpleXMLIterator $authentication
+     * @param \SimpleXMLElement $authentication
      * @throws IntacctException
      */
-    public function __construct(SimpleXMLIterator $authentication)
+    public function __construct(\SimpleXMLElement $authentication)
     {
         if (!isset($authentication->status)) {
             throw new IntacctException('Authentication block is missing status element');
@@ -53,71 +49,58 @@ class Authentication
             throw new IntacctException('Authentication block is missing companyid element');
         }
 
-        $this->status = strval($authentication->status);
-        $this->userId = strval($authentication->userid);
-        $this->companyId = strval($authentication->companyid);
-        $this->setSlideInUser($this->userId);
+        $this->setStatus(strval($authentication->status));
+        $this->setUserId(strval($authentication->userid));
+        $this->setCompanyId(strval($authentication->companyid));
         
         //TODO add getter/setter for elements: clientstatus, clientid, locationid, sessiontimestamp
     }
 
     /**
-     * Get authentication status
-     *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * Get user ID
-     *
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @return string
      */
-    public function getUserId()
+    public function getUserId(): string
     {
         return $this->userId;
     }
 
     /**
-     * Get company ID
-     *
+     * @param string $userId
+     */
+    private function setUserId(string $userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
      * @return string
      */
-    public function getCompanyId()
+    public function getCompanyId(): string
     {
         return $this->companyId;
     }
 
     /**
-     * Get if user is external
-     *
-     * @return boolean
+     * @param string $companyId
      */
-    public function getSlideInUser()
+    private function setCompanyId(string $companyId)
     {
-        return $this->slideInUser;
-    }
-
-    /**
-     * Set if user is external
-     *
-     * @param string $userId
-     */
-    private function setSlideInUser($userId)
-    {
-        $slideInUser = false;
-        if (strpos($userId, 'CPAUser') !== false) {
-            $slideInUser = true;
-        } elseif (strpos($userId, 'ExtUser|') !== false) {
-            $slideInUser = true;
-        } elseif (strpos($userId, 'SvcUser|') !== false) {
-            $slideInUser = true;
-        } elseif (strpos($userId, 'intacct') !== false) {
-            $slideInUser = true;
-        }
-        $this->slideInUser = $slideInUser;
+        $this->companyId = $companyId;
     }
 }

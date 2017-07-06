@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate
  */
-class StatisticalJournalEntryCreateTest extends \PHPUnit_Framework_TestCase
+class StatisticalJournalEntryCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

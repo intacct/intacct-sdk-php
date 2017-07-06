@@ -17,17 +17,15 @@
 
 namespace Intacct\Xml;
 
+use Intacct\ClientConfig;
+use Intacct\Credentials\Endpoint;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Logging\MessageFormatter;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use Intacct\RequestConfig;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
-use InvalidArgumentException;
-use XMLWriter;
 
 class RequestHandler
 {
@@ -35,284 +33,100 @@ class RequestHandler
     /** @var string */
     const VERSION = '1.0';
 
-    /** @var string */
-    const REQUEST_CONTENT_TYPE = 'x-intacct-xml-request';
+    /** @var ClientConfig */
+    private $clientConfig;
+
+    /** @var RequestConfig */
+    private $requestConfig;
 
     /** @var string */
-    protected $endpointURL;
-    
-    /** @var bool */
-    protected $verifySSL;
+    private $endpointUrl;
 
-    /** @var MockHandler */
-    protected $mockHandler;
-    
     /** @var array */
     protected $history = [];
 
-    /** @var int */
-    protected $maxRetries;
-    
-    /** @var array */
-    protected $noRetryServerErrorCodes;
-
-    /** @var LoggerInterface */
-    protected $logger;
-
-    /** @var MessageFormatter */
-    protected $logMessageFormat;
-
-    /** @var int */
-    protected $logLevel;
-
     /**
-     * Initializes the class with the given parameters.
+     * RequestHandler constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `encoding` (string, default=string "UTF-8") Encoding to use
-     * - `endpoint_url` (string) Endpoint URL
-     * - `logger` (Psr\Log\LoggerInterface)
-     * - `log_formatter` (Intacct\Logging\MessageFormatter) Log formatter
-     * - `log_level` (int, default=int(400)) Log level
-     * - `max_retries` (int, default=int(5)) Max number of retries
-     * - `no_retry_server_error_codes` (int[], default=array(524)) HTTP server error codes to abort
-     * retrying if one occurs
-     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
-     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
-     *
-     * @param array $params RequestHandler configuration options
+     * @param ClientConfig $clientConfig
+     * @param RequestConfig $requestConfig
      */
-    public function __construct(array $params)
+    public function __construct(ClientConfig $clientConfig, RequestConfig $requestConfig)
     {
-        $defaults = [
-            'encoding' => 'UTF-8',
-            'endpoint_url' => null,
-            'logger' => null,
-            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
-            'log_level' => LogLevel::DEBUG,
-            'mock_handler' => null,
-            'max_retries' => 5,
-            'no_retry_server_error_codes' => [
-                524, //CDN cut connection, Intacct is still processing the request
-            ],
-            'verify_ssl' => true,
-        ];
-        $config = array_merge($defaults, $params);
-
-        $this->endpointURL = $config['endpoint_url'];
-        $this->verifySSL = $config['verify_ssl'];
-        $this->mockHandler = $config['mock_handler'];
-        $this->setMaxRetries($config['max_retries']);
-        $this->setNoRetryServerErrorCodes($config['no_retry_server_error_codes']);
-        if ($config['logger']) {
-            $this->setLogger($config['logger']);
+        if ($clientConfig->getEndpointUrl()) {
+            $this->setEndpointUrl($clientConfig->getEndpointUrl());
+        } else {
+            $this->setEndpointUrl(new Endpoint($clientConfig));
         }
-        $this->setLogMessageFormatter($config['log_formatter']);
-        $this->setLogLevel($config['log_level']);
-    }
-    
-    /**
-     * Get user agent to use in the HTTP headers
-     *
-     * @return string
-     */
-    protected function getUserAgent()
-    {
-        $userAgent = 'intacct-api-php-client/' . RequestHandler::VERSION;
 
-        return $userAgent;
+        $this->setClientConfig($clientConfig);
+
+        $this->setRequestConfig($requestConfig);
     }
-    
+
     /**
-     * Get verify SSL
-     *
-     * @return bool
+     * @param FunctionInterface[] $content
+     * @return OnlineResponse
      */
-    public function getVerifySSL()
+    public function executeOnline(array $content): OnlineResponse
     {
-        return $this->verifySSL;
-    }
-    
-    /**
-     * Get history array
-     *
-     * @return array
-     */
-    public function getHistory()
-    {
-        return $this->history;
-    }
-    
-    /**
-     * Set max retries
-     *
-     * @param int $maxRetries
-     * @throws InvalidArgumentException
-     */
-    private function setMaxRetries($maxRetries)
-    {
-        if (!is_int($maxRetries)) {
-            throw new InvalidArgumentException(
-                'max retries not valid int type'
-            );
+        if ($this->getRequestConfig()->getPolicyId()) {
+            $this->getRequestConfig()->setPolicyId('');
         }
-        if ($maxRetries < 0) {
-            throw new InvalidArgumentException(
-                'max retries must be zero or greater'
-            );
-        }
-        $this->maxRetries = $maxRetries;
-    }
-    
-    /**
-     * Get max retries
-     *
-     * @return int
-     */
-    public function getMaxRetries()
-    {
-        return $this->maxRetries;
-    }
-    
-    /**
-     * Set no retry server error codes
-     *
-     * @param array $errorCodes
-     * @throws InvalidArgumentException
-     */
-    private function setNoRetryServerErrorCodes(array $errorCodes)
-    {
-        foreach ($errorCodes as $errorCode) {
-            if (!is_int($errorCode)) {
-                throw new InvalidArgumentException(
-                    'no retry server error code is not valid int type'
-                );
-            }
-            if ($errorCode < 500 || $errorCode > 599) {
-                throw new InvalidArgumentException(
-                    'no retry server error code must be between 500-599'
-                );
-            }
-        }
-        $this->noRetryServerErrorCodes = $errorCodes;
-    }
 
-    /**
-     * Get no retry server error codes
-     *
-     * @return array
-     */
-    public function getNoRetryServerErrorCodes()
-    {
-        return $this->noRetryServerErrorCodes;
-    }
-
-    /**
-     * Set logger
-     *
-     * @param LoggerInterface $logger
-     */
-    private function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
-    /**
-     * Set log message formatter
-     *
-     * @param MessageFormatter $formatter
-     */
-    private function setLogMessageFormatter(MessageFormatter $formatter)
-    {
-        $this->logMessageFormat = $formatter;
-    }
-
-    /**
-     * Set log level
-     *
-     * @param int $logLevel
-     */
-    private function setLogLevel($logLevel)
-    {
-        $this->logLevel = $logLevel;
-    }
-
-    /**
-     * Execute a request synchronously
-     *
-     * @param array $params
-     * @param FunctionInterface[] $contentBlock
-     *
-     * @return SynchronousResponse
-     */
-    public function executeSynchronous(array $params, array $contentBlock)
-    {
-        unset($params['policy_id']);
-
-        $requestBlock = new RequestBlock($params, $contentBlock);
-
+        $requestBlock = new RequestBlock($this->getClientConfig(), $this->getRequestConfig(), $content);
         $client = $this->execute($requestBlock->writeXml());
 
         $body = $client->getBody();
         $body->rewind();
-        $response = new SynchronousResponse($body->getContents());
+        $response = new OnlineResponse($body->getContents());
 
         return $response;
     }
 
     /**
-     * Execute a request asynchronously with a policy ID
-     *
-     * @param array $params
-     * @param FunctionInterface[] $contentBlock
-     *
-     * @return AsynchronousResponse
+     * @param FunctionInterface[] $content
+     * @return OfflineResponse
      */
-    public function executeAsynchronous(array $params, array $contentBlock)
+    public function executeOffline(array $content): OfflineResponse
     {
-        $defaults = [
-            'policy_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
-
-        if (!isset($params['policy_id'])) {
-            throw new InvalidArgumentException(
-                'Required "policy_id" key not supplied in params for asynchronous request'
+        if (!$this->getRequestConfig()->getPolicyId()) {
+            throw new \InvalidArgumentException(
+                'Required Policy ID not supplied in config for offline request'
             );
         }
 
-        $requestBlock = new RequestBlock($config, $contentBlock);
+        // TODO Log warning if using session ID for offline execution
+
+        $requestBlock = new RequestBlock($this->getClientConfig(), $this->getRequestConfig(), $content);
         $client = $this->execute($requestBlock->writeXml());
 
         $body = $client->getBody();
         $body->rewind();
-        $response = new AsynchronousResponse($body->getContents());
+        $response = new OfflineResponse($body->getContents());
 
         return $response;
     }
 
     /**
-     * Execute an XML request to Intacct
-     *
-     * @param XMLWriter $xml
+     * @param \XMLWriter $xml
      * @return ResponseInterface
      */
-    private function execute($xml)
+    private function execute(\XMLWriter $xml): ResponseInterface
     {
         //this is used for retry logic
         $calls = [];
         $decider = function ($retries, $request, $response, $error) use (&$calls) {
             $calls[] = func_get_args();
             
-            if (count($calls) > $this->maxRetries) {
+            if (count($calls) > $this->getRequestConfig()->getMaxRetries()) {
                 return false;
             }
             
             if ($error instanceof \GuzzleHttp\Exception\ServerException) {
                 //retry if receiving http 5xx error codes
                 $response = $error->getResponse();
-                if (in_array($response->getStatusCode(), $this->noRetryServerErrorCodes) === true) {
+                if (in_array($response->getStatusCode(), $this->getRequestConfig()->getNoRetryServerErrorCodes()) === true) {
                     return false;
                 } else {
                     return true;
@@ -324,21 +138,25 @@ class RequestHandler
         };
         
         //setup the handler
-        if ($this->mockHandler instanceof MockHandler) {
-            $handler = HandlerStack::create($this->mockHandler);
+        if ($this->getClientConfig()->getMockHandler() instanceof MockHandler) {
+            $handler = HandlerStack::create($this->getClientConfig()->getMockHandler());
         } else {
             $handler = HandlerStack::create();
         }
         
         //add the retry logic before the http_errors middleware
         $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
-        
+
         //push the history middleware to the top of the stack
         $handler->push(Middleware::history($this->history));
 
-        if ($this->logger) {
+        if ($this->getClientConfig()->getLogger()) {
             //push the logger middleware to the top of the stack
-            $handler->push(Middleware::log($this->logger, $this->logMessageFormat, $this->logLevel));
+            $handler->push(Middleware::log(
+                $this->getClientConfig()->getLogger(),
+                $this->getClientConfig()->getLogMessageFormatter(),
+                $this->getClientConfig()->getLogLevel())
+            );
         }
         
         $client = new Client([
@@ -347,15 +165,79 @@ class RequestHandler
 
         $options = [
             'body' => $xml->flush(),
-            'verify' => $this->getVerifySSL(),
             'headers' => [
-                'content-type' => self::REQUEST_CONTENT_TYPE,
-                'User-Agent' => $this->getUserAgent(),
-            ]
+                'content-type' => 'application/xml',
+                'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
+            ],
+            'timeout' => $this->requestConfig->getMaxTimeout()
         ];
         
-        $response = $client->post($this->endpointURL, $options);
+        $response = $client->post($this->getEndpointUrl(), $options);
 
         return $response;
+    }
+
+    /**
+     * @return ClientConfig
+     */
+    public function getClientConfig(): ClientConfig
+    {
+        return $this->clientConfig;
+    }
+
+    /**
+     * @param ClientConfig $clientConfig
+     */
+    public function setClientConfig(ClientConfig $clientConfig)
+    {
+        $this->clientConfig = $clientConfig;
+    }
+
+    /**
+     * @return RequestConfig
+     */
+    public function getRequestConfig(): RequestConfig
+    {
+        return $this->requestConfig;
+    }
+
+    /**
+     * @param RequestConfig $requestConfig
+     */
+    public function setRequestConfig(RequestConfig $requestConfig)
+    {
+        $this->requestConfig = $requestConfig;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndpointUrl(): string
+    {
+        return $this->endpointUrl;
+    }
+
+    /**
+     * @param string $endpointUrl
+     */
+    public function setEndpointUrl(string $endpointUrl)
+    {
+        $this->endpointUrl = $endpointUrl;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHistory(): array
+    {
+        return $this->history;
+    }
+
+    /**
+     * @param array $history
+     */
+    protected function setHistory(array $history)
+    {
+        $this->history = $history;
     }
 }

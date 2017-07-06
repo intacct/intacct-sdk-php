@@ -22,10 +22,10 @@ interface ConditionInterface extends QueryInterface
     /**
      * @return bool
      */
-    public function isNegate();
+    public function isNegate(): bool;
 
     /**
-     * @param boolean $negate
+     * @param bool $negate
      */
-    public function setNegate($negate);
+    public function setNegate(bool $negate);
 }

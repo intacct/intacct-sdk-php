@@ -18,12 +18,11 @@
 namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\LogicalFilter
  */
-class LogicalFilterTest extends \PHPUnit_Framework_TestCase
+class LogicalFilterTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultConstruct()
@@ -92,7 +91,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Logical Filters count must be 2 or more
      */
     public function testNotEnoughFilters()

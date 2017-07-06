@@ -18,7 +18,6 @@
 namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class ExpressionFilter implements FilterInterface
 {
@@ -51,21 +50,21 @@ class ExpressionFilter implements FilterInterface
     const OPERATOR_IS_NULL = 'is null';
 
     /** @var string */
-    protected $fieldName;
+    protected $fieldName = '';
 
     /** @var string */
-    protected $operator;
+    protected $operator = '';
 
     /** @var mixed */
-    protected $value;
+    protected $value = '';
 
     /** @var string */
-    protected $objectName;
+    protected $objectName = '';
 
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName(): string
     {
         return $this->fieldName;
     }
@@ -73,7 +72,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $fieldName
      */
-    public function setFieldName($fieldName)
+    public function setFieldName(string $fieldName)
     {
         $this->fieldName = $fieldName;
     }
@@ -81,7 +80,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @return string
      */
-    public function getOperator()
+    public function getOperator(): string
     {
         return $this->operator;
     }
@@ -89,7 +88,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $operator
      */
-    public function setOperator($operator)
+    public function setOperator(string $operator)
     {
         $operators = [
             static::OPERATOR_EQUAL_TO,
@@ -103,7 +102,7 @@ class ExpressionFilter implements FilterInterface
             static::OPERATOR_IS_NULL,
         ];
         if (!in_array($operator, $operators)) {
-            throw new InvalidArgumentException('Expression Operator must be either: ' . implode(', ', $operators));
+            throw new \InvalidArgumentException('Expression Operator must be either: ' . implode(', ', $operators));
         }
         $this->operator = $operator;
     }
@@ -127,7 +126,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -135,7 +134,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -153,12 +152,12 @@ class ExpressionFilter implements FilterInterface
         }
 
         if (!$this->getFieldName()) {
-            throw new InvalidArgumentException('Field Name is required for an expression filter');
+            throw new \InvalidArgumentException('Field Name is required for an expression filter');
         }
         $xml->writeElement('field', $this->getFieldName(), true);
 
         if (!$this->getOperator()) {
-            throw new InvalidArgumentException('Operator is required for an expression filter');
+            throw new \InvalidArgumentException('Operator is required for an expression filter');
         }
         $xml->writeElement('operator', $this->getOperator(), true);
         $xml->writeElement('value', $this->getValue(), true);

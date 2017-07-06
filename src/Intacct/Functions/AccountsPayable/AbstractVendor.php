@@ -20,7 +20,6 @@ namespace Intacct\Functions\AccountsPayable;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 abstract class AbstractVendor extends AbstractFunction
 {
@@ -147,7 +146,7 @@ abstract class AbstractVendor extends AbstractFunction
     /** @var string */
     protected $contactTaxGroupName;
 
-    /** @var float|string|int */
+    /** @var float */
     protected $creditLimit;
 
     /** @var bool */
@@ -273,7 +272,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get one time
      *
-     * @return boolean
+     * @return bool
      */
     public function isOneTime()
     {
@@ -283,7 +282,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set one time
      *
-     * @param boolean $oneTime
+     * @param bool $oneTime
      */
     public function setOneTime($oneTime)
     {
@@ -293,7 +292,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get active
      *
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -303,7 +302,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set active
      *
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -548,7 +547,7 @@ abstract class AbstractVendor extends AbstractFunction
     public function setPrimaryEmailAddress($primaryEmailAddress)
     {
         if (filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
-            throw new InvalidArgumentException('Primary Email Address is not a valid email');
+            throw new \InvalidArgumentException('Primary Email Address is not a valid email');
         }
         $this->primaryEmailAddress = $primaryEmailAddress;
     }
@@ -571,7 +570,7 @@ abstract class AbstractVendor extends AbstractFunction
     public function setSecondaryEmailAddress($secondaryEmailAddress)
     {
         if (filter_var($secondaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
-            throw new InvalidArgumentException('Secondary Email Address is not a valid email');
+            throw new \InvalidArgumentException('Secondary Email Address is not a valid email');
         }
         $this->secondaryEmailAddress = $secondaryEmailAddress;
     }
@@ -739,7 +738,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get excluded from contact list
      *
-     * @return boolean
+     * @return bool
      */
     public function isExcludedFromContactList()
     {
@@ -749,7 +748,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set excluded from contact list
      *
-     * @param boolean $excludedFromContactList
+     * @param bool $excludedFromContactList
      */
     public function setExcludedFromContactList($excludedFromContactList)
     {
@@ -940,7 +939,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get taxable
      *
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -950,7 +949,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set taxable
      *
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {
@@ -1000,7 +999,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get on hold
      *
-     * @return boolean
+     * @return bool
      */
     public function isOnHold()
     {
@@ -1010,7 +1009,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set on hold
      *
-     * @param boolean $onHold
+     * @param bool $onHold
      */
     public function setOnHold($onHold)
     {
@@ -1020,7 +1019,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get do not pay
      *
-     * @return boolean
+     * @return bool
      */
     public function isDoNotPay()
     {
@@ -1030,7 +1029,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set do not pay
      *
-     * @param boolean $doNotPay
+     * @param bool $doNotPay
      */
     public function setDoNotPay($doNotPay)
     {
@@ -1160,7 +1159,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get send automatic payment notification
      *
-     * @return boolean
+     * @return bool
      */
     public function isSendAutomaticPaymentNotification()
     {
@@ -1170,7 +1169,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set send automatic payment notification
      *
-     * @param boolean $sendAutomaticPaymentNotification
+     * @param bool $sendAutomaticPaymentNotification
      */
     public function setSendAutomaticPaymentNotification($sendAutomaticPaymentNotification)
     {
@@ -1180,7 +1179,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get merge payment requests
      *
-     * @return boolean
+     * @return bool
      */
     public function isMergePaymentRequests()
     {
@@ -1190,7 +1189,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set merge payment requests
      *
-     * @param boolean $mergePaymentRequests
+     * @param bool $mergePaymentRequests
      */
     public function setMergePaymentRequests($mergePaymentRequests)
     {
@@ -1260,7 +1259,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get term discount displayed on check stub
      *
-     * @return boolean
+     * @return bool
      */
     public function isTermDiscountDisplayedOnCheckStub()
     {
@@ -1270,7 +1269,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set term discount displayed on check stub
      *
-     * @param boolean $termDiscountDisplayedOnCheckStub
+     * @param bool $termDiscountDisplayedOnCheckStub
      */
     public function setTermDiscountDisplayedOnCheckStub($termDiscountDisplayedOnCheckStub)
     {
@@ -1280,7 +1279,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get ACH enabled
      *
-     * @return boolean
+     * @return bool
      */
     public function isAchEnabled()
     {
@@ -1290,7 +1289,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set ACH enabled
      *
-     * @param boolean $achEnabled
+     * @param bool $achEnabled
      */
     public function setAchEnabled($achEnabled)
     {
@@ -1402,7 +1401,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get location assigned account numbers displayed on check stub
      *
-     * @return boolean
+     * @return bool
      */
     public function isLocationAssignedAccountNoDisplayedOnCheckStub()
     {
@@ -1412,7 +1411,7 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Set location assigned account numbers displayed on check stub
      *
-     * @param boolean $locationAssignedAccountNoDisplayedOnCheckStub
+     * @param bool $locationAssignedAccountNoDisplayedOnCheckStub
      */
     public function setLocationAssignedAccountNoDisplayedOnCheckStub($locationAssignedAccountNoDisplayedOnCheckStub)
     {
@@ -1442,7 +1441,7 @@ abstract class AbstractVendor extends AbstractFunction
             static::RESTRICTION_TYPE_TOPLEVEL,
         ];
         if (!in_array($restrictionType, $restrictionTypes)) {
-            throw new InvalidArgumentException('Restriction Type is not valid');
+            throw new \InvalidArgumentException('Restriction Type is not valid');
         }
         $this->restrictionType = $restrictionType;
     }
@@ -1492,14 +1491,12 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function writeXmlMailAddress(XMLWriter &$xml)
     {
-        if (
-            $this->getAddressLine1()
+        if ($this->getAddressLine1()
             || $this->getAddressLine2()
             || $this->getCity()
             || $this->getStateProvince()
             || $this->getZipPostalCode()
-            || $this->getCountry()
-        ) {
+            || $this->getCountry()) {
             $xml->startElement('MAILADDRESS');
 
             $xml->writeElement('ADDRESS1', $this->getAddressLine1());

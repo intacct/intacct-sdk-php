@@ -116,7 +116,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -124,7 +124,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -132,7 +132,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireDepartment()
     {
@@ -140,7 +140,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireDepartment
+     * @param bool $requireDepartment
      */
     public function setRequireDepartment($requireDepartment)
     {
@@ -148,7 +148,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireLocation()
     {
@@ -156,7 +156,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireLocation
+     * @param bool $requireLocation
      */
     public function setRequireLocation($requireLocation)
     {
@@ -164,7 +164,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireProject()
     {
@@ -172,7 +172,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireProject
+     * @param bool $requireProject
      */
     public function setRequireProject($requireProject)
     {
@@ -180,7 +180,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireCustomer()
     {
@@ -188,7 +188,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireCustomer
+     * @param bool $requireCustomer
      */
     public function setRequireCustomer($requireCustomer)
     {
@@ -196,7 +196,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireVendor()
     {
@@ -204,7 +204,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireVendor
+     * @param bool $requireVendor
      */
     public function setRequireVendor($requireVendor)
     {
@@ -212,7 +212,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireEmployee()
     {
@@ -220,7 +220,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireEmployee
+     * @param bool $requireEmployee
      */
     public function setRequireEmployee($requireEmployee)
     {
@@ -228,7 +228,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireItem()
     {
@@ -236,7 +236,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireItem
+     * @param bool $requireItem
      */
     public function setRequireItem($requireItem)
     {
@@ -244,7 +244,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireClass()
     {
@@ -252,7 +252,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireClass
+     * @param bool $requireClass
      */
     public function setRequireClass($requireClass)
     {
@@ -260,7 +260,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireContract()
     {
@@ -268,7 +268,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireContract
+     * @param bool $requireContract
      */
     public function setRequireContract($requireContract)
     {
@@ -276,7 +276,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRequireWarehouse()
     {
@@ -284,7 +284,7 @@ abstract class AbstractGlAccount extends AbstractFunction
     }
 
     /**
-     * @param boolean $requireWarehouse
+     * @param bool $requireWarehouse
      */
     public function setRequireWarehouse($requireWarehouse)
     {

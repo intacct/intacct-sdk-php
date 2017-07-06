@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestDelete
  */
-class ApPaymentRequestDeleteTest extends \PHPUnit_Framework_TestCase
+class ApPaymentRequestDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

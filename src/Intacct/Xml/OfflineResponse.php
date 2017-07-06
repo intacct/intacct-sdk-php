@@ -19,47 +19,40 @@ namespace Intacct\Xml;
 
 use Intacct\Exception\IntacctException;
 use Intacct\Xml\Response\Acknowledgement;
-use SimpleXMLIterator;
 
-class AsynchronousResponse extends AbstractResponse
+class OfflineResponse extends AbstractResponse
 {
 
     /** @var Acknowledgement */
     private $acknowledgement;
 
     /**
-     * Initializes the class with the given body XML response
+     * OfflineResponse constructor.
      *
      * @param string $body
-     * @throws IntacctException
      */
-    public function __construct($body)
+    public function __construct(string $body)
     {
         parent::__construct($body);
-        if (!isset($this->xml->acknowledgement)) {
+        if (!isset($this->getXml()->acknowledgement)) {
             throw new IntacctException('Response is missing acknowledgement block');
         }
-        $this->setAcknowledgement($this->xml->acknowledgement);
+        $this->setAcknowledgement(new Acknowledgement($this->getXml()->acknowledgement[0]));
     }
 
     /**
-     * Set response acknowledgement
-     *
-     * @param SimpleXMLIterator $acknowledgement
-     * @throws IntacctException
-     */
-    private function setAcknowledgement(SimpleXMLIterator $acknowledgement)
-    {
-        $this->acknowledgement = new Acknowledgement($acknowledgement);
-    }
-
-    /**
-     * Get response acknowledgement
-     *
      * @return Acknowledgement
      */
-    public function getAcknowledgement()
+    public function getAcknowledgement(): Acknowledgement
     {
         return $this->acknowledgement;
+    }
+
+    /**
+     * @param Acknowledgement $acknowledgement
+     */
+    private function setAcknowledgement(Acknowledgement $acknowledgement)
+    {
+        $this->acknowledgement = $acknowledgement;
     }
 }

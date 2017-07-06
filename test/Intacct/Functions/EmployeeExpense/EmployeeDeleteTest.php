@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\EmployeeDelete
  */
-class EmployeeDeleteTest extends \PHPUnit_Framework_TestCase
+class EmployeeDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

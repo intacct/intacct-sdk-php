@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\InvoiceLineCreate
  */
-class InvoiceLineCreateTest extends \PHPUnit_Framework_TestCase
+class InvoiceLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

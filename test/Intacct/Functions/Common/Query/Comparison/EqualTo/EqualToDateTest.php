@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToDate
  */
-class EqualToDateTest extends \PHPUnit_Framework_TestCase
+class EqualToDateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()
@@ -32,7 +32,7 @@ class EqualToDateTest extends \PHPUnit_Framework_TestCase
 
         $expected = "CUSTOMDATE = '12/31/2016'";
 
-        $this->assertEquals($expected, (string)$condition);
+        $this->assertEquals($expected, $condition);
     }
 
     public function testToStringNot()

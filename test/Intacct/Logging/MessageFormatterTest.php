@@ -19,29 +19,33 @@ namespace Intacct\Logging;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Intacct\ClientConfig;
 use Intacct\Functions\Company\ApiSessionCreate;
+use Intacct\RequestConfig;
 use Intacct\Xml\RequestBlock;
 
 /**
  * @coversDefaultClass \Intacct\Logging\MessageFormatter
  */
-class MessageFormatterTest extends \PHPUnit_Framework_TestCase
+class MessageFormatterTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testRequestAndResponseRemoval()
     {
-        $config = [
-            'control_id' => 'unittest',
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => 'P@ssW0rd!123',
-        ];
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+        $clientConfig->setCompanyId('testcompany');
+        $clientConfig->setUserId('testuser');
+        $clientConfig->setUserPassword('P@ssW0rd!123');
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('unittest');
+
         $contentBlock = [
-            new ApiSessionCreate('unittest'),
+            new ApiSessionCreate('test1'),
         ];
-        $xmlRequest = new RequestBlock($config, $contentBlock);
+        $xmlRequest = new RequestBlock($clientConfig, $requestConfig, $contentBlock);
 
         $xmlResponse = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,7 +53,7 @@ class MessageFormatterTest extends \PHPUnit_Framework_TestCase
     <control>
         <status>success</status>
         <senderid>testsenderid</senderid>
-        <controlid>testControl</controlid>
+        <controlid>unittest</controlid>
         <uniqueid>false</uniqueid>
         <dtdversion>3.0</dtdversion>
     </control>

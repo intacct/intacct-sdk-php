@@ -15,38 +15,24 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation;
+namespace Intacct\Xml\Request;
 
-use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
-class SessionAuthentication extends AbstractAuthentication
+class SessionAuthentication implements AuthenticationInterface
 {
 
     /** @var string */
     private $sessionId;
 
     /**
-     * Initializes the class with the given parameters.
+     * SessionAuthentication constructor.
      *
-     * @param array $params {
-     *      @var string $session_id Intacct session ID
-     * }
+     * @param string $sessionId
      */
-    public function __construct(array $params)
+    public function __construct(string $sessionId)
     {
-        $defaults = [
-            'session_id' => null,
-        ];
-        $config = array_merge($defaults, $params);
-        
-        if (!$config['session_id']) {
-            throw new InvalidArgumentException(
-                'Required "session_id" key not supplied in params'
-            );
-        }
-
-        $this->sessionId = $config['session_id'];
+        $this->setSessionId($sessionId);
     }
     
     /**
@@ -54,10 +40,31 @@ class SessionAuthentication extends AbstractAuthentication
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(&$xml)
+    public function writeXml(XMLWriter &$xml)
     {
         $xml->startElement('authentication');
-        $xml->writeElement('sessionid', $this->sessionId, true);
+        $xml->writeElement('sessionid', $this->getSessionId(), true);
         $xml->endElement(); //authentication
+    }
+
+    /**
+     * @return string
+     */
+    public function getSessionId(): string
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param string $sessionId
+     */
+    public function setSessionId(string $sessionId)
+    {
+        if (!$sessionId) {
+            throw new \InvalidArgumentException(
+                'Session ID is required and cannot be blank'
+            );
+        }
+        $this->sessionId = $sessionId;
     }
 }

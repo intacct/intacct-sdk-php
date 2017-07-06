@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\OtherReceiptCreate
  */
-class OtherReceiptCreateTest extends \PHPUnit_Framework_TestCase
+class OtherReceiptCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

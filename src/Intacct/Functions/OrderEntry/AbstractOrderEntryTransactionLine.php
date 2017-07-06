@@ -156,7 +156,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -164,7 +164,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {

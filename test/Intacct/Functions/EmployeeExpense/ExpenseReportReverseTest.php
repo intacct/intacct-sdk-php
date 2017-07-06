@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseReportReverse
  */
-class ExpenseReportReverseTest extends \PHPUnit_Framework_TestCase
+class ExpenseReportReverseTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

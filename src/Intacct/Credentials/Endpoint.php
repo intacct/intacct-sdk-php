@@ -17,135 +17,75 @@
 
 namespace Intacct\Credentials;
 
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 class Endpoint
 {
 
-    /**
-     * Default endpoint
-     *
-     * @var string
-     */
+    /** @var string */
     const DEFAULT_ENDPOINT = 'https://api.intacct.com/ia/xml/xmlgw.phtml';
-    
-    /**
-     * Endpoint URL environment name
-     *
-     * @var string
-     */
+
+    /** @var string */
     const ENDPOINT_URL_ENV_NAME = 'INTACCT_ENDPOINT_URL';
-    
-    /**
-     * Intacct domain name
-     *
-     * @var string
-     */
+
+    /** @var string */
     const DOMAIN_NAME = 'intacct.com';
 
     /** @var string */
-    private $endpoint;
-    
-    /** @var bool */
-    private $verifySSL;
+    private $url;
 
     /**
-     * Initializes the class with the given parameters.
+     * Endpoint constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `endpoint_url` (string, default=string "https://api.intacct.com/ia/xml/xmlgw.phtml") Endpoint URL
-     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
-     *
-     * @param array $params Endpoint configuration options
+     * @param ClientConfig $config
      */
-    public function __construct(array $params = [])
+    public function __construct(ClientConfig $config)
     {
-        $defaults = [
-            'endpoint_url' => getenv(static::ENDPOINT_URL_ENV_NAME),
-            'verify_ssl' => true,
-        ];
-        $config = array_merge($defaults, $params);
-        
-        $this->setEndpoint($config['endpoint_url']);
-        $this->setVerifySSL($config['verify_ssl']);
+        if (!$config->getEndpointUrl()) {
+            $this->setUrl(getenv(static::ENDPOINT_URL_ENV_NAME));
+        } else {
+            $this->setUrl($config->getEndpointUrl());
+        }
     }
-    
+
     /**
-     * Return the string representation of the current element
-     *
      * @return string
      */
     public function __toString()
     {
-        return $this->endpoint;
+        return $this->getUrl();
     }
 
     /**
-     * Get the endpoint URL
-     *
      * @return string
      */
-    public function getEndpoint()
+    public function getUrl(): string
     {
-        return $this->endpoint;
+        return $this->url;
     }
 
     /**
-     * Set the endpoint URL
-     *
-     * @param string $endpoint Endpoint URL
-     * @throws InvalidArgumentException
+     * @param string $url
      */
-    private function setEndpoint($endpoint)
+    public function setUrl(string $url)
     {
-        if (!$endpoint) {
-            $endpoint = self::DEFAULT_ENDPOINT;
+        if (!$url) {
+            $url = self::DEFAULT_ENDPOINT;
         }
-        if (!is_string($endpoint)) {
-            throw new InvalidArgumentException(
-                'endpoint_url is not a valid string.'
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            throw new \InvalidArgumentException(
+                'Endpoint URL is not a valid URL.'
             );
         }
-        if (filter_var($endpoint, FILTER_VALIDATE_URL) === false) {
-            throw new InvalidArgumentException(
-                'endpoint_url is not a valid URL.'
-            );
-        }
-        $host = parse_url($endpoint, PHP_URL_HOST);
-        $len = strlen(self::DOMAIN_NAME);
-        if (substr($host, -$len) !== self::DOMAIN_NAME) {
-            throw new InvalidArgumentException(
-                'endpoint_url is not a valid ' . self::DOMAIN_NAME . ' domain name.'
+        $host = parse_url($url, PHP_URL_HOST);
+        $check = '.' . self::DOMAIN_NAME;
+        $len = strlen($check);
+        if (substr($host, -$len) !== $check) {
+            throw new \InvalidArgumentException(
+                'Endpoint URL is not a valid ' . self::DOMAIN_NAME . ' domain name.'
             );
         }
 
-        $this->endpoint = $endpoint;
-    }
-    
-    /**
-     * Set verify SSL
-     *
-     * @param bool $verifySSL Verify SSL
-     * @throws InvalidArgumentException
-     */
-    private function setVerifySSL($verifySSL)
-    {
-        if (!is_bool($verifySSL)) {
-            throw new InvalidArgumentException(
-                'verify_ssl is not a valid boolean type'
-            );
-        }
-        $this->verifySSL = $verifySSL;
-    }
-    
-    /**
-     * Get verify SSL
-     *
-     * @return bool
-     */
-    public function getVerifySSL()
-    {
-        return $this->verifySSL;
+        $this->url = $url;
     }
 }

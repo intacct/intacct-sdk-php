@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseReportLineCreate
  */
-class ExpenseReportLineCreateTest extends \PHPUnit_Framework_TestCase
+class ExpenseReportLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

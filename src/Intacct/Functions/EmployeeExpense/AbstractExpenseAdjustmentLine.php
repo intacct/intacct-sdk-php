@@ -309,7 +309,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -317,7 +317,7 @@ abstract class AbstractExpenseAdjustmentLine
     }
 
     /**
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {

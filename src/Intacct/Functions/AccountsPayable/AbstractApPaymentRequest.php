@@ -18,7 +18,6 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Functions\AbstractFunction;
-use InvalidArgumentException;
 
 abstract class AbstractApPaymentRequest extends AbstractFunction
 {
@@ -121,12 +120,12 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
      * Set payment method
      *
      * @param string $paymentMethod
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setPaymentMethod($paymentMethod)
     {
         if (!in_array($paymentMethod, static::PAYMENT_METHODS)) {
-            throw new InvalidArgumentException('Payment Method is not valid');
+            throw new \InvalidArgumentException('Payment Method is not valid');
         }
         $this->paymentMethod = $paymentMethod;
     }
@@ -215,7 +214,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /**
      * Get group payments
      *
-     * @return boolean
+     * @return bool
      */
     public function isGroupPayments()
     {
@@ -225,7 +224,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     /**
      * Set group payments
      *
-     * @param boolean $groupPayments
+     * @param bool $groupPayments
      */
     public function setGroupPayments($groupPayments)
     {

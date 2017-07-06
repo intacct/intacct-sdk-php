@@ -15,23 +15,28 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Response\Operation\Result;
+namespace Intacct;
 
-use ArrayIterator;
-use SimpleXMLIterator;
+use Intacct\Functions\FunctionInterface;
+use Intacct\Xml\OnlineResponse;
+use Intacct\Xml\RequestHandler;
 
-class RecordIterator extends ArrayIterator
+class OnlineClient extends AbstractClient
 {
 
     /**
-     * Initializes the class
-     *
-     * @param SimpleXMLIterator $xml
+     * @param FunctionInterface[] $content
+     * @param RequestConfig $requestConfig
+     * @return OnlineResponse
      */
-    public function __construct(SimpleXMLIterator $xml)
+    public function execute(array $content, RequestConfig $requestConfig = null)
     {
-        $records = json_decode(json_encode($xml), true);
-        
-        parent::__construct($records);
+        if (!$requestConfig) {
+            $requestConfig = new RequestConfig();
+        }
+
+        $handler = new RequestHandler($this->getConfig(), $requestConfig);
+
+        return $handler->executeOnline($content);
     }
 }

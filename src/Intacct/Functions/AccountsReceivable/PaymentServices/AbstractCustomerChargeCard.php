@@ -215,7 +215,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -223,7 +223,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -247,7 +247,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDefaultCard()
     {
@@ -255,7 +255,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @param boolean $defaultCard
+     * @param bool $defaultCard
      */
     public function setDefaultCard($defaultCard)
     {
@@ -263,7 +263,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillToContactAddressUsedForVerification()
     {
@@ -271,7 +271,7 @@ abstract class AbstractCustomerChargeCard extends AbstractFunction
     }
 
     /**
-     * @param boolean $billToContactAddressUsedForVerification
+     * @param bool $billToContactAddressUsedForVerification
      */
     public function setBillToContactAddressUsedForVerification($billToContactAddressUsedForVerification)
     {

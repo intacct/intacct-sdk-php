@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AuditTrailRead
  */
-class AuditTrailReadTest extends \PHPUnit_Framework_TestCase
+class AuditTrailReadTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

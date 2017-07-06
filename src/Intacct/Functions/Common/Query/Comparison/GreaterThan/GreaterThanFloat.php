@@ -25,13 +25,13 @@ class GreaterThanFloat extends AbstractFloat
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
-        $clause .= $this->field . " > " . $this->value;
+        $clause .= $this->getField() . " > " . strval($this->getValue());
 
         return $clause;
     }

@@ -30,15 +30,15 @@ class SortField
     const ORDER_BY_DESC = 'desc';
 
     /** @var string */
-    protected $fieldName;
+    protected $fieldName = '';
 
     /** @var string */
-    protected $orderBy;
+    protected $orderBy = self::ORDER_BY_ASC;
 
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName(): string
     {
         return $this->fieldName;
     }
@@ -46,7 +46,7 @@ class SortField
     /**
      * @param string $fieldName
      */
-    public function setFieldName($fieldName)
+    public function setFieldName(string $fieldName)
     {
         $this->fieldName = $fieldName;
     }
@@ -54,7 +54,7 @@ class SortField
     /**
      * @return string
      */
-    public function getOrderBy()
+    public function getOrderBy(): string
     {
         return $this->orderBy;
     }
@@ -62,7 +62,7 @@ class SortField
     /**
      * @param string $orderBy
      */
-    public function setOrderBy($orderBy)
+    public function setOrderBy(string $orderBy)
     {
         $orderBys = [
             static::ORDER_BY_ASC,

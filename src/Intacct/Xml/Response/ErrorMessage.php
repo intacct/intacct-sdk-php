@@ -17,8 +17,6 @@
 
 namespace Intacct\Xml\Response;
 
-use SimpleXMLIterator;
-
 class ErrorMessage
 {
     
@@ -26,11 +24,11 @@ class ErrorMessage
     private $errors;
 
     /**
-     * Initializes the class
+     * ErrorMessage constructor.
      *
-     * @param SimpleXMLIterator $errorMessage
+     * @param \SimpleXMLElement|null $errorMessage
      */
-    public function __construct(SimpleXMLIterator $errorMessage = null)
+    public function __construct(\SimpleXMLElement $errorMessage = null)
     {
         $errors = [];
         foreach ($errorMessage->error as $error) {
@@ -46,17 +44,7 @@ class ErrorMessage
 
             $errors[] = implode(' ', $pieces);
         }
-        $this->errors = $errors;
-    }
-    
-    /**
-     * Get errors array
-     *
-     * @return array
-     */
-    public function getErrors()
-    {
-        return $this->errors;
+        $this->setErrors($errors);
     }
 
     /**
@@ -68,5 +56,21 @@ class ErrorMessage
     private function cleanse($value)
     {
         return filter_var(strval($value), FILTER_SANITIZE_STRING);
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param array $errors
+     */
+    private function setErrors(array $errors)
+    {
+        $this->errors = $errors;
     }
 }

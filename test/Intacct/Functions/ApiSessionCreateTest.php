@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\ApiSessionCreate
  */
-class ApiSessionCreateTest extends \PHPUnit_Framework_TestCase
+class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

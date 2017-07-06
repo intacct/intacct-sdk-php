@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\ProjectCreate
  */
-class ProjectCreateTest extends \PHPUnit_Framework_TestCase
+class ProjectCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

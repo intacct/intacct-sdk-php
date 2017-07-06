@@ -61,7 +61,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isProcessOffline()
     {
@@ -69,7 +69,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @param boolean $processOffline
+     * @param bool $processOffline
      */
     public function setProcessOffline($processOffline)
     {
@@ -77,7 +77,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUpdateSucceedingPeriods()
     {
@@ -85,7 +85,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @param boolean $updateSucceedingPeriods
+     * @param bool $updateSucceedingPeriods
      */
     public function setUpdateSucceedingPeriods($updateSucceedingPeriods)
     {
@@ -93,7 +93,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isChangesOnly()
     {
@@ -101,7 +101,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     }
 
     /**
-     * @param boolean $changesOnly
+     * @param bool $changesOnly
      */
     public function setChangesOnly($changesOnly)
     {

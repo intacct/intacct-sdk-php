@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\TimesheetCreate
  */
-class TimesheetCreateTest extends \PHPUnit_Framework_TestCase
+class TimesheetCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

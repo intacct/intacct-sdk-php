@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentCreate
  */
-class ApAdjustmentCreateTest extends \PHPUnit_Framework_TestCase
+class ApAdjustmentCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

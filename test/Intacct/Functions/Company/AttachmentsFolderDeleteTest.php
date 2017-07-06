@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentsFolderDelete
  */
-class AttachmentsFolderDeleteTest extends \PHPUnit_Framework_TestCase
+class AttachmentsFolderDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

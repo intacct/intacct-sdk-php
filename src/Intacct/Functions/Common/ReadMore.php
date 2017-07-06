@@ -19,18 +19,17 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class ReadMore extends AbstractFunction
 {
     
     /** @var string */
-    private $resultId;
+    private $resultId = '';
 
     /**
      * @return string
      */
-    public function getResultId()
+    public function getResultId(): string
     {
         return $this->resultId;
     }
@@ -38,7 +37,7 @@ class ReadMore extends AbstractFunction
     /**
      * @param string $resultId
      */
-    public function setResultId($resultId)
+    public function setResultId(string $resultId)
     {
         $this->resultId = $resultId;
     }
@@ -56,7 +55,7 @@ class ReadMore extends AbstractFunction
         $xml->startElement('readMore');
 
         if (!$this->getResultId()) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Result ID is required for read more'
             );
         }

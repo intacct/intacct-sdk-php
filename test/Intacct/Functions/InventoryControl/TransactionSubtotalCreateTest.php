@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\TransactionSubtotalCreate
  */
-class TransactionSubtotalCreateTest extends \PHPUnit_Framework_TestCase
+class TransactionSubtotalCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

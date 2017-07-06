@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadView
  */
-class ReadViewTest extends \PHPUnit_Framework_TestCase
+class ReadViewTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -74,7 +74,6 @@ EOF;
         $readView = new ReadView('unittest');
         $readView->setViewName('TestBill Date Runtime');
         $readView->setPageSize(10);
-        $readView->setReturnFormat('xml');
 
         $readView->writeXml($xml);
 
@@ -101,16 +100,6 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size not valid int type
-     */
-    public function testInvalidPageSize()
-    {
-        $readView = new ReadView('unittest');
-        $readView->setPageSize('200');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
@@ -127,25 +116,5 @@ EOF;
     {
         $readView = new ReadView('unittest');
         $readView->setPageSize(1001);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage View Name is not a valid string
-     */
-    public function testInvalidViewName()
-    {
-        $readView = new ReadView('unittest');
-        $readView->setViewName(23232323);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        $readView = new ReadView('unittest');
-        $readView->setReturnFormat('');
     }
 }

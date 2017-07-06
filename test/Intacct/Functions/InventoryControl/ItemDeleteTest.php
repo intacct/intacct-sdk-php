@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\ItemDelete
  */
-class ItemDeleteTest extends \PHPUnit_Framework_TestCase
+class ItemDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

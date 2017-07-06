@@ -2,9 +2,9 @@
 /**
  * Copyright 2017 Intacct Corporation.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
- *  use this file except in compliance with the License. You may obtain a copy
- *  of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -12,18 +12,16 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
-namespace Intacct\Xml\Response\Operation;
+namespace Intacct\Xml\Response;
 
-use Intacct\Xml\SynchronousResponse;
-use Exception;
+use Intacct\Xml\OnlineResponse;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Response\Operation\Result
  */
-class ResultTest extends \PHPUnit_Framework_TestCase
+class ResultTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -63,23 +61,13 @@ class ResultTest extends \PHPUnit_Framework_TestCase
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
-        $operation = $response->getOperation();
-        $results = $operation->getResults();
-        $this->object = $results[0];
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
+        $response = new OnlineResponse($xml);
+        $this->object = $response->getResult();
     }
 
     public function testConstruct()
     {
-        $this->assertThat($this->object, $this->isInstanceOf('Intacct\Xml\Response\Operation\Result'));
+        $this->assertThat($this->object, $this->isInstanceOf('Intacct\Xml\Response\Result'));
     }
 
     public function testGetStatus()
@@ -99,7 +87,7 @@ EOF;
 
     public function testGetData()
     {
-        $this->assertThat($this->object->getData(), $this->isInstanceOf('SimpleXMLIterator'));
+        $this->assertThat($this->object->getData(), $this->isInstanceOf('SimpleXMLElement'));
     }
 
     public function testGetErrors()
@@ -137,9 +125,8 @@ EOF;
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
-        $operation = $response->getOperation();
-        $results = $operation->getResults();
+        $response = new OnlineResponse($xml);
+        $results = $response->getResults();
         $result = $results[0];
 
         $this->assertEquals('failure', $result->getStatus());
@@ -147,7 +134,7 @@ EOF;
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Result block is missing status element
      */
     public function testMissingStatusElement()
@@ -178,11 +165,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Result block is missing function element
      */
     public function testMissingFunctionElement()
@@ -213,11 +200,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Result block is missing controlid element
      */
     public function testMissingControlIdElement()
@@ -248,11 +235,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResultException
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Result status: failure
      */
     public function testStatusFailure()
@@ -290,15 +277,15 @@ EOF;
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
+        $response = new OnlineResponse($xml);
 
-        $results = $response->getOperation()->getResults();
+        $results = $response->getResults();
 
         $results[0]->ensureStatusNotFailure();
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResultException
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Result status: aborted
      */
     public function testStatusAbort()
@@ -342,9 +329,9 @@ EOF;
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
+        $response = new OnlineResponse($xml);
 
-        $results = $response->getOperation()->getResults();
+        $results = $response->getResults();
 
         $results[0]->ensureStatusSuccess();
     }
@@ -393,9 +380,9 @@ EOF;
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
+        $response = new OnlineResponse($xml);
 
-        $results = $response->getOperation()->getResults();
+        $results = $response->getResults();
 
         $results[0]->ensureStatusNotFailure();
 

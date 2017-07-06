@@ -17,37 +17,21 @@
 
 namespace Intacct\Xml\Request;
 
+use Intacct\ClientConfig;
 use Intacct\Functions\Company\ApiSessionCreate;
+use Intacct\RequestConfig;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\OperationBlock
  */
-class OperationBlockTest extends \PHPUnit_Framework_TestCase
+class OperationBlockTest extends \PHPUnit\Framework\TestCase
 {
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
 
     public function testWriteXmlSession()
     {
-        $config = [
-            'session_id' => 'fakesession..',
-        ];
+        $config = new ClientConfig();
+        $config->setSessionId('fakesession..');
         
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
@@ -73,7 +57,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $contentBlock);
+        $operation = new OperationBlock($config, new RequestConfig(), $contentBlock);
         $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -81,11 +65,10 @@ EOF;
 
     public function testWriteXmlLogin()
     {
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => 'testpass',
-        ];
+        $config = new ClientConfig();
+        $config->setCompanyId('testcompany');
+        $config->setUserId('testuser');
+        $config->setUserPassword('testpass');
 
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
@@ -115,7 +98,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $contentBlock);
+        $operation = new OperationBlock($config, new RequestConfig(), $contentBlock);
         $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -123,10 +106,10 @@ EOF;
 
     public function testWriteXmlTransaction()
     {
-        $config = [
-            'session_id' => 'fakesession..',
-            'transaction' => true,
-        ];
+        $config = new ClientConfig();
+        $config->setSessionId('fakesession..');
+        $requestConfig = new RequestConfig();
+        $requestConfig->setTransaction(true);
 
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
@@ -152,45 +135,27 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $operation = new OperationBlock($config, $contentBlock);
+        $operation = new OperationBlock($config, $requestConfig, $contentBlock);
         $operation->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage transaction not valid boolean type
-     */
-    public function testTransactionNotBoolean()
-    {
-        $config = [
-            'session_id' => 'fakesession..',
-            'transaction' => 'true',
-        ];
 
-        $contentBlock = [];
-        $func = new ApiSessionCreate('unittest');
-        $contentBlock[] = $func;
-        new OperationBlock($config, $contentBlock);
-    }
-    
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "company_id", "user_id", and "user_password" keys, or "session_id" key, not supplied in params
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank
      */
     public function testNoCredentials()
     {
-        $config = [
-            'session_id' => null,
-            'company_id' => null,
-            'user_id' => null,
-            'user_password' => null,
-        ];
+        $config = new ClientConfig();
+        $config->setSessionId('');
+        $config->setCompanyId('');
+        $config->setUserId('');
+        $config->setUserPassword('');
 
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
         $contentBlock[] = $func;
-        new OperationBlock($config, $contentBlock);
+        new OperationBlock($config, new RequestConfig(), $contentBlock);
     }
 }

@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Read
  */
-class ReadTest extends \PHPUnit_Framework_TestCase
+class ReadTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -35,6 +35,7 @@ class ReadTest extends \PHPUnit_Framework_TestCase
         <object>CLASS</object>
         <keys></keys>
         <fields>*</fields>
+        <returnFormat>xml</returnFormat>
     </read>
 </function>
 EOF;
@@ -76,7 +77,6 @@ EOF;
 
         $read = new Read('unittest');
         $read->setObjectName('CLASS');
-        $read->setReturnFormat('xml');
         $read->setFields([
             'Field1',
             'Field2',
@@ -90,28 +90,6 @@ EOF;
         $read->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testReturnFormatJson()
-    {
-        $read = new Read('unittest');
-        $read->setObjectName('CLASS');
-        $read->setReturnFormat('json');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testReturnFormatCsv()
-    {
-        $read = new Read('unittest');
-        $read->setObjectName('CLASS');
-        $read->setReturnFormat('csv');
     }
 
     /**
@@ -139,6 +117,7 @@ EOF;
         <object>CLASS</object>
         <keys>5,6</keys>
         <fields>*</fields>
+        <returnFormat>xml</returnFormat>
     </read>
 </function>
 EOF;

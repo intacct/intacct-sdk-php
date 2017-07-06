@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToDateTime
  */
-class EqualToDateTimeTest extends \PHPUnit_Framework_TestCase
+class EqualToDateTimeTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

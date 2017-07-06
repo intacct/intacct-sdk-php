@@ -18,7 +18,6 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * Delete an existing AP account label record
@@ -27,10 +26,7 @@ class ApAccountLabelDelete extends AbstractApAccountLabel
 {
 
     /**
-     * Write the function block XML
-     *
      * @param XMLWriter $xml
-     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
@@ -40,7 +36,7 @@ class ApAccountLabelDelete extends AbstractApAccountLabel
         $xml->startElement('delete_apaccountlabel');
 
         if (!$this->getAccountLabel()) {
-            throw new InvalidArgumentException('Account Label is required for delete');
+            throw new \InvalidArgumentException('Account Label is required for delete');
         }
         $xml->writeAttribute('accountlabel', $this->getAccountLabel());
 

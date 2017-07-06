@@ -24,15 +24,15 @@ class Inspect extends AbstractFunction
 {
 
     /** @var string */
-    private $objectName;
+    private $objectName = '';
 
     /** @var bool */
-    private $showDetail;
+    private $showDetail = false;
 
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -40,35 +40,25 @@ class Inspect extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isShowDetail()
+    public function isShowDetail(): bool
     {
         return $this->showDetail;
     }
 
     /**
-     * @param boolean $showDetail
+     * @param bool $showDetail
      */
-    public function setShowDetail($showDetail)
+    public function setShowDetail(bool $showDetail)
     {
         $this->showDetail = $showDetail;
-    }
-    
-    /**
-     * Get show detail
-     *
-     * @return string
-     */
-    private function writeXmlShowDetail()
-    {
-        return $this->isShowDetail() === true ? '1' : '0';
     }
     
     /**
@@ -82,7 +72,7 @@ class Inspect extends AbstractFunction
         $xml->writeAttribute('controlid', $this->getControlId());
         
         $xml->startElement('inspect');
-        $xml->writeAttribute('detail', $this->writeXmlShowDetail());
+        $xml->writeAttribute('detail', $this->isShowDetail() === true ? '1' : '0');
         
         $xml->writeElement('object', $this->getObjectName(), true);
         

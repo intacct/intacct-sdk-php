@@ -17,10 +17,13 @@
 
 namespace Intacct\Xml;
 
+use Intacct\ClientConfig;
+use Intacct\RequestConfig;
+
 /**
  * @coversDefaultClass \Intacct\Xml\RequestBlock
  */
-class RequestBlockTest extends \PHPUnit_Framework_TestCase
+class RequestBlockTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testWriteXml()
@@ -29,17 +32,17 @@ class RequestBlockTest extends \PHPUnit_Framework_TestCase
 <?xml version="1.0" encoding="iso-8859-1"?>
 <request><control><senderid>testsenderid</senderid><password>pass123!</password><controlid>unittest</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><includewhitespace>false</includewhitespace></control><operation transaction="false"><authentication><sessionid>testsession..</sessionid></authentication><content></content></operation></request>
 EOF;
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+        $config->setSessionId('testsession..');
 
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'session_id' => 'testsession..',
-            'control_id' => 'unittest',
-        ];
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('unittest');
 
         $contentBlock = [];
 
-        $requestHandler = new RequestBlock($config, $contentBlock);
+        $requestHandler = new RequestBlock($config, $requestConfig, $contentBlock);
 
         $xml = $requestHandler->writeXml();
 

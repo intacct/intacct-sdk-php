@@ -165,7 +165,7 @@ abstract class AbstractWarehouse extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUsedInGeneralLedger()
     {
@@ -173,7 +173,7 @@ abstract class AbstractWarehouse extends AbstractFunction
     }
 
     /**
-     * @param boolean $usedInGeneralLedger
+     * @param bool $usedInGeneralLedger
      */
     public function setUsedInGeneralLedger($usedInGeneralLedger)
     {
@@ -181,7 +181,7 @@ abstract class AbstractWarehouse extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -189,7 +189,7 @@ abstract class AbstractWarehouse extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {

@@ -23,5 +23,5 @@ interface LogicalInterface extends ConditionInterface
 
     public function getConditions();
 
-    public function setConditions($conditions);
+    public function setConditions(array $conditions);
 }

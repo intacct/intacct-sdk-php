@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentsFolderCreate
  */
-class AttachmentsFolderCreateTest extends \PHPUnit_Framework_TestCase
+class AttachmentsFolderCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ReimbursementRequestCreate
  */
-class ReimbursementRequestCreateTest extends \PHPUnit_Framework_TestCase
+class ReimbursementRequestCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

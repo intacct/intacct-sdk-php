@@ -28,7 +28,7 @@ abstract class AbstractNull extends AbstractComparison
     /**
      * @return null
      */
-    public function getValue()
+    public function getValue(): null
     {
         return $this->value;
     }

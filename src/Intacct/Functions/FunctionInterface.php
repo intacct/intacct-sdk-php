@@ -24,9 +24,9 @@ interface FunctionInterface
 
     public function __construct();
     
-    public function getControlId();
+    public function getControlId(): string;
     
-    public function setControlId($controlId);
+    public function setControlId(string $controlId);
 
     /**
      * Write the XML

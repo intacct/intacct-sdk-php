@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\GetList
  */
-class GetListTest extends \PHPUnit_Framework_TestCase
+class GetListTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultConstruct()

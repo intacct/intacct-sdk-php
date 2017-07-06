@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\LocationDelete
  */
-class LocationDeleteTest extends \PHPUnit_Framework_TestCase
+class LocationDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

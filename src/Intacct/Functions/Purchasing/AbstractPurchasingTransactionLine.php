@@ -122,7 +122,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -130,7 +130,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {
@@ -250,7 +250,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isForm1099()
     {
@@ -258,7 +258,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @param boolean $form1099
+     * @param bool $form1099
      */
     public function setForm1099($form1099)
     {
@@ -266,7 +266,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -274,7 +274,7 @@ abstract class AbstractPurchasingTransactionLine
     }
 
     /**
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {

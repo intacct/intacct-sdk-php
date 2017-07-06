@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillReverse
  */
-class BillReverseTest extends \PHPUnit_Framework_TestCase
+class BillReverseTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

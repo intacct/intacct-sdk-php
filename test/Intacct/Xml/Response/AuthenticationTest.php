@@ -2,9 +2,9 @@
 /**
  * Copyright 2017 Intacct Corporation.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
- *  use this file except in compliance with the License. You may obtain a copy
- *  of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -12,18 +12,16 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
-namespace Intacct\Xml\Response\Operation;
+namespace Intacct\Xml\Response;
 
-use Intacct\Xml\SynchronousResponse;
-use Exception;
+use Intacct\Xml\OnlineResponse;
 
 /**
- * @coversDefaultClass \Intacct\Xml\Response\Operation\Authentication
+ * @coversDefaultClass \Intacct\Xml\Response\Authentication
  */
-class AuthenticationTest extends \PHPUnit_Framework_TestCase
+class AuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -68,10 +66,9 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
-        $operation = $response->getOperation();
+        $response = new OnlineResponse($xml);
         
-        $this->object = $operation->getAuthentication();
+        $this->object = $response->getAuthentication();
     }
 
     /**
@@ -97,95 +94,8 @@ EOF;
         $this->assertEquals('fakecompany', $this->object->getCompanyId());
     }
 
-    public function testGetSlideInUserDirectLogin()
-    {
-        $this->assertEquals(false, $this->object->getSlideInUser());
-    }
-
-    public function testGetSlideInUserExternalLogin()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>ControlIdHere</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>ExtUser|fakeconsole|fakeuser</userid>
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>testControlId</controlid>
-                  <data>
-                        <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
-                              <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
-                  </data>
-            </result>
-      </operation>
-</response>
-EOF;
-        $response = new SynchronousResponse($xml);
-        $operation = $response->getOperation();
-        $authentication = $operation->getAuthentication();
-        
-        $this->assertEquals('ExtUser|fakeconsole|fakeuser', $authentication->getUserId());
-        $this->assertEquals(true, $authentication->getSlideInUser());
-    }
-
-    public function testGetSlideInCPAUserLogin()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>ControlIdHere</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>CPAUser</userid>
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>testControlId</controlid>
-                  <data>
-                        <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
-                              <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
-                  </data>
-            </result>
-      </operation>
-</response>
-EOF;
-        $response = new SynchronousResponse($xml);
-        $operation = $response->getOperation();
-        $authentication = $operation->getAuthentication();
-        
-        $this->assertEquals('CPAUser', $authentication->getUserId());
-        $this->assertEquals(true, $authentication->getSlideInUser());
-    }
-    
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Authentication block is missing status element
      */
     public function testMissingStatusElement()
@@ -211,11 +121,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Authentication block is missing userid element
      */
     public function testMissingUserIdElement()
@@ -241,11 +151,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Authentication block is missing companyid element
      */
     public function testMissingCompanyIdElement()
@@ -271,6 +181,6 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
 }

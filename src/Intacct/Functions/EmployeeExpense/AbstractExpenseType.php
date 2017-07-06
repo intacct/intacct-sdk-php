@@ -124,7 +124,7 @@ abstract class AbstractExpenseType extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -132,7 +132,7 @@ abstract class AbstractExpenseType extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {

@@ -17,42 +17,26 @@
 
 namespace Intacct\Credentials;
 
-use Exception;
+use Intacct\ClientConfig;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\SenderCredentials
  */
-class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
+class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
 {
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
+    public function testCredsFromConfig()
     {
-    }
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+        $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
-    public function testCredsFromArray()
-    {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'endpoint_url' => 'https://unittest.intacct.com/ia/xmlgw.phtml',
-        ];
         $creds = new SenderCredentials($config);
         
         $this->assertEquals('testsenderid', $creds->getSenderId());
         $this->assertEquals('pass123!', $creds->getPassword());
-        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $creds->getEndpoint());
+        $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', (string)$creds->getEndpoint());
     }
 
     public function testCredsFromEnv()
@@ -60,39 +44,39 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
         putenv('INTACCT_SENDER_ID=envsender');
         putenv('INTACCT_SENDER_PASSWORD=envpass');
 
-        $creds = new SenderCredentials();
+        $creds = new SenderCredentials(new ClientConfig());
 
         $this->assertEquals('envsender', $creds->getSenderId());
         $this->assertEquals('envpass', $creds->getPassword());
-        //TODO fix this -- $this->assertEquals('https://api.intacct.com/ia/xmlgw.phtml', $creds->getEndpoint());
-        
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', (string)$creds->getEndpoint());
+
         putenv('INTACCT_SENDER_ID');
         putenv('INTACCT_SENDER_PASSWORD');
     }
     
     /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Required "sender_id" key not supplied in params or env variable "INTACCT_SENDER_ID"
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required Sender ID not supplied in config or env variable "INTACCT_SENDER_ID"
      */
     public function testCredsNoSenderId()
     {
-        $config = [
-            //'sender_id' => null,
-            'sender_password' => 'pass123!',
-        ];
+        $config = new ClientConfig();
+        //$config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+
         new SenderCredentials($config);
     }
     
     /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Required "sender_password" key not supplied in params or env variable "INTACCT_SENDER_PASSWORD"
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required Sender Password not supplied in config or env variable "INTACCT_SENDER_PASSWORD"
      */
     public function testCredsNoSenderPassword()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            //'sender_password' => null,
-        ];
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        //$config->setSenderPassword('pass123!');
+
         new SenderCredentials($config);
     }
 
@@ -112,19 +96,19 @@ class SenderCredentialsTest extends \PHPUnit_Framework_TestCase
 [unittest]
 sender_id = inisenderid
 sender_password = inisenderpass
-endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml
+endpoint_url = https://unittest.intacct.com/ia/xml/xmlgw.phtml
 EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $config = [
-            'profile_name' => 'unittest',
-        ];
+        $config = new ClientConfig();
+        $config->setProfileName('unittest');
+
         $senderCreds = new SenderCredentials($config);
 
         $this->assertEquals('inisenderid', $senderCreds->getSenderId());
         $this->assertEquals('inisenderpass', $senderCreds->getPassword());
-        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
+        $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', (string)$senderCreds->getEndpoint());
     }
 
     public function testCredsFromProfileOverrideEndpoint()
@@ -139,14 +123,14 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $config = [
-            'profile_name' => 'unittest',
-            'endpoint_url' => 'https://somethingelse.intacct.com/ia/xmlgw.phtml'
-        ];
+        $config = new ClientConfig();
+        $config->setProfileName('unittest');
+        $config->setEndpointUrl('https://somethingelse.intacct.com/ia/xml/xmlgw.phtml');
+
         $senderCreds = new SenderCredentials($config);
 
         $this->assertEquals('inisenderid', $senderCreds->getSenderId());
         $this->assertEquals('inisenderpass', $senderCreds->getPassword());
-        $this->assertEquals('https://somethingelse.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpoint());
+        $this->assertEquals('https://somethingelse.intacct.com/ia/xml/xmlgw.phtml', (string)$senderCreds->getEndpoint());
     }
 }

@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToNull
  */
-class EqualToNullTest extends \PHPUnit_Framework_TestCase
+class EqualToNullTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

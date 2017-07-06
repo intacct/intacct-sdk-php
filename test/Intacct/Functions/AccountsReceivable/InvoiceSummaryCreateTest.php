@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\InvoiceSummaryCreate
  */
-class InvoiceSummaryCreateTest extends \PHPUnit_Framework_TestCase
+class InvoiceSummaryCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

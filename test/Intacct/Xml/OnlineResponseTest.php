@@ -15,27 +15,15 @@
  *
  */
 
-namespace Intacct\Xml\Response;
-
-use Intacct\Xml\SynchronousResponse;
-use Exception;
+namespace Intacct\Xml;
 
 /**
- * @coversDefaultClass \Intacct\Xml\Response\Operation
+ * @coversDefaultClass \Intacct\Xml\OnlineResponse
  */
-class OperationTest extends \PHPUnit_Framework_TestCase
+class OnlineResponseTest extends \PHPUnit\Framework\TestCase
 {
 
-    /**
-     * @var Operation
-     */
-    protected $object;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
+    public function testGetters()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,7 +40,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
             <result>
                   <status>success</status>
@@ -60,7 +48,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                   <controlid>testControlId</controlid>
                   <data>
                         <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
+                              <sessionid>fAkESesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
                         </api>
                   </data>
@@ -68,25 +56,32 @@ class OperationTest extends \PHPUnit_Framework_TestCase
       </operation>
 </response>
 EOF;
-        $response = new SynchronousResponse($xml);
-        
-        $this->object = $response->getOperation();
+
+        $response = new OnlineResponse($xml);
+        $this->assertInternalType('array', $response->getResults());
     }
 
     /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Response is missing operation block
      */
-    protected function tearDown()
+    public function testMissingOperationBlock()
     {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        new OnlineResponse($xml);
     }
 
-    public function testGetAuthentication()
-    {
-        $authentication = $this->object->getAuthentication();
-        $this->assertThat($authentication, $this->isInstanceOf('Intacct\Xml\Response\Operation\Authentication'));
-    }
-    
     /**
      * @expectedException \Intacct\Exception\OperationException
      * @expectedExceptionMessage Response authentication status failure
@@ -120,11 +115,11 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
-    
+
     /**
-     * @expectedException Exception
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Authentication block is missing from operation element
      */
     public function testMissingAuthenticationBlock()
@@ -142,11 +137,11 @@ EOF;
       <operation/>
 </response>
 EOF;
-        new SynchronousResponse($xml);
+        new OnlineResponse($xml);
     }
-    
+
     /**
-     * @expectedException Exception
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Result block is missing from operation element
      */
     public function testMissingResultBlock()
@@ -171,12 +166,6 @@ EOF;
       </operation>
 </response>
 EOF;
-        new SynchronousResponse($xml);
-    }
-
-    public function testGetResults()
-    {
-        $results = $this->object->getResults();
-        $this->assertInternalType('array', $results);
+        new OnlineResponse($xml);
     }
 }

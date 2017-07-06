@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseCreate
  */
-class WarehouseCreateTest extends \PHPUnit_Framework_TestCase
+class WarehouseCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

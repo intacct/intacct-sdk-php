@@ -17,13 +17,12 @@
 
 namespace Intacct\Xml\Response;
 
-use Intacct\Xml\AsynchronousResponse;
-use Exception;
+use Intacct\Xml\OfflineResponse;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Response\Acknowledgement
  */
-class AcknowledgementTest extends \PHPUnit_Framework_TestCase
+class AcknowledgementTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -52,7 +51,7 @@ class AcknowledgementTest extends \PHPUnit_Framework_TestCase
       </control>
 </response>
 EOF;
-        $response = new AsynchronousResponse($xml);
+        $response = new OfflineResponse($xml);
         $this->object = $response->getAcknowledgement();
     }
 
@@ -70,7 +69,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Acknowledgement block is missing status element
      */
     public function testMissingStatusElement()
@@ -88,6 +87,6 @@ EOF;
       </control>
 </response>
 EOF;
-        new AsynchronousResponse($xml);
+        new OfflineResponse($xml);
     }
 }

@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAdjustmentLineCreate
  */
-class ArAdjustmentLineCreateTest extends \PHPUnit_Framework_TestCase
+class ArAdjustmentLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

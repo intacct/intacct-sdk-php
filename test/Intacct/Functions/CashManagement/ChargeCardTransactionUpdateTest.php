@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionUpdate
  */
-class ChargeCardTransactionUpdateTest extends \PHPUnit_Framework_TestCase
+class ChargeCardTransactionUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

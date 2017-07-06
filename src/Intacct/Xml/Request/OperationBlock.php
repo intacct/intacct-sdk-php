@@ -17,12 +17,12 @@
 
 namespace Intacct\Xml\Request;
 
+use Intacct\ClientConfig;
+use Intacct\Credentials\LoginCredentials;
+use Intacct\Credentials\SessionCredentials;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\Request\Operation\AbstractAuthentication;
-use Intacct\Xml\Request\Operation\SessionAuthentication;
-use Intacct\Xml\Request\Operation\LoginAuthentication;
+use Intacct\RequestConfig;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class OperationBlock
 {
@@ -30,106 +30,96 @@ class OperationBlock
     /** @var bool */
     private $transaction;
 
-    /** @var AbstractAuthentication */
+    /** @var AuthenticationInterface */
     private $authentication;
 
     /** @var FunctionInterface[] */
-    private $contentBlock;
+    private $content;
 
     /**
-     * Initializes the class with the given parameters.
+     * OperationBlock constructor.
      *
-     * @param array $params {
-     *      @var string $company_id Intacct company ID
-     *      @var array $module_preferences Module preferences to use for the operation
-     *      @var string $session_id Intacct session ID
-     *      @var bool $transaction Force the operation to be one transaction
-     *      @var string $user_id Intacct user ID
-     *      @var string $user_password Intacct user password
-     * }
-     * @param FunctionInterface[] $contentBlock
-     *
-     * @throws InvalidArgumentException
+     * @param ClientConfig $clientConfig
+     * @param RequestConfig $requestConfig
+     * @param FunctionInterface[] $content
      */
-    public function __construct(array $params, array $contentBlock)
+    public function __construct(ClientConfig $clientConfig, RequestConfig $requestConfig, array $content)
     {
-        $defaults = [
-            'transaction' => false,
-            'session_id' => null,
-            'company_id' => null,
-            'user_id' => null,
-            'user_password' => null,
-            'module_preferences' => [],
-        ];
-        $config = array_merge($defaults, $params);
+        $this->setTransaction($requestConfig->isTransaction());
 
-        $this->setTransaction($config['transaction']);
-
-        if ($config['session_id']) {
-            $this->authentication = new SessionAuthentication($config);
-        } elseif ($config['company_id'] && $config['user_id'] && $config['user_password']) {
-            $this->authentication = new LoginAuthentication($config);
+        $credentials = $clientConfig->getCredentials();
+        if ($credentials instanceof SessionCredentials) {
+            $this->setAuthentication(new SessionAuthentication($credentials->getSessionId()));
+        } elseif ($credentials instanceof LoginCredentials) {
+            $this->setAuthentication(new LoginAuthentication(
+                $credentials->getUserId(),
+                $credentials->getCompanyId(),
+                $credentials->getPassword()
+            ));
+        } elseif ($clientConfig->getSessionId()) {
+            $this->setAuthentication(new SessionAuthentication($clientConfig->getSessionId()));
+        } else if ($clientConfig->getCompanyId() && $clientConfig->getUserId() && $clientConfig->getUserPassword()) {
+            $this->setAuthentication(new LoginAuthentication(
+                $clientConfig->getUserId(),
+                $clientConfig->getCompanyId(),
+                $clientConfig->getUserPassword()
+            ));
         } else {
-            throw new InvalidArgumentException(
-                'Required "company_id", "user_id", and "user_password" keys, '
-                . 'or "session_id" key, not supplied in params'
+            throw new \InvalidArgumentException(
+                'Authentication credentials [Company ID, User ID, and User Password] or [Session ID] ' .
+                'are required and cannot be blank'
             );
         }
         
-        $this->setModulePreferences($config['module_preferences']);
-        
-        $this->setContent($contentBlock);
+        $this->setContent($content);
     }
 
     /**
-     * Set the operation to be one transaction or not
-     *
-     * @param bool $transaction
-     * @throws InvalidArgumentException
+     * @return bool
      */
-    private function setTransaction($transaction)
+    public function isTransaction(): bool
     {
-        if (!is_bool($transaction)) {
-            throw new InvalidArgumentException('transaction not valid boolean type');
-        }
+        return $this->transaction;
+    }
 
+    /**
+     * @param bool $transaction
+     */
+    public function setTransaction(bool $transaction)
+    {
         $this->transaction = $transaction;
     }
 
     /**
-     * Get if the operation is one transaction or not
-     *
-     * @return string
+     * @return AuthenticationInterface
      */
-    private function getTransaction()
+    public function getAuthentication(): AuthenticationInterface
     {
-        $transaction = $this->transaction === true ? 'true' : 'false';
-
-        return $transaction;
+        return $this->authentication;
     }
 
     /**
-     * Set module preferences for the operation
-     *
-     * @param array $modulePreferences
-     *
-     * @todo finish the module preferences
+     * @param AuthenticationInterface $authentication
      */
-    private function setModulePreferences(array $modulePreferences)
+    public function setAuthentication(AuthenticationInterface $authentication)
     {
-        if (count($modulePreferences) > 0) {
-            //TODO: finish this
-        }
+        $this->authentication = $authentication;
     }
-    
+
     /**
-     * Set content block of operation
-     *
-     * @param FunctionInterface[] $contentBlock
+     * @return FunctionInterface[]
      */
-    private function setContent(array $contentBlock)
+    public function getContent(): array
     {
-        $this->contentBlock = $contentBlock;
+        return $this->content;
+    }
+
+    /**
+     * @param FunctionInterface[] $content
+     */
+    public function setContent(array $content)
+    {
+        $this->content = $content;
     }
 
     /**
@@ -140,12 +130,12 @@ class OperationBlock
     public function writeXml(XMLWriter &$xml)
     {
         $xml->startElement('operation');
-        $xml->writeAttribute('transaction', $this->getTransaction());
+        $xml->writeAttribute('transaction', $this->isTransaction() === true ? 'true' : 'false');
 
         $this->authentication->writeXml($xml);
 
         $xml->startElement('content');
-        foreach ($this->contentBlock as $func) {
+        foreach ($this->getContent() as $func) {
             $func->writeXml($xml);
         }
         $xml->endElement(); //content

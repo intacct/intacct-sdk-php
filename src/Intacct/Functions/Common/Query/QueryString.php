@@ -30,7 +30,7 @@ class QueryString implements QueryInterface
      *
      * @param string $query SQL-like query
      */
-    public function __construct($query = '')
+    public function __construct(string $query = '')
     {
         $this->setQuery($query);
     }
@@ -38,7 +38,7 @@ class QueryString implements QueryInterface
     /**
      * @return string
      */
-    public function getQuery()
+    public function getQuery(): string
     {
         return $this->query;
     }
@@ -46,18 +46,15 @@ class QueryString implements QueryInterface
     /**
      * @param string $query
      */
-    public function setQuery($query)
+    public function setQuery(string $query)
     {
-        if (!is_string($query)) {
-            throw new \InvalidArgumentException('Query variable must be a string type');
-        }
         $this->query = $query;
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->query;
     }

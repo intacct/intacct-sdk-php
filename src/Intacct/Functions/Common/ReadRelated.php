@@ -19,39 +19,29 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class ReadRelated extends AbstractFunction
 {
-
-    /** @var array */
-    const RETURN_FORMATS = ['xml'];
-
-    /** @var string */
-    const DEFAULT_RETURN_FORMAT = 'xml';
     
     /** @var int */
     const MAX_KEY_COUNT = 100;
 
     /** @var string */
-    private $objectName;
+    private $objectName = '';
     
     /** @var string */
-    private $relationName;
+    private $relationName = '';
     
     /** @var array */
-    private $fields;
+    private $fields = [];
     
     /** @var array */
-    private $keys;
-    
-    /** @var string */
-    private $returnFormat;
+    private $keys = [];
 
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -59,7 +49,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -67,7 +57,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @return string
      */
-    public function getRelationName()
+    public function getRelationName(): string
     {
         return $this->relationName;
     }
@@ -75,7 +65,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @param string $relationName
      */
-    public function setRelationName($relationName)
+    public function setRelationName(string $relationName)
     {
         $this->relationName = $relationName;
     }
@@ -83,7 +73,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @return array
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
@@ -91,7 +81,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @param array $fields
      */
-    public function setFields($fields)
+    public function setFields(array $fields)
     {
         $this->fields = $fields;
     }
@@ -99,45 +89,20 @@ class ReadRelated extends AbstractFunction
     /**
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return $this->keys;
     }
 
     /**
-     * Set keys
-     *
      * @param array $keys
-     * @throws InvalidArgumentException
      */
     public function setKeys(array $keys)
     {
         if (count($keys) > static::MAX_KEY_COUNT) {
-            throw new InvalidArgumentException('Keys count cannot exceed ' . static::MAX_KEY_COUNT);
+            throw new \InvalidArgumentException('Keys count cannot exceed ' . static::MAX_KEY_COUNT);
         }
         $this->keys = $keys;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReturnFormat()
-    {
-        return $this->returnFormat;
-    }
-
-    /**
-     * Set return format
-     *
-     * @param string $format
-     * @throws InvalidArgumentException
-     */
-    public function setReturnFormat($format)
-    {
-        if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('Return Format is not a valid format');
-        }
-        $this->returnFormat = $format;
     }
 
     /**
@@ -185,16 +150,16 @@ class ReadRelated extends AbstractFunction
         $xml->startElement('readRelated');
 
         if (!$this->getObjectName()) {
-            throw new InvalidArgumentException('Object Name is required for read related');
+            throw new \InvalidArgumentException('Object Name is required for read related');
         }
         $xml->writeElement('object', $this->getObjectName(), true);
         if (!$this->getRelationName()) {
-            throw new InvalidArgumentException('Relation Name is required for read related');
+            throw new \InvalidArgumentException('Relation Name is required for read related');
         }
         $xml->writeElement('relation', $this->getRelationName(), true);
         $xml->writeElement('keys', $this->writeXmlKeys(), true);
         $xml->writeElement('fields', $this->writeXmlFields());
-        $xml->writeElement('returnFormat', $this->getReturnFormat());
+        $xml->writeElement('returnFormat', 'xml');
         
         $xml->endElement(); //readRelated
         

@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillCreate
  */
-class BillCreateTest extends \PHPUnit_Framework_TestCase
+class BillCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

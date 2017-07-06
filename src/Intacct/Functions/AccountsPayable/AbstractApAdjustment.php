@@ -364,7 +364,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Get do not post to general ledger
      *
-     * @return boolean
+     * @return bool
      */
     public function isDoNotPostToGL()
     {
@@ -374,7 +374,7 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * Set do not post to general ledger
      *
-     * @param boolean $doNotPostToGL
+     * @param bool $doNotPostToGL
      */
     public function setDoNotPostToGL($doNotPostToGL)
     {

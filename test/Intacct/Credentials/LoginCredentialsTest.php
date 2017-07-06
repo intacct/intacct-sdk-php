@@ -17,14 +17,12 @@
 
 namespace Intacct\Credentials;
 
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\LoginCredentials
  */
-class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
+class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
 {
     
     /**
@@ -39,34 +37,26 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-        ];
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+
         $this->senderCreds = new SenderCredentials($config);
     }
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
+    public function testCredsFromConfig()
     {
-    }
-    
-    public function testCredsFromArray()
-    {
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => 'testpass',
-        ];
+        $config = new ClientConfig();
+        $config->setCompanyId('testcompany');
+        $config->setUserId('testuser');
+        $config->setUserPassword('testpass');
+
         $loginCreds = new LoginCredentials($config, $this->senderCreds);
 
         $this->assertEquals('testcompany', $loginCreds->getCompanyId());
         $this->assertEquals('testuser', $loginCreds->getUserId());
         $this->assertEquals('testpass', $loginCreds->getPassword());
-        $endpoint = $loginCreds->getEndpoint();
+        $endpoint = $loginCreds->getSenderCredentials()->getEndpoint();
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertThat(
             $loginCreds->getSenderCredentials(),
@@ -82,7 +72,10 @@ class LoginCredentialsTest extends \PHPUnit_Framework_TestCase
         }
         return $dir;
     }
-    
+
+    /**
+     * @todo move this into vfs file stream and not temp folder?
+     */
     public function testCredsFromProfile()
     {
         $dir = $this->clearEnv();
@@ -95,9 +88,9 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $config = [
-            'profile_name' => 'unittest',
-        ];
+        $config = new ClientConfig();
+        $config->setProfileName('unittest');
+
         $loginCreds = new LoginCredentials($config, $this->senderCreds);
 
         $this->assertEquals('inicompanyid', $loginCreds->getCompanyId());
@@ -106,60 +99,44 @@ EOF;
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "company_id" key not supplied in params or env variable "INTACCT_COMPANY_ID"
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required Company ID not supplied in config or env variable "INTACCT_COMPANY_ID"
      */
     public function testCredsFromArrayNoCompanyId()
     {
-        $config = [
-            'company_id' => null,
-            'user_id' => 'testuser',
-            'user_password' => 'testpass',
-        ];
+        $config = new ClientConfig();
+        $config->setCompanyId('');
+        $config->setUserId('testuser');
+        $config->setUserPassword('testpass');
+
         new LoginCredentials($config, $this->senderCreds);
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "user_id" key not supplied in params or env variable "INTACCT_USER_ID"
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required User ID not supplied in config or env variable "INTACCT_USER_ID"
      */
     public function testCredsFromArrayNoUserId()
     {
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => null,
-            'user_password' => 'testpass',
-        ];
+        $config = new ClientConfig();
+        $config->setCompanyId('testcompany');
+        $config->setUserId('');
+        $config->setUserPassword('testpass');
+
         new LoginCredentials($config, $this->senderCreds);
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "user_password" key not supplied in params or env variable "INTACCT_USER_PASSWORD"
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required User Password not supplied in config or env variable "INTACCT_USER_PASSWORD"
      */
     public function testCredsFromArrayNoUserPassword()
     {
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => null,
-        ];
+        $config = new ClientConfig();
+        $config->setCompanyId('testcompany');
+        $config->setUserId('testuser');
+        $config->setUserPassword('');
+
         new LoginCredentials($config, $this->senderCreds);
-    }
-    
-    public function testGetMockHandler()
-    {
-        $response = new Response(200);
-        $mock = new MockHandler([
-            $response,
-        ]);
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => 'testpass',
-            'mock_handler' => $mock,
-        ];
-        $loginCreds = new LoginCredentials($config, $this->senderCreds);
-        $this->assertThat($loginCreds->getMockHandler(), $this->isInstanceOf('GuzzleHttp\Handler\MockHandler'));
     }
 }

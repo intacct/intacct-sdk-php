@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestVoid
  */
-class ApPaymentRequestVoidTest extends \PHPUnit_Framework_TestCase
+class ApPaymentRequestVoidTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

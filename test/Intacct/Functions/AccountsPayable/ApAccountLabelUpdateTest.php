@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAccountLabelUpdate
  */
-class ApAccountLabelUpdateTest extends \PHPUnit_Framework_TestCase
+class ApAccountLabelUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

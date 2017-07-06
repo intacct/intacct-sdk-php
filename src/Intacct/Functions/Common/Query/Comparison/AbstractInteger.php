@@ -21,25 +21,25 @@ abstract class AbstractInteger extends AbstractComparison
 {
 
     /**
-     * @var integer
+     * @var int
      */
     protected $value;
 
     /**
-     * @return integer
+     * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->value;
     }
 
     /**
-     * @param integer $value
+     * @param int $value
      */
     public function setValue($value)
     {
         if (!is_int($value)) {
-            throw new \InvalidArgumentException('Comparison value variable must be an integer type');
+            throw new \InvalidArgumentException('Comparison value variable must be an int type');
         }
         $this->value = $value;
     }

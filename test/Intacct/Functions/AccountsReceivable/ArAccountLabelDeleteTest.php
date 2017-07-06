@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAccountLabelDelete
  */
-class ArAccountLabelDeleteTest extends \PHPUnit_Framework_TestCase
+class ArAccountLabelDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

@@ -379,7 +379,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * Get do not post to general ledger
      *
-     * @return boolean
+     * @return bool
      */
     public function isDoNotPostToGL()
     {
@@ -389,7 +389,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * Set do not post to general ledger
      *
-     * @param boolean $doNotPostToGL
+     * @param bool $doNotPostToGL
      */
     public function setDoNotPostToGL($doNotPostToGL)
     {
@@ -459,7 +459,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * Get on hold
      *
-     * @return boolean
+     * @return bool
      */
     public function isOnHold()
     {
@@ -469,7 +469,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * Set on hold
      *
-     * @param boolean $onHold
+     * @param bool $onHold
      */
     public function setOnHold($onHold)
     {

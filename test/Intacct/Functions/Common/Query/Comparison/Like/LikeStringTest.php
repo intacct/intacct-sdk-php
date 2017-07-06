@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\Like;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\Like\LikeString
  */
-class LikeStringTest extends \PHPUnit_Framework_TestCase
+class LikeStringTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

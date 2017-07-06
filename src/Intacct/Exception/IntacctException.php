@@ -20,4 +20,15 @@ namespace Intacct\Exception;
 class IntacctException extends \RuntimeException
 {
 
+    /**
+     * Initializes the class
+     *
+     * @param string $message
+     * @param int $code
+     * @param \Exception $previous
+     */
+    public function __construct(string $message, int $code = 0, \Exception $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

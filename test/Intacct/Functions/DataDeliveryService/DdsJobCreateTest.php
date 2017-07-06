@@ -25,7 +25,7 @@ use DateTime;
 /**
  * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsJobCreate
  */
-class DdsJobCreateTest extends \PHPUnit_Framework_TestCase
+class DdsJobCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

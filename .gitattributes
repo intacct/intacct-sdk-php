@@ -4,6 +4,5 @@
 # Leave out the following from the archive zip
 docs/ export-ignore
 test/ export-ignore
-DEV.md export-ignore
 phpunit.xml.dist export-ignore
 .travis.yml export-ignore

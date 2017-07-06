@@ -3,9 +3,9 @@
 /**
  * Copyright 2017 Intacct Corporation.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
- *  use this file except in compliance with the License. You may obtain a copy
- *  of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -13,10 +13,9 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
-namespace Intacct\Credentials;
+namespace Intacct;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
@@ -24,43 +23,8 @@ use GuzzleHttp\Handler\MockHandler;
 /**
  * @coversDefaultClass \Intacct\Credentials\SessionProvider
  */
-class SessionProviderTest extends \PHPUnit_Framework_TestCase
+class SessionProviderTest extends \PHPUnit\Framework\TestCase
 {
-
-    /**
-     * @var SessionProvider
-     */
-    protected $object;
-    
-    /**
-     *
-     * @var SenderCredentials
-     */
-    protected $senderCreds;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-        $this->object = new SessionProvider();
-        
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'verify_ssl' => false,
-        ];
-        $this->senderCreds = new SenderCredentials($config);
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
 
     public function testFromLoginCredentials()
     {
@@ -102,23 +66,18 @@ EOF;
         $mock = new MockHandler([
             $response,
         ]);
-        $config = [
-            'company_id' => 'testcompany',
-            'user_id' => 'testuser',
-            'user_password' => 'testpass',
-            'mock_handler' => $mock,
-        ];
-        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+        $config->setCompanyId('testcompany');
+        $config->setUserId('testuser');
+        $config->setUserPassword('testpass');
+        $config->setMockHandler($mock);
         
-        $sessionCreds = $this->object->fromLoginCredentials($loginCreds);
+        $sessionCreds = SessionProvider::factory($config);
         
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
-        $endpoint = $sessionCreds->getEndpoint();
-        $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertThat(
-            $sessionCreds->getSenderCredentials(),
-            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
-        );
+        $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
     }
 
     public function testFromSessionCredentials()
@@ -161,21 +120,19 @@ EOF;
         $mock = new MockHandler([
             $response,
         ]);
-        $config = [
-            'session_id' => 'fAkESesSiOnId..',
-            'endpoint_url' => 'https://unittest.intacct.com/ia/xml/xmlgw.phtml',
-            'mock_handler' => $mock,
-        ];
-        $sessionCreds = new SessionCredentials($config, $this->senderCreds);
-        
-        $newSessionCreds = $this->object->fromSessionCredentials($sessionCreds);
-        
-        $this->assertEquals('fAkESesSiOnId..', $newSessionCreds->getSessionId());
-        $endpoint = $newSessionCreds->getEndpoint();
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
+        $config->setSessionId('fAkESesSiOnId..');
+        $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
+        $config->setMockHandler($mock);
+
+        $sessionCreds = SessionProvider::factory($config);
+
+        $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals(
             'https://unittest.intacct.com/ia/xml/xmlgw.phtml',
-            $endpoint->getEndpoint()
+            $sessionCreds->getEndpointUrl()
         );
-        $this->assertThat($newSessionCreds->getSenderCredentials(), $this->isInstanceOf('Intacct\Credentials\SenderCredentials'));
     }
 }

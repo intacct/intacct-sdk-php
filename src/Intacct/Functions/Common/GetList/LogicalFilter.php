@@ -18,7 +18,6 @@
 namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class LogicalFilter implements FilterInterface
 {
@@ -30,18 +29,18 @@ class LogicalFilter implements FilterInterface
     const OPERATOR_OR = 'or';
 
     /** @var FilterInterface[] */
-    protected $filters;
+    protected $filters = [];
 
     /** @var string */
-    protected $operator;
+    protected $operator = '';
 
     /** @var string */
-    protected $objectName;
+    protected $objectName = '';
 
     /**
      * @return FilterInterface[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return $this->filters;
     }
@@ -49,10 +48,10 @@ class LogicalFilter implements FilterInterface
     /**
      * @param FilterInterface[] $filters
      */
-    public function setFilters($filters)
+    public function setFilters(array $filters)
     {
         if (count($filters) < 2) {
-            throw new InvalidArgumentException('Logical Filters count must be 2 or more');
+            throw new \InvalidArgumentException('Logical Filters count must be 2 or more');
         }
         $this->filters = $filters;
     }
@@ -60,7 +59,7 @@ class LogicalFilter implements FilterInterface
     /**
      * @return string
      */
-    public function getOperator()
+    public function getOperator(): string
     {
         return $this->operator;
     }
@@ -68,14 +67,14 @@ class LogicalFilter implements FilterInterface
     /**
      * @param string $operator
      */
-    public function setOperator($operator)
+    public function setOperator(string $operator)
     {
         $operators = [
             static::OPERATOR_AND,
             static::OPERATOR_OR,
         ];
         if (!in_array($operator, $operators)) {
-            throw new InvalidArgumentException('Logical Operator must be either:' . implode(', ', $operators));
+            throw new \InvalidArgumentException('Logical Operator must be either:' . implode(', ', $operators));
         }
         $this->operator = $operator;
     }
@@ -83,7 +82,7 @@ class LogicalFilter implements FilterInterface
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -91,7 +90,7 @@ class LogicalFilter implements FilterInterface
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -110,7 +109,7 @@ class LogicalFilter implements FilterInterface
         }
 
         if (count($this->getFilters()) < 2) {
-            throw new InvalidArgumentException('Logical Filters count must be 2 or more');
+            throw new \InvalidArgumentException('Logical Filters count must be 2 or more');
         }
         foreach ($this->getFilters() as $filter) {
             $filter->writeXml($xml);

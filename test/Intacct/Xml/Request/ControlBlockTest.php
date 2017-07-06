@@ -17,39 +17,25 @@
 
 namespace Intacct\Xml\Request;
 
+use Intacct\ClientConfig;
+use Intacct\RequestConfig;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\ControlBlock
  */
-class ControlBlockTest extends \PHPUnit_Framework_TestCase
+class ControlBlockTest extends \PHPUnit\Framework\TestCase
 {
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
 
     public function testWriteXmlDefaults()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'control_id' => 'unittest',
-        ];
-        
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('unittest');
+
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
@@ -68,52 +54,49 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $controlBlock = new ControlBlock($config);
+        $controlBlock = new ControlBlock($clientConfig, $requestConfig);
         $controlBlock->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "sender_id" key not supplied in params
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Sender ID is required and cannot be blank
      */
     public function testWriteXmlInvalidSenderId()
     {
-        $config = [
-            'sender_id' => null,
-            'sender_password' => 'pass123!',
-        ];
-        
-        new ControlBlock($config);
+        $clientConfig = new ClientConfig();
+        //$clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+
+        new ControlBlock($clientConfig, new RequestConfig());
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "sender_password" key not supplied in params
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Sender Password is required and cannot be blank
      */
     public function testWriteXmlInvalidSenderPassword()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => null,
-        ];
-        
-        new ControlBlock($config);
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        //$clientConfig->setSenderPassword('pass123!');
+
+        new ControlBlock($clientConfig, new RequestConfig());
     }
 
-    public function testWriteXmlDefaultsOverride30()
+    public function testWriteXmlDefaultsOverride()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'control_id' => 'testcontrol',
-            'unique_id' => true,
-            'dtd_version' => '3.0',
-            'policy_id' => 'testpolicy',
-            'include_whitespace' => true,
-        ];
-        
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('testcontrol');
+        $requestConfig->setUniqueId(true);
+        $requestConfig->setPolicyId('testpolicy');
+
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
@@ -123,7 +106,7 @@ EOF;
     <uniqueid>true</uniqueid>
     <dtdversion>3.0</dtdversion>
     <policyid>testpolicy</policyid>
-    <includewhitespace>true</includewhitespace>
+    <includewhitespace>false</includewhitespace>
 </control>
 EOF;
 
@@ -133,138 +116,41 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $controlBlock = new ControlBlock($config);
+        $controlBlock = new ControlBlock($clientConfig, $requestConfig);
         $controlBlock->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlDefaultsOverride21()
-    {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'control_id' => 'testcontrol',
-            'unique_id' => true,
-            'dtd_version' => '2.1',
-            'policy_id' => 'testpolicy',
-            'include_whitespace' => true,
-            'debug' => true,
-        ];
-        
-        $expected = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<control>
-    <senderid>testsenderid</senderid>
-    <password>pass123!</password>
-    <controlid>testcontrol</controlid>
-    <uniqueid>true</uniqueid>
-    <dtdversion>2.1</dtdversion>
-    <policyid>testpolicy</policyid>
-    <includewhitespace>true</includewhitespace>
-    <debug>true</debug>
-</control>
-EOF;
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $controlBlock = new ControlBlock($config);
-        $controlBlock->writeXml($xml);
-
-        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
+     */
     public function testWriteXmlInvalidControlIdShort()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'control_id' => 'unittest',
-        ];
-        
-        new ControlBlock($config);
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('');
+
+        new ControlBlock($clientConfig, $requestConfig);
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage control_id must be between 1 and 256 characters in length
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
      */
     public function testWriteXmlInvalidControlIdLong()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'control_id' => str_repeat('1234567890', 30), //strlen 300
-        ];
-        
-        new ControlBlock($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage uniqueid not valid boolean type
-     */
-    public function testWriteXmlInvalidUniqueId()
-    {
-        $config = [
-            'control_id' => 'unittest',
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'unique_id' => 'true',
-        ];
-        
-        new ControlBlock($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage dtdversion is not a valid version
-     */
-    public function testWriteXmlInvalidDtdVersion()
-    {
-        $config = [
-            'control_id' => 'unittest',
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'dtd_version' => '1.2',
-        ];
-        
-        new ControlBlock($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage include_whitespace not valid boolean type
-     */
-    public function testWriteXmlInvalidIncludeWhitespace()
-    {
-        $config = [
-            'control_id' => 'unittest',
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'include_whitespace' => 'true',
-        ];
-        
-        new ControlBlock($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage debug not valid boolean type
-     */
-    public function testWriteXmlInvalidDebug()
-    {
-        $config = [
-            'control_id' => 'unittest',
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-            'debug' => 'true',
-        ];
-        
-        new ControlBlock($config);
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId(str_repeat('1234567890', 30)); //strlen 300
+
+        new ControlBlock($clientConfig, $requestConfig);
     }
 }

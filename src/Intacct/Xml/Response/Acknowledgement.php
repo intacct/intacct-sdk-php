@@ -18,7 +18,6 @@
 namespace Intacct\Xml\Response;
 
 use Intacct\Exception\IntacctException;
-use SimpleXMLIterator;
 
 class Acknowledgement
 {
@@ -29,25 +28,31 @@ class Acknowledgement
     /**
      * Initializes the class
      *
-     * @param SimpleXMLIterator $acknowledgement
+     * @param \SimpleXMLElement $acknowledgement
      * @throws IntacctException
      */
-    public function __construct(SimpleXMLIterator $acknowledgement)
+    public function __construct(\SimpleXMLElement $acknowledgement)
     {
         if (!isset($acknowledgement->status)) {
             throw new IntacctException('Acknowledgement block is missing status element');
         }
 
-        $this->status = strval($acknowledgement->status);
+        $this->setStatus(strval($acknowledgement->status));
     }
 
     /**
-     * Get acknowledgement status
-     *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
     }
 }

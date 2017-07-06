@@ -177,7 +177,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -185,7 +185,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -481,7 +481,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -489,7 +489,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {
@@ -641,7 +641,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSerialTrackingEnabled()
     {
@@ -649,7 +649,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $serialTrackingEnabled
+     * @param bool $serialTrackingEnabled
      */
     public function setSerialTrackingEnabled($serialTrackingEnabled)
     {
@@ -673,7 +673,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLotTrackingEnabled()
     {
@@ -681,7 +681,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $lotTrackingEnabled
+     * @param bool $lotTrackingEnabled
      */
     public function setLotTrackingEnabled($lotTrackingEnabled)
     {
@@ -705,7 +705,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBinTrackingEnabled()
     {
@@ -713,7 +713,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $binTrackingEnabled
+     * @param bool $binTrackingEnabled
      */
     public function setBinTrackingEnabled($binTrackingEnabled)
     {
@@ -721,7 +721,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isExpTrackingEnabled()
     {
@@ -729,7 +729,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $expTrackingEnabled
+     * @param bool $expTrackingEnabled
      */
     public function setExpTrackingEnabled($expTrackingEnabled)
     {
@@ -801,7 +801,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isItemStartEndDateEnabled()
     {
@@ -809,7 +809,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $itemStartEndDateEnabled
+     * @param bool $itemStartEndDateEnabled
      */
     public function setItemStartEndDateEnabled($itemStartEndDateEnabled)
     {
@@ -849,7 +849,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isProratePriceAllowed()
     {
@@ -857,7 +857,7 @@ abstract class AbstractItem extends AbstractFunction
     }
 
     /**
-     * @param boolean $proratePriceAllowed
+     * @param bool $proratePriceAllowed
      */
     public function setProratePriceAllowed($proratePriceAllowed)
     {

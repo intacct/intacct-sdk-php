@@ -16,12 +16,12 @@
 
 namespace Intacct\Credentials;
 
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 /**
  * @coversDefaultClass \Intacct\Endpoint
  */
-class EndpointTest extends \PHPUnit_Framework_TestCase
+class EndpointTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -42,95 +42,61 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     
     public function testDefaultEndpoint()
     {
-        $endpoint = new Endpoint();
+        $endpoint = new Endpoint(new ClientConfig());
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
-        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertEquals(true, $endpoint->getVerifySSL());
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
     
     public function testEnvEndpoint()
     {
         putenv('INTACCT_ENDPOINT_URL=https://envunittest.intacct.com/ia/xml/xmlgw.phtml');
         
-        $endpoint = new Endpoint();
+        $endpoint = new Endpoint(new ClientConfig());
         $this->assertEquals('https://envunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
-        $this->assertEquals('https://envunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertEquals(true, $endpoint->getVerifySSL());
+        $this->assertEquals('https://envunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
         
         putenv('INTACCT_ENDPOINT_URL');
     }
     
     public function testArrayEndpoint()
     {
-        $config = [
-            'endpoint_url' => 'https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml',
-            'verify_ssl' => false,
-        ];
+        $config = new ClientConfig();
+        $config->setEndpointUrl('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml');
         
         $endpoint = new Endpoint($config);
         $this->assertEquals('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
-        $this->assertEquals('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
-        $this->assertEquals(false, $endpoint->getVerifySSL());
+        $this->assertEquals('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
     
     public function testNullEndpoint()
     {
-        $config = [
-            'endpoint_url' => null,
-        ];
+        $config = new ClientConfig();
+        $config->setEndpointUrl('');
         
         $endpoint = new Endpoint($config);
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage endpoint_url is not a valid string.
-     */
-    public function testNotStringUrlEndpoint()
-    {
-        $config = [
-            'endpoint_url' => [ 'an array' ],
-        ];
-        
-        new Endpoint($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage endpoint_url is not a valid URL.
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Endpoint URL is not a valid URL.
      */
     public function testInvalidUrlEndpoint()
     {
-        $config = [
-            'endpoint_url' => 'invalidurl',
-        ];
+        $config = new ClientConfig();
+        $config->setEndpointUrl('invalidurl');
         
         new Endpoint($config);
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage endpoint_url is not a valid URL.
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Endpoint URL is not a valid intacct.com domain name.
      */
     public function testInvalidIntacctUrlEndpoint()
     {
-        $config = [
-            'endpoint_url' => 'endpoint_url is not a valid intacct.com domain name.',
-        ];
-        
-        new Endpoint($config);
-    }
-    
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage verify_ssl is not a valid boolean type
-     */
-    public function testInvalidBoolVerifySsl()
-    {
-        $config = [
-            'verify_ssl' => 0,
-        ];
+        $config = new ClientConfig();
+        $config->setEndpointUrl('https://api.example.com/xmlgw.phtml');
         
         new Endpoint($config);
     }

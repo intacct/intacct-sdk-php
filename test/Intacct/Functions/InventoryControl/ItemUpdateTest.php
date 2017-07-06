@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\ItemUpdate
  */
-class ItemUpdateTest extends \PHPUnit_Framework_TestCase
+class ItemUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

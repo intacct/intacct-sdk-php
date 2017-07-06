@@ -17,35 +17,13 @@
 
 namespace Intacct\Credentials;
 
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\ProfileCredentialProvider
  */
-class ProfileCredentialProviderTest extends \PHPUnit_Framework_TestCase
+class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
 {
-
-    /**
-     * @var ProfileCredentialProvider
-     */
-    private $provider;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-        $this->provider = new ProfileCredentialProvider();
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
 
     private function clearEnv()
     {
@@ -76,22 +54,18 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $config = [];
-        $loginCreds = $this->provider->getLoginCredentials($config);
-        $expectedLogin = [
-            'company_id' => 'defcompanyid',
-            'user_id' => 'defuserid',
-            'user_password' => 'defuserpass',
-        ];
-        $this->assertEquals($expectedLogin, $loginCreds);
+        $config = new ClientConfig();
+        $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        $senderCreds = $this->provider->getSenderCredentials($config);
-        $expectedSender = [
-            'sender_id' => 'defsenderid',
-            'sender_password' => 'defsenderpass',
-            'endpoint_url' => 'https://unittest.intacct.com/ia/xmlgw.phtml',
-        ];
-        $this->assertEquals($expectedSender, $senderCreds);
+        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        $this->assertEquals('defuserid', $loginCreds->getUserId());
+        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
+
+        $senderCreds = ProfileCredentialProvider::getSenderCredentials($config);
+
+        $this->assertEquals('defsenderid', $senderCreds->getSenderId());
+        $this->assertEquals('defsenderpass', $senderCreds->getSenderPassword());
+        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
     }
 
     public function testGetLoginCredentialsFromSpecificProfile()
@@ -113,45 +87,43 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $config = [
-            'profile_name' => 'unittest',
-        ];
-        $profileCreds = $this->provider->getLoginCredentials($config);
-        $expected = [
-            'company_id' => 'inicompanyid',
-            'user_id' => 'iniuserid',
-            'user_password' => 'iniuserpass',
-        ];
-        $this->assertEquals($expected, $profileCreds);
+        $config = new ClientConfig();
+        $config->setProfileName('unittest');
+
+        $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
+
+        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        $this->assertEquals('iniuserid', $profileCreds->getUserId());
+        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "profile_name" key not supplied in params
-     */
     public function testGetLoginCredentialsFromNullProfile()
     {
-        $config = [
-            'profile_name' => '',
-        ];
-        $this->provider->getLoginCredentials($config);
+        $config = new ClientConfig();
+        $config->setProfileName('');
+
+        $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
+
+        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        $this->assertEquals('defuserid', $loginCreds->getUserId());
+        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Cannot read credentials from file, "notarealfile.ini"
      */
     public function testGetLoginCredentialsFromMissingIni()
     {
-        $config = [
-            'profile_file' => 'notarealfile.ini'
-        ];
-        $this->provider->getLoginCredentials($config);
+        $config = new ClientConfig();
+        $config->setProfileFile('notarealfile.ini');
+
+        ProfileCredentialProvider::getLoginCredentials($config);
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Profile name "default" not found in credentials file
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Profile Name "default" not found in credentials file
      */
     public function testGetLoginCredentialsMissingDefault()
     {
@@ -164,6 +136,7 @@ EOF;
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 
-        $this->provider->getLoginCredentials();
+        $config = new ClientConfig();
+        ProfileCredentialProvider::getLoginCredentials($config);
     }
 }

@@ -23,7 +23,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionLineUpdate
  */
-class OrderEntryTransactionLineUpdateTest extends \PHPUnit_Framework_TestCase
+class OrderEntryTransactionLineUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

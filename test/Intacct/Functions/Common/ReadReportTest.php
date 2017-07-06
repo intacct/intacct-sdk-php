@@ -17,12 +17,11 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadReport
  */
-class ReadReportTest extends \PHPUnit_Framework_TestCase
+class ReadReportTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -77,7 +76,6 @@ EOF;
         $readReport = new ReadReport('unittest');
         $readReport->setReportName('TestBill Date Runtime');
         $readReport->setPageSize(200);
-        $readReport->setReturnFormat('xml');
         $readReport->setWaitTime(15);
         $readReport->setListSeparator(',');
 
@@ -87,17 +85,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Report Name must be a string
-     */
-    public function testInvalidReport()
-    {
-        $readReport = new ReadReport('unittest');
-        $readReport->setReportName(43645346347124757);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Report Name is required for read report
      */
     public function testNoReport()
@@ -115,18 +103,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size not valid int type
-     */
-    public function testInvalidPageSize()
-    {
-        $readReport = new ReadReport('unittest');
-        $readReport->setReportName('TestBill Date Runtime');
-        $readReport->setPageSize('200');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
@@ -137,7 +114,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
     public function testMaxPageSize()
@@ -148,17 +125,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Wait Time not valid int type
-     */
-    public function testInvalidWaitTime()
-    {
-        $readReport = new ReadReport('unittest');
-        $readReport->setWaitTime('1');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Wait Time cannot be less than 0
      */
     public function testMinWaitTime()
@@ -168,33 +135,13 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Wait Time cannot be greater than 30
      */
     public function testMaxWaitTime()
     {
         $readReport = new ReadReport('unittest');
         $readReport->setWaitTime(31);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        $readReport = new ReadReport('unittest');
-        $readReport->setReturnFormat('bad');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage List Separator must be a string
-     */
-    public function testInvalidListSeparator()
-    {
-        $readReport = new ReadReport('unittest');
-        $readReport->setListSeparator(true);
     }
 
     public function testReturnDef()

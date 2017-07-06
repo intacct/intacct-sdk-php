@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\JournalEntryLineCreate
  */
-class JournalEntryLineCreateTest extends \PHPUnit_Framework_TestCase
+class JournalEntryLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

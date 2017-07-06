@@ -23,35 +23,26 @@ use InvalidArgumentException;
 
 class Read extends AbstractFunction
 {
-    
-    /** @var array */
-    const RETURN_FORMATS = ['xml'];
 
-    /** @var string */
-    const DEFAULT_RETURN_FORMAT = 'xml';
-    
     /** @var int */
     const MAX_KEY_COUNT = 100;
 
     /** @var string */
-    private $objectName;
+    private $objectName = '';
     
     /** @var array */
-    private $fields;
+    private $fields = [];
     
     /** @var array */
-    private $keys;
+    private $keys = [];
     
     /** @var string */
-    private $returnFormat;
-    
-    /** @var string */
-    private $docParId;
+    private $docParId = '';
 
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -59,7 +50,7 @@ class Read extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -67,7 +58,7 @@ class Read extends AbstractFunction
     /**
      * @return array
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
@@ -75,7 +66,7 @@ class Read extends AbstractFunction
     /**
      * @param array $fields
      */
-    public function setFields($fields)
+    public function setFields(array $fields)
     {
         $this->fields = $fields;
     }
@@ -83,7 +74,7 @@ class Read extends AbstractFunction
     /**
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return $this->keys;
     }
@@ -92,7 +83,6 @@ class Read extends AbstractFunction
      * Set keys
      *
      * @param array $keys
-     * @throws InvalidArgumentException
      */
     public function setKeys(array $keys)
     {
@@ -106,29 +96,7 @@ class Read extends AbstractFunction
     /**
      * @return string
      */
-    public function getReturnFormat()
-    {
-        return $this->returnFormat;
-    }
-
-    /**
-     * Set return format
-     *
-     * @param string $format
-     * @throws InvalidArgumentException
-     */
-    public function setReturnFormat($format)
-    {
-        if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('Return Format is not a valid format');
-        }
-        $this->returnFormat = $format;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDocParId()
+    public function getDocParId(): string
     {
         return $this->docParId;
     }
@@ -136,7 +104,7 @@ class Read extends AbstractFunction
     /**
      * @param string $docParId
      */
-    public function setDocParId($docParId)
+    public function setDocParId(string $docParId)
     {
         $this->docParId = $docParId;
     }
@@ -146,7 +114,7 @@ class Read extends AbstractFunction
      *
      * @return string
      */
-    private function writeXmlFields()
+    private function writeXmlFields(): string
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -162,7 +130,7 @@ class Read extends AbstractFunction
      *
      * @return string
      */
-    private function writeXmlKeys()
+    private function writeXmlKeys(): string
     {
         if (count($this->keys) > 0) {
             $keys = implode(',', $this->keys);
@@ -191,8 +159,10 @@ class Read extends AbstractFunction
         $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->writeXmlKeys(), true);
         $xml->writeElement('fields', $this->writeXmlFields());
-        $xml->writeElement('returnFormat', $this->getReturnFormat());
-        $xml->writeElement('docparid', $this->getDocParId());
+        $xml->writeElement('returnFormat', 'xml');
+        if ($this->getDocParId()) {
+            $xml->writeElement('docparid', $this->getDocParId());
+        }
         
         $xml->endElement(); //read
         

@@ -24,7 +24,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionCreate
  */
-class PurchasingTransactionCreateTest extends \PHPUnit_Framework_TestCase
+class PurchasingTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

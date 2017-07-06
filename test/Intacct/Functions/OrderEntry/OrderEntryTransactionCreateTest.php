@@ -24,7 +24,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionCreate
  */
-class OrderEntryTransactionCreateTest extends \PHPUnit_Framework_TestCase
+class OrderEntryTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

@@ -23,7 +23,7 @@ class AndCondition extends AbstractLogical
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {

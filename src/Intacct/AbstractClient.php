@@ -20,12 +20,8 @@ namespace Intacct;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
-use Intacct\Credentials\SessionProvider;
 use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\AsynchronousResponse;
-use Intacct\Xml\RequestHandler;
-use Intacct\Xml\SynchronousResponse;
-use Ramsey\Uuid\Uuid;
+use Intacct\Xml\AbstractResponse;
 
 abstract class AbstractClient
 {
@@ -37,181 +33,57 @@ abstract class AbstractClient
      */
     const PROFILE_ENV_NAME = 'INTACCT_PROFILE';
 
-    /**
-     * Session credentials
-     *
-     * @var SessionCredentials
-     */
-    protected $sessionCreds;
+    /** @var ClientConfig */
+    private $config;
 
     /**
-     * Initializes the class with the given parameters.
+     * AbstractClient constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `profile_name` (string, default=string "default") Profile name to use
-     * - `profile_file` (string) Profile file to load from
-     * - `sender_id` (string) Intacct sender ID
-     * - `sender_password` (string) Intacct sender password
-     * - `session_id` (string) Intacct session ID
-     * - `endpoint_url` (string) Endpoint URL
-     * - `company_id` (string) Intacct company ID
-     * - `user_id` (string) Intacct user ID
-     * - `user_password` (string) Intacct user password
-     * - `max_retries` (int, default=int(5)) Max number of retries
-     * - `no_retry_server_error_codes` (int[], default=array(524)) HTTP server error codes to abort
-     * retrying if one occurs
-     * - `verify_ssl` (bool, default=bool(true)) Verify SSL certificate of response
-     * - `logger` (Psr\Log\LoggerInterface)
-     * - `log_formatter` (Intacct\Logging\MessageFormatter) Log formatter
-     * - `log_level` (int, default=int(400)) Log level
-     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
-     *
-     * @param array $params Client configuration options
+     * @param ClientConfig $config
      */
-    public function __construct(array $params = [])
+    public function __construct(ClientConfig $config = null)
     {
-        $defaults = [
-            'session_id' => null,
-            'endpoint_url' => null,
-            'verify_ssl' => true,
-        ];
-        $envProfile = getenv(static::PROFILE_ENV_NAME);
-        if ($envProfile) {
-            $defaults['profile_name'] = $envProfile;
+        if (!$config) {
+            $config = new ClientConfig();
         }
-        $config = array_merge($defaults, $params);
 
-        $provider = new SessionProvider();
+        if (!$config->getProfileName()) {
+            $config->setProfileName(getenv(static::PROFILE_ENV_NAME));
+        }
 
-        $senderCreds = new SenderCredentials($config);
-
-        if ($config['session_id']) {
-            $sessionCreds = new SessionCredentials($config, $senderCreds);
-
-            $this->sessionCreds = $provider->fromSessionCredentials($sessionCreds);
+        if ($config->getCredentials() instanceof SessionCredentials
+            || $config->getCredentials() instanceof LoginCredentials) {
+            // Do not try and load credentials if they are already set in config
+        } elseif ($config->getSessionId()) {
+            // Load the session credentials
+            $config->setCredentials(new SessionCredentials($config, new SenderCredentials($config)));
         } else {
-            $loginCreds = new LoginCredentials($config, $senderCreds);
-
-            $this->sessionCreds = $provider->fromLoginCredentials($loginCreds);
+            // Load the login credentials
+            $config->setCredentials(new LoginCredentials($config, new SenderCredentials($config)));
         }
+        $this->setConfig($config);
     }
 
     /**
-     * Session credentials
-     *
-     * @return SessionCredentials
+     * @return ClientConfig
      */
-    protected function getSessionCreds()
+    public function getConfig(): ClientConfig
     {
-        return $this->sessionCreds;
+        return $this->config;
     }
 
     /**
-     * Get session config array
-     *
-     * @return array
+     * @param ClientConfig $config
      */
-    private function getSessionConfig()
+    public function setConfig(ClientConfig $config)
     {
-        $sessionCreds = $this->getSessionCreds();
-        $senderCreds = $sessionCreds->getSenderCredentials();
-        $endpoint = $sessionCreds->getEndpoint();
-
-        $config = [
-            'sender_id' => $senderCreds->getSenderId(),
-            'sender_password' => $senderCreds->getPassword(),
-            'endpoint_url' => $endpoint->getEndpoint(),
-            'verify_ssl' => $endpoint->getVerifySSL(),
-            'session_id' => $sessionCreds->getSessionId(),
-            'logger' => $sessionCreds->getLogger(),
-            'log_formatter' => $sessionCreds->getLogMessageFormat(),
-            'log_level' => $sessionCreds->getLogLevel(),
-        ];
-
-        return $config;
+        $this->config = $config;
     }
 
     /**
-     * Generate a version 4 (random) UUID
-     *
-     * @return string
+     * @param FunctionInterface[] $content
+     * @param RequestConfig $requestConfig
+     * @return AbstractResponse
      */
-    public function generateRandomControlId()
-    {
-        return Uuid::uuid4()->toString();
-    }
-
-    /**
-     * Execute a synchronous request to the API
-     *
-     * @param FunctionInterface[] $contentBlock Content block to send
-     * @param bool $transaction Force the operation to be one transaction
-     * @param string $requestControlId Request control ID
-     * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
-     * @param array $params Overriding params, @see IntacctClient::__construct()
-     *
-     * @return SynchronousResponse
-     */
-    protected function execute(
-        array $contentBlock,
-        $transaction = false,
-        $requestControlId = null,
-        $uniqueFunctionControlIds = false,
-        array $params = []
-    ) {
-        $config = array_merge(
-            $this->getSessionConfig(),
-            [
-                'transaction' => $transaction,
-                'control_id' => $requestControlId,
-                'unique_id' => $uniqueFunctionControlIds,
-            ],
-            $params
-        );
-
-        $requestHandler = new RequestHandler($config);
-
-        $response = $requestHandler->executeSynchronous($config, $contentBlock);
-
-        return $response;
-    }
-
-    /**
-     * Execute an asynchronous request to the API
-     *
-     * @param FunctionInterface[] $contentBlock Content block to send
-     * @param string $asyncPolicyId Intacct asynchronous policy ID
-     * @param bool $transaction Force the operation to be one transaction
-     * @param string $requestControlId Request control ID
-     * @param bool $uniqueFunctionControlIds Force the function control ID's to be unique
-     * @param array $params Overriding params, @see IntacctClient::__construct()
-     *
-     * @return AsynchronousResponse
-     */
-    protected function executeAsync(
-        array $contentBlock,
-        $asyncPolicyId,
-        $transaction = false,
-        $requestControlId = null,
-        $uniqueFunctionControlIds = false,
-        array $params = []
-    ) {
-        $config = array_merge(
-            $this->getSessionConfig(),
-            [
-                'policy_id' => $asyncPolicyId,
-                'transaction' => $transaction,
-                'control_id' => $requestControlId,
-                'unique_id' => $uniqueFunctionControlIds,
-            ],
-            $params
-        );
-
-        $requestHandler = new RequestHandler($config);
-
-        $response = $requestHandler->executeAsynchronous($config, $contentBlock);
-
-        return $response;
-    }
+    abstract public function execute(array $content, RequestConfig $requestConfig);
 }

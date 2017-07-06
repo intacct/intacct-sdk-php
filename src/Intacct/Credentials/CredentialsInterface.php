@@ -15,17 +15,18 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Xml\Request\Operation;
+namespace Intacct\Credentials;
 
-use Intacct\Xml\XMLWriter;
-
-abstract class AbstractAuthentication
+interface CredentialsInterface
 {
 
     /**
-     * Write the operation block XML
-     *
-     * @param XMLWriter $xml
+     * @return SenderCredentials
      */
-    abstract public function writeXml(&$xml);
+    public function getSenderCredentials();
+
+    /**
+     * @param SenderCredentials $senderCreds
+     */
+    public function setSenderCredentials(SenderCredentials $senderCreds);
 }

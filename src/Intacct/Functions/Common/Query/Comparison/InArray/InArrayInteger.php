@@ -25,17 +25,17 @@ class InArrayInteger extends AbstractArrayInteger
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
         $pieces = [];
-        foreach ($this->value as $value) {
+        foreach ($this->getValue() as $value) {
             $pieces[] = $value;
         }
-        $clause .= $this->field . " IN (" . implode(',', $pieces) . ")";
+        $clause .= $this->getField() . " IN (" . implode(',', $pieces) . ")";
 
         return $clause;
     }

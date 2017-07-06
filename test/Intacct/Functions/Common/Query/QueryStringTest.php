@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\QueryString
  */
-class QueryStringTest extends \PHPUnit_Framework_TestCase
+class QueryStringTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstructorToString()

@@ -28,7 +28,7 @@ abstract class AbstractFloat extends AbstractComparison
     /**
      * @return float
      */
-    public function getValue()
+    public function getValue(): float
     {
         return $this->value;
     }

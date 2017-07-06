@@ -25,13 +25,13 @@ class LikeString extends AbstractString
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
-        $clause .= $this->field . " LIKE '" . addcslashes($this->value, "'") . "'";
+        $clause .= $this->getField() . " LIKE '" . addcslashes($this->getValue(), "'") . "'";
 
         return $clause;
     }

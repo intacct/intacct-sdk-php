@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\DepositCreate
  */
-class DepositCreateTest extends \PHPUnit_Framework_TestCase
+class DepositCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

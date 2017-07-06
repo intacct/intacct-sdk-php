@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\TaskDelete
  */
-class TaskDeleteTest extends \PHPUnit_Framework_TestCase
+class TaskDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()
