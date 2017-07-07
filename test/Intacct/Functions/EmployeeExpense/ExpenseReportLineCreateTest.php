@@ -69,6 +69,8 @@ EOF;
     </expensedate>
     <memo>Marriott</memo>
     <form1099>true</form1099>
+    <form1099type>1099-MISC</form1099type>
+    <form1099box>3</form1099box>
     <paidfor>Hotel</paidfor>
     <locationid>Location1</locationid>
     <departmentid>Department1</departmentid>
@@ -110,6 +112,8 @@ EOF;
         $line->setPaidTo('Marriott');
         $line->setPaidFor('Hotel');
         $line->setForm1099(true);
+        $line->setForm1099type('1099-MISC');
+        $line->setForm1099box('3');
         $line->setBillable(true);
         $line->setPaymentTypeName('AMEX');
         $line->setQuantity(10);

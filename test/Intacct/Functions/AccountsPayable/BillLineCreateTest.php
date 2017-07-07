@@ -61,6 +61,8 @@ EOF;
     <locationid>Location1</locationid>
     <departmentid>Department1</departmentid>
     <item1099>true</item1099>
+    <form1099type>1099-MISC</form1099type>
+    <form1099box>3</form1099box>
     <key>Key1</key>
     <totalpaid>23484.93</totalpaid>
     <totaldue>0</totaldue>
@@ -94,6 +96,8 @@ EOF;
         $line->setTransactionAmount(76343.43);
         $line->setMemo('Just another memo');
         $line->setForm1099(true);
+        $line->setForm1099type('1099-MISC');
+        $line->setForm1099box('3');
         $line->setKey('Key1');
         $line->setTotalPaid(23484.93);
         $line->setTotalDue(0.00);

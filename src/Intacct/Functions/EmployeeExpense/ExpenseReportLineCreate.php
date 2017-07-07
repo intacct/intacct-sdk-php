@@ -66,6 +66,8 @@ class ExpenseReportLineCreate extends AbstractExpenseReportLine
 
         $xml->writeElement('memo', $this->getPaidTo());
         $xml->writeElement('form1099', $this->isForm1099());
+        $xml->writeElement('form1099type', $this->getForm1099type());
+        $xml->writeElement('form1099box', $this->getForm1099box());
         $xml->writeElement('paidfor', $this->getPaidFor());
         $xml->writeElement('locationid', $this->getLocationId());
         $xml->writeElement('departmentid', $this->getDepartmentId());
