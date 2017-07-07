@@ -22,7 +22,7 @@
 [intacct]: http://www.intacct.com
 [ia-developer]: https://developer.intacct.com/
 [sdk-homepage]: https://developer.intacct.com/tools/sdk-php/
-[sdk-reference]: https://intacct.github.io/intacct-sdk-net/annotated.html
+[sdk-reference]: https://intacct.github.io/intacct-sdk-php/annotated.html
 [sdk-issues]: https://github.com/Intacct/intacct-sdk-php/issues
 [sdk-license]: http://www.apache.org/licenses/LICENSE-2.0
 [composer]: https://getcomposer.org/
