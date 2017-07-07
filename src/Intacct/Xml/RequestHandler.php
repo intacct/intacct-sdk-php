@@ -27,6 +27,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Intacct\RequestConfig;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LogLevel;
 
 class RequestHandler
 {
@@ -169,7 +170,7 @@ class RequestHandler
                 Middleware::log(
                     $this->getClientConfig()->getLogger(),
                     $this->getClientConfig()->getLogMessageFormatter(),
-                    $this->getClientConfig()->getLogLevel()
+                    LogLevel::DEBUG
                 )
             );
         }
