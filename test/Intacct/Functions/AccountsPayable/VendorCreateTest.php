@@ -91,6 +91,7 @@ EOF;
                     <STATE>CA</STATE>
                     <ZIP>95110</ZIP>
                     <COUNTRY>United States</COUNTRY>
+                    <COUNTRYCODE>US</COUNTRYCODE>
                 </MAILADDRESS>
             </DISPLAYCONTACT>
             <ONETIME>false</ONETIME>
@@ -175,6 +176,7 @@ EOF;
         $record->setStateProvince('CA');
         $record->setZipPostalCode('95110');
         $record->setCountry('United States');
+        $record->setIsoCountryCode('US');
         $record->setOneTime(false);
         $record->setActive(true);
         $record->setExcludedFromContactList(false);

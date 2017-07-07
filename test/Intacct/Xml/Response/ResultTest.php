@@ -134,7 +134,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Result block is missing status element
      */
     public function testMissingStatusElement()
@@ -169,7 +169,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Result block is missing function element
      */
     public function testMissingFunctionElement()
@@ -204,7 +204,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Result block is missing controlid element
      */
     public function testMissingControlIdElement()
@@ -239,7 +239,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage Result status: failure
      */
     public function testStatusFailure()
@@ -285,7 +285,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\ResultException
      * @expectedExceptionMessage Result status: aborted
      */
     public function testStatusAbort()

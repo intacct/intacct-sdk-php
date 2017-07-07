@@ -31,7 +31,7 @@ abstract class AbstractExpenseReportLine
     /** @var string */
     protected $glAccountNumber;
 
-    /** @var string|float */
+    /** @var float */
     protected $reimbursementAmount;
 
     /** @var string */
@@ -39,6 +39,12 @@ abstract class AbstractExpenseReportLine
 
     /** @var bool */
     protected $form1099;
+
+    /** @var string */
+    protected $form1099type;
+
+    /** @var string */
+    protected $form1099box;
 
     /** @var string */
     protected $paidTo;
@@ -181,6 +187,38 @@ abstract class AbstractExpenseReportLine
     public function setForm1099($form1099)
     {
         $this->form1099 = $form1099;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForm1099type()
+    {
+        return $this->form1099type;
+    }
+
+    /**
+     * @param string $form1099type
+     */
+    public function setForm1099type($form1099type)
+    {
+        $this->form1099type = $form1099type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForm1099box()
+    {
+        return $this->form1099box;
+    }
+
+    /**
+     * @param string $form1099box
+     */
+    public function setForm1099box($form1099box)
+    {
+        $this->form1099box = $form1099box;
     }
 
     /**

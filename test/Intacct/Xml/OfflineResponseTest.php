@@ -45,7 +45,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Response is missing acknowledgement block
      */
     public function testMissingAcknowledgementBlock()
@@ -66,7 +66,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Acknowledgement block is missing status element
      */
     public function testMissingStatusElement()

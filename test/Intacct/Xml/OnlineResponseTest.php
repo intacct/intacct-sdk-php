@@ -62,7 +62,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Response is missing operation block
      */
     public function testMissingOperationBlock()
@@ -83,7 +83,7 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\OperationException
+     * @expectedException \Intacct\Exception\ResponseException
      * @expectedExceptionMessage Response authentication status failure
      */
     public function testAuthenticationFailure()

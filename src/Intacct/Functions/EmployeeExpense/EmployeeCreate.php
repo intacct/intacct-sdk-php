@@ -78,6 +78,7 @@ class EmployeeCreate extends AbstractEmployee
         $xml->writeElement('SUPDOCFOLDERNAME', $this->getAttachmentFolderName());
         $xml->writeElement('PAYMETHODKEY', $this->getPreferredPaymentMethod());
         $xml->writeElement('PAYMENTNOTIFY', $this->isSendAutomaticPaymentNotification());
+        $xml->writeElement('MERGEPAYMENTREQ', $this->isMergePaymentRequests());
         $xml->writeElement('ACHENABLED', $this->isAchEnabled());
         $xml->writeElement('ACHBANKROUTINGNUMBER', $this->getAchBankRoutingNo());
         $xml->writeElement('ACHACCOUNTNUMBER', $this->getAchBankAccountNo());

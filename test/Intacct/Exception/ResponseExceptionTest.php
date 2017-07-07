@@ -52,4 +52,41 @@ EOF;
             $this->assertInternalType('array', $ex->getErrors());
         }
     }
+
+    public function testGetAuthErrors()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>failure</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+            </authentication>
+            <errormessage>
+                  <error>
+                        <errorno>XL03000006</errorno>
+                        <description></description>
+                        <description2>Sign-in information is incorrect</description2>
+                        <correction></correction>
+                  </error>
+            </errormessage>
+      </operation>
+</response>
+EOF;
+
+        try {
+            new OnlineResponse($xml);
+        } catch (ResponseException $ex) {
+            $this->assertInternalType('array', $ex->getErrors());
+        }
+    }
 }

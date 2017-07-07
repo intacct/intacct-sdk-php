@@ -71,14 +71,6 @@ EOF;
         $this->object = $response->getAuthentication();
     }
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
@@ -95,7 +87,7 @@ EOF;
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Authentication block is missing status element
      */
     public function testMissingStatusElement()
@@ -125,7 +117,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Authentication block is missing userid element
      */
     public function testMissingUserIdElement()
@@ -155,7 +147,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Authentication block is missing companyid element
      */
     public function testMissingCompanyIdElement()

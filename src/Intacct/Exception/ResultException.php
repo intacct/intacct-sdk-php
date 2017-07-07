@@ -17,7 +17,12 @@
 
 namespace Intacct\Exception;
 
-class ResultException extends OperationException
+/**
+ * Class ResultException
+ *
+ * A ResultException being thrown is generally a problem with an API function being executed.
+ */
+class ResultException extends ResponseException
 {
 
     /**
@@ -27,7 +32,6 @@ class ResultException extends OperationException
      * @param array $errors
      * @param int $code
      * @param \Exception $previous
-     * @todo add controlid, status, function, etc
      */
     public function __construct(string $message, array $errors = [], int $code = 0, \Exception $previous = null)
     {

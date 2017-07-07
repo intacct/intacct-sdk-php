@@ -17,7 +17,12 @@
 
 namespace Intacct\Exception;
 
-class ResponseException extends IntacctException
+/**
+ * Class ResponseException
+ *
+ * A ResponseException being thrown is generally a problem with client or request config.
+ */
+class ResponseException extends \RuntimeException
 {
 
     /** @var array */

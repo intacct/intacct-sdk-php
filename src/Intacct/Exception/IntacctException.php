@@ -17,6 +17,11 @@
 
 namespace Intacct\Exception;
 
+/**
+ * Class IntacctException
+ *
+ * An IntacctException being thrown is generally a bad thing and likely an issue with Intacct itself.
+ */
 class IntacctException extends \RuntimeException
 {
 

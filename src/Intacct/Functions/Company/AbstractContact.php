@@ -102,6 +102,9 @@ abstract class AbstractContact extends AbstractFunction
     /** @var string */
     protected $country;
 
+    /** @var string */
+    protected $isoCountryCode;
+
     /**
      * Get contact name
      *
@@ -629,6 +632,22 @@ abstract class AbstractContact extends AbstractFunction
     }
 
     /**
+     * @return string
+     */
+    public function getIsoCountryCode()
+    {
+        return $this->isoCountryCode;
+    }
+
+    /**
+     * @param string $isoCountryCode
+     */
+    public function setIsoCountryCode($isoCountryCode)
+    {
+        $this->isoCountryCode = $isoCountryCode;
+    }
+
+    /**
      * @param XMLWriter $xml
      */
     public function writeXmlMailAddress(XMLWriter &$xml)
@@ -638,7 +657,8 @@ abstract class AbstractContact extends AbstractFunction
             || $this->getCity()
             || $this->getStateProvince()
             || $this->getZipPostalCode()
-            || $this->getCountry()) {
+            || $this->getCountry()
+            || $this->getIsoCountryCode()) {
             $xml->startElement('MAILADDRESS');
 
             $xml->writeElement('ADDRESS1', $this->getAddressLine1());
@@ -647,6 +667,7 @@ abstract class AbstractContact extends AbstractFunction
             $xml->writeElement('STATE', $this->getStateProvince());
             $xml->writeElement('ZIP', $this->getZipPostalCode());
             $xml->writeElement('COUNTRY', $this->getCountry());
+            $xml->writeElement('COUNTRYCODE', $this->getIsoCountryCode());
 
             $xml->endElement(); //MAILADDRESS
         }

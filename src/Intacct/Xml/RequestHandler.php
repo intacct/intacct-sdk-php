@@ -19,6 +19,7 @@ namespace Intacct\Xml;
 
 use Intacct\ClientConfig;
 use Intacct\Credentials\Endpoint;
+use Intacct\Credentials\SessionCredentials;
 use Intacct\Functions\FunctionInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -26,12 +27,13 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Intacct\RequestConfig;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LogLevel;
 
 class RequestHandler
 {
     
     /** @var string */
-    const VERSION = '1.0';
+    const VERSION = '2.0';
 
     /** @var ClientConfig */
     private $clientConfig;
@@ -96,7 +98,19 @@ class RequestHandler
             );
         }
 
-        // TODO Log warning if using session ID for offline execution
+        if (
+            $this->getClientConfig()->getLogger()
+            && (
+                $this->getClientConfig()->getSessionId()
+                || $this->getClientConfig()->getCredentials() instanceof SessionCredentials
+            )
+        ) {
+            // Log warning if using session ID for offline execution
+            $this->getClientConfig()->getLogger()->warning(
+                'Offline execution sent to Intacct using Session-based credentials. ' .
+                'Use Login-based credentials instead to avoid session timeouts.'
+            );
+        }
 
         $requestBlock = new RequestBlock($this->getClientConfig(), $this->getRequestConfig(), $content);
         $client = $this->execute($requestBlock->writeXml());
@@ -152,10 +166,12 @@ class RequestHandler
 
         if ($this->getClientConfig()->getLogger()) {
             //push the logger middleware to the top of the stack
-            $handler->push(Middleware::log(
-                $this->getClientConfig()->getLogger(),
-                $this->getClientConfig()->getLogMessageFormatter(),
-                $this->getClientConfig()->getLogLevel())
+            $handler->push(
+                Middleware::log(
+                    $this->getClientConfig()->getLogger(),
+                    $this->getClientConfig()->getLogMessageFormatter(),
+                    LogLevel::DEBUG
+                )
             );
         }
         

@@ -18,7 +18,7 @@
 namespace Intacct\Xml;
 
 use Intacct\Exception\IntacctException;
-use Intacct\Exception\OperationException;
+use Intacct\Exception\ResponseException;
 use Intacct\Xml\Response\Authentication;
 use Intacct\Xml\Response\ErrorMessage;
 use Intacct\Xml\Response\Result;
@@ -55,7 +55,7 @@ class OnlineResponse extends AbstractResponse
                 $errorMessage = new ErrorMessage($this->getXml()->operation->errormessage);
                 $errors = $errorMessage->getErrors();
             }
-            throw new OperationException('Response authentication status failure', $errors);
+            throw new ResponseException('Response authentication status failure', $errors);
         }
 
         if (!isset($this->getXml()->operation->result[0])) {

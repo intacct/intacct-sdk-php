@@ -253,25 +253,6 @@ class ClientConfig
         $this->logMessageFormatter = $logMessageFormatter;
     }
 
-    /** @var string */
-    private $logLevel = 'debug';
-
-    /**
-     * @return string
-     */
-    public function getLogLevel(): string
-    {
-        return $this->logLevel;
-    }
-
-    /**
-     * @param string $logLevel
-     */
-    public function setLogLevel(string $logLevel)
-    {
-        $this->logLevel = $logLevel;
-    }
-
     /** @var MockHandler */
     private $mockHandler;
 

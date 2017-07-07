@@ -47,6 +47,8 @@ class BillLineCreate extends AbstractBillLine
         $xml->writeElement('locationid', $this->getLocationId());
         $xml->writeElement('departmentid', $this->getDepartmentId());
         $xml->writeElement('item1099', $this->isForm1099());
+        $xml->writeElement('form1099type', $this->getForm1099type());
+        $xml->writeElement('form1099box', $this->getForm1099box());
         $xml->writeElement('key', $this->getKey());
         $xml->writeElement('totalpaid', $this->getTotalPaid());
         $xml->writeElement('totaldue', $this->getTotalDue());

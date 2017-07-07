@@ -31,7 +31,7 @@ abstract class AbstractChargeCardTransactionLine
     /** @var string */
     protected $glAccountNumber;
 
-    /** @var string|float */
+    /** @var float */
     protected $transactionAmount;
 
     /** @var string */

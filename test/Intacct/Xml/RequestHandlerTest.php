@@ -120,7 +120,9 @@ EOF;
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
-        $clientConfig->setSessionId('testsession..');
+        $clientConfig->setCompanyId('testcompany');
+        $clientConfig->setUserId('testuser');
+        $clientConfig->setUserPassword('testpass');
         $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
@@ -343,5 +345,61 @@ EOF;
         // Test for some output in the StreamHandler
         fseek($handle, 0);
         $this->assertEquals('[', substr(stream_get_contents($handle), 0, 1));
+    }
+
+    public function testMockExecuteOfflineWithSessionCreds()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <acknowledgement>
+            <status>success</status>
+      </acknowledgement>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $handle = fopen('php://memory', 'a+');
+        $handler = new StreamHandler($handle, Logger::WARNING);
+        $logger = new Logger('unittest');
+        $logger->pushHandler($handler);
+
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+        $clientConfig->setSessionId('testsession..');
+        $clientConfig->setMockHandler($mock);
+        $clientConfig->setLogger($logger);
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setControlId('requestUnitTest');
+        $requestConfig->setPolicyId('policyid123');
+
+        $contentBlock = [
+            new ApiSessionCreate(),
+        ];
+
+        $requestHandler = new RequestHandler($clientConfig, $requestConfig);
+        $response = $requestHandler->executeOffline($contentBlock);
+
+        // Test for some output in the StreamHandler
+        fseek($handle, 0);
+        $this->assertContains(
+            'Offline execution sent to Intacct using Session-based credentials.',
+            stream_get_contents($handle)
+        );
     }
 }
