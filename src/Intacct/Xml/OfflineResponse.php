@@ -18,13 +18,12 @@
 namespace Intacct\Xml;
 
 use Intacct\Exception\IntacctException;
-use Intacct\Xml\Response\Acknowledgement;
 
 class OfflineResponse extends AbstractResponse
 {
 
-    /** @var Acknowledgement */
-    private $acknowledgement;
+    /** @var string */
+    private $status;
 
     /**
      * OfflineResponse constructor.
@@ -37,22 +36,26 @@ class OfflineResponse extends AbstractResponse
         if (!isset($this->getXml()->acknowledgement)) {
             throw new IntacctException('Response is missing acknowledgement block');
         }
-        $this->setAcknowledgement(new Acknowledgement($this->getXml()->acknowledgement[0]));
+        if (!isset($this->getXml()->acknowledgement[0]->status)) {
+            throw new IntacctException('Acknowledgement block is missing status element');
+        }
+
+        $this->setStatus(strval($this->getXml()->acknowledgement[0]->status));
     }
 
     /**
-     * @return Acknowledgement
+     * @return string
      */
-    public function getAcknowledgement(): Acknowledgement
+    public function getStatus(): string
     {
-        return $this->acknowledgement;
+        return $this->status;
     }
 
     /**
-     * @param Acknowledgement $acknowledgement
+     * @param string $status
      */
-    private function setAcknowledgement(Acknowledgement $acknowledgement)
+    private function setStatus(string $status)
     {
-        $this->acknowledgement = $acknowledgement;
+        $this->status = $status;
     }
 }

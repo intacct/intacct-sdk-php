@@ -26,7 +26,7 @@ class OfflineClient extends AbstractClient
 
     /**
      * @param FunctionInterface[] $content
-     * @param RequestConfig|null $requestConfig
+     * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
     public function execute(array $content, RequestConfig $requestConfig = null)

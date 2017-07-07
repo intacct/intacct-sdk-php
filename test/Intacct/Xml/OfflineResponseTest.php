@@ -41,8 +41,7 @@ class OfflineResponseTest extends \PHPUnit\Framework\TestCase
 </response>
 EOF;
         $response = new OfflineResponse($xml);
-        $acknowledgement = $response->getAcknowledgement();
-        $this->assertThat($acknowledgement, $this->isInstanceOf('Intacct\Xml\Response\Acknowledgement'));
+        $this->assertEquals('success', $response->getStatus());
     }
     
     /**
@@ -54,6 +53,28 @@ EOF;
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        new OfflineResponse($xml);
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Acknowledgement block is missing status element
+     */
+    public function testMissingStatusElement()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <acknowledgement/>
       <control>
             <status>success</status>
             <senderid>testsenderid</senderid>
