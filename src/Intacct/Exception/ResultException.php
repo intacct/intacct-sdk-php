@@ -17,6 +17,11 @@
 
 namespace Intacct\Exception;
 
+/**
+ * Class ResultException
+ *
+ * A ResultException being thrown is generally a problem with an API function being executed.
+ */
 class ResultException extends ResponseException
 {
 
