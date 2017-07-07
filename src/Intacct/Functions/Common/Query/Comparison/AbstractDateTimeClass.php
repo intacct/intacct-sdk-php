@@ -45,7 +45,7 @@ abstract class AbstractDateTimeClass extends AbstractComparison
      *
      * @param string $format
      */
-    public function __construct($format)
+    public function __construct(string $format)
     {
         $this->setFormat($format);
     }
@@ -53,7 +53,7 @@ abstract class AbstractDateTimeClass extends AbstractComparison
     /**
      * @return \DateTime
      */
-    public function getValue()
+    public function getValue(): \DateTime
     {
         return $this->value;
     }
@@ -72,7 +72,7 @@ abstract class AbstractDateTimeClass extends AbstractComparison
     /**
      * @return string
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }

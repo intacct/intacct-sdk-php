@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\PlatformServices\ApplicationInstall
  */
-class ApplicationInstallTest extends \PHPUnit_Framework_TestCase
+class ApplicationInstallTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

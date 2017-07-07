@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AllocationDelete
  */
-class AllocationDeleteTest extends \PHPUnit_Framework_TestCase
+class AllocationDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

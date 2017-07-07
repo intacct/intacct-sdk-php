@@ -23,14 +23,14 @@ trait CustomFieldsTrait
 {
     
     /** @var array */
-    protected $customFields;
+    protected $customFields = [];
 
     /**
      * Get custom fields
      *
      * @return array
      */
-    public function getCustomFields()
+    public function getCustomFields(): array
     {
         return $this->customFields;
     }

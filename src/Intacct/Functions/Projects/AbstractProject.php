@@ -247,7 +247,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isInvoiceWithParent()
     {
@@ -255,7 +255,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param boolean $invoiceWithParent
+     * @param bool $invoiceWithParent
      */
     public function setInvoiceWithParent($invoiceWithParent)
     {
@@ -391,7 +391,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -399,7 +399,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -583,7 +583,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillableEmployeeExpense()
     {
@@ -591,7 +591,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param boolean $billableEmployeeExpense
+     * @param bool $billableEmployeeExpense
      */
     public function setBillableEmployeeExpense($billableEmployeeExpense)
     {
@@ -599,7 +599,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillableApPurchasing()
     {
@@ -607,7 +607,7 @@ abstract class AbstractProject extends AbstractFunction
     }
 
     /**
-     * @param boolean $billableApPurchasing
+     * @param bool $billableApPurchasing
      */
     public function setBillableApPurchasing($billableApPurchasing)
     {

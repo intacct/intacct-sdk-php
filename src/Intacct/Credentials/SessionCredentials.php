@@ -17,201 +17,89 @@
 
 namespace Intacct\Credentials;
 
-use Intacct\Endpoint;
-use GuzzleHttp\Handler\MockHandler;
-use Intacct\Logging\MessageFormatter;
-use InvalidArgumentException;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Intacct\ClientConfig;
 
-class SessionCredentials
+class SessionCredentials implements CredentialsInterface
 {
 
     /** @var string */
     private $sessionId;
 
-    /** @var SenderCredentials */
-    private $senderCreds;
-
     /** @var Endpoint */
     private $endpoint;
 
-    /** @var string */
-    private $currentCompanyId;
-
-    /** @var string */
-    private $currentUserId;
-
-    /** @var bool */
-    private $currentUserIsExternal;
-    
-    /** @var MockHandler */
-    protected $mockHandler;
-
-    /** @var LoggerInterface */
-    private $logger;
-
-    /** @var MessageFormatter */
-    private $logMessageFormat;
-
-    /** @var int */
-    private $logLevel;
+    /** @var SenderCredentials */
+    private $senderCredentials;
 
     /**
-     * Initializes the class with the given parameters.
+     * SessionCredentials constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `session_id` (string) Intacct session ID
-     * - `endpoint_url` (string) Endpoint URL
-     * - `current_company_id` (string) Current Intacct company ID
-     * - `current_user_id` (string) Current Intacct user ID
-     * - `current_user_is_external` (bool) Current Intacct user is external
-     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
-     *
-     * @param array $params Client configuration options
-     * @throws InvalidArgumentException
-     *
-     * Initializes the class with the given parameters.
-     *
-     * @param array $params {
-     *      @var string $endpoint_url Endpoint URL
-     *      @var MockHandler $mock_handler Mock handler for unit testing
-     *      @var string $session_id Intacct session ID
-     * }
-     * @param SenderCredentials $senderCreds Sender credentials
+     * @param ClientConfig $config
+     * @param SenderCredentials $senderCreds
      */
-    public function __construct(array $params, SenderCredentials $senderCreds)
+    public function __construct(ClientConfig $config, SenderCredentials $senderCreds)
     {
-        $defaults = [
-            'session_id' => null,
-            'endpoint_url' => null,
-            'mock_handler' => null,
-            'current_company_id' => null,
-            'current_user_id' => null,
-            'current_user_is_external' => false,
-            'logger' => null,
-            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
-            'log_level' => LogLevel::DEBUG,
-        ];
-        $config = array_merge($defaults, $params);
-        
-        if (!$config['session_id']) {
-            throw new InvalidArgumentException(
-                'Required "session_id" key not supplied in params'
+        if (!$config->getSessionId()) {
+            throw new \InvalidArgumentException(
+                'Required Session ID not supplied in config'
             );
         }
         
-        $this->sessionId = $config['session_id'];
-        if ($config['endpoint_url']) {
-            $this->endpoint = new Endpoint($config);
-        } else {
-            $this->endpoint = $senderCreds->getEndpoint();
-        }
-        $this->senderCreds = $senderCreds;
-        $this->currentCompanyId = $config['current_company_id'];
-        $this->currentUserId = $config['current_user_id'];
-        $this->currentUserIsExternal = $config['current_user_is_external'];
-        $this->mockHandler = $config['mock_handler'];
+        $this->setSessionId($config->getSessionId());
 
-        if ($config['logger']) {
-            $this->logger = $config['logger'];
+        if ($config->getEndpointUrl()) {
+            $this->setEndpoint(new Endpoint($config));
+        } else {
+            $this->setEndpoint($senderCreds->getEndpoint());
         }
-        $this->logMessageFormat = $config['log_formatter'];
-        $this->logLevel = $config['log_level'];
+        $this->setSenderCredentials($senderCreds);
     }
 
     /**
-     * Get Intacct session ID
-     *
      * @return string
      */
-    public function getSessionId()
+    public function getSessionId(): string
     {
         return $this->sessionId;
     }
 
     /**
-     * Get endpoint
-     *
+     * @param string $sessionId
+     */
+    public function setSessionId(string $sessionId)
+    {
+        $this->sessionId = $sessionId;
+    }
+
+    /**
      * @return Endpoint
      */
-    public function getEndpoint()
+    public function getEndpoint(): Endpoint
     {
         return $this->endpoint;
     }
 
     /**
-     * Get sender credentials
-     *
+     * @param Endpoint $endpoint
+     */
+    public function setEndpoint(Endpoint $endpoint)
+    {
+        $this->endpoint = $endpoint;
+    }
+
+    /**
      * @return SenderCredentials
      */
-    public function getSenderCredentials()
+    public function getSenderCredentials(): SenderCredentials
     {
-        return $this->senderCreds;
+        return $this->senderCredentials;
     }
 
     /**
-     * Get session's current company ID
-     *
-     * @return string
+     * @param SenderCredentials $senderCredentials
      */
-    public function getCurrentCompanyId()
+    public function setSenderCredentials(SenderCredentials $senderCredentials)
     {
-        return $this->currentCompanyId;
-    }
-
-    /**
-     * Get session's current user ID
-     *
-     * @return string
-     */
-    public function getCurrentUserId()
-    {
-        return $this->currentUserId;
-    }
-
-    /**
-     * Get session's current user is external or not
-     *
-     * @return bool
-     */
-    public function getCurrentUserIsExternal()
-    {
-        return $this->currentUserIsExternal;
-    }
-    
-    /**
-     * Get mock handler for unit testing
-     *
-     * @return MockHandler
-     */
-    public function getMockHandler()
-    {
-        return $this->mockHandler;
-    }
-
-    /**
-     * @return LoggerInterface
-     */
-    public function getLogger()
-    {
-        return $this->logger;
-    }
-
-    /**
-     * @return MessageFormatter
-     */
-    public function getLogMessageFormat()
-    {
-        return $this->logMessageFormat;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLogLevel()
-    {
-        return $this->logLevel;
+        $this->senderCredentials = $senderCredentials;
     }
 }

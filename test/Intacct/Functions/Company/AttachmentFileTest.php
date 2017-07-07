@@ -24,7 +24,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentFile
  */
-class AttachmentFileTest extends \PHPUnit_Framework_TestCase
+class AttachmentFileTest extends \PHPUnit\Framework\TestCase
 {
 
     /** @var vfsStreamDirectory */

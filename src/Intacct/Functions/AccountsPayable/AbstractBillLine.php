@@ -211,7 +211,7 @@ abstract class AbstractBillLine
     /**
      * Get form 1099
      *
-     * @return boolean
+     * @return bool
      */
     public function isForm1099()
     {
@@ -221,7 +221,7 @@ abstract class AbstractBillLine
     /**
      * Set form 1099
      *
-     * @param boolean $form1099
+     * @param bool $form1099
      */
     public function setForm1099($form1099)
     {
@@ -291,7 +291,7 @@ abstract class AbstractBillLine
     /**
      * Get billable
      *
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -301,7 +301,7 @@ abstract class AbstractBillLine
     /**
      * Set billable
      *
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {

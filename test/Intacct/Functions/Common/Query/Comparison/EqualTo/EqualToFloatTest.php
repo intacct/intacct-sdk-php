@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToFloat
  */
-class EqualToFloatTest extends \PHPUnit_Framework_TestCase
+class EqualToFloatTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

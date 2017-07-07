@@ -17,12 +17,11 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadRelated
  */
-class ReadRelatedTest extends \PHPUnit_Framework_TestCase
+class ReadRelatedTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -35,6 +34,7 @@ class ReadRelatedTest extends \PHPUnit_Framework_TestCase
         <relation>CUSTOM_OBJECT_ITEM</relation>
         <keys/>
         <fields>*</fields>
+        <returnFormat>xml</returnFormat>
     </readRelated>
 </function>
 EOF;
@@ -80,7 +80,6 @@ EOF;
         $readRelated->setRelationName('CUSTOM_OBJECT_ITEM');
         $readRelated->setKeys(['KEY1','KEY2']);
         $readRelated->setFields(['FIELD1','FIELD2']);
-        $readRelated->setReturnFormat('xml');
 
         $readRelated->writeXml($xml);
 
@@ -88,7 +87,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Relation Name is required for read related
      */
     public function testNoRelation()
@@ -106,17 +105,7 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        $read = new ReadRelated('unittest');
-        $read->setReturnFormat('bad');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testMaxNumberOfKeys()

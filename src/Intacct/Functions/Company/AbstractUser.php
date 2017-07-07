@@ -133,7 +133,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Get active
      *
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -143,7 +143,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Set active
      *
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -153,7 +153,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Get web services only
      *
-     * @return boolean
+     * @return bool
      */
     public function isWebServicesOnly()
     {
@@ -163,7 +163,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Set web services only
      *
-     * @param boolean $webServicesOnly
+     * @param bool $webServicesOnly
      */
     public function setWebServicesOnly($webServicesOnly)
     {
@@ -213,7 +213,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Get single sign on enabled
      *
-     * @return boolean
+     * @return bool
      */
     public function isSsoEnabled()
     {
@@ -223,7 +223,7 @@ abstract class AbstractUser extends AbstractFunction
     /**
      * Set single sign on enabled
      *
-     * @param boolean $ssoEnabled
+     * @param bool $ssoEnabled
      */
     public function setSsoEnabled($ssoEnabled)
     {

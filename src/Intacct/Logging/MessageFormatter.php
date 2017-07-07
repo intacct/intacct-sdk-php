@@ -55,7 +55,7 @@ final class MessageFormatter extends \GuzzleHttp\MessageFormatter
      *
      * @param string $template Log message template
      */
-    public function __construct($template = self::CLF)
+    public function __construct($template = self::CLF . self::DEBUG)
     {
         parent::__construct($template);
     }

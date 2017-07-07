@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\TransactionItemDetail
  */
-class TransactionItemDetailTest extends \PHPUnit_Framework_TestCase
+class TransactionItemDetailTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

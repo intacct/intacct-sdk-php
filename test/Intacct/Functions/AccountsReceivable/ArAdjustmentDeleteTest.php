@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArAdjustmentDelete
  */
-class ArAdjustmentDeleteTest extends \PHPUnit_Framework_TestCase
+class ArAdjustmentDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

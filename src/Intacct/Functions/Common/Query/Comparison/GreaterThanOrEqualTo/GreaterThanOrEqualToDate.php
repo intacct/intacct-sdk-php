@@ -25,13 +25,13 @@ class GreaterThanOrEqualToDate extends AbstractDate
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
-        $clause .= $this->field . " >= '" . $this->value->format($this->format) . "'";
+        $clause .= $this->getField() . " >= '" . $this->getValue()->format($this->getFormat()) . "'";
 
         return $clause;
     }

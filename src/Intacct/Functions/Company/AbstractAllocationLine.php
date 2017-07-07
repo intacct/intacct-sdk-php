@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 abstract class AbstractAllocationLine
 {
 
-    /** @var float|string|int */
+    /** @var float */
     private $amount;
 
     /** @var string */
@@ -60,7 +60,7 @@ abstract class AbstractAllocationLine
     /**
      * Get amount
      *
-     * @return float|string|int
+     * @return float
      */
     public function getAmount()
     {
@@ -70,7 +70,7 @@ abstract class AbstractAllocationLine
     /**
      * Set amount
      *
-     * @param float|string|int $amount
+     * @param float $amount
      */
     public function setAmount($amount)
     {

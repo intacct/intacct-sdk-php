@@ -18,7 +18,6 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * Update an existing accounts payable account label record
@@ -27,10 +26,7 @@ class ApAccountLabelUpdate extends AbstractApAccountLabel
 {
 
     /**
-     * Write the function block XML
-     *
      * @param XMLWriter $xml
-     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
@@ -41,7 +37,7 @@ class ApAccountLabelUpdate extends AbstractApAccountLabel
         $xml->startElement('APACCOUNTLABEL');
 
         if (!$this->getAccountLabel()) {
-            throw new InvalidArgumentException('Account Label is required for update');
+            throw new \InvalidArgumentException('Account Label is required for update');
         }
         $xml->writeElement('ACCOUNTLABEL', $this->getAccountLabel(), true);
 

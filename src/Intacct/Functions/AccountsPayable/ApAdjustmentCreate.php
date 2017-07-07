@@ -18,7 +18,6 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * Create a new accounts payable adjustment record
@@ -27,10 +26,7 @@ class ApAdjustmentCreate extends AbstractApAdjustment
 {
 
     /**
-     * Write the function block XML
-     *
      * @param XMLWriter $xml
-     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
@@ -70,7 +66,7 @@ class ApAdjustmentCreate extends AbstractApAdjustment
                 $line->writeXml($xml);
             }
         } else {
-            throw new InvalidArgumentException('AP Vendor Adjustment must have at least 1 line');
+            throw new \InvalidArgumentException('AP Vendor Adjustment must have at least 1 line');
         }
         $xml->endElement(); //apadjustmentitems
 

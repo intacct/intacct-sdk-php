@@ -17,37 +17,14 @@
 
 namespace Intacct\Xml;
 
-use Exception;
-
 /**
  * @coversDefaultClass \Intacct\Xml\AbstractResponse
  */
-class AbstractResponseTest extends \PHPUnit_Framework_TestCase
+class AbstractResponseTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @var AbstractResponse
-     */
-    protected $object;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
-     * @expectedException Exception
+     * @expectedException \Exception
      * @expectedExceptionMessage XML could not be parsed properly
      */
     public function testConstructInvalidXml()
@@ -61,7 +38,7 @@ class AbstractResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Response is missing control block
      */
     public function testConstructMissingControlBlock()

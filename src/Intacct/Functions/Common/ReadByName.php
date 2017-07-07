@@ -19,39 +19,29 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class ReadByName extends AbstractFunction
 {
-
-    /** @var array */
-    const RETURN_FORMATS = ['xml'];
-
-    /** @var string */
-    const DEFAULT_RETURN_FORMAT = 'xml';
     
     /** @var int */
     const MAX_NAME_COUNT = 100;
 
     /** @var string */
-    private $objectName;
+    private $objectName = '';
 
     /** @var array */
-    private $fields;
+    private $fields = [];
     
     /** @var array */
-    private $names;
-    
-    /** @var string */
-    private $returnFormat;
+    private $names = [];
 
     /** @var string */
-    private $docParId;
+    private $docParId = '';
 
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -59,7 +49,7 @@ class ReadByName extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -67,7 +57,7 @@ class ReadByName extends AbstractFunction
     /**
      * @return array
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
@@ -75,7 +65,7 @@ class ReadByName extends AbstractFunction
     /**
      * @param array $fields
      */
-    public function setFields($fields)
+    public function setFields(array $fields)
     {
         $this->fields = $fields;
     }
@@ -83,21 +73,18 @@ class ReadByName extends AbstractFunction
     /**
      * @return array
      */
-    public function getNames()
+    public function getNames(): array
     {
         return $this->names;
     }
 
     /**
-     * Set names
-     *
      * @param array $names
-     * @throws InvalidArgumentException
      */
     public function setNames(array $names)
     {
         if (count($names) > static::MAX_NAME_COUNT) {
-            throw new InvalidArgumentException('Names count cannot exceed ' . static::MAX_NAME_COUNT);
+            throw new \InvalidArgumentException('Names count cannot exceed ' . static::MAX_NAME_COUNT);
         }
 
         $this->names = $names;
@@ -106,29 +93,7 @@ class ReadByName extends AbstractFunction
     /**
      * @return string
      */
-    public function getReturnFormat()
-    {
-        return $this->returnFormat;
-    }
-
-    /**
-     * Set return format
-     *
-     * @param string $format
-     * @throws InvalidArgumentException
-     */
-    public function setReturnFormat($format)
-    {
-        if (!in_array($format, static::RETURN_FORMATS)) {
-            throw new InvalidArgumentException('Return Format is not a valid format');
-        }
-        $this->returnFormat = $format;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDocParId()
+    public function getDocParId(): string
     {
         return $this->docParId;
     }
@@ -136,17 +101,17 @@ class ReadByName extends AbstractFunction
     /**
      * @param string $docParId
      */
-    public function setDocParId($docParId)
+    public function setDocParId(string $docParId)
     {
         $this->docParId = $docParId;
     }
-    
+
     /**
      * Get names for XML
      *
      * @return string
      */
-    private function writeXmlNames()
+    private function writeXmlNames(): string
     {
         $names = '';
 
@@ -162,7 +127,7 @@ class ReadByName extends AbstractFunction
      *
      * @return string
      */
-    private function writeXmlFields()
+    private function writeXmlFields(): string
     {
         if (count($this->fields) > 0) {
             $fields = implode(',', $this->fields);
@@ -188,8 +153,10 @@ class ReadByName extends AbstractFunction
         $xml->writeElement('object', $this->getObjectName(), true);
         $xml->writeElement('keys', $this->writeXmlNames(), true);
         $xml->writeElement('fields', $this->writeXmlFields());
-        $xml->writeElement('returnFormat', $this->getReturnFormat());
-        $xml->writeElement('docparid', $this->getDocParId());
+        $xml->writeElement('returnFormat', 'xml');
+        if ($this->getDocParId()) {
+            $xml->writeElement('docparid', $this->getDocParId());
+        }
         
         $xml->endElement(); //readByName
         

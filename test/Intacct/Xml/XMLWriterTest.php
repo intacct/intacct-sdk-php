@@ -20,7 +20,7 @@ namespace Intacct\Xml;
 /**
  * @coversDefaultClass \Intacct\Xml\XMLWriter
  */
-class XMLWriterTest extends \PHPUnit_Framework_TestCase
+class XMLWriterTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testWriteElement()

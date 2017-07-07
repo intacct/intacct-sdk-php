@@ -25,13 +25,13 @@ class EqualToNull extends AbstractString
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
-            $clause .= $this->field . " IS NOT NULL";
+            $clause .= $this->getField() . " IS NOT NULL";
         } else {
-            $clause .= $this->field . " IS NULL";
+            $clause .= $this->getField() . " IS NULL";
         }
 
         return $clause;

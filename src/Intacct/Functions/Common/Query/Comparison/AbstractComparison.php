@@ -28,12 +28,12 @@ abstract class AbstractComparison implements ComparisonInterface
     /**
      * @var bool
      */
-    protected $negate;
+    protected $negate = false;
 
     /**
      * @return string
      */
-    public function getField()
+    public function getField(): string
     {
         return $this->field;
     }
@@ -41,7 +41,7 @@ abstract class AbstractComparison implements ComparisonInterface
     /**
      * @param string $field
      */
-    public function setField($field)
+    public function setField(string $field)
     {
         if (!is_string($field)) {
             throw new \InvalidArgumentException('Comparison field variable must be a string type');
@@ -52,7 +52,7 @@ abstract class AbstractComparison implements ComparisonInterface
     /**
      * @return bool
      */
-    public function isNegate()
+    public function isNegate(): bool
     {
         return $this->negate;
     }
@@ -60,7 +60,7 @@ abstract class AbstractComparison implements ComparisonInterface
     /**
      * @param bool $negate
      */
-    public function setNegate($negate)
+    public function setNegate(bool $negate)
     {
         $this->negate = $negate;
     }

@@ -17,14 +17,12 @@
 
 namespace Intacct\Credentials;
 
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\SessionCredentials
  */
-class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
+class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -39,32 +37,24 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $config = [
-            'sender_id' => 'testsenderid',
-            'sender_password' => 'pass123!',
-        ];
-        $this->senderCreds = new SenderCredentials($config);
-    }
+        $config = new ClientConfig();
+        $config->setSenderId('testsenderid');
+        $config->setSenderPassword('pass123!');
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
+        $this->senderCreds = new SenderCredentials($config);
     }
 
     public function testCredsFromArray()
     {
-        $config = [
-            'session_id' => 'faKEsesSiOnId..',
-            'endpoint_url' => 'https://p1.intacct.com/ia/xml/xmlgw.phtml',
-        ];
+        $config = new ClientConfig();
+        $config->setSessionId('faKEsesSiOnId..');
+        $config->setEndpointUrl('https://p1.intacct.com/ia/xml/xmlgw.phtml');
+
         $sessionCreds = new SessionCredentials($config, $this->senderCreds);
 
         $this->assertEquals('faKEsesSiOnId..', $sessionCreds->getSessionId());
         $endpoint = $sessionCreds->getEndpoint();
-        $this->assertEquals('https://p1.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
+        $this->assertEquals('https://p1.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
         $this->assertThat(
             $sessionCreds->getSenderCredentials(),
             $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
@@ -73,40 +63,25 @@ class SessionCredentialsTest extends \PHPUnit_Framework_TestCase
 
     public function testCredsFromArrayNoEndpoint()
     {
-        $config = [
-            'session_id' => 'faKEsesSiOnId..',
-            'endpoint_url' => null,
-        ];
+        $config = new ClientConfig();
+        $config->setSessionId('faKEsesSiOnId..');
+        $config->setEndpointUrl('');
+
         $sessionCreds = new SessionCredentials($config, $this->senderCreds);
 
         $endpoint = $sessionCreds->getEndpoint();
-        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getEndpoint());
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
     
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Required "session_id" key not supplied in params
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Required Session ID not supplied in config
      */
     public function testCredsFromArrayNoSession()
     {
-        $config = [
-            'session_id' => null,
-        ];
-        new SessionCredentials($config, $this->senderCreds);
-    }
+        $config = new ClientConfig();
+        $config->setSessionId('');
 
-    public function testGetMockHandler()
-    {
-        $response = new Response(200);
-        $mock = new MockHandler([
-            $response,
-        ]);
-        $config = [
-            'session_id' => 'faKEsesSiOnId..',
-            'endpoint_url' => 'https://p1.intacct.com/ia/xml/xmlgw.phtml',
-            'mock_handler' => $mock,
-        ];
-        $sessionCreds = new SessionCredentials($config, $this->senderCreds);
-        $this->assertThat($sessionCreds->getMockHandler(), $this->isInstanceOf('GuzzleHttp\Handler\MockHandler'));
+        new SessionCredentials($config, $this->senderCreds);
     }
 }

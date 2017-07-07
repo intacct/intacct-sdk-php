@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadMore
  */
-class ReadMoreTest extends \PHPUnit_Framework_TestCase
+class ReadMoreTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testParamOverrides()

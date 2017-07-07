@@ -157,7 +157,7 @@ abstract class AbstractAccount extends AbstractGlAccount
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -165,7 +165,7 @@ abstract class AbstractAccount extends AbstractGlAccount
     }
 
     /**
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {

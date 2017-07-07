@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AllocationUpdate
  */
-class AllocationUpdateTest extends \PHPUnit_Framework_TestCase
+class AllocationUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

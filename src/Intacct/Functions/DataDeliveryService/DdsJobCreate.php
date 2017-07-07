@@ -189,7 +189,7 @@ class DdsJobCreate extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isIncludeHeaders()
     {
@@ -197,7 +197,7 @@ class DdsJobCreate extends AbstractFunction
     }
 
     /**
-     * @param boolean $includeHeaders
+     * @param bool $includeHeaders
      */
     public function setIncludeHeaders($includeHeaders)
     {
@@ -248,7 +248,7 @@ class DdsJobCreate extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCompressed()
     {
@@ -256,7 +256,7 @@ class DdsJobCreate extends AbstractFunction
     }
 
     /**
-     * @param boolean $compressed
+     * @param bool $compressed
      */
     public function setCompressed($compressed)
     {

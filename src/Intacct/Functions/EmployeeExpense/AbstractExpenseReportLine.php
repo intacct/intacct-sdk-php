@@ -168,7 +168,7 @@ abstract class AbstractExpenseReportLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isForm1099()
     {
@@ -176,7 +176,7 @@ abstract class AbstractExpenseReportLine
     }
 
     /**
-     * @param boolean $form1099
+     * @param bool $form1099
      */
     public function setForm1099($form1099)
     {
@@ -344,7 +344,7 @@ abstract class AbstractExpenseReportLine
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -352,7 +352,7 @@ abstract class AbstractExpenseReportLine
     }
 
     /**
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {

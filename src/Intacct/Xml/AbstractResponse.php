@@ -21,43 +21,41 @@ use Intacct\Exception\IntacctException;
 use Intacct\Exception\ResponseException;
 use Intacct\Xml\Response\Control;
 use Intacct\Xml\Response\ErrorMessage;
-use SimpleXMLIterator;
 
 abstract class AbstractResponse
 {
     
-    /** @var SimpleXMLIterator */
-    protected $xml;
+    /** @var \SimpleXMLElement */
+    private $xml;
 
     /** @var Control */
     private $control;
 
     /**
-     * Initializes the class with the given body XML response
+     * AbstractResponse constructor.
      *
      * @param string $body
-     * @throws IntacctException
-     * @throws ResponseException
      */
-    public function __construct($body)
+    public function __construct(string $body)
     {
         libxml_use_internal_errors(true);
-        $this->xml = simplexml_load_string($body, 'SimpleXMLIterator');
-        if ($this->xml === false) {
+        $xml = simplexml_load_string($body);
+        if ($xml === false) {
             throw new IntacctException('XML could not be parsed properly');
         }
+        $this->setXml($xml);
         libxml_clear_errors();
         libxml_use_internal_errors(false);
 
-        if (!isset($this->xml->control)) {
+        if (!isset($this->getXml()->control)) {
             throw new IntacctException('Response is missing control block');
         }
-        $this->setControl($this->xml->control);
+        $this->setControl(new Control($this->getXml()->control[0]));
 
-        if ($this->control->getStatus() !== 'success') {
+        if ($this->getControl()->getStatus() !== 'success') {
             $errors = [];
-            if (isset($this->xml->errormessage)) {
-                $errorMessage = new ErrorMessage($this->xml->errormessage);
+            if (isset($this->getXml()->errormessage)) {
+                $errorMessage = new ErrorMessage($this->getXml()->errormessage);
                 $errors = $errorMessage->getErrors();
             }
             throw new ResponseException('Response control status failure', $errors);
@@ -65,23 +63,34 @@ abstract class AbstractResponse
     }
 
     /**
-     * Set response control
-     *
-     * @param SimpleXMLIterator $control
-     * @throws \Exception
+     * @return \SimpleXMLElement
      */
-    protected function setControl(SimpleXMLIterator $control)
+    protected function getXml(): \SimpleXMLElement
     {
-        $this->control = new Control($control);
+        return $this->xml;
     }
 
     /**
-     * Get response control
-     *
+     * @param \SimpleXMLElement $xml
+     */
+    private function setXml(\SimpleXMLElement $xml)
+    {
+        $this->xml = $xml;
+    }
+
+    /**
      * @return Control
      */
-    public function getControl()
+    public function getControl(): Control
     {
         return $this->control;
+    }
+
+    /**
+     * @param Control $control
+     */
+    private function setControl(Control $control)
+    {
+        $this->control = $control;
     }
 }

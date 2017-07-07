@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionLineCreate
  */
-class ChargeCardTransactionLineCreateTest extends \PHPUnit_Framework_TestCase
+class ChargeCardTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

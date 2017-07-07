@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\GlobalConsolidations\ConsolidationCreate
  */
-class ConsolidationCreateTest extends \PHPUnit_Framework_TestCase
+class ConsolidationCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

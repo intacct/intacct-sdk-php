@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\ClassDelete
  */
-class ClassDeleteTest extends \PHPUnit_Framework_TestCase
+class ClassDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

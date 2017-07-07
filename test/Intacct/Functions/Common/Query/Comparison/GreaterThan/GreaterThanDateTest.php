@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThan;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\GreaterThan\GreaterThanDate
  */
-class GreaterThanDateTest extends \PHPUnit_Framework_TestCase
+class GreaterThanDateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

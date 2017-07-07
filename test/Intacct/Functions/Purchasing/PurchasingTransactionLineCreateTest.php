@@ -23,7 +23,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionLineCreate
  */
-class PurchasingTransactionLineCreateTest extends \PHPUnit_Framework_TestCase
+class PurchasingTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

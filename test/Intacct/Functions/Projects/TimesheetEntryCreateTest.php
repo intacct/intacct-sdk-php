@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\TimesheetEntryCreate
  */
-class TimesheetEntryCreateTest extends \PHPUnit_Framework_TestCase
+class TimesheetEntryCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

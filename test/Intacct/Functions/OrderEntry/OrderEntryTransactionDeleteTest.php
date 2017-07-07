@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionDelete
  */
-class OrderEntryTransactionDeleteTest extends \PHPUnit_Framework_TestCase
+class OrderEntryTransactionDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

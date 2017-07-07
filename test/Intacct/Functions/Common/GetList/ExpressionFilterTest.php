@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\ExpressionFilter
  */
-class ExpressionFilterTest extends \PHPUnit_Framework_TestCase
+class ExpressionFilterTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultConstruct()

@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\ClassUpdate
  */
-class ClassUpdateTest extends \PHPUnit_Framework_TestCase
+class ClassUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

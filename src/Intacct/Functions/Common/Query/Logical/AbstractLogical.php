@@ -30,7 +30,7 @@ abstract class AbstractLogical implements LogicalInterface
     /**
      * @var bool
      */
-    protected $negate;
+    protected $negate = false;
 
     /**
      * @return ConditionInterface[]
@@ -43,7 +43,7 @@ abstract class AbstractLogical implements LogicalInterface
     /**
      * @param ConditionInterface[] $conditions
      */
-    public function setConditions($conditions)
+    public function setConditions(array $conditions)
     {
         if (count($conditions) < 2) {
             throw new \OutOfRangeException('Logical conditions count must be 2 or more');
@@ -54,7 +54,7 @@ abstract class AbstractLogical implements LogicalInterface
     /**
      * @return bool
      */
-    public function isNegate()
+    public function isNegate(): bool
     {
         return $this->negate;
     }
@@ -62,7 +62,7 @@ abstract class AbstractLogical implements LogicalInterface
     /**
      * @param bool $negate
      */
-    public function setNegate($negate)
+    public function setNegate(bool $negate)
     {
         $this->negate = $negate;
     }

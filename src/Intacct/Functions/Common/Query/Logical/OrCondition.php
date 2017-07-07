@@ -23,13 +23,13 @@ class OrCondition extends AbstractLogical
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
-        $clause .= "(" . implode(' OR ', $this->conditions) . ")";
+        $clause .= "(" . implode(' OR ', $this->getConditions()) . ")";
 
         return $clause;
     }

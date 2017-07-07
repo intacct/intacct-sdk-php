@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Inspect
  */
-class InspectTest extends \PHPUnit_Framework_TestCase
+class InspectTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

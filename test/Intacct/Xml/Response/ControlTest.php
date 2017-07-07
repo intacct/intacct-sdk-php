@@ -17,12 +17,10 @@
 
 namespace Intacct\Xml\Response;
 
-use Exception;
-
 /**
  * @coversDefaultClass \Intacct\Xml\Response\Control
  */
-class ControlTest extends \PHPUnit_Framework_TestCase
+class ControlTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -57,14 +55,6 @@ EOF;
         $this->object = $stub->getControl();
     }
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
-
     public function testGetStatus()
     {
         $this->assertEquals('success', $this->object->getStatus());
@@ -91,7 +81,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Control block is missing status element
      */
     public function testMissingStatusElement()
@@ -110,7 +100,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Control block is missing senderid element
      */
     public function testMissingSenderIdElement()
@@ -135,7 +125,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Control block is missing controlid element
      */
     public function testMissingControlIdElement()
@@ -160,7 +150,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Control block is missing uniqueid element
      */
     public function testMissingUniqueIdElement()
@@ -185,7 +175,7 @@ EOF;
     }
     
     /**
-     * @expectedException Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Control block is missing dtdversion element
      */
     public function testMissingDtdVersionElement()

@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Company\LocationUpdate
  */
-class LocationUpdateTest extends \PHPUnit_Framework_TestCase
+class LocationUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

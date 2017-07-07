@@ -25,7 +25,7 @@ abstract class AbstractDateTime extends AbstractDateTimeClass
      *
      * @param string $format
      */
-    public function __construct($format = self::IA_DATE_TIME_FORMAT)
+    public function __construct(string $format = self::IA_DATE_TIME_FORMAT)
     {
         parent::__construct($format);
     }

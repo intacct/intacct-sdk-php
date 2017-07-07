@@ -26,9 +26,9 @@ abstract class AbstractArrayString extends AbstractComparison
     protected $value;
 
     /**
-     * @return string
+     * @return string[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return $this->value;
     }

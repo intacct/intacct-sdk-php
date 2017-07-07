@@ -21,7 +21,7 @@ use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Logical\OrCondition
  */
-class OrConditionTest extends \PHPUnit_Framework_TestCase
+class OrConditionTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

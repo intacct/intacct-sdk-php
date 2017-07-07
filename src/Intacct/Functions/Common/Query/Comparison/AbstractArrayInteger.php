@@ -26,9 +26,9 @@ abstract class AbstractArrayInteger extends AbstractComparison
     protected $value;
 
     /**
-     * @return string
+     * @return int[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return $this->value;
     }
@@ -43,7 +43,7 @@ abstract class AbstractArrayInteger extends AbstractComparison
         }
         foreach ($value as $key => $item) {
             if (!is_int($item)) {
-                throw new \InvalidArgumentException('Comparison value array item variable must be an integer type');
+                throw new \InvalidArgumentException('Comparison value array item variable must be an int type');
             }
         }
         $this->value = $value;

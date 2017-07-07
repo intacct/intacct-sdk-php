@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryDelete
  */
-class StatisticalJournalEntryDeleteTest extends \PHPUnit_Framework_TestCase
+class StatisticalJournalEntryDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

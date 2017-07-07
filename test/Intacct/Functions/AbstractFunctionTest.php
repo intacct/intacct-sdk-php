@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AbstractFunction
  */
-class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
+class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
 {
 
     /** @var AbstractFunction */
@@ -58,7 +58,7 @@ class AbstractFunctionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage controlid must be between 1 and 256 characters in length
+     * @expectedExceptionMessage Function Control ID must be between 1 and 256 characters in length
      */
     public function testMaximumLengthControlId()
     {

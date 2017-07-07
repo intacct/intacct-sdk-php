@@ -29,7 +29,7 @@ class ResultException extends OperationException
      * @param \Exception $previous
      * @todo add controlid, status, function, etc
      */
-    public function __construct($message, array $errors = [], $code = 0, $previous = null)
+    public function __construct(string $message, array $errors = [], int $code = 0, \Exception $previous = null)
     {
         parent::__construct($message, $errors, $code, $previous);
     }

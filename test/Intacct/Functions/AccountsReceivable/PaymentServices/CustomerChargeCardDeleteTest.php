@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardDelete
  */
-class CustomerChargeCardDeleteTest extends \PHPUnit_Framework_TestCase
+class CustomerChargeCardDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

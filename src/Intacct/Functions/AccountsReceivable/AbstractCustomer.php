@@ -156,7 +156,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /** @var string */
     protected $taxId;
 
-    /** @var float|string|int */
+    /** @var float */
     protected $creditLimit;
 
     /** @var bool */
@@ -260,7 +260,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Get one time
      *
-     * @return boolean
+     * @return bool
      */
     public function isOneTime()
     {
@@ -270,7 +270,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Set one time
      *
-     * @param boolean $oneTime
+     * @param bool $oneTime
      */
     public function setOneTime($oneTime)
     {
@@ -280,7 +280,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Get active
      *
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -290,7 +290,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Set active
      *
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -726,7 +726,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Get excluded from contact list
      *
-     * @return boolean
+     * @return bool
      */
     public function isExcludedFromContactList()
     {
@@ -736,7 +736,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Set excluded from contact list
      *
-     * @param boolean $excludedFromContactList
+     * @param bool $excludedFromContactList
      */
     public function setExcludedFromContactList($excludedFromContactList)
     {
@@ -965,7 +965,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Get taxable
      *
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -975,7 +975,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Set taxable
      *
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {
@@ -1025,7 +1025,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Get on hold
      *
-     * @return boolean
+     * @return bool
      */
     public function isOnHold()
     {
@@ -1035,7 +1035,7 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * Set on hold
      *
-     * @param boolean $onHold
+     * @param bool $onHold
      */
     public function setOnHold($onHold)
     {
@@ -1424,14 +1424,12 @@ abstract class AbstractCustomer extends AbstractFunction
      */
     public function writeXmlMailAddress(XMLWriter &$xml)
     {
-        if (
-            $this->getAddressLine1()
+        if ($this->getAddressLine1()
             || $this->getAddressLine2()
             || $this->getCity()
             || $this->getStateProvince()
             || $this->getZipPostalCode()
-            || $this->getCountry()
-        ) {
+            || $this->getCountry()) {
             $xml->startElement('MAILADDRESS');
 
             $xml->writeElement('ADDRESS1', $this->getAddressLine1());

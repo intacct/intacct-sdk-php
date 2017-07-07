@@ -48,7 +48,7 @@ class OrderEntryTransactionUpdate extends AbstractOrderEntryTransaction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDisableValidation()
     {
@@ -56,7 +56,7 @@ class OrderEntryTransactionUpdate extends AbstractOrderEntryTransaction
     }
 
     /**
-     * @param boolean $disableValidation
+     * @param bool $disableValidation
      */
     public function setDisableValidation($disableValidation)
     {

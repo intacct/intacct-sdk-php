@@ -17,7 +17,7 @@
 
 namespace Intacct\Credentials;
 
-use InvalidArgumentException;
+use Intacct\ClientConfig;
 
 class ProfileCredentialProvider
 {
@@ -29,113 +29,47 @@ class ProfileCredentialProvider
     const DEFAULT_PROFILE_NAME = 'default';
 
     /**
-     * Initializes the class
+     * @param ClientConfig $config
+     * @return ClientConfig
      */
-    public function __construct()
+    public static function getLoginCredentials(ClientConfig $config): ClientConfig
     {
-        //nothing to see here
-    }
-    
-    /**
-     * Get INI profile data with the given options.
-     *
-     * The function accepts the following options:
-     *
-     * - `profile_name` (string, default=string "default") Profile name to use
-     * - `profile_file` (string) Profile file to load from
-     *
-     * @param array $params Client configuration options
-     * @return array
-     */
-    private function getIniProfileData(array $params = [])
-    {
-        $defaults = [
-            'profile_name' => static::DEFAULT_PROFILE_NAME,
-            'profile_file' => static::getHomeDirProfile(),
-        ];
-        $config = array_merge($defaults, $params);
-        
-        if (!$config['profile_name']) {
-            throw new InvalidArgumentException(
-                'Required "profile_name" key not supplied in params'
-            );
-        }
-        if (!is_readable($config['profile_file'])) {
-            throw new InvalidArgumentException(
-                'Cannot read credentials from file, "' . $config['profile_file'] . '"'
-            );
-        }
-        $data = parse_ini_file($config['profile_file'], true);
-        if ($data === false) {
-            throw new InvalidArgumentException(
-                'Invalid credentials file, "' . $config['profile_file'] . '"'
-            );
-        }
-        if (!isset($data[$config['profile_name']])) {
-            throw new InvalidArgumentException(
-                'Profile name "' . $config['profile_name'] . '" not found in credentials file'
-            );
-        }
-        
-        return $data[$config['profile_name']];
-    }
-
-    /**
-     * Get Intacct login credentials with the given parameters.
-     *
-     * The function accepts the following options:
-     *
-     * - `profile_name` (string, default=string "default") Profile name to use
-     * - `profile_file` (string) Profile file to load from
-     *
-     * @param array $params Client configuration options
-     * @return array
-     */
-    public function getLoginCredentials(array $params = [])
-    {
-        $data = $this->getIniProfileData($params);
-        $loginCreds = [];
+        $creds = new ClientConfig();
+        $data = static::getIniProfileData($config);
         
         if (isset($data['company_id'])) {
-            $loginCreds['company_id'] = $data['company_id'];
+            $creds->setCompanyId($data['company_id']);
         }
         if (isset($data['user_id'])) {
-            $loginCreds['user_id'] = $data['user_id'];
+            $creds->setUserId($data['user_id']);
         }
         if (isset($data['user_password'])) {
-            $loginCreds['user_password'] = $data['user_password'];
+            $creds->setUserPassword($data['user_password']);
         }
         
-        return $loginCreds;
+        return $creds;
     }
 
     /**
-     * Get Intacct sender credentials with the given parameters.
-     *
-     * The function accepts the following options:
-     *
-     * - `profile_name` (string, default=string "default") Profile name to use
-     * - `profile_file` (string) Profile file to load from
-     *
-     * @param array $params Client configuration options
-     * @return array
+     * @param ClientConfig $config
+     * @return ClientConfig
      */
-    public function getSenderCredentials(array $params = [])
+    public static function getSenderCredentials(ClientConfig $config): ClientConfig
     {
-        $data = $this->getIniProfileData($params);
-        $senderCreds = [];
+        $creds = new ClientConfig();
+        $data = static::getIniProfileData($config);
         
         if (isset($data['sender_id'])) {
-            $senderCreds['sender_id'] = $data['sender_id'];
+            $creds->setSenderId($data['sender_id']);
         }
         if (isset($data['sender_password'])) {
-            $senderCreds['sender_password'] = $data['sender_password'];
+            $creds->setSenderPassword($data['sender_password']);
         }
         if (isset($data['endpoint_url'])) {
-            $senderCreds['endpoint_url'] = $data['endpoint_url'];
+            $creds->setEndpointUrl($data['endpoint_url']);
         }
         
-        return $senderCreds;
+        return $creds;
     }
 
     /**
@@ -143,15 +77,16 @@ class ProfileCredentialProvider
      *
      * @return string
      */
-    private static function getHomeDirProfile()
+    public static function getHomeDirProfile(): string
     {
-        $profile = null;
-        
+        $profile = '';
         $homeDir = getenv('HOME');
         
-        if ($homeDir) { //Linux/Unix
+        if ($homeDir) {
+            //Linux/Unix
             $profile = $homeDir . static::DEFAULT_PROFILE_FILE;
-        } else { //Windows
+        } else {
+            //Windows
             $homeDrive = getenv('HOMEDRIVE');
             $homePath = getenv('HOMEPATH');
             if ($homeDrive && $homePath) {
@@ -160,5 +95,38 @@ class ProfileCredentialProvider
         }
 
         return $profile;
+    }
+
+    /**
+     * @param ClientConfig $config
+     * @return array
+     */
+    private static function getIniProfileData(ClientConfig $config): array
+    {
+        if (!$config->getProfileName()) {
+            $config->setProfileName(static::DEFAULT_PROFILE_NAME);
+        }
+        if (!$config->getProfileFile()) {
+            $config->setProfileFile(static::getHomeDirProfile());
+        }
+
+        if (!is_readable($config->getProfileFile())) {
+            throw new \InvalidArgumentException(
+                'Cannot read credentials from file, "' . $config->getProfileFile() . '"'
+            );
+        }
+        $data = parse_ini_file($config->getProfileFile(), true);
+        if ($data === false) {
+            throw new \InvalidArgumentException(
+                'Invalid credentials file, "' . $config->getProfileFile() . '"'
+            );
+        }
+        if (!isset($data[$config->getProfileName()])) {
+            throw new \InvalidArgumentException(
+                'Profile Name "' . $config->getProfileName() . '" not found in credentials file'
+            );
+        }
+
+        return $data[$config->getProfileName()];
     }
 }

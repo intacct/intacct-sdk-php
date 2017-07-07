@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentReverse
  */
-class ApPaymentReverseTest extends \PHPUnit_Framework_TestCase
+class ApPaymentReverseTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

@@ -20,7 +20,7 @@ namespace Intacct\Xml\Response;
 /**
  * @coversDefaultClass \Intacct\Xml\Response\ErrorMessage
  */
-class ErrorMessageTest extends \PHPUnit_Framework_TestCase
+class ErrorMessageTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -53,14 +53,6 @@ class ErrorMessageTest extends \PHPUnit_Framework_TestCase
 EOF;
         $errorMessage = simplexml_load_string($xml, 'SimpleXMLIterator');
         $this->object = new ErrorMessage($errorMessage);
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
     }
 
     public function testGetErrors()

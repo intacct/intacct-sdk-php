@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseTypeCreate
  */
-class ExpenseTypeCreateTest extends \PHPUnit_Framework_TestCase
+class ExpenseTypeCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

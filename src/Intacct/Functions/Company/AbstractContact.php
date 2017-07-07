@@ -245,7 +245,7 @@ abstract class AbstractContact extends AbstractFunction
     /**
      * Get taxable
      *
-     * @return boolean
+     * @return bool
      */
     public function isTaxable()
     {
@@ -255,7 +255,7 @@ abstract class AbstractContact extends AbstractFunction
     /**
      * Set taxable
      *
-     * @param boolean $taxable
+     * @param bool $taxable
      */
     public function setTaxable($taxable)
     {
@@ -305,7 +305,7 @@ abstract class AbstractContact extends AbstractFunction
     /**
      * Get active
      *
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -315,7 +315,7 @@ abstract class AbstractContact extends AbstractFunction
     /**
      * Set active
      *
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -633,14 +633,12 @@ abstract class AbstractContact extends AbstractFunction
      */
     public function writeXmlMailAddress(XMLWriter &$xml)
     {
-        if (
-            $this->getAddressLine1()
+        if ($this->getAddressLine1()
             || $this->getAddressLine2()
             || $this->getCity()
             || $this->getStateProvince()
             || $this->getZipPostalCode()
-            || $this->getCountry()
-        ) {
+            || $this->getCountry()) {
             $xml->startElement('MAILADDRESS');
 
             $xml->writeElement('ADDRESS1', $this->getAddressLine1());

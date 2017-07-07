@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadByQuery
  */
-class ReadByQueryTest extends \PHPUnit_Framework_TestCase
+class ReadByQueryTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -81,7 +81,6 @@ EOF;
         $readByQuery = new ReadByQuery('unittest');
         $readByQuery->setObjectName('CLASS');
         $readByQuery->setPageSize(100);
-        $readByQuery->setReturnFormat('xml');
         $readByQuery->setFields([
             'RECORDNO',
         ]);
@@ -90,16 +89,6 @@ EOF;
         $readByQuery->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size not valid int type
-     */
-    public function testStringForPageSize()
-    {
-        $readByQuery = new ReadByQuery('unittest');
-        $readByQuery->setPageSize('5');
     }
 
     /**
@@ -120,15 +109,5 @@ EOF;
     {
         $readByQuery = new ReadByQuery('unittest');
         $readByQuery->setPageSize(1001);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        $readByQuery = new ReadByQuery('unittest');
-        $readByQuery->setReturnFormat('');
     }
 }

@@ -18,7 +18,6 @@
 namespace Intacct\Xml\Response;
 
 use Intacct\Exception\IntacctException;
-use SimpleXMLIterator;
 
 class Control
 {
@@ -41,10 +40,10 @@ class Control
     /**
      * Initializes the class
      *
-     * @param SimpleXMLIterator $control
+     * @param \SimpleXMLElement $control
      * @throws IntacctException
      */
-    public function __construct(SimpleXMLIterator $control)
+    public function __construct(\SimpleXMLElement $control)
     {
         if (!isset($control->status)) {
             throw new IntacctException('Control block is missing status element');
@@ -62,60 +61,90 @@ class Control
             throw new IntacctException('Control block is missing dtdversion element');
         }
 
-        $this->status = strval($control->status);
-        $this->senderId = strval($control->senderid);
-        $this->controlId = strval($control->controlid);
-        $this->uniqueId = strval($control->uniqueid);
-        $this->dtdVersion = strval($control->dtdversion);
+        $this->setStatus(strval($control->status));
+        $this->setSenderId(strval($control->senderid));
+        $this->setControlId(strval($control->controlid));
+        $this->setUniqueId(strval($control->uniqueid));
+        $this->setDtdVersion(strval($control->dtdversion));
     }
 
     /**
-     * Get control status
-     *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * Get sender ID
-     *
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @return string
      */
-    public function getSenderId()
+    public function getSenderId(): string
     {
         return $this->senderId;
     }
 
     /**
-     * Get control ID
-     *
+     * @param string $senderId
+     */
+    private function setSenderId(string $senderId)
+    {
+        $this->senderId = $senderId;
+    }
+
+    /**
      * @return string
      */
-    public function getControlId()
+    public function getControlId(): string
     {
         return $this->controlId;
     }
 
     /**
-     * Get unique ID
-     *
+     * @param string $controlId
+     */
+    private function setControlId(string $controlId)
+    {
+        $this->controlId = $controlId;
+    }
+
+    /**
      * @return string
      */
-    public function getUniqueId()
+    public function getUniqueId(): string
     {
         return $this->uniqueId;
     }
 
     /**
-     * Get DTD version
-     *
+     * @param string $uniqueId
+     */
+    private function setUniqueId(string $uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
+    }
+
+    /**
      * @return string
      */
-    public function getDtdVersion()
+    public function getDtdVersion(): string
     {
         return $this->dtdVersion;
+    }
+
+    /**
+     * @param string $dtdVersion
+     */
+    private function setDtdVersion(string $dtdVersion)
+    {
+        $this->dtdVersion = $dtdVersion;
     }
 }

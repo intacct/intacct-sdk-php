@@ -25,13 +25,13 @@ class GreaterThanString extends AbstractString
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $clause = '';
         if ($this->isNegate() === true) {
             $clause = 'NOT ';
         }
-        $clause .= $this->field . " > '" . addcslashes($this->value, "'") . "'";
+        $clause .= $this->getField() . " > '" . addcslashes($this->getValue(), "'") . "'";
 
         return $clause;
     }

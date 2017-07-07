@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadByName
  */
-class ReadByNameTest extends \PHPUnit_Framework_TestCase
+class ReadByNameTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()
@@ -34,6 +34,7 @@ class ReadByNameTest extends \PHPUnit_Framework_TestCase
         <object>GLENTRY</object>
         <keys></keys>
         <fields>*</fields>
+        <returnFormat>xml</returnFormat>
     </readByName>
 </function>
 EOF;
@@ -78,21 +79,10 @@ EOF;
         $readByName->setNames(['987']);
         $readByName->setFields(['TRX_AMOUNT','RECORDNO','BATCHNO']);
         $readByName->setDocParId('Sales Invoice');
-        $readByName->setReturnFormat('xml');
 
         $readByName->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Return Format is not a valid format
-     */
-    public function testInvalidReturnFormat()
-    {
-        $readByName = new ReadByName('unittest');
-        $readByName->setReturnFormat('blah');
     }
 
     /**

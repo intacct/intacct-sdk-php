@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\TimesheetDelete
  */
-class TimesheetDeleteTest extends \PHPUnit_Framework_TestCase
+class TimesheetDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

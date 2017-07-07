@@ -17,16 +17,14 @@
 
 namespace Intacct\Xml;
 
+use Intacct\ClientConfig;
+use Intacct\Functions\FunctionInterface;
+use Intacct\RequestConfig;
 use Intacct\Xml\Request\ControlBlock;
 use Intacct\Xml\Request\OperationBlock;
-use Intacct\Content;
-use InvalidArgumentException;
 
 class RequestBlock
 {
-    
-    /** @var string */
-    const XML_VERSION = '1.0';
 
     /** @var string */
     protected $encoding;
@@ -38,29 +36,17 @@ class RequestBlock
     protected $operationBlock;
 
     /**
-     * Initializes the class with the given parameters.
+     * RequestBlock constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `encoding` (string, default=string "UTF-8") Encoding to use
-     *
-     * @param array $params RequestBlock configuration options
-     * @param Content $contentBlock ContentBlock of request
-     * @throws InvalidArgumentException
+     * @param ClientConfig $clientConfig
+     * @param RequestConfig $requestConfig
+     * @param FunctionInterface[] $content
      */
-    public function __construct(array $params, Content $contentBlock)
+    public function __construct(ClientConfig $clientConfig, RequestConfig $requestConfig, array $content)
     {
-        $defaults = [
-            'encoding' => 'UTF-8',
-        ];
-        $config = array_merge($defaults, $params);
-
-        if (!in_array($config['encoding'], mb_list_encodings())) {
-            throw new InvalidArgumentException('Requested encoding is not supported');
-        }
-
-        $this->controlBlock = new ControlBlock($config);
-        $this->operationBlock = new OperationBlock($config, $contentBlock);
+        $this->setEncoding($requestConfig->getEncoding());
+        $this->setControlBlock(new ControlBlock($clientConfig, $requestConfig));
+        $this->operationBlock = new OperationBlock($clientConfig, $requestConfig, $content);
     }
 
     /**
@@ -73,7 +59,7 @@ class RequestBlock
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(false);
-        $xml->startDocument(self::XML_VERSION, $this->encoding);
+        $xml->startDocument('1.0', $this->encoding);
         $xml->startElement('request');
 
         $this->controlBlock->writeXml($xml); //create control block
@@ -83,5 +69,53 @@ class RequestBlock
         $xml->endElement(); //request
 
         return $xml;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEncoding(): string
+    {
+        return $this->encoding;
+    }
+
+    /**
+     * @param string $encoding
+     */
+    public function setEncoding(string $encoding)
+    {
+        $this->encoding = $encoding;
+    }
+
+    /**
+     * @return ControlBlock
+     */
+    public function getControlBlock(): ControlBlock
+    {
+        return $this->controlBlock;
+    }
+
+    /**
+     * @param ControlBlock $controlBlock
+     */
+    public function setControlBlock(ControlBlock $controlBlock)
+    {
+        $this->controlBlock = $controlBlock;
+    }
+
+    /**
+     * @return OperationBlock
+     */
+    public function getOperationBlock(): OperationBlock
+    {
+        return $this->operationBlock;
+    }
+
+    /**
+     * @param OperationBlock $operationBlock
+     */
+    public function setOperationBlock(OperationBlock $operationBlock)
+    {
+        $this->operationBlock = $operationBlock;
     }
 }

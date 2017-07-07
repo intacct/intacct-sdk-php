@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThan;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThan\LessThanString
  */
-class LessThanStringTest extends \PHPUnit_Framework_TestCase
+class LessThanStringTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

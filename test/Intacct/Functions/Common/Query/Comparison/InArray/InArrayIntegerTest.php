@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\Query\Comparison\InArray;
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\InArray\InArrayInteger
  */
-class InArrayIntegerTest extends \PHPUnit_Framework_TestCase
+class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testToString()

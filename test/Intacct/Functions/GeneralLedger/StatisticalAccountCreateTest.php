@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalAccountCreate
  */
-class StatisticalAccountCreateTest extends \PHPUnit_Framework_TestCase
+class StatisticalAccountCreateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

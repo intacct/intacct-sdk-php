@@ -120,7 +120,7 @@ abstract class AbstractApAccountLabel extends AbstractFunction
     /**
      * Get active
      *
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -130,7 +130,7 @@ abstract class AbstractApAccountLabel extends AbstractFunction
     /**
      * Get active
      *
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {

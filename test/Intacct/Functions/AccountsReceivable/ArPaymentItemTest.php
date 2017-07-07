@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentItem
  */
-class ArPaymentItemTest extends \PHPUnit_Framework_TestCase
+class ArPaymentItemTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

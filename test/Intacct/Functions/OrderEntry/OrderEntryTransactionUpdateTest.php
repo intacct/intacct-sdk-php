@@ -19,12 +19,11 @@ namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Functions\InventoryControl\TransactionSubtotalUpdate;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionUpdate
  */
-class OrderEntryTransactionUpdateTest extends \PHPUnit_Framework_TestCase
+class OrderEntryTransactionUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

@@ -18,7 +18,6 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
  * Create a new accounts payable account label record
@@ -41,15 +40,15 @@ class ApAccountLabelCreate extends AbstractApAccountLabel
         $xml->startElement('APACCOUNTLABEL');
 
         if (!$this->getAccountLabel()) {
-            throw new InvalidArgumentException('Account Label is required for create');
+            throw new \InvalidArgumentException('Account Label is required for create');
         }
         $xml->writeElement('ACCOUNTLABEL', $this->getAccountLabel(), true);
         if (!$this->getDescription()) {
-            throw new InvalidArgumentException('Description is required for create');
+            throw new \InvalidArgumentException('Description is required for create');
         }
         $xml->writeElement('DESCRIPTION', $this->getDescription(), true);
         if (!$this->getGlAccountNo()) {
-            throw new InvalidArgumentException('GL Account is required for create');
+            throw new \InvalidArgumentException('GL Account is required for create');
         }
         $xml->writeElement('GLACCOUNTNO', $this->getGlAccountNo(), true);
 

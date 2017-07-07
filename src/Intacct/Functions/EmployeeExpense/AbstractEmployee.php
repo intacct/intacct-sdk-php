@@ -215,7 +215,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
@@ -223,7 +223,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -231,7 +231,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPlaceholderResource()
     {
@@ -239,7 +239,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $placeholderResource
+     * @param bool $placeholderResource
      */
     public function setPlaceholderResource($placeholderResource)
     {
@@ -407,7 +407,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPostActualCost()
     {
@@ -415,7 +415,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $postActualCost
+     * @param bool $postActualCost
      */
     public function setPostActualCost($postActualCost)
     {
@@ -503,7 +503,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSendAutomaticPaymentNotification()
     {
@@ -511,7 +511,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $sendAutomaticPaymentNotification
+     * @param bool $sendAutomaticPaymentNotification
      */
     public function setSendAutomaticPaymentNotification(
         $sendAutomaticPaymentNotification
@@ -521,7 +521,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isMergePaymentRequests()
     {
@@ -529,7 +529,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $mergePaymentRequests
+     * @param bool $mergePaymentRequests
      */
     public function setMergePaymentRequests($mergePaymentRequests)
     {
@@ -537,7 +537,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAchEnabled()
     {
@@ -545,7 +545,7 @@ abstract class AbstractEmployee extends AbstractFunction
     }
 
     /**
-     * @param boolean $achEnabled
+     * @param bool $achEnabled
      */
     public function setAchEnabled($achEnabled)
     {

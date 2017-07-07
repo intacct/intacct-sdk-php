@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 /**
  * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsObjectRead
  */
-class DdsObjectReadTest extends \PHPUnit_Framework_TestCase
+class DdsObjectReadTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testDefaultParams()

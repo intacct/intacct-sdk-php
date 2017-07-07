@@ -17,8 +17,6 @@
 
 namespace Intacct\Xml;
 
-use InvalidArgumentException;
-
 class XMLWriter extends \XMLWriter
 {
 
@@ -48,7 +46,7 @@ class XMLWriter extends \XMLWriter
      * @param string $name
      * @return bool
      */
-    protected function isValidXmlName($name)
+    protected function isValidXmlName(string $name)
     {
         try {
             new \DOMElement($name);
@@ -58,10 +56,13 @@ class XMLWriter extends \XMLWriter
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function startElement($name)
     {
         if ($this->isValidXmlName($name) === false) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 '"' . $name . '" is not a valid name for an XML element'
             );
         }
@@ -82,7 +83,7 @@ class XMLWriter extends \XMLWriter
     public function writeElement($name, $content = null, $writeNull = false)
     {
         if ($this->isValidXmlName($name) === false) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 '"' . $name . '" is not a valid name for an XML element'
             );
         }

@@ -21,9 +21,9 @@ use Intacct\Functions\Common\Query\ConditionInterface;
 interface ComparisonInterface extends ConditionInterface
 {
 
-    public function getField();
+    public function getField(): string;
 
-    public function setField($field);
+    public function setField(string $field);
 
     public function getValue();
 

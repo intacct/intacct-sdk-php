@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionReverse
  */
-class ChargeCardTransactionReverseTest extends \PHPUnit_Framework_TestCase
+class ChargeCardTransactionReverseTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

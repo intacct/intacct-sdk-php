@@ -19,13 +19,12 @@ namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 class GetList extends AbstractFunction
 {
 
     /** @var string */
-    protected $objectName;
+    protected $objectName = '';
 
     /** @var int */
     protected $maxTotalCount;
@@ -37,21 +36,21 @@ class GetList extends AbstractFunction
     protected $showPrivate = false;
 
     /** @var SortField[] */
-    protected $sortFields;
+    protected $sortFields = [];
 
     /** @var array */
-    protected $returnFields;
+    protected $returnFields = [];
 
     /** @var FilterInterface[] */
-    protected $filters;
+    protected $filters = [];
 
     /** @var AdditionalParameter[] */
-    protected $additionalParameters;
+    protected $additionalParameters = [];
 
     /**
      * @return string
      */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return $this->objectName;
     }
@@ -59,7 +58,7 @@ class GetList extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName($objectName)
+    public function setObjectName(string $objectName)
     {
         $this->objectName = $objectName;
     }
@@ -67,7 +66,7 @@ class GetList extends AbstractFunction
     /**
      * @return int
      */
-    public function getMaxTotalCount()
+    public function getMaxTotalCount() //: int
     {
         return $this->maxTotalCount;
     }
@@ -75,7 +74,7 @@ class GetList extends AbstractFunction
     /**
      * @param int $maxTotalCount
      */
-    public function setMaxTotalCount($maxTotalCount)
+    public function setMaxTotalCount(int $maxTotalCount)
     {
         $this->maxTotalCount = $maxTotalCount;
     }
@@ -83,33 +82,31 @@ class GetList extends AbstractFunction
     /**
      * @return int
      */
-    public function getStartAtCount()
+    public function getStartAtCount() //: int
     {
         return $this->startAtCount;
     }
 
     /**
-     * Set start at count, zero-based
-     *
      * @param int $startAtCount
      */
-    public function setStartAtCount($startAtCount)
+    public function setStartAtCount(int $startAtCount)
     {
         $this->startAtCount = $startAtCount;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isShowPrivate()
+    public function isShowPrivate(): bool
     {
         return $this->showPrivate;
     }
 
     /**
-     * @param boolean $showPrivate
+     * @param bool $showPrivate
      */
-    public function setShowPrivate($showPrivate)
+    public function setShowPrivate(bool $showPrivate)
     {
         $this->showPrivate = $showPrivate;
     }
@@ -117,7 +114,7 @@ class GetList extends AbstractFunction
     /**
      * @return SortField[]
      */
-    public function getSortFields()
+    public function getSortFields(): array
     {
         return $this->sortFields;
     }
@@ -125,7 +122,7 @@ class GetList extends AbstractFunction
     /**
      * @param SortField[] $sortFields
      */
-    public function setSortFields($sortFields)
+    public function setSortFields(array $sortFields)
     {
         $this->sortFields = $sortFields;
     }
@@ -133,7 +130,7 @@ class GetList extends AbstractFunction
     /**
      * @return array
      */
-    public function getReturnFields()
+    public function getReturnFields(): array
     {
         return $this->returnFields;
     }
@@ -149,7 +146,7 @@ class GetList extends AbstractFunction
     /**
      * @return FilterInterface[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return $this->filters;
     }
@@ -157,7 +154,7 @@ class GetList extends AbstractFunction
     /**
      * @param FilterInterface[] $filters
      */
-    public function setFilters($filters)
+    public function setFilters(array $filters)
     {
         $this->filters = $filters;
     }
@@ -165,7 +162,7 @@ class GetList extends AbstractFunction
     /**
      * @return AdditionalParameter[]
      */
-    public function getAdditionalParameters()
+    public function getAdditionalParameters(): array
     {
         return $this->additionalParameters;
     }
@@ -173,7 +170,7 @@ class GetList extends AbstractFunction
     /**
      * @param AdditionalParameter[] $additionalParameters
      */
-    public function setAdditionalParameters($additionalParameters)
+    public function setAdditionalParameters(array $additionalParameters)
     {
         $this->additionalParameters = $additionalParameters;
     }
@@ -191,7 +188,7 @@ class GetList extends AbstractFunction
 
         $xml->startElement('get_list');
         if (!$this->getObjectName()) {
-            throw new InvalidArgumentException('Object Name is required for get_list');
+            throw new \InvalidArgumentException('Object Name is required for get_list');
         }
         $xml->writeAttribute('object', $this->getObjectName(), true);
         if ($this->getMaxTotalCount() > 0) {

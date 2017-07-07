@@ -17,14 +17,9 @@
 
 namespace Intacct\Credentials;
 
-use GuzzleHttp\Handler\MockHandler;
-use Intacct\Logging\MessageFormatter;
-use InvalidArgumentException;
-use Intacct\Endpoint;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Intacct\ClientConfig;
 
-class LoginCredentials
+class LoginCredentials implements CredentialsInterface
 {
     
     /** @var string */
@@ -52,171 +47,134 @@ class LoginCredentials
     private $password;
 
     /** @var SenderCredentials */
-    private $senderCreds;
-    
-    /** @var MockHandler */
-    protected $mockHandler;
-
-    /** @var LoggerInterface */
-    private $logger;
-
-    /** @var MessageFormatter */
-    private $logMessageFormat;
-
-    /** @var int */
-    private $logLevel;
+    private $senderCredentials;
 
     /**
-     * Initializes the class with the given parameters.
+     * LoginCredentials constructor.
      *
-     * The constructor accepts the following options:
-     *
-     * - `profile_name` (string, default=string "default") Profile name to use
-     * - `profile_file` (string) Profile file to load from
-     * - `company_id` (string) Intacct company ID
-     * - `user_id` (string) Intacct user ID
-     * - `user_password` (string) Intacct user password
-     * - `mock_handler` (GuzzleHttp\Handler\MockHandler) Mock handler for unit tests
-     *
-     * @param array $params Login Credentials configuration options
+     * @param ClientConfig $config
      * @param SenderCredentials $senderCreds
-     * @throws InvalidArgumentException
      */
-    public function __construct(array $params, SenderCredentials $senderCreds)
+    public function __construct(ClientConfig $config, SenderCredentials $senderCreds)
     {
-        $defaults = [
-            'profile_name' => getenv(static::COMPANY_PROFILE_ENV_NAME)
-                ? getenv(static::COMPANY_PROFILE_ENV_NAME)
-                : static::DEFAULT_COMPANY_PROFILE,
-            'company_id' => getenv(static::COMPANY_ID_ENV_NAME),
-            'user_id' => getenv(static::USER_ID_ENV_NAME),
-            'user_password' => getenv(static::USER_PASSWORD_ENV_NAME),
-            'mock_handler' => null,
-            'logger' => null,
-            'log_formatter' => new MessageFormatter(MessageFormatter::CLF . MessageFormatter::DEBUG),
-            'log_level' => LogLevel::DEBUG,
-        ];
-        $config = array_merge($defaults, $params);
+        $envProfileName = getenv(static::COMPANY_PROFILE_ENV_NAME) ?? static::DEFAULT_COMPANY_PROFILE;
+        if (!$config->getProfileName()) {
+            $config->setProfileName($envProfileName);
+        }
+        if (!$config->getCompanyId()) {
+            $config->setCompanyId(getenv(static::COMPANY_ID_ENV_NAME));
+        }
+        if (!$config->getUserId()) {
+            $config->setUserId(getenv(static::USER_ID_ENV_NAME));
+        }
+        if (!$config->getUserPassword()) {
+            $config->setUserPassword(getenv(static::USER_PASSWORD_ENV_NAME));
+        }
+        if (
+            !$config->getCompanyId()
+            && !$config->getUserId()
+            && !$config->getUserPassword()
+            && $config->getProfileName()
+        ) {
+            $profile = ProfileCredentialProvider::getLoginCredentials($config);
 
-        if (!$config['company_id'] && !$config['user_id'] && !$config['user_password'] && $config['profile_name']) {
-            $profileProvider = new ProfileCredentialProvider();
-            $profileCreds = $profileProvider->getLoginCredentials($config);
-            $config = array_merge($config, $profileCreds);
+            if ($profile->getCompanyId()) {
+                $config->setCompanyId($profile->getCompanyId());
+            }
+            if ($profile->getUserId()) {
+                $config->setUserId($profile->getUserId());
+            }
+            if ($profile->getUserPassword()) {
+                $config->setUserPassword($profile->getUserPassword());
+            }
         }
 
-        if (!$config['company_id']) {
-            throw new InvalidArgumentException(
-                'Required "company_id" key not supplied in params or env variable "'
+        if (!$config->getCompanyId()) {
+            throw new \InvalidArgumentException(
+                'Required Company ID not supplied in config or env variable "'
                 . static::COMPANY_ID_ENV_NAME . '"'
             );
         }
-        if (!$config['user_id']) {
-            throw new InvalidArgumentException(
-                'Required "user_id" key not supplied in params or env variable "'
+        if (!$config->getUserId()) {
+            throw new \InvalidArgumentException(
+                'Required User ID not supplied in config or env variable "'
                 . static::USER_ID_ENV_NAME . '"'
             );
         }
-        if (!$config['user_password']) {
-            throw new InvalidArgumentException(
-                'Required "user_password" key not supplied in params or env variable "'
+        if (!$config->getUserPassword()) {
+            throw new \InvalidArgumentException(
+                'Required User Password not supplied in config or env variable "'
                 . static::USER_PASSWORD_ENV_NAME . '"'
             );
         }
 
-        $this->companyId = $config['company_id'];
-        $this->userId = $config['user_id'];
-        $this->password = $config['user_password'];
-        $this->senderCreds = $senderCreds;
-        $this->mockHandler = $config['mock_handler'];
-
-        if ($config['logger']) {
-            $this->logger = $config['logger'];
-        }
-        $this->logMessageFormat = $config['log_formatter'];
-        $this->logLevel = $config['log_level'];
+        $this->setCompanyId($config->getCompanyId());
+        $this->setUserId($config->getUserId());
+        $this->setPassword($config->getUserPassword());
+        $this->setSenderCredentials($senderCreds);
     }
 
     /**
-     * Get Intacct company ID
-     *
      * @return string
      */
-    public function getCompanyId()
+    public function getCompanyId(): string
     {
         return $this->companyId;
     }
 
     /**
-     * Get Intacct user ID
-     *
+     * @param string $companyId
+     */
+    public function setCompanyId(string $companyId)
+    {
+        $this->companyId = $companyId;
+    }
+
+    /**
      * @return string
      */
-    public function getUserId()
+    public function getUserId(): string
     {
         return $this->userId;
     }
 
     /**
-     * Get Intacct user password
-     *
+     * @param string $userId
+     */
+    public function setUserId(string $userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
      * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * Get sender credentials
-     *
+     * @param string $password
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+    }
+
+    /**
      * @return SenderCredentials
      */
-    public function getSenderCredentials()
+    public function getSenderCredentials(): SenderCredentials
     {
-        return $this->senderCreds;
+        return $this->senderCredentials;
     }
 
     /**
-     * Get endpoint
-     *
-     * @return Endpoint
+     * @param SenderCredentials $senderCredentials
      */
-    public function getEndpoint()
+    public function setSenderCredentials(SenderCredentials $senderCredentials)
     {
-        return $this->senderCreds->getEndpoint();
-    }
-    
-    /**
-     * Get mock handler for unit tests
-     *
-     * @return MockHandler
-     */
-    public function getMockHandler()
-    {
-        return $this->mockHandler;
-    }
-
-    /**
-     * @return LoggerInterface
-     */
-    public function getLogger()
-    {
-        return $this->logger;
-    }
-
-    /**
-     * @return MessageFormatter
-     */
-    public function getLogMessageFormat()
-    {
-        return $this->logMessageFormat;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLogLevel()
-    {
-        return $this->logLevel;
+        $this->senderCredentials = $senderCredentials;
     }
 }

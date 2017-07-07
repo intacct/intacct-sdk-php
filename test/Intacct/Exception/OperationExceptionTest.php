@@ -17,34 +17,13 @@
 
 namespace Intacct\Exception;
 
-use Intacct\Xml\SynchronousResponse;
+use Intacct\Xml\OnlineResponse;
 
 /**
  * @coversDefaultClass \Intacct\Exception\OperationException
  */
-class OperationExceptionTest extends \PHPUnit_Framework_TestCase
+class OperationExceptionTest extends \PHPUnit\Framework\TestCase
 {
-
-    /**
-     * @var OperationException
-     */
-    protected $object;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-    }
 
     public function testGetErrors()
     {
@@ -77,7 +56,7 @@ class OperationExceptionTest extends \PHPUnit_Framework_TestCase
 EOF;
 
         try {
-            new SynchronousResponse($xml);
+            new OnlineResponse($xml);
         } catch (OperationException $ex) {
             $this->assertInternalType('array', $ex->getErrors());
         }

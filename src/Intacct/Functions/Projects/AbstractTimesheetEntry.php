@@ -176,7 +176,7 @@ abstract class AbstractTimesheetEntry
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -184,7 +184,7 @@ abstract class AbstractTimesheetEntry
     }
 
     /**
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {

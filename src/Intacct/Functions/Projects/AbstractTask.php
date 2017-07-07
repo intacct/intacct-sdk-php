@@ -198,7 +198,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBillable()
     {
@@ -206,7 +206,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @param boolean $billable
+     * @param bool $billable
      */
     public function setBillable($billable)
     {
@@ -230,7 +230,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isMilestone()
     {
@@ -238,7 +238,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @param boolean $milestone
+     * @param bool $milestone
      */
     public function setMilestone($milestone)
     {
@@ -246,7 +246,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUtilized()
     {
@@ -254,7 +254,7 @@ abstract class AbstractTask extends AbstractFunction
     }
 
     /**
-     * @param boolean $utilized
+     * @param bool $utilized
      */
     public function setUtilized($utilized)
     {
