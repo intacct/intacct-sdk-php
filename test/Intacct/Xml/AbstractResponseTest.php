@@ -24,7 +24,7 @@ class AbstractResponseTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @expectedException \Exception
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage XML could not be parsed properly
      */
     public function testConstructInvalidXml()
@@ -38,7 +38,7 @@ class AbstractResponseTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Response is missing control block
      */
     public function testConstructMissingControlBlock()

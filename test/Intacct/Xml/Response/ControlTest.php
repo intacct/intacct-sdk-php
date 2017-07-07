@@ -81,7 +81,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Control block is missing status element
      */
     public function testMissingStatusElement()
@@ -100,7 +100,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Control block is missing senderid element
      */
     public function testMissingSenderIdElement()
@@ -125,7 +125,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Control block is missing controlid element
      */
     public function testMissingControlIdElement()
@@ -150,7 +150,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Control block is missing uniqueid element
      */
     public function testMissingUniqueIdElement()
@@ -175,7 +175,7 @@ EOF;
     }
     
     /**
-     * @expectedException \RuntimeException
+     * @expectedException \Intacct\Exception\IntacctException
      * @expectedExceptionMessage Control block is missing dtdversion element
      */
     public function testMissingDtdVersionElement()

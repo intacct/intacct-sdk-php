@@ -32,10 +32,9 @@ class Authentication
     private $companyId;
 
     /**
-     * Initializes the class
+     * Authentication constructor.
      *
      * @param \SimpleXMLElement $authentication
-     * @throws IntacctException
      */
     public function __construct(\SimpleXMLElement $authentication)
     {

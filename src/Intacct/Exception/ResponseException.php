@@ -17,7 +17,7 @@
 
 namespace Intacct\Exception;
 
-class ResponseException extends IntacctException
+class ResponseException extends \RuntimeException
 {
 
     /** @var array */

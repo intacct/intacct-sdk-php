@@ -38,10 +38,9 @@ class Control
     private $dtdVersion;
 
     /**
-     * Initializes the class
+     * Control constructor.
      *
      * @param \SimpleXMLElement $control
-     * @throws IntacctException
      */
     public function __construct(\SimpleXMLElement $control)
     {

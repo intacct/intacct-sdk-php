@@ -17,7 +17,7 @@
 
 namespace Intacct\Exception;
 
-class ResultException extends OperationException
+class ResultException extends ResponseException
 {
 
     /**
@@ -27,7 +27,6 @@ class ResultException extends OperationException
      * @param array $errors
      * @param int $code
      * @param \Exception $previous
-     * @todo add controlid, status, function, etc
      */
     public function __construct(string $message, array $errors = [], int $code = 0, \Exception $previous = null)
     {
