@@ -65,9 +65,20 @@ class MessageFormatterTest extends \PHPUnit\Framework\TestCase
             <sessiontimestamp>2016-08-22T10:58:43-07:00</sessiontimestamp>
         </authentication>
         <result>
+              <status>success</status>
+              <function>test1</function>
+              <controlid>testControlId</controlid>
+              <data>
+                    <api>
+                          <sessionid>fAkESesSiOnId..</sessionid>
+                          <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                    </api>
+              </data>
+        </result>
+        <result>
             <status>success</status>
             <function>get_list</function>
-            <controlid>test1</controlid>
+            <controlid>test2</controlid>
             <listtype start="0" end="0" total="1">vendor</listtype>
             <data>
                 <vendor>
@@ -84,7 +95,7 @@ class MessageFormatterTest extends \PHPUnit\Framework\TestCase
         <result>
             <status>success</status>
             <function>readByQuery</function>
-            <controlid>test2</controlid>
+            <controlid>test3</controlid>
             <data listtype="vendor" count="1" totalcount="1" numremaining="0" resultId="">
                 <vendor>
                     <RECORDNO>4</RECORDNO>
@@ -110,6 +121,9 @@ EOF;
         $this->assertNotContains('<password>pass123!</password>', $message);
         $this->assertNotContains('<password>P@ssW0rd!123</password>', $message);
         $this->assertContains('<password>REDACTED</password>', $message);
+
+        $this->assertNotContains('<sessionid>fAkESesSiOnId..</sessionid>', $message);
+        $this->assertContains('<sessionid>REDACTED</sessionid>', $message);
 
         $this->assertNotContains('<taxid>99-9999999</taxid>', $message);
         $this->assertNotContains('<TAXID>99-9999999</TAXID>', $message);

@@ -152,10 +152,12 @@ class RequestHandler
 
         if ($this->getClientConfig()->getLogger()) {
             //push the logger middleware to the top of the stack
-            $handler->push(Middleware::log(
-                $this->getClientConfig()->getLogger(),
-                $this->getClientConfig()->getLogMessageFormatter(),
-                $this->getClientConfig()->getLogLevel())
+            $handler->push(
+                Middleware::log(
+                    $this->getClientConfig()->getLogger(),
+                    $this->getClientConfig()->getLogMessageFormatter(),
+                    $this->getClientConfig()->getLogLevel()
+                )
             );
         }
         
