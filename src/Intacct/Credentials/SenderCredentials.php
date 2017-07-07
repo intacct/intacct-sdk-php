@@ -45,7 +45,9 @@ class SenderCredentials
 
     public function __construct(ClientConfig $config)
     {
-        $envProfileName = getenv(static::SENDER_PROFILE_ENV_NAME) ?? static::DEFAULT_SENDER_PROFILE;
+        $envProfileName = getenv(static::SENDER_PROFILE_ENV_NAME)
+            ? getenv(static::SENDER_PROFILE_ENV_NAME)
+            : static::DEFAULT_SENDER_PROFILE;
 
         if (!$config->getProfileName()) {
             $config->setProfileName($envProfileName);
