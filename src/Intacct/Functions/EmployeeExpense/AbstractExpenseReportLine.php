@@ -31,7 +31,7 @@ abstract class AbstractExpenseReportLine
     /** @var string */
     protected $glAccountNumber;
 
-    /** @var string|float */
+    /** @var float */
     protected $reimbursementAmount;
 
     /** @var string */

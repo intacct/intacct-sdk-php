@@ -23,7 +23,7 @@ abstract class AbstractStatisticalJournalEntryLine extends AbstractGlEntry
     /** @var string */
     protected $statAccountNumber;
 
-    /** @var string|float|int */
+    /** @var float|int */
     protected $amount;
 
     /**

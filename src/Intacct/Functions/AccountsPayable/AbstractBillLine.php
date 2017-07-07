@@ -34,7 +34,7 @@ abstract class AbstractBillLine
     /** @var string */
     protected $offsetGLAccountNumber;
 
-    /** @var string|float */
+    /** @var float */
     protected $transactionAmount;
 
     /** @var string */
@@ -49,10 +49,10 @@ abstract class AbstractBillLine
     /** @var string */
     protected $key;
 
-    /** @var string|float */
+    /** @var float */
     protected $totalPaid;
 
-    /** @var string|float */
+    /** @var float */
     protected $totalDue;
 
     /** @var bool */
