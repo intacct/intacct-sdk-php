@@ -44,6 +44,7 @@ class SessionProvider
             new ApiSessionCreate(),
         ];
         $response = $handler->executeOnline($content);
+        $authentication = $response->getAuthentication();
         $result = $response->getResult();
 
         $result->ensureStatusSuccess(); // throw any result errors
@@ -53,6 +54,9 @@ class SessionProvider
 
         $config->setSessionId(strval($api->sessionid));
         $config->setEndpointUrl(strval($api->endpoint));
+
+        $config->setCompanyId(strval($authentication->getCompanyId()));
+        $config->setUserId(strval($authentication->getUserId()));
 
         $config->setCredentials(new SessionCredentials($config, new SenderCredentials($config)));
 
