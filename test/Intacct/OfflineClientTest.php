@@ -61,13 +61,53 @@ EOF;
         $requestConfig = new RequestConfig();
         $requestConfig->setPolicyId('asyncPolicyId');
 
-        $content = [
-            new ApiSessionCreate('func1UnitTest')
+        $client = new OfflineClient($clientConfig);
+
+        $response = $client->execute(new ApiSessionCreate('func1UnitTest'), $requestConfig);
+
+        $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
+    }
+
+    public function testExecuteBatch()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <acknowledgement>
+            <status>success</status>
+      </acknowledgement>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
         ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsender');
+        $clientConfig->setSenderPassword('testsendpass');
+        $clientConfig->setSessionId('testsession..');
+        $clientConfig->setMockHandler($mock);
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setPolicyId('asyncPolicyId');
 
         $client = new OfflineClient($clientConfig);
 
-        $response = $client->execute($content, $requestConfig);
+        $response = $client->executeBatch([
+            new ApiSessionCreate('func1UnitTest'),
+            new ApiSessionCreate('func2UnitTest')
+        ], $requestConfig);
 
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }

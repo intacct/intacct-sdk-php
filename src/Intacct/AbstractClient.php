@@ -22,6 +22,7 @@ use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\AbstractResponse;
+use Intacct\Xml\RequestHandler;
 
 abstract class AbstractClient
 {
@@ -81,9 +82,36 @@ abstract class AbstractClient
     }
 
     /**
-     * @param FunctionInterface[] $content
+     * @param array $functions
      * @param RequestConfig $requestConfig
-     * @return AbstractResponse
+     *
+     * @return Xml\OnlineResponse
      */
-    abstract public function execute(array $content, RequestConfig $requestConfig);
+    protected function executeOnlineRequest(array $functions, RequestConfig $requestConfig = null)
+    {
+        if (!$requestConfig) {
+            $requestConfig = new RequestConfig();
+        }
+
+        $handler = new RequestHandler($this->getConfig(), $requestConfig);
+
+        return $handler->executeOnline($functions);
+    }
+
+    /**
+     * @param array $functions
+     * @param RequestConfig $requestConfig
+     *
+     * @return Xml\OfflineResponse
+     */
+    protected function executeOfflineRequest(array $functions, RequestConfig $requestConfig = null)
+    {
+        if (!$requestConfig) {
+            $requestConfig = new RequestConfig();
+        }
+
+        $handler = new RequestHandler($this->getConfig(), $requestConfig);
+
+        return $handler->executeOffline($functions);
+    }
 }

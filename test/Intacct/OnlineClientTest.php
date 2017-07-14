@@ -77,15 +77,152 @@ EOF;
         $clientConfig->setSessionId('testsession..');
         $clientConfig->setMockHandler($mock);
 
-        $content = [
-            new ApiSessionCreate('func1UnitTest')
+        $client = new OnlineClient($clientConfig);
+
+        $response = $client->execute(new ApiSessionCreate('func1UnitTest'));
+
+        $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
+    }
+
+    /**
+     * @expectedException \Intacct\Exception\ResultException
+     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest
+     */
+    public function testExecuteResultException()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>failure</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>Get API Session Failed</errorno>
+                              <description></description>
+                              <description2>Something went wrong</description2>
+                              <correction></correction>
+                        </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
         ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsender');
+        $clientConfig->setSenderPassword('testsendpass');
+        $clientConfig->setSessionId('testsession..');
+        $clientConfig->setMockHandler($mock);
 
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute($content);
+        $response = $client->execute(new ApiSessionCreate('func1UnitTest'));
+    }
 
-        $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
+    /**
+     * @expectedException \Intacct\Exception\ResultException
+     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest
+     */
+    public function testExecuteBatchTransactionResultException()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>aborted</status>
+                  <function>getAPISession</function>
+                  <controlid>func1UnitTest</controlid>
+                  <errormessage>
+                          <error>
+                                <errorno>XL03000009</errorno>
+                                <description></description>
+                                <description2>The entire transaction in this operation has been rolled back due to an error.</description2>
+                                <correction></correction>
+                          </error>
+                  </errormessage>
+            </result>
+            <result>
+                  <status>failure</status>
+                  <function>getAPISession</function>
+                  <controlid>func2UnitTest</controlid>
+                  <errormessage>
+                        <error>
+                              <errorno>Get API Session Failed</errorno>
+                              <description></description>
+                              <description2>Something went wrong</description2>
+                              <correction></correction>
+                        </error>
+                          <error>
+                                <errorno>XL03000009</errorno>
+                                <description></description>
+                                <description2>The entire transaction in this operation has been rolled back due to an error.</description2>
+                                <correction></correction>
+                          </error>
+                  </errormessage>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $mockResponse = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $mockResponse,
+        ]);
+
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsender');
+        $clientConfig->setSenderPassword('testsendpass');
+        $clientConfig->setSessionId('testsession..');
+        $clientConfig->setMockHandler($mock);
+
+        $client = new OnlineClient($clientConfig);
+
+        $requestConfig = new RequestConfig();
+        $requestConfig->setTransaction(true);
+
+        $response = $client->executeBatch([
+            new ApiSessionCreate('func1UnitTest'),
+            new ApiSessionCreate('func2UnitTest')
+        ], $requestConfig);
     }
 
     public function testLogger()
@@ -142,13 +279,9 @@ EOF;
         $clientConfig->setMockHandler($mock);
         $clientConfig->setLogger($logger);
 
-        $content = [
-            new ReadByQuery('func1UnitTest')
-        ];
-
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute($content);
+        $response = $client->execute(new ReadByQuery('func1UnitTest'));
 
         fseek($handle, 0);
         $contents = '';
