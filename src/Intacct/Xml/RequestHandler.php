@@ -170,7 +170,7 @@ class RequestHandler
                 Middleware::log(
                     $this->getClientConfig()->getLogger(),
                     $this->getClientConfig()->getLogMessageFormatter(),
-                    LogLevel::DEBUG
+                    $this->getClientConfig()->getLogLevel()
                 )
             );
         }
