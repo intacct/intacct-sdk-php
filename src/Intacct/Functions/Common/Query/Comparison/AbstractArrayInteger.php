@@ -38,8 +38,8 @@ abstract class AbstractArrayInteger extends AbstractComparison
      */
     public function setValue($value)
     {
-        if (count($value) < 1 || count($value) > 1000) {
-            throw new \OutOfRangeException('Comparison value array item count must be between 1 and 1000');
+        if (count($value) > 1000) {
+            throw new \OutOfRangeException('Comparison value array item count cannot exceed 1000');
         }
         foreach ($value as $key => $item) {
             if (!is_int($item)) {
