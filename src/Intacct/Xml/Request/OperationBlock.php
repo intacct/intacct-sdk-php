@@ -30,11 +30,59 @@ class OperationBlock
     /** @var bool */
     private $transaction;
 
+    /**
+     * @return bool
+     */
+    public function isTransaction(): bool
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * @param bool $transaction
+     */
+    public function setTransaction(bool $transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
     /** @var AuthenticationInterface */
     private $authentication;
 
+    /**
+     * @return AuthenticationInterface
+     */
+    public function getAuthentication(): AuthenticationInterface
+    {
+        return $this->authentication;
+    }
+
+    /**
+     * @param AuthenticationInterface $authentication
+     */
+    public function setAuthentication(AuthenticationInterface $authentication)
+    {
+        $this->authentication = $authentication;
+    }
+
     /** @var FunctionInterface[] */
     private $content;
+
+    /**
+     * @return FunctionInterface[]
+     */
+    public function getContent(): array
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param FunctionInterface[] $content
+     */
+    public function setContent(array $content)
+    {
+        $this->content = $content;
+    }
 
     /**
      * OperationBlock constructor.
@@ -58,7 +106,7 @@ class OperationBlock
             ));
         } elseif ($clientConfig->getSessionId()) {
             $this->setAuthentication(new SessionAuthentication($clientConfig->getSessionId()));
-        } else if ($clientConfig->getCompanyId() && $clientConfig->getUserId() && $clientConfig->getUserPassword()) {
+        } elseif ($clientConfig->getCompanyId() && $clientConfig->getUserId() && $clientConfig->getUserPassword()) {
             $this->setAuthentication(new LoginAuthentication(
                 $clientConfig->getUserId(),
                 $clientConfig->getCompanyId(),
@@ -72,54 +120,6 @@ class OperationBlock
         }
         
         $this->setContent($content);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isTransaction(): bool
-    {
-        return $this->transaction;
-    }
-
-    /**
-     * @param bool $transaction
-     */
-    public function setTransaction(bool $transaction)
-    {
-        $this->transaction = $transaction;
-    }
-
-    /**
-     * @return AuthenticationInterface
-     */
-    public function getAuthentication(): AuthenticationInterface
-    {
-        return $this->authentication;
-    }
-
-    /**
-     * @param AuthenticationInterface $authentication
-     */
-    public function setAuthentication(AuthenticationInterface $authentication)
-    {
-        $this->authentication = $authentication;
-    }
-
-    /**
-     * @return FunctionInterface[]
-     */
-    public function getContent(): array
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param FunctionInterface[] $content
-     */
-    public function setContent(array $content)
-    {
-        $this->content = $content;
     }
 
     /**

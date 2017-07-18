@@ -279,7 +279,7 @@ class ClientConfig
     /**
      * @return MockHandler
      */
-    public function getMockHandler() //: MockHandler 7.0 does not support nullables
+    public function getMockHandler()
     {
         return $this->mockHandler;
     }

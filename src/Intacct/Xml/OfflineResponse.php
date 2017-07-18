@@ -26,6 +26,22 @@ class OfflineResponse extends AbstractResponse
     private $status;
 
     /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * OfflineResponse constructor.
      *
      * @param string $body
@@ -41,21 +57,5 @@ class OfflineResponse extends AbstractResponse
         }
 
         $this->setStatus(strval($this->getXml()->acknowledgement[0]->status));
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    private function setStatus(string $status)
-    {
-        $this->status = $status;
     }
 }

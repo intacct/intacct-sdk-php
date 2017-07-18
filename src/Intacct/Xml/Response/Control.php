@@ -25,17 +25,97 @@ class Control
     /** @var string */
     private $status;
 
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
     /** @var string */
     private $senderId;
+
+    /**
+     * @return string
+     */
+    public function getSenderId(): string
+    {
+        return $this->senderId;
+    }
+
+    /**
+     * @param string $senderId
+     */
+    private function setSenderId(string $senderId)
+    {
+        $this->senderId = $senderId;
+    }
 
     /** @var string */
     private $controlId;
 
+    /**
+     * @return string
+     */
+    public function getControlId(): string
+    {
+        return $this->controlId;
+    }
+
+    /**
+     * @param string $controlId
+     */
+    private function setControlId(string $controlId)
+    {
+        $this->controlId = $controlId;
+    }
+
     /** @var string */
     private $uniqueId;
 
+    /**
+     * @return string
+     */
+    public function getUniqueId(): string
+    {
+        return $this->uniqueId;
+    }
+
+    /**
+     * @param string $uniqueId
+     */
+    private function setUniqueId(string $uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
+    }
+
     /** @var string */
     private $dtdVersion;
+
+    /**
+     * @return string
+     */
+    public function getDtdVersion(): string
+    {
+        return $this->dtdVersion;
+    }
+
+    /**
+     * @param string $dtdVersion
+     */
+    private function setDtdVersion(string $dtdVersion)
+    {
+        $this->dtdVersion = $dtdVersion;
+    }
 
     /**
      * Control constructor.
@@ -65,85 +145,5 @@ class Control
         $this->setControlId(strval($control->controlid));
         $this->setUniqueId(strval($control->uniqueid));
         $this->setDtdVersion(strval($control->dtdversion));
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    private function setStatus(string $status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSenderId(): string
-    {
-        return $this->senderId;
-    }
-
-    /**
-     * @param string $senderId
-     */
-    private function setSenderId(string $senderId)
-    {
-        $this->senderId = $senderId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getControlId(): string
-    {
-        return $this->controlId;
-    }
-
-    /**
-     * @param string $controlId
-     */
-    private function setControlId(string $controlId)
-    {
-        $this->controlId = $controlId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUniqueId(): string
-    {
-        return $this->uniqueId;
-    }
-
-    /**
-     * @param string $uniqueId
-     */
-    private function setUniqueId(string $uniqueId)
-    {
-        $this->uniqueId = $uniqueId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDtdVersion(): string
-    {
-        return $this->dtdVersion;
-    }
-
-    /**
-     * @param string $dtdVersion
-     */
-    private function setDtdVersion(string $dtdVersion)
-    {
-        $this->dtdVersion = $dtdVersion;
     }
 }

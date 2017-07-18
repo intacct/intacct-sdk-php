@@ -30,7 +30,7 @@ class OfflineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
-    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null)
+    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OfflineResponse
     {
         return $this->executeOfflineRequest([ $function ], $requestConfig);
     }
@@ -42,7 +42,7 @@ class OfflineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
-    public function executeBatch(array $functions, RequestConfig $requestConfig = null)
+    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OfflineResponse
     {
         return $this->executeOfflineRequest($functions, $requestConfig);
     }

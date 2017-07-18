@@ -30,7 +30,7 @@ class OnlineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OnlineResponse
      */
-    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null)
+    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OnlineResponse
     {
         $response = $this->executeOnlineRequest([ $function ], $requestConfig);
 
@@ -46,7 +46,7 @@ class OnlineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OnlineResponse
      */
-    public function executeBatch(array $functions, RequestConfig $requestConfig = null)
+    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OnlineResponse
     {
         $response = $this->executeOnlineRequest($functions, $requestConfig);
 

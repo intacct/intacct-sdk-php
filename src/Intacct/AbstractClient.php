@@ -38,6 +38,22 @@ abstract class AbstractClient
     private $config;
 
     /**
+     * @return ClientConfig
+     */
+    public function getConfig(): ClientConfig
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param ClientConfig $config
+     */
+    public function setConfig(ClientConfig $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
      * AbstractClient constructor.
      *
      * @param ClientConfig $config
@@ -63,22 +79,6 @@ abstract class AbstractClient
             $config->setCredentials(new LoginCredentials($config, new SenderCredentials($config)));
         }
         $this->setConfig($config);
-    }
-
-    /**
-     * @return ClientConfig
-     */
-    public function getConfig(): ClientConfig
-    {
-        return $this->config;
-    }
-
-    /**
-     * @param ClientConfig $config
-     */
-    public function setConfig(ClientConfig $config)
-    {
-        $this->config = $config;
     }
 
     /**

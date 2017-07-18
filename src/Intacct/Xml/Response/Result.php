@@ -26,32 +26,192 @@ class Result
     /** @var string */
     private $status;
 
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
     /** @var string */
     private $function;
+
+    /**
+     * @return string
+     */
+    public function getFunction(): string
+    {
+        return $this->function;
+    }
+
+    /**
+     * @param string $function
+     */
+    private function setFunction(string $function)
+    {
+        $this->function = $function;
+    }
 
     /** @var string */
     private $controlId;
 
+    /**
+     * @return string
+     */
+    public function getControlId(): string
+    {
+        return $this->controlId;
+    }
+
+    /**
+     * @param string $controlId
+     */
+    private function setControlId(string $controlId)
+    {
+        $this->controlId = $controlId;
+    }
+
     /** @var \SimpleXMLElement */
     private $data;
+
+    /**
+     * @return \SimpleXMLElement
+     */
+    public function getData(): \SimpleXMLElement
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param \SimpleXMLElement $data
+     */
+    private function setData(\SimpleXMLElement $data)
+    {
+        $this->data = $data;
+    }
 
     /** @var string */
     private $listType;
 
+    /**
+     * @return string
+     */
+    public function getListType(): string
+    {
+        return $this->listType;
+    }
+
+    /**
+     * @param string $listType
+     */
+    private function setListType(string $listType)
+    {
+        $this->listType = $listType;
+    }
+
     /** @var int */
     private $count;
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    /**
+     * @param int $count
+     */
+    private function setCount(int $count)
+    {
+        $this->count = $count;
+    }
 
     /** @var int */
     private $totalCount;
 
+    /**
+     * @return int
+     */
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param int $totalCount
+     */
+    private function setTotalCount(int $totalCount)
+    {
+        $this->totalCount = $totalCount;
+    }
+
     /** @var int */
     private $numRemaining;
+
+    /**
+     * @return int
+     */
+    public function getNumRemaining(): int
+    {
+        return $this->numRemaining;
+    }
+
+    /**
+     * @param int $numRemaining
+     */
+    private function setNumRemaining(int $numRemaining)
+    {
+        $this->numRemaining = $numRemaining;
+    }
 
     /** @var string */
     private $resultId;
 
+    /**
+     * @return string
+     */
+    public function getResultId(): string
+    {
+        return $this->resultId;
+    }
+
+    /**
+     * @param string $resultId
+     */
+    private function setResultId(string $resultId)
+    {
+        $this->resultId = $resultId;
+    }
+
     /** @var array */
     private $errors;
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param array $errors
+     */
+    private function setErrors(array $errors)
+    {
+        $this->errors = $errors;
+    }
 
     /**
      * Result constructor.
@@ -116,7 +276,10 @@ class Result
     public function ensureStatusSuccess()
     {
         if ($this->getStatus() !== 'success') {
-            throw new ResultException('Result status: ' . $this->getStatus() . ' for Control ID: ' . $this->getControlId(), $this->getErrors());
+            throw new ResultException(
+                'Result status: ' . $this->getStatus() . ' for Control ID: ' . $this->getControlId(),
+                $this->getErrors()
+            );
         }
     }
 
@@ -128,167 +291,10 @@ class Result
     public function ensureStatusNotFailure()
     {
         if ($this->getStatus() === 'failure') {
-            throw new ResultException('Result status: ' . $this->getStatus() . ' for Control ID: ' . $this->getControlId(), $this->getErrors());
+            throw new ResultException(
+                'Result status: ' . $this->getStatus() . ' for Control ID: ' . $this->getControlId(),
+                $this->getErrors()
+            );
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    private function setStatus(string $status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFunction(): string
-    {
-        return $this->function;
-    }
-
-    /**
-     * @param string $function
-     */
-    private function setFunction(string $function)
-    {
-        $this->function = $function;
-    }
-
-    /**
-     * @return string
-     */
-    public function getControlId(): string
-    {
-        return $this->controlId;
-    }
-
-    /**
-     * @param string $controlId
-     */
-    private function setControlId(string $controlId)
-    {
-        $this->controlId = $controlId;
-    }
-
-    /**
-     * @return \SimpleXMLElement
-     */
-    public function getData(): \SimpleXMLElement
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param \SimpleXMLElement $data
-     */
-    private function setData(\SimpleXMLElement $data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * @return string
-     */
-    public function getListType(): string
-    {
-        return $this->listType;
-    }
-
-    /**
-     * @param string $listType
-     */
-    private function setListType(string $listType)
-    {
-        $this->listType = $listType;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
-    /**
-     * @param int $count
-     */
-    private function setCount(int $count)
-    {
-        $this->count = $count;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    /**
-     * @param int $totalCount
-     */
-    private function setTotalCount(int $totalCount)
-    {
-        $this->totalCount = $totalCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNumRemaining(): int
-    {
-        return $this->numRemaining;
-    }
-
-    /**
-     * @param int $numRemaining
-     */
-    private function setNumRemaining(int $numRemaining)
-    {
-        $this->numRemaining = $numRemaining;
-    }
-
-    /**
-     * @return string
-     */
-    public function getResultId(): string
-    {
-        return $this->resultId;
-    }
-
-    /**
-     * @param string $resultId
-     */
-    private function setResultId(string $resultId)
-    {
-        $this->resultId = $resultId;
-    }
-
-    /**
-     * @return array
-     */
-    public function getErrors(): array
-    {
-        return $this->errors;
-    }
-
-    /**
-     * @param array $errors
-     */
-    private function setErrors(array $errors)
-    {
-        $this->errors = $errors;
     }
 }

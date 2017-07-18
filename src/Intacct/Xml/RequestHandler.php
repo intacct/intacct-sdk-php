@@ -27,7 +27,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Intacct\RequestConfig;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LogLevel;
 
 class RequestHandler
 {
@@ -38,14 +37,78 @@ class RequestHandler
     /** @var ClientConfig */
     private $clientConfig;
 
+    /**
+     * @return ClientConfig
+     */
+    public function getClientConfig(): ClientConfig
+    {
+        return $this->clientConfig;
+    }
+
+    /**
+     * @param ClientConfig $clientConfig
+     */
+    public function setClientConfig(ClientConfig $clientConfig)
+    {
+        $this->clientConfig = $clientConfig;
+    }
+
     /** @var RequestConfig */
     private $requestConfig;
+
+    /**
+     * @return RequestConfig
+     */
+    public function getRequestConfig(): RequestConfig
+    {
+        return $this->requestConfig;
+    }
+
+    /**
+     * @param RequestConfig $requestConfig
+     */
+    public function setRequestConfig(RequestConfig $requestConfig)
+    {
+        $this->requestConfig = $requestConfig;
+    }
 
     /** @var string */
     private $endpointUrl;
 
+    /**
+     * @return string
+     */
+    public function getEndpointUrl(): string
+    {
+        return $this->endpointUrl;
+    }
+
+    /**
+     * @param string $endpointUrl
+     */
+    public function setEndpointUrl(string $endpointUrl)
+    {
+        $this->endpointUrl = $endpointUrl;
+    }
+
     /** @var array */
     protected $history = [];
+
+    /**
+     * @return array
+     */
+    public function getHistory(): array
+    {
+        return $this->history;
+    }
+
+    /**
+     * @param array $history
+     */
+    protected function setHistory(array $history)
+    {
+        $this->history = $history;
+    }
 
     /**
      * RequestHandler constructor.
@@ -140,7 +203,12 @@ class RequestHandler
             if ($error instanceof \GuzzleHttp\Exception\ServerException) {
                 //retry if receiving http 5xx error codes
                 $response = $error->getResponse();
-                if (in_array($response->getStatusCode(), $this->getRequestConfig()->getNoRetryServerErrorCodes()) === true) {
+                if (
+                    in_array(
+                        $response->getStatusCode(),
+                        $this->getRequestConfig()->getNoRetryServerErrorCodes()
+                    ) === true
+                ) {
                     return false;
                 } else {
                     return true;
@@ -191,69 +259,5 @@ class RequestHandler
         $response = $client->post($this->getEndpointUrl(), $options);
 
         return $response;
-    }
-
-    /**
-     * @return ClientConfig
-     */
-    public function getClientConfig(): ClientConfig
-    {
-        return $this->clientConfig;
-    }
-
-    /**
-     * @param ClientConfig $clientConfig
-     */
-    public function setClientConfig(ClientConfig $clientConfig)
-    {
-        $this->clientConfig = $clientConfig;
-    }
-
-    /**
-     * @return RequestConfig
-     */
-    public function getRequestConfig(): RequestConfig
-    {
-        return $this->requestConfig;
-    }
-
-    /**
-     * @param RequestConfig $requestConfig
-     */
-    public function setRequestConfig(RequestConfig $requestConfig)
-    {
-        $this->requestConfig = $requestConfig;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEndpointUrl(): string
-    {
-        return $this->endpointUrl;
-    }
-
-    /**
-     * @param string $endpointUrl
-     */
-    public function setEndpointUrl(string $endpointUrl)
-    {
-        $this->endpointUrl = $endpointUrl;
-    }
-
-    /**
-     * @return array
-     */
-    public function getHistory(): array
-    {
-        return $this->history;
-    }
-
-    /**
-     * @param array $history
-     */
-    protected function setHistory(array $history)
-    {
-        $this->history = $history;
     }
 }

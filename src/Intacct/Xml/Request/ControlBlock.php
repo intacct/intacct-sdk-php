@@ -26,41 +26,6 @@ class ControlBlock
 
     /** @var string */
     private $senderId;
-    
-    /** @var string */
-    private $password;
-    
-    /** @var string */
-    private $controlId;
-    
-    /** @var bool */
-    private $uniqueId;
-    
-    /** @var string */
-    private $dtdVersion;
-    
-    /** @var string */
-    private $policyId;
-    
-    /** @var bool */
-    private $includeWhitespace;
-
-    /**
-     * ControlBlock constructor.
-     *
-     * @param ClientConfig $clientConfig
-     * @param RequestConfig $requestConfig
-     */
-    public function __construct(ClientConfig $clientConfig, RequestConfig $requestConfig)
-    {
-        $this->setSenderId($clientConfig->getSenderId());
-        $this->setPassword($clientConfig->getSenderPassword());
-        $this->setControlId($requestConfig->getControlId());
-        $this->setUniqueId($requestConfig->isUniqueId());
-        $this->setPolicyId($requestConfig->getPolicyId());
-        $this->setIncludeWhitespace(false);
-        $this->setDtdVersion('3.0');
-    }
 
     /**
      * @return string
@@ -82,6 +47,9 @@ class ControlBlock
         }
         $this->senderId = $senderId;
     }
+    
+    /** @var string */
+    private $password;
 
     /**
      * @return string
@@ -103,6 +71,9 @@ class ControlBlock
         }
         $this->password = $password;
     }
+    
+    /** @var string */
+    private $controlId;
 
     /**
      * @return string
@@ -125,6 +96,9 @@ class ControlBlock
         }
         $this->controlId = $controlId;
     }
+    
+    /** @var bool */
+    private $uniqueId;
 
     /**
      * @return bool
@@ -141,6 +115,9 @@ class ControlBlock
     {
         $this->uniqueId = $uniqueId;
     }
+    
+    /** @var string */
+    private $dtdVersion;
 
     /**
      * @return string
@@ -157,6 +134,9 @@ class ControlBlock
     {
         $this->dtdVersion = $dtdVersion;
     }
+    
+    /** @var string */
+    private $policyId;
 
     /**
      * @return string
@@ -173,6 +153,9 @@ class ControlBlock
     {
         $this->policyId = $policyId;
     }
+    
+    /** @var bool */
+    private $includeWhitespace;
 
     /**
      * @return bool
@@ -185,9 +168,26 @@ class ControlBlock
     /**
      * @param bool $includeWhitespace
      */
-    private function setIncludeWhitespace(bool $includeWhitespace)
+    public function setIncludeWhitespace(bool $includeWhitespace)
     {
         $this->includeWhitespace = $includeWhitespace;
+    }
+
+    /**
+     * ControlBlock constructor.
+     *
+     * @param ClientConfig $clientConfig
+     * @param RequestConfig $requestConfig
+     */
+    public function __construct(ClientConfig $clientConfig, RequestConfig $requestConfig)
+    {
+        $this->setSenderId($clientConfig->getSenderId());
+        $this->setPassword($clientConfig->getSenderPassword());
+        $this->setControlId($requestConfig->getControlId());
+        $this->setUniqueId($requestConfig->isUniqueId());
+        $this->setPolicyId($requestConfig->getPolicyId());
+        $this->setIncludeWhitespace(false);
+        $this->setDtdVersion('3.0');
     }
 
     /**

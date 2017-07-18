@@ -24,6 +24,22 @@ class ErrorMessage
     private $errors;
 
     /**
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param array $errors
+     */
+    private function setErrors(array $errors)
+    {
+        $this->errors = $errors;
+    }
+
+    /**
      * ErrorMessage constructor.
      *
      * @param \SimpleXMLElement|null $errorMessage
@@ -56,21 +72,5 @@ class ErrorMessage
     private function cleanse($value)
     {
         return filter_var(strval($value), FILTER_SANITIZE_STRING);
-    }
-
-    /**
-     * @return array
-     */
-    public function getErrors(): array
-    {
-        return $this->errors;
-    }
-
-    /**
-     * @param array $errors
-     */
-    private function setErrors(array $errors)
-    {
-        $this->errors = $errors;
     }
 }

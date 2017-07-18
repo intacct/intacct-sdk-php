@@ -23,7 +23,7 @@ interface CredentialsInterface
     /**
      * @return SenderCredentials
      */
-    public function getSenderCredentials();
+    public function getSenderCredentials(): SenderCredentials;
 
     /**
      * @param SenderCredentials $senderCreds
