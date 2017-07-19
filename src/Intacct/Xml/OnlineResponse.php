@@ -29,8 +29,57 @@ class OnlineResponse extends AbstractResponse
     /** @var Authentication */
     private $authentication;
 
+    /**
+     * @return Authentication
+     */
+    public function getAuthentication(): Authentication
+    {
+        return $this->authentication;
+    }
+
+    /**
+     * @param Authentication $authentication
+     */
+    private function setAuthentication(Authentication $authentication)
+    {
+        $this->authentication = $authentication;
+    }
+
     /** @var Result[] */
     private $results = [];
+
+    /**
+     * @return Result[]
+     */
+    public function getResults(): array
+    {
+        return $this->results;
+    }
+
+    /**
+     * @param Result[] $results
+     */
+    private function setResults(array $results)
+    {
+        $this->results = $results;
+    }
+
+    /**
+     * @param int $key
+     * @return Result
+     */
+    public function getResult($key = 0): Result
+    {
+        return $this->results[$key];
+    }
+
+    /**
+     * @param Result $result
+     */
+    private function addResult(Result $result)
+    {
+        $this->results[] = $result;
+    }
 
     /**
      * OnlineResponse constructor.
@@ -63,56 +112,7 @@ class OnlineResponse extends AbstractResponse
         }
 
         foreach ($this->getXml()->operation->result as $result) {
-            $this->setResult(new Result($result));
+            $this->addResult(new Result($result));
         }
-    }
-
-    /**
-     * @return Authentication
-     */
-    public function getAuthentication(): Authentication
-    {
-        return $this->authentication;
-    }
-
-    /**
-     * @param Authentication $authentication
-     */
-    private function setAuthentication(Authentication $authentication)
-    {
-        $this->authentication = $authentication;
-    }
-
-    /**
-     * @return Result[]
-     */
-    public function getResults(): array
-    {
-        return $this->results;
-    }
-
-    /**
-     * @param Result[] $results
-     */
-    private function setResults(array $results)
-    {
-        $this->results = $results;
-    }
-
-    /**
-     * @param int $key
-     * @return Result
-     */
-    public function getResult($key = 0): Result
-    {
-        return $this->results[$key];
-    }
-
-    /**
-     * @param Result $result
-     */
-    private function setResult(Result $result)
-    {
-        $this->results[] = $result;
     }
 }

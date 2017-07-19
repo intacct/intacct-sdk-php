@@ -26,6 +26,27 @@ class SessionAuthentication implements AuthenticationInterface
     private $sessionId;
 
     /**
+     * @return string
+     */
+    public function getSessionId(): string
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param string $sessionId
+     */
+    public function setSessionId(string $sessionId)
+    {
+        if (!$sessionId) {
+            throw new \InvalidArgumentException(
+                'Session ID is required and cannot be blank'
+            );
+        }
+        $this->sessionId = $sessionId;
+    }
+
+    /**
      * SessionAuthentication constructor.
      *
      * @param string $sessionId
@@ -45,26 +66,5 @@ class SessionAuthentication implements AuthenticationInterface
         $xml->startElement('authentication');
         $xml->writeElement('sessionid', $this->getSessionId(), true);
         $xml->endElement(); //authentication
-    }
-
-    /**
-     * @return string
-     */
-    public function getSessionId(): string
-    {
-        return $this->sessionId;
-    }
-
-    /**
-     * @param string $sessionId
-     */
-    public function setSessionId(string $sessionId)
-    {
-        if (!$sessionId) {
-            throw new \InvalidArgumentException(
-                'Session ID is required and cannot be blank'
-            );
-        }
-        $this->sessionId = $sessionId;
     }
 }

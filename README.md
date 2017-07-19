@@ -1,6 +1,9 @@
 # Intacct SDK for PHP
 
 [![Build Status](https://travis-ci.org/Intacct/intacct-sdk-php.svg?branch=master)](https://travis-ci.org/Intacct/intacct-sdk-php)
+[![Latest Stable Version](https://poser.pugx.org/intacct/intacct-sdk-php/v/stable)](https://packagist.org/packages/intacct/intacct-sdk-php)
+[![Latest Unstable Version](https://poser.pugx.org/intacct/intacct-sdk-php/v/unstable)](https://packagist.org/packages/intacct/intacct-sdk-php)
+[![License](https://poser.pugx.org/intacct/intacct-sdk-php/license)](https://packagist.org/packages/intacct/intacct-sdk-php)
 
 ## Resources
 

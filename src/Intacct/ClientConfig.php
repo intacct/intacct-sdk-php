@@ -21,6 +21,7 @@ use GuzzleHttp\Handler\MockHandler;
 use Intacct\Credentials\CredentialsInterface;
 use Intacct\Logging\MessageFormatter;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 class ClientConfig
 {
@@ -234,6 +235,25 @@ class ClientConfig
         $this->logger = $logger;
     }
 
+    /** @var string */
+    private $logLevel;
+
+    /**
+     * @return string
+     */
+    public function getLogLevel(): string
+    {
+        return $this->logLevel;
+    }
+
+    /**
+     * @param string $logLevel
+     */
+    public function setLogLevel(string $logLevel)
+    {
+        $this->logLevel = $logLevel;
+    }
+
     /** @var MessageFormatter */
     private $logMessageFormatter;
 
@@ -259,7 +279,7 @@ class ClientConfig
     /**
      * @return MockHandler
      */
-    public function getMockHandler() //: MockHandler 7.0 does not support nullables
+    public function getMockHandler()
     {
         return $this->mockHandler;
     }
@@ -277,6 +297,7 @@ class ClientConfig
      */
     public function __construct()
     {
+        $this->setLogLevel(LogLevel::DEBUG);
         $this->setLogMessageFormatter(new MessageFormatter());
     }
 }

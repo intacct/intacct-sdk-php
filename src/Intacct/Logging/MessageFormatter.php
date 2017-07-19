@@ -32,7 +32,7 @@ final class MessageFormatter extends \GuzzleHttp\MessageFormatter
     /**
      * @inheritdoc
      */
-    public function __construct($template = self::CLF . self::DEBUG)
+    public function __construct($template = self::DEBUG)
     {
         parent::__construct($template);
     }

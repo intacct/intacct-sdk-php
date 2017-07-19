@@ -28,8 +28,40 @@ abstract class AbstractResponse
     /** @var \SimpleXMLElement */
     private $xml;
 
+    /**
+     * @return \SimpleXMLElement
+     */
+    protected function getXml(): \SimpleXMLElement
+    {
+        return $this->xml;
+    }
+
+    /**
+     * @param \SimpleXMLElement $xml
+     */
+    private function setXml(\SimpleXMLElement $xml)
+    {
+        $this->xml = $xml;
+    }
+
     /** @var Control */
     private $control;
+
+    /**
+     * @return Control
+     */
+    public function getControl(): Control
+    {
+        return $this->control;
+    }
+
+    /**
+     * @param Control $control
+     */
+    private function setControl(Control $control)
+    {
+        $this->control = $control;
+    }
 
     /**
      * AbstractResponse constructor.
@@ -60,37 +92,5 @@ abstract class AbstractResponse
             }
             throw new ResponseException('Response control status failure', $errors);
         }
-    }
-
-    /**
-     * @return \SimpleXMLElement
-     */
-    protected function getXml(): \SimpleXMLElement
-    {
-        return $this->xml;
-    }
-
-    /**
-     * @param \SimpleXMLElement $xml
-     */
-    private function setXml(\SimpleXMLElement $xml)
-    {
-        $this->xml = $xml;
-    }
-
-    /**
-     * @return Control
-     */
-    public function getControl(): Control
-    {
-        return $this->control;
-    }
-
-    /**
-     * @param Control $control
-     */
-    private function setControl(Control $control)
-    {
-        $this->control = $control;
     }
 }

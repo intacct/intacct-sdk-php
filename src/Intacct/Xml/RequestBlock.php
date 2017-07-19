@@ -29,11 +29,59 @@ class RequestBlock
     /** @var string */
     protected $encoding;
 
+    /**
+     * @return string
+     */
+    public function getEncoding(): string
+    {
+        return $this->encoding;
+    }
+
+    /**
+     * @param string $encoding
+     */
+    public function setEncoding(string $encoding)
+    {
+        $this->encoding = $encoding;
+    }
+
     /** @var ControlBlock */
     protected $controlBlock;
 
+    /**
+     * @return ControlBlock
+     */
+    public function getControlBlock(): ControlBlock
+    {
+        return $this->controlBlock;
+    }
+
+    /**
+     * @param ControlBlock $controlBlock
+     */
+    public function setControlBlock(ControlBlock $controlBlock)
+    {
+        $this->controlBlock = $controlBlock;
+    }
+
     /** @var OperationBlock */
     protected $operationBlock;
+
+    /**
+     * @return OperationBlock
+     */
+    public function getOperationBlock(): OperationBlock
+    {
+        return $this->operationBlock;
+    }
+
+    /**
+     * @param OperationBlock $operationBlock
+     */
+    public function setOperationBlock(OperationBlock $operationBlock)
+    {
+        $this->operationBlock = $operationBlock;
+    }
 
     /**
      * RequestBlock constructor.
@@ -69,53 +117,5 @@ class RequestBlock
         $xml->endElement(); //request
 
         return $xml;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEncoding(): string
-    {
-        return $this->encoding;
-    }
-
-    /**
-     * @param string $encoding
-     */
-    public function setEncoding(string $encoding)
-    {
-        $this->encoding = $encoding;
-    }
-
-    /**
-     * @return ControlBlock
-     */
-    public function getControlBlock(): ControlBlock
-    {
-        return $this->controlBlock;
-    }
-
-    /**
-     * @param ControlBlock $controlBlock
-     */
-    public function setControlBlock(ControlBlock $controlBlock)
-    {
-        $this->controlBlock = $controlBlock;
-    }
-
-    /**
-     * @return OperationBlock
-     */
-    public function getOperationBlock(): OperationBlock
-    {
-        return $this->operationBlock;
-    }
-
-    /**
-     * @param OperationBlock $operationBlock
-     */
-    public function setOperationBlock(OperationBlock $operationBlock)
-    {
-        $this->operationBlock = $operationBlock;
     }
 }

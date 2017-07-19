@@ -25,11 +25,59 @@ class Authentication
     /** @var string */
     private $status;
 
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    private function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
     /** @var string */
     private $userId;
 
+    /**
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param string $userId
+     */
+    private function setUserId(string $userId)
+    {
+        $this->userId = $userId;
+    }
+
     /** @var string */
     private $companyId;
+
+    /**
+     * @return string
+     */
+    public function getCompanyId(): string
+    {
+        return $this->companyId;
+    }
+
+    /**
+     * @param string $companyId
+     */
+    private function setCompanyId(string $companyId)
+    {
+        $this->companyId = $companyId;
+    }
 
     /**
      * Authentication constructor.
@@ -53,53 +101,5 @@ class Authentication
         $this->setCompanyId(strval($authentication->companyid));
         
         //TODO add getter/setter for elements: clientstatus, clientid, locationid, sessiontimestamp
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    private function setStatus(string $status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId(): string
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param string $userId
-     */
-    private function setUserId(string $userId)
-    {
-        $this->userId = $userId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCompanyId(): string
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param string $companyId
-     */
-    private function setCompanyId(string $companyId)
-    {
-        $this->companyId = $companyId;
     }
 }

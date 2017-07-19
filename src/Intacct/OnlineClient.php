@@ -19,24 +19,45 @@ namespace Intacct;
 
 use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\OnlineResponse;
-use Intacct\Xml\RequestHandler;
 
 class OnlineClient extends AbstractClient
 {
 
     /**
-     * @param FunctionInterface[] $content
+     * Execute one function to the Intacct API
+     *
+     * @param FunctionInterface $function
      * @param RequestConfig $requestConfig
      * @return OnlineResponse
      */
-    public function execute(array $content, RequestConfig $requestConfig = null)
+    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OnlineResponse
     {
-        if (!$requestConfig) {
-            $requestConfig = new RequestConfig();
+        $response = $this->executeOnlineRequest([ $function ], $requestConfig);
+
+        $response->getResult()->ensureStatusSuccess();
+
+        return $response;
+    }
+
+    /**
+     * Execute multiple functions to the Intacct API
+     *
+     * @param FunctionInterface[] $functions
+     * @param RequestConfig $requestConfig
+     * @return OnlineResponse
+     */
+    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OnlineResponse
+    {
+        $response = $this->executeOnlineRequest($functions, $requestConfig);
+
+        if ($requestConfig->isTransaction()) {
+            // If operation transaction=true, loop through to the results and
+            // throw exception when status=failure instead of status=aborted
+            foreach ($response->getResults() as $result) {
+                $result->ensureStatusNotFailure();
+            }
         }
 
-        $handler = new RequestHandler($this->getConfig(), $requestConfig);
-
-        return $handler->executeOnline($content);
+        return $response;
     }
 }

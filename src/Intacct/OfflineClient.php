@@ -19,24 +19,31 @@ namespace Intacct;
 
 use Intacct\Functions\FunctionInterface;
 use Intacct\Xml\OfflineResponse;
-use Intacct\Xml\RequestHandler;
 
 class OfflineClient extends AbstractClient
 {
 
     /**
-     * @param FunctionInterface[] $content
+     * Execute one function to the Intacct API
+     *
+     * @param FunctionInterface $function
      * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
-    public function execute(array $content, RequestConfig $requestConfig = null)
+    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OfflineResponse
     {
-        if (!$requestConfig) {
-            $requestConfig = new RequestConfig();
-        }
+        return $this->executeOfflineRequest([ $function ], $requestConfig);
+    }
 
-        $handler = new RequestHandler($this->getConfig(), $requestConfig);
-
-        return $handler->executeOffline($content);
+    /**
+     * Execute multiple functions to the Intacct API
+     *
+     * @param FunctionInterface[] $functions
+     * @param RequestConfig $requestConfig
+     * @return OfflineResponse
+     */
+    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OfflineResponse
+    {
+        return $this->executeOfflineRequest($functions, $requestConfig);
     }
 }

@@ -25,11 +25,74 @@ class LoginAuthentication implements AuthenticationInterface
     /** @var string */
     private $userId;
 
+    /**
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param string $userId
+     */
+    public function setUserId(string $userId)
+    {
+        if (!$userId) {
+            throw new \InvalidArgumentException(
+                'User ID is required and cannot be blank'
+            );
+        }
+        $this->userId = $userId;
+    }
+
     /** @var string */
     private $companyId;
 
+    /**
+     * @return string
+     */
+    public function getCompanyId(): string
+    {
+        return $this->companyId;
+    }
+
+    /**
+     * @param string $companyId
+     */
+    public function setCompanyId(string $companyId)
+    {
+        if (!$companyId) {
+            throw new \InvalidArgumentException(
+                'Company ID is required and cannot be blank'
+            );
+        }
+        $this->companyId = $companyId;
+    }
+
     /** @var string */
     private $password;
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password)
+    {
+        if (!$password) {
+            throw new \InvalidArgumentException(
+                'User Password is required and cannot be blank'
+            );
+        }
+        $this->password = $password;
+    }
 
     /**
      * LoginAuthentication constructor.
@@ -59,68 +122,5 @@ class LoginAuthentication implements AuthenticationInterface
         $xml->writeElement('password', $this->getPassword(), true);
         $xml->endElement(); //login
         $xml->endElement(); //authentication
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId(): string
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param string $userId
-     */
-    public function setUserId(string $userId)
-    {
-        if (!$userId) {
-            throw new \InvalidArgumentException(
-                'User ID is required and cannot be blank'
-            );
-        }
-        $this->userId = $userId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCompanyId(): string
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param string $companyId
-     */
-    public function setCompanyId(string $companyId)
-    {
-        if (!$companyId) {
-            throw new \InvalidArgumentException(
-                'Company ID is required and cannot be blank'
-            );
-        }
-        $this->companyId = $companyId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password)
-    {
-        if (!$password) {
-            throw new \InvalidArgumentException(
-                'User Password is required and cannot be blank'
-            );
-        }
-        $this->password = $password;
     }
 }
