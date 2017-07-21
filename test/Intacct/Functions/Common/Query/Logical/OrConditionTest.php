@@ -67,22 +67,6 @@ class OrConditionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$or);
     }
 
-    /**
-     * @expectedException \OutOfRangeException
-     * @expectedExceptionMessage Logical conditions count must be 2 or more
-     */
-    public function testConditionCountException()
-    {
-        $condition1 = new EqualToString();
-        $condition1->setField('VENDORID');
-        $condition1->setValue('V1234');
-
-        $or = new OrCondition();
-        $or->setConditions([
-            $condition1,
-        ]);
-    }
-
     public function testNestConditionsToString()
     {
         $condition1 = new EqualToString();
