@@ -41,8 +41,8 @@ class GetList extends AbstractFunction
     /** @var array */
     protected $returnFields = [];
 
-    /** @var FilterInterface[] */
-    protected $filters = [];
+    /** @var FilterInterface */
+    protected $filter;
 
     /** @var AdditionalParameter[] */
     protected $additionalParameters = [];
@@ -144,19 +144,19 @@ class GetList extends AbstractFunction
     }
 
     /**
-     * @return FilterInterface[]
+     * @return FilterInterface
      */
-    public function getFilters(): array
+    public function getFilter()
     {
-        return $this->filters;
+        return $this->filter;
     }
 
     /**
-     * @param FilterInterface[] $filters
+     * @param FilterInterface $filter
      */
-    public function setFilters(array $filters)
+    public function setFilter($filter)
     {
-        $this->filters = $filters;
+        $this->filter = $filter;
     }
 
     /**
@@ -196,11 +196,9 @@ class GetList extends AbstractFunction
         }
         $xml->writeAttribute('showprivate', $this->isShowPrivate());
 
-        if (count($this->getFilters()) > 0) {
+        if ($this->getFilter()) {
             $xml->startElement('filter');
-            foreach ($this->getFilters() as $filter) {
-                $filter->writeXml($xml);
-            }
+            $this->getFilter()->writeXml($xml);
             $xml->endElement(); //filter
         }
 
