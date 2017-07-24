@@ -87,7 +87,7 @@ EOF;
 
     public function testGetData()
     {
-        $this->assertThat($this->object->getData(), $this->isInstanceOf('SimpleXMLElement'));
+        $this->assertCount(0, $this->object->getData());
     }
 
     public function testGetErrors()
@@ -398,5 +398,153 @@ EOF;
         $this->object->ensureStatusSuccess();
 
         $this->addToAssertionCount(1);  //does not throw an exception
+    }
+
+    public function testLegacyGetListClass()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>get_list</function>
+                <controlid>ccdeafa7-4f22-49ae-b6ae-b5e1a39423e7</controlid>
+                <listtype start="0" end="1" total="2">class</listtype>
+                <data>
+                    <class>
+                        <key>C1234</key>
+                        <name>hello world</name>
+                        <description/>
+                        <parentid/>
+                        <whenmodified>07/24/2017 15:19:46</whenmodified>
+                        <status>active</status>
+                    </class>
+                    <class>
+                        <key>C1235</key>
+                        <name>hello world</name>
+                        <description/>
+                        <parentid/>
+                        <whenmodified>07/24/2017 15:20:27</whenmodified>
+                        <status>active</status>
+                    </class>
+                </data>
+            </result>
+      </operation>
+</response>
+EOF;
+
+        $response = new OnlineResponse($xml);
+
+        $result = $response->getResult();
+        $this->assertEquals(0, $result->getStart());
+        $this->assertEquals(1, $result->getEnd());
+        $this->assertEquals(2, $result->getTotalCount());
+        $this->assertCount(2, $result->getData());
+    }
+
+    public function testLegacyReadByQueryClass()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>readByQuery</function>
+                <controlid>818b0a96-3faf-4931-97e6-1cf05818ea44</controlid>
+                <data listtype="class" count="1" totalcount="2" numremaining="1" resultId="myResultId">
+                    <class>
+                        <RECORDNO>8</RECORDNO>
+                        <CLASSID>C1234</CLASSID>
+                        <NAME>hello world</NAME>
+                        <DESCRIPTION></DESCRIPTION>
+                        <STATUS>active</STATUS>
+                        <PARENTKEY></PARENTKEY>
+                        <PARENTID></PARENTID>
+                        <PARENTNAME></PARENTNAME>
+                        <WHENCREATED>07/24/2017 15:19:46</WHENCREATED>
+                        <WHENMODIFIED>07/24/2017 15:19:46</WHENMODIFIED>
+                        <CREATEDBY>9</CREATEDBY>
+                        <MODIFIEDBY>9</MODIFIEDBY>
+                        <MEGAENTITYKEY></MEGAENTITYKEY>
+                        <MEGAENTITYID></MEGAENTITYID>
+                        <MEGAENTITYNAME></MEGAENTITYNAME>
+                    </class>
+                </data>
+            </result>
+      </operation>
+</response>
+EOF;
+
+        $response = new OnlineResponse($xml);
+
+        $result = $response->getResult();
+        $this->assertEquals(1, $result->getCount());
+        $this->assertEquals(2, $result->getTotalCount());
+        $this->assertEquals(1, $result->getNumRemaining());
+        $this->assertEquals('myResultId', $result->getResultId());
+        $this->assertCount(1, $result->getData());
+    }
+
+    public function testLegacyCreateClassKey()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>create_class</function>
+                <controlid>d4814563-1e97-4708-b9c5-9a49569d2a0d</controlid>
+                <key>C1234</key>
+            </result>
+      </operation>
+</response>
+EOF;
+
+        $response = new OnlineResponse($xml);
+
+        $result = $response->getResult();
+        $this->assertEquals('C1234', $result->getKey());
     }
 }
