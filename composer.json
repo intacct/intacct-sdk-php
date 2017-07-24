@@ -32,7 +32,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Intacct\\Tests\\": "test/"
+      "Intacct\\Tests\\": "test/Intacct/"
     }
   }
 }
