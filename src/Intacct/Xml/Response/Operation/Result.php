@@ -35,6 +35,9 @@ class Result
     /** @var string */
     private $controlId;
 
+    /** @var string */
+    private $key;
+
     /** @var SimpleXMLIterator */
     private $data;
 
@@ -77,6 +80,7 @@ class Result
         $this->status = strval($result->status);
         $this->function = strval($result->function);
         $this->controlId = strval($result->controlid);
+        $this->key = strval($result->key);
 
         $status = $this->getStatus();
         if ($status !== 'success') {
@@ -141,6 +145,14 @@ class Result
     public function getControlId()
     {
         return $this->controlId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
     }
 
     /**

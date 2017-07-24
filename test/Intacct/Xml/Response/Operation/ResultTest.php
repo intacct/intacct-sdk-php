@@ -412,4 +412,40 @@ EOF;
 
         $this->addToAssertionCount(1);  //does not throw an exception
     }
+
+    public function testLegacyKey()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>create_class</function>
+                <controlid>d4814563-1e97-4708-b9c5-9a49569d2a0d</controlid>
+                <key>C1235</key>
+            </result>
+      </operation>
+</response>
+EOF;
+        $response = new SynchronousResponse($xml);
+        $operation = $response->getOperation();
+        $results = $operation->getResults();
+        $result = $results[0];
+
+        $this->assertEquals('C1235', $result->getKey());
+    }
 }
