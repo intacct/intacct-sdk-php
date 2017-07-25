@@ -50,7 +50,7 @@ class SessionProvider
         $result->ensureStatusSuccess(); // throw any result errors
 
         $data = $result->getData();
-        $api = $data->{'api'};
+        $api = $data[0];
 
         $config->setSessionId(strval($api->{'sessionid'}));
         $config->setEndpointUrl(strval($api->{'endpoint'}));

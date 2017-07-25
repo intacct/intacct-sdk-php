@@ -66,20 +66,4 @@ class AndConditionTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals($expected, (string)$and);
     }
-
-    /**
-     * @expectedException \OutOfRangeException
-     * @expectedExceptionMessage Logical conditions count must be 2 or more
-     */
-    public function testConditionCountException()
-    {
-        $condition1 = new EqualToString();
-        $condition1->setField('VENDORID');
-        $condition1->setValue('V1234');
-
-        $and = new AndCondition();
-        $and->setConditions([
-            $condition1,
-        ]);
-    }
 }

@@ -80,27 +80,27 @@ class Result
         $this->controlId = $controlId;
     }
 
-    /** @var \SimpleXMLElement */
-    private $data;
+    /** @var \SimpleXMLElement[] */
+    private $data = [];
 
     /**
-     * @return \SimpleXMLElement
+     * @return \SimpleXMLElement[]
      */
-    public function getData(): \SimpleXMLElement
+    public function getData(): array
     {
         return $this->data;
     }
 
     /**
-     * @param \SimpleXMLElement $data
+     * @param \SimpleXMLElement[] $data
      */
-    private function setData(\SimpleXMLElement $data)
+    private function setData(array $data)
     {
         $this->data = $data;
     }
 
     /** @var string */
-    private $listType;
+    private $listType = '';
 
     /**
      * @return string
@@ -119,7 +119,7 @@ class Result
     }
 
     /** @var int */
-    private $count;
+    private $count = 0;
 
     /**
      * @return int
@@ -138,7 +138,7 @@ class Result
     }
 
     /** @var int */
-    private $totalCount;
+    private $totalCount = 0;
 
     /**
      * @return int
@@ -157,7 +157,7 @@ class Result
     }
 
     /** @var int */
-    private $numRemaining;
+    private $numRemaining = 0;
 
     /**
      * @return int
@@ -176,7 +176,7 @@ class Result
     }
 
     /** @var string */
-    private $resultId;
+    private $resultId = '';
 
     /**
      * @return string
@@ -194,8 +194,65 @@ class Result
         $this->resultId = $resultId;
     }
 
+    /** @var string */
+    private $key = '';
+
+    /**
+     * @return string
+     */
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param string $key
+     */
+    public function setKey(string $key)
+    {
+        $this->key = $key;
+    }
+
+    /** @var int */
+    private $start = 0;
+
+    /**
+     * @return int
+     */
+    public function getStart(): int
+    {
+        return $this->start;
+    }
+
+    /**
+     * @param int $start
+     */
+    public function setStart(int $start)
+    {
+        $this->start = $start;
+    }
+
+    /** @var int */
+    private $end = 0;
+
+    /**
+     * @return int
+     */
+    public function getEnd(): int
+    {
+        return $this->end;
+    }
+
+    /**
+     * @param int $end
+     */
+    public function setEnd(int $end)
+    {
+        $this->end = $end;
+    }
+
     /** @var array */
-    private $errors;
+    private $errors = [];
 
     /**
      * @return array
@@ -220,19 +277,19 @@ class Result
      */
     public function __construct(\SimpleXMLElement $result)
     {
-        if (!isset($result->status)) {
+        if (!isset($result->{'status'})) {
             throw new IntacctException('Result block is missing status element');
         }
-        if (!isset($result->function)) {
+        if (!isset($result->{'function'})) {
             throw new IntacctException('Result block is missing function element');
         }
-        if (!isset($result->controlid)) {
+        if (!isset($result->{'controlid'})) {
             throw new IntacctException('Result block is missing controlid element');
         }
 
-        $this->setStatus(strval($result->status));
-        $this->setFunction(strval($result->function));
-        $this->setControlId(strval($result->controlid));
+        $this->setStatus(strval($result->{'status'}));
+        $this->setFunction(strval($result->{'function'}));
+        $this->setControlId(strval($result->{'controlid'}));
 
         if ($this->getStatus() !== 'success') {
             $errors = [];
@@ -241,29 +298,34 @@ class Result
                 $errors = $errorMessage->getErrors();
             }
             $this->setErrors($errors);
-        }
-        
-        if (isset($result->data[0])) {
-            $this->setData($result->data[0]);
-
-            if (isset($result->data[0]->attributes()->listtype)) {
-                $this->setListType(strval($result->data[0]->attributes()->listtype));
+        } else {
+            if (isset($result->{'key'})) {
+                $this->setKey(strval($result->{'key'} ?? ''));
+            } elseif (isset($result->{'listtype'})) {
+                $this->setListType(strval($result->{'listtype'} ?? ''));
+                $this->setTotalCount(intval($result->{'listtype'}->attributes()->{'total'} ?? 0));
+                $this->setStart(intval($result->{'listtype'}->attributes()->{'start'} ?? 0));
+                $this->setEnd(intval($result->{'listtype'}->attributes()->{'end'} ?? 0));
+            } elseif (isset($result->{'data'}->attributes()->{'listtype'})) {
+                $this->setListType(strval($result->{'data'}->attributes()->{'listtype'} ?? ''));
+                $this->setTotalCount(intval($result->{'data'}->attributes()->{'totalcount'} ?? 0));
+                $this->setCount(intval($result->{'data'}->attributes()->{'count'} ?? 0));
+                $this->setNumRemaining(intval($result->{'data'}->attributes()->{'numremaining'} ?? 0));
+                $this->setResultId(strval($result->{'data'}->attributes()->{'resultId'} ?? ''));
             }
 
-            if (isset($result->data[0]->attributes()->count)) {
-                $this->setCount(intval($result->data[0]->attributes()->count));
-            }
-
-            if (isset($result->data[0]->attributes()->totalcount)) {
-                $this->setTotalCount(intval($result->data[0]->attributes()->totalcount));
-            }
-
-            if (isset($result->data[0]->attributes()->numremaining)) {
-                $this->setNumRemaining(intval($result->data[0]->attributes()->numremaining));
-            }
-
-            if (isset($result->data[0]->attributes()->resultId)) {
-                $this->setResultId(strval($result->data[0]->attributes()->resultId));
+            if (isset($result->{'data'})) {
+                $data = [];
+                if ($this->getFunction() === 'readView') {
+                    foreach ($result->{'data'}->{'view'}->children() as $child) {
+                        $data[] = $child;
+                    }
+                } else {
+                    foreach ($result->{'data'}->children() as $child) {
+                        $data[] = $child;
+                    }
+                }
+                $this->setData($data);
             }
         }
     }

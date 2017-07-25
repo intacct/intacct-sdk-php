@@ -45,9 +45,6 @@ abstract class AbstractLogical implements LogicalInterface
      */
     public function setConditions(array $conditions)
     {
-        if (count($conditions) < 2) {
-            throw new \OutOfRangeException('Logical conditions count must be 2 or more');
-        }
         $this->conditions = $conditions;
     }
 

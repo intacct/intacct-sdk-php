@@ -1,5 +1,10 @@
-/nbproject/
-/.idea/
+### Composer
+composer.phar
 /vendor/
 composer.lock
-/docs/_build/
+
+### JetBrains
+.idea
+
+### NetBeans
+nbproject
