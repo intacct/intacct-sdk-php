@@ -24,7 +24,7 @@ class OfflineClient extends AbstractClient
 {
 
     /**
-     * Execute one function to the Intacct API
+     * Execute one Intacct API function
      *
      * @param FunctionInterface $function
      * @param RequestConfig $requestConfig
@@ -36,7 +36,7 @@ class OfflineClient extends AbstractClient
     }
 
     /**
-     * Execute multiple functions to the Intacct API
+     * Execute multiple Intacct API functions
      *
      * @param FunctionInterface[] $functions
      * @param RequestConfig $requestConfig
