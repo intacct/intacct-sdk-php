@@ -79,15 +79,15 @@ abstract class AbstractResponse
         libxml_clear_errors();
         libxml_use_internal_errors(false);
 
-        if (!isset($this->getXml()->control)) {
+        if (!isset($this->getXml()->{'control'})) {
             throw new IntacctException('Response is missing control block');
         }
-        $this->setControl(new Control($this->getXml()->control[0]));
+        $this->setControl(new Control($this->getXml()->{'control'}[0]));
 
         if ($this->getControl()->getStatus() !== 'success') {
             $errors = [];
-            if (isset($this->getXml()->errormessage)) {
-                $errorMessage = new ErrorMessage($this->getXml()->errormessage);
+            if (isset($this->getXml()->{'errormessage'})) {
+                $errorMessage = new ErrorMessage($this->getXml()->{'errormessage'});
                 $errors = $errorMessage->getErrors();
             }
             throw new ResponseException('Response control status failure', $errors);

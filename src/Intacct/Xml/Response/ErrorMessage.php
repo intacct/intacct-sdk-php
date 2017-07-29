@@ -47,7 +47,7 @@ class ErrorMessage
     public function __construct(\SimpleXMLElement $errorMessage = null)
     {
         $errors = [];
-        foreach ($errorMessage->error as $error) {
+        foreach ($errorMessage->{'error'} as $error) {
             $pieces = [];
             foreach ($error->children() as $piece) {
                 //strip out any tags in error messages

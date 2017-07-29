@@ -20,8 +20,6 @@ namespace Intacct;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
-use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\AbstractResponse;
 use Intacct\Xml\RequestHandler;
 
 abstract class AbstractClient

@@ -49,13 +49,13 @@ class OfflineResponse extends AbstractResponse
     public function __construct(string $body)
     {
         parent::__construct($body);
-        if (!isset($this->getXml()->acknowledgement)) {
+        if (!isset($this->getXml()->{'acknowledgement'})) {
             throw new IntacctException('Response is missing acknowledgement block');
         }
-        if (!isset($this->getXml()->acknowledgement[0]->status)) {
+        if (!isset($this->getXml()->{'acknowledgement'}[0]->{'status'})) {
             throw new IntacctException('Acknowledgement block is missing status element');
         }
 
-        $this->setStatus(strval($this->getXml()->acknowledgement[0]->status));
+        $this->setStatus(strval($this->getXml()->{'acknowledgement'}[0]->{'status'}));
     }
 }
