@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -297,7 +297,7 @@ EOF;
                 <data listtype="customer" count="1" totalcount="1" numremaining="0" resultId="">
                     <customer>
                         <CUSTOMERID>C0001</CUSTOMERID>
-                        <NAME>Intacct Corporation</NAME>
+                        <NAME>Saas Corporation</NAME>
                     </customer>
                 </data>
             </result>

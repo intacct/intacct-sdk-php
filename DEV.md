@@ -1,4 +1,4 @@
-# For Developers of Intacct SDK for PHP
+# For Developers of Sage Intacct SDK for PHP
 
 [![Build Status](https://travis-ci.org/Intacct/intacct-sdk-php.svg?branch=master)](https://travis-ci.org/Intacct/intacct-sdk-php)
 

@@ -1,4 +1,4 @@
-# Intacct SDK for PHP
+# Sage Intacct SDK for PHP
 
 [![Build Status](https://travis-ci.org/Intacct/intacct-sdk-php.svg?branch=master)](https://travis-ci.org/Intacct/intacct-sdk-php)
 
@@ -6,13 +6,13 @@ If you would like to get involved please fork the repository and submit a pull r
 
 ## Resources
 
-* [Intacct][intacct] - Intacct's home page
+* [Sage Intacct][intacct] - Sage Intacct's home page
 * [Issues][sdk-issues] - Report issues with the SDK or submit pull requests
 * [License][sdk-license] - Apache 2.0 license
 
 ## System Requirements
 
-* You must have an active Intacct Web Services Developer license
+* You must have an active Sage Intacct Web Services Developer license
 * PHP >= 5.6
 * A recent version of cURL >= 7.19.4 compiled with OpenSSL and zlib
 * Composer latest version
@@ -21,12 +21,12 @@ If you would like to get involved please fork the repository and submit a pull r
     
 Coming soon will be a Getting Started guide.  Coding examples are available at [intacct-sdk-php-examples](https://github.com/Intacct/intacct-sdk-php-examples).
 
-In the meantime, look at the Quick Installation Guide and Example below to help you get started using the Intacct PHP SDK.
+In the meantime, look at the Quick Installation Guide and Example below to help you get started using the SDK.
 
 ## Quick Installation Guide
 
 1. Install [Composer][composer]
-2. In your code, specify the Intacct SDK for PHP as a dependency in your project's composer.json file:
+2. In your code, specify the Sage Intacct SDK for PHP as a dependency in your project's composer.json file:
     
     ```json
     {

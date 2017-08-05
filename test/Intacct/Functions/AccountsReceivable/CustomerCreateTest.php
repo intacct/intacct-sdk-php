@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -33,9 +33,9 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 <function controlid="unittest">
     <create>
         <CUSTOMER>
-            <NAME>Intacct Corp</NAME>
+            <NAME>Saas Corp</NAME>
             <DISPLAYCONTACT>
-                <PRINTAS>Intacct Corporation</PRINTAS>
+                <PRINTAS>Saas Corporation</PRINTAS>
             </DISPLAYCONTACT>
         </CUSTOMER>
     </create>
@@ -49,8 +49,8 @@ EOF;
         $xml->startDocument();
 
         $record = new CustomerCreate('unittest');
-        $record->setCustomerName('Intacct Corp');
-        $record->setPrintAs('Intacct Corporation');
+        $record->setCustomerName('Saas Corp');
+        $record->setPrintAs('Saas Corporation');
 
         $record->writeXml($xml);
 
@@ -65,10 +65,10 @@ EOF;
     <create>
         <CUSTOMER>
             <CUSTOMERID>C1234</CUSTOMERID>
-            <NAME>Intacct Corp</NAME>
+            <NAME>Saas Corp</NAME>
             <DISPLAYCONTACT>
-                <PRINTAS>Intacct Corporation</PRINTAS>
-                <COMPANYNAME>Intacct Corp.</COMPANYNAME>
+                <PRINTAS>Saas Corporation</PRINTAS>
+                <COMPANYNAME>Saas Corp.</COMPANYNAME>
                 <TAXABLE>true</TAXABLE>
                 <TAXGROUP>CA</TAXGROUP>
                 <PREFIX>Mr</PREFIX>
@@ -146,9 +146,9 @@ EOF;
 
         $record = new CustomerCreate('unittest');
         $record->setCustomerId('C1234');
-        $record->setCustomerName('Intacct Corp');
-        $record->setPrintAs('Intacct Corporation');
-        $record->setCompanyName('Intacct Corp.');
+        $record->setCustomerName('Saas Corp');
+        $record->setPrintAs('Saas Corporation');
+        $record->setCompanyName('Saas Corp.');
         $record->setTaxable(true);
         $record->setTaxId('12-3456789');
         $record->setContactTaxGroupName('CA');
