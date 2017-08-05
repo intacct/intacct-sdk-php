@@ -1,4 +1,4 @@
-# Intacct SDK for PHP
+# Sage Intacct SDK for PHP
 
 [![Build Status](https://travis-ci.org/Intacct/intacct-sdk-php.svg?branch=master)](https://travis-ci.org/Intacct/intacct-sdk-php)
 [![Latest Stable Version](https://poser.pugx.org/intacct/intacct-sdk-php/v/stable)](https://packagist.org/packages/intacct/intacct-sdk-php)
@@ -11,12 +11,12 @@
 * [SDK Reference][sdk-reference] - Code-level reference for the SDK
 * [Issues][sdk-issues] - Report issues with the SDK or submit pull requests
 * [License][sdk-license] - Apache 2.0 license
-* [Intacct Developer][ia-developer] - Intacct's Developer site
-* [Intacct][intacct] - Intacct's home page
+* [Sage Intacct Developer][ia-developer] - Sage Intacct's Developer site
+* [Sage Intacct][intacct] - Sage Intacct's home page
 
 ## System Requirements
 
-* You must have an active Intacct Web Services Developer license
+* You must have an active Sage Intacct Web Services Developer license
 * PHP >= 7.0
 * A recent version of cURL >= 7.19.4 compiled with OpenSSL and zlib
 * [Composer](composer)

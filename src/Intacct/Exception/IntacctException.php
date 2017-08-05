@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,7 +20,7 @@ namespace Intacct\Exception;
 /**
  * Class IntacctException
  *
- * An IntacctException being thrown is generally a bad thing and likely an issue with Intacct itself.
+ * An IntacctException being thrown is generally a bad thing and likely an issue with Sage Intacct itself.
  */
 class IntacctException extends \RuntimeException
 {

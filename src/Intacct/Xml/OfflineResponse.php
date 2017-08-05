@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -49,13 +49,13 @@ class OfflineResponse extends AbstractResponse
     public function __construct(string $body)
     {
         parent::__construct($body);
-        if (!isset($this->getXml()->acknowledgement)) {
+        if (!isset($this->getXml()->{'acknowledgement'})) {
             throw new IntacctException('Response is missing acknowledgement block');
         }
-        if (!isset($this->getXml()->acknowledgement[0]->status)) {
+        if (!isset($this->getXml()->{'acknowledgement'}[0]->{'status'})) {
             throw new IntacctException('Acknowledgement block is missing status element');
         }
 
-        $this->setStatus(strval($this->getXml()->acknowledgement[0]->status));
+        $this->setStatus(strval($this->getXml()->{'acknowledgement'}[0]->{'status'}));
     }
 }

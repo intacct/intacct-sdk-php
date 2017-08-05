@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -20,8 +20,6 @@ namespace Intacct;
 use Intacct\Credentials\LoginCredentials;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
-use Intacct\Functions\FunctionInterface;
-use Intacct\Xml\AbstractResponse;
 use Intacct\Xml\RequestHandler;
 
 abstract class AbstractClient

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,7 +21,7 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
 /**
- * Create a new Intacct API session
+ * Create a new Sage Intacct API session
  */
 class ApiSessionCreate extends AbstractFunction
 {

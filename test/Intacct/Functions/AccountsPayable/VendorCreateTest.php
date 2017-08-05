@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -33,9 +33,9 @@ class VendorCreateTest extends \PHPUnit\Framework\TestCase
 <function controlid="unittest">
     <create>
         <VENDOR>
-            <NAME>Intacct Corp</NAME>
+            <NAME>Vendor ABC</NAME>
             <DISPLAYCONTACT>
-                <PRINTAS>Intacct Corporation</PRINTAS>
+                <PRINTAS>Vendor ABC Inc</PRINTAS>
             </DISPLAYCONTACT>
         </VENDOR>
     </create>
@@ -49,8 +49,8 @@ EOF;
         $xml->startDocument();
 
         $record = new VendorCreate('unittest');
-        $record->setVendorName('Intacct Corp');
-        $record->setPrintAs('Intacct Corporation');
+        $record->setVendorName('Vendor ABC');
+        $record->setPrintAs('Vendor ABC Inc');
 
         $record->writeXml($xml);
 
@@ -65,10 +65,10 @@ EOF;
     <create>
         <VENDOR>
             <VENDORID>V1234</VENDORID>
-            <NAME>Intacct Corp</NAME>
+            <NAME>SaaS Co</NAME>
             <DISPLAYCONTACT>
-                <PRINTAS>Intacct Corporation</PRINTAS>
-                <COMPANYNAME>Intacct Corp.</COMPANYNAME>
+                <PRINTAS>SaaS Co Inc</PRINTAS>
+                <COMPANYNAME>SaaS Co</COMPANYNAME>
                 <TAXABLE>true</TAXABLE>
                 <TAXGROUP>CA</TAXGROUP>
                 <PREFIX>Mr</PREFIX>
@@ -101,7 +101,7 @@ EOF;
             <PARENTID>V5678</PARENTID>
             <GLGROUP>Group</GLGROUP>
             <TAXID>12-3456789</TAXID>
-            <NAME1099>INTACCT CORP</NAME1099>
+            <NAME1099>SAAS CORP</NAME1099>
             <FORM1099TYPE>MISC</FORM1099TYPE>
             <FORM1099BOX>3</FORM1099BOX>
             <SUPDOCID>A1234</SUPDOCID>
@@ -151,9 +151,9 @@ EOF;
 
         $record = new VendorCreate('unittest');
         $record->setVendorId('V1234');
-        $record->setVendorName('Intacct Corp');
-        $record->setPrintAs('Intacct Corporation');
-        $record->setCompanyName('Intacct Corp.');
+        $record->setVendorName('SaaS Co');
+        $record->setPrintAs('SaaS Co Inc');
+        $record->setCompanyName('SaaS Co');
         $record->setTaxable(true);
         $record->setTaxId('12-3456789');
         $record->setContactTaxGroupName('CA');
@@ -183,7 +183,7 @@ EOF;
         $record->setVendorTypeId('SaaS');
         $record->setParentVendorId('V5678');
         $record->setGlGroupName('Group');
-        $record->setForm1099Name('INTACCT CORP');
+        $record->setForm1099Name('SAAS CORP');
         $record->setForm1099Type('MISC');
         $record->setForm1099Box(3);
         $record->setAttachmentsId('A1234');
@@ -241,7 +241,7 @@ EOF;
         $xml->startDocument();
 
         $record = new VendorCreate('unittest');
-        //$record->setVendorName('Intacct Corp');
+        //$record->setVendorName('SaaS Corp');
 
         $record->writeXml($xml);
     }

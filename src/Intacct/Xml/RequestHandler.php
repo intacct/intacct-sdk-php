@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -170,7 +170,7 @@ class RequestHandler
         ) {
             // Log warning if using session ID for offline execution
             $this->getClientConfig()->getLogger()->warning(
-                'Offline execution sent to Intacct using Session-based credentials. ' .
+                'Offline execution sent to Sage Intacct using Session-based credentials. ' .
                 'Use Login-based credentials instead to avoid session timeouts.'
             );
         }

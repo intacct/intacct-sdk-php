@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -89,29 +89,29 @@ class OnlineResponse extends AbstractResponse
     public function __construct(string $body)
     {
         parent::__construct($body);
-        if (!isset($this->getXml()->operation)) {
+        if (!isset($this->getXml()->{'operation'})) {
             throw new IntacctException('Response is missing operation block');
         }
 
-        if (!isset($this->getXml()->operation->authentication)) {
+        if (!isset($this->getXml()->{'operation'}->{'authentication'})) {
             throw new IntacctException('Authentication block is missing from operation element');
         }
-        $this->setAuthentication(new Authentication($this->getXml()->operation->authentication[0]));
+        $this->setAuthentication(new Authentication($this->getXml()->{'operation'}->{'authentication'}[0]));
 
         if ($this->getAuthentication()->getStatus() !== 'success') {
             $errors = [];
-            if (isset($this->getXml()->operation->errormessage)) {
-                $errorMessage = new ErrorMessage($this->getXml()->operation->errormessage);
+            if (isset($this->getXml()->{'operation'}->{'errormessage'})) {
+                $errorMessage = new ErrorMessage($this->getXml()->{'operation'}->{'errormessage'});
                 $errors = $errorMessage->getErrors();
             }
             throw new ResponseException('Response authentication status failure', $errors);
         }
 
-        if (!isset($this->getXml()->operation->result[0])) {
+        if (!isset($this->getXml()->{'operation'}->{'result'}[0])) {
             throw new IntacctException('Result block is missing from operation element');
         }
 
-        foreach ($this->getXml()->operation->result as $result) {
+        foreach ($this->getXml()->{'operation'}->{'result'} as $result) {
             $this->addResult(new Result($result));
         }
     }

@@ -1,11 +1,11 @@
 {
   "name": "intacct/intacct-sdk-php",
-  "description": "Intacct SDK for PHP",
+  "description": "Sage Intacct SDK for PHP",
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "Intacct Corporation",
+      "name": "Sage Intacct, Inc.",
       "homepage": "https://developer.intacct.com"
     }
   ],

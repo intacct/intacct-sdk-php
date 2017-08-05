@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2017 Intacct Corporation.
+ * Copyright 2017 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,7 +24,7 @@ class OnlineClient extends AbstractClient
 {
 
     /**
-     * Execute one function to the Intacct API
+     * Execute one Sage Intacct API function
      *
      * @param FunctionInterface $function
      * @param RequestConfig $requestConfig
@@ -40,7 +40,7 @@ class OnlineClient extends AbstractClient
     }
 
     /**
-     * Execute multiple functions to the Intacct API
+     * Execute multiple Sage Intacct API functions
      *
      * @param FunctionInterface[] $functions
      * @param RequestConfig $requestConfig
