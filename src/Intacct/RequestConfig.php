@@ -172,7 +172,7 @@ class RequestConfig
 
     /** @var int[] */
     private $noRetryServerErrorCodes = [
-        524, // CDN cut connection but Intacct still processing request
+        524, // CDN cut connection but system still processing request
     ];
 
     /**

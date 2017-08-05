@@ -21,14 +21,14 @@ class XMLWriter extends \XMLWriter
 {
 
     /**
-     * Intacct date format
+     * Sage Intacct date format
      *
      * @var string
      */
     const IA_DATE_FORMAT = 'm/d/Y';
 
     /**
-     * Intacct datetime format
+     * Sage Intacct datetime format
      *
      * @var string
      * @todo review this is correct
@@ -36,7 +36,7 @@ class XMLWriter extends \XMLWriter
     const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
 
     /**
-     * Intacct multi select string separator
+     * Sage Intacct multi select string separator
      *
      * @var string
      */

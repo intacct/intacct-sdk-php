@@ -21,7 +21,7 @@ use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
 /**
- * Create a new Intacct API session
+ * Create a new Sage Intacct API session
  */
 class ApiSessionCreate extends AbstractFunction
 {

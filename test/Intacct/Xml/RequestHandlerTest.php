@@ -398,7 +398,7 @@ EOF;
         // Test for some output in the StreamHandler
         fseek($handle, 0);
         $this->assertContains(
-            'Offline execution sent to Intacct using Session-based credentials.',
+            'Offline execution sent to Sage Intacct using Session-based credentials.',
             stream_get_contents($handle)
         );
     }

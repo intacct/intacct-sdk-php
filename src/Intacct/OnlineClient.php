@@ -24,7 +24,7 @@ class OnlineClient extends AbstractClient
 {
 
     /**
-     * Execute one Intacct API function
+     * Execute one Sage Intacct API function
      *
      * @param FunctionInterface $function
      * @param RequestConfig $requestConfig
@@ -40,7 +40,7 @@ class OnlineClient extends AbstractClient
     }
 
     /**
-     * Execute multiple Intacct API functions
+     * Execute multiple Sage Intacct API functions
      *
      * @param FunctionInterface[] $functions
      * @param RequestConfig $requestConfig
