@@ -1,7 +1,8 @@
 var searchData=
 [
+  ['inarrayinteger_2ephp',['InArrayInteger.php',['../_in_array_integer_8php.html',1,'']]],
+  ['inarraystring_2ephp',['InArrayString.php',['../_in_array_string_8php.html',1,'']]],
   ['inspect_2ephp',['Inspect.php',['../_inspect_8php.html',1,'']]],
-  ['intacctclient_2ephp',['IntacctClient.php',['../_intacct_client_8php.html',1,'']]],
   ['intacctexception_2ephp',['IntacctException.php',['../_intacct_exception_8php.html',1,'']]],
   ['inventorytransactioncreate_2ephp',['InventoryTransactionCreate.php',['../_inventory_transaction_create_8php.html',1,'']]],
   ['inventorytransactiondelete_2ephp',['InventoryTransactionDelete.php',['../_inventory_transaction_delete_8php.html',1,'']]],

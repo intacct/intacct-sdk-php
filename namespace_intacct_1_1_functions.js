@@ -15,6 +15,5 @@ var namespace_intacct_1_1_functions =
     [ "Projects", "namespace_intacct_1_1_functions_1_1_projects.html", "namespace_intacct_1_1_functions_1_1_projects" ],
     [ "Purchasing", "namespace_intacct_1_1_functions_1_1_purchasing.html", "namespace_intacct_1_1_functions_1_1_purchasing" ],
     [ "AbstractFunction", "class_intacct_1_1_functions_1_1_abstract_function.html", "class_intacct_1_1_functions_1_1_abstract_function" ],
-    [ "ApiSessionCreate", "class_intacct_1_1_functions_1_1_api_session_create.html", "class_intacct_1_1_functions_1_1_api_session_create" ],
     [ "FunctionInterface", "interface_intacct_1_1_functions_1_1_function_interface.html", "interface_intacct_1_1_functions_1_1_function_interface" ]
 ];

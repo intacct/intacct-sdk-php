@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['update',['Update',['../class_intacct_1_1_functions_1_1_common_1_1_update.html',1,'Intacct::Functions::Common']]],
-  ['update_2ephp',['Update.php',['../_update_8php.html',1,'']]],
   ['user_5fid_5fenv_5fname',['USER_ID_ENV_NAME',['../class_intacct_1_1_credentials_1_1_login_credentials.html#a6825e33744e3ee63c6bb7cd54bc38556',1,'Intacct::Credentials::LoginCredentials']]],
   ['user_5fpassword_5fenv_5fname',['USER_PASSWORD_ENV_NAME',['../class_intacct_1_1_credentials_1_1_login_credentials.html#a35398321349d5caef6ce68f5c35a1b1c',1,'Intacct::Credentials::LoginCredentials']]],
   ['user_5ftype_5fbusiness',['USER_TYPE_BUSINESS',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#af90f849ec17fece8a4aab00f3f734da3',1,'Intacct::Functions::Company::AbstractUser']]],

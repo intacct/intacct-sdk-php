@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Intacct SDK for PHP: MessageFormatter Class Reference</title>
+<title>Sage Intacct SDK for PHP: MessageFormatter Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Intacct SDK for PHP
+   <div id="projectname">Sage Intacct SDK for PHP
    </div>
   </td>
  </tr>
@@ -80,7 +80,8 @@ $(document).ready(function(){initNavTree('class_intacct_1_1_logging_1_1_message_
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <div class="title">MessageFormatter Class Reference</div>  </div>
 </div><!--header-->
@@ -96,14 +97,23 @@ Inheritance diagram for MessageFormatter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3af0a00832dc4bc32a20e26ba440eea0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a3af0a00832dc4bc32a20e26ba440eea0">__construct</a> ($template=self::CLF)</td></tr>
-<tr class="separator:a3af0a00832dc4bc32a20e26ba440eea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1258d10098ce6ee893719ccd29a1b48f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a1258d10098ce6ee893719ccd29a1b48f">__construct</a> ($template=self::DEBUG)</td></tr>
+<tr class="separator:a1258d10098ce6ee893719ccd29a1b48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e3337748703aec87aea478639be4eaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a7e3337748703aec87aea478639be4eaf">format</a> (RequestInterface $request, ResponseInterface $response=null, \Exception $error=null)</td></tr>
 <tr class="separator:a7e3337748703aec87aea478639be4eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a60ac1427723e34beabc9427fd6929bed"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a60ac1427723e34beabc9427fd6929bed">CLF</a> = &quot;{hostname} {req_header_User-Agent} - [{date_common_log}] \&quot;{method} {target} HTTP/{version}\&quot; {code} {res_header_Content-Length}&quot;</td></tr>
+<tr class="separator:a60ac1427723e34beabc9427fd6929bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758c150b67e476ecf77478f16b387c61"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a758c150b67e476ecf77478f16b387c61">DEBUG</a> = &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n{request}\n&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\n{response}\n--------\n{error}&quot;</td></tr>
+<tr class="separator:a758c150b67e476ecf77478f16b387c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c5b0c14382692b4f858ae0e29abc6be"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_logging_1_1_message_formatter.html#a7c5b0c14382692b4f858ae0e29abc6be">SHORT</a> = '[{ts}] &quot;{method} {target} HTTP/{version}&quot; {code}'</td></tr>
+<tr class="separator:a7c5b0c14382692b4f858ae0e29abc6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3af0a00832dc4bc32a20e26ba440eea0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3af0a00832dc4bc32a20e26ba440eea0">&#9670;&nbsp;</a></span>__construct()</h2>
+<a id="a1258d10098ce6ee893719ccd29a1b48f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1258d10098ce6ee893719ccd29a1b48f">&#9670;&nbsp;</a></span>__construct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -112,40 +122,38 @@ Public Member Functions</h2></td></tr>
           <td class="memname">__construct </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$template</em> = <code>self::CLF</code></td><td>)</td>
+          <td class="paramname"><em>$template</em> = <code>self::DEBUG</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initializes the class with the given parameters.</p>
 <p>Formats log messages using variable substitutions for requests, responses, and other transactional data.</p>
-<p>The following variable substitutions are supported:</p>
-<ul>
-<li><code>{request}</code> Full HTTP request message</li>
-<li><code>{response}</code> Full HTTP response message</li>
-<li><code>{ts}</code> ISO 8601 date in GMT</li>
-<li><code>{date_iso_8601}</code> ISO 8601 date in GMT</li>
-<li><code>{date_common_log}</code> Apache common log date using the configured timezone.</li>
-<li><code>{host}</code> Host of the request</li>
-<li><code>{method}</code> Method of the request</li>
-<li><code>{uri}</code> URI of the request</li>
-<li><code>{host}</code> Host of the request</li>
-<li><code>{version}</code> Protocol version</li>
-<li><code>{target}</code> Request target of the request (path + query + fragment)</li>
-<li><code>{hostname}</code> Hostname of the machine that sent the request</li>
-<li><code>{code}</code> Status code of the response (if available)</li>
-<li><code>{phrase}</code> Reason phrase of the response (if available)</li>
-<li><code>{error}</code> Any error messages (if available)</li>
-<li><code>{req_header_*}</code> Replace <code>*</code> with the lowercased name of a request header to add to the message</li>
-<li><code>{res_header_*}</code> Replace <code>*</code> with the lowercased name of a response header to add to the message</li>
-<li><code>{req_headers}</code> Request headers</li>
-<li><code>{res_headers}</code> Response headers</li>
-<li><code>{req_body}</code> Request body</li>
-<li><code>{res_body}</code> Response body</li>
-</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$template</td><td>Log message template </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$template</td><td>The following variable substitutions are supported:<ul>
+<li><code>{request}</code>: Full HTTP request message</li>
+<li><code>{response}</code>: Full HTTP response message</li>
+<li><code>{ts}</code>: ISO 8601 date in GMT</li>
+<li><code>{date_iso_8601}</code>: ISO 8601 date in GMT</li>
+<li><code>{date_common_log}</code>: Apache common log date using the configured timezone.</li>
+<li><code>{host}</code>: Host of the request</li>
+<li><code>{method}</code>: Method of the request</li>
+<li><code>{uri}</code>: URI of the request</li>
+<li><code>{host}</code>: Host of the request</li>
+<li><code>{version}</code>: Protocol version</li>
+<li><code>{target}</code>: Request target of the request (path + query + fragment)</li>
+<li><code>{hostname}</code>: Hostname of the machine that sent the request</li>
+<li><code>{code}</code>: Status code of the response (if available)</li>
+<li><code>{phrase}</code>: Reason phrase of the response (if available)</li>
+<li><code>{error}</code>: Any error messages (if available)</li>
+<li><code>{req_header_*}</code>: Replace <code>*</code> with the lowercased name of a request header to add to the message</li>
+<li><code>{res_header_*}</code>: Replace <code>*</code> with the lowercased name of a response header to add to the message</li>
+<li><code>{req_headers}</code>: Request headers</li>
+<li><code>{res_headers}</code>: Response headers</li>
+<li><code>{req_body}</code>: Request body</li>
+<li><code>{res_body}</code>: Response body </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -184,16 +192,49 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a formatted message string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">RequestInterface</td><td class="paramname">$request</td><td>Request that was sent </td></tr>
-    <tr><td class="paramtype">ResponseInterface</td><td class="paramname">$response</td><td>Response that was received </td></tr>
-    <tr><td class="paramtype">\Exception</td><td class="paramname">$error</td><td><a class="el" href="namespace_intacct_1_1_exception.html">Exception</a> that was received</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a id="a60ac1427723e34beabc9427fd6929bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ac1427723e34beabc9427fd6929bed">&#9670;&nbsp;</a></span>CLF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CLF = &quot;{hostname} {req_header_User-Agent} - [{date_common_log}] \&quot;{method} {target} HTTP/{version}\&quot; {code} {res_header_Content-Length}&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a758c150b67e476ecf77478f16b387c61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758c150b67e476ecf77478f16b387c61">&#9670;&nbsp;</a></span>DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const DEBUG = &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n{request}\n&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\n{response}\n--------\n{error}&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c5b0c14382692b4f858ae0e29abc6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c5b0c14382692b4f858ae0e29abc6be">&#9670;&nbsp;</a></span>SHORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const SHORT = '[{ts}] &quot;{method} {target} HTTP/{version}&quot; {code}'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

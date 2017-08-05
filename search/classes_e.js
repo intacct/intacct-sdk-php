@@ -7,14 +7,12 @@ var searchData=
   ['readrelated',['ReadRelated',['../class_intacct_1_1_functions_1_1_common_1_1_read_related.html',1,'Intacct::Functions::Common']]],
   ['readreport',['ReadReport',['../class_intacct_1_1_functions_1_1_common_1_1_read_report.html',1,'Intacct::Functions::Common']]],
   ['readview',['ReadView',['../class_intacct_1_1_functions_1_1_common_1_1_read_view.html',1,'Intacct::Functions::Common']]],
-  ['record',['Record',['../class_intacct_1_1_field_types_1_1_record.html',1,'Intacct::FieldTypes']]],
-  ['recorditerator',['RecordIterator',['../class_intacct_1_1_xml_1_1_response_1_1_operation_1_1_result_1_1_record_iterator.html',1,'Intacct::Xml::Response::Operation::Result']]],
-  ['recordupsert',['RecordUpsert',['../class_intacct_1_1_xml_1_1_request_1_1_operation_1_1_content_1_1_record_upsert.html',1,'Intacct::Xml::Request::Operation::Content']]],
   ['reimbursementrequestcreate',['ReimbursementRequestCreate',['../class_intacct_1_1_functions_1_1_employee_expense_1_1_reimbursement_request_create.html',1,'Intacct::Functions::EmployeeExpense']]],
   ['reimbursementrequestitem',['ReimbursementRequestItem',['../class_intacct_1_1_functions_1_1_employee_expense_1_1_reimbursement_request_item.html',1,'Intacct::Functions::EmployeeExpense']]],
   ['requestblock',['RequestBlock',['../class_intacct_1_1_xml_1_1_request_block.html',1,'Intacct::Xml']]],
+  ['requestconfig',['RequestConfig',['../class_intacct_1_1_request_config.html',1,'Intacct']]],
   ['requesthandler',['RequestHandler',['../class_intacct_1_1_xml_1_1_request_handler.html',1,'Intacct::Xml']]],
   ['responseexception',['ResponseException',['../class_intacct_1_1_exception_1_1_response_exception.html',1,'Intacct::Exception']]],
-  ['result',['Result',['../class_intacct_1_1_xml_1_1_response_1_1_operation_1_1_result.html',1,'Intacct::Xml::Response::Operation']]],
+  ['result',['Result',['../class_intacct_1_1_xml_1_1_response_1_1_result.html',1,'Intacct::Xml::Response']]],
   ['resultexception',['ResultException',['../class_intacct_1_1_exception_1_1_result_exception.html',1,'Intacct::Exception']]]
 ];

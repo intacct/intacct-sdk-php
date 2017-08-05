@@ -1,8 +1,7 @@
 var namespace_intacct_1_1_xml_1_1_response =
 [
-    [ "Operation", "namespace_intacct_1_1_xml_1_1_response_1_1_operation.html", "namespace_intacct_1_1_xml_1_1_response_1_1_operation" ],
-    [ "Acknowledgement", "class_intacct_1_1_xml_1_1_response_1_1_acknowledgement.html", "class_intacct_1_1_xml_1_1_response_1_1_acknowledgement" ],
+    [ "Authentication", "class_intacct_1_1_xml_1_1_response_1_1_authentication.html", "class_intacct_1_1_xml_1_1_response_1_1_authentication" ],
     [ "Control", "class_intacct_1_1_xml_1_1_response_1_1_control.html", "class_intacct_1_1_xml_1_1_response_1_1_control" ],
     [ "ErrorMessage", "class_intacct_1_1_xml_1_1_response_1_1_error_message.html", "class_intacct_1_1_xml_1_1_response_1_1_error_message" ],
-    [ "Operation", "class_intacct_1_1_xml_1_1_response_1_1_operation.html", "class_intacct_1_1_xml_1_1_response_1_1_operation" ]
+    [ "Result", "class_intacct_1_1_xml_1_1_response_1_1_result.html", "class_intacct_1_1_xml_1_1_response_1_1_result" ]
 ];

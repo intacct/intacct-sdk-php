@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: "i",
   3: "abcdefgijlmopqrstuvwx",
   4: "_efgisw",
-  5: "$acdefijmoprsuvx",
+  5: "$acdefijmoprsuv",
   6: "t"
 };
 

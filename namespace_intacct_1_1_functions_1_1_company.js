@@ -13,6 +13,7 @@ var namespace_intacct_1_1_functions_1_1_company =
     [ "AllocationDelete", "class_intacct_1_1_functions_1_1_company_1_1_allocation_delete.html", "class_intacct_1_1_functions_1_1_company_1_1_allocation_delete" ],
     [ "AllocationLine", "class_intacct_1_1_functions_1_1_company_1_1_allocation_line.html", "class_intacct_1_1_functions_1_1_company_1_1_allocation_line" ],
     [ "AllocationUpdate", "class_intacct_1_1_functions_1_1_company_1_1_allocation_update.html", "class_intacct_1_1_functions_1_1_company_1_1_allocation_update" ],
+    [ "ApiSessionCreate", "class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html", "class_intacct_1_1_functions_1_1_company_1_1_api_session_create" ],
     [ "AttachmentFile", "class_intacct_1_1_functions_1_1_company_1_1_attachment_file.html", "class_intacct_1_1_functions_1_1_company_1_1_attachment_file" ],
     [ "AttachmentInterface", "interface_intacct_1_1_functions_1_1_company_1_1_attachment_interface.html", "interface_intacct_1_1_functions_1_1_company_1_1_attachment_interface" ],
     [ "AttachmentsCreate", "class_intacct_1_1_functions_1_1_company_1_1_attachments_create.html", "class_intacct_1_1_functions_1_1_company_1_1_attachments_create" ],
