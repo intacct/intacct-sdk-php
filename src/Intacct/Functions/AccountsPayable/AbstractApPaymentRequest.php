@@ -204,7 +204,6 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
      * Set merge option
      *
      * @param string $mergeOption
-     * @todo add merge options
      */
     public function setMergeOption($mergeOption)
     {

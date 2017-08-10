@@ -73,9 +73,6 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         return $dir;
     }
 
-    /**
-     * @todo move this into vfs file stream and not temp folder?
-     */
     public function testCredsFromProfile()
     {
         $dir = $this->clearEnv();
@@ -85,6 +82,7 @@ company_id = inicompanyid
 user_id = iniuserid
 user_password = iniuserpass
 EOF;
+        // TODO move this into vfs file stream and not temp folder
         file_put_contents($dir . '/credentials.ini', $ini);
         putenv('HOME=' . dirname($dir));
 

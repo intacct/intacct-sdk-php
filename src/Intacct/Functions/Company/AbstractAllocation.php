@@ -123,7 +123,6 @@ abstract class AbstractAllocation extends AbstractFunction
      * Set allocate by
      *
      * @param string $allocateBy
-     * @todo add valid allocate by's
      */
     public function setAllocateBy($allocateBy)
     {

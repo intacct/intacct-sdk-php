@@ -32,10 +32,6 @@ class ReimbursementRequestItem
     private $creditToApply;
 
     /**
-     * @todo add externalkey support
-     */
-
-    /**
      * @return int|string
      */
     public function getApplyToRecordId()

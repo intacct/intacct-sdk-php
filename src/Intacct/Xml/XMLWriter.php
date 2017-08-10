@@ -31,7 +31,6 @@ class XMLWriter extends \XMLWriter
      * Sage Intacct datetime format
      *
      * @var string
-     * @todo review this is correct
      */
     const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
 

@@ -170,7 +170,6 @@ abstract class AbstractArAdjustment extends AbstractFunction
      * Set action
      *
      * @param string $action
-     * @todo add valid actions
      */
     public function setAction($action)
     {
