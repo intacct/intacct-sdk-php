@@ -306,7 +306,7 @@ class Result
                 $this->setTotalCount(intval($result->{'listtype'}->attributes()->{'total'} ?? 0));
                 $this->setStart(intval($result->{'listtype'}->attributes()->{'start'} ?? 0));
                 $this->setEnd(intval($result->{'listtype'}->attributes()->{'end'} ?? 0));
-            } elseif (isset($result->{'data'}->attributes()->{'listtype'})) {
+            } elseif (isset($result->{'data'}) && isset($result->{'data'}->attributes()->{'listtype'})) {
                 $this->setListType(strval($result->{'data'}->attributes()->{'listtype'} ?? ''));
                 $this->setTotalCount(intval($result->{'data'}->attributes()->{'totalcount'} ?? 0));
                 $this->setCount(intval($result->{'data'}->attributes()->{'count'} ?? 0));

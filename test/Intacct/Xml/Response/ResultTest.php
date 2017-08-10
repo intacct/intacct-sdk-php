@@ -456,6 +456,48 @@ EOF;
         $this->assertCount(2, $result->getData());
     }
 
+    public function testReadClass()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <control>
+        <status>success</status>
+        <senderid>testsender</senderid>
+        <controlid>ControlIdHere</controlid>
+        <uniqueid>false</uniqueid>
+        <dtdversion>3.0</dtdversion>
+    </control>
+    <operation>
+        <authentication>
+            <status>success</status>
+            <userid>user</userid>
+            <companyid>company</companyid>
+            <sessiontimestamp>2017-08-05T11:22:32-07:00</sessiontimestamp>
+        </authentication>
+        <result>
+            <status>success</status>
+            <function>read</function>
+            <controlid>7cad3f85-d533-4ae4-80bc-e96e58b5a822</controlid>
+            <data listtype="CUSTOMER" count="1">
+                <CUSTOMER>
+                    <RECORDNO>149</RECORDNO>
+                    <CUSTOMERID>10074</CUSTOMERID>
+                    <STATUS>active</STATUS>
+                </CUSTOMER>
+            </data>
+        </result>
+    </operation>
+</response>
+EOF;
+        $response = new OnlineResponse($xml);
+
+        $result = $response->getResult();
+        $this->assertEquals(1, $result->getCount());
+        $this->assertEquals('CUSTOMER', $result->getListType());
+        $this->assertCount(1, $result->getData());
+    }
+
     public function testLegacyReadByQueryClass()
     {
         $xml = <<<EOF
