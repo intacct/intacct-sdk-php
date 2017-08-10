@@ -78,7 +78,6 @@ class XMLWriter extends \XMLWriter
      * @param bool $writeNull
      *
      * @return bool
-     * @todo Add all of the different field types we should support
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {
