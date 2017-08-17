@@ -189,7 +189,6 @@ abstract class AbstractBill extends AbstractFunction
      * Set action
      *
      * @param string $action
-     * @todo add allowed actions: draft, posted, etc
      */
     public function setAction($action)
     {

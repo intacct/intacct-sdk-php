@@ -21,8 +21,6 @@ use Intacct\Xml\XMLWriter;
 
 interface FunctionInterface
 {
-
-    public function __construct();
     
     public function getControlId(): string;
     

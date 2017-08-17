@@ -24,7 +24,7 @@ abstract class AbstractFunction implements FunctionInterface
 {
 
     /** @var string */
-    protected $controlId;
+    protected $controlId = '';
 
     /**
      * Get control ID

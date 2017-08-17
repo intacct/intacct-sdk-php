@@ -35,10 +35,6 @@ class ApPaymentRequestItem
     private $discountToApply;
 
     /**
-     * @todo add externalkey support
-     */
-
-    /**
      * Get apply to record ID
      *
      * @return int|string

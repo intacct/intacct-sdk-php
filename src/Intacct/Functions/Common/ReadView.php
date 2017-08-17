@@ -20,9 +20,6 @@ namespace Intacct\Functions\Common;
 use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 
-/**
- * @todo implement filters
- */
 class ReadView extends AbstractFunction
 {
 

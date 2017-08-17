@@ -31,7 +31,6 @@ class XMLWriter extends \XMLWriter
      * Sage Intacct datetime format
      *
      * @var string
-     * @todo review this is correct
      */
     const IA_DATETIME_FORMAT = 'm/d/Y H:i:s';
 
@@ -78,7 +77,6 @@ class XMLWriter extends \XMLWriter
      * @param bool $writeNull
      *
      * @return bool
-     * @todo Add all of the different field types we should support
      */
     public function writeElement($name, $content = null, $writeNull = false)
     {

@@ -174,7 +174,6 @@ abstract class AbstractApAdjustment extends AbstractFunction
      * Set action
      *
      * @param string $action
-     * @todo add allowed values for action: draft,posted,etc
      */
     public function setAction($action)
     {

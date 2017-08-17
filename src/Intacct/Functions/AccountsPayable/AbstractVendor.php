@@ -888,7 +888,6 @@ abstract class AbstractVendor extends AbstractFunction
      * Set form 1099 type
      *
      * @param string $form1099Type
-     * @todo add validation for 1099 types
      */
     public function setForm1099Type($form1099Type)
     {
@@ -1369,7 +1368,6 @@ abstract class AbstractVendor extends AbstractFunction
      * Set ACH bank account type
      *
      * @param string $achBankAccountType
-     * @todo add valid types
      */
     public function setAchBankAccountType($achBankAccountType)
     {
@@ -1390,7 +1388,6 @@ abstract class AbstractVendor extends AbstractFunction
      * Set ACH bank account class
      *
      * @param string $achBankAccountClass
-     * @todo add valid classes
      */
     public function setAchBankAccountClass($achBankAccountClass)
     {

@@ -58,7 +58,6 @@ class ApplicationInstall extends AbstractFunction
      *
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
-     * @todo Validate the app.xml is actually a platform app
      */
     public function writeXml(XMLWriter &$xml)
     {
