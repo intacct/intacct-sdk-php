@@ -20,7 +20,6 @@ namespace Intacct;
 use Intacct\Credentials\SenderCredentials;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Functions\Company\ApiSessionCreate;
-use Intacct\Xml\RequestHandler;
 
 class SessionProvider
 {
@@ -39,11 +38,9 @@ class SessionProvider
         $requestConfig->setControlId('sessionProvider');
         $requestConfig->setNoRetryServerErrorCodes([]); // Retry all 500 level errors
 
-        $handler = new RequestHandler($config, $requestConfig);
-        $content = [
-            new ApiSessionCreate(),
-        ];
-        $response = $handler->executeOnline($content);
+        $client = new OnlineClient($config);
+        $response = $client->execute(new ApiSessionCreate(), $requestConfig);
+
         $authentication = $response->getAuthentication();
         $result = $response->getResult();
 
