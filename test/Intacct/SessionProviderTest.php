@@ -135,4 +135,67 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
     }
+
+    public function testFromSessionCredsUsingEnvironmentSender()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>sessionProvider</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>testuser</userid>
+                  <companyid>testcompany</companyid>
+                  <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+            </authentication>
+            <result>
+                  <status>success</status>
+                  <function>getSession</function>
+                  <controlid>testControlId</controlid>
+                  <data>
+                        <api>
+                              <sessionid>fAkESesSiOnId..</sessionid>
+                              <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                        </api>
+                  </data>
+            </result>
+      </operation>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+        $response = new Response(200, $headers, $xml);
+        $mock = new MockHandler([
+            $response,
+        ]);
+
+        putenv('INTACCT_SENDER_ID=envsender');
+        putenv('INTACCT_SENDER_PASSWORD=envpass');
+
+        $config = new ClientConfig();
+        $config->setSessionId('fAkESesSiOnId..');
+        $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
+        $config->setMockHandler($mock);
+
+        $sessionCreds = SessionProvider::factory($config);
+
+        $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
+        $this->assertEquals(
+            'https://unittest.intacct.com/ia/xml/xmlgw.phtml',
+            $sessionCreds->getEndpointUrl()
+        );
+        $this->assertEquals('envsender', $sessionCreds->getSenderId());
+        $this->assertEquals('envpass', $sessionCreds->getSenderPassword());
+
+        putenv('INTACCT_SENDER_ID');
+        putenv('INTACCT_SENDER_PASSWORD');
+    }
 }
