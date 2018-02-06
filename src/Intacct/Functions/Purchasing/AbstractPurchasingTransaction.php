@@ -114,10 +114,10 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     protected $projectId;
 
     /** @var AbstractTransactionSubtotal[] */
-    protected $subtotals;
+    protected $subtotals = [];
 
     /** @var AbstractPurchasingTransactionLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return string

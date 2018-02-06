@@ -93,7 +93,7 @@ abstract class AbstractBill extends AbstractFunction
     protected $attachmentsId;
 
     /** @var AbstractBillLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * Get record number

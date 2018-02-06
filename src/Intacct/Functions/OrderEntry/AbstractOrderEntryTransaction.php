@@ -111,10 +111,10 @@ abstract class AbstractOrderEntryTransaction extends AbstractFunction
     protected $projectId;
 
     /** @var AbstractTransactionSubtotal[] */
-    protected $subtotals;
+    protected $subtotals = [];
 
     /** @var AbstractOrderEntryTransactionLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return string

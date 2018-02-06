@@ -35,7 +35,7 @@ abstract class AbstractAttachments extends AbstractFunction
     protected $description;
 
     /** @var AttachmentInterface[] */
-    protected $files;
+    protected $files = [];
 
     /**
      * Get attachments ID

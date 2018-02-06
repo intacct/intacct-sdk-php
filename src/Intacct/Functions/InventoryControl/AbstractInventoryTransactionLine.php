@@ -44,7 +44,7 @@ abstract class AbstractInventoryTransactionLine
     protected $cost;
 
     /** @var AbstractTransactionItemDetail[] */
-    protected $itemDetails;
+    protected $itemDetails = [];
 
     /** @var string */
     protected $departmentId;

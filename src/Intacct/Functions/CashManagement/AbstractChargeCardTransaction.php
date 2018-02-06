@@ -59,7 +59,7 @@ abstract class AbstractChargeCardTransaction extends AbstractFunction
     protected $exchangeRateType;
 
     /** @var AbstractChargeCardTransactionLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * Get record number

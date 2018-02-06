@@ -215,10 +215,10 @@ abstract class AbstractCustomer extends AbstractFunction
     protected $restrictionType;
 
     /** @var array */
-    protected $restrictedLocations;
+    protected $restrictedLocations = [];
 
     /** @var array */
-    protected $restrictedDepartments;
+    protected $restrictedDepartments = [];
 
     /**
      * Get customer ID

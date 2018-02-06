@@ -11,6 +11,7 @@
   ],
   "require": {
     "php": ">=7.0",
+    "ext-mbstring": "*",
     "guzzlehttp/guzzle": "^6.2.3",
     "ramsey/uuid": "^3.6.1",
     "psr/log": "~1.0"

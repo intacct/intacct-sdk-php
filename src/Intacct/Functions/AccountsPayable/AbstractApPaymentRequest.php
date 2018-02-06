@@ -84,7 +84,7 @@ abstract class AbstractApPaymentRequest extends AbstractFunction
     protected $notificationContactName;
 
     /** @var ApPaymentRequestItem[] */
-    protected $applyToTransactions;
+    protected $applyToTransactions = [];
 
     /**
      * Get record number

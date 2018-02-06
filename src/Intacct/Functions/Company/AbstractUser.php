@@ -58,11 +58,11 @@ abstract class AbstractUser extends AbstractFunction
     /** @var bool */
     protected $webServicesOnly;
 
-    /** @var array */
-    protected $restrictedEntities;
+    /** @var string[] */
+    protected $restrictedEntities = [];
 
-    /** @var array */
-    protected $restrictedDepartments;
+    /** @var string[] */
+    protected $restrictedDepartments = [];
 
     /** @var bool */
     protected $ssoEnabled;
@@ -171,9 +171,7 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
-     * Get restricted entities
-     *
-     * @return array
+     * @return string[]
      */
     public function getRestrictedEntities()
     {
@@ -181,9 +179,7 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
-     * Set restricted entities
-     *
-     * @param array $restrictedEntities
+     * @param string[] $restrictedEntities
      */
     public function setRestrictedEntities($restrictedEntities)
     {
@@ -191,9 +187,7 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
-     * Get restricted departments
-     *
-     * @return array
+     * @return string[]
      */
     public function getRestrictedDepartments()
     {
@@ -201,9 +195,7 @@ abstract class AbstractUser extends AbstractFunction
     }
 
     /**
-     * Set restricted departments
-     *
-     * @param array $restrictedDepartments
+     * @param string[] $restrictedDepartments
      */
     public function setRestrictedDepartments($restrictedDepartments)
     {

@@ -110,7 +110,7 @@ abstract class AbstractArPayment extends AbstractFunction
     protected $referenceNumber;
 
     /** @var ArPaymentItem[] */
-    protected $applyToTransactions;
+    protected $applyToTransactions = [];
 
     /**
      * Get record number
