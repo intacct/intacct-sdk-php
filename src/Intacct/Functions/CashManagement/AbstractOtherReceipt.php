@@ -68,7 +68,7 @@ abstract class AbstractOtherReceipt extends AbstractFunction
     protected $exchangeRateType;
 
     /** @var AbstractOtherReceiptLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * Get receipt date

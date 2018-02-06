@@ -68,7 +68,7 @@ abstract class AbstractGlEntry
     protected $warehouseId;
 
     /** @var CustomAllocationSplit[] */
-    protected $customAllocationSplits;
+    protected $customAllocationSplits = [];
 
     /**
      * @return string

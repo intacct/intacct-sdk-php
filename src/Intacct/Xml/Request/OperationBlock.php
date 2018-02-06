@@ -66,7 +66,7 @@ class OperationBlock
     }
 
     /** @var FunctionInterface[] */
-    private $content;
+    private $content = [];
 
     /**
      * @return FunctionInterface[]

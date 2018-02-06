@@ -227,10 +227,10 @@ abstract class AbstractVendor extends AbstractFunction
     protected $restrictionType;
 
     /** @var array */
-    protected $restrictedLocations;
+    protected $restrictedLocations = [];
 
     /** @var array */
-    protected $restrictedDepartments;
+    protected $restrictedDepartments = [];
 
     /**
      * Get vendor ID

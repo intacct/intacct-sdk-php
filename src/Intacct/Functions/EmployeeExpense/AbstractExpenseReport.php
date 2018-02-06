@@ -68,7 +68,7 @@ abstract class AbstractExpenseReport extends AbstractFunction
     protected $memo;
 
     /** @var AbstractExpenseReportLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return int|string

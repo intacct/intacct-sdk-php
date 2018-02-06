@@ -81,7 +81,7 @@ abstract class AbstractOrderEntryTransactionLine
     protected $billingTemplate;
 
     /** @var AbstractTransactionItemDetail[] */
-    protected $itemDetails;
+    protected $itemDetails = [];
 
     /** @var string */
     protected $departmentId;

@@ -71,7 +71,7 @@ abstract class AbstractExpenseAdjustment extends AbstractFunction
     protected $memo;
 
     /** @var AbstractExpenseAdjustmentLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return int|string

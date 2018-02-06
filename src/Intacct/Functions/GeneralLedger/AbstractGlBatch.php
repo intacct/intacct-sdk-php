@@ -53,7 +53,7 @@ abstract class AbstractGlBatch extends AbstractFunction
     protected $action;
 
     /** @var AbstractGlEntry[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return int|string

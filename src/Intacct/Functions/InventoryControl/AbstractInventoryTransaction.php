@@ -65,10 +65,10 @@ abstract class AbstractInventoryTransaction extends AbstractFunction
     protected $state;
 
     /** @var AbstractTransactionSubtotal[] */
-    protected $subtotals;
+    protected $subtotals = [];
 
     /** @var AbstractInventoryTransactionLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * @return string

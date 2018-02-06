@@ -74,7 +74,7 @@ abstract class AbstractArAdjustment extends AbstractFunction
     protected $adjustmentNumber;
 
     /** @var AbstractArAdjustmentLine[] */
-    protected $lines;
+    protected $lines = [];
 
     /**
      * Get record number

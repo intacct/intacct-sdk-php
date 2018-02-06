@@ -42,7 +42,7 @@ abstract class AbstractConsolidation extends AbstractFunction
     protected $reportingPeriodName;
 
     /** @var ConsolidationEntity[] */
-    protected $entities;
+    protected $entities = [];
 
     /**
      * @return string

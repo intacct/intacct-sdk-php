@@ -47,7 +47,7 @@ abstract class AbstractAllocation extends AbstractFunction
     private $active;
 
     /** @var AbstractAllocationLine[] */
-    private $lines;
+    private $lines = [];
 
     /**
      * Get allocation ID

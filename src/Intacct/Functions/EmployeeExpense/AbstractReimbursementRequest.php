@@ -71,7 +71,7 @@ abstract class AbstractReimbursementRequest extends AbstractFunction
     protected $notificationContactName;
 
     /** @var ReimbursementRequestItem[] */
-    protected $applyToTransactions;
+    protected $applyToTransactions  = [];
 
     /**
      * @return int|string

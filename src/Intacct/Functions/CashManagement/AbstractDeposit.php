@@ -41,7 +41,7 @@ abstract class AbstractDeposit extends AbstractFunction
     protected $attachmentsId;
 
     /** @var int[] */
-    protected $transactionsKeysToDeposit;
+    protected $transactionsKeysToDeposit = [];
 
     /**
      * Get bank account ID

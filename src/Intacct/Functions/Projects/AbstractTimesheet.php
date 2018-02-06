@@ -44,7 +44,7 @@ abstract class AbstractTimesheet extends AbstractFunction
     protected $action;
 
     /** @var AbstractTimesheetEntry[] */
-    protected $entries;
+    protected $entries = [];
 
     /**
      * @return int|string
