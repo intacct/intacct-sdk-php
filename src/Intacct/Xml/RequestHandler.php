@@ -32,7 +32,7 @@ class RequestHandler
 {
     
     /** @var string */
-    const VERSION = '2.0';
+    const VERSION = '2.0.4';
 
     /** @var ClientConfig */
     private $clientConfig;
