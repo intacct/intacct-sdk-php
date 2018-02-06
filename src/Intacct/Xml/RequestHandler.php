@@ -251,6 +251,7 @@ class RequestHandler
             'body' => $xml->flush(),
             'headers' => [
                 'content-type' => 'application/xml',
+                'Accept-Encoding' => 'gzip,deflate',
                 'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
             ],
             'timeout' => $this->requestConfig->getMaxTimeout()
