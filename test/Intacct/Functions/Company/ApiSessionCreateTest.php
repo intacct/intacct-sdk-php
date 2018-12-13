@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2018 Sage Intacct, Inc.
  *
@@ -19,7 +20,7 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 
 /**
- * @coversDefaultClass \Intacct\Functions\ApiSessionCreate
+ * @coversDefaultClass \Intacct\Functions\Company\ApiSessionCreate
  */
 class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
 {
