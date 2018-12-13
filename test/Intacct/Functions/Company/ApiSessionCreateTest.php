@@ -62,7 +62,59 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $this->object->writeXml($xml);
+        $record = new ApiSessionCreate('unittest');
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithLocationId()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <getAPISession>
+        <locationid>100</locationid>
+    </getAPISession>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new ApiSessionCreate('unittest');
+        $record->setEntityId('100');
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithEmptyLocationId()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <getAPISession>
+        <locationid/>
+    </getAPISession>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new ApiSessionCreate('unittest');
+        $record->setEntityId('');
+
+        $record->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
