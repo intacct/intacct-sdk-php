@@ -21,7 +21,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 
 /**
- * @coversDefaultClass \Intacct\Credentials\SessionProvider
+ * @coversDefaultClass \Intacct\SessionProvider
  */
 class SessionProviderTest extends \PHPUnit\Framework\TestCase
 {
