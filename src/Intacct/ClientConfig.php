@@ -159,6 +159,25 @@ class ClientConfig
         $this->companyId = $companyId;
     }
 
+    /** @var string|null */
+    private $entityId;
+
+    /**
+     * @return string|null
+     */
+    public function getEntityId() //:string
+    {
+        return $this->entityId;
+    }
+
+    /**
+     * @param string $entityId
+     */
+    public function setEntityId(string $entityId)
+    {
+        $this->entityId = $entityId;
+    }
+
     /** @var string */
     private $userId = '';
 

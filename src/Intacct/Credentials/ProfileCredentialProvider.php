@@ -40,6 +40,9 @@ class ProfileCredentialProvider
         if (isset($data['company_id'])) {
             $creds->setCompanyId($data['company_id']);
         }
+        if (isset($data['entity_id'])) {
+            $creds->setEntityId($data['entity_id']);
+        }
         if (isset($data['user_id'])) {
             $creds->setUserId($data['user_id']);
         }

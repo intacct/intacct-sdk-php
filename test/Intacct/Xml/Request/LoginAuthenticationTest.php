@@ -48,6 +48,58 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
+
+    public function testWriteXmlWithEntity()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid>testentity</locationid>
+    </login>
+</authentication>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $loginAuth = new LoginAuthentication('testuser', 'testcompany', 'testpass', 'testentity');
+        $loginAuth->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithEmptyEntity()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid/>
+    </login>
+</authentication>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $loginAuth = new LoginAuthentication('testuser', 'testcompany', 'testpass', '');
+        $loginAuth->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
     
     /**
      * @expectedException \InvalidArgumentException

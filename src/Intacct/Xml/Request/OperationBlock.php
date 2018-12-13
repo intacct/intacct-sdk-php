@@ -102,7 +102,8 @@ class OperationBlock
             $this->setAuthentication(new LoginAuthentication(
                 $credentials->getUserId(),
                 $credentials->getCompanyId(),
-                $credentials->getPassword()
+                $credentials->getPassword(),
+                $credentials->getEntityId()
             ));
         } elseif ($clientConfig->getSessionId()) {
             $this->setAuthentication(new SessionAuthentication($clientConfig->getSessionId()));
@@ -110,7 +111,8 @@ class OperationBlock
             $this->setAuthentication(new LoginAuthentication(
                 $clientConfig->getUserId(),
                 $clientConfig->getCompanyId(),
-                $clientConfig->getUserPassword()
+                $clientConfig->getUserPassword(),
+                $clientConfig->getEntityId()
             ));
         } else {
             throw new \InvalidArgumentException(

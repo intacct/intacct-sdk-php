@@ -40,6 +40,7 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -50,6 +51,7 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
                         <api>
                               <sessionid>fAkESesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -103,6 +105,7 @@ EOF;
                   <status>failure</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
             </authentication>
             <errormessage>
                   <error>
@@ -161,6 +164,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
       </operation>

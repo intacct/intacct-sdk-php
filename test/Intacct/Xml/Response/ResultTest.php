@@ -50,6 +50,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -107,6 +108,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T11:07:22-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -154,6 +156,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -189,6 +192,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -224,6 +228,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -259,6 +264,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -305,6 +311,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -356,6 +363,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -417,6 +425,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -473,6 +482,7 @@ EOF;
             <status>success</status>
             <userid>user</userid>
             <companyid>company</companyid>
+            <locationid></locationid>
             <sessiontimestamp>2017-08-05T11:22:32-07:00</sessiontimestamp>
         </authentication>
         <result>
@@ -515,6 +525,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -572,6 +583,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
             </authentication>
             <result>

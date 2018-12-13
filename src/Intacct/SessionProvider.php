@@ -38,8 +38,14 @@ class SessionProvider
         $requestConfig->setControlId('sessionProvider');
         $requestConfig->setNoRetryServerErrorCodes([]); // Retry all 500 level errors
 
+        $apiFunction = new ApiSessionCreate();
+
+        if ($config->getSessionId() && $config->getEntityId() !== null) {
+            $apiFunction->setEntityId($config->getEntityId());
+        }
+
         $client = new OnlineClient($config);
-        $response = $client->execute(new ApiSessionCreate(), $requestConfig);
+        $response = $client->execute($apiFunction, $requestConfig);
 
         $authentication = $response->getAuthentication();
         $result = $response->getResult();
@@ -51,6 +57,7 @@ class SessionProvider
 
         $config->setSessionId(strval($api->{'sessionid'}));
         $config->setEndpointUrl(strval($api->{'endpoint'}));
+        $config->setEntityId(strval($api->{'locationid'}));
 
         $config->setCompanyId(strval($authentication->getCompanyId()));
         $config->setUserId(strval($authentication->getUserId()));

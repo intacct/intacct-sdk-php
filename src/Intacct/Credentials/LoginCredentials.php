@@ -29,6 +29,9 @@ class LoginCredentials implements CredentialsInterface
     const COMPANY_ID_ENV_NAME = 'INTACCT_COMPANY_ID';
 
     /** @var string */
+    const ENTITY_ID_ENV_NAME = 'INTACCT_ENTITY_ID';
+
+    /** @var string */
     const USER_ID_ENV_NAME = 'INTACCT_USER_ID';
 
     /** @var string */
@@ -39,6 +42,9 @@ class LoginCredentials implements CredentialsInterface
 
     /** @var string */
     private $companyId;
+
+    /** @var string|null */
+    private $entityId;
 
     /** @var string */
     private $userId;
@@ -64,6 +70,12 @@ class LoginCredentials implements CredentialsInterface
         if (!$config->getCompanyId()) {
             $config->setCompanyId(getenv(static::COMPANY_ID_ENV_NAME));
         }
+        if ($config->getEntityId() == null) {
+            $envEntityId = getenv(static::ENTITY_ID_ENV_NAME);
+            if ($envEntityId !== false) {
+                $config->setEntityId($envEntityId);
+            }
+        }
         if (!$config->getUserId()) {
             $config->setUserId(getenv(static::USER_ID_ENV_NAME));
         }
@@ -81,6 +93,9 @@ class LoginCredentials implements CredentialsInterface
             if ($profile->getCompanyId()) {
                 $config->setCompanyId($profile->getCompanyId());
             }
+            if ($profile->getEntityId() !== null) {
+                $config->setEntityId($profile->getEntityId());
+            }
             if ($profile->getUserId()) {
                 $config->setUserId($profile->getUserId());
             }
@@ -95,6 +110,7 @@ class LoginCredentials implements CredentialsInterface
                 . static::COMPANY_ID_ENV_NAME . '"'
             );
         }
+        // Entity ID is not required, no Error
         if (!$config->getUserId()) {
             throw new \InvalidArgumentException(
                 'Required User ID not supplied in config or env variable "'
@@ -109,6 +125,9 @@ class LoginCredentials implements CredentialsInterface
         }
 
         $this->setCompanyId($config->getCompanyId());
+        if ($config->getEntityId() !== null) {
+            $this->setEntityId($config->getEntityId());
+        }
         $this->setUserId($config->getUserId());
         $this->setPassword($config->getUserPassword());
         $this->setSenderCredentials($senderCreds);
@@ -128,6 +147,22 @@ class LoginCredentials implements CredentialsInterface
     public function setCompanyId(string $companyId)
     {
         $this->companyId = $companyId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityId() //: string
+    {
+        return $this->entityId;
+    }
+
+    /**
+     * @param string $entityId
+     */
+    public function setEntityId(string $entityId)
+    {
+        $this->entityId = $entityId;
     }
 
     /**
