@@ -127,18 +127,6 @@ class Control
         if (!isset($control->status)) {
             throw new IntacctException('Control block is missing status element');
         }
-        if (!isset($control->senderid)) {
-            throw new IntacctException('Control block is missing senderid element');
-        }
-        if (!isset($control->controlid)) {
-            throw new IntacctException('Control block is missing controlid element');
-        }
-        if (!isset($control->uniqueid)) {
-            throw new IntacctException('Control block is missing uniqueid element');
-        }
-        if (!isset($control->dtdversion)) {
-            throw new IntacctException('Control block is missing dtdversion element');
-        }
 
         $this->setStatus(strval($control->status));
         $this->setSenderId(strval($control->senderid));

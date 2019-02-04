@@ -172,4 +172,31 @@ EOF;
 EOF;
         new OnlineResponse($xml);
     }
+
+    /**
+     * @expectedException \Intacct\Exception\ResponseException
+     * @expectedExceptionMessage Response control status failure
+     */
+    public function testResponseExceptionWithErrors()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <control>
+        <status>failure</status>
+        <senderid></senderid>
+        <controlid></controlid>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>PL04000055</errorno>
+            <description></description>
+            <description2>This company is a demo company and has expired.</description2>
+            <correction></correction>
+        </error>
+    </errormessage>
+</response>
+EOF;
+        new OnlineResponse($xml);
+    }
 }
