@@ -86,7 +86,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response authentication status failure
+     * @expectedExceptionMessage Response authentication status failure - XL03000006 Sign-in information is incorrect
      */
     public function testAuthenticationFailure()
     {
@@ -175,7 +175,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response control status failure
+     * @expectedExceptionMessage Response control status failure - PL04000055 This company is a demo company and has expired.
      */
     public function testResponseExceptionWithErrors()
     {

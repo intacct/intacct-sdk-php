@@ -65,6 +65,7 @@ EOF;
             $response = new OnlineResponse($xml);
             $response->getResult()->ensureStatusSuccess();
         } catch (ResultException $ex) {
+            $this->assertEquals('Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found', $ex->getMessage());
             $this->assertInternalType('array', $ex->getErrors());
         }
     }

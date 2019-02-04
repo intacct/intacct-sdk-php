@@ -245,7 +245,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure
+     * @expectedExceptionMessage Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found
      */
     public function testStatusFailure()
     {
@@ -292,7 +292,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: aborted
+     * @expectedExceptionMessage Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.
      */
     public function testStatusAbort()
     {

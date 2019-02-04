@@ -58,7 +58,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response control status failure
+     * @expectedExceptionMessage Response control status failure - XL03000006 test is not a valid transport policy.
      */
     public function testConstructControlFailure()
     {

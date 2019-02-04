@@ -88,7 +88,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest
+     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong
      */
     public function testExecuteResultException()
     {
@@ -147,7 +147,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest
+     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.
      */
     public function testExecuteBatchTransactionResultException()
     {

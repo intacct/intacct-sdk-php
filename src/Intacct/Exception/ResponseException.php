@@ -40,6 +40,10 @@ class ResponseException extends \RuntimeException
     {
         $this->errors = $errors;
 
+        if (count($errors) > 0) {
+            $message = $message . ' - ' . implode(' - ', $errors);
+        }
+
         parent::__construct($message, $code, $previous);
     }
     
