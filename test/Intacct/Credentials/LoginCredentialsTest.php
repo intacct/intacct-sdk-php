@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -64,6 +64,70 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    public function testCredsWithEntityIdFromConfig()
+    {
+        $config = new ClientConfig();
+        $config->setCompanyId('testcompany');
+        $config->setEntityId('testentity');
+        $config->setUserId('testuser');
+        $config->setUserPassword('testpass');
+
+        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+
+        $this->assertEquals('testcompany', $loginCreds->getCompanyId());
+        $this->assertEquals('testentity', $loginCreds->getEntityId());
+        $this->assertEquals('testuser', $loginCreds->getUserId());
+        $this->assertEquals('testpass', $loginCreds->getPassword());
+        $endpoint = $loginCreds->getSenderCredentials()->getEndpoint();
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
+        $this->assertThat(
+            $loginCreds->getSenderCredentials(),
+            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+        );
+    }
+
+    public function testCredsFromEnv()
+    {
+        putenv('INTACCT_COMPANY_ID=envcompany');
+        putenv('INTACCT_USER_ID=envuser');
+        putenv('INTACCT_USER_PASSWORD=envuserpass');
+
+        $creds = new LoginCredentials(new ClientConfig(), $this->senderCreds);
+
+        $this->assertEquals('envcompany', $creds->getCompanyId());
+        $this->assertNull($creds->getEntityId());
+        $this->assertEquals('envuser', $creds->getUserId());
+        $this->assertEquals('envuserpass', $creds->getPassword());
+        $endpoint = $creds->getSenderCredentials()->getEndpoint();
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
+
+        putenv('INTACCT_COMPANY_ID');
+        putenv('INTACCT_USER_ID');
+        putenv('INTACCT_USER_PASSWORD');
+    }
+
+    public function testCredsWithEntityFromEnv()
+    {
+        putenv('INTACCT_COMPANY_ID=envcompany');
+        putenv('INTACCT_ENTITY_ID=enventity');
+        putenv('INTACCT_USER_ID=envuser');
+        putenv('INTACCT_USER_PASSWORD=envuserpass');
+
+        $creds = new LoginCredentials(new ClientConfig(), $this->senderCreds);
+
+        $this->assertEquals('envcompany', $creds->getCompanyId());
+        $this->assertEquals('enventity', $creds->getEntityId());
+        $this->assertEquals('envuser', $creds->getUserId());
+        $this->assertEquals('envuserpass', $creds->getPassword());
+        $endpoint = $creds->getSenderCredentials()->getEndpoint();
+        $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
+
+        putenv('INTACCT_COMPANY_ID');
+        putenv('INTACCT_ENTITY_ID');
+        putenv('INTACCT_USER_ID');
+        putenv('INTACCT_USER_PASSWORD');
+    }
+
     private function clearEnv()
     {
         $dir = sys_get_temp_dir() . '/.intacct';
@@ -92,6 +156,32 @@ EOF;
         $loginCreds = new LoginCredentials($config, $this->senderCreds);
 
         $this->assertEquals('inicompanyid', $loginCreds->getCompanyId());
+        $this->assertNull($loginCreds->getEntityId());
+        $this->assertEquals('iniuserid', $loginCreds->getUserId());
+        $this->assertEquals('iniuserpass', $loginCreds->getPassword());
+    }
+
+    public function testCredsWithEntityFromProfile()
+    {
+        $dir = $this->clearEnv();
+        $ini = <<<EOF
+[unittest]
+company_id = inicompanyid
+entity_id = inientityid
+user_id = iniuserid
+user_password = iniuserpass
+EOF;
+        // TODO move this into vfs file stream and not temp folder
+        file_put_contents($dir . '/credentials.ini', $ini);
+        putenv('HOME=' . dirname($dir));
+
+        $config = new ClientConfig();
+        $config->setProfileName('unittest');
+
+        $loginCreds = new LoginCredentials($config, $this->senderCreds);
+
+        $this->assertEquals('inicompanyid', $loginCreds->getCompanyId());
+        $this->assertEquals('inientityid', $loginCreds->getEntityId());
         $this->assertEquals('iniuserid', $loginCreds->getUserId());
         $this->assertEquals('iniuserpass', $loginCreds->getPassword());
     }

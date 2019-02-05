@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -126,18 +126,6 @@ class Control
     {
         if (!isset($control->status)) {
             throw new IntacctException('Control block is missing status element');
-        }
-        if (!isset($control->senderid)) {
-            throw new IntacctException('Control block is missing senderid element');
-        }
-        if (!isset($control->controlid)) {
-            throw new IntacctException('Control block is missing controlid element');
-        }
-        if (!isset($control->uniqueid)) {
-            throw new IntacctException('Control block is missing uniqueid element');
-        }
-        if (!isset($control->dtdversion)) {
-            throw new IntacctException('Control block is missing dtdversion element');
         }
 
         $this->setStatus(strval($control->status));

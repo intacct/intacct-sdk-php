@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,16 +24,7 @@ use Intacct\Xml\OnlineResponse;
 class AuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
-    /**
-     * @var Authentication
-     */
-    protected $object;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
+    public function testAuthenticationResponse()
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -50,6 +41,7 @@ class AuthenticationTest extends \PHPUnit\Framework\TestCase
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -60,6 +52,7 @@ class AuthenticationTest extends \PHPUnit\Framework\TestCase
                         <api>
                               <sessionid>faKEsesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -67,23 +60,13 @@ class AuthenticationTest extends \PHPUnit\Framework\TestCase
 </response>
 EOF;
         $response = new OnlineResponse($xml);
-        
-        $this->object = $response->getAuthentication();
-    }
 
-    public function testGetStatus()
-    {
-        $this->assertEquals('success', $this->object->getStatus());
-    }
+        $authentication = $response->getAuthentication();
 
-    public function testGetUserId()
-    {
-        $this->assertEquals('fakeuser', $this->object->getUserId());
-    }
-
-    public function testGetCompanyId()
-    {
-        $this->assertEquals('fakecompany', $this->object->getCompanyId());
+        $this->assertEquals('success', $authentication->getStatus());
+        $this->assertEquals('fakeuser', $authentication->getUserId());
+        $this->assertEquals('fakecompany', $authentication->getCompanyId());
+        $this->assertEquals('', $authentication->getEntityId());
     }
 
     /**
@@ -107,6 +90,7 @@ EOF;
                   <!--<status>success</status>-->
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
@@ -137,6 +121,7 @@ EOF;
                   <status>success</status>
                   <!--<userid>fakeuser</userid>-->
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
@@ -167,6 +152,7 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <!--<companyid>fakecompany</companyid>-->
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>

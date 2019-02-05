@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -47,6 +47,7 @@ class OnlineClientTest extends \PHPUnit\Framework\TestCase
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -57,6 +58,7 @@ class OnlineClientTest extends \PHPUnit\Framework\TestCase
                         <api>
                               <sessionid>unittest..</sessionid>
                               <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -86,7 +88,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest
+     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong
      */
     public function testExecuteResultException()
     {
@@ -105,6 +107,7 @@ EOF;
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -144,7 +147,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest
+     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.
      */
     public function testExecuteBatchTransactionResultException()
     {
@@ -163,6 +166,7 @@ EOF;
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -242,6 +246,7 @@ EOF;
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>

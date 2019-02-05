@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -19,7 +20,7 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 
 /**
- * @coversDefaultClass \Intacct\Functions\ApiSessionCreate
+ * @coversDefaultClass \Intacct\Functions\Company\ApiSessionCreate
  */
 class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
 {
@@ -61,7 +62,59 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $this->object->writeXml($xml);
+        $record = new ApiSessionCreate('unittest');
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithLocationId()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <getAPISession>
+        <locationid>100</locationid>
+    </getAPISession>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new ApiSessionCreate('unittest');
+        $record->setEntityId('100');
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithEmptyLocationId()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <getAPISession>
+        <locationid/>
+    </getAPISession>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new ApiSessionCreate('unittest');
+        $record->setEntityId('');
+
+        $record->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }

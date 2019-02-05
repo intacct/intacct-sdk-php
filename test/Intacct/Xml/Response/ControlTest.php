@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -90,106 +90,6 @@ EOF;
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
       <control/>
-</response>
-EOF;
-
-        $args = [
-            $xml,
-        ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
-    }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing senderid element
-     */
-    public function testMissingSenderIdElement()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <!--<senderid>testsenderid</senderid>-->
-            <controlid>ControlIdHere</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-</response>
-EOF;
-
-        $args = [
-            $xml,
-        ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
-    }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing controlid element
-     */
-    public function testMissingControlIdElement()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <!--<controlid>ControlIdHere</controlid>-->
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-</response>
-EOF;
-
-        $args = [
-            $xml,
-        ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
-    }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing uniqueid element
-     */
-    public function testMissingUniqueIdElement()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>ControlIdHere</controlid>
-            <!--<uniqueid>false</uniqueid>-->
-            <dtdversion>3.0</dtdversion>
-      </control>
-</response>
-EOF;
-
-        $args = [
-            $xml,
-        ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
-    }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing dtdversion element
-     */
-    public function testMissingDtdVersionElement()
-    {
-        $xml = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>ControlIdHere</controlid>
-            <uniqueid>false</uniqueid>
-            <!--<dtdversion>3.0</dtdversion>-->
-      </control>
 </response>
 EOF;
 

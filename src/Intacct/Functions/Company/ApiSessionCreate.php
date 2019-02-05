@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -25,6 +25,25 @@ use Intacct\Xml\XMLWriter;
  */
 class ApiSessionCreate extends AbstractFunction
 {
+
+    /** @var string */
+    private $entityId;
+
+    /**
+     * @return string
+     */
+    public function getEntityId(): string
+    {
+        return $this->entityId;
+    }
+
+    /**
+     * @param string $entityId
+     */
+    public function setEntityId(string $entityId)
+    {
+        $this->entityId = $entityId;
+    }
     
     /**
      * Write the function block XML
@@ -35,7 +54,15 @@ class ApiSessionCreate extends AbstractFunction
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        $xml->writeElement('getAPISession', null, true);
+
+        $xml->startElement('getAPISession');
+
+        if ($this->entityId !== null) {
+            $xml->writeElement('locationid', $this->getEntityId(), true);
+        }
+
+        $xml->endElement(); //getAPISession
+
         $xml->endElement(); //function
     }
 }

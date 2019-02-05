@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -58,7 +58,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response control status failure
+     * @expectedExceptionMessage Response control status failure - XL03000006 test is not a valid transport policy.
      */
     public function testConstructControlFailure()
     {

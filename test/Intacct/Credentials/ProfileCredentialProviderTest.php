@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -25,19 +25,16 @@ use Intacct\ClientConfig;
 class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
 {
 
-    private function clearEnv()
-    {
-        $dir = sys_get_temp_dir() . '/.intacct';
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-        return $dir;
-    }
+    /** @var string */
+    protected $ini;
 
-    public function testGetCredentialsFromDefaultProfile()
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
     {
-        $dir = $this->clearEnv();
-        $ini = <<<EOF
+        $this->ini = <<<EOF
 [default]
 sender_id = defsenderid
 sender_password = defsenderpass
@@ -50,14 +47,36 @@ endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml
 company_id = inicompanyid
 user_id = iniuserid
 user_password = iniuserpass
+
+[entity]
+company_id = inicompanyid
+entity_id = inientityid
+user_id = iniuserid
+user_password = iniuserpass
 EOF;
-        file_put_contents($dir . '/credentials.ini', $ini);
+    }
+
+    private function clearEnv()
+    {
+        $dir = sys_get_temp_dir() . '/.intacct';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        return $dir;
+    }
+
+    public function testGetCredentialsFromDefaultProfile()
+    {
+        $dir = $this->clearEnv();
+
+        file_put_contents($dir . '/credentials.ini', $this->ini);
         putenv('HOME=' . dirname($dir));
 
         $config = new ClientConfig();
         $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
         $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        $this->assertNull($loginCreds->getEntityId());
         $this->assertEquals('defuserid', $loginCreds->getUserId());
         $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
 
@@ -71,20 +90,8 @@ EOF;
     public function testGetLoginCredentialsFromSpecificProfile()
     {
         $dir = $this->clearEnv();
-        $ini = <<<EOF
-[default]
-sender_id = defsenderid
-sender_password = defsenderpass
-company_id = defcompanyid
-user_id = defuserid
-user_password = defuserpass
 
-[unittest]
-company_id = inicompanyid
-user_id = iniuserid
-user_password = iniuserpass
-EOF;
-        file_put_contents($dir . '/credentials.ini', $ini);
+        file_put_contents($dir . '/credentials.ini', $this->ini);
         putenv('HOME=' . dirname($dir));
 
         $config = new ClientConfig();
@@ -93,6 +100,25 @@ EOF;
         $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
         $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        $this->assertNull($profileCreds->getEntityId());
+        $this->assertEquals('iniuserid', $profileCreds->getUserId());
+        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
+    }
+
+    public function testGetLoginCredentialsWithEntityFromSpecificProfile()
+    {
+        $dir = $this->clearEnv();
+
+        file_put_contents($dir . '/credentials.ini', $this->ini);
+        putenv('HOME=' . dirname($dir));
+
+        $config = new ClientConfig();
+        $config->setProfileName('entity');
+
+        $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
+
+        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        $this->assertEquals('inientityid', $profileCreds->getEntityId());
         $this->assertEquals('iniuserid', $profileCreds->getUserId());
         $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }

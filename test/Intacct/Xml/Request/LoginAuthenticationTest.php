@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -44,6 +44,58 @@ EOF;
         $xml->startDocument();
 
         $loginAuth = new LoginAuthentication('testuser', 'testcompany', 'testpass');
+        $loginAuth->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithEntity()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid>testentity</locationid>
+    </login>
+</authentication>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $loginAuth = new LoginAuthentication('testuser', 'testcompany', 'testpass', 'testentity');
+        $loginAuth->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testWriteXmlWithEmptyEntity()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid/>
+    </login>
+</authentication>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $loginAuth = new LoginAuthentication('testuser', 'testcompany', 'testpass', '');
         $loginAuth->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

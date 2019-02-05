@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -40,6 +40,7 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -50,6 +51,7 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
                         <api>
                               <sessionid>fAkESesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -84,7 +86,7 @@ EOF;
 
     /**
      * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response authentication status failure
+     * @expectedExceptionMessage Response authentication status failure - XL03000006 Sign-in information is incorrect
      */
     public function testAuthenticationFailure()
     {
@@ -103,6 +105,7 @@ EOF;
                   <status>failure</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
             </authentication>
             <errormessage>
                   <error>
@@ -161,9 +164,37 @@ EOF;
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
       </operation>
+</response>
+EOF;
+        new OnlineResponse($xml);
+    }
+
+    /**
+     * @expectedException \Intacct\Exception\ResponseException
+     * @expectedExceptionMessage Response control status failure - PL04000055 This company is a demo company and has expired.
+     */
+    public function testResponseExceptionWithErrors()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <control>
+        <status>failure</status>
+        <senderid></senderid>
+        <controlid></controlid>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>PL04000055</errorno>
+            <description></description>
+            <description2>This company is a demo company and has expired.</description2>
+            <correction></correction>
+        </error>
+    </errormessage>
 </response>
 EOF;
         new OnlineResponse($xml);

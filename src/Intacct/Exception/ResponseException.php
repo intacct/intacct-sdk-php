@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -39,6 +39,10 @@ class ResponseException extends \RuntimeException
     public function __construct(string $message, array $errors = [], int $code = 0, \Exception $previous = null)
     {
         $this->errors = $errors;
+
+        if (count($errors) > 0) {
+            $message = $message . ' - ' . implode(' - ', $errors);
+        }
 
         parent::__construct($message, $code, $previous);
     }

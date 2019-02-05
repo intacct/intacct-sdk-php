@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -102,7 +102,8 @@ class OperationBlock
             $this->setAuthentication(new LoginAuthentication(
                 $credentials->getUserId(),
                 $credentials->getCompanyId(),
-                $credentials->getPassword()
+                $credentials->getPassword(),
+                $credentials->getEntityId()
             ));
         } elseif ($clientConfig->getSessionId()) {
             $this->setAuthentication(new SessionAuthentication($clientConfig->getSessionId()));
@@ -110,7 +111,8 @@ class OperationBlock
             $this->setAuthentication(new LoginAuthentication(
                 $clientConfig->getUserId(),
                 $clientConfig->getCompanyId(),
-                $clientConfig->getUserPassword()
+                $clientConfig->getUserPassword(),
+                $clientConfig->getEntityId()
             ));
         } else {
             throw new \InvalidArgumentException(
