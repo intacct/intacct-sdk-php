@@ -11,6 +11,7 @@ var searchData=
   ['endpoint_5furl_5fenv_5fname',['ENDPOINT_URL_ENV_NAME',['../class_intacct_1_1_credentials_1_1_endpoint.html#a5d92a20b17103816a2894479bd5f4d79',1,'Intacct::Credentials::Endpoint']]],
   ['ensurestatusnotfailure',['ensureStatusNotFailure',['../class_intacct_1_1_xml_1_1_response_1_1_result.html#ae12b0e4f79351cbdac53e39fa58dd8c5',1,'Intacct::Xml::Response::Result']]],
   ['ensurestatussuccess',['ensureStatusSuccess',['../class_intacct_1_1_xml_1_1_response_1_1_result.html#a12538d9b78a807d494e0d6c8c958f9a2',1,'Intacct::Xml::Response::Result']]],
+  ['entity_5fid_5fenv_5fname',['ENTITY_ID_ENV_NAME',['../class_intacct_1_1_credentials_1_1_login_credentials.html#aee248c7ff48ae8fc5aeae6de5e880184',1,'Intacct::Credentials::LoginCredentials']]],
   ['equaltodate',['EqualToDate',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date.html',1,'Intacct::Functions::Common::Query::Comparison::EqualTo']]],
   ['equaltodate_2ephp',['EqualToDate.php',['../_equal_to_date_8php.html',1,'']]],
   ['equaltodatetime',['EqualToDateTime',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date_time.html',1,'Intacct::Functions::Common::Query::Comparison::EqualTo']]],

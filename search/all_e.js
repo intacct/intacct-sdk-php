@@ -24,5 +24,9 @@ var searchData=
   ['purchasingtransactiondelete',['PurchasingTransactionDelete',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_delete.html',1,'Intacct::Functions::Purchasing']]],
   ['purchasingtransactiondelete_2ephp',['PurchasingTransactionDelete.php',['../_purchasing_transaction_delete_8php.html',1,'']]],
   ['purchasingtransactionlinecreate',['PurchasingTransactionLineCreate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactionlinecreate_2ephp',['PurchasingTransactionLineCreate.php',['../_purchasing_transaction_line_create_8php.html',1,'']]]
+  ['purchasingtransactionlinecreate_2ephp',['PurchasingTransactionLineCreate.php',['../_purchasing_transaction_line_create_8php.html',1,'']]],
+  ['purchasingtransactionlineupdate',['PurchasingTransactionLineUpdate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_update.html',1,'Intacct::Functions::Purchasing']]],
+  ['purchasingtransactionlineupdate_2ephp',['PurchasingTransactionLineUpdate.php',['../_purchasing_transaction_line_update_8php.html',1,'']]],
+  ['purchasingtransactionupdate',['PurchasingTransactionUpdate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_update.html',1,'Intacct::Functions::Purchasing']]],
+  ['purchasingtransactionupdate_2ephp',['PurchasingTransactionUpdate.php',['../_purchasing_transaction_update_8php.html',1,'']]]
 ];

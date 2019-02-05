@@ -1,5 +1,10 @@
 var NAVTREEINDEX4 =
 {
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5eff888d3b09ece2949bb99fa8e46b0d":[0,0,2,1,7,34],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a60896bd9b2754e8b7d224b4a72f6991d":[0,0,2,1,7,96],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a6166cb1544ed4fd2a4faeab099d98ad6":[0,0,2,1,7,42],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a68772a61be43017661205359f6dc29de":[0,0,2,1,7,137],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a68e9fe7e20ea9da0c6a5d5fec7093bca":[0,0,2,1,7,103],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a6c6c398bb339882f7d55ff22e74c1002":[0,0,2,1,7,33],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a702adf289d62a8d0f44125390862f86c":[0,0,2,1,7,18],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a717286a8348a6cf9f6d5fecb04a55fad":[0,0,2,1,7,22],
@@ -244,10 +249,5 @@ var NAVTREEINDEX4 =
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#ae88e0ee130b908a00128863830b7a868":[0,0,2,1,9,34],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#ae9dd2ebf781e904bdc2abff66b6af8bd":[0,0,2,1,9,67],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#aea812fb47702e65f1db9b924f0dda296":[0,0,2,1,9,53],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#af36d4cdb9a0f9cf9c4d947c1b7f63197":[0,0,2,1,9,50],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#afb9f4519f4082fc3e4b3a0973c3c5c98":[0,0,2,1,9,18],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#afdd52ea5d1b9c0a8036f07b9b48325e7":[0,0,2,1,9,12],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#afe786074a017872a73e79484e469a6b4":[0,0,2,1,9,15],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_summary.html":[0,0,2,1,10],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_summary.html#a0c092aedf818c6caada24c708ec5ad39":[0,0,2,1,10,0]
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#af36d4cdb9a0f9cf9c4d947c1b7f63197":[0,0,2,1,9,50]
 };

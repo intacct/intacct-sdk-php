@@ -1,3 +1,26 @@
+/*
+@ @licstart  The following is the entire license notice for the
+JavaScript code in this file.
+
+Copyright (C) 1997-2017 by Dimitri van Heesch
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+@licend  The above is the entire license notice
+for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "Sage Intacct SDK for PHP", "index.html", [
@@ -9,22 +32,22 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_ap_payment_request.html#a1ad439f9f8ef04362e93e0c10a54353f",
-"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a5247fda0b8ac012d50cbbeba85fbca7e",
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa698a3e72116e8e778be0e95d908ee30",
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a6c6c398bb339882f7d55ff22e74c1002",
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_summary.html#a2478481645b5a84e4c3e81e6f17e7962",
-"class_intacct_1_1_functions_1_1_cash_management_1_1_abstract_other_receipt.html#a6dfbd2489273cedc52b0a9c202156d8d",
-"class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_greater_than_or_equal_to_1_13800dc6b69fcc23de0eba934c83b05c5.html",
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a702adf289d62a8d0f44125390862f86c",
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_employee.html#a02ec6d79213c73530106e7cc590cb6f6",
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_report.html#afd1394a5b63c1f8e07d751e511bb15eb",
-"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_account.html#aa27953c1dc36e404ccfc9903759c907e",
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction_line.html#a79dfff6430e4aa0d5aa69efcf095ddad",
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_update.html#ab8ffbd3a38749e42412babb1c8a6445e",
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4db1f38f5ac5d74fcb0117a0d3dbeabd",
-"class_intacct_1_1_functions_1_1_projects_1_1_timesheet_delete.html#ab8ffbd3a38749e42412babb1c8a6445e",
-"class_intacct_1_1_xml_1_1_request_block.html#a96cb0180d43023c46c608c717fdf9e41"
+"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_ap_payment_request.html#a05e3b134fb34e491f51a914da7f99471",
+"class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a4f88ae6a79dc5635f46952820ba61d42",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#a8b6efdda0d5699f7944b02baa68b5275",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5eff888d3b09ece2949bb99fa8e46b0d",
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#afb9f4519f4082fc3e4b3a0973c3c5c98",
+"class_intacct_1_1_functions_1_1_cash_management_1_1_abstract_other_receipt.html#a5ab25239bf2f8c7c48181343ea10435f",
+"class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_greater_than_1_1_greater_than_string.html#a7516ca30af0db3cdbf9a7739b48ce91d",
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a563ede72d41af4963503ed5316453d91",
+"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html#a10fa1507308b6859ee9a36ea5fa353de",
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_report.html#ac2096f1f0397c051468614191328b22d",
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_account.html#a777b83b0d394fd894720a220e63e192d",
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction_line.html#a5b01110117f0cd71a5a115dc8b9eab6f",
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_create.html#a16c531b191e41a9df913d7d669d758ab",
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a398d961fce9d555095d8e8251c060465",
+"class_intacct_1_1_functions_1_1_projects_1_1_task_delete.html",
+"class_intacct_1_1_xml_1_1_request_1_1_operation_block.html#ab8ffbd3a38749e42412babb1c8a6445e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,12 @@
 var NAVTREEINDEX14 =
 {
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a398d961fce9d555095d8e8251c060465":[0,0,2,12,0,112],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a39d4f20243dc643053249590279c9a26":[0,0,2,12,0,67],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a468f0b1fd7aa24dc226f4318bd78c03e":[0,0,2,12,0,113],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a479e7161aec6c3063c8be740e2f76278":[0,0,2,12,0,44],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4a9edafe924a4efeb9d1a9daf1bc1dfe":[0,0,2,12,0,61],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4b0e4a9392b5b064edba395846535a64":[0,0,2,12,0,38],
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4c09e9201c12bf611a389d711e860945":[0,0,2,12,0,8],
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4db1f38f5ac5d74fcb0117a0d3dbeabd":[0,0,2,12,0,109],
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4f82966acd57ad0ca21f1b2ceb277bb4":[0,0,2,12,0,122],
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4fc406ee6e33507a36d38724837843ea":[0,0,2,12,0,62],
@@ -242,12 +249,5 @@ var NAVTREEINDEX14 =
 "class_intacct_1_1_functions_1_1_projects_1_1_project_update.html":[0,0,2,12,6],
 "class_intacct_1_1_functions_1_1_projects_1_1_project_update.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,6,0],
 "class_intacct_1_1_functions_1_1_projects_1_1_task_create.html":[0,0,2,12,7],
-"class_intacct_1_1_functions_1_1_projects_1_1_task_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,7,0],
-"class_intacct_1_1_functions_1_1_projects_1_1_task_delete.html":[0,0,2,12,8],
-"class_intacct_1_1_functions_1_1_projects_1_1_task_delete.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,8,0],
-"class_intacct_1_1_functions_1_1_projects_1_1_task_update.html":[0,0,2,12,9],
-"class_intacct_1_1_functions_1_1_projects_1_1_task_update.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,9,0],
-"class_intacct_1_1_functions_1_1_projects_1_1_timesheet_create.html":[0,0,2,12,10],
-"class_intacct_1_1_functions_1_1_projects_1_1_timesheet_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,10,0],
-"class_intacct_1_1_functions_1_1_projects_1_1_timesheet_delete.html":[0,0,2,12,11]
+"class_intacct_1_1_functions_1_1_projects_1_1_task_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,12,7,0]
 };

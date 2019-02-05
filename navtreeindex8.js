@@ -1,5 +1,10 @@
 var NAVTREEINDEX8 =
 {
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a563ede72d41af4963503ed5316453d91":[0,0,2,4,5,27],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a5a0aa1d7e9fac6230a1db30354b053cd":[0,0,2,4,5,22],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a5b9ddd3e3a69d8901270064346bdef49":[0,0,2,4,5,59],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a60896bd9b2754e8b7d224b4a72f6991d":[0,0,2,4,5,45],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a6c6c398bb339882f7d55ff22e74c1002":[0,0,2,4,5,18],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a702adf289d62a8d0f44125390862f86c":[0,0,2,4,5,8],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a717286a8348a6cf9f6d5fecb04a55fad":[0,0,2,4,5,11],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_contact.html#a78ba043964a18f4ecce9b71c35d0433c":[0,0,2,4,5,0],
@@ -136,7 +141,9 @@ var NAVTREEINDEX8 =
 "class_intacct_1_1_functions_1_1_company_1_1_allocation_update.html":[0,0,2,4,12],
 "class_intacct_1_1_functions_1_1_company_1_1_allocation_update.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,12,0],
 "class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html":[0,0,2,4,13],
-"class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,13,0],
+"class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html#a00cfe3f1bc6882494be45117ad082914":[0,0,2,4,13,0],
+"class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html#a9ace5b985cf9aaa67cb3f66f148d28fe":[0,0,2,4,13,1],
+"class_intacct_1_1_functions_1_1_company_1_1_api_session_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,13,2],
 "class_intacct_1_1_functions_1_1_company_1_1_attachment_file.html":[0,0,2,4,14],
 "class_intacct_1_1_functions_1_1_company_1_1_attachment_file.html#a13f3044501ccff40350fb08dc1a278d6":[0,0,2,4,14,2],
 "class_intacct_1_1_functions_1_1_company_1_1_attachment_file.html#a68fbc5a9273a24181c50a057d11603fa":[0,0,2,4,14,8],
@@ -242,12 +249,5 @@ var NAVTREEINDEX8 =
 "class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#abdec1f0364d8ba54328e4adb8440361d":[0,0,2,5,0,22],
 "class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#acc159a27bf0bfac04d9ec017a00637f0":[0,0,2,5,0,14],
 "class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#ad85936739cb023a24c937452c7ea3729":[0,0,2,5,0,12],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html":[0,0,2,5,1],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html#a10fa1507308b6859ee9a36ea5fa353de":[0,0,2,5,1,0],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html#a155c4a33c7a86247c33333334888eb0a":[0,0,2,5,1,1],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,5,1,2],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_read.html":[0,0,2,5,2],
-"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_read.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,5,2,0],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_employee.html":[0,0,2,6,0],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_employee.html#a025876810dee204b39f038e8ae7a4690":[0,0,2,6,0,28]
+"class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_object_ddl_read.html":[0,0,2,5,1]
 };

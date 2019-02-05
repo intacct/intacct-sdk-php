@@ -1,5 +1,12 @@
 var NAVTREEINDEX13 =
 {
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_create.html#a16c531b191e41a9df913d7d669d758ab":[0,0,2,9,9,1],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_create.html#a33fac948c62aaab236655e71d3a65081":[0,0,2,9,9,0],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_create.html#a6416f80db059dc127095201e37f84618":[0,0,2,9,9,3],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,9,9,2],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_delete.html":[0,0,2,9,10],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_delete.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,9,10,0],
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_item_update.html":[0,0,2,9,11],
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_item_update.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,9,11,0],
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_transaction_item_detail.html":[0,0,2,9,12],
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_transaction_item_detail.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,9,12,0],
@@ -242,12 +249,5 @@ var NAVTREEINDEX13 =
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a331bbc50827701055bbff414250c051a":[0,0,2,12,0,52],
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a33afc0ffff091eb2ff2a6ae58c21928c":[0,0,2,12,0,76],
 "class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a37d22fd3b896e9d5488f3479a4d8f451":[0,0,2,12,0,108],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a394cc2320e3861a1a708ec1b899a4fc4":[0,0,2,12,0,54],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a398d961fce9d555095d8e8251c060465":[0,0,2,12,0,112],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a39d4f20243dc643053249590279c9a26":[0,0,2,12,0,67],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a468f0b1fd7aa24dc226f4318bd78c03e":[0,0,2,12,0,113],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a479e7161aec6c3063c8be740e2f76278":[0,0,2,12,0,44],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4a9edafe924a4efeb9d1a9daf1bc1dfe":[0,0,2,12,0,61],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4b0e4a9392b5b064edba395846535a64":[0,0,2,12,0,38],
-"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a4c09e9201c12bf611a389d711e860945":[0,0,2,12,0,8]
+"class_intacct_1_1_functions_1_1_projects_1_1_abstract_project.html#a394cc2320e3861a1a708ec1b899a4fc4":[0,0,2,12,0,54]
 };

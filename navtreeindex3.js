@@ -1,5 +1,10 @@
 var NAVTREEINDEX3 =
 {
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#a8b6efdda0d5699f7944b02baa68b5275":[0,0,2,1,2,3],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#a8d636116dc464eacbcc302898c76adcf":[0,0,2,1,2,22],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#a9e272c98bbeb2d35a7f279c19bd064c9":[0,0,2,1,2,31],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa265198f2ec99d6c54328416cf5bc798":[0,0,2,1,2,40],
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa52033d29eb1e34e2475cd591bf2fa9a":[0,0,2,1,2,29],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa698a3e72116e8e778be0e95d908ee30":[0,0,2,1,2,35],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa793f14fa27b45617a66eba021bb88fd":[0,0,2,1,2,23],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment.html#aa973bac533651fda9fdb4e860dbaca45":[0,0,2,1,2,43],
@@ -244,10 +249,5 @@ var NAVTREEINDEX3 =
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5a0aa1d7e9fac6230a1db30354b053cd":[0,0,2,1,7,51],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5b9ddd3e3a69d8901270064346bdef49":[0,0,2,1,7,127],
 "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5e356e6f71b1825918e90491a50241cd":[0,0,2,1,7,132],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5e39d60e47b4cd14a1907dd40c326ba7":[0,0,2,1,7,114],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5eff888d3b09ece2949bb99fa8e46b0d":[0,0,2,1,7,34],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a60896bd9b2754e8b7d224b4a72f6991d":[0,0,2,1,7,96],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a6166cb1544ed4fd2a4faeab099d98ad6":[0,0,2,1,7,42],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a68772a61be43017661205359f6dc29de":[0,0,2,1,7,137],
-"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a68e9fe7e20ea9da0c6a5d5fec7093bca":[0,0,2,1,7,103]
+"class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a5e39d60e47b4cd14a1907dd40c326ba7":[0,0,2,1,7,114]
 };
