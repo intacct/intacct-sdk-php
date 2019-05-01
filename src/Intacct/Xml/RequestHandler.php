@@ -17,6 +17,7 @@
 
 namespace Intacct\Xml;
 
+use GuzzleHttp\Exception\RequestException;
 use Intacct\ClientConfig;
 use Intacct\Credentials\Endpoint;
 use Intacct\Credentials\SessionCredentials;
@@ -228,6 +229,33 @@ class RequestHandler
         
         //add the retry logic before the http_errors middleware
         $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
+
+        // replace the http_errors middleware with our own to process XML responses before HTTP errors
+        $handler->before(
+            'http_errors',
+            function (callable $handler) {
+                return function ($request, array $options) use ($handler) {
+                    return $handler($request, $options)->then(
+                        function (ResponseInterface $response) use ($request, $handler) {
+                            $code = $response->getStatusCode();
+                            if ($code < 400) {
+                                return $response;
+                            }
+                            $contentType = trim($response->getHeaderLine('content-type'));
+                            if (
+                                substr($contentType, 0, 8) === 'text/xml' ||
+                                substr($contentType, 0, 15) == 'application/xml'
+                            ) {
+                                return $response;
+                            }
+                            throw RequestException::create($request, $response);
+                        }
+                    );
+                };
+            },
+            'xml_and_http_errors'
+        );
+        $handler->remove('http_errors');
 
         //push the history middleware to the top of the stack
         $handler->push(Middleware::history($this->history));
