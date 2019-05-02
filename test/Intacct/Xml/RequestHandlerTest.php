@@ -21,6 +21,7 @@ namespace Intacct\Xml;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\ClientConfig;
+use Intacct\Exception\ResponseException;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\RequestConfig;
 use Monolog\Handler\StreamHandler;
@@ -227,6 +228,51 @@ EOF;
         $this->assertEquals(2, count($history));
         $this->assertEquals(502, $history[0]['response']->getStatusCode());
         $this->assertEquals(200, $history[1]['response']->getStatusCode());
+    }
+
+    /**
+     * @expectedException \Intacct\Exception\ResponseException
+     */
+    public function testMock400LevelErrorWithXmlResponse()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <control>
+        <status>failure</status>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>XMLGW_JPP0002</errorno>
+            <description>Sign-in information is incorrect. Please check your request.</description>
+        </error>
+    </errormessage>
+</response>
+EOF;
+        $headers = [
+            'Content-Type' => 'text/xml; encoding="UTF-8"',
+        ];
+
+        $mock = new MockHandler([
+            new Response(401, $headers, $xml),
+        ]);
+
+        $clientConfig = new ClientConfig();
+        $clientConfig->setSenderId('testsenderid');
+        $clientConfig->setSenderPassword('pass123!');
+        $clientConfig->setCompanyId('badcompany');
+        $clientConfig->setUserId('baduser');
+        $clientConfig->setUserPassword('badpass');
+        $clientConfig->setMockHandler($mock);
+
+        $requestConfig = new RequestConfig();
+
+        $contentBlock = [
+            new ApiSessionCreate(),
+        ];
+
+        $requestHandler = new RequestHandler($clientConfig, $requestConfig);
+        $requestHandler->executeOnline($contentBlock);
     }
     
     /**
