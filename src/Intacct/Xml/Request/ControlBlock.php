@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -195,13 +195,13 @@ class ControlBlock
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('control');
         $xml->writeElement('senderid', $this->getSenderId(), true);
         $xml->writeElement('password', $this->getPassword(), true);
         $xml->writeElement('controlid', $this->getControlId(), true);
-        if ($this->isUniqueId() === true) {
+        if ( $this->isUniqueId() === true ) {
             $xml->writeElement('uniqueid', 'true');
         } else {
             $xml->writeElement('uniqueid', 'false');

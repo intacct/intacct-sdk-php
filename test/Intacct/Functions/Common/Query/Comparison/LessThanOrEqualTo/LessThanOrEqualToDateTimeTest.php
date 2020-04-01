@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -17,7 +17,7 @@
 namespace Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo;
 
 /**
- * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThan\LessThanOrEqualToDateTime
+ * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThan\LessThanDateTime
  */
 class LessThanOrEqualToDateTimeTest extends \PHPUnit\Framework\TestCase
 {

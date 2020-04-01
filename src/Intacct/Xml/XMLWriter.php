@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -86,7 +86,7 @@ class XMLWriter extends \XMLWriter
             );
         }
 
-        if ($content !== null || $writeNull === true) {
+        if ( $content !== null || $writeNull === true ) {
             $content = $this->transformValue($content);
 
             return parent::writeElement($name, $content);
@@ -95,21 +95,37 @@ class XMLWriter extends \XMLWriter
         }
     }
 
+    /**
+     * @param        $name
+     * @param null   $date
+     * @param string $format
+     * @param bool   $writeNull
+     *
+     * @return bool
+     */
     public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, $writeNull = false)
     {
-        if ($date instanceof \DateTime) {
-            return self::writeElement($name, $date->format($format), $writeNull);
+        if ( $date instanceof \DateTime ) {
+            return $this->writeElement($name, $date->format($format), $writeNull);
         } else {
-            return self::writeElement($name, $date, $writeNull);
+            return $this->writeElement($name, $date, $writeNull);
         }
     }
 
+    /**
+     * @param        $name
+     * @param null   $date
+     * @param string $format
+     * @param bool   $writeNull
+     *
+     * @return bool
+     */
     public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, $writeNull = false)
     {
-        if ($date instanceof \DateTime) {
-            return self::writeElement($name, $date->format($format), $writeNull);
+        if ( $date instanceof \DateTime ) {
+            return $this->writeElement($name, $date->format($format), $writeNull);
         } else {
-            return self::writeElement($name, $date, $writeNull);
+            return $this->writeElement($name, $date, $writeNull);
         }
     }
 
@@ -141,7 +157,7 @@ class XMLWriter extends \XMLWriter
      */
     public function writeDateSplitElements(\DateTime $date, $writeNull = true)
     {
-        list($year, $month, $day) = explode('-', $date->format('Y-m-d'));
+        [ $year, $month, $day ] = explode('-', $date->format('Y-m-d'));
 
         $this->writeElement('year', $year, $writeNull);
         $this->writeElement('month', $month, $writeNull);

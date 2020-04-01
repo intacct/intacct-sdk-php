@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -30,13 +30,13 @@ class PurchasingTransactionUpdate extends AbstractPurchasingTransaction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
         $xml->startElement('update_potransaction');
-        if ($this->getExternalId()) {
+        if ( $this->getExternalId() ) {
             $xml->writeAttribute('key', $this->getExternalId());
             $xml->writeAttribute('externalkey', 'true'); //TODO fix writeAttribute to accept bool
         } else {

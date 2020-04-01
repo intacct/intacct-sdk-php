@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -66,16 +66,16 @@ class Inspect extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        
+
         $xml->startElement('inspect');
         $xml->writeAttribute('detail', $this->isShowDetail() === true ? '1' : '0');
-        
+
         $xml->writeElement('object', $this->getObjectName(), true);
-        
+
         $xml->endElement(); //inspect
         
         $xml->endElement(); //function

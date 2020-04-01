@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -33,29 +33,33 @@ class SenderCredentials
     
     /** @var string */
     const DEFAULT_SENDER_PROFILE = 'default';
-    
+
     /** @var string */
     private $senderId;
-    
+
     /** @var string */
     private $password;
-    
+
     /** @var Endpoint */
     private $endpoint;
 
+    /**
+     * SenderCredentials constructor.
+     *
+     * @param ClientConfig $config
+     */
     public function __construct(ClientConfig $config)
     {
         $envProfileName = getenv(static::SENDER_PROFILE_ENV_NAME)
-            ? getenv(static::SENDER_PROFILE_ENV_NAME)
-            : static::DEFAULT_SENDER_PROFILE;
+            ? : static::DEFAULT_SENDER_PROFILE;
 
-        if (!$config->getProfileName()) {
+        if ( ! $config->getProfileName() ) {
             $config->setProfileName($envProfileName);
         }
-        if (!$config->getSenderId()) {
+        if ( ! $config->getSenderId() ) {
             $config->setSenderId(getenv(static::SENDER_ID_ENV_NAME));
         }
-        if (!$config->getSenderPassword()) {
+        if ( ! $config->getSenderPassword() ) {
             $config->setSenderPassword(getenv(static::SENDER_PASSWORD_ENV_NAME));
         }
 

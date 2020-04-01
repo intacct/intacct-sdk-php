@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -181,17 +181,17 @@ class GetList extends AbstractFunction
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
         $xml->startElement('get_list');
-        if (!$this->getObjectName()) {
+        if ( ! $this->getObjectName() ) {
             throw new \InvalidArgumentException('Object Name is required for get_list');
         }
         $xml->writeAttribute('object', $this->getObjectName(), true);
-        if ($this->getMaxTotalCount() > 0) {
+        if ( $this->getMaxTotalCount() > 0 ) {
             $xml->writeAttribute('maxitems', $this->getMaxTotalCount());
         }
         $xml->writeAttribute('showprivate', $this->isShowPrivate());

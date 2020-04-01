@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -30,11 +30,11 @@ class BillLineCreate extends AbstractBillLine
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('lineitem');
 
-        if (!empty($this->getAccountLabel())) {
+        if ( ! empty($this->getAccountLabel()) ) {
             $xml->writeElement('accountlabel', $this->getAccountLabel(), true);
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber(), true);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -31,14 +31,14 @@ class ReimbursementRequestCreate extends AbstractReimbursementRequest
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
         $xml->startElement('create_reimbursementrequest');
 
-        if (!$this->getBankAccountId()) {
+        if ( ! $this->getBankAccountId() ) {
             throw new InvalidArgumentException('Bank Account ID is required for create reimbursement request');
         }
         $xml->writeElement('bankaccountid', $this->getBankAccountId(), true);

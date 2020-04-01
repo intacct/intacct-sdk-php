@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -106,12 +106,12 @@ class AttachmentFile implements AttachmentInterface
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
-        if (!$this->getFilePath()) {
+        if ( ! $this->getFilePath() ) {
             throw new InvalidArgumentException('Attachment File Path is required for create');
         }
-        if (!is_readable($this->getFilePath())) {
+        if ( ! is_readable($this->getFilePath()) ) {
             throw new InvalidArgumentException('Attachment File Path is not readable');
         }
 

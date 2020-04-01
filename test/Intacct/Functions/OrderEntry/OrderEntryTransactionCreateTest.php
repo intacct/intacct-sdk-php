@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,7 +22,7 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionCreate
+ * @coversDefaultClass \Intacct\Functions\OrderEntry\OrderEntryTransactionCreate
  */
 class OrderEntryTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
@@ -65,8 +65,8 @@ EOF;
         $line1->setItemId('02354032');
         $line1->setQuantity(1200);
         $transaction->setLines([
-            $line1,
-        ]);
+                                   $line1,
+                               ]);
 
         $transaction->writeXml($xml);
 
@@ -117,15 +117,15 @@ EOF;
         $line1->setItemId('02354032');
         $line1->setQuantity(1200);
         $transaction->setLines([
-            $line1,
-        ]);
+                                   $line1,
+                               ]);
 
         $subtotal1 = new TransactionSubtotalCreate();
         $subtotal1->setDescription('Subtotal Description');
         $subtotal1->setTotal(1200);
         $transaction->setSubtotals([
-            $subtotal1,
-        ]);
+                                       $subtotal1,
+                                   ]);
 
         $transaction->writeXml($xml);
 
@@ -236,8 +236,8 @@ EOF;
         $transaction->setExchangeRateType('Intacct Daily Rate');
         $transaction->setVsoePriceList('VSOEPricing');
         $transaction->setCustomFields([
-            'customfield1' => 'customvalue1'
-        ]);
+                                          'customfield1' => 'customvalue1',
+                                      ]);
         $transaction->setState('Pending');
         $transaction->setProjectId('P2904');
 
@@ -245,15 +245,15 @@ EOF;
         $line1->setItemId('2390552');
         $line1->setQuantity(223);
         $transaction->setLines([
-            $line1,
-        ]);
+                                   $line1,
+                               ]);
 
         $subtotal1 = new TransactionSubtotalCreate();
         $subtotal1->setDescription('Subtotal description');
         $subtotal1->setTotal(223);
         $transaction->setSubtotals([
-            $subtotal1,
-        ]);
+                                       $subtotal1,
+                                   ]);
 
         $transaction->writeXml($xml);
 

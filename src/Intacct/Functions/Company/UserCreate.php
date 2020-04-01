@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -111,7 +111,7 @@ class UserCreate extends AbstractUser
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
@@ -119,7 +119,7 @@ class UserCreate extends AbstractUser
         $xml->startElement('create');
         $xml->startElement('USERINFO');
 
-        if (!$this->getUserId()) {
+        if ( ! $this->getUserId() ) {
             throw new InvalidArgumentException('User ID is required for create');
         }
         $xml->writeElement('LOGINID', $this->getUserId(), true);

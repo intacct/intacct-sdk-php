@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -32,14 +32,14 @@ class OrderEntryTransactionDelete extends AbstractOrderEntryTransaction
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
         $xml->startElement('delete_sotransaction');
 
-        if (!$this->getDocumentId()) {
+        if ( ! $this->getDocumentId() ) {
             throw new InvalidArgumentException('Document ID is required for delete');
         }
         $xml->writeAttribute('key', $this->getDocumentId());

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -32,7 +32,7 @@ class EmployeeUpdate extends AbstractEmployee
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
@@ -40,7 +40,7 @@ class EmployeeUpdate extends AbstractEmployee
         $xml->startElement('update');
         $xml->startElement('EMPLOYEE');
 
-        if (!$this->getEmployeeId()) {
+        if ( ! $this->getEmployeeId() ) {
             throw new InvalidArgumentException('Employee ID is required for update');
         }
         $xml->writeElement('EMPLOYEEID', $this->getEmployeeId(), true);

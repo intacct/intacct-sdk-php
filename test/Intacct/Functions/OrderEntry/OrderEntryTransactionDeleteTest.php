@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,7 +21,7 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionDelete
+ * @coversDefaultClass \Intacct\Functions\OrderEntry\OrderEntryTransactionDelete
  */
 class OrderEntryTransactionDeleteTest extends \PHPUnit\Framework\TestCase
 {

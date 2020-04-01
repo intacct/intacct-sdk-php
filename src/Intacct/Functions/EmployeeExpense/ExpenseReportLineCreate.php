@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -30,11 +30,11 @@ class ExpenseReportLineCreate extends AbstractExpenseReportLine
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('expense');
 
-        if (!empty($this->getExpenseType())) {
+        if ( ! empty($this->getExpenseType()) ) {
             $xml->writeElement('expensetype', $this->getExpenseType(), true);
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber(), true);

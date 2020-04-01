@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -187,10 +187,10 @@ class ReadReport extends AbstractFunction
      * @param array $array
      * @param XMLWriter $xml
      */
-    protected function writeXmlArguments($array, XMLWriter &$xml)
+    protected function writeXmlArguments($array, XMLWriter $xml)
     {
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
+        foreach ( $array as $key => $value ) {
+            if ( is_array($value) ) {
                 $xml->startElement($key);
                 $this->writeXmlArguments($value, $xml);
                 $xml->endElement();
@@ -205,14 +205,14 @@ class ReadReport extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        
+
         $xml->startElement('readReport');
 
-        if (!$this->getReportName()) {
+        if ( ! $this->getReportName() ) {
             throw new \InvalidArgumentException(
                 'Report Name is required for read report'
             );
