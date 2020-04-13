@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -59,18 +59,18 @@ class ApplicationInstall extends AbstractFunction
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        
+
         $xml->startElement('installApp');
         $xml->startElement('appxml');
 
-        if (!$this->getXmlFilename()) {
+        if ( ! $this->getXmlFilename() ) {
             throw new InvalidArgumentException('XML Filename is required for install');
         }
-        if (!is_readable($this->getXmlFilename())) {
+        if ( ! is_readable($this->getXmlFilename()) ) {
             throw new InvalidArgumentException(
                 'XML Filename is not readable for install'
             );

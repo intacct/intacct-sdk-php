@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,9 +21,17 @@ use Intacct\Xml\XMLWriter;
 
 interface FunctionInterface
 {
-    
-    public function getControlId(): string;
-    
+
+    /**
+     * @return string
+     */
+    public function getControlId() : string;
+
+    /**
+     * @param string $controlId
+     *
+     * @return mixed
+     */
     public function setControlId(string $controlId);
 
     /**
@@ -31,5 +39,5 @@ interface FunctionInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml);
+    public function writeXml(XMLWriter $xml);
 }

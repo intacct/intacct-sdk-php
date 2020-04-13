@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,7 +21,15 @@ use Intacct\Functions\Common\Query\ConditionInterface;
 interface LogicalInterface extends ConditionInterface
 {
 
+    /**
+     * @return mixed
+     */
     public function getConditions();
 
+    /**
+     * @param array $conditions
+     *
+     * @return mixed
+     */
     public function setConditions(array $conditions);
 }

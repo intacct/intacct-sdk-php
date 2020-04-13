@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -1441,15 +1441,15 @@ abstract class AbstractCustomer extends AbstractFunction
     /**
      * @param XMLWriter $xml
      */
-    public function writeXmlMailAddress(XMLWriter &$xml)
+    public function writeXmlMailAddress(XMLWriter $xml)
     {
-        if ($this->getAddressLine1()
-            || $this->getAddressLine2()
-            || $this->getCity()
-            || $this->getStateProvince()
-            || $this->getZipPostalCode()
-            || $this->getCountry()
-            || $this->getIsoCountryCode()) {
+        if ( $this->getAddressLine1()
+             || $this->getAddressLine2()
+             || $this->getCity()
+             || $this->getStateProvince()
+             || $this->getZipPostalCode()
+             || $this->getCountry()
+             || $this->getIsoCountryCode() ) {
             $xml->startElement('MAILADDRESS');
 
             $xml->writeElement('ADDRESS1', $this->getAddressLine1());

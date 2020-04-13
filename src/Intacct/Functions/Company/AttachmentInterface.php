@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,11 +24,26 @@ interface AttachmentInterface
 
     public function getExtension();
 
+    /**
+     * @param $extension
+     *
+     * @return mixed
+     */
     public function setExtension($extension);
 
     public function getFileName();
 
+    /**
+     * @param $fileName
+     *
+     * @return mixed
+     */
     public function setFileName($fileName);
 
-    public function writeXml(XMLWriter &$xml);
+    /**
+     * @param XMLWriter $xml
+     *
+     * @return mixed
+     */
+    public function writeXml(XMLWriter $xml);
 }

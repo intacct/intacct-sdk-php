@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -32,11 +32,11 @@ class TimesheetEntryCreate extends AbstractTimesheetEntry
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('TIMESHEETENTRY');
 
-        if (!$this->getEntryDate()) {
+        if ( ! $this->getEntryDate() ) {
             throw new InvalidArgumentException('Entry Date is required for create');
         }
         $xml->writeElementDate('ENTRYDATE', $this->getEntryDate(), $xml::IA_DATE_FORMAT, true);

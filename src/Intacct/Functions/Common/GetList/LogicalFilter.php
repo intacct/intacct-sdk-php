@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -100,15 +100,15 @@ class LogicalFilter implements FilterInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('logical');
         $xml->writeAttribute('logical_operator', $this->getOperator());
-        if ($this->getObjectName()) {
+        if ( $this->getObjectName() ) {
             $xml->writeAttribute('object', $this->getObjectName());
         }
 
-        if (count($this->getFilters()) < 2) {
+        if ( count($this->getFilters()) < 2 ) {
             throw new \InvalidArgumentException('Logical Filters count must be 2 or more');
         }
         foreach ($this->getFilters() as $filter) {

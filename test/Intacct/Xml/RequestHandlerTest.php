@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -21,7 +21,6 @@ namespace Intacct\Xml;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\ClientConfig;
-use Intacct\Exception\ResponseException;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\RequestConfig;
 use Monolog\Handler\StreamHandler;
@@ -162,7 +161,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOffline($contentBlock);
+        $requestHandler->executeOffline($contentBlock);
     }
 
     public function testMockRetry()
@@ -392,7 +391,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOnline($contentBlock);
+        $requestHandler->executeOnline($contentBlock);
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);
@@ -445,7 +444,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOffline($contentBlock);
+        $requestHandler->executeOffline($contentBlock);
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);

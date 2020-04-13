@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -57,16 +57,16 @@ class ChargeCardTransactionLineUpdate extends AbstractChargeCardTransactionLine
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('updateccpayitem');
 
-        if (!$this->getLineNo()) {
+        if ( ! $this->getLineNo() ) {
             throw new InvalidArgumentException('Line No is required for update');
         }
         $xml->writeAttribute('line_num', $this->getLineNo());
 
-        if (!empty($this->getAccountLabel())) {
+        if ( ! empty($this->getAccountLabel()) ) {
             $xml->writeElement('accountlabel', $this->getAccountLabel());
         } else {
             $xml->writeElement('glaccountno', $this->getGlAccountNumber());

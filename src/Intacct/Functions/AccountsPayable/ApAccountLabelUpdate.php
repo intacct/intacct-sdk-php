@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -28,7 +28,7 @@ class ApAccountLabelUpdate extends AbstractApAccountLabel
     /**
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
@@ -36,7 +36,7 @@ class ApAccountLabelUpdate extends AbstractApAccountLabel
         $xml->startElement('update');
         $xml->startElement('APACCOUNTLABEL');
 
-        if (!$this->getAccountLabel()) {
+        if ( ! $this->getAccountLabel() ) {
             throw new \InvalidArgumentException('Account Label is required for update');
         }
         $xml->writeElement('ACCOUNTLABEL', $this->getAccountLabel(), true);

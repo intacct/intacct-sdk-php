@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -443,12 +443,12 @@ abstract class AbstractApAdjustment extends AbstractFunction
     /**
      * @param XMLWriter $xml
      */
-    protected function writeXmlMultiCurrencySection(XMLWriter &$xml)
+    protected function writeXmlMultiCurrencySection(XMLWriter $xml)
     {
         $xml->writeElement('basecurr', $this->getBaseCurrency());
         $xml->writeElement('currency', $this->getTransactionCurrency());
 
-        if ($this->getExchangeRateDate()) {
+        if ( $this->getExchangeRateDate() ) {
             $xml->startElement('exchratedate');
             $xml->writeDateSplitElements($this->getExchangeRateDate(), true);
             $xml->endElement();

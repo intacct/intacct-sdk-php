@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -32,7 +32,7 @@ class ExpenseTypeUpdate extends AbstractExpenseType
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
@@ -40,7 +40,7 @@ class ExpenseTypeUpdate extends AbstractExpenseType
         $xml->startElement('update');
         $xml->startElement('EEACCOUNTLABEL');
 
-        if (!$this->getExpenseType()) {
+        if ( ! $this->getExpenseType() ) {
             throw new InvalidArgumentException('Expense Type is required for update');
         }
         $xml->writeElement('ACCOUNTLABEL', $this->getExpenseType(), true);

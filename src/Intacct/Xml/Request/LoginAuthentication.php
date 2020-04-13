@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -136,14 +136,14 @@ class LoginAuthentication implements AuthenticationInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('authentication');
         $xml->startElement('login');
         $xml->writeElement('userid', $this->getUserId(), true);
         $xml->writeElement('companyid', $this->getCompanyId(), true);
         $xml->writeElement('password', $this->getPassword(), true);
-        if ($this->getEntityId() !== null) {
+        if ( $this->getEntityId() !== null ) {
             $xml->writeElement('locationid', $this->getEntityId());
         }
         $xml->endElement(); //login

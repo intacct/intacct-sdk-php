@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -48,11 +48,11 @@ trait CustomFieldsTrait
     /**
      * @param XMLWriter $xml
      */
-    protected function writeXmlExplicitCustomFields(XMLWriter &$xml)
+    protected function writeXmlExplicitCustomFields(XMLWriter $xml)
     {
-        if (count($this->customFields) > 0) {
+        if ( count($this->customFields) > 0 ) {
             $xml->startElement('customfields');
-            foreach ($this->customFields as $customFieldName => $customFieldValue) {
+            foreach ( $this->customFields as $customFieldName => $customFieldValue ) {
                 $xml->startElement('customfield');
                 $xml->writeElement('customfieldname', $customFieldName, true);
                 $xml->writeElement('customfieldvalue', $customFieldValue, true);
@@ -65,10 +65,10 @@ trait CustomFieldsTrait
     /**
      * @param XMLWriter $xml
      */
-    protected function writeXmlImplicitCustomFields(XMLWriter &$xml)
+    protected function writeXmlImplicitCustomFields(XMLWriter $xml)
     {
-        if (count($this->customFields) > 0) {
-            foreach ($this->customFields as $customFieldName => $customFieldValue) {
+        if ( count($this->customFields) > 0 ) {
+            foreach ( $this->customFields as $customFieldName => $customFieldValue ) {
                 $xml->writeElement($customFieldName, $customFieldValue, true);
             }
         }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -33,7 +33,7 @@ class RequestHandler
 {
     
     /** @var string */
-    const VERSION = '2.1.1';
+    const VERSION = '3.0.0';
 
     /** @var ClientConfig */
     private $clientConfig;
@@ -236,15 +236,15 @@ class RequestHandler
             function (callable $handler) {
                 return function ($request, array $options) use ($handler) {
                     return $handler($request, $options)->then(
-                        function (ResponseInterface $response) use ($request, $handler) {
+                        function(ResponseInterface $response) use ($request) {
                             $code = $response->getStatusCode();
-                            if ($code < 400) {
+                            if ( $code < 400 ) {
                                 return $response;
                             }
                             $contentType = trim($response->getHeaderLine('content-type'));
                             if (
-                                substr($contentType, 0, 8) === 'text/xml' ||
-                                substr($contentType, 0, 15) == 'application/xml'
+                                substr($contentType, 0, 8) === 'text/xml'
+                                || substr($contentType, 0, 15) == 'application/xml'
                             ) {
                                 return $response;
                             }

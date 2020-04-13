@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -80,12 +80,16 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
         new SenderCredentials($config);
     }
 
+    /**
+     * @return string
+     */
     private function clearEnv()
     {
         $dir = sys_get_temp_dir() . '/.intacct';
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir) ) {
             mkdir($dir, 0777, true);
         }
+
         return $dir;
     }
 

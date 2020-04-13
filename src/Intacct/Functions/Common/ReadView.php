@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -84,14 +84,14 @@ class ReadView extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
-        
+
         $xml->startElement('readView');
 
-        if (!$this->getViewName()) {
+        if ( ! $this->getViewName() ) {
             throw new \InvalidArgumentException(
                 'View Name is required for read view'
             );

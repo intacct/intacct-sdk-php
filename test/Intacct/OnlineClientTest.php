@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -142,7 +142,7 @@ EOF;
 
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute(new ApiSessionCreate('func1UnitTest'));
+        $client->execute(new ApiSessionCreate('func1UnitTest'));
     }
 
     /**
@@ -223,10 +223,10 @@ EOF;
         $requestConfig = new RequestConfig();
         $requestConfig->setTransaction(true);
 
-        $response = $client->executeBatch([
-            new ApiSessionCreate('func1UnitTest'),
-            new ApiSessionCreate('func2UnitTest')
-        ], $requestConfig);
+        $client->executeBatch([
+                                  new ApiSessionCreate('func1UnitTest'),
+                                  new ApiSessionCreate('func2UnitTest'),
+                              ], $requestConfig);
     }
 
     public function testLogger()
@@ -286,7 +286,7 @@ EOF;
 
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute(new ReadByQuery('func1UnitTest'));
+        $client->execute(new ReadByQuery('func1UnitTest'));
 
         fseek($handle, 0);
         $contents = '';

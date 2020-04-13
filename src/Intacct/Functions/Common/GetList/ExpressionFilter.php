@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -144,14 +144,14 @@ class ExpressionFilter implements FilterInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(XMLWriter $xml)
     {
         $xml->startElement('expression');
-        if ($this->getObjectName()) {
+        if ( $this->getObjectName() ) {
             $xml->writeAttribute('object', $this->getObjectName());
         }
 
-        if (!$this->getFieldName()) {
+        if ( ! $this->getFieldName() ) {
             throw new \InvalidArgumentException('Field Name is required for an expression filter');
         }
         $xml->writeElement('field', $this->getFieldName(), true);
