@@ -232,4 +232,43 @@ EOF;
                                  ->from('CUSTOMER')
                                  ->pagesize(-1);
     }
+
+    public function testAggregateFunctions()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <avg>TOTALDUE</avg>
+            <min>WHENDUE</min>
+            <max>TOTALENTERED</max>
+            <sum>TOTALDUE</sum>
+            <count>RECORDNO</count>
+        </select>
+        <object>ARINVOICE</object>
+    </query>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $query = ( new Query('unittest') )->select([ 'CUSTOMERID',
+                                                     [ 'AVG' => 'TOTALDUE' ],
+                                                     [ 'min' => 'WHENDUE' ],
+                                                     [ 'MAX' => 'TOTALENTERED' ],
+                                                     [ 'SUM' => 'TOTALDUE' ],
+                                                     [ 'COUNT' => 'RECORDNO' ] ])
+                                          ->from('ARINVOICE');
+
+        $query->writeXML($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
 }
