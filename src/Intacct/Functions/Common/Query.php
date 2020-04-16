@@ -18,6 +18,7 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Common\QuerySelect\SelectInterface;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
@@ -25,7 +26,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 {
 
     /**
-     * @var string[]
+     * @var SelectInterface[]
      */
     private $_selectFields;
 
@@ -65,7 +66,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     private $_offset;
 
     /**
-     * @return string[]
+     * @return SelectInterface[]
      */
     public function getSelect()
     {
@@ -73,24 +74,19 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @param string[] $fields
+     * @param SelectInterface[] $fields
      */
     public function setSelect(array $fields)
     {
-        if ( $fields ) {
-            foreach ( $fields as $field ) {
-                if ( ! $field ) {
-                    throw new InvalidArgumentException('Fields for select cannot be empty or null. Provide fields for select in array.');
-                }
-            }
-            $this->_selectFields = $fields;
-        } else {
+        if ( ! $fields ) {
             throw new InvalidArgumentException('Fields for select cannot be empty or null. Provide fields for select in array.');
         }
+
+        $this->_selectFields = $fields;
     }
 
     /**
-     * @param string[] $fields
+     * @param SelectInterface[] $fields
      *
      * @return QueryFunctionInterface
      */
@@ -319,8 +315,6 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function writeXML(XMLWriter $xml)
     {
-        $_aggFunctions = [ 'avg', 'min', 'max', 'count', 'sum' ];
-
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 
@@ -332,15 +326,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
         $xml->startElement('select');
         foreach ( $this->_selectFields as $_field ) {
-            if ( is_array($_field) && count($_field) == 1 ) { //nested array must include arregrate and field in array
-                $_field = array_change_key_case($_field, 0);
-                $_aggregate = array_keys($_field)[0]; // get aggregate function used for select
-                if ( in_array($_aggregate, $_aggFunctions) ) {
-                    $xml->writeElement($_aggregate, array_values($_field), false);
-                }
-            } else {
-                $xml->writeElement('field', $_field, false);
-            }
+            $_field->writeXML($xml);
         }
         $xml->endElement(); // select
 
