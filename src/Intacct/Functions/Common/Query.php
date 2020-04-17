@@ -18,6 +18,7 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Common\QueryOrderBy\OrderInterface;
 use Intacct\Functions\Common\QuerySelect\SelectInterface;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
@@ -46,7 +47,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     private $_filter;
 
     /**
-     * @var OrderByInterface
+     * @var OrderInterface[]
      */
     private $_orderBy;
 
@@ -191,23 +192,27 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return OrderByInterface
+     * @return OrderInterface[]
      */
-    public function getOrderBy() : OrderByInterface
+    public function getOrderBy()
     {
         return $this->_orderBy;
     }
 
     /**
-     * @param OrderByInterface $orderBy
+     * @param OrderInterface[] $orderBy
      */
-    public function setOrderBy(OrderByInterface $orderBy) : void
+    public function setOrderBy($orderBy) : void
     {
+        if ( ! $orderBy ) {
+            throw new InvalidArgumentException('Fields for orderBy cannot be empty or null. Provide orders for orderBy in array.');
+        }
+
         $this->_orderBy = $orderBy;
     }
 
     /**
-     * @param $orderBy
+     * @param OrderInterface[] $orderBy
      *
      * @return QueryFunctionInterface
      */
@@ -345,7 +350,11 @@ class Query extends AbstractFunction implements QueryFunctionInterface
         }
 
         if ( $this->_orderBy ) {
-            $xml->writeElement('orderby', $this->_orderBy, false);
+            $xml->startElement('orderby');
+            foreach ( $this->_orderBy as $order ) {
+                $order->writeXML($xml);
+            }
+            $xml->endElement(); // orderby
         }
 
         if ( $this->_caseInsensitive ) {

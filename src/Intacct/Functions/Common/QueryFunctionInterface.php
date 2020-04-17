@@ -1,29 +1,48 @@
 <?php
 
+/**
+ * Copyright 2020 Sage Intacct, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 namespace Intacct\Functions\Common;
+
+use Intacct\Functions\Common\QueryOrderBy\OrderInterface;
+use Intacct\Functions\Common\QuerySelect\SelectInterface;
 
 interface QueryFunctionInterface
 {
 
     /**
-     * @return string[]
+     * @return SelectInterface[]
+     *
      */
     public function getSelect();
 
     /**
-     * @param string[] $fields
+     * @param SelectInterface[] $fields
      */
     public function setSelect(array $fields);
 
     /**
-     * @param string[] $fields
+     * @param SelectInterface[] $fields
      *
      * @return QueryFunctionInterface
      */
     public function select(array $fields);
 
     /**
-     * @return string[]
+     * @return string
      */
     public function getFrom();
 
@@ -75,17 +94,17 @@ interface QueryFunctionInterface
     public function docparid($docparid);
 
     /**
-     * @return OrderByInterface
+     * @return OrderInterface[]
      */
-    public function getOrderBy() : OrderByInterface;
+    public function getOrderBy();
 
     /**
-     * @param OrderByInterface $orderBy
+     * @param OrderInterface[] $orderBy
      */
-    public function setOrderBy(OrderByInterface $orderBy) : void;
+    public function setOrderBy($orderBy) : void;
 
     /**
-     * @param $orderBy
+     * @param OrderInterface[] $orderBy
      *
      * @return QueryFunctionInterface
      */

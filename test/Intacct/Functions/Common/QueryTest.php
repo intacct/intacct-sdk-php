@@ -18,6 +18,7 @@
 namespace Intacct\Tests\Functions\Common;
 
 use Intacct\Functions\Common\Query;
+use Intacct\Functions\Common\QueryOrderBy\OrderBuilder;
 use Intacct\Functions\Common\QuerySelect\SelectBuilder;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
@@ -332,4 +333,74 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
+
+    public function testOrderBy()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <orderby>
+            <order>
+                <field>TOTALDUE</field>
+                <ascending/>
+            </order>
+            <order>
+                <field>RECORDNO</field>
+                <descending/>
+            </order>
+        </orderby>
+    </query>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
+                                         ->getFields();
+
+        $orderBy = ( new OrderBuilder() )->ascending('TOTALDUE')
+                                         ->descending('RECORDNO')
+                                         ->getOrders();
+
+        $query = ( new Query('unittest') )->select($fields)
+                                          ->from('ARINVOICE')
+                                          ->orderBy($orderBy);
+
+        $query->writeXML($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Fields for orderBy cannot be empty or null. Provide orders for orderBy in array.
+     */
+    public function testEmptyOrderBy()
+    {
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $fields = ( new SelectBuilder() )->field('CUSTOMERID')
+                                         ->getFields();
+
+        $query = ( new Query('unittest') )->select($fields)
+                                          ->from('CUSTOMER')
+                                          ->orderBy([]);
+
+        $query->writeXML($xml);
+    }
+
 }
