@@ -64,7 +64,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field for the builder.
      */
     public function testEmptyAscending()
     {
@@ -107,7 +107,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field for the builder.
      */
     public function testEmptyDescending()
     {

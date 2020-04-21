@@ -17,31 +17,14 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-use Intacct\Xml\XMLWriter;
-
-class Minimum implements SelectInterface
+class Minimum extends AbstractSelectFunction
 {
 
     /**
-     * @param string $_field
+     * @return string
      */
-    private $_field;
-
-    /**
-     * Minimum constructor.
-     *
-     * @param string $_field
-     */
-    public function __construct(string $_field)
+    public function getFunctionName() : string
     {
-        $this->_field = $_field;
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    public function writeXML(XMLWriter $xml)
-    {
-        $xml->writeElement('min', $this->_field, false);
+        return self::MINIMUM;
     }
 }

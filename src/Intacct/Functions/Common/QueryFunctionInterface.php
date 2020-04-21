@@ -59,9 +59,9 @@ interface QueryFunctionInterface
     public function from(string $objectName);
 
     /**
-     * @return FilterBuilderInterface
+     * @return FilterBuilderInterface|null
      */
-    public function getFilter() : FilterBuilderInterface;
+    public function getFilter();
 
     /**
      * @param FilterBuilderInterface $filter
@@ -82,7 +82,7 @@ interface QueryFunctionInterface
     public function setDocparid($docparid);
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDocparid();
 
@@ -94,7 +94,7 @@ interface QueryFunctionInterface
     public function docparid($docparid);
 
     /**
-     * @return OrderInterface[]
+     * @return OrderInterface[]|null
      */
     public function getOrderBy();
 
@@ -111,9 +111,9 @@ interface QueryFunctionInterface
     public function orderBy($orderBy);
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isCaseInsensitive() : bool;
+    public function isCaseInsensitive();
 
     /**
      * @param bool $caseInsensitive
@@ -128,9 +128,9 @@ interface QueryFunctionInterface
     public function caseinsensitive(bool $caseInsensitive);
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPagesize() : int;
+    public function getPagesize();
 
     /**
      * @param int $pagesize
@@ -145,9 +145,9 @@ interface QueryFunctionInterface
     public function pagesize(int $pagesize);
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOffset() : int;
+    public function getOffset();
 
     /**
      * @param int $offset

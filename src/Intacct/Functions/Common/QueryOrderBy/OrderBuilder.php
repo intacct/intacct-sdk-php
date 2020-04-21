@@ -36,35 +36,41 @@ class OrderBuilder
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return $this
      */
-    public function ascending(string $value) : OrderBuilder
+    public function ascending(string $fieldName) : OrderBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentOrderField = new OrderAscending($value);
+        $this->_validate($fieldName);
+        $_currentOrderField = new OrderAscending($fieldName);
         $this->_orders[] = $_currentOrderField;
 
         return $this;
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return $this
      */
-    public function descending(string $value) : OrderBuilder
+    public function descending(string $fieldName) : OrderBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentOrderField = new OrderDescending($value);
+        $this->_validate($fieldName);
+        $_currentOrderField = new OrderDescending($fieldName);
         $this->_orders[] = $_currentOrderField;
 
         return $this;
+    }
+
+    /**
+     * @param $fieldName
+     */
+    private function _validate($fieldName)
+    {
+        if ( ! $fieldName ) {
+            throw new InvalidArgumentException('Field name for field cannot be empty or null. Provide a field for the builder.');
+        }
     }
 
     /**

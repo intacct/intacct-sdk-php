@@ -17,8 +17,6 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-use InvalidArgumentException;
-
 class SelectBuilder
 {
 
@@ -28,41 +26,41 @@ class SelectBuilder
     private $_selects;
 
     /**
+     * @var SelectFunctionFactory
+     */
+    private $_factory;
+
+    /**
      * SelectBuilder constructor.
      */
     public function __construct()
     {
         $this->_selects = [];
+        $this->_factory = new SelectFunctionFactory();
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function field(string $value) : SelectBuilder
+    public function field(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Field($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::FIELD, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
     }
 
     /**
-     * @param string[] $values
+     * @param string[] $fieldNames
      *
      * @return SelectBuilder
      */
-    public function fields(array $values) : SelectBuilder
+    public function fields(array $fieldNames) : SelectBuilder
     {
-        foreach ( $values as $value ) {
-            if ( ! $value ) {
-                throw new InvalidArgumentException('Fields cannot be empty or null. Provide a list of fields for the builder.');
-            }
-            $_currentSelectField = new Field($value);
+        foreach ( $fieldNames as $fieldName ) {
+            $_currentSelectField = $this->_factory->create(AbstractSelectFunction::FIELD, $fieldName);
             $this->_selects[] = $_currentSelectField;
         }
 
@@ -70,80 +68,65 @@ class SelectBuilder
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function avg(string $value) : SelectBuilder
+    public function avg(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields for avg cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Average($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::AVERAGE, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function min(string $value) : SelectBuilder
+    public function min(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields for min cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Minimum($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::MINIMUM, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function max(string $value) : SelectBuilder
+    public function max(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields for max cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Maximum($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::MAXIMUM, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function count(string $value) : SelectBuilder
+    public function count(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields for count cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Count($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::COUNT, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
     }
 
     /**
-     * @param string $value
+     * @param string $fieldName
      *
      * @return SelectBuilder
      */
-    public function sum(string $value) : SelectBuilder
+    public function sum(string $fieldName) : SelectBuilder
     {
-        if ( ! $value ) {
-            throw new InvalidArgumentException('Fields for sum cannot be empty or null. Provide a field for the builder.');
-        }
-        $_currentSelectField = new Sum($value);
+        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::SUM, $fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;

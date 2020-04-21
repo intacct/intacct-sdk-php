@@ -17,31 +17,14 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-use Intacct\Xml\XMLWriter;
-
-class Maximum implements SelectInterface
+class Maximum extends AbstractSelectFunction
 {
 
     /**
-     * @param string $_field
+     * @return string
      */
-    private $_field;
-
-    /**
-     * Maximum constructor.
-     *
-     * @param string $_field
-     */
-    public function __construct(string $_field)
+    public function getFunctionName() : string
     {
-        $this->_field = $_field;
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    public function writeXML(XMLWriter $xml)
-    {
-        $xml->writeElement('max', $this->_field, false);
+        return self::MAXIMUM;
     }
 }

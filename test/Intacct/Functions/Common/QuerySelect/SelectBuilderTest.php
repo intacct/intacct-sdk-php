@@ -61,7 +61,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for field cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyField()
     {
@@ -88,7 +88,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields cannot be empty or null. Provide a list of fields for the builder.
+     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field name for the builder.
      */
     public function testNullInFields()
     {
@@ -98,7 +98,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields cannot be empty or null. Provide a list of fields for the builder.
+     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyStringInFields()
     {
@@ -141,7 +141,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for avg cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for avg cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyAvg()
     {
@@ -183,7 +183,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for min cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for min cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyMin()
     {
@@ -226,7 +226,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for max cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for max cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyMax()
     {
@@ -269,7 +269,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for count cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for count cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyCount()
     {
@@ -312,7 +312,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for sum cannot be empty or null. Provide a field for the builder.
+     * @expectedExceptionMessage Field name for sum cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptySum()
     {

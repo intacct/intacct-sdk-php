@@ -80,7 +80,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     public function setSelect(array $fields)
     {
         if ( ! $fields ) {
-            throw new InvalidArgumentException('Fields for select cannot be empty or null. Provide fields for select in array.');
+            throw new InvalidArgumentException('Field name for select cannot be empty or null. Provide Field name for select in array.');
         }
 
         $this->_selectFields = $fields;
@@ -131,9 +131,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return FilterBuilderInterface
+     * @return FilterBuilderInterface|null
      */
-    public function getFilter() : FilterBuilderInterface
+    public function getFilter()
     {
         return $this->_filter;
     }
@@ -164,7 +164,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function setDocparid($docparid)
     {
-        if ( $docparid && $docparid != '' ) {
+        if ( $docparid && $docparid != '' ) { // flip these
             $this->_docparid = $docparid;
         } else {
             throw new InvalidArgumentException('docparid cannot be empty. Set docparid with valid document identifier.');
@@ -172,7 +172,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDocparid()
     {
@@ -192,7 +192,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return OrderInterface[]
+     * @return OrderInterface[]|null
      */
     public function getOrderBy()
     {
@@ -205,7 +205,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     public function setOrderBy($orderBy) : void
     {
         if ( ! $orderBy ) {
-            throw new InvalidArgumentException('Fields for orderBy cannot be empty or null. Provide orders for orderBy in array.');
+            throw new InvalidArgumentException('Field name for orderBy cannot be empty or null. Provide orders for orderBy in array.');
         }
 
         $this->_orderBy = $orderBy;
@@ -224,9 +224,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isCaseInsensitive() : bool
+    public function isCaseInsensitive()
     {
         return $this->_caseInsensitive;
     }
@@ -252,9 +252,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPagesize() : int
+    public function getPagesize()
     {
         return $this->_pagesize;
     }
@@ -284,9 +284,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOffset() : int
+    public function getOffset()
     {
         return $this->_offset;
     }
@@ -325,50 +325,50 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
         $xml->startElement('query');
 
-        if ( ! $this->_selectFields ) {
+        if ( ! $this->getSelect() ) {
             throw new InvalidArgumentException('Select fields are required for query; set through method select setter.');
         }
 
         $xml->startElement('select');
-        foreach ( $this->_selectFields as $_field ) {
+        foreach ( $this->getSelect() as $_field ) {
             $_field->writeXML($xml);
         }
         $xml->endElement(); // select
 
-        if ( ! $this->_fromObject ) {
+        if ( ! $this->getFrom() ) {
             throw new InvalidArgumentException('Object Name is required for query; set through method from setter.');
         }
 
-        $xml->writeElement('object', $this->_fromObject, false);
+        $xml->writeElement('object', $this->getFrom(), false);
 
-        if ( $this->_docparid ) {
-            $xml->writeElement('docparid', $this->_docparid, false);
+        if ( $this->getDocparid() ) {
+            $xml->writeElement('docparid', $this->getDocparid(), false);
         }
 
-        if ( $this->_filter ) {
-            $xml->writeElement('filter', $this->_filter, false);
+        if ( $this->getFilter() ) {
+            $xml->writeElement('filter', $this->getFilter(), false);
         }
 
-        if ( $this->_orderBy ) {
+        if ( $this->getOrderBy() ) {
             $xml->startElement('orderby');
-            foreach ( $this->_orderBy as $order ) {
+            foreach ( $this->getOrderBy() as $order ) {
                 $order->writeXML($xml);
             }
             $xml->endElement(); // orderby
         }
 
-        if ( $this->_caseInsensitive ) {
+        if ( $this->isCaseInsensitive() ) {
             $xml->startElement('options');
-            $xml->writeElement('caseinsensitive', $this->_caseInsensitive, false);
+            $xml->writeElement('caseinsensitive', $this->isCaseInsensitive(), false);
             $xml->endElement();
         }
 
-        if ( $this->_pagesize ) {
-            $xml->writeElement('pagesize', $this->_pagesize, false);
+        if ( $this->getPagesize() ) {
+            $xml->writeElement('pagesize', $this->getPagesize(), false);
         }
 
-        if ( $this->_offset ) {
-            $xml->writeElement('offset', $this->_offset, false);
+        if ( $this->getOffset() ) {
+            $xml->writeElement('offset', $this->getOffset(), false);
         }
 
         $xml->endElement(); //query

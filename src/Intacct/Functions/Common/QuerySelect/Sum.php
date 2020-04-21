@@ -17,31 +17,14 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-use Intacct\Xml\XMLWriter;
-
-class Sum implements SelectInterface
+class Sum extends AbstractSelectFunction
 {
 
     /**
-     * @param string $_field
+     * @return string
      */
-    private $_field;
-
-    /**
-     * Sum constructor.
-     *
-     * @param string $_field
-     */
-    public function __construct(string $_field)
+    public function getFunctionName() : string
     {
-        $this->_field = $_field;
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    public function writeXML(XMLWriter $xml)
-    {
-        $xml->writeElement('sum', $this->_field, false);
+        return self::SUM;
     }
 }

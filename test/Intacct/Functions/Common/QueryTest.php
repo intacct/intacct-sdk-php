@@ -103,7 +103,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for select cannot be empty or null. Provide fields for select in array.
+     * @expectedExceptionMessage Field name for select cannot be empty or null. Provide Field name for select in array.
      */
     public function testEmptySelect()
     {
@@ -383,7 +383,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Fields for orderBy cannot be empty or null. Provide orders for orderBy in array.
+     * @expectedExceptionMessage Field name for orderBy cannot be empty or null. Provide orders for orderBy in array.
      */
     public function testEmptyOrderBy()
     {
@@ -401,6 +401,53 @@ EOF;
                                           ->orderBy([]);
 
         $query->writeXML($xml);
+    }
+
+    public function testFilter()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <orderby>
+            <order>
+                <field>TOTALDUE</field>
+                <ascending/>
+            </order>
+            <order>
+                <field>RECORDNO</field>
+                <descending/>
+            </order>
+        </orderby>
+    </query>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
+                                         ->getFields();
+
+        $orderBy = ( new OrderBuilder() )->ascending('TOTALDUE')
+                                         ->descending('RECORDNO')
+                                         ->getOrders();
+
+        $query = ( new Query('unittest') )->select($fields)
+                                          ->from('ARINVOICE')
+                                          ->orderBy($orderBy);
+
+        $query->writeXML($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
 }

@@ -18,31 +18,14 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-use Intacct\Xml\XMLWriter;
-
-class Average implements SelectInterface
+class Average extends AbstractSelectFunction
 {
 
     /**
-     * @param string $_field
+     * @return string
      */
-    private $_field;
-
-    /**
-     * Average constructor.
-     *
-     * @param string $_field
-     */
-    public function __construct(string $_field)
+    public function getFunctionName() : string
     {
-        $this->_field = $_field;
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    public function writeXML(XMLWriter $xml)
-    {
-        $xml->writeElement('avg', $this->_field, false);
+        return self::AVERAGE;
     }
 }

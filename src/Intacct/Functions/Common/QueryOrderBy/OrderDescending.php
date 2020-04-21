@@ -17,34 +17,14 @@
 
 namespace Intacct\Functions\Common\QueryOrderBy;
 
-use Intacct\Xml\XMLWriter;
-
-class OrderDescending implements OrderInterface
+class OrderDescending extends AbstractOrderFunction
 {
 
     /**
-     * @param string $_field
+     * @return string
      */
-    private $_field;
-
-    /**
-     * Count constructor.
-     *
-     * @param string $_field
-     */
-    public function __construct(string $_field)
+    public function getDirection() : string
     {
-        $this->_field = $_field;
-    }
-
-    /**
-     * @param XMLWriter $xml
-     */
-    public function writeXML(XMLWriter $xml)
-    {
-        $xml->startElement('order');
-        $xml->writeElement('field', $this->_field, false);
-        $xml->writeElement('descending', null, true);
-        $xml->endElement(); // order
+        return self::DESCENDING;
     }
 }
