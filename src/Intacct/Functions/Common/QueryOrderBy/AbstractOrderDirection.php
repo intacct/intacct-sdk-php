@@ -19,7 +19,7 @@ namespace Intacct\Functions\Common\QueryOrderBy;
 
 use Intacct\Xml\XMLWriter;
 
-abstract class AbstractOrderFunction implements OrderInterface
+abstract class AbstractOrderDirection implements OrderInterface
 {
 
     const ASCENDING = 'ascending';

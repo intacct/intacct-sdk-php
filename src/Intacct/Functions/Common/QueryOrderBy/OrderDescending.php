@@ -17,7 +17,7 @@
 
 namespace Intacct\Functions\Common\QueryOrderBy;
 
-class OrderDescending extends AbstractOrderFunction
+class OrderDescending extends AbstractOrderDirection
 {
 
     /**
