@@ -18,6 +18,7 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Functions\AbstractFunction;
+use Intacct\Functions\Common\QueryFilter\FilterInterface;
 use Intacct\Functions\Common\QueryOrderBy\OrderInterface;
 use Intacct\Functions\Common\QuerySelect\SelectInterface;
 use Intacct\Xml\XMLWriter;
@@ -42,9 +43,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     private $_docparid;
 
     /**
-     * @var FilterBuilderInterface
+     * @var FilterInterface[]
      */
-    private $_filter;
+    private $_filters;
 
     /**
      * @var OrderInterface[]
@@ -131,34 +132,6 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return FilterBuilderInterface|null
-     */
-    public function getFilter()
-    {
-        return $this->_filter;
-    }
-
-    /**
-     * @param FilterBuilderInterface $filter
-     */
-    public function setFilter(FilterBuilderInterface $filter)
-    {
-        $this->_filter = $filter;
-    }
-
-    /**
-     * @param FilterBuilderInterface $filter
-     *
-     * @return QueryFunctionInterface
-     */
-    public function where(FilterBuilderInterface $filter)
-    {
-        $this->_filter = $filter;
-
-        return $this;
-    }
-
-    /**
      * @param string $docparid
      *
      */
@@ -187,6 +160,34 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     public function docparid($docparid)
     {
         $this->setDocparid($docparid);
+
+        return $this;
+    }
+
+    /**
+     * @return FilterInterface[]|null
+     */
+    public function getFilters()
+    {
+        return $this->_filters;
+    }
+
+    /**
+     * @param FilterInterface[] $filters
+     */
+    public function setFilters($filters) : void
+    {
+        $this->_filters = $filters;
+    }
+
+    /**
+     * @param FilterInterface[] $filters
+     *
+     * @return QueryFunctionInterface
+     */
+    public function filter($filters)
+    {
+        $this->setFilters($filters);
 
         return $this;
     }
@@ -345,8 +346,14 @@ class Query extends AbstractFunction implements QueryFunctionInterface
             $xml->writeElement('docparid', $this->getDocparid(), false);
         }
 
-        if ( $this->getFilter() ) {
-            $xml->writeElement('filter', $this->getFilter(), false);
+        if ( $this->getFilters() ) {
+            $xml->startElement('filter');
+
+            foreach ( $this->getFilters() as $filter ) {
+                $filter->writeXML($xml);
+            }
+
+            $xml->endElement();
         }
 
         if ( $this->getOrderBy() ) {

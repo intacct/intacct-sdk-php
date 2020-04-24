@@ -48,7 +48,7 @@ class SelectFunctionFactory
                 $function = new Sum($fieldName);
                 break;
             default:
-                throw new InvalidArgumentException("$functionName function doesn't exist.");
+                throw new InvalidArgumentException("$functionName function doesn't exist."); // TODO: Need test
                 break;
         }
 

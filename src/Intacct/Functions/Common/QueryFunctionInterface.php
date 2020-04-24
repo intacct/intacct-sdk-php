@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions\Common;
 
+use Intacct\Functions\Common\QueryFilter\FilterInterface;
 use Intacct\Functions\Common\QueryOrderBy\OrderInterface;
 use Intacct\Functions\Common\QuerySelect\SelectInterface;
 
@@ -59,23 +60,6 @@ interface QueryFunctionInterface
     public function from(string $objectName);
 
     /**
-     * @return FilterBuilderInterface|null
-     */
-    public function getFilter();
-
-    /**
-     * @param FilterBuilderInterface $filter
-     */
-    public function setFilter(FilterBuilderInterface $filter);
-
-    /**
-     * @param FilterBuilderInterface $filter
-     *
-     * @return QueryFunctionInterface
-     */
-    public function where(FilterBuilderInterface $filter);
-
-    /**
      * @param string $docparid
      *
      */
@@ -92,6 +76,23 @@ interface QueryFunctionInterface
      * @return QueryFunctionInterface
      */
     public function docparid($docparid);
+
+    /**
+     * @return FilterInterface[]|null
+     */
+    public function getFilters();
+
+    /**
+     * @param FilterInterface[] $filter
+     */
+    public function setFilters($filter) : void;
+
+    /**
+     * @param FilterInterface[] $filter
+     *
+     * @return QueryFunctionInterface
+     */
+    public function filter($filter);
 
     /**
      * @return OrderInterface[]|null

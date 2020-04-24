@@ -31,7 +31,7 @@ abstract class AbstractOrderDirection implements OrderInterface
     private $_field;
 
     /**
-     * Count constructor.
+     * AbstractOrderDirection constructor.
      *
      * @param string $_field
      */

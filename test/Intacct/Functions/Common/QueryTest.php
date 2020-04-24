@@ -18,6 +18,8 @@
 namespace Intacct\Tests\Functions\Common;
 
 use Intacct\Functions\Common\Query;
+use Intacct\Functions\Common\QueryFilter\Filter;
+use Intacct\Functions\Common\QueryFilter\FilterBuilder;
 use Intacct\Functions\Common\QueryOrderBy\OrderBuilder;
 use Intacct\Functions\Common\QuerySelect\SelectBuilder;
 use Intacct\Xml\XMLWriter;
@@ -414,16 +416,12 @@ EOF;
             <field>RECORDNO</field>
         </select>
         <object>ARINVOICE</object>
-        <orderby>
-            <order>
-                <field>TOTALDUE</field>
-                <ascending/>
-            </order>
-            <order>
+        <filter>
+            <lessthanorequalto>
                 <field>RECORDNO</field>
-                <descending/>
-            </order>
-        </orderby>
+                <value>10</value>
+            </lessthanorequalto>
+        </filter>
     </query>
 </function>
 EOF;
@@ -437,13 +435,17 @@ EOF;
         $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
                                          ->getFields();
 
-        $orderBy = ( new OrderBuilder() )->ascending('TOTALDUE')
-                                         ->descending('RECORDNO')
-                                         ->getOrders();
+        $filters = ( new FilterBuilder() )->or([ ( new Filter('RECORDNO') )->lessthanorequalto('10'),
+                                                 ( new Filter('RECORDNO') )->equalto('100'),
+                                                 ( new Filter('RECORDNO') )->equalto('1000'),
+                                                 ( new Filter('RECORDNO') )->equalto('10000') ])
+                                          ->getFilters();
+
+        $filter = ( new Filter('RECORDNO') )->lessthanorequalto('10');
 
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('ARINVOICE')
-                                          ->orderBy($orderBy);
+                                          ->filter([ $filter ]);
 
         $query->writeXML($xml);
 
