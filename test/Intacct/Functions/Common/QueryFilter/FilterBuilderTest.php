@@ -21,24 +21,35 @@ class FilterBuilderTest extends \PHPUnit\Framework\TestCase
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-    <or>
-        <lessthanorequalto>
+<function controlid="unittest">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
             <field>RECORDNO</field>
-            <value>10</value>
-        </lessthanorequalto>
-        <equalto>
-            <field>RECORDNO</field>
-            <value>100</value>
-        </equalto>
-        <equalto>
-            <field>RECORDNO</field>
-            <value>1000</value>
-        </equalto>
-        <equalto>
-            <field>RECORDNO</field>
-            <value>10000</value>
-        </equalto>
-    </or>
+        </select>
+        <object>ARINVOICE</object>
+        <filter>
+            <or>
+                <lessthanorequalto>
+                    <field>RECORDNO</field>
+                    <value>10</value>
+                </lessthanorequalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>100</value>
+                </equalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>1000</value>
+                </equalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>10000</value>
+                </equalto>
+            </or>
+        </filter>
+    </query>
+</function>
 EOF;
 
         $xml = new XMLWriter();
@@ -50,12 +61,22 @@ EOF;
         $filters = ( new FilterBuilder() )->or([ ( new Filter('RECORDNO') )->lessthanorequalto('10'),
                                                  ( new Filter('RECORDNO') )->equalto('100'),
                                                  ( new Filter('RECORDNO') )->equalto('1000'),
-                                                 ( new Filter('RECORDNO') )->equalto('10000') ]);
+                                                 ( new Filter('RECORDNO') )->equalto('10000') ])
+                                          ->getFilters();
 
-        //  $filters->writeXML($xml);
+        $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
+                                         ->getFields();
 
-        //  $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+        // As discussed with Samvel, this example won't work right now
+        // $filters = [new Filter(), new Filter()];
 
+        $query = ( new Query('unittest') )->select($fields)
+                                          ->from('ARINVOICE')
+                                          ->filter($filters);
+
+        // Only this test is working
+        $query->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
         //$condition1 = ( new FilterBuilder() )->where('CUSTOMERID')->equalto('10');
         //( new FilterBuilder() )->where(f1)->equalto(x)->and(where(f2)->equalto(10));
         /**  or([field("CUSTOMERID")->equalto('100'),
@@ -138,6 +159,24 @@ EOF;
      */
     public function testSingleFilter()
     {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <filter>
+            <equalto>
+                <field>E</field>
+                <value>F</value>
+            </equalto>
+        </filter>
+    </query>
+</function>
+EOF;
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -154,6 +193,6 @@ EOF;
                                           ->filter([$filter]);
         // Currently broken
         $query->writeXML($xml);
-        //$this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }

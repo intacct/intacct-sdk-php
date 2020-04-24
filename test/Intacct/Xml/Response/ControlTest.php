@@ -22,16 +22,16 @@ namespace Intacct\Xml\Response;
  */
 class ControlTest extends \PHPUnit\Framework\TestCase
 {
-
+/*
     /**
      * @var Control
-     */
+
     protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
-     */
+
     protected function setUp()
     {
         /*$xml = <<<EOF
@@ -53,7 +53,7 @@ EOF;
          $stub = $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
         $stub->expects($this->any())
              ->method('getControl')
-             ->will($this->returnValue('success')); */
+             ->will($this->returnValue('success'));
     }
 
     public function testGetStatus()
