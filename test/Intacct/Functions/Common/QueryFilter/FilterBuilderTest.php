@@ -66,7 +66,7 @@ EOF;
          */
     }
 
-    public function testAndCondition()
+    public function testOrNestedAndCondition()
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -130,72 +130,24 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testComplexConditions()
+    public function testSingleFilter()
     {
-        $expected = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<function controlid="unittest">
-    <query>
-        <select>
-            <field>CUSTOMERID</field>
-            <field>RECORDNO</field>
-        </select>
-        <object>ARINVOICE</object>
-        <filter>
-            <or>
-                <and>
-                    <equalto>
-                        <field>A</field>
-                        <value>B</value>
-                    </equalto>
-                    <equalto>
-                        <field>C</field>
-                        <value>D</value>
-                    </equalto>
-                </and>
-                <equalto>
-                    <field>E</field>
-                    <value>F</value>
-                </equalto>
-            </or>
-        </filter>
-    </query>
-</function>
-EOF;
-
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        // (A = 'B' && C = 'D') || (E = 'F') ||
-        $ABCD = ( new FilterBuilder() )->and([ ( new Filter('A') )->equalto('B'),
-                                               ( new Filter('C') )->equalto('D') ])
-                                       ->getFilters();
-
-        $EF = ( new Filter('E') )->equalto('F');
-
-        $GHIJKLMN = ( new FilterBuilder() )->or([ ( new Filter('G') )->equalto('H'),
-                                                  ( new Filter('I') )->equalto('J'),
-                                                  ( new Filter('K') )->equalto('L'),
-                                                  ( new Filter('M') )->equalto('N') ]);
-
-        $filter = ( new FilterBuilder() )->or([ $ABCD, $EF, $GHIJKLMN ])
-                                         ->getFilters();
-
-        /*   $filter = (new FilterBuilder())->or([(new FilterBuilder())->and([(new Filter('A'))->equalto('B'),
-                                                                       (new Filter('C'))->equalto('D')])->getFilters(),
-                                           (new Filter('E'))->equalto('F')])->getFilters(); */
+        $filter = ( new Filter('E') )->equalto('F');
 
         $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
                                          ->getFields();
 
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('ARINVOICE')
-                                          ->filter($filter);
+                                          ->filter([$filter]);
         // Currently broken
-        //$query->writeXML($xml);
+        $query->writeXML($xml);
         //$this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }
