@@ -175,7 +175,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @param FilterInterface[] $filters
      */
-    public function setFilters($filters) : void
+    public function setFilters($filters)
     {
         $this->_filters = $filters;
     }
@@ -203,7 +203,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @param OrderInterface[] $orderBy
      */
-    public function setOrderBy($orderBy) : void
+    public function setOrderBy($orderBy)
     {
         if ( ! $orderBy ) {
             throw new InvalidArgumentException('Field name for orderBy cannot be empty or null. Provide orders for orderBy in array.');
@@ -235,7 +235,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @param bool $caseInsensitive
      */
-    public function setCaseInsensitive(bool $caseInsensitive) : void
+    public function setCaseInsensitive(bool $caseInsensitive)
     {
         $this->_caseInsensitive = $caseInsensitive;
     }
@@ -263,7 +263,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @param int $pagesize
      */
-    public function setPageSize(int $pagesize) : void
+    public function setPageSize(int $pagesize)
     {
         if ( $pagesize < 0 ) {
             throw new InvalidArgumentException('pagesize cannot be negative. Set pagesize greater than zero.');
@@ -295,7 +295,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @param int $offset
      */
-    public function setOffset(int $offset) : void
+    public function setOffset(int $offset)
     {
         if ( $offset < 0 ) {
             throw new InvalidArgumentException('offset cannot be negative. Set offset to zero or greater than zero.');

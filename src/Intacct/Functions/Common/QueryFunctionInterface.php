@@ -20,6 +20,7 @@ namespace Intacct\Functions\Common;
 use Intacct\Functions\Common\QueryFilter\FilterInterface;
 use Intacct\Functions\Common\QueryOrderBy\OrderInterface;
 use Intacct\Functions\Common\QuerySelect\SelectInterface;
+use Intacct\Xml\XMLWriter;
 
 interface QueryFunctionInterface
 {
@@ -85,7 +86,7 @@ interface QueryFunctionInterface
     /**
      * @param FilterInterface[] $filter
      */
-    public function setFilters($filter) : void;
+    public function setFilters($filter);
 
     /**
      * @param FilterInterface[] $filter
@@ -102,7 +103,7 @@ interface QueryFunctionInterface
     /**
      * @param OrderInterface[] $orderBy
      */
-    public function setOrderBy($orderBy) : void;
+    public function setOrderBy($orderBy);
 
     /**
      * @param OrderInterface[] $orderBy
@@ -119,7 +120,7 @@ interface QueryFunctionInterface
     /**
      * @param bool $caseInsensitive
      */
-    public function setCaseInsensitive(bool $caseInsensitive) : void;
+    public function setCaseInsensitive(bool $caseInsensitive);
 
     /**
      * @param bool $caseInsensitive
@@ -136,7 +137,7 @@ interface QueryFunctionInterface
     /**
      * @param int $pagesize
      */
-    public function setPageSize(int $pagesize) : void;
+    public function setPageSize(int $pagesize);
 
     /**
      * @param int $pagesize
@@ -153,7 +154,7 @@ interface QueryFunctionInterface
     /**
      * @param int $offset
      */
-    public function setOffset(int $offset) : void;
+    public function setOffset(int $offset);
 
     /**
      * @param int $offset
@@ -162,4 +163,10 @@ interface QueryFunctionInterface
      */
     public function offset(int $offset);
 
+    /**
+     * @param XMLWriter $xml
+     *
+     * @return mixed
+     */
+    function writeXML(XMLWriter $xml);
 }

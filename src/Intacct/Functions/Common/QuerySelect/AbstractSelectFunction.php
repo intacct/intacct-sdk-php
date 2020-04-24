@@ -21,8 +21,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractSelectFunction implements SelectInterface
 {
-
-    const FIELD = 'field';
     const AVERAGE = 'avg';
     const MINIMUM = 'min';
     const MAXIMUM = 'max';
@@ -35,7 +33,7 @@ abstract class AbstractSelectFunction implements SelectInterface
     private $_field;
 
     /**
-     * Average constructor.
+     * AbstractSelectFunction constructor.
      *
      * @param string $_field
      */

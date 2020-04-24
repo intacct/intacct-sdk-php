@@ -61,7 +61,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for field cannot be empty or null. Provide a field name for the builder.
+     * @expectedExceptionMessage Field name cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyField()
     {
@@ -88,7 +88,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field name for the builder.
+     * @expectedExceptionMessage  Field name cannot be empty or null. Provide a field name for the builder.
      */
     public function testNullInFields()
     {
@@ -98,7 +98,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage  Field name for field cannot be empty or null. Provide a field name for the builder.
+     * @expectedExceptionMessage  Field name cannot be empty or null. Provide a field name for the builder.
      */
     public function testEmptyStringInFields()
     {

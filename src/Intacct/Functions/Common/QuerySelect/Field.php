@@ -17,14 +17,38 @@
 
 namespace Intacct\Functions\Common\QuerySelect;
 
-class Field extends AbstractSelectFunction
+use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+
+class Field implements SelectInterface
 {
 
+    const FIELD = 'field';
+
     /**
-     * @return string
+     * @param string $_field
      */
-    public function getFunctionName() : string
+    private $_fieldName;
+
+    /**
+     * Field constructor.
+     *
+     * @param string $fieldName
+     */
+    public function __construct(string $fieldName)
     {
-        return self::FIELD;
+        if ( ! $fieldName ) {
+            throw new InvalidArgumentException("Field name cannot be empty or null. Provide a field name for the builder.");
+        }
+
+        $this->_fieldName = $fieldName;
+    }
+
+    /**
+     * @param XMLWriter $xml
+     */
+    public function writeXML(XMLWriter $xml)
+    {
+        $xml->writeElement(self::FIELD, $this->_fieldName, false);
     }
 }

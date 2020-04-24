@@ -14,6 +14,9 @@ use Intacct\Xml\XMLWriter;
 class FilterBuilderTest extends \PHPUnit\Framework\TestCase
 {
 
+    /**
+     * Test RECORDNO <= 10 || RECORDNO = 100 || RECORDNO = 1000 || RECORDNO = 10000
+     */
     public function testOrCondition()
     {
         $expected = <<<EOF
@@ -56,13 +59,13 @@ EOF;
         //$condition1 = ( new FilterBuilder() )->where('CUSTOMERID')->equalto('10');
         //( new FilterBuilder() )->where(f1)->equalto(x)->and(where(f2)->equalto(10));
         /**  or([field("CUSTOMERID")->equalto('100'),
-         * field("CUSTOMERID")->equalto('100'),
-         * and([field("CUSTOMERID")->equalto('100'),
-         * field("CUSTOMERID")->equalto('100'),
-         * field("CUSTOMERID")->equalto('100'),
-         * field("CUSTOMERID")->equalto('100')])
-         *
-         * ]);
+         *       field("CUSTOMERID")->equalto('100'),
+         *       and([field("CUSTOMERID")->equalto('100'),
+         *            field("CUSTOMERID")->equalto('100'),
+         *            field("CUSTOMERID")->equalto('100'),
+         *            field("CUSTOMERID")->equalto('100')
+         *       ])
+         *   ]);
          */
     }
 
@@ -130,6 +133,9 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
+    /**
+     * Test E = F
+     */
     public function testSingleFilter()
     {
         $xml = new XMLWriter();

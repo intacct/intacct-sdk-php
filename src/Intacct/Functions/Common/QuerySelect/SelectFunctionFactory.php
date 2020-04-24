@@ -29,9 +29,6 @@ class SelectFunctionFactory
         }
 
         switch ($functionName) {
-            case AbstractSelectFunction::FIELD:
-                $function = new Field($fieldName);
-                break;
             case AbstractSelectFunction::AVERAGE:
                 $function = new Average($fieldName);
                 break;

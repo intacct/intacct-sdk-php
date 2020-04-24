@@ -46,7 +46,7 @@ class SelectBuilder
      */
     public function field(string $fieldName) : SelectBuilder
     {
-        $_currentSelectField = $this->_factory->create(AbstractSelectFunction::FIELD, $fieldName);
+        $_currentSelectField = new Field($fieldName);
         $this->_selects[] = $_currentSelectField;
 
         return $this;
@@ -60,7 +60,7 @@ class SelectBuilder
     public function fields(array $fieldNames) : SelectBuilder
     {
         foreach ( $fieldNames as $fieldName ) {
-            $_currentSelectField = $this->_factory->create(AbstractSelectFunction::FIELD, $fieldName);
+            $_currentSelectField = new Field($fieldName);
             $this->_selects[] = $_currentSelectField;
         }
 
