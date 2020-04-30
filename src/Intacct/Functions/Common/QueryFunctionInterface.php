@@ -79,17 +79,17 @@ interface QueryFunctionInterface
     public function docparid($docparid);
 
     /**
-     * @return FilterInterface[]|null
+     * @return FilterInterface|null
      */
-    public function getFilters();
+    public function getFilter();
 
     /**
-     * @param FilterInterface[] $filter
+     * @param FilterInterface $filter
      */
-    public function setFilters($filter);
+    public function setFilter($filter);
 
     /**
-     * @param FilterInterface[] $filter
+     * @param FilterInterface $filter
      *
      * @return QueryFunctionInterface
      */

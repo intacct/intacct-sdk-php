@@ -43,9 +43,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     private $_docparid;
 
     /**
-     * @var FilterInterface[]
+     * @var FilterInterface
      */
-    private $_filters;
+    private $_filter;
 
     /**
      * @var OrderInterface[]
@@ -165,29 +165,29 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return FilterInterface[]|null
+     * @return FilterInterface|null
      */
-    public function getFilters()
+    public function getFilter()
     {
-        return $this->_filters;
+        return $this->_filter;
     }
 
     /**
-     * @param FilterInterface[] $filters
+     * @param FilterInterface $filters
      */
-    public function setFilters($filters)
+    public function setFilter($filters)
     {
-        $this->_filters = $filters;
+        $this->_filter = $filters;
     }
 
     /**
-     * @param FilterInterface[] $filters
+     * @param FilterInterface $filters
      *
      * @return QueryFunctionInterface
      */
     public function filter($filters)
     {
-        $this->setFilters($filters);
+        $this->setFilter($filters);
 
         return $this;
     }
@@ -346,12 +346,11 @@ class Query extends AbstractFunction implements QueryFunctionInterface
             $xml->writeElement('docparid', $this->getDocparid(), false);
         }
 
-        if ( $this->getFilters() ) {
+        if ( $this->getFilter() ) {
             $xml->startElement('filter');
 
-            foreach ( $this->getFilters() as $filter ) {
-                $filter->writeXML($xml);
-            }
+            $this->getFilter()
+                 ->writeXML($xml);
 
             $xml->endElement();
         }
