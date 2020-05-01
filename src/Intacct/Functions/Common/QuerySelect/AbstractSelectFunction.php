@@ -21,6 +21,7 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractSelectFunction implements SelectInterface
 {
+
     const AVERAGE = 'avg';
     const MINIMUM = 'min';
     const MAXIMUM = 'max';

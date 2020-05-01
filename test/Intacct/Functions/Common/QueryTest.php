@@ -31,6 +31,7 @@ use InvalidArgumentException;
  */
 class QueryTest extends \PHPUnit\Framework\TestCase
 {
+
     public function testDefaultParams()
     {
         $expected = <<<EOF

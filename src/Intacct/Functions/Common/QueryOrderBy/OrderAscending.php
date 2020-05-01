@@ -19,6 +19,7 @@ namespace Intacct\Functions\Common\QueryOrderBy;
 
 class OrderAscending extends AbstractOrderDirection
 {
+
     /**
      * @return string
      */
