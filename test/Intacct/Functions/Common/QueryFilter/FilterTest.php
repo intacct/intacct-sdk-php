@@ -19,6 +19,7 @@ namespace Intacct\Tests\Functions\Common\QueryFilter;
 
 use Intacct\Functions\Common\QueryFilter\Filter;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\QueryFilter\Filter
@@ -49,6 +50,50 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
+    public function testNotEqualTo()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+    <notequalto>
+        <field>CUSTOMERID</field>
+        <value>10</value>
+    </notequalto>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('CUSTOMERID') )->notequalto('10');
+
+        $filter->writeXML($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testLessThan()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<lessthan>
+    <field>RECORDNO</field>
+    <value>100</value>
+</lessthan>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('RECORDNO') )->lessthan('100');
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
     public function testLessThanOrEqualTo()
     {
         $expected = <<<EOF
@@ -70,6 +115,169 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
+    public function testGreaterThan()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<greaterthan>
+    <field>RECORDNO</field>
+    <value>100</value>
+</greaterthan>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('RECORDNO') )->greaterthan('100');
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testGreaterThanOrEqualTo()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<greaterthanorequalto>
+    <field>RECORDNO</field>
+    <value>100</value>
+</greaterthanorequalto>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('RECORDNO') )->greaterthanorequalto('100');
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testBetween()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<between>
+    <field>WHENDUE</field>
+    <value>10/01/2019</value>
+    <value>12/31/2019</value>
+</between>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('WHENDUE') )->between([ '10/01/2019', '12/31/2019' ]);
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two strings expected for between filter
+     */
+    public function testOneBetween()
+    {
+        ( new Filter('WHENDUE') )->between([ '10/01/2019' ]);
+    }
+
+    public function testIn()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<in>
+    <field>DEPARTMENTID</field>
+    <value>04</value>
+    <value>05</value>
+    <value>06</value>
+    <value>07</value>
+</in>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('DEPARTMENTID') )->in([ '04', '05', '06', '07' ]);
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testNotIn()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<notin>
+    <field>DEPARTMENTID</field>
+    <value>04</value>
+    <value>05</value>
+    <value>06</value>
+    <value>07</value>
+</notin>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('DEPARTMENTID') )->notin([ '04', '05', '06', '07' ]);
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testLike()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<like>
+    <field>VENDORNAME</field>
+    <value>B%</value>
+</like>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('VENDORNAME') )->like('B%');
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testNotLike()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<notlike>
+    <field>VENDORNAME</field>
+    <value>ACME%</value>
+</notlike>
+EOF;
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('VENDORNAME') )->notlike('ACME%');
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
     public function testIsNull()
     {
         $expected = <<<EOF
@@ -86,6 +294,28 @@ EOF;
         $xml->startDocument();
 
         $filter = ( new Filter('DESCRIPTION') )->isnull();
+
+        $filter->writeXML($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testIsNotNull()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<isnotnull>
+    <field>DESCRIPTION</field>
+</isnotnull>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = ( new Filter('DESCRIPTION') )->isnotnull();
 
         $filter->writeXML($xml);
 

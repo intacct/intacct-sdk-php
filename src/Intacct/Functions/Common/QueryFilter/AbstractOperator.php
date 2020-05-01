@@ -17,6 +17,7 @@
 
 namespace Intacct\Functions\Common\QueryFilter;
 
+use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOperator implements FilterInterface
@@ -37,7 +38,27 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function __construct($_filters)
     {
+        if ( sizeof($_filters) < 2 ) {
+            throw new InvalidArgumentException('Two or more FilterInterface objects required for this Operator type.');
+        }
+
         $this->_filters = $_filters;
+    }
+
+    /**
+     * @param $filter
+     *
+     * @return FilterInterface
+     */
+    public function addFilter($filter)
+    {
+        if ( ! $filter ) {
+            throw new \http\Exception\InvalidArgumentException('Filter required');
+        }
+
+        $this->_filters[] = $filter;
+
+        return $this;
     }
 
     /**
@@ -50,6 +71,10 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function writeXML(XMLWriter $xml)
     {
+        if ( sizeof($this->_filters) < 2 ) {
+            throw new \Exception("Two or more FilterInterface objects required for " . $this->getOperator());
+        }
+
         $xml->startElement($this->getOperator());
         foreach ( $this->_filters as $filter ) {
             $filter->writeXML($xml);

@@ -173,21 +173,21 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @param FilterInterface $filters
+     * @param FilterInterface $filter
      */
-    public function setFilter($filters)
+    public function setFilter($filter)
     {
-        $this->_filter = $filters;
+        $this->_filter = $filter;
     }
 
     /**
-     * @param FilterInterface $filters
+     * @param FilterInterface $filter
      *
      * @return QueryFunctionInterface
      */
-    public function filter($filters)
+    public function filter($filter)
     {
-        $this->setFilter($filters);
+        $this->setFilter($filter);
 
         return $this;
     }

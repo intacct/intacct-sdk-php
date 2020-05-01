@@ -18,6 +18,7 @@
 namespace Intacct\Functions\Common\QueryFilter;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\QueryFilter\AndOperator
@@ -55,5 +56,32 @@ EOF;
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testSingleFilter()
+    {
+        new AndOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testEmptyFilter()
+    {
+        new AndOperator([]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testNullFilter()
+    {
+        new AndOperator(null);
     }
 }

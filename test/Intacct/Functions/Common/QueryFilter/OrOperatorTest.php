@@ -20,6 +20,7 @@ namespace Intacct\Tests\Functions\Common\QueryFilter;
 use Intacct\Functions\Common\QueryFilter\Filter;
 use Intacct\Functions\Common\QueryFilter\OrOperator;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\QueryFilter\OrOperator
@@ -67,5 +68,32 @@ EOF;
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testSingleFilter()
+    {
+        new OrOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testEmptyFilter()
+    {
+        new OrOperator([]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     */
+    public function testNullFilter()
+    {
+        new OrOperator(null);
     }
 }
