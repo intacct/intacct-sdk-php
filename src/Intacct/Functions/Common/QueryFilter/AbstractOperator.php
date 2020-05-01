@@ -38,11 +38,11 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function __construct($filters)
     {
-        if ( ( $filters ) && ( sizeof($filters) < 2 ) ) {
+        if ( $filters && ( sizeof($filters) >= 2 ) ) {
+            $this->_filters = $filters;
+        } else {
             throw new InvalidArgumentException('Two or more FilterInterface objects required for this Operator type.');
         }
-
-        $this->_filters = $filters;
     }
 
     /**
