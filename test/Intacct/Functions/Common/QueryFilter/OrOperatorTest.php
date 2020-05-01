@@ -17,10 +17,11 @@
 
 namespace Intacct\Tests\Functions\Common\QueryFilter;
 
+use Exception;
 use Intacct\Functions\Common\QueryFilter\Filter;
 use Intacct\Functions\Common\QueryFilter\OrOperator;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
+use TypeError;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\QueryFilter\OrOperator
@@ -71,29 +72,95 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     * @expectedException Exception
+     * @expectedExceptionMessage Two or more FilterInterface objects required for or
      */
     public function testSingleFilter()
     {
-        new OrOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+        $xml = new XMLWriter();
+
+        $filter = new OrOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+
+        $filter->writeXML($xml);
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     * @expectedException Exception
+     * @expectedExceptionMessage Two or more FilterInterface objects required for or
      */
     public function testEmptyFilter()
     {
-        new OrOperator([]);
+        $xml = new XMLWriter();
+
+        $filter = new OrOperator([]);
+
+        $filter->writeXML($xml);
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Two or more FilterInterface objects required for this Operator type.
+     * @expectedException Exception
+     * @expectedExceptionMessage Two or more FilterInterface objects required for or
      */
     public function testNullFilter()
     {
-        new OrOperator(null);
+        $xml = new XMLWriter();
+
+        $filter = new OrOperator(null);
+
+        $filter->writeXML($xml);
+    }
+
+    public function testAddFilter()
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<or>
+    <lessthanorequalto>
+        <field>RECORDNO</field>
+        <value>10</value>
+    </lessthanorequalto>
+    <equalto>
+        <field>RECORDNO</field>
+        <value>100</value>
+    </equalto>
+    <equalto>
+        <field>RECORDNO</field>
+        <value>1000</value>
+    </equalto>
+    <equalto>
+        <field>RECORDNO</field>
+        <value>10000</value>
+    </equalto>
+</or>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $filter = new OrOperator(null);
+        $filter->addFilter(( new Filter('RECORDNO') )->lessthanorequalto('10'))
+               ->addFilter(( new Filter('RECORDNO') )->equalto('100'))
+               ->addFilter(( new Filter('RECORDNO') )->equalto('1000'))
+               ->addFilter(( new Filter('RECORDNO') )->equalto('10000'));
+
+        $filter->writeXML($xml);
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    /**
+     * @expectedException TypeError
+     */
+    public function testAddFilterNull()
+    {
+        $xml = new XMLWriter();
+
+        $filter = new OrOperator(null);
+
+        $filter->addFilter(null);
+
+        $filter->writeXML($xml);
     }
 }

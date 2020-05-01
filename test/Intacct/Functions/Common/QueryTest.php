@@ -656,42 +656,22 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        /*********  VERSION 0 *********/
-        //       $batch = ( new Filter('BATCHNO') )->greaterthanorequalto('1');
-        //       $state = ( new Filter('STATE') )->equalto('Posted');
-        //       $batchnoAndState = new AndOperator([ $batch, $state ]);
-
-        //       $journal = ( new Filter('JOURNAL') )->equalto('APJ');
-
-        //       $filter = new OrOperator([ $journal, $batchnoAndState ]);
-        /******************************/
-
-        /*********  VERSION 1 *********/
-
-        $batchnoAndState = new AndOperator([ ( new Filter('BATCHNO') )->greaterthanorequalto('1'),
-                                             ( new Filter('STATE') )->equalto('Posted') ]);
+        $andOperator = new AndOperator(null);
+        $andOperator->addFilter(( new Filter('BATCHNO') )->greaterthanorequalto('1'))
+                    ->addFilter(( new Filter('STATE') )->equalto('Posted'));
 
         $journal = ( new Filter('JOURNAL') )->equalto('APJ');
 
-        $filter = new OrOperator([ $journal, $batchnoAndState ]);
-        /******************************/
-
-        /*********  VERSION 2 *********/
-        //       $batchnoAndState = (new AndOperator() )->addFilter( (new Filter('BATCHNO'))->greaterthanorequalto('1'))
-        //                                             ->addFilter( (new Filter('STATE'))->equalto('Posted'));
-
-        //       $journal = (new Filter('JOURNAL'))->equalto('APJ');
-
-        //       $filter = ( new OrOperator() )->addFilter($batchnoAndState)
-        //                                     ->addFilter($journal);
-        /******************************/
+        $orOperator = new OrOperator(null);
+        $orOperator->addFilter($journal)
+                   ->addFilter($andOperator);
 
         $fields = ( new SelectBuilder() )->fields([ 'BATCHNO', 'RECORDNO', 'STATE' ])
                                          ->getFields();
 
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('GLBATCH')
-                                          ->filter($filter);
+                                          ->filter($orOperator);
 
         $query->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

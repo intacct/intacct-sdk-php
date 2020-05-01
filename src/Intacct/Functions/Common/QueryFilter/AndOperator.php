@@ -19,7 +19,6 @@ namespace Intacct\Functions\Common\QueryFilter;
 
 class AndOperator extends AbstractOperator
 {
-
     /**
      * @inheritDoc
      */

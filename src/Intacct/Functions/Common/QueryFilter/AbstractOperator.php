@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\Common\QueryFilter;
 
-use InvalidArgumentException;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOperator implements FilterInterface
@@ -34,28 +33,20 @@ abstract class AbstractOperator implements FilterInterface
     /**
      * AbstractOperator constructor.
      *
-     * @param FilterInterface[] $filters
+     * @param FilterInterface[]|null $filters
      */
     public function __construct($filters)
     {
-        if ( $filters && ( sizeof($filters) >= 2 ) ) {
-            $this->_filters = $filters;
-        } else {
-            throw new InvalidArgumentException('Two or more FilterInterface objects required for this Operator type.');
-        }
+        $this->_filters = $filters;
     }
 
     /**
-     * @param $filter
+     * @param FilterInterface $filter
      *
      * @return FilterInterface
      */
-    public function addFilter($filter)
+    public function addFilter(FilterInterface $filter)
     {
-        if ( ! $filter ) {
-            throw new \http\Exception\InvalidArgumentException('Filter required');
-        }
-
         $this->_filters[] = $filter;
 
         return $this;
@@ -71,14 +62,14 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function writeXML(XMLWriter $xml)
     {
-        if ( ( $this->_filters ) && ( sizeof($this->_filters) < 2 ) ) {
+        if ( ( $this->_filters ) && ( sizeof($this->_filters) >= 2 ) ) {
+            $xml->startElement($this->getOperator());
+            foreach ( $this->_filters as $filter ) {
+                $filter->writeXML($xml);
+            }
+            $xml->endElement(); //and/or
+        } else {
             throw new \Exception("Two or more FilterInterface objects required for " . $this->getOperator());
         }
-
-        $xml->startElement($this->getOperator());
-        foreach ( $this->_filters as $filter ) {
-            $filter->writeXML($xml);
-        }
-        $xml->endElement(); //and/or
     }
 }
