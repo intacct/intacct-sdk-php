@@ -331,8 +331,8 @@ class Query extends AbstractFunction implements QueryFunctionInterface
         }
 
         $xml->startElement('select');
-        foreach ( $this->getSelect() as $_field ) {
-            $_field->writeXML($xml);
+        foreach ( $this->getSelect() as $field ) {
+            $field->writeXML($xml);
         }
         $xml->endElement(); // select
 

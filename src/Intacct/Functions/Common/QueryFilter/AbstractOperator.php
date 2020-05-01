@@ -34,15 +34,15 @@ abstract class AbstractOperator implements FilterInterface
     /**
      * AbstractOperator constructor.
      *
-     * @param FilterInterface[] $_filters
+     * @param FilterInterface[] $filters
      */
-    public function __construct($_filters)
+    public function __construct($filters)
     {
-        if ( sizeof($_filters) < 2 ) {
+        if ( ( $filters ) && ( sizeof($filters) < 2 ) ) {
             throw new InvalidArgumentException('Two or more FilterInterface objects required for this Operator type.');
         }
 
-        $this->_filters = $_filters;
+        $this->_filters = $filters;
     }
 
     /**
@@ -71,7 +71,7 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function writeXML(XMLWriter $xml)
     {
-        if ( sizeof($this->_filters) < 2 ) {
+        if ( ( $this->_filters ) && ( sizeof($this->_filters) < 2 ) ) {
             throw new \Exception("Two or more FilterInterface objects required for " . $this->getOperator());
         }
 

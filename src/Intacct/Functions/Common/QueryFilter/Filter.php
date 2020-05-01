@@ -165,7 +165,7 @@ class Filter implements FilterInterface
      */
     public function between(array $value)
     {
-        if ( sizeof($value) != 2 ) {
+        if ( ( $value ) && sizeof($value) != 2 ) {
             throw new InvalidArgumentException('Two strings expected for between filter');
         }
         $this->_value = $value;
