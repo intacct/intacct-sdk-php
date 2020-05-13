@@ -40,7 +40,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @var string
      */
-    private $_docparid;
+    private $_docParId;
 
     /**
      * @var FilterInterface
@@ -132,34 +132,34 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @param string $docparid
+     * @param string $docParId
      *
      */
-    public function setDocparid($docparid)
+    public function setDocParId($docParId)
     {
-        if ( $docparid && $docparid != '' ) { // flip these
-            $this->_docparid = $docparid;
+        if ( $docParId && $docParId != '' ) { // flip these
+            $this->_docParId = $docParId;
         } else {
-            throw new InvalidArgumentException('docparid cannot be empty. Set docparid with valid document identifier.');
+            throw new InvalidArgumentException('docParId cannot be empty. Set docParId with valid document identifier.');
         }
     }
 
     /**
      * @return string|null
      */
-    public function getDocparid()
+    public function getDocParId()
     {
-        return $this->_docparid;
+        return $this->_docParId;
     }
 
     /**
-     * @param $docparid
+     * @param $docParId
      *
      * @return QueryFunctionInterface
      */
-    public function docparid($docparid)
+    public function docParId($docParId)
     {
-        $this->setDocparid($docparid);
+        $this->setDocParId($docParId);
 
         return $this;
     }
@@ -342,8 +342,8 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
         $xml->writeElement('object', $this->getFrom(), false);
 
-        if ( $this->getDocparid() ) {
-            $xml->writeElement('docparid', $this->getDocparid(), false);
+        if ( $this->getDocParId() ) {
+            $xml->writeElement('docparid', $this->getDocParId(), false);
         }
 
         if ( $this->getFilter() ) {

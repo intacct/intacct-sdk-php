@@ -95,7 +95,7 @@ EOF;
 
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('CUSTOMER')
-                                          ->docparid('REPORT')
+                                          ->docParId('REPORT')
                                           ->caseInsensitive(true)
                                           ->pageSize(10)
                                           ->offset(5);
@@ -202,7 +202,7 @@ EOF;
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage docparid cannot be empty. Set docparid with valid document identifier.
+     * @expectedExceptionMessage docParId cannot be empty. Set docParId with valid document identifier.
      */
     public function testNullDocparid()
     {
@@ -212,12 +212,12 @@ EOF;
 
         ( new Query('unittest') )->select($fields)
                                  ->from('CUSTOMER')
-                                 ->docparid(null);
+                                 ->docParId(null);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage docparid cannot be empty. Set docparid with valid document identifier.
+     * @expectedExceptionMessage docParId cannot be empty. Set docParId with valid document identifier.
      */
     public function testEmptyDocparid()
     {
@@ -227,7 +227,7 @@ EOF;
 
         ( new Query('unittest') )->select($fields)
                                  ->from('CUSTOMER')
-                                 ->docparid('');
+                                 ->docParId('');
     }
 
     /**

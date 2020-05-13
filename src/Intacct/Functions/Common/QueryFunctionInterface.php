@@ -61,22 +61,22 @@ interface QueryFunctionInterface
     public function from(string $objectName);
 
     /**
-     * @param string $docparid
+     * @param string $docParId
      *
      */
-    public function setDocparid($docparid);
+    public function setDocParId($docParId);
 
     /**
      * @return string|null
      */
-    public function getDocparid();
+    public function getDocParId();
 
     /**
-     * @param $docparid
+     * @param $docParId
      *
      * @return QueryFunctionInterface
      */
-    public function docparid($docparid);
+    public function docParId($docParId);
 
     /**
      * @return FilterInterface|null
