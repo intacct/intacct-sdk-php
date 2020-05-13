@@ -62,10 +62,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new OrOperator([ ( new Filter('RECORDNO') )->lessthanorequalto('10'),
-                                   ( new Filter('RECORDNO') )->equalto('100'),
-                                   ( new Filter('RECORDNO') )->equalto('1000'),
-                                   ( new Filter('RECORDNO') )->equalto('10000') ]);
+        $filter = new OrOperator([ ( new Filter('RECORDNO') )->lessThanOrEqualTo('10'),
+                                   ( new Filter('RECORDNO') )->equalTo('100'),
+                                   ( new Filter('RECORDNO') )->equalTo('1000'),
+                                   ( new Filter('RECORDNO') )->equalTo('10000') ]);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -79,7 +79,7 @@ EOF;
     {
         $xml = new XMLWriter();
 
-        $filter = new OrOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+        $filter = new OrOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1') ]);
 
         $filter->writeXML($xml);
     }
@@ -141,10 +141,10 @@ EOF;
         $xml->startDocument();
 
         $filter = new OrOperator(null);
-        $filter->addFilter(( new Filter('RECORDNO') )->lessthanorequalto('10'))
-               ->addFilter(( new Filter('RECORDNO') )->equalto('100'))
-               ->addFilter(( new Filter('RECORDNO') )->equalto('1000'))
-               ->addFilter(( new Filter('RECORDNO') )->equalto('10000'));
+        $filter->addFilter(( new Filter('RECORDNO') )->lessThanOrEqualTo('10'))
+               ->addFilter(( new Filter('RECORDNO') )->equalTo('100'))
+               ->addFilter(( new Filter('RECORDNO') )->equalTo('1000'))
+               ->addFilter(( new Filter('RECORDNO') )->equalTo('10000'));
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

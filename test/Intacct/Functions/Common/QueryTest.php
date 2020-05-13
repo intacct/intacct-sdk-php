@@ -96,8 +96,8 @@ EOF;
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('CUSTOMER')
                                           ->docparid('REPORT')
-                                          ->caseinsensitive(true)
-                                          ->pagesize(10)
+                                          ->caseInsensitive(true)
+                                          ->pageSize(10)
                                           ->offset(5);
 
         $query->writeXML($xml);
@@ -257,7 +257,7 @@ EOF;
 
         ( new Query('unittest') )->select($fields)
                                  ->from('CUSTOMER')
-                                 ->pagesize(-1);
+                                 ->pageSize(-1);
     }
 
     public function testFields()
@@ -437,7 +437,7 @@ EOF;
         $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
                                          ->getFields();
 
-        $filter = ( new Filter('RECORDNO') )->lessthanorequalto('10');
+        $filter = ( new Filter('RECORDNO') )->lessThanOrEqualTo('10');
 
         $query = ( new Query('unittest') )->select($fields)
                                           ->from('ARINVOICE')
@@ -484,8 +484,8 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1'),
-                                    ( new Filter('RECORDNO') )->lessthanorequalto('100') ]);
+        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1'),
+                                    ( new Filter('RECORDNO') )->lessThanOrEqualTo('100') ]);
 
         $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
                                          ->getFields();
@@ -542,10 +542,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new OrOperator([ ( new Filter('RECORDNO') )->lessthanorequalto('10'),
-                                   ( new Filter('RECORDNO') )->equalto('100'),
-                                   ( new Filter('RECORDNO') )->equalto('1000'),
-                                   ( new Filter('RECORDNO') )->equalto('10000') ]);
+        $filter = new OrOperator([ ( new Filter('RECORDNO') )->lessThanOrEqualTo('10'),
+                                   ( new Filter('RECORDNO') )->equalTo('100'),
+                                   ( new Filter('RECORDNO') )->equalTo('1000'),
+                                   ( new Filter('RECORDNO') )->equalTo('10000') ]);
 
         $fields = ( new SelectBuilder() )->fields([ 'CUSTOMERID', 'RECORDNO' ])
                                          ->getFields();
@@ -598,10 +598,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $batchnoAndState = new AndOperator([ ( new Filter('BATCHNO') )->greaterthanorequalto('1'),
-                                             ( new Filter('STATE') )->equalto('Posted') ]);
+        $batchnoAndState = new AndOperator([ ( new Filter('BATCHNO') )->greaterThanOrEqualTo('1'),
+                                             ( new Filter('STATE') )->equalTo('Posted') ]);
 
-        $journal = ( new Filter('JOURNAL') )->equalto('APJ');
+        $journal = ( new Filter('JOURNAL') )->equalTo('APJ');
 
         $filter = new OrOperator([ $journal, $batchnoAndState ]);
 
@@ -657,10 +657,10 @@ EOF;
         $xml->startDocument();
 
         $andOperator = new AndOperator(null);
-        $andOperator->addFilter(( new Filter('BATCHNO') )->greaterthanorequalto('1'))
-                    ->addFilter(( new Filter('STATE') )->equalto('Posted'));
+        $andOperator->addFilter(( new Filter('BATCHNO') )->greaterThanOrEqualTo('1'))
+                    ->addFilter(( new Filter('STATE') )->equalTo('Posted'));
 
-        $journal = ( new Filter('JOURNAL') )->equalto('APJ');
+        $journal = ( new Filter('JOURNAL') )->equalTo('APJ');
 
         $orOperator = new OrOperator(null);
         $orOperator->addFilter($journal)
@@ -733,14 +733,14 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $APJAndState = new AndOperator([ ( new Filter('JOURNAL') )->equalto('APJ'),
-                                         ( new Filter('STATE') )->equalto('Posted') ]);
+        $APJAndState = new AndOperator([ ( new Filter('JOURNAL') )->equalTo('APJ'),
+                                         ( new Filter('STATE') )->equalTo('Posted') ]);
 
-        $RECORDNOOR = new OrOperator([ ( new Filter('RECORDNO') )->equalto('168'),
-                                       ( new Filter('RECORDNO') )->equalto('132') ]);
+        $RECORDNOOR = new OrOperator([ ( new Filter('RECORDNO') )->equalTo('168'),
+                                       ( new Filter('RECORDNO') )->equalTo('132') ]);
 
-        $RCPTAndState = new AndOperator([ ( new Filter('JOURNAL') )->equalto('RCPT'),
-                                          ( new Filter('STATE') )->equalto('Posted'),
+        $RCPTAndState = new AndOperator([ ( new Filter('JOURNAL') )->equalTo('RCPT'),
+                                          ( new Filter('STATE') )->equalTo('Posted'),
                                           $RECORDNOOR ]);
 
         $filter = new OrOperator([ $APJAndState, $RCPTAndState ]);

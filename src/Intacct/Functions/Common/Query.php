@@ -245,7 +245,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      *
      * @return QueryFunctionInterface
      */
-    public function caseinsensitive(bool $caseInsensitive)
+    public function caseInsensitive(bool $caseInsensitive)
     {
         $this->setCaseInsensitive($caseInsensitive);
 
@@ -277,7 +277,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      *
      * @return QueryFunctionInterface
      */
-    public function pagesize(int $pagesize)
+    public function pageSize(int $pagesize)
     {
         $this->setPageSize($pagesize);
 

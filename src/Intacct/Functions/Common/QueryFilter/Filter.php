@@ -79,7 +79,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function equalto(string $value)
+    public function equalTo(string $value)
     {
         $this->_value = $value;
 
@@ -93,7 +93,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notequalto(string $value)
+    public function notEqualTo(string $value)
     {
         $this->_value = $value;
 
@@ -107,7 +107,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessthan(string $value)
+    public function lessThan(string $value)
     {
         $this->_value = $value;
 
@@ -121,7 +121,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessthanorequalto(string $value)
+    public function lessThanOrEqualTo(string $value)
     {
         $this->_value = $value;
 
@@ -135,7 +135,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterthan(string $value)
+    public function greaterThan(string $value)
     {
         $this->_value = $value;
 
@@ -149,7 +149,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterthanorequalto(string $value)
+    public function greaterThanOrEqualTo(string $value)
     {
         $this->_value = $value;
 
@@ -194,7 +194,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notin(array $value)
+    public function notIn(array $value)
     {
         $this->_value = $value;
 
@@ -222,7 +222,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notlike($value)
+    public function notLike($value)
     {
         $this->_value = $value;
 
@@ -234,7 +234,7 @@ class Filter implements FilterInterface
     /**
      * @return FilterInterface
      */
-    public function isnull()
+    public function isNull()
     {
         $this->_operation = self::IS_NULL;
 
@@ -244,7 +244,7 @@ class Filter implements FilterInterface
     /**
      * @return FilterInterface
      */
-    public function isnotnull()
+    public function isNotNull()
     {
         $this->_operation = self::IS_NOT_NULL;
 

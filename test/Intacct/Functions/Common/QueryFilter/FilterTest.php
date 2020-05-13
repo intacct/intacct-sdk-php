@@ -43,7 +43,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('CUSTOMERID') )->equalto('10');
+        $filter = ( new Filter('CUSTOMERID') )->equalTo('10');
 
         $filter->writeXML($xml);
 
@@ -66,7 +66,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('CUSTOMERID') )->notequalto('10');
+        $filter = ( new Filter('CUSTOMERID') )->notEqualTo('10');
 
         $filter->writeXML($xml);
 
@@ -88,7 +88,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->lessthan('100');
+        $filter = ( new Filter('RECORDNO') )->lessThan('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -109,7 +109,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->lessthanorequalto('100');
+        $filter = ( new Filter('RECORDNO') )->lessThanOrEqualTo('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -130,7 +130,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->greaterthan('100');
+        $filter = ( new Filter('RECORDNO') )->greaterThan('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -151,7 +151,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->greaterthanorequalto('100');
+        $filter = ( new Filter('RECORDNO') )->greaterThanOrEqualTo('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -230,7 +230,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DEPARTMENTID') )->notin([ '04', '05', '06', '07' ]);
+        $filter = ( new Filter('DEPARTMENTID') )->notIn([ '04', '05', '06', '07' ]);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -272,7 +272,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('VENDORNAME') )->notlike('ACME%');
+        $filter = ( new Filter('VENDORNAME') )->notLike('ACME%');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -293,7 +293,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DESCRIPTION') )->isnull();
+        $filter = ( new Filter('DESCRIPTION') )->isNull();
 
         $filter->writeXML($xml);
 
@@ -315,7 +315,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DESCRIPTION') )->isnotnull();
+        $filter = ( new Filter('DESCRIPTION') )->isNotNull();
 
         $filter->writeXML($xml);
 

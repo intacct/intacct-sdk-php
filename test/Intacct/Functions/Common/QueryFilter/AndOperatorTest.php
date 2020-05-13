@@ -52,8 +52,8 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1'),
-                                    ( new Filter('RECORDNO') )->lessthanorequalto('100') ]);
+        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1'),
+                                    ( new Filter('RECORDNO') )->lessThanOrEqualTo('100') ]);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -67,7 +67,7 @@ EOF;
     {
         $xml = new XMLWriter();
 
-        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterthanorequalto('1') ]);
+        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1') ]);
 
         $filter->writeXML($xml);
     }
@@ -121,8 +121,8 @@ EOF;
         $xml->startDocument();
 
         $filter = new AndOperator(null);
-        $filter->addFilter(( new Filter('RECORDNO') )->greaterthanorequalto('1'))
-               ->addFilter(( new Filter('RECORDNO') )->lessthanorequalto('100'));
+        $filter->addFilter(( new Filter('RECORDNO') )->greaterThanOrEqualTo('1'))
+               ->addFilter(( new Filter('RECORDNO') )->lessThanOrEqualTo('100'));
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

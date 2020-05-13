@@ -127,7 +127,7 @@ interface QueryFunctionInterface
      *
      * @return QueryFunctionInterface
      */
-    public function caseinsensitive(bool $caseInsensitive);
+    public function caseInsensitive(bool $caseInsensitive);
 
     /**
      * @return int|null
@@ -144,7 +144,7 @@ interface QueryFunctionInterface
      *
      * @return QueryFunctionInterface
      */
-    public function pagesize(int $pagesize);
+    public function pageSize(int $pagesize);
 
     /**
      * @return int|null
