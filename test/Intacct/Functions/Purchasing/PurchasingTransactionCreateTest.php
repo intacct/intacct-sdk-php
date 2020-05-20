@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -41,7 +41,7 @@ class PurchasingTransactionCreateTest extends \PHPUnit\Framework\TestCase
         </datecreated>
         <vendorid>2530</vendorid>
         <datedue>
-            <year>2019</year>
+            <year>2020</year>
             <month>09</month>
             <day>15</day>
         </datedue>
@@ -71,7 +71,7 @@ EOF;
         $transaction->setTransactionDefinition('Purchase Order');
         $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new \DateTime('2019-09-15'));
+        $transaction->setDueDate(new \DateTime('2020-09-15'));
 
         $line1 = new PurchasingTransactionLineCreate();
         $line1->setItemId('02354032');
@@ -222,7 +222,7 @@ EOF;
         $transaction->setTransactionDefinition('Purchase Order');
         $transaction->setTransactionDate(new \DateTime('2015-06-30'));
         $transaction->setVendorId('2530');
-        $transaction->setDueDate(new \DateTime('2019-09-15'));
+        $transaction->setDueDate(new \DateTime('2020-09-15'));
 
         $transaction->writeXml($xml);
     }
