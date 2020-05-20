@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['ia_5fdate_5fformat',['IA_DATE_FORMAT',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_abstract_date_time_class.html#a2b3dfde220822a9d6fe3e8fe0b4ebb15',1,'Intacct\Functions\Common\Query\Comparison\AbstractDateTimeClass\IA_DATE_FORMAT()'],['../class_intacct_1_1_xml_1_1_x_m_l_writer.html#a2b3dfde220822a9d6fe3e8fe0b4ebb15',1,'Intacct\Xml\XMLWriter\IA_DATE_FORMAT()']]],
-  ['ia_5fdate_5ftime_5fformat',['IA_DATE_TIME_FORMAT',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_abstract_date_time_class.html#a67b915368beb6cec508bb04dbd1640fb',1,'Intacct::Functions::Common::Query::Comparison::AbstractDateTimeClass']]],
-  ['ia_5fdatetime_5fformat',['IA_DATETIME_FORMAT',['../class_intacct_1_1_xml_1_1_x_m_l_writer.html#a9a3b94892c5d7233bc5b88505618c2d4',1,'Intacct::Xml::XMLWriter']]],
-  ['ia_5fmulti_5fselect_5fglue',['IA_MULTI_SELECT_GLUE',['../class_intacct_1_1_xml_1_1_x_m_l_writer.html#ae58009fdc856b64fe4cf9b37c295a1f5',1,'Intacct::Xml::XMLWriter']]]
+  ['field_4373',['FIELD',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_select_1_1_field.html#af47648da1fb5451250272ab1770edea0',1,'Intacct::Functions::Common::NewQuery::QuerySelect::Field']]],
+  ['file_5fformat_5fmac_4374',['FILE_FORMAT_MAC',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#abdec1f0364d8ba54328e4adb8440361d',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]],
+  ['file_5fformat_5funix_4375',['FILE_FORMAT_UNIX',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#a73c111cf690a02281c8fc35e2e023841',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]],
+  ['file_5fformat_5fwindows_4376',['FILE_FORMAT_WINDOWS',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#aa95b112e6bdabc14eafcbc4720fb9259',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]],
+  ['file_5fformats_4377',['FILE_FORMATS',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#a0f68213bcbf9f3b2f102a08dda82f505',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]]
 ];
