@@ -22,37 +22,44 @@ use Intacct\Xml\XMLWriter;
 abstract class AbstractSelectFunction implements SelectInterface
 {
 
+    /** @var string */
     const AVERAGE = 'avg';
+
+    /** @var string */
     const MINIMUM = 'min';
+
+    /** @var string */
     const MAXIMUM = 'max';
+
+    /** @var string */
     const COUNT = 'count';
+
+    /** @var string */
     const SUM = 'sum';
 
-    /**
-     * @param string $_field
-     */
-    private $_field;
+    /** @var string $field */
+    private $field;
 
     /**
      * AbstractSelectFunction constructor.
      *
-     * @param string $_field
+     * @param string $field
      */
-    public function __construct(string $_field)
+    public function __construct(string $field)
     {
-        $this->_field = $_field;
+        $this->field = $field;
     }
 
     /**
      * @return string
      */
-    abstract public function getFunctionName() : string;
+    abstract public function getFunctionName(): string;
 
     /**
      * @param XMLWriter &$xml
      */
     public function writeXML(XMLWriter &$xml)
     {
-        $xml->writeElement($this->getFunctionName(), $this->_field, false);
+        $xml->writeElement($this->getFunctionName(), $this->field, false);
     }
 }

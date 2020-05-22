@@ -23,7 +23,7 @@ class Minimum extends AbstractSelectFunction
     /**
      * @return string
      */
-    public function getFunctionName() : string
+    public function getFunctionName(): string
     {
         return self::MINIMUM;
     }

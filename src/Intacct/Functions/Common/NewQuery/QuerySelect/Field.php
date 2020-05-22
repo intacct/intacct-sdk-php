@@ -23,25 +23,29 @@ use InvalidArgumentException;
 class Field implements SelectInterface
 {
 
+    /** @var string */
     const FIELD = 'field';
 
     /**
-     * @param string $_field
+     * @var string $fieldName
      */
-    private $_fieldName;
+    private $fieldName;
 
     /**
      * Field constructor.
      *
      * @param string $fieldName
+     * @throws InvalidArgumentException
      */
     public function __construct(string $fieldName)
     {
-        if ( ! $fieldName ) {
-            throw new InvalidArgumentException("Field name cannot be empty or null. Provide a field name for the builder.");
+        if (!$fieldName) {
+            throw new InvalidArgumentException(
+                "Field name cannot be empty or null. Provide a field name for the builder."
+            );
         }
 
-        $this->_fieldName = $fieldName;
+        $this->fieldName = $fieldName;
     }
 
     /**
@@ -49,6 +53,6 @@ class Field implements SelectInterface
      */
     public function writeXML(XMLWriter &$xml)
     {
-        $xml->writeElement(self::FIELD, $this->_fieldName, false);
+        $xml->writeElement(self::FIELD, $this->fieldName, false);
     }
 }

@@ -19,12 +19,13 @@ namespace Intacct\Functions\Common\NewQuery\QueryFilter;
 
 use Exception;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 use TypeError;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\NewQuery\QueryFilter\AndOperator
  */
-class AndOperatorTest extends \PHPUnit\Framework\TestCase
+class AndOperatorTest extends TestCase
 {
 
     /**
@@ -52,32 +53,34 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1'),
-                                    ( new Filter('RECORDNO') )->lessThanOrEqualTo('100') ]);
+        $filter = new AndOperator(
+            [
+                (new Filter('RECORDNO'))->greaterThanOrEqualTo('1'),
+                (new Filter('RECORDNO'))->lessThanOrEqualTo('100')
+            ]
+        );
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for and
-     */
     public function testSingleFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
+
         $xml = new XMLWriter();
 
-        $filter = new AndOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1') ]);
+        $filter = new AndOperator([(new Filter('RECORDNO'))->greaterThanOrEqualTo('1')]);
 
         $filter->writeXML($xml);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for and
-     */
     public function testEmptyFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
+
         $xml = new XMLWriter();
 
         $filter = new AndOperator([]);
@@ -85,12 +88,11 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for and
-     */
     public function testNullFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
+
         $xml = new XMLWriter();
 
         $filter = new AndOperator(null);
@@ -121,18 +123,17 @@ EOF;
         $xml->startDocument();
 
         $filter = new AndOperator(null);
-        $filter->addFilter(( new Filter('RECORDNO') )->greaterThanOrEqualTo('1'))
-               ->addFilter(( new Filter('RECORDNO') )->lessThanOrEqualTo('100'));
+        $filter->addFilter((new Filter('RECORDNO'))->greaterThanOrEqualTo('1'))
+            ->addFilter((new Filter('RECORDNO'))->lessThanOrEqualTo('100'));
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testAddFilterNull()
     {
+        $this->expectException(TypeError::class);
+
         $xml = new XMLWriter();
 
         $filter = new AndOperator(null);

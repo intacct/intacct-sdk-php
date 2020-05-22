@@ -23,7 +23,7 @@ class Count extends AbstractSelectFunction
     /**
      * @return string
      */
-    public function getFunctionName() : string
+    public function getFunctionName(): string
     {
         return self::COUNT;
     }

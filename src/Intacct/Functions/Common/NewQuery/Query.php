@@ -27,52 +27,36 @@ use InvalidArgumentException;
 class Query extends AbstractFunction implements QueryFunctionInterface
 {
 
-    /**
-     * @var SelectInterface[]
-     */
-    private $_selectFields;
+    /** @var SelectInterface[] */
+    private $selectFields;
+
+    /** @var string */
+    private $fromObject;
+
+    /** @var string */
+    private $docParId;
+
+    /** @var FilterInterface */
+    private $filter;
+
+    /** @var OrderInterface[] */
+    private $orderBy;
+
+    /** @var bool */
+    private $caseInsensitive;
+
+    /** @var int */
+    private $pageSize;
+
+    /** @var int */
+    private $offset;
 
     /**
-     * @var string
+     * @return SelectInterface[]|null
      */
-    private $_fromObject;
-
-    /**
-     * @var string
-     */
-    private $_docParId;
-
-    /**
-     * @var FilterInterface
-     */
-    private $_filter;
-
-    /**
-     * @var OrderInterface[]
-     */
-    private $_orderBy;
-
-    /**
-     * @var bool
-     */
-    private $_caseInsensitive;
-
-    /**
-     * @var int
-     */
-    private $_pagesize;
-
-    /**
-     * @var int
-     */
-    private $_offset;
-
-    /**
-     * @return SelectInterface[]
-     */
-    public function getSelect()
+    public function getSelect() //: ?array
     {
-        return $this->_selectFields;
+        return $this->selectFields;
     }
 
     /**
@@ -80,19 +64,20 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function setSelect(array $fields)
     {
-        if ( ! $fields ) {
-            throw new InvalidArgumentException('Field name for select cannot be empty or null. Provide Field name for select in array.');
+        if (!$fields) {
+            throw new InvalidArgumentException(
+                'Field name for select cannot be empty or null. Provide Field name for select in array.'
+            );
         }
 
-        $this->_selectFields = $fields;
+        $this->selectFields = $fields;
     }
 
     /**
      * @param SelectInterface[] $fields
-     *
      * @return QueryFunctionInterface
      */
-    public function select(array $fields)
+    public function select(array $fields): QueryFunctionInterface
     {
         $this->setSelect($fields);
 
@@ -100,31 +85,33 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFrom()
+    public function getFrom() //: ?string
     {
-        return $this->_fromObject;
+        return $this->fromObject;
     }
 
     /**
      * @param string $objectName
+     * @throws InvalidArgumentException
      */
     public function setFrom(string $objectName)
     {
-        if ( $objectName && $objectName != "" ) {
-            $this->_fromObject = $objectName;
+        if ($objectName !== '' && $objectName) {
+            $this->fromObject = $objectName;
         } else {
-            throw new InvalidArgumentException('Object name for setting from cannot be empty or null. Set object name using from setter.');
+            throw new InvalidArgumentException(
+                'Object name for setting from cannot be empty or null. Set object name using from setter.'
+            );
         }
     }
 
     /**
      * @param string $objectName
-     *
      * @return QueryFunctionInterface
      */
-    public function from(string $objectName)
+    public function from(string $objectName): QueryFunctionInterface
     {
         $this->setFrom($objectName);
 
@@ -133,31 +120,32 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
     /**
      * @param string $docParId
-     *
+     * @throws InvalidArgumentException
      */
     public function setDocParId($docParId)
     {
-        if ( $docParId && $docParId != '' ) { // flip these
-            $this->_docParId = $docParId;
+        if ($docParId !== '' && $docParId) {
+            $this->docParId = $docParId;
         } else {
-            throw new InvalidArgumentException('docParId cannot be empty. Set docParId with valid document identifier.');
+            throw new InvalidArgumentException(
+                'docParId cannot be empty. Set docParId with valid document identifier.'
+            );
         }
     }
 
     /**
      * @return string|null
      */
-    public function getDocParId()
+    public function getDocParId() //: ?string
     {
-        return $this->_docParId;
+        return $this->docParId;
     }
 
     /**
      * @param $docParId
-     *
      * @return QueryFunctionInterface
      */
-    public function docParId($docParId)
+    public function docParId($docParId): QueryFunctionInterface
     {
         $this->setDocParId($docParId);
 
@@ -167,9 +155,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @return FilterInterface|null
      */
-    public function getFilter()
+    public function getFilter() //: ?FilterInterface
     {
-        return $this->_filter;
+        return $this->filter;
     }
 
     /**
@@ -177,15 +165,14 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function setFilter($filter)
     {
-        $this->_filter = $filter;
+        $this->filter = $filter;
     }
 
     /**
      * @param FilterInterface $filter
-     *
      * @return QueryFunctionInterface
      */
-    public function filter($filter)
+    public function filter($filter): QueryFunctionInterface
     {
         $this->setFilter($filter);
 
@@ -195,9 +182,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @return OrderInterface[]|null
      */
-    public function getOrderBy()
+    public function getOrderBy() //: ?array
     {
-        return $this->_orderBy;
+        return $this->orderBy;
     }
 
     /**
@@ -205,19 +192,20 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function setOrderBy($orderBy)
     {
-        if ( ! $orderBy ) {
-            throw new InvalidArgumentException('Field name for orderBy cannot be empty or null. Provide orders for orderBy in array.');
+        if (!$orderBy) {
+            throw new InvalidArgumentException(
+                'Field name for orderBy cannot be empty or null. Provide orders for orderBy in array.'
+            );
         }
 
-        $this->_orderBy = $orderBy;
+        $this->orderBy = $orderBy;
     }
 
     /**
      * @param OrderInterface[] $orderBy
-     *
      * @return QueryFunctionInterface
      */
-    public function orderBy($orderBy)
+    public function orderBy($orderBy): QueryFunctionInterface
     {
         $this->setOrderBy($orderBy);
 
@@ -227,9 +215,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @return bool|null
      */
-    public function isCaseInsensitive()
+    public function isCaseInsensitive() //: ?bool
     {
-        return $this->_caseInsensitive;
+        return $this->caseInsensitive;
     }
 
     /**
@@ -237,15 +225,14 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      */
     public function setCaseInsensitive(bool $caseInsensitive)
     {
-        $this->_caseInsensitive = $caseInsensitive;
+        $this->caseInsensitive = $caseInsensitive;
     }
 
     /**
      * @param bool $caseInsensitive
-     *
      * @return QueryFunctionInterface
      */
-    public function caseInsensitive(bool $caseInsensitive)
+    public function caseInsensitive(bool $caseInsensitive): QueryFunctionInterface
     {
         $this->setCaseInsensitive($caseInsensitive);
 
@@ -255,31 +242,31 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @return int|null
      */
-    public function getPagesize()
+    public function getPageSize() //: ?int
     {
-        return $this->_pagesize;
+        return $this->pageSize;
     }
 
     /**
-     * @param int $pagesize
+     * @param int $pageSize
+     * @throws InvalidArgumentException
      */
-    public function setPageSize(int $pagesize)
+    public function setPageSize(int $pageSize)
     {
-        if ( $pagesize < 0 ) {
-            throw new InvalidArgumentException('pagesize cannot be negative. Set pagesize greater than zero.');
+        if ($pageSize < 0) {
+            throw new InvalidArgumentException('pageSize cannot be negative. Set pageSize greater than zero.');
         }
 
-        $this->_pagesize = $pagesize;
+        $this->pageSize = $pageSize;
     }
 
     /**
-     * @param int $pagesize
-     *
+     * @param int $pageSize
      * @return QueryFunctionInterface
      */
-    public function pageSize(int $pagesize)
+    public function pageSize(int $pageSize): QueryFunctionInterface
     {
-        $this->setPageSize($pagesize);
+        $this->setPageSize($pageSize);
 
         return $this;
     }
@@ -287,29 +274,29 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /**
      * @return int|null
      */
-    public function getOffset()
+    public function getOffset() //: ?int
     {
-        return $this->_offset;
+        return $this->offset;
     }
 
     /**
      * @param int $offset
+     * @throws InvalidArgumentException
      */
     public function setOffset(int $offset)
     {
-        if ( $offset < 0 ) {
+        if ($offset < 0) {
             throw new InvalidArgumentException('offset cannot be negative. Set offset to zero or greater than zero.');
         }
 
-        $this->_offset = $offset;
+        $this->offset = $offset;
     }
 
     /**
      * @param int $offset
-     *
      * @return QueryFunctionInterface
      */
-    public function offset(int $offset)
+    public function offset(int $offset): QueryFunctionInterface
     {
         $this->setOffset($offset);
 
@@ -318,6 +305,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
     /**
      * @param XMLWriter $xml
+     * @throws InvalidArgumentException
      */
     public function writeXML(XMLWriter &$xml)
     {
@@ -326,54 +314,56 @@ class Query extends AbstractFunction implements QueryFunctionInterface
 
         $xml->startElement('query');
 
-        if ( ! $this->getSelect() ) {
-            throw new InvalidArgumentException('Select fields are required for query; set through method select setter.');
+        if (!$this->getSelect()) {
+            throw new InvalidArgumentException(
+                'Select fields are required for query; set through method select setter.'
+            );
         }
 
         $xml->startElement('select');
-        foreach ( $this->getSelect() as $field ) {
+        foreach ($this->getSelect() as $field) {
             $field->writeXML($xml);
         }
         $xml->endElement(); // select
 
-        if ( ! $this->getFrom() ) {
+        if (!$this->getFrom()) {
             throw new InvalidArgumentException('Object Name is required for query; set through method from setter.');
         }
 
         $xml->writeElement('object', $this->getFrom(), false);
 
-        if ( $this->getDocParId() ) {
+        if ($this->getDocParId()) {
             $xml->writeElement('docparid', $this->getDocParId(), false);
         }
 
-        if ( $this->getFilter() ) {
+        if ($this->getFilter()) {
             $xml->startElement('filter');
 
             $this->getFilter()
-                 ->writeXML($xml);
+                ->writeXML($xml);
 
             $xml->endElement();
         }
 
-        if ( $this->getOrderBy() ) {
+        if ($this->getOrderBy()) {
             $xml->startElement('orderby');
-            foreach ( $this->getOrderBy() as $order ) {
+            foreach ($this->getOrderBy() as $order) {
                 $order->writeXML($xml);
             }
             $xml->endElement(); // orderby
         }
 
-        if ( $this->isCaseInsensitive() ) {
+        if ($this->isCaseInsensitive()) {
             $xml->startElement('options');
             $xml->writeElement('caseinsensitive', $this->isCaseInsensitive(), false);
             $xml->endElement();
         }
 
-        if ( $this->getPagesize() ) {
-            $xml->writeElement('pagesize', $this->getPagesize(), false);
+        if ($this->getPageSize()) {
+            $xml->writeElement('pagesize', $this->getPageSize(), false);
         }
 
-        if ( $this->getOffset() ) {
+        if ($this->getOffset()) {
             $xml->writeElement('offset', $this->getOffset(), false);
         }
 

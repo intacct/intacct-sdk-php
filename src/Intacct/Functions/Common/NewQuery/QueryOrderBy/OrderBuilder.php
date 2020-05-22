@@ -22,29 +22,27 @@ use InvalidArgumentException;
 class OrderBuilder
 {
 
-    /**
-     * @var OrderInterface[]
-     */
-    private $_orders;
+    /** @var OrderInterface[] */
+    private $orders;
 
     /**
      * SelectBuilder constructor.
      */
     public function __construct()
     {
-        $this->_orders = [];
+        $this->orders = [];
     }
 
     /**
      * @param string $fieldName
      *
-     * @return $this
+     * @return OrderBuilder
      */
-    public function ascending(string $fieldName) : OrderBuilder
+    public function ascending(string $fieldName): OrderBuilder
     {
-        $this->_validate($fieldName);
-        $_currentOrderField = new OrderAscending($fieldName);
-        $this->_orders[] = $_currentOrderField;
+        $this->validate($fieldName);
+        $currentOrderField = new OrderAscending($fieldName);
+        $this->orders[] = $currentOrderField;
 
         return $this;
     }
@@ -52,32 +50,35 @@ class OrderBuilder
     /**
      * @param string $fieldName
      *
-     * @return $this
+     * @return OrderBuilder
      */
-    public function descending(string $fieldName) : OrderBuilder
+    public function descending(string $fieldName): OrderBuilder
     {
-        $this->_validate($fieldName);
-        $_currentOrderField = new OrderDescending($fieldName);
-        $this->_orders[] = $_currentOrderField;
+        $this->validate($fieldName);
+        $currentOrderField = new OrderDescending($fieldName);
+        $this->orders[] = $currentOrderField;
 
         return $this;
     }
 
     /**
      * @param $fieldName
+     * @throws InvalidArgumentException
      */
-    private function _validate($fieldName)
+    private function validate($fieldName)
     {
-        if ( ! $fieldName ) {
-            throw new InvalidArgumentException('Field name for field cannot be empty or null. Provide a field for the builder.');
+        if (!$fieldName) {
+            throw new InvalidArgumentException(
+                'Field name for field cannot be empty or null. Provide a field for the builder.'
+            );
         }
     }
 
     /**
      * @return OrderInterface[]
      */
-    public function getOrders()
+    public function getOrders(): array
     {
-        return $this->_orders;
+        return $this->orders;
     }
 }

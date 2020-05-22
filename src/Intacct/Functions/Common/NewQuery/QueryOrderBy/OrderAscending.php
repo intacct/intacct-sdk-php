@@ -23,7 +23,7 @@ class OrderAscending extends AbstractOrderDirection
     /**
      * @return string
      */
-    public function getDirection() : string
+    public function getDirection(): string
     {
         return self::ASCENDING;
     }

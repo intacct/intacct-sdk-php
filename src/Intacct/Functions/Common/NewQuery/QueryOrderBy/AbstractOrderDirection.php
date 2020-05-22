@@ -22,28 +22,29 @@ use Intacct\Xml\XMLWriter;
 abstract class AbstractOrderDirection implements OrderInterface
 {
 
+    /** @var string */
     const ASCENDING = 'ascending';
+
+    /** @var string */
     const DESCENDING = 'descending';
 
-    /**
-     * @param string $_field
-     */
-    private $_field;
+    /** @var string $field */
+    private $field;
 
     /**
      * AbstractOrderDirection constructor.
      *
-     * @param string $_field
+     * @param string $field
      */
-    public function __construct(string $_field)
+    public function __construct(string $field)
     {
-        $this->_field = $_field;
+        $this->field = $field;
     }
 
     /**
      * @return string
      */
-    abstract public function getDirection() : string;
+    abstract public function getDirection(): string;
 
     /**
      * @param XMLWriter &$xml
@@ -51,7 +52,7 @@ abstract class AbstractOrderDirection implements OrderInterface
     public function writeXML(XMLWriter &$xml)
     {
         $xml->startElement('order');
-        $xml->writeElement('field', $this->_field, false);
+        $xml->writeElement('field', $this->field, false);
         $xml->writeElement($this->getDirection(), null, true);
         $xml->endElement(); // order
     }

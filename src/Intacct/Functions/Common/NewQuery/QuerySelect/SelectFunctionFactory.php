@@ -22,10 +22,18 @@ use InvalidArgumentException;
 class SelectFunctionFactory
 {
 
-    public function create(string $functionName, string $fieldName) : AbstractSelectFunction
+    /**
+     * @param string $functionName
+     * @param string $fieldName
+     * @return AbstractSelectFunction
+     * @throws InvalidArgumentException
+     */
+    public function create(string $functionName, string $fieldName): AbstractSelectFunction
     {
-        if ( ! $fieldName ) {
-            throw new InvalidArgumentException("Field name for $functionName cannot be empty or null. Provide a field name for the builder.");
+        if (!$fieldName) {
+            throw new InvalidArgumentException(
+                "Field name for $functionName cannot be empty or null. Provide a field name for the builder."
+            );
         }
 
         switch ($functionName) {

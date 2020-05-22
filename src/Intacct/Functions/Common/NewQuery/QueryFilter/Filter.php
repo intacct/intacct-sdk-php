@@ -23,46 +23,53 @@ use Intacct\Xml\XMLWriter;
 class Filter implements FilterInterface
 {
 
+    /** @var string */
     const EQUAL_TO = 'equalto';
 
+    /** @var string */
     const NOT_EQUAL_TO = 'notequalto';
 
+    /** @var string */
     const LESS_THAN = 'lessthan';
 
+    /** @var string */
     const LESS_THAN_OR_EQUAL_TO = 'lessthanorequalto';
 
+    /** @var string */
     const GREATER_THAN = 'greaterthan';
 
+    /** @var string */
     const GREATER_THAN_OR_EQUAL_TO = 'greaterthanorequalto';
 
+    /** @var string */
     const BETWEEN = 'between';
 
+    /** @var string */
     const IN = 'in';
 
+    /** @var string */
     const NOT_IN = 'notin';
 
+    /** @var string */
     const LIKE = 'like';
 
+    /** @var string */
     const NOT_LIKE = 'notlike';
 
+    /** @var string */
     const IS_NULL = 'isnull';
 
+    /** @var string */
     const IS_NOT_NULL = 'isnotnull';
 
-    /**
-     * @var string
-     */
-    private $_field;
+    /** @var string */
+    private $field;
 
-    /**
-     * @var string|string[]
-     */
-    private $_value;
+    /** @var string|string[] */
+    private $value;
 
-    /**
-     * @var string
-     */
-    private $_operation;
+    /** @var string */
+    private $operation;
 
     /**
      * Filter constructor.
@@ -71,7 +78,7 @@ class Filter implements FilterInterface
      */
     public function __construct(string $fieldName)
     {
-        $this->_field = $fieldName;
+        $this->field = $fieldName;
     }
 
     /**
@@ -79,11 +86,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function equalTo(string $value)
+    public function equalTo(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::EQUAL_TO;
+        $this->operation = self::EQUAL_TO;
 
         return $this;
     }
@@ -93,11 +100,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notEqualTo(string $value)
+    public function notEqualTo(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::NOT_EQUAL_TO;
+        $this->operation = self::NOT_EQUAL_TO;
 
         return $this;
     }
@@ -107,11 +114,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessThan(string $value)
+    public function lessThan(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::LESS_THAN;
+        $this->operation = self::LESS_THAN;
 
         return $this;
     }
@@ -121,11 +128,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessThanOrEqualTo(string $value)
+    public function lessThanOrEqualTo(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::LESS_THAN_OR_EQUAL_TO;
+        $this->operation = self::LESS_THAN_OR_EQUAL_TO;
 
         return $this;
     }
@@ -135,11 +142,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterThan(string $value)
+    public function greaterThan(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::GREATER_THAN;
+        $this->operation = self::GREATER_THAN;
 
         return $this;
     }
@@ -149,11 +156,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterThanOrEqualTo(string $value)
+    public function greaterThanOrEqualTo(string $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::GREATER_THAN_OR_EQUAL_TO;
+        $this->operation = self::GREATER_THAN_OR_EQUAL_TO;
 
         return $this;
     }
@@ -162,29 +169,16 @@ class Filter implements FilterInterface
      * @param string[] $value
      *
      * @return FilterInterface
+     * @throws InvalidArgumentException
      */
-    public function between(array $value)
+    public function between(array $value): FilterInterface
     {
-        if ( ( $value ) && sizeof($value) != 2 ) {
+        if (($value) && (sizeof($value) !== 2)) {
             throw new InvalidArgumentException('Two strings expected for between filter');
         }
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::BETWEEN;
-
-        return $this;
-    }
-
-    /**
-     * @param string[] $value
-     *
-     * @return FilterInterface
-     */
-    public function in(array $value)
-    {
-        $this->_value = $value;
-
-        $this->_operation = self::IN;
+        $this->operation = self::BETWEEN;
 
         return $this;
     }
@@ -194,11 +188,25 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notIn(array $value)
+    public function in(array $value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::NOT_IN;
+        $this->operation = self::IN;
+
+        return $this;
+    }
+
+    /**
+     * @param string[] $value
+     *
+     * @return FilterInterface
+     */
+    public function notIn(array $value): FilterInterface
+    {
+        $this->value = $value;
+
+        $this->operation = self::NOT_IN;
 
         return $this;
     }
@@ -208,11 +216,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function like($value)
+    public function like($value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::LIKE;
+        $this->operation = self::LIKE;
 
         return $this;
     }
@@ -222,11 +230,11 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notLike($value)
+    public function notLike($value): FilterInterface
     {
-        $this->_value = $value;
+        $this->value = $value;
 
-        $this->_operation = self::NOT_LIKE;
+        $this->operation = self::NOT_LIKE;
 
         return $this;
     }
@@ -234,9 +242,9 @@ class Filter implements FilterInterface
     /**
      * @return FilterInterface
      */
-    public function isNull()
+    public function isNull(): FilterInterface
     {
-        $this->_operation = self::IS_NULL;
+        $this->operation = self::IS_NULL;
 
         return $this;
     }
@@ -244,29 +252,28 @@ class Filter implements FilterInterface
     /**
      * @return FilterInterface
      */
-    public function isNotNull()
+    public function isNotNull(): FilterInterface
     {
-        $this->_operation = self::IS_NOT_NULL;
+        $this->operation = self::IS_NOT_NULL;
 
         return $this;
     }
 
     /**
      * @param XMLWriter &$xml
-     *
      */
     public function writeXML(XMLWriter &$xml)
     {
-        $xml->startElement($this->_operation);
+        $xml->startElement($this->operation);
 
-        $xml->writeElement('field', $this->_field, false);
-        if ( $this->_value ) {
-            if ( is_array($this->_value) ) {
-                foreach ( $this->_value as $arrayValue ) {
+        $xml->writeElement('field', $this->field, false);
+        if ($this->value) {
+            if (is_array($this->value)) {
+                foreach ($this->value as $arrayValue) {
                     $xml->writeElement('value', $arrayValue, false);
                 }
             } else {
-                $xml->writeElement('value', $this->_value, false);
+                $xml->writeElement('value', $this->value, false);
             }
         }
 

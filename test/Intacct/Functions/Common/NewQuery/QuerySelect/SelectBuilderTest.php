@@ -19,12 +19,13 @@ namespace Intacct\Functions\Common\NewQuery\QuerySelect;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use TypeError;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\NewQuery\QuerySelect\SelectBuilder
  */
-class SelectBuilderTest extends \PHPUnit\Framework\TestCase
+class SelectBuilderTest extends TestCase
 {
 
     public function testField()
@@ -40,69 +41,64 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->field('CUSTOMERID')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->field('CUSTOMERID')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullField()
     {
-        ( new SelectBuilder() )->field(null);
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->field(null);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyField()
     {
-        ( new SelectBuilder() )->field('');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->field('');
     }
 
     public function testFields()
     {
-        $fieldNameList = [ 'CUSTOMERID', 'TOTALDUE', 'WHENDUE', 'TOTALENTERED', 'TOTALDUE', 'RECORDNO' ];
-        $fields = ( new SelectBuilder() )->fields($fieldNameList)
-                                         ->getFields();
+        $fieldNameList = ['CUSTOMERID', 'TOTALDUE', 'WHENDUE', 'TOTALENTERED', 'TOTALDUE', 'RECORDNO'];
+        $fields = (new SelectBuilder())->fields($fieldNameList)
+            ->getFields();
 
         $this->assertCount(count($fieldNameList), $fields);
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullFields()
     {
-        ( new SelectBuilder() )->fields(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->fields(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage  Field name cannot be empty or null. Provide a field name for the builder.
-     */
     public function testNullInFields()
     {
-        ( new SelectBuilder() )->fields([ '', null ])
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->fields(['', null])
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage  Field name cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyStringInFields()
     {
-        ( new SelectBuilder() )->fields([ '' ])
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->fields([''])
+            ->getFields();
     }
 
     public function testAvg()
@@ -118,10 +114,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->avg('PRICE')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->avg('PRICE')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
@@ -129,23 +125,23 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullAvg()
     {
-        ( new SelectBuilder() )->avg(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->avg(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for avg cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyAvg()
     {
-        ( new SelectBuilder() )->avg('')
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            "Field name for avg cannot be empty or null. Provide a field name for the builder."
+        );
+
+        (new SelectBuilder())->avg('')
+            ->getFields();
     }
 
     public function testMin()
@@ -161,33 +157,33 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->min('PRICE')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->min('PRICE')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullMin()
     {
-        ( new SelectBuilder() )->min(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->min(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for min cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyMin()
     {
-        ( new SelectBuilder() )->min('')
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            "Field name for min cannot be empty or null. Provide a field name for the builder."
+        );
+
+        (new SelectBuilder())->min('')
+            ->getFields();
     }
 
     public function testMax()
@@ -203,10 +199,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->max('PRICE')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->max('PRICE')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
@@ -214,23 +210,22 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullMax()
     {
-        ( new SelectBuilder() )->max(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->max(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for max cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyMax()
     {
-        ( new SelectBuilder() )->max('')
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            "Field name for max cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->max('')
+            ->getFields();
     }
 
     public function testCount()
@@ -246,10 +241,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->count('PRICE')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->count('PRICE')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
@@ -257,23 +252,22 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullCount()
     {
-        ( new SelectBuilder() )->avg(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->avg(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for count cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptyCount()
     {
-        ( new SelectBuilder() )->count('')
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            "Field name for count cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->count('')
+            ->getFields();
     }
 
     public function testSum()
@@ -289,10 +283,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $fields = ( new SelectBuilder() )->sum('PRICE')
-                                         ->getFields();
+        $fields = (new SelectBuilder())->sum('PRICE')
+            ->getFields();
 
-        foreach ( $fields as $field ) {
+        foreach ($fields as $field) {
             $field->writeXML($xml);
         }
 
@@ -300,22 +294,29 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testNullSum()
     {
-        ( new SelectBuilder() )->sum(null)
-                               ->getFields();
+        $this->expectException(TypeError::class);
+
+        (new SelectBuilder())->sum(null)
+            ->getFields();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field name for sum cannot be empty or null. Provide a field name for the builder.
-     */
     public function testEmptySum()
     {
-        ( new SelectBuilder() )->sum('')
-                               ->getFields();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            "Field name for sum cannot be empty or null. Provide a field name for the builder.");
+
+        (new SelectBuilder())->sum('')
+            ->getFields();
+    }
+
+    public function testInvalidFunction()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("FOO function doesn't exist.");
+
+        (new SelectFunctionFactory())->create('FOO','FOO');
     }
 }

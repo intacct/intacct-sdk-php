@@ -19,12 +19,13 @@ namespace Intacct\Functions\Common\NewQuery\QueryFilter;
 
 use Exception;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 use TypeError;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\NewQuery\QueryFilter\OrOperator
  */
-class OrOperatorTest extends \PHPUnit\Framework\TestCase
+class OrOperatorTest extends TestCase
 {
 
     /**
@@ -60,34 +61,36 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = new OrOperator([ ( new Filter('RECORDNO') )->lessThanOrEqualTo('10'),
-                                   ( new Filter('RECORDNO') )->equalTo('100'),
-                                   ( new Filter('RECORDNO') )->equalTo('1000'),
-                                   ( new Filter('RECORDNO') )->equalTo('10000') ]);
+        $filter = new OrOperator(
+            [
+                (new Filter('RECORDNO'))->lessThanOrEqualTo('10'),
+                (new Filter('RECORDNO'))->equalTo('100'),
+                (new Filter('RECORDNO'))->equalTo('1000'),
+                (new Filter('RECORDNO'))->equalTo('10000')
+            ]
+        );
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for or
-     */
     public function testSingleFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
+
         $xml = new XMLWriter();
 
-        $filter = new OrOperator([ ( new Filter('RECORDNO') )->greaterThanOrEqualTo('1') ]);
+        $filter = new OrOperator([(new Filter('RECORDNO'))->greaterThanOrEqualTo('1')]);
 
         $filter->writeXML($xml);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for or
-     */
     public function testEmptyFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
+
         $xml = new XMLWriter();
 
         $filter = new OrOperator([]);
@@ -95,12 +98,11 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage Two or more FilterInterface objects required for or
-     */
     public function testNullFilter()
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
+
         $xml = new XMLWriter();
 
         $filter = new OrOperator(null);
@@ -139,20 +141,19 @@ EOF;
         $xml->startDocument();
 
         $filter = new OrOperator(null);
-        $filter->addFilter(( new Filter('RECORDNO') )->lessThanOrEqualTo('10'))
-               ->addFilter(( new Filter('RECORDNO') )->equalTo('100'))
-               ->addFilter(( new Filter('RECORDNO') )->equalTo('1000'))
-               ->addFilter(( new Filter('RECORDNO') )->equalTo('10000'));
+        $filter->addFilter((new Filter('RECORDNO'))->lessThanOrEqualTo('10'))
+            ->addFilter((new Filter('RECORDNO'))->equalTo('100'))
+            ->addFilter((new Filter('RECORDNO'))->equalTo('1000'))
+            ->addFilter((new Filter('RECORDNO'))->equalTo('10000'));
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException TypeError
-     */
     public function testAddFilterNull()
     {
+        $this->expectException(TypeError::class);
+
         $xml = new XMLWriter();
 
         $filter = new OrOperator(null);

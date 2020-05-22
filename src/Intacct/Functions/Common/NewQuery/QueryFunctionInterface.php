@@ -26,10 +26,9 @@ interface QueryFunctionInterface
 {
 
     /**
-     * @return SelectInterface[]
-     *
+     * @return SelectInterface[]|null
      */
-    public function getSelect();
+    public function getSelect(); //: ?array;
 
     /**
      * @param SelectInterface[] $fields
@@ -38,15 +37,14 @@ interface QueryFunctionInterface
 
     /**
      * @param SelectInterface[] $fields
-     *
      * @return QueryFunctionInterface
      */
-    public function select(array $fields);
+    public function select(array $fields): QueryFunctionInterface;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFrom();
+    public function getFrom(); //: ?string
 
     /**
      * @param string $objectName
@@ -55,33 +53,30 @@ interface QueryFunctionInterface
 
     /**
      * @param string $objectName
-     *
      * @return QueryFunctionInterface
      */
-    public function from(string $objectName);
+    public function from(string $objectName): QueryFunctionInterface;
 
     /**
      * @param string $docParId
-     *
      */
     public function setDocParId($docParId);
 
     /**
      * @return string|null
      */
-    public function getDocParId();
+    public function getDocParId(); //: ?string
 
     /**
      * @param $docParId
-     *
      * @return QueryFunctionInterface
      */
-    public function docParId($docParId);
+    public function docParId($docParId): QueryFunctionInterface;
 
     /**
      * @return FilterInterface|null
      */
-    public function getFilter();
+    public function getFilter(); //:FilterInterface|null
 
     /**
      * @param FilterInterface $filter
@@ -90,15 +85,14 @@ interface QueryFunctionInterface
 
     /**
      * @param FilterInterface $filter
-     *
      * @return QueryFunctionInterface
      */
-    public function filter($filter);
+    public function filter($filter): QueryFunctionInterface;
 
     /**
      * @return OrderInterface[]|null
      */
-    public function getOrderBy();
+    public function getOrderBy(); //: ?array
 
     /**
      * @param OrderInterface[] $orderBy
@@ -107,15 +101,14 @@ interface QueryFunctionInterface
 
     /**
      * @param OrderInterface[] $orderBy
-     *
      * @return QueryFunctionInterface
      */
-    public function orderBy($orderBy);
+    public function orderBy($orderBy): QueryFunctionInterface;
 
     /**
      * @return bool|null
      */
-    public function isCaseInsensitive();
+    public function isCaseInsensitive(); //: ?bool
 
     /**
      * @param bool $caseInsensitive
@@ -124,32 +117,30 @@ interface QueryFunctionInterface
 
     /**
      * @param bool $caseInsensitive
-     *
      * @return QueryFunctionInterface
      */
-    public function caseInsensitive(bool $caseInsensitive);
+    public function caseInsensitive(bool $caseInsensitive): QueryFunctionInterface;
 
     /**
      * @return int|null
      */
-    public function getPagesize();
+    public function getPageSize(); //: ?int
 
     /**
-     * @param int $pagesize
+     * @param int $pageSize
      */
-    public function setPageSize(int $pagesize);
+    public function setPageSize(int $pageSize);
 
     /**
-     * @param int $pagesize
-     *
+     * @param int $pageSize
      * @return QueryFunctionInterface
      */
-    public function pageSize(int $pagesize);
+    public function pageSize(int $pageSize): QueryFunctionInterface;
 
     /**
      * @return int|null
      */
-    public function getOffset();
+    public function getOffset(); //: ?int
 
     /**
      * @param int $offset
@@ -158,15 +149,12 @@ interface QueryFunctionInterface
 
     /**
      * @param int $offset
-     *
      * @return QueryFunctionInterface
      */
-    public function offset(int $offset);
+    public function offset(int $offset): QueryFunctionInterface;
 
     /**
      * @param XMLWriter $xml
-     *
-     * @return mixed
      */
-    function writeXML(XMLWriter &$xml);
+    public function writeXML(XMLWriter &$xml);
 }

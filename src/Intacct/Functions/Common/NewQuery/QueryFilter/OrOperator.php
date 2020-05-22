@@ -23,7 +23,7 @@ class OrOperator extends AbstractOperator
     /**
      * @inheritDoc
      */
-    public function getOperator() : string
+    public function getOperator(): string
     {
         return self:: OR;
     }

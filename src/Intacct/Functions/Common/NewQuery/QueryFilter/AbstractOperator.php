@@ -17,18 +17,22 @@
 
 namespace Intacct\Functions\Common\NewQuery\QueryFilter;
 
+use Intacct\Exception\IntacctException;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOperator implements FilterInterface
 {
 
+    /** @var string */
     const OR = 'or';
+
+    /** @var string */
     const AND = 'and';
 
     /**
-     * @param FilterInterface[] $_filters
+     * @var FilterInterface[] $filters
      */
-    private $_filters;
+    private $filters;
 
     /**
      * AbstractOperator constructor.
@@ -37,7 +41,7 @@ abstract class AbstractOperator implements FilterInterface
      */
     public function __construct($filters)
     {
-        $this->_filters = $filters;
+        $this->filters = $filters;
     }
 
     /**
@@ -45,9 +49,9 @@ abstract class AbstractOperator implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function addFilter(FilterInterface $filter)
+    public function addFilter(FilterInterface $filter): FilterInterface
     {
-        $this->_filters[] = $filter;
+        $this->filters[] = $filter;
 
         return $this;
     }
@@ -55,21 +59,22 @@ abstract class AbstractOperator implements FilterInterface
     /**
      * @return string
      */
-    abstract public function getOperator() : string;
+    abstract public function getOperator(): string;
 
     /**
      * @param XMLWriter &$xml
+     * @throws IntacctException
      */
     public function writeXML(XMLWriter &$xml)
     {
-        if ( ( $this->_filters ) && ( sizeof($this->_filters) >= 2 ) ) {
+        if (($this->filters) && (sizeof($this->filters) >= 2)) {
             $xml->startElement($this->getOperator());
-            foreach ( $this->_filters as $filter ) {
+            foreach ($this->filters as $filter) {
                 $filter->writeXML($xml);
             }
             $xml->endElement(); //and/or
         } else {
-            throw new \Exception("Two or more FilterInterface objects required for " . $this->getOperator());
+            throw new IntacctException("Two or more FilterInterface objects required for " . $this->getOperator());
         }
     }
 }

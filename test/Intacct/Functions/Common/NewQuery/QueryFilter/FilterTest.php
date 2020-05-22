@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common\NewQuery\QueryFilter;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\NewQuery\QueryFilter\Filter
  */
-class FilterTest extends \PHPUnit\Framework\TestCase
+class FilterTest extends TestCase
 {
 
     public function testEqualTo()
@@ -42,7 +43,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('CUSTOMERID') )->equalTo('10');
+        $filter = (new Filter('CUSTOMERID'))->equalTo('10');
 
         $filter->writeXML($xml);
 
@@ -65,7 +66,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('CUSTOMERID') )->notEqualTo('10');
+        $filter = (new Filter('CUSTOMERID'))->notEqualTo('10');
 
         $filter->writeXML($xml);
 
@@ -87,7 +88,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->lessThan('100');
+        $filter = (new Filter('RECORDNO'))->lessThan('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -108,7 +109,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->lessThanOrEqualTo('100');
+        $filter = (new Filter('RECORDNO'))->lessThanOrEqualTo('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -129,7 +130,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->greaterThan('100');
+        $filter = (new Filter('RECORDNO'))->greaterThan('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -150,7 +151,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('RECORDNO') )->greaterThanOrEqualTo('100');
+        $filter = (new Filter('RECORDNO'))->greaterThanOrEqualTo('100');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -172,19 +173,18 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('WHENDUE') )->between([ '10/01/2019', '12/31/2019' ]);
+        $filter = (new Filter('WHENDUE'))->between(['10/01/2019', '12/31/2019']);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Two strings expected for between filter
-     */
     public function testOneBetween()
     {
-        ( new Filter('WHENDUE') )->between([ '10/01/2019' ]);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Two strings expected for between filter");
+
+        (new Filter('WHENDUE'))->between(['10/01/2019']);
     }
 
     public function testIn()
@@ -205,7 +205,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DEPARTMENTID') )->in([ '04', '05', '06', '07' ]);
+        $filter = (new Filter('DEPARTMENTID'))->in(['04', '05', '06', '07']);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -229,7 +229,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DEPARTMENTID') )->notIn([ '04', '05', '06', '07' ]);
+        $filter = (new Filter('DEPARTMENTID'))->notIn(['04', '05', '06', '07']);
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -250,7 +250,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('VENDORNAME') )->like('B%');
+        $filter = (new Filter('VENDORNAME'))->like('B%');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -271,7 +271,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('VENDORNAME') )->notLike('ACME%');
+        $filter = (new Filter('VENDORNAME'))->notLike('ACME%');
 
         $filter->writeXML($xml);
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
@@ -292,7 +292,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DESCRIPTION') )->isNull();
+        $filter = (new Filter('DESCRIPTION'))->isNull();
 
         $filter->writeXML($xml);
 
@@ -314,7 +314,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $filter = ( new Filter('DESCRIPTION') )->isNotNull();
+        $filter = (new Filter('DESCRIPTION'))->isNotNull();
 
         $filter->writeXML($xml);
 
