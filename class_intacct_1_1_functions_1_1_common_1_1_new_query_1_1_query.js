@@ -9,12 +9,12 @@ var class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query =
     [ "getFrom", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a28bd887dc9236a9c87f1d5cbe9c5875d", null ],
     [ "getOffset", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#aee8782a6009ae7e59aef9d88588d498a", null ],
     [ "getOrderBy", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a6c42dc41cd8fed93d7d274e68ba56dd3", null ],
-    [ "getPagesize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a97d6c265f89f54a1bb8cbd970ab4f5b7", null ],
+    [ "getPageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a33b4768492c075cc44f18e80eb97c756", null ],
     [ "getSelect", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a894818a2311dc3c2b73f82e3399fa572", null ],
     [ "isCaseInsensitive", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a1a2ae1df47a6e5c67003dc8f69e47072", null ],
     [ "offset", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a0d40a942c4a701607a4785b62fa3b63d", null ],
     [ "orderBy", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a342f24c37c2556e086e3dfc6e2d8f731", null ],
-    [ "pageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a144e96b991b25f67aa42cdf360f84954", null ],
+    [ "pageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a56d828840b624c92df719b2ead35ba0c", null ],
     [ "select", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#aa28e5c0b8e066e469398bdbd2070bf57", null ],
     [ "setCaseInsensitive", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#aa2c58b50f2278b07092ee5523c591bb3", null ],
     [ "setDocParId", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a1e6bc0da78699d777fcdb0b392e931f8", null ],
@@ -22,7 +22,7 @@ var class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query =
     [ "setFrom", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a6af9487fc7c12d6a5d80c9164d87f578", null ],
     [ "setOffset", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a8768dbb045b3f5192845f904a215f5d4", null ],
     [ "setOrderBy", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a6eff66416a5cefe80be52c6ccc138498", null ],
-    [ "setPageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a117b2e19559adc22694e5e6aae6be5dc", null ],
+    [ "setPageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#ad4697e3f6d900b1184bb8fd9c75c6163", null ],
     [ "setSelect", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a214f38c21faaabb612cdaa063f6b4b08", null ],
     [ "writeXML", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#afc9c96476843f1ede97b6e2261f58c49", null ]
 ];
