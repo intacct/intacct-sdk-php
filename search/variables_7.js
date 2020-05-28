@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['job_5ftype_5fall',['JOB_TYPE_ALL',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#a6d91399647f379665221563b0fa3e2d2',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]],
-  ['job_5ftype_5fchange',['JOB_TYPE_CHANGE',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#a62aec036a4ff20c645cb04af3c9bb791',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]],
-  ['job_5ftypes',['JOB_TYPES',['../class_intacct_1_1_functions_1_1_data_delivery_service_1_1_dds_job_create.html#a1d326b9481b47c6d49798bc7629872b6',1,'Intacct::Functions::DataDeliveryService::DdsJobCreate']]]
+  ['greater_5fthan_4378',['GREATER_THAN',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_filter.html#a5285d1fea86cf7d3bbcffd1e66f73271',1,'Intacct::Functions::Common::NewQuery::QueryFilter::Filter']]],
+  ['greater_5fthan_5for_5fequal_5fto_4379',['GREATER_THAN_OR_EQUAL_TO',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_filter.html#a9ca4faa0137c335837d8ec7698f4930a',1,'Intacct::Functions::Common::NewQuery::QueryFilter::Filter']]]
 ];

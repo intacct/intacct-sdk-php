@@ -1,11 +1,17 @@
 var searchData=
 [
-  ['user_5fid_5fenv_5fname',['USER_ID_ENV_NAME',['../class_intacct_1_1_credentials_1_1_login_credentials.html#a6825e33744e3ee63c6bb7cd54bc38556',1,'Intacct::Credentials::LoginCredentials']]],
-  ['user_5fpassword_5fenv_5fname',['USER_PASSWORD_ENV_NAME',['../class_intacct_1_1_credentials_1_1_login_credentials.html#a35398321349d5caef6ce68f5c35a1b1c',1,'Intacct::Credentials::LoginCredentials']]],
-  ['user_5ftype_5fbusiness',['USER_TYPE_BUSINESS',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#af90f849ec17fece8a4aab00f3f734da3',1,'Intacct::Functions::Company::AbstractUser']]],
-  ['user_5ftype_5fcrm',['USER_TYPE_CRM',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#a11ceafb275175043da6b7a260a9d339d',1,'Intacct::Functions::Company::AbstractUser']]],
-  ['user_5ftype_5femployee',['USER_TYPE_EMPLOYEE',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#a9724f41c3b600db92170ac2a8371a844',1,'Intacct::Functions::Company::AbstractUser']]],
-  ['user_5ftype_5fpayment_5fapprover',['USER_TYPE_PAYMENT_APPROVER',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#a2c2cca55c2d44077e9779822c39026fc',1,'Intacct::Functions::Company::AbstractUser']]],
-  ['user_5ftype_5fplatform',['USER_TYPE_PLATFORM',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#a6e5422b8784c5c720970a8ef2ecb7863',1,'Intacct::Functions::Company::AbstractUser']]],
-  ['user_5ftype_5fproject_5fmanager',['USER_TYPE_PROJECT_MANAGER',['../class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#a9f1b30a7bebf5bea857e018b4795889a',1,'Intacct::Functions::Company::AbstractUser']]]
+  ['operator_5fand_4406',['OPERATOR_AND',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#aecfb583df189a0066873cc163d1fe2a7',1,'Intacct::Functions::Common::GetList::LogicalFilter']]],
+  ['operator_5fequal_5fto_4407',['OPERATOR_EQUAL_TO',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a2781a2fffd504f094a2cbf9525109414',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fgreater_5fthan_4408',['OPERATOR_GREATER_THAN',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a77f92bef0f3f038c59d190d90278ef45',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fgreater_5fthan_5for_5fequal_5fto_4409',['OPERATOR_GREATER_THAN_OR_EQUAL_TO',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a83b0ee95a99af363fa149ae15aaeffdf',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fis_5fnull_4410',['OPERATOR_IS_NULL',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a8f5819b7f59d9cc54cbda0fca77c1684',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fless_5fthan_4411',['OPERATOR_LESS_THAN',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a3279d62c51613e8a95f0f8f4f650ce71',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fless_5fthan_5for_5fequal_5fto_4412',['OPERATOR_LESS_THAN_OR_EQUAL_TO',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a4ddf3078e5723594151d1128b2c84343',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5flike_4413',['OPERATOR_LIKE',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a994593e570e6c34dfe99b3b9c66403b1',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fnot_5fequal_5fto_4414',['OPERATOR_NOT_EQUAL_TO',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a708b6cc4b92f8d4c674c1c1176397026',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5fnot_5flike_4415',['OPERATOR_NOT_LIKE',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html#a8b91c39324b82ffbcca1c3acdeca0acf',1,'Intacct::Functions::Common::GetList::ExpressionFilter']]],
+  ['operator_5for_4416',['OPERATOR_OR',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#a22ee5179bb121cf704f9be4c8581a913',1,'Intacct::Functions::Common::GetList::LogicalFilter']]],
+  ['or_4417',['OR',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_abstract_operator.html#a4961ff273dd82d9e27da372eae222549',1,'Intacct::Functions::Common::NewQuery::QueryFilter::AbstractOperator']]],
+  ['order_5fby_5fasc_4418',['ORDER_BY_ASC',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_sort_field.html#a6abaf078535ca7f3f8258ef57d71a6d4',1,'Intacct::Functions::Common::GetList::SortField']]],
+  ['order_5fby_5fdesc_4419',['ORDER_BY_DESC',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_sort_field.html#ab4e011b69972a54ca03d3b0b7bf81c20',1,'Intacct::Functions::Common::GetList::SortField']]]
 ];

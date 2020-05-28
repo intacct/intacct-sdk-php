@@ -1,6 +1,7 @@
 var namespace_intacct_1_1_functions_1_1_common =
 [
     [ "GetList", "namespace_intacct_1_1_functions_1_1_common_1_1_get_list.html", "namespace_intacct_1_1_functions_1_1_common_1_1_get_list" ],
+    [ "NewQuery", "namespace_intacct_1_1_functions_1_1_common_1_1_new_query.html", "namespace_intacct_1_1_functions_1_1_common_1_1_new_query" ],
     [ "Query", "namespace_intacct_1_1_functions_1_1_common_1_1_query.html", "namespace_intacct_1_1_functions_1_1_common_1_1_query" ],
     [ "Inspect", "class_intacct_1_1_functions_1_1_common_1_1_inspect.html", "class_intacct_1_1_functions_1_1_common_1_1_inspect" ],
     [ "Read", "class_intacct_1_1_functions_1_1_common_1_1_read.html", "class_intacct_1_1_functions_1_1_common_1_1_read" ],
