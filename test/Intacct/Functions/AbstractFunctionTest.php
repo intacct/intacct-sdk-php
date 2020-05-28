@@ -30,7 +30,7 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
+        $this->object = @$this->getMockForAbstractClass(AbstractFunction::class);
     }
 
     public function testValidControlId()
