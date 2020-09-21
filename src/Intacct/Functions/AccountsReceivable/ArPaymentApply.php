@@ -25,10 +25,6 @@ use InvalidArgumentException;
  */
 class ArPaymentApply extends AbstractArPayment
 {
-
-    /** @var string|int */
-    protected $summaryRecordNo;
-
     /**
      * Get summary record number
      *

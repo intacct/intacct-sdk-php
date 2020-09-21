@@ -34,6 +34,7 @@ class ArPaymentCreateTest extends \PHPUnit\Framework\TestCase
     <create_arpayment>
         <customerid>C0020</customerid>
         <paymentamount>1922.12</paymentamount>
+        <batchkey>123</batchkey>
         <datereceived>
             <year>2016</year>
             <month>06</month>
@@ -53,6 +54,7 @@ EOF;
         $payment = new ArPaymentCreate('unittest');
         $payment->setCustomerId('C0020');
         $payment->setTransactionPaymentAmount(1922.12);
+        $payment->setSummaryRecordNo(123);
         $payment->setReceivedDate(new \DateTime('2016-06-30'));
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
