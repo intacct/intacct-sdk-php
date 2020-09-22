@@ -70,6 +70,7 @@ class JournalEntryLineCreate extends AbstractJournalEntryLine
             $xml->writeElement('LOCATION', $this->getLocationId());
             $xml->writeElement('DEPARTMENT', $this->getDepartmentId());
             $xml->writeElement('PROJECTID', $this->getProjectId());
+            $xml->writeElement('TASKID', $this->getTaskId());
             $xml->writeElement('CUSTOMERID', $this->getCustomerId());
             $xml->writeElement('VENDORID', $this->getVendorId());
             $xml->writeElement('EMPLOYEEID', $this->getEmployeeId());

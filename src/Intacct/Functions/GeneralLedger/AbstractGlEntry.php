@@ -47,6 +47,9 @@ abstract class AbstractGlEntry
     protected $projectId;
 
     /** @var string */
+    protected $taskId;
+
+    /** @var string */
     protected $customerId;
 
     /** @var string */
@@ -164,6 +167,22 @@ abstract class AbstractGlEntry
     public function setProjectId($projectId)
     {
         $this->projectId = $projectId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaskId()
+    {
+        return $this->taskId;
+    }
+
+    /**
+     * @param string $taskId
+     */
+    public function setTaskId($taskId)
+    {
+        $this->taskId = $taskId;
     }
 
     /**
