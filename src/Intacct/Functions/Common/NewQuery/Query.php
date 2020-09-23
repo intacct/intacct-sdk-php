@@ -45,6 +45,9 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     /** @var bool */
     private $caseInsensitive;
 
+    /** @var bool */
+    private $showPrivate;
+
     /** @var int */
     private $pageSize;
 
@@ -229,12 +232,39 @@ class Query extends AbstractFunction implements QueryFunctionInterface
     }
 
     /**
-     * @param bool $caseInsensitive
+     * @param bool $showPrivate
      * @return QueryFunctionInterface
      */
-    public function caseInsensitive(bool $caseInsensitive): QueryFunctionInterface
+    public function caseInsensitive(bool $showPrivate): QueryFunctionInterface
     {
-        $this->setCaseInsensitive($caseInsensitive);
+        $this->setCaseInsensitive($showPrivate);
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isShowPrivate() //: ?bool
+    {
+        return $this->showPrivate;
+    }
+
+    /**
+     * @param bool $showPrivate
+     */
+    public function setShowPrivate(bool $showPrivate)
+    {
+        $this->showPrivate = $showPrivate;
+    }
+
+    /**
+     * @param bool $showPrivate
+     * @return QueryFunctionInterface
+     */
+    public function showPrivate(bool $showPrivate): QueryFunctionInterface
+    {
+        $this->setShowPrivate($showPrivate);
 
         return $this;
     }
@@ -353,11 +383,15 @@ class Query extends AbstractFunction implements QueryFunctionInterface
             $xml->endElement(); // orderby
         }
 
+        $xml->startElement('options');
         if ($this->isCaseInsensitive()) {
-            $xml->startElement('options');
             $xml->writeElement('caseinsensitive', $this->isCaseInsensitive(), false);
-            $xml->endElement();
         }
+        if ($this->isShowPrivate()) {
+            $xml->writeElement('showprivate', $this->isShowPrivate(), false);
+        }
+        $xml->endElement();
+
 
         if ($this->getPageSize()) {
             $xml->writeElement('pagesize', $this->getPageSize(), false);
