@@ -28,14 +28,15 @@ class InArrayString extends AbstractArrayString
     public function __toString(): string
     {
         $clause = '';
+        $notClause = '';
         if ($this->isNegate() === true) {
-            $clause = 'NOT ';
+            $notClause = ' NOT';
         }
         $pieces = [];
         foreach ($this->getValue() as $value) {
             $pieces[] = "'" . addcslashes($value, "'") . "'";
         }
-        $clause .= $this->getField() . " IN (" . implode(',', $pieces) . ")";
+        $clause .= $this->getField() . $notClause . " IN (" . implode(',', $pieces) . ")";
 
         return $clause;
     }
