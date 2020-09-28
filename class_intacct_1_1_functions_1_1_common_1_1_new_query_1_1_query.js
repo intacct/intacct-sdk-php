@@ -12,6 +12,7 @@ var class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query =
     [ "getPageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a33b4768492c075cc44f18e80eb97c756", null ],
     [ "getSelect", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a894818a2311dc3c2b73f82e3399fa572", null ],
     [ "isCaseInsensitive", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a1a2ae1df47a6e5c67003dc8f69e47072", null ],
+    [ "isShowPrivate", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#aef3b8def781cd6cec5db3b2c4e92cf7f", null ],
     [ "offset", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a0d40a942c4a701607a4785b62fa3b63d", null ],
     [ "orderBy", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a342f24c37c2556e086e3dfc6e2d8f731", null ],
     [ "pageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a56d828840b624c92df719b2ead35ba0c", null ],
@@ -24,5 +25,7 @@ var class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query =
     [ "setOrderBy", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a6eff66416a5cefe80be52c6ccc138498", null ],
     [ "setPageSize", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#ad4697e3f6d900b1184bb8fd9c75c6163", null ],
     [ "setSelect", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a214f38c21faaabb612cdaa063f6b4b08", null ],
+    [ "setShowPrivate", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#abf15cb730362bd013c7fb6abbc6e9b28", null ],
+    [ "showPrivate", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#a5d980f7fa6cdced1cef0089771ea128d", null ],
     [ "writeXML", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html#afc9c96476843f1ede97b6e2261f58c49", null ]
 ];

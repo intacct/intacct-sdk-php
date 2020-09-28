@@ -1,5 +1,10 @@
 var NAVTREEINDEX10 =
 {
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aaeca89431b79807d9305dbbe98314316":[0,0,2,6,1,9],
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab131d27d500226b2e1dfcc7cbc21f56c":[0,0,2,6,1,32],
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab18c173d1534ea3ea3e8651b8ae5fbde":[0,0,2,6,1,36],
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab33c9c3b33d5875ec43ed951012072c6":[0,0,2,6,1,10],
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ac2096f1f0397c051468614191328b22d":[0,0,2,6,1,26],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ac63aa335a98279247153281ae5233671":[0,0,2,6,1,16],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ac87cc82774708aa7d6a4828855bb9903":[0,0,2,6,1,1],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aceb374701150a58baa5967871d4b0c7f":[0,0,2,6,1,17],
@@ -244,10 +249,5 @@ var NAVTREEINDEX10 =
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a0374909374ce8e0673bbf23a91370350":[0,0,2,6,7,17],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a05e3b134fb34e491f51a914da7f99471":[0,0,2,6,7,11],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a06a1a8ff30a88f792bf3fbfc582278e9":[0,0,2,6,7,18],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a11a278169993a3933b004e4ba82ca1be":[0,0,2,6,7,32],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a14f75b5dbedef0ecd84a63fc335276eb":[0,0,2,6,7,20],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a150aaaed1cee9569067b817052a1ef1a":[0,0,2,6,7,23],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a17bcda1147037428f168752602b7781d":[0,0,2,6,7,33],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a1ad439f9f8ef04362e93e0c10a54353f":[0,0,2,6,7,34],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a1e4ae0297241459edfabb64ef7411a63":[0,0,2,6,7,22]
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_reimbursement_request.html#a11a278169993a3933b004e4ba82ca1be":[0,0,2,6,7,32]
 };

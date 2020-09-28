@@ -1,5 +1,10 @@
 var NAVTREEINDEX8 =
 {
+"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,3,10,4],
+"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ad4697e3f6d900b1184bb8fd9c75c6163":[0,0,2,3,10,2],
+"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ad8ff7350f0d658db51674777b2ce3afd":[0,0,2,3,10,5],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html":[0,0,2,4,0],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html#a0136c01a67c37f34074107a9d358c134":[0,0,2,4,0,5],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html#a0a891992d91793a3d45a578d724618ca":[0,0,2,4,0,15],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html#a26d64f3506980ce748fc56a9409ffc22":[0,0,2,4,0,9],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html#a2dbb7ff411eebe139624f2832f334bf0":[0,0,2,4,0,13],
@@ -244,10 +249,5 @@ var NAVTREEINDEX8 =
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#adbe84238b8ad8719d13468219f2c6ac5":[0,0,2,4,8,2],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#ae8900c9beef969a5f0501e12feadfa7c":[0,0,2,4,8,7],
 "class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#aeed614d2012bd2c85ee904b70ca00785":[0,0,2,4,8,16],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#af90f849ec17fece8a4aab00f3f734da3":[0,0,2,4,8,27],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#afb1bff60ef6dda0c7b2ef139d2e24c57":[0,0,2,4,8,8],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#afbbc34a1f681244596cfa547083dbb1a":[0,0,2,4,8,22],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#aff20833df389a26c0f9384512eec4a68":[0,0,2,4,8,24],
-"class_intacct_1_1_functions_1_1_company_1_1_allocation_create.html":[0,0,2,4,9],
-"class_intacct_1_1_functions_1_1_company_1_1_allocation_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,9,0]
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#af90f849ec17fece8a4aab00f3f734da3":[0,0,2,4,8,27]
 };
