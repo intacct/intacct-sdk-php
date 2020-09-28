@@ -36,7 +36,7 @@ class InArrayInteger extends AbstractArrayInteger
         foreach ($this->getValue() as $value) {
             $pieces[] = $value;
         }
-        $clause .= $this->getField() . $notClause . " IN (" . implode(',', $pieces) . ")";
+        $clause = $this->getField() . $notClause . " IN (" . implode(',', $pieces) . ")";
 
         return $clause;
     }

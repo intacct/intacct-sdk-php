@@ -42,7 +42,6 @@ class QueryTest extends TestCase
             <field>CUSTOMERID</field>
         </select>
         <object>CUSTOMER</object>
-        <options/>
     </query>
 </function>
 EOF;
@@ -77,6 +76,7 @@ EOF;
         <docparid>REPORT</docparid>
         <options>
             <caseinsensitive>true</caseinsensitive>
+            <showprivate>true</showprivate>
         </options>
         <pagesize>10</pagesize>
         <offset>5</offset>
@@ -98,6 +98,7 @@ EOF;
             ->from('CUSTOMER')
             ->docParId('REPORT')
             ->caseInsensitive(true)
+            ->showPrivate(true)
             ->pageSize(10)
             ->offset(5);
 
@@ -270,7 +271,6 @@ EOF;
             <field>RECORDNO</field>
         </select>
         <object>ARINVOICE</object>
-        <options/>
     </query>
 </function>
 EOF;
@@ -316,7 +316,6 @@ EOF;
             <count>RECORDNO</count>
         </select>
         <object>ARINVOICE</object>
-        <options/>
     </query>
 </function>
 EOF;
@@ -364,7 +363,6 @@ EOF;
                 <descending/>
             </order>
         </orderby>
-        <options/>
     </query>
 </function>
 EOF;
@@ -431,7 +429,6 @@ EOF;
                 <value>10</value>
             </lessthanorequalto>
         </filter>
-        <options/>
     </query>
 </function>
 EOF;
@@ -482,7 +479,6 @@ EOF;
                 </lessthanorequalto>
             </and>
         </filter>
-        <options/>
     </query>
 </function>
 EOF;
@@ -545,7 +541,6 @@ EOF;
                 </equalto>
             </or>
         </filter>
-        <options/>
     </query>
 </function>
 EOF;
@@ -606,7 +601,6 @@ EOF;
                 </and>
             </or>
         </filter>
-        <options/>
     </query>
 </function>
 EOF;
@@ -669,7 +663,6 @@ EOF;
                 </and>
             </or>
         </filter>
-        <options/>
     </query>
 </function>
 EOF;
@@ -747,7 +740,6 @@ EOF;
                 </and>
             </or>
         </filter>
-        <options />
     </query>
 </function>
 EOF;
