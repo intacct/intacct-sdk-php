@@ -25,30 +25,6 @@ use InvalidArgumentException;
  */
 class ArPaymentApply extends AbstractArPayment
 {
-
-    /** @var string|int */
-    protected $summaryRecordNo;
-
-    /**
-     * Get summary record number
-     *
-     * @return int|string
-     */
-    public function getSummaryRecordNo()
-    {
-        return $this->summaryRecordNo;
-    }
-
-    /**
-     * Set summary record number
-     *
-     * @param int|string $summaryRecordNo
-     */
-    public function setSummaryRecordNo($summaryRecordNo)
-    {
-        $this->summaryRecordNo = $summaryRecordNo;
-    }
-
     /**
      *
      * @param XMLWriter $xml

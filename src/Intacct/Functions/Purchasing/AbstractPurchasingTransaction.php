@@ -119,6 +119,9 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     /** @var AbstractPurchasingTransactionLine[] */
     protected $lines = [];
 
+    /** @var string */
+    protected $comment;
+
     /**
      * @return string
      */
@@ -565,5 +568,21 @@ abstract class AbstractPurchasingTransaction extends AbstractFunction
     public function setLines($lines)
     {
         $this->lines = $lines;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 }

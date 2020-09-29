@@ -89,6 +89,7 @@ EOF;
     <LOCATION>100</LOCATION>
     <DEPARTMENT>ADM</DEPARTMENT>
     <PROJECTID>P100</PROJECTID>
+    <TASKID>T123</TASKID>
     <CUSTOMERID>C100</CUSTOMERID>
     <VENDORID>V100</VENDORID>
     <EMPLOYEEID>E100</EMPLOYEEID>
@@ -118,6 +119,7 @@ EOF;
         $jeEntry->setLocationId('100');
         $jeEntry->setDepartmentId('ADM');
         $jeEntry->setProjectId('P100');
+        $jeEntry->setTaskId('T123');
         $jeEntry->setCustomerId('C100');
         $jeEntry->setVendorId('V100');
         $jeEntry->setEmployeeId('E100');

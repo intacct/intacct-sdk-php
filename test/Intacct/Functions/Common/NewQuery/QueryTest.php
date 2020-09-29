@@ -76,6 +76,7 @@ EOF;
         <docparid>REPORT</docparid>
         <options>
             <caseinsensitive>true</caseinsensitive>
+            <showprivate>true</showprivate>
         </options>
         <pagesize>10</pagesize>
         <offset>5</offset>
@@ -97,6 +98,7 @@ EOF;
             ->from('CUSTOMER')
             ->docParId('REPORT')
             ->caseInsensitive(true)
+            ->showPrivate(true)
             ->pageSize(10)
             ->offset(5);
 

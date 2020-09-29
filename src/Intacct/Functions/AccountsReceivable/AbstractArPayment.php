@@ -61,6 +61,9 @@ abstract class AbstractArPayment extends AbstractFunction
     /** @var string */
     protected $paymentMethod;
 
+    /** @var string|int */
+    protected $summaryRecordNo;
+
     /** @var string */
     protected $bankAccountId;
 
@@ -154,6 +157,26 @@ abstract class AbstractArPayment extends AbstractFunction
             throw new InvalidArgumentException('Payment method is not valid');
         }
         $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * Get Summary Record No (Batch Key)
+     *
+     * @return int|string
+     */
+    public function getSummaryRecordNo()
+    {
+        return $this->summaryRecordNo;
+    }
+
+    /**
+     * Set Summary Record No (Batch Key)
+     *
+     * @param string|int $summaryRecordNo
+     */
+    public function setSummaryRecordNo($summaryRecordNo)
+    {
+        $this->summaryRecordNo = $summaryRecordNo;
     }
 
     /**

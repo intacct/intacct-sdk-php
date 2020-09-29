@@ -42,6 +42,7 @@ class ArPaymentCreate extends AbstractArPayment
         }
         $xml->writeElement('customerid', $this->getCustomerId(), true);
         $xml->writeElement('paymentamount', $this->getTransactionPaymentAmount(), true);
+        $xml->writeElement('batchkey', $this->getSummaryRecordNo());
         $xml->writeElement('translatedamount', $this->getBasePaymentAmount());
 
         if ($this->getUndepositedFundsGlAccountNo()) {

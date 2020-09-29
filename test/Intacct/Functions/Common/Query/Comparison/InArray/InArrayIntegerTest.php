@@ -40,7 +40,7 @@ class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
         $condition->setValue([ 1234, 5678, 9012 ]);
         $condition->setNegate(true);
 
-        $expected = "NOT RECORDNO IN (1234,5678,9012)";
+        $expected = "RECORDNO NOT IN (1234,5678,9012)";
 
         $this->assertEquals($expected, (string)$condition);
     }

@@ -40,7 +40,7 @@ class InArrayStringTest extends \PHPUnit\Framework\TestCase
         $condition->setValue([ 'a', 'b', 'c' ]);
         $condition->setNegate(true);
 
-        $expected = "NOT RECORDNO IN ('a','b','c')";
+        $expected = "RECORDNO NOT IN ('a','b','c')";
 
         $this->assertEquals($expected, (string)$condition);
     }
@@ -54,7 +54,7 @@ class InArrayStringTest extends \PHPUnit\Framework\TestCase
         $condition->setValue([ "bob's pizza", "bill's pizza", "sally's pizza" ]);
         $condition->setNegate(true);
 
-        $expected = "NOT RECORDNO IN ('bob\'s pizza','bill\'s pizza','sally\'s pizza')";
+        $expected = "RECORDNO NOT IN ('bob\'s pizza','bill\'s pizza','sally\'s pizza')";
 
         $this->assertEquals($expected, (string)$condition);
     }

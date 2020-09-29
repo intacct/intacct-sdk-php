@@ -45,7 +45,12 @@ class ConsolidationCreate extends AbstractConsolidation
         }
         $xml->writeElement('reportingperiodname', $this->getReportingPeriodName(), true);
 
-        $xml->writeElement('offline', $this->isProcessOffline());
+        if ($this->processOffline === true) {
+            $xml->writeElement('offline', 'T');
+        } elseif ($this->processOffline === false) {
+            $xml->writeElement('offline', 'F');
+        }
+
         $xml->writeElement('updatesucceedingperiods', $this->isUpdateSucceedingPeriods());
         $xml->writeElement('changesonly', $this->isChangesOnly());
         $xml->writeElement('email', $this->getNotificationEmail());
