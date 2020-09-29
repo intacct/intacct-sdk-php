@@ -2,6 +2,7 @@ var class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transacti
 [
     [ "getAttachmentsId", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a7454435fb265a5f7fe01f5c3b7415112", null ],
     [ "getBaseCurrency", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ac87cc82774708aa7d6a4828855bb9903", null ],
+    [ "getComment", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#adb57c3d1b74c19589ba1d641ea1a390e", null ],
     [ "getCreatedFrom", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a0314e08ef9d18a8923b9432307ed481e", null ],
     [ "getDocumentId", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a2f05d318caa9148711c3a27da77ccb52", null ],
     [ "getDocumentNumber", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a977aed6c7de2dc8642fb11151b0d0087", null ],
@@ -30,6 +31,7 @@ var class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transacti
     [ "getVsoePriceList", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#aeccd3c5decc53bbe056cd4a9a322d965", null ],
     [ "setAttachmentsId", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#aadd2c00168f90c8b2c6fb90e9e9aa337", null ],
     [ "setBaseCurrency", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#af91fb1bfc54a77c31c3b100cc66e7518", null ],
+    [ "setComment", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a169d67ad53abdd4e6d1cd931fe15e839", null ],
     [ "setCreatedFrom", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ac5f413ed0eb3699d692d623faffd74c0", null ],
     [ "setDocumentNumber", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a1d4e68425b7f94fca97fcf60f1b2e827", null ],
     [ "setDueDate", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ac79670cd30ec3c78ad97a8b8f50218b7", null ],
@@ -58,6 +60,7 @@ var class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transacti
     [ "setVsoePriceList", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a54e3776d364032d5cf8aaea41fd42a01", null ],
     [ "$attachmentsId", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a7cdca81360e6b0326aaa4ecc85b6e1a2", null ],
     [ "$baseCurrency", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ac2096f1f0397c051468614191328b22d", null ],
+    [ "$comment", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a536677acc0163c53c067316a97456e6c", null ],
     [ "$createdFrom", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ad0569d645dbddbdf50d69469300baa67", null ],
     [ "$documentId", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#ad5267c22e0652a2994c94ff4ee1bc7f2", null ],
     [ "$documentNumber", "class_intacct_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a1b1efb148e7e55066b495aa44aff89bf", null ],

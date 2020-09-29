@@ -1,5 +1,13 @@
 var NAVTREEINDEX12 =
 {
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html":[0,0,2,7,8],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#a4097b54f79b8353b00e8b6712f845562":[0,0,2,7,8,0],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#a4e6644dd5187bf15b006fb99663cabe2":[0,0,2,7,8,5],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#a8c2dd2bcfb201ee1a137c7c1a2c82853":[0,0,2,7,8,3],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#ad90248a13548bff32f49fe532e376956":[0,0,2,7,8,1],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#af48fe050f529b6ca56356299183b7778":[0,0,2,7,8,4],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry_line.html#af806d3f0fc8b626f1235dc85e422a3d2":[0,0,2,7,8,2],
+"class_intacct_1_1_functions_1_1_general_ledger_1_1_account_create.html":[0,0,2,7,9],
 "class_intacct_1_1_functions_1_1_general_ledger_1_1_account_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,7,9,0],
 "class_intacct_1_1_functions_1_1_general_ledger_1_1_account_delete.html":[0,0,2,7,10],
 "class_intacct_1_1_functions_1_1_general_ledger_1_1_account_delete.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,7,10,0],
@@ -241,13 +249,5 @@ var NAVTREEINDEX12 =
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aaac53449d715fcb7b39e22b490fef653":[0,0,2,9,2,10],
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aaacab79d1dc713618392695adc180bc9":[0,0,2,9,2,96],
 "class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aabab2bb472458d79d7ed1025bf488c42":[0,0,2,9,2,69],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aacd1fa47b7ea59451aff98beca4360ae":[0,0,2,9,2,90],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aae9cd684d3f296d79d447693cb57e059":[0,0,2,9,2,19],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab2657ddf2cc3749a1c992a940acc83a4":[0,0,2,9,2,32],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab3abee1ee38e422a92baeb10b8460a22":[0,0,2,9,2,54],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab3bcee28c7d8620f99e992f0ac16d149":[0,0,2,9,2,39],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab56efe195c150daa6a33e4e8608bae74":[0,0,2,9,2,14],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab7ead88e944d5a182c323f0465402509":[0,0,2,9,2,48],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#ab815753489c58714d883d314ec8c4262":[0,0,2,9,2,120],
-"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#abd92811f10e5c899a88231417daf273a":[0,0,2,9,2,91]
+"class_intacct_1_1_functions_1_1_inventory_control_1_1_abstract_item.html#aacd1fa47b7ea59451aff98beca4360ae":[0,0,2,9,2,90]
 };

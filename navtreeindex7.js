@@ -1,5 +1,10 @@
 var NAVTREEINDEX7 =
 {
+"class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_filter.html#af990cf60e48d2c7416e3d7489bcdb786":[0,0,2,3,1,0,2,10],
+"class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_filter.html#afc9c96476843f1ede97b6e2261f58c49":[0,0,2,3,1,0,2,14],
+"class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_filter.html#afd915339bc2fb97e414517ea0737e5c9":[0,0,2,3,1,0,2,4],
+"class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_or_operator.html":[0,0,2,3,1,0,4],
+"class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_or_operator.html#aeb1d8b550b38454a92508c857b043df5":[0,0,2,3,1,0,4,0],
 "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_abstract_order_direction.html":[0,0,2,3,1,1,0],
 "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_abstract_order_direction.html#a4eb6965f9c46bb5bc363e597470da340":[0,0,2,3,1,1,0,3],
 "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_abstract_order_direction.html#a6e97e4c7d525c211b5d453619ed0e6c1":[0,0,2,3,1,1,0,1],
@@ -244,10 +249,5 @@ var NAVTREEINDEX7 =
 "class_intacct_1_1_functions_1_1_common_1_1_read_view.html#a316e5b32c471ab5521721eb925632fca":[0,0,2,3,10,1],
 "class_intacct_1_1_functions_1_1_common_1_1_read_view.html#a326fd0bfe2fa786649d70fe763385a44":[0,0,2,3,10,3],
 "class_intacct_1_1_functions_1_1_common_1_1_read_view.html#a33b4768492c075cc44f18e80eb97c756":[0,0,2,3,10,0],
-"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#aa2de1c8f8fcc5d02eabeeee23046e4c3":[0,0,2,3,10,6],
-"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,3,10,4],
-"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ad4697e3f6d900b1184bb8fd9c75c6163":[0,0,2,3,10,2],
-"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#ad8ff7350f0d658db51674777b2ce3afd":[0,0,2,3,10,5],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html":[0,0,2,4,0],
-"class_intacct_1_1_functions_1_1_company_1_1_abstract_allocation.html#a0136c01a67c37f34074107a9d358c134":[0,0,2,4,0,5]
+"class_intacct_1_1_functions_1_1_common_1_1_read_view.html#aa2de1c8f8fcc5d02eabeeee23046e4c3":[0,0,2,3,10,6]
 };

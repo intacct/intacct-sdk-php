@@ -113,6 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6b3f87cc90ce837fd6a6502adc88930d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06a1a8ff30a88f792bf3fbfc582278e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a06a1a8ff30a88f792bf3fbfc582278e9">setPaymentMethod</a> ($paymentMethod)</td></tr>
 <tr class="separator:a06a1a8ff30a88f792bf3fbfc582278e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab33c9c3b33d5875ec43ed951012072c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#ab33c9c3b33d5875ec43ed951012072c6">getSummaryRecordNo</a> ()</td></tr>
+<tr class="separator:ab33c9c3b33d5875ec43ed951012072c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e272c98bbeb2d35a7f279c19bd064c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a9e272c98bbeb2d35a7f279c19bd064c9">setSummaryRecordNo</a> ($summaryRecordNo)</td></tr>
+<tr class="separator:a9e272c98bbeb2d35a7f279c19bd064c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a518682bb858a2a596a78af502322c4f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a518682bb858a2a596a78af502322c4f7">getBankAccountId</a> ()</td></tr>
 <tr class="separator:a518682bb858a2a596a78af502322c4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05e3b134fb34e491f51a914da7f99471"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a05e3b134fb34e491f51a914da7f99471">setBankAccountId</a> ($bankAccountId)</td></tr>
@@ -216,6 +220,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ab18c173d1534ea3ea3e8651b8ae5fbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2e98566bec943a3296bd5d0bd5737b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#aa2e98566bec943a3296bd5d0bd5737b1">$paymentMethod</a></td></tr>
 <tr class="separator:aa2e98566bec943a3296bd5d0bd5737b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d7ca6b7c248230ef1e4d8346f390fc0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a6d7ca6b7c248230ef1e4d8346f390fc0">$summaryRecordNo</a></td></tr>
+<tr class="separator:a6d7ca6b7c248230ef1e4d8346f390fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71be78c85912274ceba7f4bdd95101a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a71be78c85912274ceba7f4bdd95101a4">$bankAccountId</a></td></tr>
 <tr class="separator:a71be78c85912274ceba7f4bdd95101a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae72a463533615827cea2e5f56bed3b16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#ae72a463533615827cea2e5f56bed3b16">$undepositedFundsGlAccountNo</a></td></tr>
@@ -555,6 +561,25 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Get reference number</p>
 <dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
+</div>
+</div>
+<a id="ab33c9c3b33d5875ec43ed951012072c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab33c9c3b33d5875ec43ed951012072c6">&#9670;&nbsp;</a></span>getSummaryRecordNo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getSummaryRecordNo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get Summary Record No (Batch Key)</p>
+<dl class="section return"><dt>Returns</dt><dd>int|string </dd></dl>
 
 </div>
 </div>
@@ -1020,6 +1045,31 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a9e272c98bbeb2d35a7f279c19bd064c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e272c98bbeb2d35a7f279c19bd064c9">&#9670;&nbsp;</a></span>setSummaryRecordNo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setSummaryRecordNo </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$summaryRecordNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set Summary Record No (Batch Key)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string&#160;|&#160;int</td><td class="paramname">$summaryRecordNo</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a47b4d4656aa8f21c77508b4602cf32fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47b4d4656aa8f21c77508b4602cf32fc">&#9670;&nbsp;</a></span>setTransactionCurrency()</h2>
 
@@ -1437,6 +1487,28 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">$referenceNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d7ca6b7c248230ef1e4d8346f390fc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d7ca6b7c248230ef1e4d8346f390fc0">&#9670;&nbsp;</a></span>$summaryRecordNo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$summaryRecordNo</td>
         </tr>
       </table>
   </td>

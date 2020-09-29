@@ -12,6 +12,7 @@ var class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry =
     [ "getLocationId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a86ca7a5d34d60a766e173643eab92849", null ],
     [ "getMemo", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#afdd52ea5d1b9c0a8036f07b9b48325e7", null ],
     [ "getProjectId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#aa36d0ad33bee7c190d64f0bfcb4ecb79", null ],
+    [ "getTaskId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#acad973ee0b58805191754499e0c33f94", null ],
     [ "getVendorId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a6847acb6e296cb02764678edfc4d3a85", null ],
     [ "getWarehouseId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a43cf403871f29ac50e0c4e0aaefb288c", null ],
     [ "setAllocationId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a26d64f3506980ce748fc56a9409ffc22", null ],
@@ -26,6 +27,7 @@ var class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry =
     [ "setLocationId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#ae88e0ee130b908a00128863830b7a868", null ],
     [ "setMemo", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a827c8a96d4441e8b7470a363b77adc88", null ],
     [ "setProjectId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#abae37b72ab16427e1a18592516bf9de9", null ],
+    [ "setTaskId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a695b71250a876b6f510ebb607a2f18fb", null ],
     [ "setVendorId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a4629fe30825f30a607e2aeac334cfc40", null ],
     [ "setWarehouseId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#ab63da7e969fbd3d78b246c6f14ff3942", null ],
     [ "writeXml", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#ab8ffbd3a38749e42412babb1c8a6445e", null ],
@@ -41,6 +43,7 @@ var class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry =
     [ "$locationId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a4f82966acd57ad0ca21f1b2ceb277bb4", null ],
     [ "$memo", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a4ed302f6d17ec82f553fbd029e52ab7e", null ],
     [ "$projectId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#abd3456b4e729909d1b123ae303302391", null ],
+    [ "$taskId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a1b44723916d6ccd5cd8f25f5ad085b3d", null ],
     [ "$vendorId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a809c05b44389b92ef5b7fbf566abeebd", null ],
     [ "$warehouseId", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#aa1cf3c1b4fda6b228e917f85139df932", null ],
     [ "CUSTOM_ALLOCATION_ID", "class_intacct_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#af3c88daa2a1b081fac80b3d2e24744a5", null ]

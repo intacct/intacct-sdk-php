@@ -1,5 +1,10 @@
 var NAVTREEINDEX9 =
 {
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#afb1bff60ef6dda0c7b2ef139d2e24c57":[0,0,2,4,8,8],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#afbbc34a1f681244596cfa547083dbb1a":[0,0,2,4,8,22],
+"class_intacct_1_1_functions_1_1_company_1_1_abstract_user.html#aff20833df389a26c0f9384512eec4a68":[0,0,2,4,8,24],
+"class_intacct_1_1_functions_1_1_company_1_1_allocation_create.html":[0,0,2,4,9],
+"class_intacct_1_1_functions_1_1_company_1_1_allocation_create.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,9,0],
 "class_intacct_1_1_functions_1_1_company_1_1_allocation_delete.html":[0,0,2,4,10],
 "class_intacct_1_1_functions_1_1_company_1_1_allocation_delete.html#ab8ffbd3a38749e42412babb1c8a6445e":[0,0,2,4,10,0],
 "class_intacct_1_1_functions_1_1_company_1_1_allocation_line.html":[0,0,2,4,11],
@@ -244,10 +249,5 @@ var NAVTREEINDEX9 =
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aa52033d29eb1e34e2475cd591bf2fa9a":[0,0,2,6,1,19],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aa698a3e72116e8e778be0e95d908ee30":[0,0,2,6,1,24],
 "class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aadd2c00168f90c8b2c6fb90e9e9aa337":[0,0,2,6,1,12],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aae7c144b7d217ddd1e1eb29485b2cd4c":[0,0,2,6,1,23],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aaeca89431b79807d9305dbbe98314316":[0,0,2,6,1,9],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab131d27d500226b2e1dfcc7cbc21f56c":[0,0,2,6,1,32],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab18c173d1534ea3ea3e8651b8ae5fbde":[0,0,2,6,1,36],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ab33c9c3b33d5875ec43ed951012072c6":[0,0,2,6,1,10],
-"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#ac2096f1f0397c051468614191328b22d":[0,0,2,6,1,26]
+"class_intacct_1_1_functions_1_1_employee_expense_1_1_abstract_expense_adjustment.html#aae7c144b7d217ddd1e1eb29485b2cd4c":[0,0,2,6,1,23]
 };
