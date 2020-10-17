@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractPurchasingTransactionLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

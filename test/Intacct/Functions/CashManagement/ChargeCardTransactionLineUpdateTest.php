@@ -24,7 +24,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ChargeCardTransactionLineUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

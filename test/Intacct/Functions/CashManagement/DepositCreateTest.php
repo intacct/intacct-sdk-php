@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class DepositCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -118,11 +117,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage CM Deposit must have at least 1 transaction key to deposit
      */
     public function testMissingDepositEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('CM Deposit must have at least 1 transaction key to deposit');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

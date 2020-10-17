@@ -22,7 +22,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractWarehouse extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

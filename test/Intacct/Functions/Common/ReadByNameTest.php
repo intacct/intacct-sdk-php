@@ -24,7 +24,6 @@ use InvalidArgumentException;
  */
 class ReadByNameTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -86,11 +85,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Names count cannot exceed 100
      */
     public function testMaxNumberOfNames()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Names count cannot exceed 100');
+
         $names = new \SplFixedArray(101);
 
         $readByName = new ReadByName('unittest');

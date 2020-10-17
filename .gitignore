@@ -8,3 +8,5 @@ composer.lock
 
 ### NetBeans
 nbproject
+phpunit.xml.dist.bak
+.phpunit.result.cache

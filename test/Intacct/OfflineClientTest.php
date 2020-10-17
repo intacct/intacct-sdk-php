@@ -26,7 +26,6 @@ use Intacct\Functions\Company\ApiSessionCreate;
  */
 class OfflineClientTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testExecute()
     {
         $xml = <<<EOF

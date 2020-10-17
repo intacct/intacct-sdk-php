@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class TimesheetCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -123,11 +122,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Employee ID is required for create
      */
     public function testRequiredEmployeeId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Employee ID is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -140,11 +140,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Begin Date is required for create
      */
     public function testRequiredBeginDate()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Begin Date is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -158,11 +159,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Timesheet must have at least 1 entry
      */
     public function testRequiredEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Timesheet must have at least 1 entry');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

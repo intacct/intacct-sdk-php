@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ApAdjustmentSummaryCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -58,11 +57,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Title is required for create
      */
     public function testMissingTitle()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -75,11 +75,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage GL Posting Date is required for create
      */
     public function testMissingDate()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('GL Posting Date is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

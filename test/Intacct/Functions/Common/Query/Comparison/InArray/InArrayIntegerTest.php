@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query\Comparison\InArray;
  */
 class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition = new InArrayInteger();

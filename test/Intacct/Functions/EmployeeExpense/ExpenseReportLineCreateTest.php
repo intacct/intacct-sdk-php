@@ -24,7 +24,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ExpenseReportLineCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

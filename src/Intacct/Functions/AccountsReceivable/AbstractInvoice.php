@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractInvoice extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var int */

@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class WarehouseUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,11 +53,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Warehouse ID is required for update
      */
     public function testRequiredWarehouseId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Warehouse ID is required for update');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

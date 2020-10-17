@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ProjectCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,11 +55,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Project Name is required for create
      */
     public function testRequiredProjectName()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project Name is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -75,11 +75,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Project Category is required for create
      */
     public function testRequiredProjectCategory()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project Category is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

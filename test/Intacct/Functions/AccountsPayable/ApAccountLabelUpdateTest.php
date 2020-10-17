@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ApAccountLabelUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -58,11 +57,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Account Label is required for update
      */
     public function testRequiredAccountLabel()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Account Label is required for update');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

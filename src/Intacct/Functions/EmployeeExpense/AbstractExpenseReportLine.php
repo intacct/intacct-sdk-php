@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractExpenseReportLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

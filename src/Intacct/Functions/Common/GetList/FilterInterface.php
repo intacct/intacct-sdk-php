@@ -21,6 +21,5 @@ use Intacct\Xml\XMLWriter;
 
 interface FilterInterface
 {
-
     public function writeXml(XMLWriter &$xml);
 }

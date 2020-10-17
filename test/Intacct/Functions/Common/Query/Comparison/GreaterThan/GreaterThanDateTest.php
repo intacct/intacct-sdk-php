@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThan;
  */
 class GreaterThanDateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition = new GreaterThanDate();

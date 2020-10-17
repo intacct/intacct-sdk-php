@@ -21,6 +21,5 @@ use Intacct\Xml\XMLWriter;
 
 interface AuthenticationInterface
 {
-
     public function writeXml(XMLWriter &$xml);
 }

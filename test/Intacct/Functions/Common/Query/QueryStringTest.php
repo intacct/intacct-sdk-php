@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query;
  */
 class QueryStringTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstructorToString()
     {
         $condition = new QueryString("VENDORID = 'V1234'");

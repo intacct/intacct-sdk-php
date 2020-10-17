@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class TaskCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,11 +55,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Task Name is required for create
      */
     public function testRequiredTaskName()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Task Name is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -75,11 +75,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Project ID is required for create
      */
     public function testRequiredProjectId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project ID is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

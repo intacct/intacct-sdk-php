@@ -29,7 +29,6 @@ use Intacct\Xml\RequestBlock;
  */
 class MessageFormatterTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testRequestAndResponseRemoval()
     {
         $clientConfig = new ClientConfig();
@@ -118,21 +117,21 @@ EOF;
         $formatter = new MessageFormatter("{req_body}/n/r{res_body}");
         $message = $formatter->format($mockRequest, $mockResponse);
 
-        $this->assertNotContains('<password>pass123!</password>', $message);
-        $this->assertNotContains('<password>P@ssW0rd!123</password>', $message);
-        $this->assertContains('<password>REDACTED</password>', $message);
+        $this->assertStringNotContainsString('<password>pass123!</password>', $message);
+        $this->assertStringNotContainsString('<password>P@ssW0rd!123</password>', $message);
+        $this->assertStringContainsString('<password>REDACTED</password>', $message);
 
-        $this->assertNotContains('<sessionid>fAkESesSiOnId..</sessionid>', $message);
-        $this->assertContains('<sessionid>REDACTED</sessionid>', $message);
+        $this->assertStringNotContainsString('<sessionid>fAkESesSiOnId..</sessionid>', $message);
+        $this->assertStringContainsString('<sessionid>REDACTED</sessionid>', $message);
 
-        $this->assertNotContains('<taxid>99-9999999</taxid>', $message);
-        $this->assertNotContains('<TAXID>99-9999999</TAXID>', $message);
-        $this->assertContains('<taxid>REDACTED</taxid>', $message);
-        $this->assertContains('<TAXID>REDACTED</TAXID>', $message);
+        $this->assertStringNotContainsString('<taxid>99-9999999</taxid>', $message);
+        $this->assertStringNotContainsString('<TAXID>99-9999999</TAXID>', $message);
+        $this->assertStringContainsString('<taxid>REDACTED</taxid>', $message);
+        $this->assertStringContainsString('<TAXID>REDACTED</TAXID>', $message);
 
-        $this->assertNotContains('<achaccountnumber>1111222233334444</achaccountnumber>', $message);
-        $this->assertNotContains('<ACHACCOUNTNUMBER>1111222233334444</ACHACCOUNTNUMBER>', $message);
-        $this->assertContains('<achaccountnumber>REDACTED</achaccountnumber>', $message);
-        $this->assertContains('<ACHACCOUNTNUMBER>REDACTED</ACHACCOUNTNUMBER>', $message);
+        $this->assertStringNotContainsString('<achaccountnumber>1111222233334444</achaccountnumber>', $message);
+        $this->assertStringNotContainsString('<ACHACCOUNTNUMBER>1111222233334444</ACHACCOUNTNUMBER>', $message);
+        $this->assertStringContainsString('<achaccountnumber>REDACTED</achaccountnumber>', $message);
+        $this->assertStringContainsString('<ACHACCOUNTNUMBER>REDACTED</ACHACCOUNTNUMBER>', $message);
     }
 }

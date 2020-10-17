@@ -25,7 +25,6 @@ use Intacct\Xml\XMLWriter;
  */
 class PurchasingTransactionUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

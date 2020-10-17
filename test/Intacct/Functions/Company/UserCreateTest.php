@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class UserCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -64,11 +63,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage User ID is required for create
      */
     public function testRequiredUserId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User ID is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -86,11 +86,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage User Type is required for create
      */
     public function testRequiredUserType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User Type is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -108,11 +109,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create
      */
     public function testRequiredContactInfo()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -130,11 +132,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create
      */
     public function testRequiredContactEmail()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Last Name, First Name, and Primary Email, or an existing Contact Name, are required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -152,11 +155,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Primary Email Address is not a valid email
      */
     public function testValidContactEmail()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Primary Email Address is not a valid email');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

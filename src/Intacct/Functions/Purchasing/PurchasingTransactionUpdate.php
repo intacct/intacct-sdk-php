@@ -43,13 +43,13 @@ class PurchasingTransactionUpdate extends AbstractPurchasingTransaction
             $xml->writeAttribute('key', $this->getDocumentNumber());
         }
 
-        if ( $this->getTransactionDate() ) {
+        if ($this->getTransactionDate()) {
             $xml->startElement('datecreated');
             $xml->writeDateSplitElements($this->getTransactionDate(), true);
             $xml->endElement(); //datecreated
         }
 
-        if ( $this->getGlPostingDate() ) {
+        if ($this->getGlPostingDate()) {
             $xml->startElement('dateposted');
             $xml->writeDateSplitElements($this->getGlPostingDate(), true);
             $xml->endElement(); //dateposted
@@ -59,7 +59,7 @@ class PurchasingTransactionUpdate extends AbstractPurchasingTransaction
         $xml->writeElement('vendordocno', $this->getVendorDocNumber());
         $xml->writeElement('termname', $this->getPaymentTerm());
 
-        if ( $this->getDueDate() ) {
+        if ($this->getDueDate()) {
             $xml->startElement('datedue');
             $xml->writeDateSplitElements($this->getDueDate(), true);
             $xml->endElement(); //datedue
@@ -68,18 +68,16 @@ class PurchasingTransactionUpdate extends AbstractPurchasingTransaction
         $xml->writeElement('message', $this->getMessage());
         $xml->writeElement('shippingmethod', $this->getShippingMethod());
 
-        if ( $this->getReturnToContactName() ) {
+        if ($this->getReturnToContactName()) {
             $xml->startElement('returnto');
             $xml->writeElement('contactname', $this->getReturnToContactName(), true);
             $xml->endElement(); //returnto
-
         }
 
-        if ( $this->getPayToContactName() ) {
+        if ($this->getPayToContactName()) {
             $xml->startElement('payto');
             $xml->writeElement('contactname', $this->getPayToContactName(), true);
             $xml->endElement(); //payto
-
         }
 
         $xml->writeElement('supdocid', $this->getAttachmentsId());
@@ -88,17 +86,17 @@ class PurchasingTransactionUpdate extends AbstractPurchasingTransaction
         $xml->writeElement('basecurr', $this->getBaseCurrency());
         $xml->writeElement('currency', $this->getTransactionCurrency());
 
-        if ( $this->getExchangeRateDate() ) {
+        if ($this->getExchangeRateDate()) {
             $xml->startElement('exchratedate');
             $xml->writeDateSplitElements($this->getExchangeRateDate(), true);
             $xml->endElement();
         }
 
-        if ( $this->getExchangeRateType() ) {
+        if ($this->getExchangeRateType()) {
             $xml->writeElement('exchratetype', $this->getExchangeRateType());
-        } elseif ( $this->getExchangeRateValue() ) {
+        } elseif ($this->getExchangeRateValue()) {
             $xml->writeElement('exchrate', $this->getExchangeRateValue());
-        } elseif ( $this->getBaseCurrency() || $this->getTransactionCurrency() ) {
+        } elseif ($this->getBaseCurrency() || $this->getTransactionCurrency()) {
             $xml->writeElement('exchratetype', $this->getExchangeRateType(), true);
         }
 

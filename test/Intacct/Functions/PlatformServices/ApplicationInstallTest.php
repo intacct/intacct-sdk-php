@@ -26,11 +26,12 @@ class ApplicationInstallTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage XML Filename is required for install
      */
     public function testRequiredXmlFilename()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('XML Filename is required for install');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

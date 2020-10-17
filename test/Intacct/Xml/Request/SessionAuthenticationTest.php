@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class SessionAuthenticationTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testWriteXml()
     {
         $expected = <<<EOF
@@ -46,11 +45,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Session ID is required and cannot be blank
      */
     public function testInvalidSession()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Session ID is required and cannot be blank');
+
         new SessionAuthentication('');
     }
 }

@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class AccountUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,11 +55,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Account No is required for update
      */
     public function testRequiredAccountNo()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Account No is required for update');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

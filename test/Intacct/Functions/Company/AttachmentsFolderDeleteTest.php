@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class AttachmentsFolderDeleteTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -50,11 +49,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Attachments Folder Name is required for delete
      */
     public function testRequiredId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Attachments Folder Name is required for delete');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

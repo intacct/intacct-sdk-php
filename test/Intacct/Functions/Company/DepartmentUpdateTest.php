@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class DepartmentUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -56,11 +55,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Department ID is required for update
      */
     public function testRequiredDepartmentId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Department ID is required for update');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

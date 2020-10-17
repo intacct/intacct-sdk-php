@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class BillCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -178,11 +177,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage AP Bill must have at least 1 line
      */
     public function testMissingBillEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('AP Bill must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

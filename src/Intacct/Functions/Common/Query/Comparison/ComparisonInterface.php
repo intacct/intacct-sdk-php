@@ -20,7 +20,6 @@ use Intacct\Functions\Common\Query\ConditionInterface;
 
 interface ComparisonInterface extends ConditionInterface
 {
-
     public function getField(): string;
 
     public function setField(string $field);

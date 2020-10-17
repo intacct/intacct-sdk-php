@@ -35,7 +35,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
@@ -187,11 +187,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Company ID not supplied in config or env variable "INTACCT_COMPANY_ID"
      */
     public function testCredsFromArrayNoCompanyId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required Company ID not supplied in config or env variable "INTACCT_COMPANY_ID"');
+
         $config = new ClientConfig();
         $config->setCompanyId('');
         $config->setUserId('testuser');
@@ -201,11 +202,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required User ID not supplied in config or env variable "INTACCT_USER_ID"
      */
     public function testCredsFromArrayNoUserId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required User ID not supplied in config or env variable "INTACCT_USER_ID"');
+
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
         $config->setUserId('');
@@ -215,11 +217,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required User Password not supplied in config or env variable "INTACCT_USER_PASSWORD"
      */
     public function testCredsFromArrayNoUserPassword()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required User Password not supplied in config or env variable "INTACCT_USER_PASSWORD"');
+
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
         $config->setUserId('testuser');

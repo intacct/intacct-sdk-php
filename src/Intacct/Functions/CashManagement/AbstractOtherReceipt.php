@@ -22,7 +22,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractOtherReceipt extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var \DateTime */

@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractTransactionSubtotal
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

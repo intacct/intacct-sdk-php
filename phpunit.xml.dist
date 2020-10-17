@@ -13,16 +13,15 @@ an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
 express or implied. See the License for the specific language governing 
 permissions and limitations under the License.
 -->
-
-<phpunit bootstrap="./test/bootstrap.php">
-    <testsuites>
-        <testsuite name="intacct">
-            <directory suffix="Test.php">test</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./test/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="intacct">
+      <directory suffix="Test.php">test</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

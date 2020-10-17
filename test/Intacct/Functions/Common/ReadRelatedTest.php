@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ReadRelatedTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -87,11 +86,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Relation Name is required for read related
      */
     public function testNoRelation()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Relation Name is required for read related');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -105,11 +105,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testMaxNumberOfKeys()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Keys count cannot exceed 100');
+
         $keys = new \SplFixedArray(101);
 
         $read = new ReadRelated('unittest');

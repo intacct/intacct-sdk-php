@@ -145,6 +145,7 @@ class RequestHandler
 
         $body = $client->getBody();
         $body->rewind();
+
         $response = new OnlineResponse($body->getContents());
 
         return $response;

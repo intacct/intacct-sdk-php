@@ -24,11 +24,12 @@ class AbstractResponseTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage XML could not be parsed properly
      */
     public function testConstructInvalidXml()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('XML could not be parsed properly');
+
         $xml = '<bad></xml>';
 
         $args = [
@@ -38,11 +39,12 @@ class AbstractResponseTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Response is missing control block
      */
     public function testConstructMissingControlBlock()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Response is missing control block');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -57,11 +59,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response control status failure - XL03000006 test is not a valid transport policy.
      */
     public function testConstructControlFailure()
     {
+        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectExceptionMessage('Response control status failure - XL03000006 test is not a valid transport policy.');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ReadReportTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -85,11 +84,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Report Name is required for read report
      */
     public function testNoReport()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Report Name is required for read report');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -103,43 +103,47 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Page Size cannot be less than 1');
+
         $readReport = new ReadReport('unittest');
         $readReport->setReportName('TestBill Date Runtime');
         $readReport->setPageSize(0);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
     public function testMaxPageSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Page Size cannot be greater than 1000');
+
         $readReport = new ReadReport('unittest');
         $readReport->setReportName('TestBill Date Runtime');
         $readReport->setPageSize(1001);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Wait Time cannot be less than 0
      */
     public function testMinWaitTime()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Wait Time cannot be less than 0');
+
         $readReport = new ReadReport('unittest');
         $readReport->setWaitTime(-1);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Wait Time cannot be greater than 30
      */
     public function testMaxWaitTime()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Wait Time cannot be greater than 30');
+
         $readReport = new ReadReport('unittest');
         $readReport->setWaitTime(31);
     }

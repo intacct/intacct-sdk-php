@@ -35,7 +35,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
@@ -74,11 +74,12 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Session ID not supplied in config
      */
     public function testCredsFromArrayNoSession()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required Session ID not supplied in config');
+
         $config = new ClientConfig();
         $config->setSessionId('');
 

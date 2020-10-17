@@ -32,7 +32,7 @@ class ControlTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -81,11 +81,12 @@ EOF;
     }
     
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing status element
      */
     public function testMissingStatusElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Control block is missing status element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

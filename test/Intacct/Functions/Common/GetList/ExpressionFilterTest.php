@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ExpressionFilterTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultConstruct()
     {
         $expected = <<<EOF
@@ -54,11 +53,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Field Name is required for an expression filter
      */
     public function testNoFieldName()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Field Name is required for an expression filter');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -74,11 +74,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Operator is required for an expression filter
      */
     public function testNoOperator()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Operator is required for an expression filter');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

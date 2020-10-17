@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOtherReceiptLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

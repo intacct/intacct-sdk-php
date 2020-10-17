@@ -17,7 +17,6 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-
 use Intacct\Xml\XMLWriter;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +25,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ApPaymentRequestDeclineTest extends TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -51,11 +49,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for decline
      */
     public function testRequiredId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Record No is required for decline');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

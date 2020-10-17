@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractApAdjustment extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var int */

@@ -21,7 +21,6 @@ use Intacct\Xml\XMLWriter;
 
 interface AttachmentInterface
 {
-
     public function getExtension();
 
     public function setExtension($extension);

@@ -27,7 +27,6 @@ use Intacct\Xml\XMLWriter;
  */
 class OperationBlockTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testWriteXmlSession()
     {
         $config = new ClientConfig();
@@ -142,11 +141,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank
      */
     public function testNoCredentials()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank');
+
         $config = new ClientConfig();
         $config->setSessionId('');
         $config->setCompanyId('');

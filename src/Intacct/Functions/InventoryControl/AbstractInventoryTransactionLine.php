@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractInventoryTransactionLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

@@ -24,7 +24,6 @@ use Intacct\ClientConfig;
  */
 class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testCredsFromConfig()
     {
         $config = new ClientConfig();
@@ -55,11 +54,12 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Sender ID not supplied in config or env variable "INTACCT_SENDER_ID"
      */
     public function testCredsNoSenderId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required Sender ID not supplied in config or env variable "INTACCT_SENDER_ID"');
+
         $config = new ClientConfig();
         //$config->setSenderId('testsenderid');
         $config->setSenderPassword('pass123!');
@@ -68,11 +68,12 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Sender Password not supplied in config or env variable "INTACCT_SENDER_PASSWORD"
      */
     public function testCredsNoSenderPassword()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required Sender Password not supplied in config or env variable "INTACCT_SENDER_PASSWORD"');
+
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
         //$config->setSenderPassword('pass123!');

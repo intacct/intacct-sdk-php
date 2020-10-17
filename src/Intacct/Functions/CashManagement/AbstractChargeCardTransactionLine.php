@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractChargeCardTransactionLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

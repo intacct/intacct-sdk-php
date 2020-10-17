@@ -22,7 +22,6 @@ namespace Intacct\Xml;
  */
 class XMLWriterTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testWriteElement()
     {
         $expected = <<<EOF

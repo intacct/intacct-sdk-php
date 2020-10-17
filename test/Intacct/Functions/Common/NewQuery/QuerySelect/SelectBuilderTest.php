@@ -27,7 +27,6 @@ use TypeError;
  */
 class SelectBuilderTest extends TestCase
 {
-
     public function testField()
     {
         $expected = <<<EOF
@@ -222,7 +221,8 @@ EOF;
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            "Field name for max cannot be empty or null. Provide a field name for the builder.");
+            "Field name for max cannot be empty or null. Provide a field name for the builder."
+        );
 
         (new SelectBuilder())->max('')
             ->getFields();
@@ -264,7 +264,8 @@ EOF;
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            "Field name for count cannot be empty or null. Provide a field name for the builder.");
+            "Field name for count cannot be empty or null. Provide a field name for the builder."
+        );
 
         (new SelectBuilder())->count('')
             ->getFields();
@@ -306,7 +307,8 @@ EOF;
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            "Field name for sum cannot be empty or null. Provide a field name for the builder.");
+            "Field name for sum cannot be empty or null. Provide a field name for the builder."
+        );
 
         (new SelectBuilder())->sum('')
             ->getFields();
@@ -317,6 +319,6 @@ EOF;
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("FOO function doesn't exist.");
 
-        (new SelectFunctionFactory())->create('FOO','FOO');
+        (new SelectFunctionFactory())->create('FOO', 'FOO');
     }
 }

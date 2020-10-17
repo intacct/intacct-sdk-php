@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractTimesheetEntry
 {
-
     use CustomFieldsTrait;
 
     /** @var \DateTime */

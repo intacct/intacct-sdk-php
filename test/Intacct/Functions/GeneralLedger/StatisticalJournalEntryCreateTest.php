@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class StatisticalJournalEntryCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -120,11 +119,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Statistical Journal Entry must have at least 1 line
      */
     public function testMissingEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Statistical Journal Entry must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -137,11 +137,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Statistical Journal Entry must have at least 1 line
      */
     public function testOnlyOneEntry()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Statistical Journal Entry must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

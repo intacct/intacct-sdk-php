@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class AccountCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -62,11 +61,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Account No is required for create
      */
     public function testRequiredAccountNo()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Account No is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -84,11 +84,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Title is required for create
      */
     public function testRequiredTitle()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title is required for create');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

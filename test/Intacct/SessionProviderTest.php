@@ -25,7 +25,6 @@ use GuzzleHttp\Handler\MockHandler;
  */
 class SessionProviderTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testFromLoginCredentials()
     {
         $xml = <<<EOF

@@ -22,7 +22,6 @@ use Psr\Http\Message\ResponseInterface;
 
 final class MessageFormatter extends \GuzzleHttp\MessageFormatter
 {
-
     const CLF = "{hostname} {req_header_User-Agent} - [{date_common_log}] \"{method} {target} HTTP/{version}\" {code} {res_header_Content-Length}";
     const DEBUG = ">>>>>>>>\n{request}\n<<<<<<<<\n{response}\n--------\n{error}";
     const SHORT = '[{ts}] "{method} {target} HTTP/{version}" {code}';
@@ -64,9 +63,10 @@ final class MessageFormatter extends \GuzzleHttp\MessageFormatter
      */
     public function format(
         RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $error = null
-    ) {
+        ?ResponseInterface $response = null,
+        ?\Throwable $error = null
+    ): string
+    {
         $message = parent::format($request, $response, $error);
 
         $replacement = '$1REDACTED$3';

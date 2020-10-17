@@ -26,7 +26,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FilterTest extends TestCase
 {
-
     public function testEqualTo()
     {
         $expected = <<<EOF

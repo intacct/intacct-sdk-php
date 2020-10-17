@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThan;
  */
 class LessThanStringTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition = new LessThanString();

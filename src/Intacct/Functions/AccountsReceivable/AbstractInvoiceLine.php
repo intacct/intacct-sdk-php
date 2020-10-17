@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractInvoiceLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

@@ -22,7 +22,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractChargeCardTransaction extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var int */

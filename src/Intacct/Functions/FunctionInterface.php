@@ -21,7 +21,6 @@ use Intacct\Xml\XMLWriter;
 
 interface FunctionInterface
 {
-    
     public function getControlId(): string;
     
     public function setControlId(string $controlId);

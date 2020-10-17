@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class UserPermissionsReadTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

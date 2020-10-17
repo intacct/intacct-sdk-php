@@ -32,7 +32,6 @@ use Monolog\Logger;
  */
 class RequestHandlerTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testMockExecuteOnline()
     {
         $xml = <<<EOF
@@ -143,11 +142,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Policy ID not supplied in config for offline request
      */
     public function testMockExecuteAsynchronousMissingPolicyId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Required Policy ID not supplied in config for offline request');
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
@@ -225,16 +225,17 @@ EOF;
         $requestHandler->executeOnline($contentBlock);
 
         $history = $requestHandler->getHistory();
-        $this->assertEquals(2, count($history));
+        $this->assertCount(2, $history);
         $this->assertEquals(502, $history[0]['response']->getStatusCode());
         $this->assertEquals(200, $history[1]['response']->getStatusCode());
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResponseException
      */
     public function testMock400LevelErrorWithXmlResponse()
     {
+        $this->expectException(\Intacct\Exception\ResponseException::class);
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -276,10 +277,11 @@ EOF;
     }
     
     /**
-     * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultRetryFailure()
     {
+        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+
         $mock = new MockHandler([
             new Response(500),
             new Response(501),
@@ -306,10 +308,11 @@ EOF;
     }
     
     /**
-     * @expectedException \GuzzleHttp\Exception\ServerException
      */
     public function testMockDefaultNo524Retry()
     {
+        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+
         $mock = new MockHandler([
             new Response(524),
         ]);
@@ -449,7 +452,7 @@ EOF;
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Offline execution sent to Sage Intacct using Session-based credentials.',
             stream_get_contents($handle)
         );

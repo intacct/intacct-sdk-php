@@ -27,7 +27,6 @@ use DateTime;
  */
 class DdsJobCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -104,41 +103,45 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Job Type is not a valid type
      */
     public function testNoJobType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Job Type is not a valid type');
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setJobType('test');
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage File Format is not a valid type
      */
     public function testInvalidFileFormat()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('File Format is not a valid type');
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setFileFormat('beos');
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */
     public function testMinSplitSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Split Size must be between 10000 and 100000');
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setSplitSize(100);
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Split Size must be between 10000 and 100000
      */
     public function testMaxSplitSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Split Size must be between 10000 and 100000');
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setSplitSize(100001);
     }

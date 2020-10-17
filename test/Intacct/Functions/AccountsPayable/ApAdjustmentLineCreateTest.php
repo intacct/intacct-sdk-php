@@ -24,7 +24,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ApAdjustmentLineCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

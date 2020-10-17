@@ -24,7 +24,6 @@ use Intacct\Xml\XMLWriter;
  */
 class AuditTrailReadTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF

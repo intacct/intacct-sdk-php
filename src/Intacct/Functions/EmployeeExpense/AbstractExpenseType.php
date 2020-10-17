@@ -22,7 +22,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractExpenseType extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

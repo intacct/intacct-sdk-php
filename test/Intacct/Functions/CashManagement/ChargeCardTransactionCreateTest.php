@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ChargeCardTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -142,11 +141,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Charge Card Transaction must have at least 1 line
      */
     public function testMissingBillEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Charge Card Transaction must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

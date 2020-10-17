@@ -20,7 +20,7 @@ namespace Intacct\Functions\Purchasing;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class PurchasingTransactionLineUpdate  extends AbstractPurchasingTransactionLine
+class PurchasingTransactionLineUpdate extends AbstractPurchasingTransactionLine
 {
 
     /** @var int|string */

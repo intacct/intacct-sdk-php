@@ -19,5 +19,4 @@ namespace Intacct\Functions\GeneralLedger;
 
 abstract class AbstractStatisticalJournalEntry extends AbstractGlBatch
 {
-
 }

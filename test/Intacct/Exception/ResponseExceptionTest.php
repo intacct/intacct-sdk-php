@@ -23,7 +23,6 @@ use Intacct\Xml\OnlineResponse;
  */
 class ResponseExceptionTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testGetErrors()
     {
         $xml = <<<EOF
@@ -50,7 +49,7 @@ EOF;
             new OnlineResponse($xml);
         } catch (ResponseException $ex) {
             $this->assertEquals('Response control status failure - XL03000006 test is not a valid transport policy.', $ex->getMessage());
-            $this->assertInternalType('array', $ex->getErrors());
+            $this->assertIsArray($ex->getErrors());
         }
     }
 
@@ -88,7 +87,7 @@ EOF;
             new OnlineResponse($xml);
         } catch (ResponseException $ex) {
             $this->assertEquals('Response authentication status failure - XL03000006 Sign-in information is incorrect', $ex->getMessage());
-            $this->assertInternalType('array', $ex->getErrors());
+            $this->assertIsArray($ex->getErrors());
         }
     }
 }

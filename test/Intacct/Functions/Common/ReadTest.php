@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ReadTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -93,11 +92,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Keys count cannot exceed 100
      */
     public function testTooManyKeys()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Keys count cannot exceed 100');
+
         $keys = [];
         for ($i = 1; $i <= 101; $i++) {
             $keys[] = $i;

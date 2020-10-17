@@ -31,7 +31,6 @@ use PHPUnit\Framework\TestCase;
  */
 class QueryTest extends TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

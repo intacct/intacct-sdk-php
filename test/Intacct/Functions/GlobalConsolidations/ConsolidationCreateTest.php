@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ConsolidationCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF

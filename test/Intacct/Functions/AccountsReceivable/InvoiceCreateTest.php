@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class InvoiceCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -178,11 +177,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage AR Invoice must have at least 1 line
      */
     public function testMissingInvoiceEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('AR Invoice must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

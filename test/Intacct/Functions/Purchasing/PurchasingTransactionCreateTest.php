@@ -26,7 +26,6 @@ use InvalidArgumentException;
  */
 class PurchasingTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -206,11 +205,11 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage PO Transaction must have at least 1 line
      */
     public function testMissingPurchasingTransactionEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('PO Transaction must have at least 1 line');
 
         $xml = new XMLWriter();
         $xml->openMemory();

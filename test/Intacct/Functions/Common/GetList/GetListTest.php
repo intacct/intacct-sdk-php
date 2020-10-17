@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class GetListTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultConstruct()
     {
         $expected = <<<EOF
@@ -145,11 +144,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Object Name is required for get_list
      */
     public function testNoFieldName()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Object Name is required for get_list');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

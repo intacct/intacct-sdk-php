@@ -22,7 +22,6 @@ use Intacct\Functions\Traits\CustomFieldsTrait;
 
 abstract class AbstractEmployee extends AbstractFunction
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

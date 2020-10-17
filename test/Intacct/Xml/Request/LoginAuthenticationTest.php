@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
  */
 class LoginAuthenticationTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testWriteXml()
     {
         $expected = <<<EOF
@@ -102,29 +101,32 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Company ID is required and cannot be blank
      */
     public function testInvalidCompanyId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Company ID is required and cannot be blank');
+
         new LoginAuthentication('testuser', '', 'testpass');
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage User ID is required and cannot be blank
      */
     public function testInvalidUserId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User ID is required and cannot be blank');
+
         new LoginAuthentication('', 'testcompany', 'testpass');
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage User Password is required and cannot be blank
      */
     public function testInvalidUserPass()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User Password is required and cannot be blank');
+
         new LoginAuthentication('testuser', 'testcompany', '');
     }
 }

@@ -23,7 +23,6 @@ use Intacct\Xml\OnlineResponse;
  */
 class AuthenticationTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testAuthenticationResponse()
     {
         $xml = <<<EOF
@@ -70,11 +69,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing status element
      */
     public function testMissingStatusElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Authentication block is missing status element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -101,11 +101,12 @@ EOF;
     }
     
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing userid element
      */
     public function testMissingUserIdElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Authentication block is missing userid element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -132,11 +133,12 @@ EOF;
     }
     
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing companyid element
      */
     public function testMissingCompanyIdElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Authentication block is missing companyid element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

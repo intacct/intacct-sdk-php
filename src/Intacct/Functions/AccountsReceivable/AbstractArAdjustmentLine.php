@@ -22,7 +22,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractArAdjustmentLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
  */
 class EqualToDateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition = new EqualToDate();

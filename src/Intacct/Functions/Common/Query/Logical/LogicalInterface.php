@@ -20,7 +20,6 @@ use Intacct\Functions\Common\Query\ConditionInterface;
 
 interface LogicalInterface extends ConditionInterface
 {
-
     public function getConditions();
 
     public function setConditions(array $conditions);

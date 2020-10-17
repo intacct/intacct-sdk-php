@@ -21,7 +21,6 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo;
  */
 class GreaterThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition = new GreaterThanOrEqualToInteger();

@@ -33,7 +33,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -132,15 +132,16 @@ EOF;
         $result = $results[0];
 
         $this->assertEquals('failure', $result->getStatus());
-        $this->assertInternalType('array', $result->getErrors());
+        $this->assertIsArray($result->getErrors());
     }
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing status element
      */
     public function testMissingStatusElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Result block is missing status element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -172,11 +173,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing function element
      */
     public function testMissingFunctionElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Result block is missing function element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -208,11 +210,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing controlid element
      */
     public function testMissingControlIdElement()
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage('Result block is missing controlid element');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -244,11 +247,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found
      */
     public function testStatusFailure()
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage('Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -291,11 +295,12 @@ EOF;
     }
 
     /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.
      */
     public function testStatusAbort()
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage('Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.');
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -402,7 +407,6 @@ EOF;
      */
     public function testStatusSuccess()
     {
-
         $this->object->ensureStatusSuccess();
 
         $this->addToAssertionCount(1);  //does not throw an exception

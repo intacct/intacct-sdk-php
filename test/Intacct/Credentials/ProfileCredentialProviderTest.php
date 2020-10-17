@@ -32,7 +32,7 @@ class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $this->ini = <<<EOF
 [default]
@@ -136,11 +136,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot read credentials from file, "notarealfile.ini"
      */
     public function testGetLoginCredentialsFromMissingIni()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot read credentials from file, "notarealfile.ini"');
+
         $config = new ClientConfig();
         $config->setProfileFile('notarealfile.ini');
 
@@ -148,11 +149,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Profile Name "default" not found in credentials file
      */
     public function testGetLoginCredentialsMissingDefault()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Profile Name "default" not found in credentials file');
+
         $dir = $this->clearEnv();
         $ini = <<<EOF
 [notdefault]

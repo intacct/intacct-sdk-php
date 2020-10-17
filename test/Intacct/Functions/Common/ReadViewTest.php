@@ -24,7 +24,6 @@ use InvalidArgumentException;
  */
 class ReadViewTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -81,11 +80,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage View Name is required for read view
      */
     public function testNoView()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('View Name is required for read view');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -99,21 +99,23 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be less than 1
      */
     public function testMinPageSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Page Size cannot be less than 1');
+
         $readView = new ReadView('unittest');
         $readView->setPageSize(0);
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be greater than 1000
      */
     public function testMaxPageSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Page Size cannot be greater than 1000');
+
         $readView = new ReadView('unittest');
         $readView->setPageSize(1001);
     }

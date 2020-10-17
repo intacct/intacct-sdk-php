@@ -23,7 +23,6 @@ use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
  */
 class OrConditionTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testToString()
     {
         $condition1 = new EqualToString();

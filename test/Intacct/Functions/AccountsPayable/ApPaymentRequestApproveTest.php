@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ApPaymentRequestApproveTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -54,11 +53,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for approve
      */
     public function testRequiredId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Record No is required for approve');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

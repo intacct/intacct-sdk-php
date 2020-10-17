@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class AttachmentsUpdateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct()
     {
         $expected = <<<EOF
@@ -52,11 +51,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Attachments ID is required for update
      */
     public function testRequiredFolder()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Attachments ID is required for update');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

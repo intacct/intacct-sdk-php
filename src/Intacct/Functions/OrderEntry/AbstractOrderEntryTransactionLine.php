@@ -23,7 +23,6 @@ use Intacct\Xml\XMLWriter;
 
 abstract class AbstractOrderEntryTransactionLine
 {
-
     use CustomFieldsTrait;
 
     /** @var string */

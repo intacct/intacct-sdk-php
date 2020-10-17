@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class OtherReceiptCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -166,11 +165,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage CM Other Receipt must have at least 1 line
      */
     public function testMissingBillEntries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('CM Other Receipt must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

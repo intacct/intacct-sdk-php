@@ -28,7 +28,7 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
     }
 
@@ -36,7 +36,7 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    public function tearDown(): void
     {
     }
     
@@ -78,11 +78,12 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Endpoint URL is not a valid URL.
      */
     public function testInvalidUrlEndpoint()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Endpoint URL is not a valid URL.');
+
         $config = new ClientConfig();
         $config->setEndpointUrl('invalidurl');
         
@@ -90,11 +91,12 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Endpoint URL is not a valid intacct.com domain name.
      */
     public function testInvalidIntacctUrlEndpoint()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Endpoint URL is not a valid intacct.com domain name.');
+
         $config = new ClientConfig();
         $config->setEndpointUrl('https://api.example.com/xmlgw.phtml');
         

@@ -26,7 +26,6 @@ use Intacct\Xml\XMLWriter;
  */
 class ControlBlockTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testWriteXmlDefaults()
     {
         $clientConfig = new ClientConfig();
@@ -61,11 +60,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Sender ID is required and cannot be blank
      */
     public function testWriteXmlInvalidSenderId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Sender ID is required and cannot be blank');
+
         $clientConfig = new ClientConfig();
         //$clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
@@ -74,11 +74,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Sender Password is required and cannot be blank
      */
     public function testWriteXmlInvalidSenderPassword()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Sender Password is required and cannot be blank');
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         //$clientConfig->setSenderPassword('pass123!');
@@ -123,11 +124,12 @@ EOF;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
      */
     public function testWriteXmlInvalidControlIdShort()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Request Control ID must be between 1 and 256 characters in length');
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
@@ -139,11 +141,12 @@ EOF;
     }
     
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
      */
     public function testWriteXmlInvalidControlIdLong()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Request Control ID must be between 1 and 256 characters in length');
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');

@@ -25,7 +25,6 @@ use InvalidArgumentException;
  */
 class ExpenseAdjustmentCreateTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testDefaultParams()
     {
         $expected = <<<EOF
@@ -132,11 +131,12 @@ EOF;
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage EE ExpenseAdjustment must have at least 1 line
      */
     public function testMissingLines()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('EE ExpenseAdjustment must have at least 1 line');
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

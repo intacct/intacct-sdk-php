@@ -28,7 +28,7 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
     /** @var AbstractFunction */
     protected $object;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
     }
@@ -57,11 +57,12 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Function Control ID must be between 1 and 256 characters in length
      */
     public function testMaximumLengthControlId()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Function Control ID must be between 1 and 256 characters in length');
+
         $controlId = "12345678901234567890123456789012345678901234567890"
             . "123456789012345678901234567890123456789012345678901234567890"
             . "123456789012345678901234567890123456789012345678901234567890"
