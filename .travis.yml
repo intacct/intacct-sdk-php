@@ -4,6 +4,8 @@ php:
   - 7.4
   - 8.0
 
+dist: bionic
+
 before_script:
   - composer self-update
   - composer install
