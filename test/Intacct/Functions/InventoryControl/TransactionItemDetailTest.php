@@ -25,7 +25,7 @@ use Intacct\Xml\XMLWriter;
 class TransactionItemDetailTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,7 +56,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamsOverrides()
+    public function testParamsOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

@@ -18,11 +18,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\ProfileCredentialProvider
  */
-class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
+class ProfileCredentialProviderTest extends TestCase
 {
 
     /** @var string */
@@ -32,7 +34,7 @@ class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $this->ini = <<<EOF
 [default]
@@ -56,7 +58,7 @@ user_password = iniuserpass
 EOF;
     }
 
-    private function clearEnv()
+    private function clearEnv(): string
     {
         $dir = sys_get_temp_dir() . '/.intacct';
         if (!is_dir($dir)) {
@@ -65,7 +67,7 @@ EOF;
         return $dir;
     }
 
-    public function testGetCredentialsFromDefaultProfile()
+    public function testGetCredentialsFromDefaultProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -75,19 +77,19 @@ EOF;
         $config = new ClientConfig();
         $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
-        $this->assertNull($loginCreds->getEntityId());
-        $this->assertEquals('defuserid', $loginCreds->getUserId());
-        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
+        self::assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        self::assertNull($loginCreds->getEntityId());
+        self::assertEquals('defuserid', $loginCreds->getUserId());
+        self::assertEquals('defuserpass', $loginCreds->getUserPassword());
 
         $senderCreds = ProfileCredentialProvider::getSenderCredentials($config);
 
-        $this->assertEquals('defsenderid', $senderCreds->getSenderId());
-        $this->assertEquals('defsenderpass', $senderCreds->getSenderPassword());
-        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
+        self::assertEquals('defsenderid', $senderCreds->getSenderId());
+        self::assertEquals('defsenderpass', $senderCreds->getSenderPassword());
+        self::assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
     }
 
-    public function testGetLoginCredentialsFromSpecificProfile()
+    public function testGetLoginCredentialsFromSpecificProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -99,13 +101,13 @@ EOF;
 
         $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
-        $this->assertNull($profileCreds->getEntityId());
-        $this->assertEquals('iniuserid', $profileCreds->getUserId());
-        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
+        self::assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        self::assertNull($profileCreds->getEntityId());
+        self::assertEquals('iniuserid', $profileCreds->getUserId());
+        self::assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
-    public function testGetLoginCredentialsWithEntityFromSpecificProfile()
+    public function testGetLoginCredentialsWithEntityFromSpecificProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -117,42 +119,40 @@ EOF;
 
         $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
-        $this->assertEquals('inientityid', $profileCreds->getEntityId());
-        $this->assertEquals('iniuserid', $profileCreds->getUserId());
-        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
+        self::assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        self::assertEquals('inientityid', $profileCreds->getEntityId());
+        self::assertEquals('iniuserid', $profileCreds->getUserId());
+        self::assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
-    public function testGetLoginCredentialsFromNullProfile()
+    public function testGetLoginCredentialsFromNullProfile(): void
     {
         $config = new ClientConfig();
         $config->setProfileName('');
 
         $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
-        $this->assertEquals('defuserid', $loginCreds->getUserId());
-        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
+        self::assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        self::assertEquals('defuserid', $loginCreds->getUserId());
+        self::assertEquals('defuserpass', $loginCreds->getUserPassword());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot read credentials from file, "notarealfile.ini"
-     */
-    public function testGetLoginCredentialsFromMissingIni()
+    public function testGetLoginCredentialsFromMissingIni(): void
     {
+        $this->expectExceptionMessage("Cannot read credentials from file, \"notarealfile.ini\"");
+        $this->expectException(InvalidArgumentException::class);
+
         $config = new ClientConfig();
         $config->setProfileFile('notarealfile.ini');
 
         ProfileCredentialProvider::getLoginCredentials($config);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Profile Name "default" not found in credentials file
-     */
-    public function testGetLoginCredentialsMissingDefault()
+    public function testGetLoginCredentialsMissingDefault(): void
     {
+        $this->expectExceptionMessage("Profile Name \"default\" not found in credentials file");
+        $this->expectException(InvalidArgumentException::class);
+
         $dir = $this->clearEnv();
         $ini = <<<EOF
 [notdefault]

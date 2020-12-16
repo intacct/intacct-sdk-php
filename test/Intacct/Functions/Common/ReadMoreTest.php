@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ReadMoreTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -51,12 +51,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Result ID is required for read more
-     */
-    public function testNoResultId()
+    public function testNoResultId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Result ID is required for read more");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

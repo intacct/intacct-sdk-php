@@ -23,7 +23,7 @@ namespace Intacct\Xml;
 class XMLWriterTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteElement()
+    public function testWriteElement(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>
@@ -41,7 +41,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteNullAndNotNullElements()
+    public function testWriteNullAndNotNullElements(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>
@@ -60,7 +60,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteElementAsBool()
+    public function testWriteElementAsBool(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>
@@ -78,7 +78,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteElementAsDate()
+    public function testWriteElementAsDate(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>
@@ -98,7 +98,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteElementAsDateTime()
+    public function testWriteElementAsDateTime(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>
@@ -118,7 +118,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteElementAsNull()
+    public function testWriteElementAsNull(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>\n
@@ -135,7 +135,7 @@ EOF;
         $this->assertEquals($expected, $xml->flush());
     }
 
-    public function testDateSplitElements()
+    public function testDateSplitElements(): void
     {
         $expected = <<<EOF
 <?xml version="1.0"?>

@@ -24,7 +24,7 @@ use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
 class OrConditionTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');
@@ -45,7 +45,7 @@ class OrConditionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$or);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');
@@ -67,7 +67,7 @@ class OrConditionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$or);
     }
 
-    public function testNestConditionsToString()
+    public function testNestConditionsToString(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORTYPE');

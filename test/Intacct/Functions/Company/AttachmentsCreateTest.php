@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class AttachmentsCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -53,12 +53,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Attachment Folder Name is required for create
-     */
-    public function testRequiredFolder()
+    public function testRequiredFolder(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Attachment Folder Name is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

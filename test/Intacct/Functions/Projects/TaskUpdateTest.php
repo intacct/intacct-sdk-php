@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class TaskUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,12 +55,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Task Record No is required for update
-     */
-    public function testRequiredTaskName()
+    public function testRequiredTaskName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Task Record No is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

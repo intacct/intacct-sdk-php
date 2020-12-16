@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThan;
 class LessThanFloatTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new LessThanFloat();
         $condition->setField('AMOUNTDUE');
@@ -33,7 +33,7 @@ class LessThanFloatTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new LessThanFloat();
         $condition->setField('AMOUNTDUE');

@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThan;
 class LessThanStringTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new LessThanString();
         $condition->setField('VENDORID');
@@ -33,7 +33,7 @@ class LessThanStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new LessThanString();
         $condition->setField('VENDORID');
@@ -45,7 +45,7 @@ class LessThanStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringEscapeQuotes()
+    public function testToStringEscapeQuotes(): void
     {
         $condition = new LessThanString();
         $condition->setField('VENDORNAME');

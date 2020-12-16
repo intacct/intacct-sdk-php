@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ChargeCardTransactionUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,7 +49,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -119,12 +119,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for update
-     */
-    public function testMissingBillEntries()
+    public function testMissingBillEntries(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Record No is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

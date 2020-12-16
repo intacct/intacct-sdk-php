@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ClassCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,12 +55,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Class ID is required for create
-     */
-    public function testRequiredClassId()
+    public function testRequiredClassId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Class ID is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -74,12 +73,11 @@ EOF;
         $classObj->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Class Name is required for create
-     */
-    public function testRequiredClassName()
+    public function testRequiredClassName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Class Name is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

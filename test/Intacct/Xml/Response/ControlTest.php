@@ -32,7 +32,7 @@ class ControlTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,37 +55,36 @@ EOF;
         $this->object = $stub->getControl();
     }
 
-    public function testGetStatus()
+    public function testGetStatus(): void
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
 
-    public function testGetSenderId()
+    public function testGetSenderId(): void
     {
         $this->assertEquals('testsenderid', $this->object->getSenderId());
     }
 
-    public function testGetControlId()
+    public function testGetControlId(): void
     {
         $this->assertEquals('ControlIdHere', $this->object->getControlId());
     }
 
-    public function testGetUniqueId()
+    public function testGetUniqueId(): void
     {
         $this->assertEquals('false', $this->object->getUniqueId());
     }
 
-    public function testGetDtdVersion()
+    public function testGetDtdVersion(): void
     {
         $this->assertEquals('3.0', $this->object->getDtdVersion());
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Control block is missing status element
-     */
-    public function testMissingStatusElement()
+
+    public function testMissingStatusElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Control block is missing status element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

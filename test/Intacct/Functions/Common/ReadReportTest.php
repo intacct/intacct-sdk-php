@@ -24,7 +24,7 @@ use Intacct\Xml\XMLWriter;
 class ReadReportTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,7 +52,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -84,12 +84,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Report Name is required for read report
-     */
-    public function testNoReport()
+    public function testNoReport(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Report Name is required for read report");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -102,49 +101,45 @@ EOF;
         $readReport->writeXml($xml);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be less than 1
-     */
-    public function testMinPageSize()
+    public function testMinPageSize(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Page Size cannot be less than 1");
+
         $readReport = new ReadReport('unittest');
         $readReport->setReportName('TestBill Date Runtime');
         $readReport->setPageSize(0);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be greater than 1000
-     */
-    public function testMaxPageSize()
+    public function testMaxPageSize(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Page Size cannot be greater than 1000");
+
         $readReport = new ReadReport('unittest');
         $readReport->setReportName('TestBill Date Runtime');
         $readReport->setPageSize(1001);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Wait Time cannot be less than 0
-     */
-    public function testMinWaitTime()
+    public function testMinWaitTime(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Wait Time cannot be less than 0");
+
         $readReport = new ReadReport('unittest');
         $readReport->setWaitTime(-1);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Wait Time cannot be greater than 30
-     */
-    public function testMaxWaitTime()
+    public function testMaxWaitTime(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Wait Time cannot be greater than 30");
+
         $readReport = new ReadReport('unittest');
         $readReport->setWaitTime(31);
     }
 
-    public function testReturnDef()
+    public function testReturnDef(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -170,7 +165,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testComplexArguments()
+    public function testComplexArguments(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -210,7 +205,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testSimpleArguments()
+    public function testSimpleArguments(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

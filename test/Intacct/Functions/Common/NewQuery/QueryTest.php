@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 class QueryTest extends TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -62,7 +62,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAllParams()
+    public function testAllParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -107,7 +107,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testEmptySelect()
+    public function testEmptySelect(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -125,7 +125,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testNoFromObject()
+    public function testNoFromObject(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Object Name is required for query; set through method from setter.");
@@ -145,7 +145,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testNoSelectFields()
+    public function testNoSelectFields(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Select fields are required for query; set through method select setter.");
@@ -161,7 +161,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testMissingRequiredParams()
+    public function testMissingRequiredParams(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Select fields are required for query; set through method select setter.");
@@ -177,7 +177,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testEmptyStringFromObject()
+    public function testEmptyStringFromObject(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -200,7 +200,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testNullDocparid()
+    public function testNullDocparid(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("docParId cannot be empty. Set docParId with valid document identifier.");
@@ -214,7 +214,7 @@ EOF;
             ->docParId(null);
     }
 
-    public function testEmptyDocparid()
+    public function testEmptyDocparid(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("docParId cannot be empty. Set docParId with valid document identifier.");
@@ -228,7 +228,7 @@ EOF;
             ->docParId('');
     }
 
-    public function testNegativeOffset()
+    public function testNegativeOffset(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("offset cannot be negative. Set offset to zero or greater than zero.");
@@ -242,7 +242,7 @@ EOF;
             ->offset(-1);
     }
 
-    public function testNegativePageSize()
+    public function testNegativePageSize(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("pageSize cannot be negative. Set pageSize greater than zero.");
@@ -256,7 +256,7 @@ EOF;
             ->pageSize(-1);
     }
 
-    public function testFields()
+    public function testFields(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -301,7 +301,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAggregateFunctions()
+    public function testAggregateFunctions(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -342,7 +342,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testOrderBy()
+    public function testOrderBy(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -389,7 +389,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testEmptyOrderBy()
+    public function testEmptyOrderBy(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -412,7 +412,7 @@ EOF;
         $query->writeXML($xml);
     }
 
-    public function testFilter()
+    public function testFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -456,7 +456,7 @@ EOF;
     /**
      * Test RECORDNO >= 1 && RECORDNO <= 100
      */
-    public function testFilterAndCondition()
+    public function testFilterAndCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -510,7 +510,7 @@ EOF;
     /**
      * Test RECORDNO <= 10 || RECORDNO = 100 || RECORDNO = 1000 || RECORDNO = 10000
      */
-    public function testFilterOrCondition()
+    public function testFilterOrCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -571,7 +571,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testFilterOrWithAndCondition()
+    public function testFilterOrWithAndCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -633,7 +633,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAlternateFilterOrWithAndCondition()
+    public function testAlternateFilterOrWithAndCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -694,7 +694,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testThreeLevelFilter()
+    public function testThreeLevelFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

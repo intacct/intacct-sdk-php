@@ -27,7 +27,7 @@ use Intacct\Functions\Company\ApiSessionCreate;
 class OfflineClientTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +68,7 @@ EOF;
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }
 
-    public function testExecuteBatch()
+    public function testExecuteBatch(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

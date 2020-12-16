@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo;
 class LessThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new LessThanOrEqualToInteger();
         $condition->setField('RECORDNO');
@@ -33,7 +33,7 @@ class LessThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new LessThanOrEqualToInteger();
         $condition->setField('RECORDNO');

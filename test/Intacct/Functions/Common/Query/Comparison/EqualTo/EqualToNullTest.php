@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 class EqualToNullTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new EqualToNull();
         $condition->setField('VENDORTYPE');
@@ -32,7 +32,7 @@ class EqualToNullTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new EqualToNull();
         $condition->setField('VENDORTYPE');

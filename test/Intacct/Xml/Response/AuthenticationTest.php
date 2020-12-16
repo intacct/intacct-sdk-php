@@ -24,7 +24,7 @@ use Intacct\Xml\OnlineResponse;
 class AuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testAuthenticationResponse()
+    public function testAuthenticationResponse(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,12 +69,11 @@ EOF;
         $this->assertEquals('', $authentication->getEntityId());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing status element
-     */
-    public function testMissingStatusElement()
+    public function testMissingStatusElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing status element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -99,13 +98,12 @@ EOF;
 EOF;
         new OnlineResponse($xml);
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing userid element
-     */
-    public function testMissingUserIdElement()
+
+    public function testMissingUserIdElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing userid element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -130,13 +128,12 @@ EOF;
 EOF;
         new OnlineResponse($xml);
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing companyid element
-     */
-    public function testMissingCompanyIdElement()
+
+    public function testMissingCompanyIdElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing companyid element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

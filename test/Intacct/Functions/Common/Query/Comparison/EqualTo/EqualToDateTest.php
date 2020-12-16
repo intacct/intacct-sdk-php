@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 class EqualToDateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new EqualToDate();
         $condition->setField('CUSTOMDATE');
@@ -35,7 +35,7 @@ class EqualToDateTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new EqualToDate();
         $condition->setField('CUSTOMDATE');

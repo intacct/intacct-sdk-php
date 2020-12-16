@@ -26,7 +26,7 @@ use Intacct\Xml\XMLWriter;
 class OrderEntryTransactionUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,7 +49,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testEntriesSubtotals()
+    public function testEntriesSubtotals(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -111,7 +111,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

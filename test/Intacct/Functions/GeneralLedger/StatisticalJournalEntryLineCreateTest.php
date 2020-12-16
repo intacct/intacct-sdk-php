@@ -25,7 +25,7 @@ use Intacct\Xml\XMLWriter;
 class StatisticalJournalEntryLineCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -128,7 +128,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAllocation()
+    public function testAllocation(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -156,7 +156,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testCustomAllocation()
+    public function testCustomAllocation(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class AllocationCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,12 +55,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Allocation ID is required for create
-     */
-    public function testRequiredId()
+    public function testRequiredId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Allocation ID is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -74,12 +73,11 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Allocate By is required for create
-     */
-    public function testRequiredBy()
+    public function testRequiredBy(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Allocate By is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

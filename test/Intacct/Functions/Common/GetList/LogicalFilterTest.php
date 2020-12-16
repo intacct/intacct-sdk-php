@@ -25,7 +25,7 @@ use Intacct\Xml\XMLWriter;
 class LogicalFilterTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultConstruct()
+    public function testDefaultConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -90,12 +90,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Logical Filters count must be 2 or more
-     */
-    public function testNotEnoughFilters()
+    public function testNotEnoughFilters(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Logical Filters count must be 2 or more");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

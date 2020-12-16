@@ -24,7 +24,7 @@ use Intacct\ClientConfig;
  */
 class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
 {
-    
+
     /**
      *
      * @var SenderCredentials
@@ -35,7 +35,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
@@ -44,7 +44,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         $this->senderCreds = new SenderCredentials($config);
     }
 
-    public function testCredsFromConfig()
+    public function testCredsFromConfig(): void
     {
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
@@ -64,7 +64,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testCredsWithEntityIdFromConfig()
+    public function testCredsWithEntityIdFromConfig(): void
     {
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
@@ -86,7 +86,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testCredsFromEnv()
+    public function testCredsFromEnv(): void
     {
         putenv('INTACCT_COMPANY_ID=envcompany');
         putenv('INTACCT_USER_ID=envuser');
@@ -106,7 +106,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         putenv('INTACCT_USER_PASSWORD');
     }
 
-    public function testCredsWithEntityFromEnv()
+    public function testCredsWithEntityFromEnv(): void
     {
         putenv('INTACCT_COMPANY_ID=envcompany');
         putenv('INTACCT_ENTITY_ID=enventity');
@@ -128,7 +128,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         putenv('INTACCT_USER_PASSWORD');
     }
 
-    private function clearEnv()
+    private function clearEnv(): string
     {
         $dir = sys_get_temp_dir() . '/.intacct';
         if (!is_dir($dir)) {
@@ -137,7 +137,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         return $dir;
     }
 
-    public function testCredsFromProfile()
+    public function testCredsFromProfile(): void
     {
         $dir = $this->clearEnv();
         $ini = <<<EOF
@@ -161,7 +161,7 @@ EOF;
         $this->assertEquals('iniuserpass', $loginCreds->getPassword());
     }
 
-    public function testCredsWithEntityFromProfile()
+    public function testCredsWithEntityFromProfile(): void
     {
         $dir = $this->clearEnv();
         $ini = <<<EOF
@@ -185,13 +185,12 @@ EOF;
         $this->assertEquals('iniuserid', $loginCreds->getUserId());
         $this->assertEquals('iniuserpass', $loginCreds->getPassword());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Company ID not supplied in config or env variable "INTACCT_COMPANY_ID"
-     */
-    public function testCredsFromArrayNoCompanyId()
+
+    public function testCredsFromArrayNoCompanyId(): void
     {
+        $this->expectExceptionMessage("Required Company ID not supplied in config or env variable \"INTACCT_COMPANY_ID\"");
+        $this->expectException(\InvalidArgumentException::class);
+
         $config = new ClientConfig();
         $config->setCompanyId('');
         $config->setUserId('testuser');
@@ -199,13 +198,12 @@ EOF;
 
         new LoginCredentials($config, $this->senderCreds);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required User ID not supplied in config or env variable "INTACCT_USER_ID"
-     */
-    public function testCredsFromArrayNoUserId()
+
+    public function testCredsFromArrayNoUserId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Required User ID not supplied in config or env variable \"INTACCT_USER_ID\"");
+
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
         $config->setUserId('');
@@ -213,13 +211,12 @@ EOF;
 
         new LoginCredentials($config, $this->senderCreds);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required User Password not supplied in config or env variable "INTACCT_USER_PASSWORD"
-     */
-    public function testCredsFromArrayNoUserPassword()
+
+    public function testCredsFromArrayNoUserPassword(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Required User Password not supplied in config or env variable \"INTACCT_USER_PASSWORD\"");
+
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
         $config->setUserId('testuser');

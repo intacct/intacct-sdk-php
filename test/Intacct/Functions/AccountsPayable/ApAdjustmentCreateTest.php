@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ApAdjustmentCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -70,7 +70,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -156,12 +156,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage AP Vendor Adjustment must have at least 1 line
-     */
-    public function testMissingAdjustmentEntries()
+    public function testMissingAdjustmentEntries(): void
     {
+        $this->expectExceptionMessage("AP Vendor Adjustment must have at least 1 line");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

@@ -36,68 +36,66 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    public function tearDown(): void
     {
     }
-    
-    public function testDefaultEndpoint()
+
+    public function testDefaultEndpoint(): void
     {
         $endpoint = new Endpoint(new ClientConfig());
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
-    
-    public function testEnvEndpoint()
+
+    public function testEnvEndpoint(): void
     {
         putenv('INTACCT_ENDPOINT_URL=https://envunittest.intacct.com/ia/xml/xmlgw.phtml');
-        
+
         $endpoint = new Endpoint(new ClientConfig());
         $this->assertEquals('https://envunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertEquals('https://envunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
-        
+
         putenv('INTACCT_ENDPOINT_URL');
     }
-    
-    public function testArrayEndpoint()
+
+    public function testArrayEndpoint(): void
     {
         $config = new ClientConfig();
         $config->setEndpointUrl('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml');
-        
+
         $endpoint = new Endpoint($config);
         $this->assertEquals('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertEquals('https://arrayunittest.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
-    
-    public function testNullEndpoint()
+
+    public function testNullEndpoint(): void
     {
         $config = new ClientConfig();
         $config->setEndpointUrl('');
-        
+
         $endpoint = new Endpoint($config);
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Endpoint URL is not a valid URL.
-     */
-    public function testInvalidUrlEndpoint()
+
+    public function testInvalidUrlEndpoint(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Endpoint URL is not a valid URL.');
+
         $config = new ClientConfig();
         $config->setEndpointUrl('invalidurl');
-        
+
         new Endpoint($config);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Endpoint URL is not a valid intacct.com domain name.
-     */
-    public function testInvalidIntacctUrlEndpoint()
+
+    public function testInvalidIntacctUrlEndpoint(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Endpoint URL is not a valid intacct.com domain name.');
+
         $config = new ClientConfig();
         $config->setEndpointUrl('https://api.example.com/xmlgw.phtml');
-        
+
         new Endpoint($config);
     }
 }

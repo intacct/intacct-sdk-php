@@ -26,7 +26,7 @@ use PHPUnit\Framework\TestCase;
 class PurchasingTransactionApproveTest extends TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
 
         $expected = <<<EOF

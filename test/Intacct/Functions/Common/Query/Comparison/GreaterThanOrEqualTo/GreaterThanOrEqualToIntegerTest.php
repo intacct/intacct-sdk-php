@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo;
 class GreaterThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new GreaterThanOrEqualToInteger();
         $condition->setField('RECORDNO');
@@ -33,7 +33,7 @@ class GreaterThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new GreaterThanOrEqualToInteger();
         $condition->setField('RECORDNO');

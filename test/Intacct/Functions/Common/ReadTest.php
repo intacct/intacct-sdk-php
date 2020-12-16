@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ReadTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -54,7 +54,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -92,12 +92,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Keys count cannot exceed 100
-     */
-    public function testTooManyKeys()
+    public function testTooManyKeys(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Keys count cannot exceed 100");
+
         $keys = [];
         for ($i = 1; $i <= 101; $i++) {
             $keys[] = $i;
@@ -108,7 +107,7 @@ EOF;
         $read->setKeys($keys);
     }
 
-    public function testWriteXmlKeys()
+    public function testWriteXmlKeys(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

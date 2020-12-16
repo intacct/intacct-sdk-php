@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo;
 class GreaterThanOrEqualToDateTimeTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new GreaterThanOrEqualToDateTime();
         $condition->setField('CUSTOMDATE');
@@ -36,7 +36,7 @@ class GreaterThanOrEqualToDateTimeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new GreaterThanOrEqualToDateTime();
         $condition->setField('CUSTOMDATE');

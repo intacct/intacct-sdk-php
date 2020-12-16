@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ArPaymentSummaryCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,12 +57,10 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Title is required for create
-     */
-    public function testMissingTitle()
+    public function testMissingTitle(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Title is required for create");
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -74,12 +72,11 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage GL Posting Date is required for create
-     */
-    public function testMissingDate()
+    public function testMissingDate(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("GL Posting Date is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

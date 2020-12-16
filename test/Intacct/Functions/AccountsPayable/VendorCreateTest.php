@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class VendorCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,7 +57,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testFullXml()
+    public function testFullXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -228,12 +228,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Vendor Name is required for create
-     */
     public function testRequiredName()
     {
+        $this->expectExceptionMessage("Vendor Name is required for create");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

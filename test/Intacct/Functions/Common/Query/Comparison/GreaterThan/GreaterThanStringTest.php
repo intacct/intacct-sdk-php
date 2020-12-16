@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\GreaterThan;
 class GreaterThanStringTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new GreaterThanString();
         $condition->setField('VENDORID');
@@ -33,7 +33,7 @@ class GreaterThanStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new GreaterThanString();
         $condition->setField('VENDORID');

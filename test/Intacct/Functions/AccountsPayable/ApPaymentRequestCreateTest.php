@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ApPaymentRequestCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -137,12 +137,10 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage AP Payment Request must have at least 1 transaction to apply against
-     */
-    public function testMissingBillEntries()
+    public function testMissingBillEntries(): void
     {
+        $this->expectExceptionMessage("AP Payment Request must have at least 1 transaction to apply against");
+        $this->expectException(InvalidArgumentException::class);
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

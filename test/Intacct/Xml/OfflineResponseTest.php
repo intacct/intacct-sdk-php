@@ -23,7 +23,7 @@ namespace Intacct\Xml;
 class OfflineResponseTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testGetAcknowledgement()
+    public function testGetAcknowledgement(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,13 +43,12 @@ EOF;
         $response = new OfflineResponse($xml);
         $this->assertEquals('success', $response->getStatus());
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Response is missing acknowledgement block
-     */
-    public function testMissingAcknowledgementBlock()
+
+    public function testMissingAcknowledgementBlock(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Response is missing acknowledgement block");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -65,12 +64,11 @@ EOF;
         new OfflineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Acknowledgement block is missing status element
-     */
-    public function testMissingStatusElement()
+    public function testMissingStatusElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Acknowledgement block is missing status element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

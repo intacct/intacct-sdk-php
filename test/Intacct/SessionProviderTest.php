@@ -26,7 +26,7 @@ use GuzzleHttp\Handler\MockHandler;
 class SessionProviderTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testFromLoginCredentials()
+    public function testFromLoginCredentials(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -75,15 +75,15 @@ EOF;
         $config->setUserId('testuser');
         $config->setUserPassword('testpass');
         $config->setMockHandler($mock);
-        
+
         $sessionCreds = SessionProvider::factory($config);
-        
+
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
         $this->assertEquals('', $sessionCreds->getEntityId());
     }
 
-    public function testFromLoginCredentialsWithEntity()
+    public function testFromLoginCredentialsWithEntity(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -141,7 +141,7 @@ EOF;
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
     }
 
-    public function testFromSessionCredentials()
+    public function testFromSessionCredentials(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -200,7 +200,7 @@ EOF;
         $this->assertEquals('', $sessionCreds->getEntityId());
     }
 
-    public function testFromTopLevelSessionCredentialsWithEntityOverride()
+    public function testFromTopLevelSessionCredentialsWithEntityOverride(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -260,7 +260,7 @@ EOF;
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
     }
 
-    public function testFromPrivateEntitySessionCredentialsWithDifferentEntityOverride()
+    public function testFromPrivateEntitySessionCredentialsWithDifferentEntityOverride(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -320,7 +320,7 @@ EOF;
         $this->assertEquals('entityB', $sessionCreds->getEntityId());
     }
 
-    public function testFromSessionCredsUsingEnvironmentSender()
+    public function testFromSessionCredsUsingEnvironmentSender(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

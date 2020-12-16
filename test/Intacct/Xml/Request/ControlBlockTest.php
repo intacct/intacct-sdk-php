@@ -27,7 +27,7 @@ use Intacct\Xml\XMLWriter;
 class ControlBlockTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXmlDefaults()
+    public function testWriteXmlDefaults(): void
     {
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
@@ -59,26 +59,24 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Sender ID is required and cannot be blank
-     */
-    public function testWriteXmlInvalidSenderId()
+
+    public function testWriteXmlInvalidSenderId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Sender ID is required and cannot be blank");
+
         $clientConfig = new ClientConfig();
         //$clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
 
         new ControlBlock($clientConfig, new RequestConfig());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Sender Password is required and cannot be blank
-     */
-    public function testWriteXmlInvalidSenderPassword()
+
+    public function testWriteXmlInvalidSenderPassword(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Sender Password is required and cannot be blank");
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         //$clientConfig->setSenderPassword('pass123!');
@@ -86,7 +84,7 @@ EOF;
         new ControlBlock($clientConfig, new RequestConfig());
     }
 
-    public function testWriteXmlDefaultsOverride()
+    public function testWriteXmlDefaultsOverride(): void
     {
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
@@ -122,12 +120,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
-     */
-    public function testWriteXmlInvalidControlIdShort()
+    public function testWriteXmlInvalidControlIdShort(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Request Control ID must be between 1 and 256 characters in length");
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
@@ -137,13 +134,12 @@ EOF;
 
         new ControlBlock($clientConfig, $requestConfig);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Request Control ID must be between 1 and 256 characters in length
-     */
-    public function testWriteXmlInvalidControlIdLong()
+
+    public function testWriteXmlInvalidControlIdLong(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Request Control ID must be between 1 and 256 characters in length");
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');

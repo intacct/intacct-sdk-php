@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class AccountUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,12 +55,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Account No is required for update
-     */
-    public function testRequiredAccountNo()
+    public function testRequiredAccountNo(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Account No is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

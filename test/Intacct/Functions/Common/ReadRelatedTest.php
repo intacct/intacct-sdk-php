@@ -24,7 +24,7 @@ use Intacct\Xml\XMLWriter;
 class ReadRelatedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -54,7 +54,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -86,12 +86,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Relation Name is required for read related
-     */
-    public function testNoRelation()
+    public function testNoRelation(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Relation Name is required for read related");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -104,12 +103,11 @@ EOF;
         $read->writeXml($xml);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Keys count cannot exceed 100
-     */
-    public function testMaxNumberOfKeys()
+    public function testMaxNumberOfKeys(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Keys count cannot exceed 100");
+
         $keys = new \SplFixedArray(101);
 
         $read = new ReadRelated('unittest');

@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ReimbursementRequestCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -133,12 +133,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage EE Reimbursement Request must have at least 1 transaction to apply against
-     */
-    public function testMissingExpenseReportEntries()
+    public function testMissingExpenseReportEntries(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("EE Reimbursement Request must have at least 1 transaction to apply against");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

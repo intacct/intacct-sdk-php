@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class UserUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -53,12 +53,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage User ID is required for update
-     */
-    public function testRequiredUserId()
+    public function testRequiredUserId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("User ID is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -71,7 +70,7 @@ EOF;
         $record->writeXml($xml);
     }
 
-    public function testRestrictions()
+    public function testRestrictions(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

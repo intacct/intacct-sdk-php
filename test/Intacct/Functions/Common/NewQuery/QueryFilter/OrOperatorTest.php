@@ -31,7 +31,7 @@ class OrOperatorTest extends TestCase
     /**
      * Test RECORDNO <= 10 || RECORDNO = 100 || RECORDNO = 1000 || RECORDNO = 10000
      */
-    public function testOrCondition()
+    public function testOrCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testSingleFilter()
+    public function testSingleFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
@@ -86,7 +86,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testEmptyFilter()
+    public function testEmptyFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
@@ -98,7 +98,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testNullFilter()
+    public function testNullFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for or");
@@ -110,7 +110,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testAddFilter()
+    public function testAddFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -150,7 +150,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAddFilterNull()
+    public function testAddFilterNull(): void
     {
         $this->expectException(TypeError::class);
 

@@ -24,7 +24,7 @@ use Intacct\Xml\XMLWriter;
 class ConsolidationCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -51,7 +51,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testFull()
+    public function testFull(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

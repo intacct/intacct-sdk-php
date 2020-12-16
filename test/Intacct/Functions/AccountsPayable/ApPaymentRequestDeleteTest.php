@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ApPaymentRequestDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,12 +49,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for delete
-     */
-    public function testRequiredId()
+    public function testRequiredId(): void
     {
+        $this->expectExceptionMessage("Record No is required for delete");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class TimesheetCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,7 +69,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -122,12 +122,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Employee ID is required for create
-     */
-    public function testRequiredEmployeeId()
+    public function testRequiredEmployeeId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Employee ID is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -139,12 +138,11 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Begin Date is required for create
-     */
-    public function testRequiredBeginDate()
+    public function testRequiredBeginDate(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Begin Date is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -157,12 +155,11 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Timesheet must have at least 1 entry
-     */
-    public function testRequiredEntries()
+    public function testRequiredEntries(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Timesheet must have at least 1 entry");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

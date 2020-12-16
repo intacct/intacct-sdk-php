@@ -30,7 +30,7 @@ use Monolog\Logger;
 class OnlineClientTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -86,12 +86,11 @@ EOF;
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong
-     */
-    public function testExecuteResultException()
+    public function testExecuteResultException(): void
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage("Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -145,12 +144,11 @@ EOF;
         $response = $client->execute(new ApiSessionCreate('func1UnitTest'));
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.
-     */
-    public function testExecuteBatchTransactionResultException()
+    public function testExecuteBatchTransactionResultException(): void
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage("Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -229,7 +227,7 @@ EOF;
         ], $requestConfig);
     }
 
-    public function testLogger()
+    public function testLogger(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -295,6 +293,6 @@ EOF;
         }
         fclose($handle);
 
-        $this->assertContains('<password>REDACTED</password>', $contents);
+        $this->assertStringContainsString('<password>REDACTED</password>', $contents);
     }
 }

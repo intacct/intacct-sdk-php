@@ -34,7 +34,7 @@ class AttachmentFileTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $structure = [
             'csv' => [
@@ -44,7 +44,7 @@ class AttachmentFileTest extends \PHPUnit\Framework\TestCase
         $this->root = vfsStream::setup('root', null, $structure);
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

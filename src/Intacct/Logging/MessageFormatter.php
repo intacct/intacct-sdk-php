@@ -64,9 +64,9 @@ final class MessageFormatter extends \GuzzleHttp\MessageFormatter
      */
     public function format(
         RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $error = null
-    ) {
+        ?ResponseInterface $response = null,
+        ?\Throwable $error = null
+    ): string {
         $message = parent::format($request, $response, $error);
 
         $replacement = '$1REDACTED$3';

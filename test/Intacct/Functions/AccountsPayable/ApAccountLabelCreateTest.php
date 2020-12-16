@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ApAccountLabelCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,12 +57,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Account Label is required for create
-     */
-    public function testRequiredAccountLabel()
+    public function testRequiredAccountLabel(): void
     {
+        $this->expectExceptionMessage("Account Label is required for create");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -77,12 +76,11 @@ EOF;
         $label->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Description is required for create
-     */
-    public function testRequiredDescription()
+    public function testRequiredDescription(): void
     {
+        $this->expectExceptionMessage("Description is required for create");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -97,12 +95,11 @@ EOF;
         $label->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage GL Account is required for create
-     */
-    public function testRequiredGlAccount()
+    public function testRequiredGlAccount(): void
     {
+        $this->expectExceptionMessage("GL Account is required for create");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

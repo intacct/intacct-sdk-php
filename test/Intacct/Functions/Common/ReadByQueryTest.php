@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ReadByQueryTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,7 +56,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -91,22 +91,20 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be less than 1
-     */
-    public function testMinPageSize()
+    public function testMinPageSize(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Page Size cannot be less than 1");
+
         $readByQuery = new ReadByQuery('unittest');
         $readByQuery->setPageSize(0);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page Size cannot be greater than 1000
-     */
-    public function testMaxPageSize()
+    public function testMaxPageSize(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Page Size cannot be greater than 1000");
+
         $readByQuery = new ReadByQuery('unittest');
         $readByQuery->setPageSize(1001);
     }

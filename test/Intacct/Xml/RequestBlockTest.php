@@ -26,7 +26,7 @@ use Intacct\RequestConfig;
 class RequestBlockTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXml()
+    public function testWriteXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="iso-8859-1"?>

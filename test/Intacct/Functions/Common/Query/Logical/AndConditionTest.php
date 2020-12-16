@@ -24,7 +24,7 @@ use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
 class AndConditionTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');
@@ -45,7 +45,7 @@ class AndConditionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$and);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');

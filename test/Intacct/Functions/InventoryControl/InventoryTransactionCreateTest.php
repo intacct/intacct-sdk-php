@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class InventoryTransactionCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -73,7 +73,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamOverrides()
+    public function testParamOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -156,12 +156,10 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage IC Transaction must have at least 1 line
-     */
-    public function testMissingPurchasingTransactionEntries()
+    public function testMissingPurchasingTransactionEntries(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("IC Transaction must have at least 1 line");
 
         $xml = new XMLWriter();
         $xml->openMemory();

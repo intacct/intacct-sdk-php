@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ArPaymentApplyTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,12 +57,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for apply
-     */
     public function testRequiredRecordNo()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Record No is required for apply");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -76,12 +75,11 @@ EOF;
         $payment->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Received Date is required for apply
-     */
-    public function testRequiredCustomerId()
+    public function testRequiredCustomerId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Received Date is required for apply");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

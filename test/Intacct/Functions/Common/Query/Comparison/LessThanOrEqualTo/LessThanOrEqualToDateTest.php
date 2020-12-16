@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo;
 class LessThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new LessThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');
@@ -35,7 +35,7 @@ class LessThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new LessThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');

@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ExpenseTypeUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,12 +57,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expense Type is required for update
-     */
-    public function testRequiredAccountLabel()
+    public function testRequiredAccountLabel(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Expense Type is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

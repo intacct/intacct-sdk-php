@@ -28,7 +28,7 @@ use Intacct\Xml\XMLWriter;
 class OperationBlockTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXmlSession()
+    public function testWriteXmlSession(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('fakesession..');
@@ -63,7 +63,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlLogin()
+    public function testWriteXmlLogin(): void
     {
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
@@ -104,7 +104,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlTransaction()
+    public function testWriteXmlTransaction(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('fakesession..');
@@ -141,12 +141,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank
-     */
-    public function testNoCredentials()
+    public function testNoCredentials(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank");
+
         $config = new ClientConfig();
         $config->setSessionId('');
         $config->setCompanyId('');

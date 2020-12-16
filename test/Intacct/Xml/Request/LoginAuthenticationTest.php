@@ -24,7 +24,7 @@ use Intacct\Xml\XMLWriter;
 class LoginAuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXml()
+    public function testWriteXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,7 +49,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlWithEntity()
+    public function testWriteXmlWithEntity(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -75,7 +75,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlWithEmptyEntity()
+    public function testWriteXmlWithEmptyEntity(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -100,31 +100,28 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Company ID is required and cannot be blank
-     */
-    public function testInvalidCompanyId()
+
+    public function testInvalidCompanyId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Company ID is required and cannot be blank");
+
         new LoginAuthentication('testuser', '', 'testpass');
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage User ID is required and cannot be blank
-     */
-    public function testInvalidUserId()
+
+    public function testInvalidUserId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("User ID is required and cannot be blank");
+
         new LoginAuthentication('', 'testcompany', 'testpass');
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage User Password is required and cannot be blank
-     */
-    public function testInvalidUserPass()
+
+    public function testInvalidUserPass(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("User Password is required and cannot be blank");
+
         new LoginAuthentication('testuser', 'testcompany', '');
     }
 }

@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\InArray;
 class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new InArrayInteger();
         $condition->setField('RECORDNO');
@@ -33,7 +33,7 @@ class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new InArrayInteger();
         $condition->setField('RECORDNO');
@@ -45,7 +45,7 @@ class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testCountOneToString()
+    public function testCountOneToString(): void
     {
         $condition = new InArrayInteger();
         $condition->setField('RECORDNO');

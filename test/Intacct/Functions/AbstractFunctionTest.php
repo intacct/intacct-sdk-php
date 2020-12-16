@@ -33,7 +33,7 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
         $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
     }
 
-    public function testValidControlId()
+    public function testValidControlId(): void
     {
         $controlId = "unittest";
         $this->object->setControlId($controlId);
@@ -41,14 +41,14 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($controlId, $this->object->getControlId());
     }
 
-    public function testNoControlId()
+    public function testNoControlId(): void
     {
         $this->object->setControlId();
 
         $this->assertNotNull($this->object->getControlId());
     }
 
-    public function testMinimalLengthControlId()
+    public function testMinimalLengthControlId(): void
     {
         $controlId = "";
         $this->object->setControlId($controlId);
@@ -56,12 +56,11 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
         $this->assertNotNull($this->object->getControlId());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Function Control ID must be between 1 and 256 characters in length
-     */
-    public function testMaximumLengthControlId()
+    public function testMaximumLengthControlId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Function Control ID must be between 1 and 256 characters in length");
+
         $controlId = "12345678901234567890123456789012345678901234567890"
             . "123456789012345678901234567890123456789012345678901234567890"
             . "123456789012345678901234567890123456789012345678901234567890"

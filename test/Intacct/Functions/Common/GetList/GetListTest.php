@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class GetListTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultConstruct()
+    public function testDefaultConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,7 +49,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testExpressionFilter()
+    public function testExpressionFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -87,7 +87,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testLogicalFilter()
+    public function testLogicalFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -144,12 +144,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Object Name is required for get_list
-     */
-    public function testNoFieldName()
+    public function testNoFieldName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Object Name is required for get_list");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

@@ -24,7 +24,7 @@ use Intacct\Xml\XMLWriter;
 class SessionAuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXml()
+    public function testWriteXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -44,13 +44,12 @@ EOF;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Session ID is required and cannot be blank
-     */
-    public function testInvalidSession()
+
+    public function testInvalidSession(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Session ID is required and cannot be blank");
+
         new SessionAuthentication('');
     }
 }
