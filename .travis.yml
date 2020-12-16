@@ -2,6 +2,9 @@ language: php
 
 php:
   - 7.3
+  - 7.4
+
+dist: bionic
 
 before_script:
   - composer self-update
