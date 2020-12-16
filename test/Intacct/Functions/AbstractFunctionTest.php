@@ -28,7 +28,7 @@ class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
     /** @var AbstractFunction */
     protected $object;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->object = $this->getMockForAbstractClass(AbstractFunction::class);
     }
