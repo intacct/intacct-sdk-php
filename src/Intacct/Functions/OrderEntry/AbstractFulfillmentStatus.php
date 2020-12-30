@@ -91,7 +91,9 @@ abstract class AbstractFulfillmentStatus extends AbstractFunction
         }
 
         if (isset($this->deliveryDate)) {
-            $xml->writeElementDate('deliverydate', $this->deliveryDate, XMLWriter::IA_DATE_FORMAT);
+            $xml->startElement('deliverydate');
+            $xml->writeDateSplitElements($this->deliveryDate, false);
+            $xml->endElement();
         }
 
         if (isset($this->deferralStatus)) {

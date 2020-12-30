@@ -173,7 +173,11 @@ EOF;
             <line_num>14</line_num>
             <invoiceprice>700.5</invoiceprice>
             <deliverystatus>Undelivered</deliverystatus>
-            <deliverydate>12/25/2018</deliverydate>
+            <deliverydate>
+                <year>2018</year>
+                <month>12</month>
+                <day>25</day>
+            </deliverydate>
             <deferralstatus>Defer until item is delivered</deferralstatus>
         </kitstatus>
     </fulfillmentstatus>
