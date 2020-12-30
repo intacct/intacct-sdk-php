@@ -99,7 +99,9 @@ EOF;
     <employeeid>90295</employeeid>
     <classid>243609</classid>
     <contractid>9062</contractid>
-    <fulfillmentstatus>Complete</fulfillmentstatus>
+    <fulfillmentstatus>
+        <deliverystatus>Complete</deliverystatus>
+    </fulfillmentstatus>
     <taskno>9850</taskno>
     <billingtemplate>3525</billingtemplate>
 </sotransitem>
@@ -127,7 +129,11 @@ EOF;
         $entry->setRevRecStartDate(new \DateTime('2015-06-30'));
         $entry->setRevRecEndDate(new \DateTime('2015-07-31'));
         $entry->setRenewalMacro('Quarterly');
-        $entry->setFulfillmentStatus('Complete');
+
+        $fulfillmentStatus = new FulfillmentStatusCreate();
+        $fulfillmentStatus->setDeliveryStatus('Complete');
+
+        $entry->setFulfillmentStatus($fulfillmentStatus);
         $entry->setTaskNumber('9850');
         $entry->setBillingTemplate('3525');
         $entry->setLocationId('SF');
@@ -150,6 +156,47 @@ EOF;
             'customfield1' => 'customvalue1',
         ]);
 
+        $entry->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
+    public function testKitStatus(): void
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<sotransitem>
+    <itemid>26323</itemid>
+    <quantity>2340</quantity>
+    <fulfillmentstatus>
+        <kitstatus>
+            <line_num>14</line_num>
+            <invoiceprice>700.5</invoiceprice>
+            <deliverystatus>Undelivered</deliverystatus>
+            <deliverydate>12/25/2018</deliverydate>
+            <deferralstatus>Defer until item is delivered</deferralstatus>
+        </kitstatus>
+    </fulfillmentstatus>
+</sotransitem>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $entry = new OrderEntryTransactionLineCreate();
+        $entry->setItemId('26323');
+        $entry->setQuantity(2340);
+
+        $kitStatus = new KitStatusCreate();
+        $kitStatus->setInvoicePrice(700.50);
+        $kitStatus->setLineNo(14);
+        $kitStatus->setDeliveryDate(new \DateTime('2018/12/25'));
+        $kitStatus->setDeliveryStatus('Undelivered');
+        $kitStatus->setDeferralStatus('Defer until item is delivered');
+        $entry->setFulfillmentStatus($kitStatus);
         $entry->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());

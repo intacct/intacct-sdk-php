@@ -51,6 +51,7 @@ abstract class AbstractClient
         $this->config = $config;
     }
 
+
     /**
      * AbstractClient constructor.
      *

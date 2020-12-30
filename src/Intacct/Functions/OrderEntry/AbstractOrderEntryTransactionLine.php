@@ -71,7 +71,7 @@ abstract class AbstractOrderEntryTransactionLine
     /** @var string */
     protected $renewalMacro;
 
-    /** @var string */
+    /** @var AbstractFulfillmentStatus|AbstractKitStatus */
     protected $fulfillmentStatus;
 
     /** @var string */
@@ -348,7 +348,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @return string
+     * @return AbstractFulfillmentStatus|AbstractKitStatus
      */
     public function getFulfillmentStatus()
     {
@@ -356,7 +356,7 @@ abstract class AbstractOrderEntryTransactionLine
     }
 
     /**
-     * @param string $fulfillmentStatus
+     * @param AbstractFulfillmentStatus|AbstractKitStatus $fulfillmentStatus
      */
     public function setFulfillmentStatus($fulfillmentStatus)
     {

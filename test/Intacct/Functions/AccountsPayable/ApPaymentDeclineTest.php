@@ -22,9 +22,9 @@ use Intacct\Xml\XMLWriter;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestDecline
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentDecline
  */
-class ApPaymentRequestDeclineTest extends TestCase
+class ApPaymentDeclineTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -32,7 +32,11 @@ class ApPaymentRequestDeclineTest extends TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <decline_appaymentrequest key="1234" />
+    <decline_appaymentrequest>
+        <appaymentkeys>
+            <appaymentkey>1234</appaymentkey>
+        </appaymentkeys>
+    </decline_appaymentrequest>
 </function>
 EOF;
 
@@ -42,27 +46,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestDecline('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::DECLINE, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    public function testRequiredId(): void
-    {
-        $this->expectExceptionMessage("Record No is required for decline");
-        $this->expectException(\InvalidArgumentException::class);
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestDecline('unittest');
-
-        $obj->writeXml($xml);
     }
 }

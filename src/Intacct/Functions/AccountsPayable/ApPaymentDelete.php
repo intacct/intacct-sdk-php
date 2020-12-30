@@ -23,29 +23,10 @@ use InvalidArgumentException;
 /**
  * Delete an existing AP payment request record
  */
-class ApPaymentRequestDelete extends AbstractApPaymentRequest
+class ApPaymentDelete extends AbstractApPaymentFunction
 {
-
-    /**
-     * Write the function block XML
-     *
-     * @param XMLWriter $xml
-     * @throw InvalidArgumentException
-     */
-    public function writeXml(XMLWriter &$xml)
+    protected function getFunction(): string
     {
-        $xml->startElement('function');
-        $xml->writeAttribute('controlid', $this->getControlId());
-
-        $xml->startElement('delete_paymentrequest');
-
-        if (!$this->getRecordNo()) {
-            throw new InvalidArgumentException('Record No is required for delete');
-        }
-        $xml->writeAttribute('key', $this->getRecordNo());
-
-        $xml->endElement(); //delete_paymentrequest
-
-        $xml->endElement(); //function
+        return AbstractApPaymentFunction::DELETE;
     }
 }

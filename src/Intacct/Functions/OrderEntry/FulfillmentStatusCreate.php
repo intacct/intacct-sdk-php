@@ -15,36 +15,22 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\OrderEntry;
+
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
-/*
- * Decline an existing AP payment request record
- */
-class ApPaymentRequestDecline extends AbstractApPaymentRequest
+class FulfillmentStatusCreate extends AbstractFulfillmentStatus
 {
     /**
      * Write the function block XML
      *
      * @param XMLWriter $xml
-     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
-        $xml->startElement('function');
-        $xml->writeAttribute('controlid', $this->getControlId());
-
-        $xml->startElement('decline_appaymentrequest');
-
-        if (!$this->getRecordNo()) {
-            throw new InvalidArgumentException('Record No is required for decline');
-        }
-        $xml->writeAttribute('key', $this->getRecordNo());
-
-        $xml->endElement(); //decline_appaymentrequest
-
-        $xml->endElement(); //function
+        $xml->startElement('fulfillmentstatus');
+        $this->writeXmlDetails($xml);
+        $xml->endElement();
     }
 }

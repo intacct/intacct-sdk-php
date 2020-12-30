@@ -35,7 +35,9 @@ class TransactionItemDetail extends AbstractTransactionItemDetail
 
         if ($this->getSerialNumber()) {
             $xml->writeElement('serialno', $this->getSerialNumber());
-        } elseif ($this->getLotNumber()) {
+        }
+
+        if ($this->getLotNumber()) {
             $xml->writeElement('lotno', $this->getLotNumber());
         }
 

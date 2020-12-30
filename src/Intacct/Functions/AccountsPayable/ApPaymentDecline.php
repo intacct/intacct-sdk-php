@@ -17,31 +17,16 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\Functions\AbstractFunction;
+use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
-abstract class AbstractApPayment extends AbstractFunction
+/*
+ * Decline an existing AP payment request record
+ */
+class ApPaymentDecline extends AbstractApPaymentFunction
 {
-
-    /** @var int|string */
-    protected $recordNo;
-
-    /**
-     * Get record number
-     *
-     * @return int|string
-     */
-    public function getRecordNo()
+    protected function getFunction(): string
     {
-        return $this->recordNo;
-    }
-
-    /**
-     * Set record number
-     *
-     * @param int|string $recordNo
-     */
-    public function setRecordNo($recordNo)
-    {
-        $this->recordNo = $recordNo;
+        return AbstractApPaymentFunction::DECLINE;
     }
 }

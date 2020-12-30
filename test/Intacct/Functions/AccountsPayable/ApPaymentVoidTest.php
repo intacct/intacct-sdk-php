@@ -21,9 +21,9 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestApprove
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentVoid
  */
-class ApPaymentRequestApproveTest extends \PHPUnit\Framework\TestCase
+class ApPaymentVoidTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct(): void
@@ -31,11 +31,11 @@ class ApPaymentRequestApproveTest extends \PHPUnit\Framework\TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <approve_appaymentrequest>
+    <void_appaymentrequest>
         <appaymentkeys>
             <appaymentkey>1234</appaymentkey>
         </appaymentkeys>
-    </approve_appaymentrequest>
+    </void_appaymentrequest>
 </function>
 EOF;
 
@@ -45,27 +45,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestApprove('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::VOID, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    public function testRequiredId(): void
-    {
-        $this->expectExceptionMessage("Record No is required for approve");
-        $this->expectException(InvalidArgumentException::class);
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestApprove('unittest');
-
-        $obj->writeXml($xml);
     }
 }

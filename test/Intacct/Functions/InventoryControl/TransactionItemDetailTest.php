@@ -63,6 +63,7 @@ EOF;
 <itemdetail>
     <quantity>15325</quantity>
     <serialno>S2355235</serialno>
+    <lotno>L111</lotno>
     <aisle>55</aisle>
     <row>1</row>
     <bin>12</bin>
@@ -78,6 +79,7 @@ EOF;
         $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(15325);
         $itemDetail->setSerialNumber('S2355235');
+        $itemDetail->setLotNumber('L111');
         $itemDetail->setAisle('55');
         $itemDetail->setRow('1');
         $itemDetail->setBin('12');

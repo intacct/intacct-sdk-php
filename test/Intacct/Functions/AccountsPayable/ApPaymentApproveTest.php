@@ -21,17 +21,20 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestDelete
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentApprove
  */
-class ApPaymentRequestDeleteTest extends \PHPUnit\Framework\TestCase
+class ApPaymentApproveTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete_paymentrequest key="1234" />
+    <approve_appaymentrequest>
+        <appaymentkeys>
+            <appaymentkey>1234</appaymentkey>
+        </appaymentkeys>
+    </approve_appaymentrequest>
 </function>
 EOF;
 
@@ -41,27 +44,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestDelete('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::APPROVE,1234, 'unittest');
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    public function testRequiredId(): void
-    {
-        $this->expectExceptionMessage("Record No is required for delete");
-        $this->expectException(InvalidArgumentException::class);
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestDelete('unittest');
-
-        $obj->writeXml($xml);
     }
 }

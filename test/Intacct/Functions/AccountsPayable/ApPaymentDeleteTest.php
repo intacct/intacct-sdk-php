@@ -21,9 +21,9 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestVoid
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentDelete
  */
-class ApPaymentRequestVoidTest extends \PHPUnit\Framework\TestCase
+class ApPaymentDeleteTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct(): void
@@ -31,11 +31,10 @@ class ApPaymentRequestVoidTest extends \PHPUnit\Framework\TestCase
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <void_appaymentrequest>
-        <appaymentkeys>
-            <appaymentkey>1234</appaymentkey>
-        </appaymentkeys>
-    </void_appaymentrequest>
+    <delete>
+        <object>APPYMT</object>
+        <keys>1234</keys>
+    </delete>
 </function>
 EOF;
 
@@ -45,27 +44,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestVoid('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::DELETE, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    public function testRequiredId(): void
-    {
-        $this->expectExceptionMessage("Record No is required for void");
-        $this->expectException(InvalidArgumentException::class);
-
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestVoid('unittest');
-
-        $obj->writeXml($xml);
     }
 }
