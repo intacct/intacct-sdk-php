@@ -36,7 +36,7 @@ abstract class AbstractApPaymentFunction extends AbstractFunction
     public const VOID = 'void_appaymentrequest';
 
     /** @var int */
-    protected int $recordNo;
+    protected $recordNo;
 
     public function __construct(int $recordNo, string $controlId)
     {

@@ -20,7 +20,7 @@ namespace Intacct\Functions\AccountsPayable;
 class ApPaymentDetailBuilder
 {
     /** @var array */
-    private array $_detailList = [];
+    private $_detailList = [];
 
     public function __construct()
     {

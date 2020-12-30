@@ -22,21 +22,25 @@ class ApPaymentDetailInfo
     /**
      * This is the record number of a Bill (APBILL) or Credit Memo.
      */
-    public int $recordNo;
+    /** @var int */
+    public $recordNo;
 
     /**
      * This is the record number of a Bill or Credit Memo Line (APBILLITEM).  This must be an
      * owned record of the BillRecordNo attribute.
      */
-    public int $lineRecordNo;
+    /** @var int */
+    public $lineRecordNo;
 
     /**
      * Payment amount.  Enter an amount you want to pay.  Not required if applying an existing transaction.
      */
-    public float $paymentAmount;
+    /** @var float|string */
+    public $paymentAmount;
 
     /**
      * Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
      */
-    public AbstractApPaymentDetailCredit $detailTransaction;
+    /** @var AbstractApPaymentDetailCredit */
+    public $detailTransaction;
 }

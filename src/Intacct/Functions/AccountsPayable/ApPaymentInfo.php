@@ -37,50 +37,50 @@ class ApPaymentInfo
     const PAYMENT_METHOD_ACH = 'ACH';
 
     /** @var string */
-    public string $paymentMethod;
+    public $paymentMethod;
 
     /** @var string */
-    public string $financialEntityId;
+    public $financialEntityId;
 
     /** @var string */
-    public string $vendorId;
+    public $vendorId;
 
     /** @var string */
-    public string $mergeOption;
+    public $mergeOption;
 
     /** @var bool */
-    public bool $groupPayments;
+    public $groupPayments;
 
     /** @var \DateTime */
-    public DateTime $paymentDate;
+    public $paymentDate;
 
     /** @var string */
-    public string $baseCurrency;
+    public $baseCurrency;
 
     /** @var string */
-    public string $transactionCurrency;
+    public $transactionCurrency;
 
     /** @var int */
-    public int $transactionAmountPaid;
+    public $transactionAmountPaid;
 
     /** @var \DateTime */
-    public \DateTime $exchangeRateDate;
+    public $exchangeRateDate;
 
     /** @var string */
-    public string $exchangeRateType;
+    public $exchangeRateType;
 
     /** @var string */
-    public string $documentNo;
+    public $documentNo;
 
     /** @var string */
-    public string $memo;
+    public $memo;
 
     /** @var string */
-    public string $notificationContactName;
+    public $notificationContactName;
 
     /** @var string */
-    public string $action;
+    public $action;
 
     /** @var array */
-    public array $apPaymentDetails;
+    public $apPaymentDetails;
 }

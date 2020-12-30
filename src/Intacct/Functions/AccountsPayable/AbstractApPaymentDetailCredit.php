@@ -28,13 +28,13 @@ abstract class AbstractApPaymentDetailCredit
     public const ADVANCE = 'advance';
 
     /** @var int */
-    public int $recordNo;
+    public $recordNo;
 
     /** @var int */
     public $lineRecordNo;
 
     /** @var float|int|string */
-    public float $transactionAmount;
+    public $transactionAmount;
 
     /**
      * @param XMLWriter $xml

@@ -23,16 +23,19 @@ class ApPaymentDetailBillInfo extends ApPaymentDetailInfo
      * Credit to apply.  Use this to have the system select available credits to use.  Do not use this if you are
      * applying an existing transaction.
      */
-    public float $creditToApply;
+    /** @var float */
+    public $creditToApply;
 
     /**
      * Discount to apply.  Do not use this if you use the ApplyToDiscountDate attribute or if you are applying an
      * existing transaction.
      */
-    public float $discountToApply;
+    /** @var float  */
+    public $discountToApply;
 
     /**
      * Apply To Bill Discount Date.  Discount Date to use for a Bill (APBILL) or Credit Memo.
      */
-    public \DateTime $applyToDiscountDate;
+    /** @var \DateTime  */
+    public $applyToDiscountDate;
 }

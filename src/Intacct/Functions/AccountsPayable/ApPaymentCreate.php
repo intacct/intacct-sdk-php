@@ -27,7 +27,7 @@ use InvalidArgumentException;
 class ApPaymentCreate extends AbstractFunction
 {
     /** @var ApPaymentInfo */
-    private ApPaymentInfo $_apPaymentInfo;
+    private $_apPaymentInfo;
 
     public function __construct(ApPaymentInfo $apPaymentInfo, string $controlId)
     {

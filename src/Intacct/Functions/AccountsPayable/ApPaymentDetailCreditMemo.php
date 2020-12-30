@@ -21,7 +21,8 @@ use Intacct\Xml\XMLWriter;
 
 class ApPaymentDetailCreditMemo implements IApPaymentDetail
 {
-    private ApPaymentDetailInfo $info;
+    /** @var ApPaymentDetailInfo */
+    private $info;
 
     public function __construct(ApPaymentDetailInfo $info)
     {
