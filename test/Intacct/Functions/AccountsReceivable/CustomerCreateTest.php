@@ -57,6 +57,40 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
+
+    public function testClearEmailAddress(): void
+    {
+        $expected = <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<function controlid="unittest">
+    <create>
+        <CUSTOMER>
+            <NAME>SaaS Corp</NAME>
+            <DISPLAYCONTACT>
+                <PRINTAS>SaaS Corporation</PRINTAS>
+                <EMAIL1/>
+            </DISPLAYCONTACT>
+        </CUSTOMER>
+    </create>
+</function>
+EOF;
+
+        $xml = new XMLWriter();
+        $xml->openMemory();
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument();
+
+        $record = new CustomerCreate('unittest');
+        $record->setCustomerName('SaaS Corp');
+        $record->setPrintAs('SaaS Corporation');
+        $record->setPrimaryEmailAddress('');
+
+        $record->writeXml($xml);
+
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
+    }
+
     public function testFullXml(): void
     {
         $expected = <<<EOF

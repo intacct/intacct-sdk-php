@@ -77,8 +77,8 @@ EOF;
                 <CELLPHONE>56</CELLPHONE>
                 <PAGER>78</PAGER>
                 <FAX>90</FAX>
-                <EMAIL1>noreply@intacct.com</EMAIL1>
-                <EMAIL2>noreplyagain@intacct.com</EMAIL2>
+                <EMAIL1/>
+                <EMAIL2/>
                 <URL1>www.intacct.com</URL1>
                 <URL2>us.intacct.com</URL2>
                 <MAILADDRESS>
@@ -159,8 +159,8 @@ EOF;
         $record->setCellularPhoneNo('56');
         $record->setPagerNo('78');
         $record->setFaxNo('90');
-        $record->setPrimaryEmailAddress('noreply@intacct.com');
-        $record->setSecondaryEmailAddress('noreplyagain@intacct.com');
+        $record->setPrimaryEmailAddress('');
+        $record->setSecondaryEmailAddress('');
         $record->setPrimaryUrl('www.intacct.com');
         $record->setSecondaryUrl('us.intacct.com');
         $record->setAddressLine1('300 Park Ave');
