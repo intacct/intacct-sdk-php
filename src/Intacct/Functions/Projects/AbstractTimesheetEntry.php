@@ -17,13 +17,17 @@
 
 namespace Intacct\Functions\Projects;
 
+use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
-abstract class AbstractTimesheetEntry
+abstract class AbstractTimesheetEntry extends AbstractFunction
 {
 
     use CustomFieldsTrait;
+
+    /** @var int|string */
+    protected $lineRecordNo;
 
     /** @var \DateTime */
     protected $entryDate;
@@ -78,6 +82,22 @@ abstract class AbstractTimesheetEntry
 
     /** @var string */
     protected $warehouseId;
+
+    /**
+     * @return int|string
+     */
+    public function getLineRecordNo()
+    {
+        return $this->lineRecordNo;
+    }
+
+    /**
+     * @param int|string $lineRecordNo
+     */
+    public function setLineRecordNo($lineRecordNo): void
+    {
+        $this->lineRecordNo = $lineRecordNo;
+    }
 
     /**
      * @return \DateTime
