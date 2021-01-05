@@ -52,6 +52,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -110,6 +111,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T11:07:22-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>failure</status>
@@ -192,6 +194,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -227,6 +230,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -262,6 +266,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>failure</status>
@@ -308,6 +313,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>aborted</status>
@@ -360,6 +366,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>aborted</status>
@@ -422,6 +429,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>
@@ -479,6 +487,7 @@ EOF;
             <companyid>company</companyid>
             <locationid></locationid>
             <sessiontimestamp>2017-08-05T11:22:32-07:00</sessiontimestamp>
+            <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
         </authentication>
         <result>
             <status>success</status>
@@ -522,6 +531,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>
@@ -580,6 +590,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>

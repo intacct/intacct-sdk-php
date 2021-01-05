@@ -43,6 +43,7 @@ class AuthenticationTest extends \PHPUnit\Framework\TestCase
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -67,6 +68,8 @@ EOF;
         $this->assertEquals('fakeuser', $authentication->getUserId());
         $this->assertEquals('fakecompany', $authentication->getCompanyId());
         $this->assertEquals('', $authentication->getEntityId());
+        $this->assertEquals('2015-10-24T18:56:52-07:00', $authentication->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $authentication->getSessionTimeout());
     }
 
     public function testMissingStatusElement(): void
@@ -91,6 +94,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-25T18:56:52-07:00</sessiontimeout>
             </authentication>
             <result/>
       </operation>
@@ -121,6 +125,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-25T18:56:52-07:00</sessiontimeout>
             </authentication>
             <result/>
       </operation>
@@ -151,6 +156,7 @@ EOF;
                   <!--<companyid>fakecompany</companyid>-->
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimestamp>2015-10-25T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
       </operation>

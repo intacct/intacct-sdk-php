@@ -141,6 +141,44 @@ class ClientConfig
     }
 
     /** @var string */
+    private $sessionTimestamp = '';
+
+    /**
+     * @return string
+     */
+    public function getSessionTimestamp(): string
+    {
+        return $this->sessionTimestamp;
+    }
+
+    /**
+     * @param string $sessionTimestamp
+     */
+    public function setSessionTimestamp(string $sessionTimestamp): void
+    {
+        $this->sessionTimestamp = $sessionTimestamp;
+    }
+
+    /** @var string */
+    private $sessionTimeout = '';
+
+    /**
+     * @return string
+     */
+    public function getSessionTimeout(): string
+    {
+        return $this->sessionTimeout;
+    }
+
+    /**
+     * @param string $sessionTimeout
+     */
+    public function setSessionTimeout(string $sessionTimeout): void
+    {
+        $this->sessionTimeout = $sessionTimeout;
+    }
+
+    /** @var string */
     private $companyId = '';
 
     /**

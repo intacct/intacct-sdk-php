@@ -45,6 +45,7 @@ class SessionProviderTest extends \PHPUnit\Framework\TestCase
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -81,6 +82,8 @@ EOF;
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
         $this->assertEquals('', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
     public function testFromLoginCredentialsWithEntity(): void
@@ -102,6 +105,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid>testentity</locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -139,6 +143,8 @@ EOF;
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
     public function testFromSessionCredentials(): void
@@ -160,6 +166,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -198,6 +205,8 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
     public function testFromTopLevelSessionCredentialsWithEntityOverride(): void
@@ -219,6 +228,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -258,6 +268,8 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
     public function testFromPrivateEntitySessionCredentialsWithDifferentEntityOverride(): void
@@ -279,6 +291,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid>entityA</locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -318,6 +331,8 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('entityB', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
     public function testFromSessionCredsUsingEnvironmentSender(): void
@@ -339,6 +354,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>

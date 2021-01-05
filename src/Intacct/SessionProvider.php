@@ -55,12 +55,14 @@ class SessionProvider
         $data = $result->getData();
         $api = $data[0];
 
-        $config->setSessionId(strval($api->{'sessionid'}));
-        $config->setEndpointUrl(strval($api->{'endpoint'}));
-        $config->setEntityId(strval($api->{'locationid'}));
+        $config->setSessionId((string)$api->{'sessionid'});
+        $config->setEndpointUrl((string)$api->{'endpoint'});
+        $config->setEntityId((string)$api->{'locationid'});
 
-        $config->setCompanyId(strval($authentication->getCompanyId()));
-        $config->setUserId(strval($authentication->getUserId()));
+        $config->setCompanyId((string)$authentication->getCompanyId());
+        $config->setUserId((string)$authentication->getUserId());
+        $config->setSessionTimeout((string)$authentication->getSessionTimeout());
+        $config->setSessionTimestamp((string)$authentication->getSessionTimestamp());
 
         $config->setCredentials(new SessionCredentials($config, new SenderCredentials($config)));
 
