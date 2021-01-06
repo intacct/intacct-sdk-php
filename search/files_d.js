@@ -1,14 +1,21 @@
 var searchData=
 [
-  ['profilecredentialprovider_2ephp_2876',['ProfileCredentialProvider.php',['../_profile_credential_provider_8php.html',1,'']]],
-  ['projectcreate_2ephp_2877',['ProjectCreate.php',['../_project_create_8php.html',1,'']]],
-  ['projectdelete_2ephp_2878',['ProjectDelete.php',['../_project_delete_8php.html',1,'']]],
-  ['projectupdate_2ephp_2879',['ProjectUpdate.php',['../_project_update_8php.html',1,'']]],
-  ['purchasingtransactionapprove_2ephp_2880',['PurchasingTransactionApprove.php',['../_purchasing_transaction_approve_8php.html',1,'']]],
-  ['purchasingtransactioncreate_2ephp_2881',['PurchasingTransactionCreate.php',['../_purchasing_transaction_create_8php.html',1,'']]],
-  ['purchasingtransactiondecline_2ephp_2882',['PurchasingTransactionDecline.php',['../_purchasing_transaction_decline_8php.html',1,'']]],
-  ['purchasingtransactiondelete_2ephp_2883',['PurchasingTransactionDelete.php',['../_purchasing_transaction_delete_8php.html',1,'']]],
-  ['purchasingtransactionlinecreate_2ephp_2884',['PurchasingTransactionLineCreate.php',['../_purchasing_transaction_line_create_8php.html',1,'']]],
-  ['purchasingtransactionlineupdate_2ephp_2885',['PurchasingTransactionLineUpdate.php',['../_purchasing_transaction_line_update_8php.html',1,'']]],
-  ['purchasingtransactionupdate_2ephp_2886',['PurchasingTransactionUpdate.php',['../_purchasing_transaction_update_8php.html',1,'']]]
+  ['offlineclient_2ephp_2991',['OfflineClient.php',['../_offline_client_8php.html',1,'']]],
+  ['offlineresponse_2ephp_2992',['OfflineResponse.php',['../_offline_response_8php.html',1,'']]],
+  ['onlineclient_2ephp_2993',['OnlineClient.php',['../_online_client_8php.html',1,'']]],
+  ['onlineresponse_2ephp_2994',['OnlineResponse.php',['../_online_response_8php.html',1,'']]],
+  ['operationblock_2ephp_2995',['OperationBlock.php',['../_operation_block_8php.html',1,'']]],
+  ['orcondition_2ephp_2996',['OrCondition.php',['../_or_condition_8php.html',1,'']]],
+  ['orderascending_2ephp_2997',['OrderAscending.php',['../_order_ascending_8php.html',1,'']]],
+  ['orderbuilder_2ephp_2998',['OrderBuilder.php',['../_order_builder_8php.html',1,'']]],
+  ['orderdescending_2ephp_2999',['OrderDescending.php',['../_order_descending_8php.html',1,'']]],
+  ['orderentrytransactioncreate_2ephp_3000',['OrderEntryTransactionCreate.php',['../_order_entry_transaction_create_8php.html',1,'']]],
+  ['orderentrytransactiondelete_2ephp_3001',['OrderEntryTransactionDelete.php',['../_order_entry_transaction_delete_8php.html',1,'']]],
+  ['orderentrytransactionlinecreate_2ephp_3002',['OrderEntryTransactionLineCreate.php',['../_order_entry_transaction_line_create_8php.html',1,'']]],
+  ['orderentrytransactionlineupdate_2ephp_3003',['OrderEntryTransactionLineUpdate.php',['../_order_entry_transaction_line_update_8php.html',1,'']]],
+  ['orderentrytransactionupdate_2ephp_3004',['OrderEntryTransactionUpdate.php',['../_order_entry_transaction_update_8php.html',1,'']]],
+  ['orderinterface_2ephp_3005',['OrderInterface.php',['../_order_interface_8php.html',1,'']]],
+  ['oroperator_2ephp_3006',['OrOperator.php',['../_or_operator_8php.html',1,'']]],
+  ['otherreceiptcreate_2ephp_3007',['OtherReceiptCreate.php',['../_other_receipt_create_8php.html',1,'']]],
+  ['otherreceiptlinecreate_2ephp_3008',['OtherReceiptLineCreate.php',['../_other_receipt_line_create_8php.html',1,'']]]
 ];

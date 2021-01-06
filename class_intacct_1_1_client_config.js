@@ -14,6 +14,8 @@ var class_intacct_1_1_client_config =
     [ "getSenderId", "class_intacct_1_1_client_config.html#af9f1753ed8cd5799c947fea3d29830db", null ],
     [ "getSenderPassword", "class_intacct_1_1_client_config.html#a388a7d4b921d4d0e2061c2e68e0efaa3", null ],
     [ "getSessionId", "class_intacct_1_1_client_config.html#aa9889007e27fedadb28ae8f2fd77a569", null ],
+    [ "getSessionTimeout", "class_intacct_1_1_client_config.html#a9c2e12a44092f4c19b1361a0e2a4ffb0", null ],
+    [ "getSessionTimestamp", "class_intacct_1_1_client_config.html#ac9ecde18572dca074bed178f51c7b4cc", null ],
     [ "getUserId", "class_intacct_1_1_client_config.html#a05f6aa1ffae6295260d9f1cca016bf33", null ],
     [ "getUserPassword", "class_intacct_1_1_client_config.html#a13cd1f5d25f5c739aa2bd78bab45cb9d", null ],
     [ "setCompanyId", "class_intacct_1_1_client_config.html#ac50cd60ecfdff30c620800ebb1a5c012", null ],
@@ -29,6 +31,8 @@ var class_intacct_1_1_client_config =
     [ "setSenderId", "class_intacct_1_1_client_config.html#a083558080719e545f5285b351fe6c16a", null ],
     [ "setSenderPassword", "class_intacct_1_1_client_config.html#a8e683604db9265ed9b576cce9a66f801", null ],
     [ "setSessionId", "class_intacct_1_1_client_config.html#a19f07f87e1188bb42dcdd92dae794b4e", null ],
+    [ "setSessionTimeout", "class_intacct_1_1_client_config.html#afd697bf00eee4eb26377ed4e10f5cb6c", null ],
+    [ "setSessionTimestamp", "class_intacct_1_1_client_config.html#a40c123a17a6e38107e7c7f7ae858bc6e", null ],
     [ "setUserId", "class_intacct_1_1_client_config.html#a6cacbeb3555df4a292566b2e1b9bb574", null ],
     [ "setUserPassword", "class_intacct_1_1_client_config.html#a31f666d8f3ca2624dc90d43d6d5e63f6", null ]
 ];
