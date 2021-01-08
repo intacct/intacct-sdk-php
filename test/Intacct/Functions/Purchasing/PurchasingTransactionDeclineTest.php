@@ -52,6 +52,6 @@ EOF;
 
         $transaction->writeXml($xml);
 
-        self::assertXmlStringEqualsXmlString($expected, $xml->flush());
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }

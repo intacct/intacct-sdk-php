@@ -77,16 +77,16 @@ EOF;
         $config = new ClientConfig();
         $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        self::assertEquals('defcompanyid', $loginCreds->getCompanyId());
-        self::assertNull($loginCreds->getEntityId());
-        self::assertEquals('defuserid', $loginCreds->getUserId());
-        self::assertEquals('defuserpass', $loginCreds->getUserPassword());
+        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        $this->assertNull($loginCreds->getEntityId());
+        $this->assertEquals('defuserid', $loginCreds->getUserId());
+        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
 
         $senderCreds = ProfileCredentialProvider::getSenderCredentials($config);
 
-        self::assertEquals('defsenderid', $senderCreds->getSenderId());
-        self::assertEquals('defsenderpass', $senderCreds->getSenderPassword());
-        self::assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
+        $this->assertEquals('defsenderid', $senderCreds->getSenderId());
+        $this->assertEquals('defsenderpass', $senderCreds->getSenderPassword());
+        $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
     }
 
     public function testGetLoginCredentialsFromSpecificProfile(): void
@@ -101,10 +101,10 @@ EOF;
 
         $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        self::assertEquals('inicompanyid', $profileCreds->getCompanyId());
-        self::assertNull($profileCreds->getEntityId());
-        self::assertEquals('iniuserid', $profileCreds->getUserId());
-        self::assertEquals('iniuserpass', $profileCreds->getUserPassword());
+        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        $this->assertNull($profileCreds->getEntityId());
+        $this->assertEquals('iniuserid', $profileCreds->getUserId());
+        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
     public function testGetLoginCredentialsWithEntityFromSpecificProfile(): void
@@ -119,10 +119,10 @@ EOF;
 
         $profileCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        self::assertEquals('inicompanyid', $profileCreds->getCompanyId());
-        self::assertEquals('inientityid', $profileCreds->getEntityId());
-        self::assertEquals('iniuserid', $profileCreds->getUserId());
-        self::assertEquals('iniuserpass', $profileCreds->getUserPassword());
+        $this->assertEquals('inicompanyid', $profileCreds->getCompanyId());
+        $this->assertEquals('inientityid', $profileCreds->getEntityId());
+        $this->assertEquals('iniuserid', $profileCreds->getUserId());
+        $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
     public function testGetLoginCredentialsFromNullProfile(): void
@@ -132,9 +132,9 @@ EOF;
 
         $loginCreds = ProfileCredentialProvider::getLoginCredentials($config);
 
-        self::assertEquals('defcompanyid', $loginCreds->getCompanyId());
-        self::assertEquals('defuserid', $loginCreds->getUserId());
-        self::assertEquals('defuserpass', $loginCreds->getUserPassword());
+        $this->assertEquals('defcompanyid', $loginCreds->getCompanyId());
+        $this->assertEquals('defuserid', $loginCreds->getUserId());
+        $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
     }
 
     public function testGetLoginCredentialsFromMissingIni(): void
