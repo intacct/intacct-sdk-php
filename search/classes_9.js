@@ -1,21 +1,4 @@
 var searchData=
 [
-  ['lessthandate_2462',['LessThanDate',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_1_1_less_than_date.html',1,'Intacct::Functions::Common::Query::Comparison::LessThan']]],
-  ['lessthandatetime_2463',['LessThanDateTime',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_1_1_less_than_date_time.html',1,'Intacct::Functions::Common::Query::Comparison::LessThan']]],
-  ['lessthanfloat_2464',['LessThanFloat',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_1_1_less_than_float.html',1,'Intacct::Functions::Common::Query::Comparison::LessThan']]],
-  ['lessthaninteger_2465',['LessThanInteger',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_1_1_less_than_integer.html',1,'Intacct::Functions::Common::Query::Comparison::LessThan']]],
-  ['lessthanorequaltodate_2466',['LessThanOrEqualToDate',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to_1_1_less_than_or_equal_to_date.html',1,'Intacct::Functions::Common::Query::Comparison::LessThanOrEqualTo']]],
-  ['lessthanorequaltodatetime_2467',['LessThanOrEqualToDateTime',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to_1_1_less_than_or_equal_to_date_time.html',1,'Intacct::Functions::Common::Query::Comparison::LessThanOrEqualTo']]],
-  ['lessthanorequaltofloat_2468',['LessThanOrEqualToFloat',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to_1_1_less_than_or_equal_to_float.html',1,'Intacct::Functions::Common::Query::Comparison::LessThanOrEqualTo']]],
-  ['lessthanorequaltointeger_2469',['LessThanOrEqualToInteger',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to_1_1_less_than_or_equal_to_integer.html',1,'Intacct::Functions::Common::Query::Comparison::LessThanOrEqualTo']]],
-  ['lessthanorequaltostring_2470',['LessThanOrEqualToString',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to_1_1_less_than_or_equal_to_string.html',1,'Intacct::Functions::Common::Query::Comparison::LessThanOrEqualTo']]],
-  ['lessthanstring_2471',['LessThanString',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_1_1_less_than_string.html',1,'Intacct::Functions::Common::Query::Comparison::LessThan']]],
-  ['likestring_2472',['LikeString',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_like_1_1_like_string.html',1,'Intacct::Functions::Common::Query::Comparison::Like']]],
-  ['locationcreate_2473',['LocationCreate',['../class_intacct_1_1_functions_1_1_company_1_1_location_create.html',1,'Intacct::Functions::Company']]],
-  ['locationdelete_2474',['LocationDelete',['../class_intacct_1_1_functions_1_1_company_1_1_location_delete.html',1,'Intacct::Functions::Company']]],
-  ['locationupdate_2475',['LocationUpdate',['../class_intacct_1_1_functions_1_1_company_1_1_location_update.html',1,'Intacct::Functions::Company']]],
-  ['logicalfilter_2476',['LogicalFilter',['../class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html',1,'Intacct::Functions::Common::GetList']]],
-  ['logicalinterface_2477',['LogicalInterface',['../interface_intacct_1_1_functions_1_1_common_1_1_query_1_1_logical_1_1_logical_interface.html',1,'Intacct::Functions::Common::Query::Logical']]],
-  ['loginauthentication_2478',['LoginAuthentication',['../class_intacct_1_1_xml_1_1_request_1_1_login_authentication.html',1,'Intacct::Xml::Request']]],
-  ['logincredentials_2479',['LoginCredentials',['../class_intacct_1_1_credentials_1_1_login_credentials.html',1,'Intacct::Credentials']]]
+  ['kitstatuscreate_2570',['KitStatusCreate',['../class_intacct_1_1_functions_1_1_order_entry_1_1_kit_status_create.html',1,'Intacct::Functions::OrderEntry']]]
 ];

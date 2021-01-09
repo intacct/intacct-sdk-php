@@ -10,7 +10,11 @@ var namespace_intacct_1_1_functions_1_1_projects =
     [ "TaskCreate", "class_intacct_1_1_functions_1_1_projects_1_1_task_create.html", "class_intacct_1_1_functions_1_1_projects_1_1_task_create" ],
     [ "TaskDelete", "class_intacct_1_1_functions_1_1_projects_1_1_task_delete.html", "class_intacct_1_1_functions_1_1_projects_1_1_task_delete" ],
     [ "TaskUpdate", "class_intacct_1_1_functions_1_1_projects_1_1_task_update.html", "class_intacct_1_1_functions_1_1_projects_1_1_task_update" ],
+    [ "TimesheetApprove", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_approve.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_approve" ],
     [ "TimesheetCreate", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_create.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_create" ],
+    [ "TimesheetDecline", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_decline.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_decline" ],
     [ "TimesheetDelete", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_delete.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_delete" ],
-    [ "TimesheetEntryCreate", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_create.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_create" ]
+    [ "TimesheetEntryCreate", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_create.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_create" ],
+    [ "TimesheetEntryUpdate", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_update.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_entry_update" ],
+    [ "TimesheetUpdate", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_update.html", "class_intacct_1_1_functions_1_1_projects_1_1_timesheet_update" ]
 ];

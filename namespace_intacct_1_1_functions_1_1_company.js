@@ -26,6 +26,7 @@ var namespace_intacct_1_1_functions_1_1_company =
     [ "ClassCreate", "class_intacct_1_1_functions_1_1_company_1_1_class_create.html", "class_intacct_1_1_functions_1_1_company_1_1_class_create" ],
     [ "ClassDelete", "class_intacct_1_1_functions_1_1_company_1_1_class_delete.html", "class_intacct_1_1_functions_1_1_company_1_1_class_delete" ],
     [ "ClassUpdate", "class_intacct_1_1_functions_1_1_company_1_1_class_update.html", "class_intacct_1_1_functions_1_1_company_1_1_class_update" ],
+    [ "CompanyPrefsGet", "class_intacct_1_1_functions_1_1_company_1_1_company_prefs_get.html", "class_intacct_1_1_functions_1_1_company_1_1_company_prefs_get" ],
     [ "ContactCreate", "class_intacct_1_1_functions_1_1_company_1_1_contact_create.html", "class_intacct_1_1_functions_1_1_company_1_1_contact_create" ],
     [ "ContactDelete", "class_intacct_1_1_functions_1_1_company_1_1_contact_delete.html", "class_intacct_1_1_functions_1_1_company_1_1_contact_delete" ],
     [ "ContactUpdate", "class_intacct_1_1_functions_1_1_company_1_1_contact_update.html", "class_intacct_1_1_functions_1_1_company_1_1_contact_update" ],

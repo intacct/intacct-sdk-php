@@ -1,14 +1,21 @@
 var searchData=
 [
-  ['profilecredentialprovider_2501',['ProfileCredentialProvider',['../class_intacct_1_1_credentials_1_1_profile_credential_provider.html',1,'Intacct::Credentials']]],
-  ['projectcreate_2502',['ProjectCreate',['../class_intacct_1_1_functions_1_1_projects_1_1_project_create.html',1,'Intacct::Functions::Projects']]],
-  ['projectdelete_2503',['ProjectDelete',['../class_intacct_1_1_functions_1_1_projects_1_1_project_delete.html',1,'Intacct::Functions::Projects']]],
-  ['projectupdate_2504',['ProjectUpdate',['../class_intacct_1_1_functions_1_1_projects_1_1_project_update.html',1,'Intacct::Functions::Projects']]],
-  ['purchasingtransactionapprove_2505',['PurchasingTransactionApprove',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_approve.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactioncreate_2506',['PurchasingTransactionCreate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_create.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactiondecline_2507',['PurchasingTransactionDecline',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_decline.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactiondelete_2508',['PurchasingTransactionDelete',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_delete.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactionlinecreate_2509',['PurchasingTransactionLineCreate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactionlineupdate_2510',['PurchasingTransactionLineUpdate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_update.html',1,'Intacct::Functions::Purchasing']]],
-  ['purchasingtransactionupdate_2511',['PurchasingTransactionUpdate',['../class_intacct_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_update.html',1,'Intacct::Functions::Purchasing']]]
+  ['offlineclient_2593',['OfflineClient',['../class_intacct_1_1_offline_client.html',1,'Intacct']]],
+  ['offlineresponse_2594',['OfflineResponse',['../class_intacct_1_1_xml_1_1_offline_response.html',1,'Intacct::Xml']]],
+  ['onlineclient_2595',['OnlineClient',['../class_intacct_1_1_online_client.html',1,'Intacct']]],
+  ['onlineresponse_2596',['OnlineResponse',['../class_intacct_1_1_xml_1_1_online_response.html',1,'Intacct::Xml']]],
+  ['operationblock_2597',['OperationBlock',['../class_intacct_1_1_xml_1_1_request_1_1_operation_block.html',1,'Intacct::Xml::Request']]],
+  ['orcondition_2598',['OrCondition',['../class_intacct_1_1_functions_1_1_common_1_1_query_1_1_logical_1_1_or_condition.html',1,'Intacct::Functions::Common::Query::Logical']]],
+  ['orderascending_2599',['OrderAscending',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_ascending.html',1,'Intacct::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderbuilder_2600',['OrderBuilder',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_builder.html',1,'Intacct::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderdescending_2601',['OrderDescending',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_descending.html',1,'Intacct::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderentrytransactioncreate_2602',['OrderEntryTransactionCreate',['../class_intacct_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_create.html',1,'Intacct::Functions::OrderEntry']]],
+  ['orderentrytransactiondelete_2603',['OrderEntryTransactionDelete',['../class_intacct_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_delete.html',1,'Intacct::Functions::OrderEntry']]],
+  ['orderentrytransactionlinecreate_2604',['OrderEntryTransactionLineCreate',['../class_intacct_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_line_create.html',1,'Intacct::Functions::OrderEntry']]],
+  ['orderentrytransactionlineupdate_2605',['OrderEntryTransactionLineUpdate',['../class_intacct_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_line_update.html',1,'Intacct::Functions::OrderEntry']]],
+  ['orderentrytransactionupdate_2606',['OrderEntryTransactionUpdate',['../class_intacct_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_update.html',1,'Intacct::Functions::OrderEntry']]],
+  ['orderinterface_2607',['OrderInterface',['../interface_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_interface.html',1,'Intacct::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['oroperator_2608',['OrOperator',['../class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_or_operator.html',1,'Intacct::Functions::Common::NewQuery::QueryFilter']]],
+  ['otherreceiptcreate_2609',['OtherReceiptCreate',['../class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_create.html',1,'Intacct::Functions::CashManagement']]],
+  ['otherreceiptlinecreate_2610',['OtherReceiptLineCreate',['../class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_line_create.html',1,'Intacct::Functions::CashManagement']]]
 ];
