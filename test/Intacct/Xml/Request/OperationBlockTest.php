@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -28,7 +28,7 @@ use Intacct\Xml\XMLWriter;
 class OperationBlockTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXmlSession()
+    public function testWriteXmlSession(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('fakesession..');
@@ -63,7 +63,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlLogin()
+    public function testWriteXmlLogin(): void
     {
         $config = new ClientConfig();
         $config->setCompanyId('testcompany');
@@ -104,7 +104,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlTransaction()
+    public function testWriteXmlTransaction(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('fakesession..');
@@ -141,12 +141,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank
-     */
-    public function testNoCredentials()
+    public function testNoCredentials(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank");
+
         $config = new ClientConfig();
         $config->setSessionId('');
         $config->setCompanyId('');

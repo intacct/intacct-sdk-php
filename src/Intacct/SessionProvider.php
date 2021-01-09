@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -55,12 +55,14 @@ class SessionProvider
         $data = $result->getData();
         $api = $data[0];
 
-        $config->setSessionId(strval($api->{'sessionid'}));
-        $config->setEndpointUrl(strval($api->{'endpoint'}));
-        $config->setEntityId(strval($api->{'locationid'}));
+        $config->setSessionId((string)$api->{'sessionid'});
+        $config->setEndpointUrl((string)$api->{'endpoint'});
+        $config->setEntityId((string)$api->{'locationid'});
 
-        $config->setCompanyId(strval($authentication->getCompanyId()));
-        $config->setUserId(strval($authentication->getUserId()));
+        $config->setCompanyId((string)$authentication->getCompanyId());
+        $config->setUserId((string)$authentication->getUserId());
+        $config->setSessionTimeout((string)$authentication->getSessionTimeout());
+        $config->setSessionTimestamp((string)$authentication->getSessionTimestamp());
 
         $config->setCredentials(new SessionCredentials($config, new SenderCredentials($config)));
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -21,21 +21,21 @@ use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestVoid
+ * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentConfirm
  */
-class ApPaymentRequestVoidTest extends \PHPUnit\Framework\TestCase
+class ApPaymentConfirmTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <void_appaymentrequest>
+    <confirm_appaymentrequest>
         <appaymentkeys>
             <appaymentkey>1234</appaymentkey>
         </appaymentkeys>
-    </void_appaymentrequest>
+    </confirm_appaymentrequest>
 </function>
 EOF;
 
@@ -45,28 +45,10 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestVoid('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::CONFIRM, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for void
-     */
-    public function testRequiredId()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestVoid('unittest');
-
-        $obj->writeXml($xml);
     }
 }

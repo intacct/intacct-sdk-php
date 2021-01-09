@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -28,7 +28,7 @@ use DateTime;
 class DdsJobCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,7 +58,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamsOverrides()
+    public function testParamsOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -103,42 +103,38 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Job Type is not a valid type
-     */
-    public function testNoJobType()
+    public function testNoJobType(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Job Type is not a valid type");
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setJobType('test');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage File Format is not a valid type
-     */
-    public function testInvalidFileFormat()
+    public function testInvalidFileFormat(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("File Format is not a valid type");
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setFileFormat('beos');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Split Size must be between 10000 and 100000
-     */
-    public function testMinSplitSize()
+    public function testMinSplitSize(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Split Size must be between 10000 and 100000");
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setSplitSize(100);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Split Size must be between 10000 and 100000
-     */
-    public function testMaxSplitSize()
+    public function testMaxSplitSize(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Split Size must be between 10000 and 100000");
+
         $runJob = new DdsJobCreate('unittest');
         $runJob->setSplitSize(100001);
     }

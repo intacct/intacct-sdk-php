@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -26,7 +26,7 @@ use GuzzleHttp\Handler\MockHandler;
 class SessionProviderTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testFromLoginCredentials()
+    public function testFromLoginCredentials(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -45,6 +45,7 @@ class SessionProviderTest extends \PHPUnit\Framework\TestCase
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -75,15 +76,17 @@ EOF;
         $config->setUserId('testuser');
         $config->setUserPassword('testpass');
         $config->setMockHandler($mock);
-        
+
         $sessionCreds = SessionProvider::factory($config);
-        
+
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
         $this->assertEquals('', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
-    public function testFromLoginCredentialsWithEntity()
+    public function testFromLoginCredentialsWithEntity(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -102,6 +105,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid>testentity</locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -139,9 +143,11 @@ EOF;
         $this->assertEquals('fAkESesSiOnId..', $sessionCreds->getSessionId());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', $sessionCreds->getEndpointUrl());
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
-    public function testFromSessionCredentials()
+    public function testFromSessionCredentials(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -160,6 +166,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -198,9 +205,11 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
-    public function testFromTopLevelSessionCredentialsWithEntityOverride()
+    public function testFromTopLevelSessionCredentialsWithEntityOverride(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -219,6 +228,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -258,9 +268,11 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('testentity', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
-    public function testFromPrivateEntitySessionCredentialsWithDifferentEntityOverride()
+    public function testFromPrivateEntitySessionCredentialsWithDifferentEntityOverride(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -279,6 +291,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid>entityA</locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -318,9 +331,11 @@ EOF;
             $sessionCreds->getEndpointUrl()
         );
         $this->assertEquals('entityB', $sessionCreds->getEntityId());
+        $this->assertEquals('2015-12-06T15:57:08-08:00', $sessionCreds->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $sessionCreds->getSessionTimeout());
     }
 
-    public function testFromSessionCredsUsingEnvironmentSender()
+    public function testFromSessionCredsUsingEnvironmentSender(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -339,6 +354,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>

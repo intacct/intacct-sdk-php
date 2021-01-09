@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -25,7 +25,7 @@ use Intacct\Xml\OnlineResponse;
 class ResultExceptionTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testGetErrors()
+    public function testGetErrors(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -66,7 +66,7 @@ EOF;
             $response->getResult()->ensureStatusSuccess();
         } catch (ResultException $ex) {
             $this->assertEquals('Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found', $ex->getMessage());
-            $this->assertInternalType('array', $ex->getErrors());
+            $this->assertIsArray($ex->getErrors());
         }
     }
 }

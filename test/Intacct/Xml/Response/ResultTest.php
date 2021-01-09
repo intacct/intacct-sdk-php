@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -33,7 +33,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,6 +52,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -66,32 +67,32 @@ EOF;
         $this->object = $response->getResult();
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $this->assertThat($this->object, $this->isInstanceOf('Intacct\Xml\Response\Result'));
     }
 
-    public function testGetStatus()
+    public function testGetStatus(): void
     {
         $this->assertEquals('success', $this->object->getStatus());
     }
 
-    public function testGetFunction()
+    public function testGetFunction(): void
     {
         $this->assertEquals('readByQuery', $this->object->getFunction());
     }
 
-    public function testGetControlId()
+    public function testGetControlId(): void
     {
         $this->assertEquals('testControlId', $this->object->getControlId());
     }
 
-    public function testGetData()
+    public function testGetData(): void
     {
         $this->assertCount(0, $this->object->getData());
     }
 
-    public function testGetErrors()
+    public function testGetErrors(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -110,6 +111,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T11:07:22-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>failure</status>
@@ -132,15 +134,14 @@ EOF;
         $result = $results[0];
 
         $this->assertEquals('failure', $result->getStatus());
-        $this->assertInternalType('array', $result->getErrors());
+        $this->assertIsArray($result->getErrors());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing status element
-     */
-    public function testMissingStatusElement()
+    public function testMissingStatusElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Result block is missing status element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -171,12 +172,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing function element
-     */
-    public function testMissingFunctionElement()
+    public function testMissingFunctionElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Result block is missing function element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -194,6 +194,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -207,12 +208,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing controlid element
-     */
-    public function testMissingControlIdElement()
+    public function testMissingControlIdElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Result block is missing controlid element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -230,6 +230,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -243,12 +244,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found
-     */
     public function testStatusFailure()
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage("Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -266,6 +266,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>failure</status>
@@ -290,12 +291,11 @@ EOF;
         $results[0]->ensureStatusNotFailure();
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResultException
-     * @expectedExceptionMessage Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.
-     */
-    public function testStatusAbort()
+    public function testStatusAbort(): void
     {
+        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectExceptionMessage("Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -313,6 +313,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>aborted</status>
@@ -346,7 +347,7 @@ EOF;
     /**
      * Test no exception is thrown even though the status is aborted
      */
-    public function testStatusNotFailureOnAborted()
+    public function testStatusNotFailureOnAborted(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -365,6 +366,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>aborted</status>
@@ -400,7 +402,7 @@ EOF;
     /**
      * Test no exception is thrown when status is success
      */
-    public function testStatusSuccess()
+    public function testStatusSuccess(): void
     {
 
         $this->object->ensureStatusSuccess();
@@ -408,7 +410,7 @@ EOF;
         $this->addToAssertionCount(1);  //does not throw an exception
     }
 
-    public function testLegacyGetListClass()
+    public function testLegacyGetListClass(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -427,6 +429,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>
@@ -465,7 +468,7 @@ EOF;
         $this->assertCount(2, $result->getData());
     }
 
-    public function testReadClass()
+    public function testReadClass(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -484,6 +487,7 @@ EOF;
             <companyid>company</companyid>
             <locationid></locationid>
             <sessiontimestamp>2017-08-05T11:22:32-07:00</sessiontimestamp>
+            <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
         </authentication>
         <result>
             <status>success</status>
@@ -508,7 +512,7 @@ EOF;
         $this->assertCount(1, $result->getData());
     }
 
-    public function testLegacyReadByQueryClass()
+    public function testLegacyReadByQueryClass(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -527,6 +531,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>
@@ -566,7 +571,7 @@ EOF;
         $this->assertCount(1, $result->getData());
     }
 
-    public function testLegacyCreateClassKey()
+    public function testLegacyCreateClassKey(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -585,6 +590,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-26T10:08:34-07:00</sessiontimeout>
             </authentication>
             <result>
                 <status>success</status>

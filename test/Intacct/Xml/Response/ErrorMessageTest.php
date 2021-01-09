@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -32,7 +32,7 @@ class ErrorMessageTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,10 +55,10 @@ EOF;
         $this->object = new ErrorMessage($errorMessage);
     }
 
-    public function testGetErrors()
+    public function testGetErrors(): void
     {
         $errors = $this->object->getErrors();
-        $this->assertInternalType('array', $errors);
+        $this->assertIsArray($errors);
         $this->assertEquals('1234 description Object definition \'BADOBJECT\' not found. stripthesetags.', $errors[0]);
         $this->assertEquals('5678 stripthesetags. Object definition \'BADOBJECT\' not found. correct.', $errors[1]);
     }

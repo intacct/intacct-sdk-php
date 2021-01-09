@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class ExpenseReportReverseTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,12 +56,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for reverse
-     */
-    public function testRequiredId()
+    public function testRequiredId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Record No is required for reverse");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -73,12 +72,11 @@ EOF;
         $record->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Reverse Date is required for reverse
-     */
     public function testRequiredDate()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Reverse Date is required for reverse");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

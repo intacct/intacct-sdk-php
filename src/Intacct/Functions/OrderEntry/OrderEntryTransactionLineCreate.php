@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -77,7 +77,9 @@ class OrderEntryTransactionLineCreate extends AbstractOrderEntryTransactionLine
         $xml->writeElement('employeeid', $this->getEmployeeId());
         $xml->writeElement('classid', $this->getClassId());
         $xml->writeElement('contractid', $this->getContractId());
-        $xml->writeElement('fulfillmentstatus', $this->getFulfillmentStatus());
+        if (isset($this->fulfillmentStatus)) {
+            $this->fulfillmentStatus->writeXml($xml);
+        }
         $xml->writeElement('taskno', $this->getTaskNumber());
         $xml->writeElement('billingtemplate', $this->getBillingTemplate());
 

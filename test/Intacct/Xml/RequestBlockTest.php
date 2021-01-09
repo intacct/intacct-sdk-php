@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -26,7 +26,7 @@ use Intacct\RequestConfig;
 class RequestBlockTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testWriteXml()
+    public function testWriteXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="iso-8859-1"?>

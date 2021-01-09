@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -18,11 +18,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\ProfileCredentialProvider
  */
-class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
+class ProfileCredentialProviderTest extends TestCase
 {
 
     /** @var string */
@@ -32,7 +34,7 @@ class ProfileCredentialProviderTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $this->ini = <<<EOF
 [default]
@@ -56,7 +58,7 @@ user_password = iniuserpass
 EOF;
     }
 
-    private function clearEnv()
+    private function clearEnv(): string
     {
         $dir = sys_get_temp_dir() . '/.intacct';
         if (!is_dir($dir)) {
@@ -65,7 +67,7 @@ EOF;
         return $dir;
     }
 
-    public function testGetCredentialsFromDefaultProfile()
+    public function testGetCredentialsFromDefaultProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -87,7 +89,7 @@ EOF;
         $this->assertEquals('https://unittest.intacct.com/ia/xmlgw.phtml', $senderCreds->getEndpointUrl());
     }
 
-    public function testGetLoginCredentialsFromSpecificProfile()
+    public function testGetLoginCredentialsFromSpecificProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -105,7 +107,7 @@ EOF;
         $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
-    public function testGetLoginCredentialsWithEntityFromSpecificProfile()
+    public function testGetLoginCredentialsWithEntityFromSpecificProfile(): void
     {
         $dir = $this->clearEnv();
 
@@ -123,7 +125,7 @@ EOF;
         $this->assertEquals('iniuserpass', $profileCreds->getUserPassword());
     }
 
-    public function testGetLoginCredentialsFromNullProfile()
+    public function testGetLoginCredentialsFromNullProfile(): void
     {
         $config = new ClientConfig();
         $config->setProfileName('');
@@ -135,24 +137,22 @@ EOF;
         $this->assertEquals('defuserpass', $loginCreds->getUserPassword());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot read credentials from file, "notarealfile.ini"
-     */
-    public function testGetLoginCredentialsFromMissingIni()
+    public function testGetLoginCredentialsFromMissingIni(): void
     {
+        $this->expectExceptionMessage("Cannot read credentials from file, \"notarealfile.ini\"");
+        $this->expectException(InvalidArgumentException::class);
+
         $config = new ClientConfig();
         $config->setProfileFile('notarealfile.ini');
 
         ProfileCredentialProvider::getLoginCredentials($config);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Profile Name "default" not found in credentials file
-     */
-    public function testGetLoginCredentialsMissingDefault()
+    public function testGetLoginCredentialsMissingDefault(): void
     {
+        $this->expectExceptionMessage("Profile Name \"default\" not found in credentials file");
+        $this->expectException(InvalidArgumentException::class);
+
         $dir = $this->clearEnv();
         $ini = <<<EOF
 [notdefault]

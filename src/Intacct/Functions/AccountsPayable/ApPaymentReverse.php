@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -17,11 +17,14 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
+use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 
-class ApPaymentReverse extends AbstractApPayment
+class ApPaymentReverse extends AbstractFunction
 {
+    /** @var int */
+    protected $recordNo;
 
     /** @var \DateTime */
     protected $reverseDate;
@@ -29,12 +32,16 @@ class ApPaymentReverse extends AbstractApPayment
     /** @var string */
     protected $memo;
 
+    public function setRecordNo(int $recordNo): void
+    {
+        $this->recordNo = $recordNo;
+    }
     /**
      * Get reverse date
      *
      * @return \DateTime
      */
-    public function getReverseDate()
+    public function getReverseDate(): \DateTime
     {
         return $this->reverseDate;
     }
@@ -44,15 +51,15 @@ class ApPaymentReverse extends AbstractApPayment
      *
      * @param \DateTime $reverseDate
      */
-    public function setReverseDate($reverseDate)
+    public function setReverseDate($reverseDate): void
     {
         $this->reverseDate = $reverseDate;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMemo()
+    public function getMemo(): ?string
     {
         return $this->memo;
     }
@@ -60,7 +67,7 @@ class ApPaymentReverse extends AbstractApPayment
     /**
      * @param string $memo
      */
-    public function setMemo($memo)
+    public function setMemo($memo): void
     {
         $this->memo = $memo;
     }
@@ -78,12 +85,12 @@ class ApPaymentReverse extends AbstractApPayment
 
         $xml->startElement('reverse_appayment');
 
-        if (!$this->getRecordNo()) {
+        if (!isset($this->recordNo)) {
             throw new InvalidArgumentException('Record No is required for reverse');
         }
-        $xml->writeAttribute('key', $this->getRecordNo());
+        $xml->writeAttribute('key', $this->recordNo);
 
-        if (!$this->getReverseDate()) {
+        if (!isset($this->reverseDate)) {
             throw new InvalidArgumentException('Reverse Date is required for reverse');
         }
         $xml->startElement('datereversed');

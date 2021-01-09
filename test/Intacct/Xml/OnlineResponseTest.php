@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -23,7 +23,7 @@ namespace Intacct\Xml;
 class OnlineResponseTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testGetters()
+    public function testGetters(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -42,6 +42,7 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-23T20:58:27-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -60,15 +61,14 @@ class OnlineResponseTest extends \PHPUnit\Framework\TestCase
 EOF;
 
         $response = new OnlineResponse($xml);
-        $this->assertInternalType('array', $response->getResults());
+        $this->assertIsArray($response->getResults());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Response is missing operation block
-     */
-    public function testMissingOperationBlock()
+    public function testMissingOperationBlock(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Response is missing operation block");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -84,12 +84,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response authentication status failure - XL03000006 Sign-in information is incorrect
-     */
-    public function testAuthenticationFailure()
+    public function testAuthenticationFailure(): void
     {
+        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectExceptionMessage("Response authentication status failure - XL03000006 Sign-in information is incorrect");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -121,12 +120,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing from operation element
-     */
-    public function testMissingAuthenticationBlock()
+    public function testMissingAuthenticationBlock(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing from operation element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -143,12 +141,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Result block is missing from operation element
-     */
-    public function testMissingResultBlock()
+    public function testMissingResultBlock(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Result block is missing from operation element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -166,6 +163,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-23T20:58:27-07:00</sessiontimeout>
             </authentication>
       </operation>
 </response>
@@ -173,12 +171,11 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResponseException
-     * @expectedExceptionMessage Response control status failure - PL04000055 This company is a demo company and has expired.
-     */
-    public function testResponseExceptionWithErrors()
+    public function testResponseExceptionWithErrors(): void
     {
+        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectExceptionMessage("Response control status failure - PL04000055 This company is a demo company and has expired.");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>

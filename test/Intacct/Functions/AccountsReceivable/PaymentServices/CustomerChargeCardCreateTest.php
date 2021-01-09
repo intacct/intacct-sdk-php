@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class CustomerChargeCardCreateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -60,12 +60,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Customer ID is required for create
-     */
-    public function testRequiredCustomerId()
+    public function testRequiredCustomerId(): void
     {
+        $this->expectExceptionMessage("Customer ID is required for create");
+        $this->expectException(InvalidArgumentException::class);
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -82,12 +81,11 @@ EOF;
         $obj->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Card Number is required for create
-     */
-    public function testRequiredCardNum()
+    public function testRequiredCardNum(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Card Number is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -104,12 +102,11 @@ EOF;
         $obj->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Card Type is required for create
-     */
-    public function testRequiredCardType()
+    public function testRequiredCardType(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Card Type is required for create");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -126,12 +123,10 @@ EOF;
         $obj->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expiration Month is required for create
-     */
-    public function testRequiredExpMonth()
+    public function testRequiredExpMonth(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Expiration Month is required for create");
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);
@@ -148,12 +143,10 @@ EOF;
         $obj->writeXml($xml);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expiration Year is required for create
-     */
-    public function testRequiredExpYear()
+    public function testRequiredExpYear(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Expiration Year is required for create");
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

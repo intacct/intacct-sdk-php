@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -31,7 +31,7 @@ class AndOperatorTest extends TestCase
     /**
      * Test RECORDNO >= 1 && RECORDNO <= 100
      */
-    public function testAndCondition()
+    public function testAndCondition(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +64,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testSingleFilter()
+    public function testSingleFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
@@ -76,7 +76,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testEmptyFilter()
+    public function testEmptyFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
@@ -88,7 +88,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testNullFilter()
+    public function testNullFilter(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Two or more FilterInterface objects required for and");
@@ -100,7 +100,7 @@ EOF;
         $filter->writeXML($xml);
     }
 
-    public function testAddFilter()
+    public function testAddFilter(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -130,7 +130,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testAddFilterNull()
+    public function testAddFilterNull(): void
     {
         $this->expectException(TypeError::class);
 

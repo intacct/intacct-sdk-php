@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -25,7 +25,7 @@ use Intacct\ClientConfig;
 class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testCredsFromConfig()
+    public function testCredsFromConfig(): void
     {
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
@@ -33,13 +33,13 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
         $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
 
         $creds = new SenderCredentials($config);
-        
+
         $this->assertEquals('testsenderid', $creds->getSenderId());
         $this->assertEquals('pass123!', $creds->getPassword());
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', (string)$creds->getEndpoint());
     }
 
-    public function testCredsFromEnv()
+    public function testCredsFromEnv(): void
     {
         putenv('INTACCT_SENDER_ID=envsender');
         putenv('INTACCT_SENDER_PASSWORD=envpass');
@@ -53,26 +53,24 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
         putenv('INTACCT_SENDER_ID');
         putenv('INTACCT_SENDER_PASSWORD');
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Sender ID not supplied in config or env variable "INTACCT_SENDER_ID"
-     */
-    public function testCredsNoSenderId()
+
+    public function testCredsNoSenderId(): void
     {
+        $this->expectExceptionMessage("Required Sender ID not supplied in config or env variable \"INTACCT_SENDER_ID\"");
+        $this->expectException(\InvalidArgumentException::class);
+
         $config = new ClientConfig();
         //$config->setSenderId('testsenderid');
         $config->setSenderPassword('pass123!');
 
         new SenderCredentials($config);
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Sender Password not supplied in config or env variable "INTACCT_SENDER_PASSWORD"
-     */
-    public function testCredsNoSenderPassword()
+
+    public function testCredsNoSenderPassword(): void
     {
+        $this->expectExceptionMessage("Required Sender Password not supplied in config or env variable \"INTACCT_SENDER_PASSWORD\"");
+        $this->expectException(\InvalidArgumentException::class);
+
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
         //$config->setSenderPassword('pass123!');
@@ -80,7 +78,7 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
         new SenderCredentials($config);
     }
 
-    private function clearEnv()
+    private function clearEnv(): string
     {
         $dir = sys_get_temp_dir() . '/.intacct';
         if (!is_dir($dir)) {
@@ -89,7 +87,7 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
         return $dir;
     }
 
-    public function testCredsFromProfile()
+    public function testCredsFromProfile(): void
     {
         $dir = $this->clearEnv();
         $ini = <<<EOF
@@ -111,7 +109,7 @@ EOF;
         $this->assertEquals('https://unittest.intacct.com/ia/xml/xmlgw.phtml', (string)$senderCreds->getEndpoint());
     }
 
-    public function testCredsFromProfileOverrideEndpoint()
+    public function testCredsFromProfileOverrideEndpoint(): void
     {
         $dir = $this->clearEnv();
         $ini = <<<EOF

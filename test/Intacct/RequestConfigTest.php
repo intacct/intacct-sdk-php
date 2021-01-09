@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,54 +22,49 @@ namespace Intacct;
 class RequestConfigTest extends \PHPUnit\Framework\TestCase
 {
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Encoding "invalid" is not supported by the system
-     */
-    public function testInvalidEncoding()
+    public function testInvalidEncoding(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Encoding \"invalid\" is not supported by the system");
+
         $config = new RequestConfig();
         $config->setEncoding('invalid');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Max Retries must be zero or greater
-     */
-    public function testNegativeRetries()
+    public function testNegativeRetries(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Max Retries must be zero or greater");
+
         $config = new RequestConfig();
         $config->setMaxRetries(-1);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Max Timeout must be zero or greater
-     */
-    public function testNegativeTimeout()
+    public function testNegativeTimeout(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Max Timeout must be zero or greater");
+
         $config = new RequestConfig();
         $config->setMaxTimeout(-1);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage No Retry Server Error Code is not valid int type
-     */
-    public function testNoRetryServerErrorCodeNotInt()
+    public function testNoRetryServerErrorCodeNotInt(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("No Retry Server Error Code is not valid int type");
+
         $config = new RequestConfig();
         $config->setNoRetryServerErrorCodes([
             '524',
         ]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage No Retry Server Error Codes must be between 500-599
-     */
-    public function testNoRetryServerErrorCodeNot500()
+    public function testNoRetryServerErrorCodeNot500(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("No Retry Server Error Codes must be between 500-599");
+
         $config = new RequestConfig();
         $config->setNoRetryServerErrorCodes([
             400,

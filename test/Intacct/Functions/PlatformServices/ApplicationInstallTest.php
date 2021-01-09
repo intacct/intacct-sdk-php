@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -25,12 +25,11 @@ use InvalidArgumentException;
 class ApplicationInstallTest extends \PHPUnit\Framework\TestCase
 {
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage XML Filename is required for install
-     */
-    public function testRequiredXmlFilename()
+    public function testRequiredXmlFilename(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("XML Filename is required for install");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

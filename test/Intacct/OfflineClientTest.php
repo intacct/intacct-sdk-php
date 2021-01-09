@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -27,7 +27,7 @@ use Intacct\Functions\Company\ApiSessionCreate;
 class OfflineClientTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +68,7 @@ EOF;
         $this->assertEquals('requestUnitTest', $response->getControl()->getControlId());
     }
 
-    public function testExecuteBatch()
+    public function testExecuteBatch(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

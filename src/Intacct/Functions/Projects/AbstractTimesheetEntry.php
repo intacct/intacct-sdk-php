@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -17,13 +17,17 @@
 
 namespace Intacct\Functions\Projects;
 
+use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
 use Intacct\Xml\XMLWriter;
 
-abstract class AbstractTimesheetEntry
+abstract class AbstractTimesheetEntry extends AbstractFunction
 {
 
     use CustomFieldsTrait;
+
+    /** @var int|string */
+    protected $lineRecordNo;
 
     /** @var \DateTime */
     protected $entryDate;
@@ -78,6 +82,22 @@ abstract class AbstractTimesheetEntry
 
     /** @var string */
     protected $warehouseId;
+
+    /**
+     * @return int|string
+     */
+    public function getLineRecordNo()
+    {
+        return $this->lineRecordNo;
+    }
+
+    /**
+     * @param int|string $lineRecordNo
+     */
+    public function setLineRecordNo($lineRecordNo): void
+    {
+        $this->lineRecordNo = $lineRecordNo;
+    }
 
     /**
      * @return \DateTime

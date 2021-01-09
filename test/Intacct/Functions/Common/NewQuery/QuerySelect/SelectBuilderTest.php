@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -28,7 +28,7 @@ use TypeError;
 class SelectBuilderTest extends TestCase
 {
 
-    public function testField()
+    public function testField(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -51,14 +51,14 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testNullField()
+    public function testNullField(): void
     {
         $this->expectException(TypeError::class);
 
         (new SelectBuilder())->field(null);
     }
 
-    public function testEmptyField()
+    public function testEmptyField(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
@@ -66,7 +66,7 @@ EOF;
         (new SelectBuilder())->field('');
     }
 
-    public function testFields()
+    public function testFields(): void
     {
         $fieldNameList = ['CUSTOMERID', 'TOTALDUE', 'WHENDUE', 'TOTALENTERED', 'TOTALDUE', 'RECORDNO'];
         $fields = (new SelectBuilder())->fields($fieldNameList)
@@ -75,7 +75,7 @@ EOF;
         $this->assertCount(count($fieldNameList), $fields);
     }
 
-    public function testNullFields()
+    public function testNullFields(): void
     {
         $this->expectException(TypeError::class);
 
@@ -83,7 +83,7 @@ EOF;
             ->getFields();
     }
 
-    public function testNullInFields()
+    public function testNullInFields(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
@@ -92,7 +92,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptyStringInFields()
+    public function testEmptyStringInFields(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Field name cannot be empty or null. Provide a field name for the builder.");
@@ -101,7 +101,7 @@ EOF;
             ->getFields();
     }
 
-    public function testAvg()
+    public function testAvg(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -125,7 +125,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    public function testNullAvg()
+    public function testNullAvg(): void
     {
         $this->expectException(TypeError::class);
 
@@ -133,7 +133,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptyAvg()
+    public function testEmptyAvg(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -144,7 +144,7 @@ EOF;
             ->getFields();
     }
 
-    public function testMin()
+    public function testMin(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -167,7 +167,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testNullMin()
+    public function testNullMin(): void
     {
         $this->expectException(TypeError::class);
 
@@ -175,7 +175,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptyMin()
+    public function testEmptyMin(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -186,7 +186,7 @@ EOF;
             ->getFields();
     }
 
-    public function testMax()
+    public function testMax(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -210,7 +210,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    public function testNullMax()
+    public function testNullMax(): void
     {
         $this->expectException(TypeError::class);
 
@@ -218,7 +218,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptyMax()
+    public function testEmptyMax(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -228,7 +228,7 @@ EOF;
             ->getFields();
     }
 
-    public function testCount()
+    public function testCount(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -252,7 +252,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    public function testNullCount()
+    public function testNullCount(): void
     {
         $this->expectException(TypeError::class);
 
@@ -260,7 +260,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptyCount()
+    public function testEmptyCount(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -270,7 +270,7 @@ EOF;
             ->getFields();
     }
 
-    public function testSum()
+    public function testSum(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -294,7 +294,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $x);
     }
 
-    public function testNullSum()
+    public function testNullSum(): void
     {
         $this->expectException(TypeError::class);
 
@@ -302,7 +302,7 @@ EOF;
             ->getFields();
     }
 
-    public function testEmptySum()
+    public function testEmptySum(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -312,7 +312,7 @@ EOF;
             ->getFields();
     }
 
-    public function testInvalidFunction()
+    public function testInvalidFunction(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("FOO function doesn't exist.");

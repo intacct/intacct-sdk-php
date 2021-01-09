@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query;
 class QueryStringTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstructorToString()
+    public function testConstructorToString(): void
     {
         $condition = new QueryString("VENDORID = 'V1234'");
 
@@ -31,7 +31,7 @@ class QueryStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testSetterToString()
+    public function testSetterToString(): void
     {
         $condition = new QueryString();
         $condition->setQuery("VENDORID = 'V1234'");

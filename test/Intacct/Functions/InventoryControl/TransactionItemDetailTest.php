@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -25,7 +25,7 @@ use Intacct\Xml\XMLWriter;
 class TransactionItemDetailTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,13 +56,14 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testParamsOverrides()
+    public function testParamsOverrides(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <itemdetail>
     <quantity>15325</quantity>
     <serialno>S2355235</serialno>
+    <lotno>L111</lotno>
     <aisle>55</aisle>
     <row>1</row>
     <bin>12</bin>
@@ -78,6 +79,7 @@ EOF;
         $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(15325);
         $itemDetail->setSerialNumber('S2355235');
+        $itemDetail->setLotNumber('L111');
         $itemDetail->setAisle('55');
         $itemDetail->setRow('1');
         $itemDetail->setBin('12');

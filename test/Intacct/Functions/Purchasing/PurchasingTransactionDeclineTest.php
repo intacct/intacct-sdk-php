@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -25,7 +25,7 @@ use Intacct\Xml\XMLWriter;
 class PurchasingTransactionDeclineTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testDefaultParams()
+    public function testDefaultParams(): void
     {
 
         $expected = <<<EOF
@@ -52,6 +52,6 @@ EOF;
 
         $transaction->writeXml($xml);
 
-        self::assertXmlStringEqualsXmlString($expected, $xml->flush());
+        $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -98,6 +98,44 @@ class Authentication
         $this->entityId = $entityId;
     }
 
+    /** @var string */
+    private $sessionTimestamp;
+
+    /**
+     * @return string
+     */
+    public function getSessionTimestamp()
+    {
+        return $this->sessionTimestamp;
+    }
+
+    /**
+     * @param string $sessionTimestamp
+     */
+    public function setSessionTimestamp($sessionTimestamp): void
+    {
+        $this->sessionTimestamp = $sessionTimestamp;
+    }
+
+    /** @var string */
+    private $sessionTimeout;
+
+    /**
+     * @return string
+     */
+    public function getSessionTimeout(): string
+    {
+        return $this->sessionTimeout;
+    }
+
+    /**
+     * @param string $sessionTimeout
+     */
+    public function setSessionTimeout(string $sessionTimeout): void
+    {
+        $this->sessionTimeout = $sessionTimeout;
+    }
+
     /**
      * Authentication constructor.
      *
@@ -115,11 +153,13 @@ class Authentication
             throw new IntacctException('Authentication block is missing companyid element');
         }
 
-        $this->setStatus(strval($authentication->status));
-        $this->setUserId(strval($authentication->userid));
-        $this->setCompanyId(strval($authentication->companyid));
-        $this->setEntityId(strval($authentication->locationid));
+        $this->setStatus((string)$authentication->status);
+        $this->setUserId((string)$authentication->userid);
+        $this->setCompanyId((string)$authentication->companyid);
+        $this->setEntityId((string)$authentication->locationid);
+        $this->setSessionTimestamp((string)$authentication->sessiontimestamp);
+        $this->setSessionTimeout((string)$authentication->sessiontimeout);
 
-        //TODO add getter/setter for elements: clientstatus, clientid, sessiontimestamp
+        //TODO add getter/setter for elements: clientstatus, clientid
     }
 }

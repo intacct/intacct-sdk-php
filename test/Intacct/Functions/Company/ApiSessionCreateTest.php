@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -34,7 +34,7 @@ class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $this->object = new ApiSessionCreate('unittest');
     }
@@ -43,11 +43,11 @@ class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    public function tearDown(): void
     {
     }
 
-    public function testWriteXml()
+    public function testWriteXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,7 +69,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlWithLocationId()
+    public function testWriteXmlWithLocationId(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -94,7 +94,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testWriteXmlWithEmptyLocationId()
+    public function testWriteXmlWithEmptyLocationId(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

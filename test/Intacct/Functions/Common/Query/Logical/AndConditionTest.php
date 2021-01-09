@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,7 +24,7 @@ use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
 class AndConditionTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');
@@ -45,7 +45,7 @@ class AndConditionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$and);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition1 = new EqualToString();
         $condition1->setField('VENDORID');

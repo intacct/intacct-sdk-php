@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -138,6 +138,44 @@ class ClientConfig
     public function setSessionId(string $sessionId)
     {
         $this->sessionId = $sessionId;
+    }
+
+    /** @var string */
+    private $sessionTimestamp = '';
+
+    /**
+     * @return string
+     */
+    public function getSessionTimestamp(): string
+    {
+        return $this->sessionTimestamp;
+    }
+
+    /**
+     * @param string $sessionTimestamp
+     */
+    public function setSessionTimestamp(string $sessionTimestamp): void
+    {
+        $this->sessionTimestamp = $sessionTimestamp;
+    }
+
+    /** @var string */
+    private $sessionTimeout = '';
+
+    /**
+     * @return string
+     */
+    public function getSessionTimeout(): string
+    {
+        return $this->sessionTimeout;
+    }
+
+    /**
+     * @param string $sessionTimeout
+     */
+    public function setSessionTimeout(string $sessionTimeout): void
+    {
+        $this->sessionTimeout = $sessionTimeout;
     }
 
     /** @var string */

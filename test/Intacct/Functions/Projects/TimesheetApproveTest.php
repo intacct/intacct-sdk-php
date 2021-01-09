@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -15,23 +15,29 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\Projects;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentRequestDelete
+ * @coversDefaultClass \Intacct\Functions\Projects\TimesheetApprove
  */
-class ApPaymentRequestDeleteTest extends \PHPUnit\Framework\TestCase
+class TimesheetApproveTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <function controlid="unittest">
-    <delete_paymentrequest key="1234" />
+    <approve>
+        <TIMESHEET>
+            <RECORDNO>2</RECORDNO>
+            <ENTRYKEYS>497,323</ENTRYKEYS>
+            <APPROVEDBY>John</APPROVEDBY>
+            <COMMENT>Approved by John</COMMENT>
+        </TIMESHEET>
+    </approve>
 </function>
 EOF;
 
@@ -41,28 +47,14 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = new ApPaymentRequestDelete('unittest');
-        $classObj->setRecordNo(1234);
+        $classObj = new TimesheetApprove('unittest');
+        $classObj->setRecordNo('2');
+        $classObj->setApprovedBy('John');
+        $classObj->setComment('Approved by John');
+        $classObj->setLineRecordNo([497,323]);
 
         $classObj->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Record No is required for delete
-     */
-    public function testRequiredId()
-    {
-        $xml = new XMLWriter();
-        $xml->openMemory();
-        $xml->setIndent(true);
-        $xml->setIndentString('    ');
-        $xml->startDocument();
-
-        $obj = new ApPaymentRequestDelete('unittest');
-
-        $obj->writeXml($xml);
     }
 }

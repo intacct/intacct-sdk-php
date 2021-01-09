@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -17,31 +17,16 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
-use Intacct\Functions\AbstractFunction;
+use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
 
-abstract class AbstractApPayment extends AbstractFunction
+/**
+ * Void an existing AP payment request record
+ */
+class ApPaymentVoid extends AbstractApPaymentFunction
 {
-
-    /** @var int|string */
-    protected $recordNo;
-
-    /**
-     * Get record number
-     *
-     * @return int|string
-     */
-    public function getRecordNo()
+    protected function getFunction(): string
     {
-        return $this->recordNo;
-    }
-
-    /**
-     * Set record number
-     *
-     * @param int|string $recordNo
-     */
-    public function setRecordNo($recordNo)
-    {
-        $this->recordNo = $recordNo;
+        return AbstractApPaymentFunction::VOID;
     }
 }

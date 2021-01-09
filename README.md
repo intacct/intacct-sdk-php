@@ -17,7 +17,7 @@
 ## System Requirements
 
 * You must have an active Sage Intacct Web Services Developer license
-* PHP >= 7.0
+* PHP >= 7.3
 * A recent version of cURL >= 7.19.4 compiled with OpenSSL and zlib
 * [Composer](composer)
 

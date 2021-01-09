@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -26,7 +26,7 @@ use InvalidArgumentException;
 class CustomerUpdateTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -54,7 +54,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testFullXml()
+    public function testFullXml(): void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -77,8 +77,8 @@ EOF;
                 <CELLPHONE>56</CELLPHONE>
                 <PAGER>78</PAGER>
                 <FAX>90</FAX>
-                <EMAIL1>noreply@intacct.com</EMAIL1>
-                <EMAIL2>noreplyagain@intacct.com</EMAIL2>
+                <EMAIL1/>
+                <EMAIL2/>
                 <URL1>www.intacct.com</URL1>
                 <URL2>us.intacct.com</URL2>
                 <MAILADDRESS>
@@ -159,8 +159,8 @@ EOF;
         $record->setCellularPhoneNo('56');
         $record->setPagerNo('78');
         $record->setFaxNo('90');
-        $record->setPrimaryEmailAddress('noreply@intacct.com');
-        $record->setSecondaryEmailAddress('noreplyagain@intacct.com');
+        $record->setPrimaryEmailAddress('');
+        $record->setSecondaryEmailAddress('');
         $record->setPrimaryUrl('www.intacct.com');
         $record->setSecondaryUrl('us.intacct.com');
         $record->setAddressLine1('300 Park Ave');
@@ -220,12 +220,11 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Customer ID is required for update
-     */
-    public function testRequiredId()
+    public function testRequiredId(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Customer ID is required for update");
+
         $xml = new XMLWriter();
         $xml->openMemory();
         $xml->setIndent(true);

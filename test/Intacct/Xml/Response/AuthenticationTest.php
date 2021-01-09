@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,7 +24,7 @@ use Intacct\Xml\OnlineResponse;
 class AuthenticationTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testAuthenticationResponse()
+    public function testAuthenticationResponse(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,6 +43,7 @@ class AuthenticationTest extends \PHPUnit\Framework\TestCase
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -67,14 +68,15 @@ EOF;
         $this->assertEquals('fakeuser', $authentication->getUserId());
         $this->assertEquals('fakecompany', $authentication->getCompanyId());
         $this->assertEquals('', $authentication->getEntityId());
+        $this->assertEquals('2015-10-24T18:56:52-07:00', $authentication->getSessionTimestamp());
+        $this->assertEquals('2015-12-07T15:57:08-08:00', $authentication->getSessionTimeout());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing status element
-     */
-    public function testMissingStatusElement()
+    public function testMissingStatusElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing status element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -92,6 +94,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-25T18:56:52-07:00</sessiontimeout>
             </authentication>
             <result/>
       </operation>
@@ -99,13 +102,12 @@ EOF;
 EOF;
         new OnlineResponse($xml);
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing userid element
-     */
-    public function testMissingUserIdElement()
+
+    public function testMissingUserIdElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing userid element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -123,6 +125,7 @@ EOF;
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-25T18:56:52-07:00</sessiontimeout>
             </authentication>
             <result/>
       </operation>
@@ -130,13 +133,12 @@ EOF;
 EOF;
         new OnlineResponse($xml);
     }
-    
-    /**
-     * @expectedException \Intacct\Exception\IntacctException
-     * @expectedExceptionMessage Authentication block is missing companyid element
-     */
-    public function testMissingCompanyIdElement()
+
+    public function testMissingCompanyIdElement(): void
     {
+        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectExceptionMessage("Authentication block is missing companyid element");
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -154,6 +156,7 @@ EOF;
                   <!--<companyid>fakecompany</companyid>-->
                   <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimestamp>2015-10-25T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
       </operation>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -15,37 +15,33 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct\Functions\AccountsPayable;
+namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
 
-/**
- * Delete an existing AP payment request record
- */
-class ApPaymentRequestDelete extends AbstractApPaymentRequest
+class KitStatusCreate extends AbstractKitStatus
 {
-
     /**
      * Write the function block XML
      *
      * @param XMLWriter $xml
-     * @throw InvalidArgumentException
      */
     public function writeXml(XMLWriter &$xml)
     {
-        $xml->startElement('function');
-        $xml->writeAttribute('controlid', $this->getControlId());
+        $xml->startElement('fulfillmentstatus');
+        $xml->startElement('kitstatus');
 
-        $xml->startElement('delete_paymentrequest');
-
-        if (!$this->getRecordNo()) {
-            throw new InvalidArgumentException('Record No is required for delete');
+        if (isset($this->lineNo)) {
+            $xml->writeElement('line_num', $this->lineNo);
         }
-        $xml->writeAttribute('key', $this->getRecordNo());
 
-        $xml->endElement(); //delete_paymentrequest
+        if (isset($this->invoicePrice)) {
+            $xml->writeElement('invoiceprice', $this->invoicePrice);
+        }
 
-        $xml->endElement(); //function
+        $this->writeXmlDetails($xml);
+
+        $xml->endElement(); // kitstatus
+        $xml->endElement(); // fulfillmentstatus
     }
 }

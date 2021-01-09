@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -33,7 +33,7 @@ use Monolog\Logger;
 class RequestHandlerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testMockExecuteOnline()
+    public function testMockExecuteOnline(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,6 +52,7 @@ class RequestHandlerTest extends \PHPUnit\Framework\TestCase
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -95,7 +96,7 @@ EOF;
         $this->assertInstanceOf(OnlineResponse::class, $response);
     }
 
-    public function testMockExecuteAsynchronous()
+    public function testMockExecuteAsynchronous(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -142,12 +143,11 @@ EOF;
         $this->assertInstanceOf(OfflineResponse::class, $response);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Policy ID not supplied in config for offline request
-     */
-    public function testMockExecuteAsynchronousMissingPolicyId()
+    public function testMockExecuteAsynchronousMissingPolicyId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Required Policy ID not supplied in config for offline request");
+
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
@@ -165,7 +165,7 @@ EOF;
         $response = $requestHandler->executeOffline($contentBlock);
     }
 
-    public function testMockRetry()
+    public function testMockRetry(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -184,6 +184,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -230,11 +231,10 @@ EOF;
         $this->assertEquals(200, $history[1]['response']->getStatusCode());
     }
 
-    /**
-     * @expectedException \Intacct\Exception\ResponseException
-     */
-    public function testMock400LevelErrorWithXmlResponse()
+    public function testMock400LevelErrorWithXmlResponse(): void
     {
+        $this->expectException(\Intacct\Exception\ResponseException::class);
+
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -274,12 +274,11 @@ EOF;
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
         $requestHandler->executeOnline($contentBlock);
     }
-    
-    /**
-     * @expectedException \GuzzleHttp\Exception\ServerException
-     */
-    public function testMockDefaultRetryFailure()
+
+    public function testMockDefaultRetryFailure(): void
     {
+        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+
         $mock = new MockHandler([
             new Response(500),
             new Response(501),
@@ -304,12 +303,11 @@ EOF;
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
         $requestHandler->executeOnline($contentBlock);
     }
-    
-    /**
-     * @expectedException \GuzzleHttp\Exception\ServerException
-     */
-    public function testMockDefaultNo524Retry()
+
+    public function testMockDefaultNo524Retry(): void
     {
+        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+
         $mock = new MockHandler([
             new Response(524),
         ]);
@@ -330,7 +328,7 @@ EOF;
         $requestHandler->executeOnline($contentBlock);
     }
 
-    public function testMockExecuteWithDebugLogger()
+    public function testMockExecuteWithDebugLogger(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -349,6 +347,7 @@ EOF;
                   <companyid>testcompany</companyid>
                   <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
+                  <sessiontimeout>2015-12-07T15:57:08-08:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -399,7 +398,7 @@ EOF;
         $this->assertEquals('[', substr(stream_get_contents($handle), 0, 1));
     }
 
-    public function testMockExecuteOfflineWithSessionCreds()
+    public function testMockExecuteOfflineWithSessionCreds(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -449,7 +448,7 @@ EOF;
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Offline execution sent to Sage Intacct using Session-based credentials.',
             stream_get_contents($handle)
         );

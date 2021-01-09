@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -24,7 +24,7 @@ use Intacct\Xml\OnlineResponse;
 class ResponseExceptionTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testGetErrors()
+    public function testGetErrors(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -50,11 +50,11 @@ EOF;
             new OnlineResponse($xml);
         } catch (ResponseException $ex) {
             $this->assertEquals('Response control status failure - XL03000006 test is not a valid transport policy.', $ex->getMessage());
-            $this->assertInternalType('array', $ex->getErrors());
+            $this->assertIsArray($ex->getErrors());
         }
     }
 
-    public function testGetAuthErrors()
+    public function testGetAuthErrors(): void
     {
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -88,7 +88,7 @@ EOF;
             new OnlineResponse($xml);
         } catch (ResponseException $ex) {
             $this->assertEquals('Response authentication status failure - XL03000006 Sign-in information is incorrect', $ex->getMessage());
-            $this->assertInternalType('array', $ex->getErrors());
+            $this->assertIsArray($ex->getErrors());
         }
     }
 }

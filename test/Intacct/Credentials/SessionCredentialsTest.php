@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not
  *  use this file except in compliance with the License. You may obtain a copy
@@ -35,7 +35,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp(): void
     {
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');
@@ -44,7 +44,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
         $this->senderCreds = new SenderCredentials($config);
     }
 
-    public function testCredsFromArray()
+    public function testCredsFromArray(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('faKEsesSiOnId..');
@@ -61,7 +61,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testCredsFromArrayNoEndpoint()
+    public function testCredsFromArrayNoEndpoint(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('faKEsesSiOnId..');
@@ -72,13 +72,12 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
         $endpoint = $sessionCreds->getEndpoint();
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
     }
-    
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Required Session ID not supplied in config
-     */
-    public function testCredsFromArrayNoSession()
+
+    public function testCredsFromArrayNoSession(): void
     {
+        $this->expectExceptionMessage("Required Session ID not supplied in config");
+        $this->expectException(\InvalidArgumentException::class);
+
         $config = new ClientConfig();
         $config->setSessionId('');
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -537,7 +537,7 @@ abstract class AbstractCustomer extends AbstractFunction
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
     {
-        if (filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
+        if ($primaryEmailAddress !== '' && filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
             throw new InvalidArgumentException('Primary Email Address is not a valid email');
         }
         $this->primaryEmailAddress = $primaryEmailAddress;
@@ -560,7 +560,7 @@ abstract class AbstractCustomer extends AbstractFunction
      */
     public function setSecondaryEmailAddress($secondaryEmailAddress)
     {
-        if (filter_var($secondaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
+        if ($secondaryEmailAddress !== '' && filter_var($secondaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
             throw new InvalidArgumentException('Secondary Email Address is not a valid email');
         }
         $this->secondaryEmailAddress = $secondaryEmailAddress;

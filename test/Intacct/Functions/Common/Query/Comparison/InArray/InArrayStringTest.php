@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2021 Sage Intacct, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -22,7 +22,7 @@ namespace Intacct\Functions\Common\Query\Comparison\InArray;
 class InArrayStringTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testToString()
+    public function testToString(): void
     {
         $condition = new InArrayString();
         $condition->setField('RECORDNO');
@@ -33,7 +33,7 @@ class InArrayStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringNot()
+    public function testToStringNot(): void
     {
         $condition = new InArrayString();
         $condition->setField('RECORDNO');
@@ -45,9 +45,7 @@ class InArrayStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-
-
-    public function testToStringEscapeQuotes()
+    public function testToStringEscapeQuotes(): void
     {
         $condition = new InArrayString();
         $condition->setField('RECORDNO');
@@ -59,7 +57,7 @@ class InArrayStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testCountOneToString()
+    public function testCountOneToString(): void
     {
         $condition = new InArrayString();
         $condition->setField('RECORDNO');
