@@ -549,7 +549,7 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function setPrimaryEmailAddress($primaryEmailAddress)
     {
-        if (filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
+        if (!empty($primaryEmailAddress) && filter_var($primaryEmailAddress, FILTER_VALIDATE_EMAIL) === false) {
             throw new \InvalidArgumentException('Primary Email Address is not a valid email');
         }
         $this->primaryEmailAddress = $primaryEmailAddress;
