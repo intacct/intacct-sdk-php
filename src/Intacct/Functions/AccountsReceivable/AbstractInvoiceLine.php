@@ -94,6 +94,9 @@ abstract class AbstractInvoiceLine
     /** @var string */
     protected $warehouseId;
 
+    /** @var AbstractInvoiceLineTaxEntries[] */
+    protected $taxEntry;
+
     /**
      * Get account label
      *

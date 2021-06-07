@@ -92,6 +92,9 @@ abstract class AbstractInvoice extends AbstractFunction
     /** @var string */
     protected $attachmentsId;
 
+    /** @var string */
+    protected $taxSolutionId;
+
     /** @var AbstractInvoiceLine[] */
     protected $lines = [];
 
@@ -533,6 +536,22 @@ abstract class AbstractInvoice extends AbstractFunction
     public function setAttachmentsId($attachmentsId)
     {
         $this->attachmentsId = $attachmentsId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaxSolutionId(): string
+    {
+        return $this->taxSolutionId;
+    }
+
+    /**
+     * @param string $taxSolutionId
+     */
+    public function setTaxSolutionId(string $taxSolutionId): void
+    {
+        $this->taxSolutionId = $taxSolutionId;
     }
 
     /**
