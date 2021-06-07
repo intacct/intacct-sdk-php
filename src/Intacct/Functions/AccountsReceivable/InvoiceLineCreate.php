@@ -74,6 +74,14 @@ class InvoiceLineCreate extends AbstractInvoiceLine
         $xml->writeElement('contractid', $this->getContractId());
         $xml->writeElement('warehouseid', $this->getWarehouseId());
 
+        if(count($this->getTaxEntry()) > 0) {
+            $xml->startElement('taxentries');
+            foreach ($this->getTaxEntry() as $taxentry) {
+                $taxentry->writeXml($xml);
+            }
+            $xml->endElement(); //taxentries
+        }
+
         $xml->endElement(); //lineitem
     }
 }

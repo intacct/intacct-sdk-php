@@ -541,7 +541,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * @return string
      */
-    public function getTaxSolutionId(): string
+    public function getTaxSolutionId()
     {
         return $this->taxSolutionId;
     }
@@ -549,7 +549,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * @param string $taxSolutionId
      */
-    public function setTaxSolutionId(string $taxSolutionId): void
+    public function setTaxSolutionId(string $taxSolutionId)
     {
         $this->taxSolutionId = $taxSolutionId;
     }
