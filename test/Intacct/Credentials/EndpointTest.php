@@ -81,4 +81,12 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
 
         new Endpoint($config);
     }
+
+    public function testFQDNUrlEndpoint(): void
+    {
+        $config = new ClientConfig();
+        $config->setEndpointUrl("https://api.intacct.com./ia/xml/xmlgw.phtml");
+        $endpoint = new Endpoint($config);
+        $this->assertEquals('https://api.intacct.com./ia/xml/xmlgw.phtml', $endpoint);
+    }
 }
