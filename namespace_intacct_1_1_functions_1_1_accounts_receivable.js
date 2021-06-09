@@ -10,6 +10,7 @@ var namespace_intacct_1_1_functions_1_1_accounts_receivable =
     [ "AbstractCustomer", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer" ],
     [ "AbstractInvoice", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice" ],
     [ "AbstractInvoiceLine", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line" ],
+    [ "AbstractInvoiceLineTaxEntries", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line_tax_entries.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line_tax_entries" ],
     [ "AbstractInvoiceSummary", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_summary.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_summary" ],
     [ "ArAccountLabelCreate", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_ar_account_label_create.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_ar_account_label_create" ],
     [ "ArAccountLabelDelete", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_ar_account_label_delete.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_ar_account_label_delete" ],
@@ -29,6 +30,7 @@ var namespace_intacct_1_1_functions_1_1_accounts_receivable =
     [ "InvoiceCreate", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_create.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_create" ],
     [ "InvoiceDelete", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_delete.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_delete" ],
     [ "InvoiceLineCreate", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_create.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_create" ],
+    [ "InvoiceLineTaxEntriesCreate", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_tax_entries_create.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_tax_entries_create" ],
     [ "InvoiceReverse", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_reverse.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_reverse" ],
     [ "InvoiceSummaryCreate", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create.html", "class_intacct_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create" ]
 ];
