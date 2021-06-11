@@ -94,6 +94,9 @@ abstract class AbstractInvoiceLine
     /** @var string */
     protected $warehouseId;
 
+    /** @var AbstractInvoiceLineTaxEntries[] */
+    protected $taxEntry = [];
+
     /**
      * Get account label
      *
@@ -552,6 +555,22 @@ abstract class AbstractInvoiceLine
     public function setWarehouseId($warehouseId)
     {
         $this->warehouseId = $warehouseId;
+    }
+
+    /**
+     * @return AbstractInvoiceLineTaxEntries[]
+     */
+    public function getTaxEntry(): array
+    {
+        return $this->taxEntry;
+    }
+
+    /**
+     * @param AbstractInvoiceLineTaxEntries[] $taxEntry
+     */
+    public function setTaxEntry(array $taxEntry): void
+    {
+        $this->taxEntry = $taxEntry;
     }
 
     abstract public function writeXml(XMLWriter &$xml);
