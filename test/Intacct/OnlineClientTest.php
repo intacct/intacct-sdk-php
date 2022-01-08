@@ -17,6 +17,7 @@
 
 namespace Intacct;
 
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\Company\ApiSessionCreate;
@@ -77,7 +78,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $client = new OnlineClient($clientConfig);
 
@@ -137,7 +138,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $client = new OnlineClient($clientConfig);
 
@@ -214,7 +215,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $client = new OnlineClient($clientConfig);
 
@@ -279,7 +280,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
         $clientConfig->setLogger($logger);
 
         $client = new OnlineClient($clientConfig);

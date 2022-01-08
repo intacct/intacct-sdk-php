@@ -18,6 +18,7 @@
 namespace Intacct;
 
 use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use Intacct\Credentials\CredentialsInterface;
 use Intacct\Logging\MessageFormatter;
 use Psr\Log\LoggerInterface;
@@ -330,23 +331,25 @@ class ClientConfig
         $this->logMessageFormatter = $logMessageFormatter;
     }
 
-    /** @var MockHandler */
-    private $mockHandler;
+    /**
+     * @var HandlerStack
+     */
+    private $requestHandler;
 
     /**
-     * @return MockHandler
+     * @return HandlerStack
      */
-    public function getMockHandler()
+    public function getRequestHandler() : HandlerStack
     {
-        return $this->mockHandler;
+        return $this->requestHandler;
     }
 
     /**
-     * @param MockHandler $mockHandler
+     * @param HandlerStack $requestHandler
      */
-    public function setMockHandler(MockHandler $mockHandler)
+    public function setRequestHandler(HandlerStack $requestHandler)
     {
-        $this->mockHandler = $mockHandler;
+        $this->requestHandler = $requestHandler;
     }
 
     /**

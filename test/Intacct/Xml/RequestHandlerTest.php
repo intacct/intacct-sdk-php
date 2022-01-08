@@ -18,6 +18,7 @@
 
 namespace Intacct\Xml;
 
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\ClientConfig;
@@ -81,7 +82,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
         $requestConfig->setControlId('unittest');
@@ -127,7 +128,7 @@ EOF;
         $clientConfig->setCompanyId('testcompany');
         $clientConfig->setUserId('testuser');
         $clientConfig->setUserPassword('testpass');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
         $requestConfig->setControlId('requestUnitTest');
@@ -204,7 +205,7 @@ EOF;
         $headers = [
             'Content-Type' => 'text/xml; encoding="UTF-8"',
         ];
-        
+
         $mock = new MockHandler([
             new Response(502),
             new Response(200, $headers, $xml),
@@ -214,7 +215,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
 
@@ -263,7 +264,7 @@ EOF;
         $clientConfig->setCompanyId('badcompany');
         $clientConfig->setUserId('baduser');
         $clientConfig->setUserPassword('badpass');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
 
@@ -292,7 +293,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
 
@@ -316,7 +317,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
 
         $requestConfig = new RequestConfig();
 
@@ -381,7 +382,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
         $clientConfig->setLogger($logger);
 
         $requestConfig = new RequestConfig();
@@ -432,7 +433,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setMockHandler($mock);
+        $clientConfig->setRequestHandler(HandlerStack::create($mock));
         $clientConfig->setLogger($logger);
 
         $requestConfig = new RequestConfig();

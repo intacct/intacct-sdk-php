@@ -18,20 +18,21 @@
 namespace Intacct\Xml;
 
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use Intacct\ClientConfig;
 use Intacct\Credentials\Endpoint;
 use Intacct\Credentials\SessionCredentials;
 use Intacct\Functions\FunctionInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Intacct\RequestConfig;
+use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 
 class RequestHandler
 {
-    
+
     /** @var string */
     const VERSION = '3.1.0';
 
@@ -157,7 +158,7 @@ class RequestHandler
     public function executeOffline(array $content): OfflineResponse
     {
         if (!$this->getRequestConfig()->getPolicyId()) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Required Policy ID not supplied in config for offline request'
             );
         }
@@ -188,20 +189,23 @@ class RequestHandler
 
     /**
      * @param \XMLWriter $xml
+     * @param array $options
+     *
      * @return ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function execute(\XMLWriter $xml): ResponseInterface
+    private function execute(\XMLWriter $xml, array $options = []): ResponseInterface
     {
         //this is used for retry logic
         $calls = [];
         $decider = function ($retries, $request, $response, $error) use (&$calls) {
             $calls[] = func_get_args();
-            
+
             if (count($calls) > $this->getRequestConfig()->getMaxRetries()) {
                 return false;
             }
-            
-            if ($error instanceof \GuzzleHttp\Exception\ServerException) {
+
+            if ($error instanceof ServerException) {
                 //retry if receiving http 5xx error codes
                 $response = $error->getResponse();
                 if (
@@ -211,22 +215,20 @@ class RequestHandler
                     ) === true
                 ) {
                     return false;
-                } else {
-                    return true;
                 }
+
+                return true;
             }
-            
+
             //do not retry otherwise
             return false;
         };
-        
-        //setup the handler
-        if ($this->getClientConfig()->getMockHandler() instanceof MockHandler) {
-            $handler = HandlerStack::create($this->getClientConfig()->getMockHandler());
-        } else {
+
+        $handler = $this->getClientConfig()->getRequestHandler();
+        if ($handler === null) {
             $handler = HandlerStack::create();
         }
-        
+
         //add the retry logic before the http_errors middleware
         $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
 
@@ -270,23 +272,23 @@ class RequestHandler
                 )
             );
         }
-        
-        $client = new Client([
-            'handler' => $handler,
-        ]);
 
-        $options = [
-            'body' => $xml->flush(),
-            'headers' => [
-                'content-type' => 'application/xml',
-                'Accept-Encoding' => 'gzip,deflate',
-                'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
-            ],
-            'timeout' => $this->requestConfig->getMaxTimeout()
-        ];
-        
-        $response = $client->post($this->getEndpointUrl(), $options);
-
-        return $response;
+        return (new Client(['handler' => $handler]))
+            ->post(
+                $this->getEndpointUrl(),
+                array_merge(
+                    [
+                        'body' => $xml->flush(),
+                        'headers' => [
+                            'content-type' => 'application/xml',
+                            'Accept-Encoding' => 'gzip,deflate',
+                            'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
+                        ],
+                        'timeout' => $this->requestConfig->getMaxTimeout()
+                    ],
+                    $options
+                )
+            )
+        ;
     }
 }
