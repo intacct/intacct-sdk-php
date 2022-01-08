@@ -17,7 +17,6 @@
 
 namespace Intacct;
 
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use Intacct\Credentials\CredentialsInterface;
 use Intacct\Logging\MessageFormatter;
