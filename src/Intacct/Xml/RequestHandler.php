@@ -146,9 +146,8 @@ class RequestHandler
 
         $body = $client->getBody();
         $body->rewind();
-        $response = new OnlineResponse($body->getContents());
 
-        return $response;
+        return new OnlineResponse($body->getContents());
     }
 
     /**
@@ -182,19 +181,22 @@ class RequestHandler
 
         $body = $client->getBody();
         $body->rewind();
-        $response = new OfflineResponse($body->getContents());
 
-        return $response;
+        return new OfflineResponse($body->getContents());
     }
 
     /**
+     * @var HandlerStack
+     */
+    private $handler;
+
+    /**
      * @param \XMLWriter $xml
-     * @param array $options
      *
      * @return ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function execute(\XMLWriter $xml, array $options = []): ResponseInterface
+    private function execute(\XMLWriter $xml): ResponseInterface
     {
         //this is used for retry logic
         $calls = [];
@@ -224,71 +226,69 @@ class RequestHandler
             return false;
         };
 
-        $handler = $this->getClientConfig()->getRequestHandler();
-        if ($handler === null) {
-            $handler = HandlerStack::create();
-        }
+        // Prevents looped executions from trying to re-setup all these middlewares,
+        // causing invalid arg ex on before(http_errors) calls
+        if ($this->handler === null) {
+            $handler = $this->getClientConfig()->getRequestHandler();
+            if ($handler === null) {
+                $handler = HandlerStack::create();
+            }
 
-        //add the retry logic before the http_errors middleware
-        $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
+            //add the retry logic before the http_errors middleware
+            $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
 
-        // replace the http_errors middleware with our own to process XML responses before HTTP errors
-        $handler->before(
-            'http_errors',
-            function (callable $handler) {
-                return function ($request, array $options) use ($handler) {
-                    return $handler($request, $options)->then(
-                        function (ResponseInterface $response) use ($request, $handler) {
-                            $code = $response->getStatusCode();
-                            if ($code < 400) {
-                                return $response;
+            // replace the http_errors middleware with our own to process XML responses before HTTP errors
+            $handler->before(
+                'http_errors',
+                function (callable $handler) {
+                    return function ($request, array $options) use ($handler) {
+                        return $handler($request, $options)->then(
+                            function (ResponseInterface $response) use ($request, $handler) {
+                                $code = $response->getStatusCode();
+                                if ($code < 400) {
+                                    return $response;
+                                }
+                                $contentType = trim($response->getHeaderLine('content-type'));
+                                if (\stripos($contentType, '/xml') !== false) {
+                                    return $response;
+                                }
+
+                                throw RequestException::create($request, $response);
                             }
-                            $contentType = trim($response->getHeaderLine('content-type'));
-                            if (
-                                substr($contentType, 0, 8) === 'text/xml' ||
-                                substr($contentType, 0, 15) == 'application/xml'
-                            ) {
-                                return $response;
-                            }
-                            throw RequestException::create($request, $response);
-                        }
-                    );
-                };
-            },
-            'xml_and_http_errors'
-        );
-        $handler->remove('http_errors');
-
-        //push the history middleware to the top of the stack
-        $handler->push(Middleware::history($this->history));
-
-        if ($this->getClientConfig()->getLogger()) {
-            //push the logger middleware to the top of the stack
-            $handler->push(
-                Middleware::log(
-                    $this->getClientConfig()->getLogger(),
-                    $this->getClientConfig()->getLogMessageFormatter(),
-                    $this->getClientConfig()->getLogLevel()
-                )
+                        );
+                    };
+                },
+                'xml_and_http_errors'
             );
+            $handler->remove('http_errors');
+
+            //push the history middleware to the top of the stack
+            $handler->push(Middleware::history($this->history));
+
+            if ($this->getClientConfig()->getLogger()) {
+                //push the logger middleware to the top of the stack
+                $handler->push(
+                    Middleware::log(
+                        $this->getClientConfig()->getLogger(),
+                        $this->getClientConfig()->getLogMessageFormatter(),
+                        $this->getClientConfig()->getLogLevel()
+                    )
+                );
+            }
+
+            $this->handler = $handler;
         }
 
-        return (new Client(['handler' => $handler]))
-            ->post(
-                $this->getEndpointUrl(),
-                array_merge(
-                    [
-                        'body' => $xml->flush(),
-                        'headers' => [
-                            'content-type' => 'application/xml',
-                            'Accept-Encoding' => 'gzip,deflate',
-                            'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
-                        ],
-                        'timeout' => $this->requestConfig->getMaxTimeout()
-                    ],
-                    $options
-                )
-            )
+        return (new Client(['handler' => $this->handler]))
+            ->post($this->getEndpointUrl(), [
+                'body' => $xml->flush(),
+                'headers' => [
+                    'content-type' => 'application/xml',
+                    'Accept-Encoding' => 'gzip,deflate',
+                    'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
+                ],
+                'timeout' => $this->requestConfig->getMaxTimeout()
+            ])
         ;
     }
 }
