@@ -81,6 +81,12 @@ EOF;
     <contractid>Contract1</contractid>
     <warehouseid>Warehouse1</warehouseid>
     <billable>true</billable>
+    <taxentries>
+        <taxentry>
+            <detailid>TaxName</detailid>
+            <trx_tax>10</trx_tax>
+        </taxentry>
+    </taxentries>
 </lineitem>
 EOF;
 
@@ -115,6 +121,12 @@ EOF;
         $line->setCustomFields([
             'customfield1' => 'customvalue1',
         ]);
+
+        $taxEntries = new BillLineTaxEntriesCreate();
+        $taxEntries->setTaxId('TaxName');
+        $taxEntries->setTaxValue(10);
+
+        $line->setTaxEntry([$taxEntries]);
 
         $line->writeXml($xml);
 

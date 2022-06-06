@@ -94,6 +94,9 @@ abstract class AbstractBillLine
     /** @var string */
     protected $warehouseId;
 
+    /** @var AbstractBillLineTaxEntries[] */
+    protected $taxEntry = [];
+
     /**
      * Get account label
      *
@@ -544,6 +547,22 @@ abstract class AbstractBillLine
     public function setWarehouseId($warehouseId)
     {
         $this->warehouseId = $warehouseId;
+    }
+
+    /**
+     * @return AbstractBillLineTaxEntries[]
+     */
+    public function getTaxEntry(): array
+    {
+        return $this->taxEntry;
+    }
+
+    /**
+     * @param AbstractBillLineTaxEntries[] $taxEntry
+     */
+    public function setTaxEntry(array $taxEntry): void
+    {
+        $this->taxEntry = $taxEntry;
     }
 
     abstract public function writeXml(XMLWriter &$xml);

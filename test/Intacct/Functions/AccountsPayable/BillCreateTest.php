@@ -118,6 +118,7 @@ EOF;
         <exchratetype>Intacct Daily Rate</exchratetype>
         <nogl>false</nogl>
         <supdocid>6942</supdocid>
+        <taxsolutionid>taxsolution</taxsolutionid>
         <customfields>
             <customfield>
                 <customfieldname>customfield1</customfieldname>
@@ -128,6 +129,12 @@ EOF;
             <lineitem>
                 <glaccountno></glaccountno>
                 <amount>76343.43</amount>
+                <taxentries>
+                    <taxentry>
+                        <detailid>TaxName</detailid>
+                        <trx_tax>10</trx_tax>
+                    </taxentry>
+                </taxentries>
             </lineitem>
         </billitems>
     </create_bill>
@@ -161,12 +168,18 @@ EOF;
         $apBill->setExchangeRateType('Intacct Daily Rate');
         $apBill->setDoNotPostToGL(false);
         $apBill->setAttachmentsId('6942');
+        $apBill->setTaxSolutionId('taxsolution');
         $apBill->setCustomFields([
             'customfield1' => 'customvalue1',
         ]);
 
+        $taxEntries = new BillLineTaxEntriesCreate();
+        $taxEntries->setTaxId('TaxName');
+        $taxEntries->setTaxValue(10);
+
         $line1 = new BillLineCreate();
         $line1->setTransactionAmount(76343.43);
+        $line1->setTaxEntry([$taxEntries]);
 
         $apBill->setLines([
             $line1,
