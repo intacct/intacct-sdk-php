@@ -539,6 +539,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Get Tax Solution Id
+     *
      * @return string
      */
     public function getTaxSolutionId()
@@ -547,6 +549,8 @@ abstract class AbstractBill extends AbstractFunction
     }
 
     /**
+     * Set Tax Solution Id
+     *
      * @param string $taxSolutionId
      */
     public function setTaxSolutionId(string $taxSolutionId)
