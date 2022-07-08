@@ -567,6 +567,7 @@ abstract class AbstractVendor extends AbstractFunction
 
     /**
      * Set primary email address
+     * Also, allows for unsetting of previously set email
      *
      * @param string $primaryEmailAddress
      */
