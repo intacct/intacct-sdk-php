@@ -85,6 +85,7 @@ class BillCreate extends AbstractBill
 
         $xml->writeElement('nogl', $this->isDoNotPostToGL());
         $xml->writeElement('supdocid', $this->getAttachmentsId());
+        $xml->writeElement('taxsolutionid', $this->getTaxSolutionId());
 
         $this->writeXmlExplicitCustomFields($xml);
 

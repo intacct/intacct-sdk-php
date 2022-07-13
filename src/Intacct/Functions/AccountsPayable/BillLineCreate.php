@@ -65,6 +65,15 @@ class BillLineCreate extends AbstractBillLine
         $xml->writeElement('warehouseid', $this->getWarehouseId());
         $xml->writeElement('billable', $this->isBillable());
 
+        // if there are tax entries, lets add them to our xml
+        if(!empty($this->getTaxEntry())) {
+            $xml->startElement('taxentries');
+            foreach ($this->getTaxEntry() as $taxentry) {
+                $taxentry->writeXml($xml);
+            }
+            $xml->endElement(); //taxentries
+        }
+
         $xml->endElement(); //lineitem
     }
 }

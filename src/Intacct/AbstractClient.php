@@ -86,7 +86,7 @@ abstract class AbstractClient
      *
      * @return Xml\OnlineResponse
      */
-    protected function executeOnlineRequest(array $functions, RequestConfig $requestConfig = null)
+    protected function executeOnlineRequest(array $functions, RequestConfig &$requestConfig = null)
     {
         if (!$requestConfig) {
             $requestConfig = new RequestConfig();
