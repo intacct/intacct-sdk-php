@@ -24,4 +24,5 @@
 */
 var menudata={children:[
 {text:"Namespace",url:"namespaces.html"},
-{text:"Index",url:"classes.html"}]}
+{text:"Index",url:"classes.html"},
+{text:"Classes",url:"annotated.html"}]}

@@ -9,7 +9,7 @@ var class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter =
     [ "writeXml", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#ab8ffbd3a38749e42412babb1c8a6445e", null ],
     [ "$filters", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#ae222f32233a38635bef58d24a13c9df5", null ],
     [ "$objectName", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#a1ed56cc20d722eac42736f271dbd90b8", null ],
-    [ "$operator=''", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#a4611a4e4d3fb680e8120aab2272a74b0", null ],
+    [ "$operator", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#a399520ceafe483476c4657202454db00", null ],
     [ "OPERATOR_AND", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#aecfb583df189a0066873cc163d1fe2a7", null ],
     [ "OPERATOR_OR", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_logical_filter.html#a22ee5179bb121cf704f9be4c8581a913", null ]
 ];
