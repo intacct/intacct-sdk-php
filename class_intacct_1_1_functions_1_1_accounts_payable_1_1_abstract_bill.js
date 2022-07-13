@@ -18,6 +18,7 @@ var class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill =
     [ "getReferenceNumber", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a30632831000f481ff7920e93727c6197", null ],
     [ "getReturnToContactName", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a8d537013904d93e2fbc2c6d15c180a9f", null ],
     [ "getSummaryRecordNo", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#ab33c9c3b33d5875ec43ed951012072c6", null ],
+    [ "getTaxSolutionId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#aab6be4e722b3cfbfed03b8437fd2d622", null ],
     [ "getTransactionCurrency", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#af3973bc98c48bcfb811ad808d62f65f4", null ],
     [ "getTransactionDate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a2dba118f271eeb7f892fdec0cda3ad58", null ],
     [ "getVendorId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a6847acb6e296cb02764678edfc4d3a85", null ],
@@ -43,6 +44,7 @@ var class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill =
     [ "setReferenceNumber", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a143058ba53ae080f5f4231b71f17cfb7", null ],
     [ "setReturnToContactName", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#ac88881a0af73da905896839cb4562dad", null ],
     [ "setSummaryRecordNo", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a9e272c98bbeb2d35a7f279c19bd064c9", null ],
+    [ "setTaxSolutionId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#af5a65f31934bfd1c187ff01502de141a", null ],
     [ "setTransactionCurrency", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a47b4d4656aa8f21c77508b4602cf32fc", null ],
     [ "setTransactionDate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#aae7c144b7d217ddd1e1eb29485b2cd4c", null ],
     [ "setVendorId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a4629fe30825f30a607e2aeac334cfc40", null ],
@@ -67,6 +69,7 @@ var class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill =
     [ "$referenceNumber", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#ac865765f143478cd2f401913fbce4a0e", null ],
     [ "$returnToContactName", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a802350839047c2dcc40ea04beda1dc97", null ],
     [ "$summaryRecordNo", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a6d7ca6b7c248230ef1e4d8346f390fc0", null ],
+    [ "$taxSolutionId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#ae7a73bc117007bfd111dbc18ae82ee3a", null ],
     [ "$transactionCurrency", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a2f4afa77946a55feaf742b9fbf8870fd", null ],
     [ "$transactionDate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a5ced1d2ec8eb9484c9e80615f632e147", null ],
     [ "$vendorId", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html#a809c05b44389b92ef5b7fbf566abeebd", null ]

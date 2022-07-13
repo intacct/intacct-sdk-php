@@ -24,6 +24,7 @@ var annotated =
           [ "AbstractApPaymentFunction", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_ap_payment_function.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_ap_payment_function" ],
           [ "AbstractBill", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill" ],
           [ "AbstractBillLine", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line" ],
+          [ "AbstractBillLineTaxEntries", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line_tax_entries.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line_tax_entries" ],
           [ "AbstractBillSummary", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_summary.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_summary" ],
           [ "AbstractVendor", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor" ],
           [ "ApAccountLabelCreate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_ap_account_label_create.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_ap_account_label_create" ],
@@ -55,6 +56,7 @@ var annotated =
           [ "BillCreate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_create.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_create" ],
           [ "BillDelete", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_delete.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_delete" ],
           [ "BillLineCreate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_line_create.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_line_create" ],
+          [ "BillLineTaxEntriesCreate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_line_tax_entries_create.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_line_tax_entries_create" ],
           [ "BillReverse", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_reverse.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_reverse" ],
           [ "BillSummaryCreate", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_summary_create.html", "class_intacct_1_1_functions_1_1_accounts_payable_1_1_bill_summary_create" ],
           [ "IApPaymentDetail", "interface_intacct_1_1_functions_1_1_accounts_payable_1_1_i_ap_payment_detail.html", "interface_intacct_1_1_functions_1_1_accounts_payable_1_1_i_ap_payment_detail" ],
@@ -117,7 +119,7 @@ var annotated =
           [ "OtherReceiptCreate", "class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_create.html", "class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_create" ],
           [ "OtherReceiptLineCreate", "class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_line_create.html", "class_intacct_1_1_functions_1_1_cash_management_1_1_other_receipt_line_create" ]
         ] ],
-        [ "Common", null, [
+        [ "Common", "namespace_intacct_1_1_functions_1_1_common.html", [
           [ "GetList", "namespace_intacct_1_1_functions_1_1_common_1_1_get_list.html", [
             [ "AdditionalParameter", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_additional_parameter.html", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_additional_parameter" ],
             [ "ExpressionFilter", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter.html", "class_intacct_1_1_functions_1_1_common_1_1_get_list_1_1_expression_filter" ],
@@ -156,7 +158,7 @@ var annotated =
             [ "Query", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query.html", "class_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query" ],
             [ "QueryFunctionInterface", "interface_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_function_interface.html", "interface_intacct_1_1_functions_1_1_common_1_1_new_query_1_1_query_function_interface" ]
           ] ],
-          [ "Query", null, [
+          [ "Query", "namespace_intacct_1_1_functions_1_1_common_1_1_query.html", [
             [ "Comparison", "namespace_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison.html", [
               [ "EqualTo", "namespace_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to.html", [
                 [ "EqualToDate", "class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date.html", "class_intacct_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date" ],
