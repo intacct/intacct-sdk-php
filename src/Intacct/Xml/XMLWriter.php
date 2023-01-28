@@ -58,7 +58,7 @@ class XMLWriter extends \XMLWriter
     /**
      * @inheritdoc
      */
-    public function startElement($name)
+    public function startElement($name): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
@@ -159,7 +159,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeAttribute($name, $value, $writeNull = true)
+    public function writeAttribute($name, $value, $writeNull = true): bool
     {
         if ($value !== null || $writeNull === true) {
             $value = $this->transformValue($value);
