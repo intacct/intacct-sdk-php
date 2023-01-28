@@ -78,7 +78,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeElement($name, $content = null, $writeNull = false)
+    public function writeElement($name, $content = null, $writeNull = false): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
