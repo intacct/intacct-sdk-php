@@ -1,5 +1,5 @@
 {
-  "name": "intacct/intacct-sdk-php",
+  "name": "thestalnakergroup/intacct-sdk-php",
   "description": "Sage Intacct SDK for PHP",
   "type": "library",
   "license": "Apache-2.0",
