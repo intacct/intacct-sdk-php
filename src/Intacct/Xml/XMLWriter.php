@@ -66,7 +66,7 @@ class XMLWriter extends \XMLWriter
             );
         }
 
-        parent::startElement($name);
+        return parent::startElement($name);
     }
 
     /**
