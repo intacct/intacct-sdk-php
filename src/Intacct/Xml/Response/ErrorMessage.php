@@ -71,6 +71,8 @@ class ErrorMessage
      */
     private function cleanse($value)
     {
-        return filter_var(strval($value), FILTER_SANITIZE_STRING);
+        $value = strip_tags($value);
+        $value = htmlspecialchars($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        return $value;
     }
 }
