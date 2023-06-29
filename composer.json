@@ -1,6 +1,6 @@
 {
-  "name": "thestalnakergroup/intacct-sdk-php",
-  "description": "PHP 8.2 Sage Intacct SDK for PHP",
+  "name": "intacct/intacct-sdk-php",
+  "description": "Sage Intacct SDK for PHP",
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
