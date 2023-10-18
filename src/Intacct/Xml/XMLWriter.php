@@ -58,7 +58,7 @@ class XMLWriter extends \XMLWriter
     /**
      * @inheritdoc
      */
-    public function startElement($name)
+    public function startElement($name): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
@@ -66,7 +66,7 @@ class XMLWriter extends \XMLWriter
             );
         }
 
-        parent::startElement($name);
+        return parent::startElement($name);
     }
 
     /**
@@ -78,7 +78,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeElement($name, $content = null, $writeNull = false)
+    public function writeElement($name, $content = null, $writeNull = false): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
@@ -95,7 +95,7 @@ class XMLWriter extends \XMLWriter
         }
     }
 
-    public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, $writeNull = false)
+    public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, $writeNull = false): bool
     {
         if ($date instanceof \DateTime) {
             return self::writeElement($name, $date->format($format), $writeNull);
@@ -104,7 +104,7 @@ class XMLWriter extends \XMLWriter
         }
     }
 
-    public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, $writeNull = false)
+    public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, $writeNull = false): bool
     {
         if ($date instanceof \DateTime) {
             return self::writeElement($name, $date->format($format), $writeNull);
@@ -159,7 +159,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeAttribute($name, $value, $writeNull = true)
+    public function writeAttribute($name, $value, $writeNull = true): bool
     {
         if ($value !== null || $writeNull === true) {
             $value = $this->transformValue($value);
