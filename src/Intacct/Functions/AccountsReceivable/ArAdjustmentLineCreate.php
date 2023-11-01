@@ -60,6 +60,15 @@ class ArAdjustmentLineCreate extends AbstractArAdjustmentLine
         $xml->writeElement('contractid', $this->getContractId());
         $xml->writeElement('warehouseid', $this->getWarehouseId());
 
+		// if there are tax entries, lets add them to our xml
+		if (!empty($this->getTaxEntry())) {
+			$xml->startElement('taxentries');
+			foreach ($this->getTaxEntry() as $taxentry) {
+				$taxentry->writeXml($xml);
+			}
+			$xml->endElement(); //taxentries
+		}
+
         $xml->endElement(); //lineitem
     }
 }

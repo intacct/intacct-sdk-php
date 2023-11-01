@@ -76,6 +76,12 @@ EOF;
     <itemid>Item1</itemid>
     <classid>Class1</classid>
     <warehouseid>Warehouse1</warehouseid>
+    <taxentries>
+		<taxentry>
+			<detailid>G1 Goods and Services Tax</detailid>
+			<trx_tax></trx_tax>
+		</taxentry>
+	</taxentries>
 </lineitem>
 EOF;
 
@@ -105,6 +111,11 @@ EOF;
         $line->setCustomFields([
             'customfield1' => 'customvalue1',
         ]);
+
+		$invoiceLineTaxEntry = new InvoiceLineTaxEntriesCreate();
+		$invoiceLineTaxEntry->setTaxId('G1 Goods and Services Tax');
+		$invoiceLineTaxEntry->setTaxValue('');
+		$line->setTaxEntry([$invoiceLineTaxEntry]);
 
         $line->writeXml($xml);
 
