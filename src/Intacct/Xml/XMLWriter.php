@@ -45,7 +45,7 @@ class XMLWriter extends \XMLWriter
      * @param string $name
      * @return bool
      */
-    protected function isValidXmlName(string $name)
+    protected function isValidXmlName(string $name): bool
     {
         try {
             new \DOMElement($name);
@@ -58,7 +58,7 @@ class XMLWriter extends \XMLWriter
     /**
      * @inheritdoc
      */
-    public function startElement($name)
+    public function startElement($name): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
@@ -66,7 +66,7 @@ class XMLWriter extends \XMLWriter
             );
         }
 
-        parent::startElement($name);
+        return parent::startElement($name);
     }
 
     /**
@@ -78,7 +78,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeElement($name, $content = null, $writeNull = false)
+    public function writeElement($name, $content = null, bool $writeNull = false): bool
     {
         if ($this->isValidXmlName($name) === false) {
             throw new \InvalidArgumentException(
@@ -95,7 +95,7 @@ class XMLWriter extends \XMLWriter
         }
     }
 
-    public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, $writeNull = false)
+    public function writeElementDate($name, $date = null, $format = self::IA_DATE_FORMAT, bool $writeNull = false): bool
     {
         if ($date instanceof \DateTime) {
             return self::writeElement($name, $date->format($format), $writeNull);
@@ -104,7 +104,7 @@ class XMLWriter extends \XMLWriter
         }
     }
 
-    public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, $writeNull = false)
+    public function writeElementDateTime($name, $date = null, $format = self::IA_DATETIME_FORMAT, bool $writeNull = false): bool
     {
         if ($date instanceof \DateTime) {
             return self::writeElement($name, $date->format($format), $writeNull);
@@ -116,9 +116,9 @@ class XMLWriter extends \XMLWriter
     /**
      * @param mixed $value
      *
-     * @return string
+     * @return ?string
      */
-    private function transformValue($value)
+    private function transformValue($value): ?string
     {
         if (is_bool($value)) {
             $value = ($value === true) ? 'true' : 'false';
@@ -139,7 +139,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeDateSplitElements(\DateTime $date, $writeNull = true)
+    public function writeDateSplitElements(\DateTime $date, bool $writeNull = true): bool
     {
         list($year, $month, $day) = explode('-', $date->format('Y-m-d'));
 
@@ -159,7 +159,7 @@ class XMLWriter extends \XMLWriter
      *
      * @return bool
      */
-    public function writeAttribute($name, $value, $writeNull = true)
+    public function writeAttribute($name, $value, bool $writeNull = true): bool
     {
         if ($value !== null || $writeNull === true) {
             $value = $this->transformValue($value);

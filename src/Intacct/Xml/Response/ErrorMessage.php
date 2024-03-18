@@ -21,7 +21,7 @@ class ErrorMessage
 {
     
     /** @var array */
-    private $errors;
+    private array $errors;
 
     /**
      * @return array
@@ -51,7 +51,7 @@ class ErrorMessage
             $pieces = [];
             foreach ($error->children() as $piece) {
                 //strip out any tags in error messages
-                $piece = htmlspecialchars_decode($this->cleanse($piece), ENT_QUOTES);
+                $piece = htmlspecialchars_decode($this->cleanse($piece), ENT_QUOTES | ENT_HTML5);
 
                 if ($piece !== '') {
                     $pieces[] = $piece;
@@ -69,8 +69,10 @@ class ErrorMessage
      * @param string $value
      * @return string
      */
-    private function cleanse($value)
+    private function cleanse(string $value): string
     {
-        return filter_var(strval($value), FILTER_SANITIZE_STRING);
+        $value = strip_tags($value);
+        $value = htmlspecialchars($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        return $value;
     }
 }
